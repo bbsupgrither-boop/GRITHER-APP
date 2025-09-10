@@ -1,4 +1,0 @@
-// Временные файлы были удалены в процессе отката:
-// - temp_remove_components.txt
-// - temp_adminachievements_end.tsx  
-// - temp_files_to_delete.txt

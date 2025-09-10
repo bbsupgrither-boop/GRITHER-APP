@@ -1,5 +1,0 @@
-Список файлов для удаления:
-- IconButton.tsx
-- CardHeader.tsx
-- temp_remove_components.txt
-- temp_adminachievements_end.tsx
