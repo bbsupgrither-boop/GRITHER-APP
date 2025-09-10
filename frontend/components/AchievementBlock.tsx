@@ -1,0 +1,250 @@
+﻿import { useState } from 'react';
+import { Eye, ArrowLeft, Trophy, Star, Award, Medal } from './Icons';
+import { Dialog, DialogContent, DialogTitle, DialogDescription } from './ui/dialog';
+import { Achievement } from '../types/achievements';
+
+interface AchievementBlockProps {
+  achievements?: Achievement[];
+  theme?: 'light' | 'dark';
+}
+
+export function AchievementBlock({ achievements = [], theme = 'light' }: AchievementBlockProps) {
+  const [isOpen, setIsOpen] = useState(false);
+
+  // РџРѕР»СѓС‡Р°РµРј РґРѕСЃС‚РёР¶РµРЅРёСЏ СЃ РїСЂРѕРіСЂРµСЃСЃРѕРј РјРµРЅРµРµ 100%, РѕС‚СЃРѕСЂС‚РёСЂРѕРІР°РЅРЅС‹Рµ РїРѕ РїСЂРѕС†РµРЅС‚Сѓ РІС‹РїРѕР»РЅРµРЅРёСЏ (СѓР±С‹РІР°РЅРёРµ)
+  const achievementsInProgress = achievements
+    .filter(achievement => {
+      const percentage = (achievement.requirements.current / achievement.requirements.target) * 100;
+      return percentage > 0 && percentage < 100;
+    })
+    .sort((a, b) => {
+      const percentA = (a.requirements.current / a.requirements.target) * 100;
+      const percentB = (b.requirements.current / b.requirements.target) * 100;
+      return percentB - percentA;
+    });
+
+  // РўРѕРї РґРѕСЃС‚РёР¶РµРЅРёСЏ РґР»СЏ РѕС‚РѕР±СЂР°Р¶РµРЅРёСЏ РЅР° РіР»Р°РІРЅРѕР№ СЃС‚СЂР°РЅРёС†Рµ
+  const topAchievements = achievementsInProgress.slice(0, 3);
+  
+  // Р’СЃРµ РґРѕСЃС‚РёР¶РµРЅРёСЏ РІ РїСЂРѕРіСЂРµСЃСЃРµ РґР»СЏ РјРѕРґР°Р»СЊРЅРѕРіРѕ РѕРєРЅР°
+  const allProgressAchievements = achievementsInProgress;
+
+  const getProgressPercentage = (current: number, target: number) => {
+    return Math.round((current / target) * 100);
+  };
+
+  const getAchievementIcon = (iconName: string, rarity: string) => {
+    const iconClass = `w-4 h-4 ${rarity === 'legendary' ? 'text-yellow-500' : rarity === 'epic' ? 'text-purple-500' : rarity === 'rare' ? 'text-blue-500' : 'text-primary'}`;
+    
+    switch (iconName) {
+      case 'trophy':
+        return <Trophy className={iconClass} />;
+      case 'star':
+        return <Star className={iconClass} />;
+      case 'award':
+        return <Award className={iconClass} />;
+      case 'medal':
+        return <Medal className={iconClass} />;
+      default:
+        return <Trophy className={iconClass} />;
+    }
+  };
+
+  return (
+    <>
+      <div 
+        className={theme === 'dark' ? 'dark' : ''}
+        style={{
+          backgroundColor: theme === 'dark' ? '#161A22' : '#FFFFFF',
+          borderRadius: '20px',
+          border: theme === 'dark' 
+            ? '1px solid rgba(255, 255, 255, 0.06)' 
+            : '1px solid #E6E9EF',
+          boxShadow: theme === 'dark' 
+            ? '0 8px 24px rgba(0, 0, 0, 0.6)' 
+            : '0 8px 24px rgba(0, 0, 0, 0.10)'
+        }}
+      >
+        {/* Header */}
+        <div className="flex items-center justify-between p-4 pb-0">
+          <div className="w-8 h-8"></div>
+          <h3 
+            className="font-medium flex-1 text-center"
+            style={{ color: theme === 'dark' ? '#E8ECF2' : '#0F172A' }}
+          >
+            Р’Р°С€Рё РґРѕСЃС‚РёР¶РµРЅРёСЏ
+          </h3>
+          <button 
+            onClick={() => setIsOpen(true)}
+            className="p-2 rounded-full transition-all hover:scale-105"
+            style={{
+              backgroundColor: theme === 'dark' ? '#0F1116' : '#FFFFFF',
+              border: theme === 'dark' ? '1px solid #2A2F36' : '1px solid #E6E9EF',
+              color: theme === 'dark' ? '#FFFFFF' : '#0F172A'
+            }}
+          >
+            <Eye className="w-4 h-4" />
+          </button>
+        </div>
+        
+        <div className="p-4 pt-3">
+          <div className="space-y-3">
+            {topAchievements.length > 0 ? (
+              topAchievements.map((achievement) => {
+                const percentage = getProgressPercentage(achievement.requirements.current, achievement.requirements.target);
+                return (
+                  <div
+                    key={achievement.id}
+                    className="relative overflow-hidden"
+                    style={{
+                      backgroundColor: '#FFFFFF',
+                      borderRadius: '16px',
+                      padding: '16px',
+                      border: '1px solid #E6E9EF',
+                      boxShadow: '0 8px 24px rgba(0, 0, 0, 0.10)'
+                    }}
+                  >
+                    {/* Р¤РѕРЅРѕРІР°СЏ Р·Р°Р»РёРІРєР° РїСЂРѕРіСЂРµСЃСЃР° */}
+                    <div 
+                      className="absolute inset-0 transition-all duration-300"
+                      style={{ 
+                        width: `${percentage}%`,
+                        backgroundColor: 'rgba(43, 130, 255, 0.10)',
+                        borderRadius: '16px'
+                      }}
+                    />
+                    
+                    {/* РљРѕРЅС‚РµРЅС‚ */}
+                    <div className="relative flex items-center justify-between">
+                      <div className="flex items-center gap-3">
+                        <div 
+                          className="w-8 h-8 rounded-xl flex items-center justify-center"
+                          style={{
+                            backgroundColor: achievement.rarity === 'legendary' 
+                              ? 'rgba(255, 193, 7, 0.20)' 
+                              : achievement.rarity === 'epic' 
+                                ? 'rgba(156, 39, 176, 0.20)' 
+                                : achievement.rarity === 'rare' 
+                                  ? 'rgba(33, 150, 243, 0.20)' 
+                                  : 'rgba(43, 130, 255, 0.20)'
+                          }}
+                        >
+                          {getAchievementIcon(achievement.icon, achievement.rarity)}
+                        </div>
+                        <div className="flex-1">
+                          <div 
+                            className="font-medium text-sm mb-1"
+                            style={{ color: '#0F172A' }}
+                          >
+                            {achievement.title}
+                          </div>
+                          <div 
+                            className="text-xs"
+                            style={{ color: '#6B7280' }}
+                          >
+                            {achievement.description}
+                          </div>
+                        </div>
+                      </div>
+                      <div 
+                        className="text-sm font-medium ml-2"
+                        style={{ color: '#2B82FF' }}
+                      >
+                        {percentage}%
+                      </div>
+                    </div>
+                  </div>
+                );
+              })
+            ) : (
+              <div className="flex items-center justify-center min-h-[60px]">
+                <p 
+                  className="text-center opacity-70"
+                  style={{ color: '#6B7280' }}
+                >
+                  РќРµС‚ РґРѕСЃС‚РёР¶РµРЅРёР№ РІ РїСЂРѕС†РµСЃСЃРµ РІС‹РїРѕР»РЅРµРЅРёСЏ
+                </p>
+              </div>
+            )}
+          </div>
+        </div>
+      </div>
+
+      <Dialog open={isOpen} onOpenChange={setIsOpen}>
+        <DialogContent className="glass-card rounded-3xl border-2 border-border apple-shadow w-[90vw] max-w-md p-0 max-h-[80vh] flex flex-col [&>button]:hidden">
+          <div className="p-6 flex-1 flex flex-col">
+            <div className="relative mb-6">
+              <button 
+                onClick={() => setIsOpen(false)}
+                className="absolute left-0 top-0 apple-button p-2 rounded-full hover:scale-105 transition-transform"
+              >
+                <ArrowLeft className="w-4 h-4 text-foreground/70" />
+              </button>
+              
+              <DialogTitle className="text-lg font-medium text-foreground text-center">
+                Р’Р°С€Рё РґРѕСЃС‚РёР¶РµРЅРёСЏ
+              </DialogTitle>
+            </div>
+            
+            <DialogDescription className="sr-only">
+              РџСЂРѕСЃРјРѕС‚СЂ РІР°С€РёС… С‚РµРєСѓС‰РёС… РґРѕСЃС‚РёР¶РµРЅРёР№ Рё РїСЂРѕРіСЂРµСЃСЃР°
+            </DialogDescription>
+
+            {/* РЎРїРёСЃРѕРє РґРѕСЃС‚РёР¶РµРЅРёР№ */}
+            <div className="flex-1 overflow-y-auto space-y-3">
+              {allProgressAchievements.length > 0 ? (
+                allProgressAchievements.map((achievement) => {
+                  const percentage = getProgressPercentage(achievement.requirements.current, achievement.requirements.target);
+                  return (
+                    <div
+                      key={achievement.id}
+                      className="relative glass-card rounded-2xl p-4 apple-shadow overflow-hidden"
+                    >
+                      {/* Р¤РѕРЅРѕРІР°СЏ Р·Р°Р»РёРІРєР° РїСЂРѕРіСЂРµСЃСЃР° */}
+                      <div 
+                        className="absolute inset-0 opacity-20 rounded-2xl transition-all duration-300"
+                        style={{ 
+                          width: `${percentage}%`,
+                          background: `linear-gradient(90deg, rgba(0, 122, 255, 0.2) 0%, rgba(0, 122, 255, 0.1) 100%)`
+                        }}
+                      />
+                      
+                      {/* РљРѕРЅС‚РµРЅС‚ */}
+                      <div className="relative flex items-center justify-between">
+                        <div className="flex items-center gap-3">
+                          <div className={`w-8 h-8 ${achievement.rarity === 'legendary' ? 'bg-yellow-500/20' : achievement.rarity === 'epic' ? 'bg-purple-500/20' : achievement.rarity === 'rare' ? 'bg-blue-500/20' : 'bg-primary/20'} rounded-xl flex items-center justify-center`}>
+                            {getAchievementIcon(achievement.icon, achievement.rarity)}
+                          </div>
+                          <div className="flex-1">
+                            <div className="font-medium text-foreground text-sm mb-1">
+                              {achievement.title}
+                            </div>
+                            <div className="text-xs text-muted-foreground">
+                              {achievement.description}
+                            </div>
+                            <div className="text-xs text-muted-foreground mt-1">
+                              {achievement.requirements.current}/{achievement.requirements.target}
+                            </div>
+                          </div>
+                        </div>
+                        <div className="text-sm font-medium text-primary ml-2">
+                          {percentage}%
+                        </div>
+                      </div>
+                    </div>
+                  );
+                })
+              ) : (
+                <div className="flex items-center justify-center min-h-[120px]">
+                  <p className="text-muted-foreground text-center">
+                    РќРµС‚ РґРѕСЃС‚РёР¶РµРЅРёР№ РІ РїСЂРѕС†РµСЃСЃРµ РІС‹РїРѕР»РЅРµРЅРёСЏ
+                  </p>
+                </div>
+              )}
+            </div>
+          </div>
+        </DialogContent>
+      </Dialog>
+    </>
+  );
+}

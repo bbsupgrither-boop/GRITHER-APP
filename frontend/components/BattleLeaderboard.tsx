@@ -1,0 +1,445 @@
+﻿import { useState, useEffect, useRef } from 'react';
+import { Menu, User } from './Icons';
+import { X } from 'lucide-react';
+import { Dialog, DialogContent, DialogTitle, DialogDescription } from './ui/dialog';
+import { Avatar, AvatarImage, AvatarFallback } from './ui/avatar';
+import { LeaderboardEntry } from '../types/global';
+
+type SortType = 'level' | 'achievements' | 'balance';
+
+interface UserData {
+  id: number;
+  name: string;
+  team: string;
+  level: number;
+  balance: string;
+  achievements: number;
+  avatar?: string;
+}
+
+
+
+interface BattleLeaderboardProps {
+  leaderboard?: LeaderboardEntry[];
+  onNavigate?: (page: string) => void;
+  theme?: 'light' | 'dark';
+}
+
+export function BattleLeaderboard({ leaderboard = [], onNavigate, theme = 'light' }: BattleLeaderboardProps) {
+  const [sortType, setSortType] = useState<SortType>('level');
+  const [isUsersDialogOpen, setIsUsersDialogOpen] = useState(false);
+  const [dialogSortType, setDialogSortType] = useState<SortType>('level');
+
+  // РџСЂРµРѕР±СЂР°Р·СѓРµРј РґР°РЅРЅС‹Рµ Р»РёРґРµСЂР±РѕСЂРґР° РІ placeholder С„РѕСЂРјР°С‚ РёР»Рё РёСЃРїРѕР»СЊР·СѓРµРј С‚РµСЃС‚РѕРІС‹Рµ РґР°РЅРЅС‹Рµ
+  const users: UserData[] = leaderboard.length > 0 
+    ? leaderboard.map((entry, index) => ({
+        id: index + 1,
+        name: entry.user.name || 'Placeholder',
+        team: `Team ${entry.user.teamId || Math.floor(Math.random() * 6) + 1}`,
+        level: entry.user.level || Math.floor(Math.random() * 20) + 1,
+        balance: `${entry.user.balance || Math.floor(Math.random() * 10000) + 1000}g`,
+        achievements: entry.user.achievementsCount || Math.floor(Math.random() * 50) + 1,
+        avatar: entry.user.avatar || ''
+      }))
+    : [
+        // РўРµСЃС‚РѕРІС‹Рµ РґР°РЅРЅС‹Рµ РґР»СЏ РґРµРјРѕРЅСЃС‚СЂР°С†РёРё СЃРѕСЂС‚РёСЂРѕРІРєРё
+        { id: 1, name: 'РђРЅРЅР° РРІР°РЅРѕРІР°', team: 'Team 1', level: 15, balance: '5400g', achievements: 32, avatar: '' },
+        { id: 2, name: 'РџРµС‚СЂ РџРµС‚СЂРѕРІ', team: 'Team 2', level: 12, balance: '8200g', achievements: 28, avatar: '' },
+        { id: 3, name: 'РњР°СЂРёСЏ РЎРёРґРѕСЂРѕРІР°', team: 'Team 3', level: 18, balance: '3600g', achievements: 45, avatar: '' }
+      ];
+
+  const [isButtonClicked, setIsButtonClicked] = useState(false);
+
+  const handleSortClick = () => {
+    // Р’РёР·СѓР°Р»СЊРЅС‹Р№ СЌС„С„РµРєС‚ РЅР°Р¶Р°С‚РёСЏ
+    setIsButtonClicked(true);
+    setTimeout(() => setIsButtonClicked(false), 200);
+
+    // РџРµСЂРµРєР»СЋС‡РµРЅРёРµ С‚РёРїР° СЃРѕСЂС‚РёСЂРѕРІРєРё РїРѕ РєСЂСѓРіСѓ
+    const sortTypes: SortType[] = ['level', 'achievements', 'balance'];
+    const currentIndex = sortTypes.indexOf(sortType);
+    const nextIndex = (currentIndex + 1) % sortTypes.length;
+    const newSortType = sortTypes[nextIndex];
+    setSortType(newSortType);
+    
+    console.log(`РЎРѕСЂС‚РёСЂРѕРІРєР° РёР·РјРµРЅРµРЅР° СЃ "${getSortTypeText(sortType)}" РЅР° "${getSortTypeText(newSortType)}"`);
+  };
+
+  const handleDialogSortClick = () => {
+    // РџРµСЂРµРєР»СЋС‡РµРЅРёРµ С‚РёРїР° СЃРѕСЂС‚РёСЂРѕРІРєРё РІ РґРёР°Р»РѕРіРµ
+    const sortTypes: SortType[] = ['level', 'achievements', 'balance'];
+    const currentIndex = sortTypes.indexOf(dialogSortType);
+    const nextIndex = (currentIndex + 1) % sortTypes.length;
+    setDialogSortType(sortTypes[nextIndex]);
+  };
+
+  const handleUsersClick = () => {
+    setIsUsersDialogOpen(true);
+  };
+
+  const handleUserClick = (userId: number) => {
+    console.log(`РћС‚РєСЂС‹С‚СЊ РїСЂРѕС„РёР»СЊ РїРѕР»СЊР·РѕРІР°С‚РµР»СЏ ${userId}`);
+  };
+
+  const getSortTypeText = (type: SortType) => {
+    switch (type) {
+      case 'level':
+        return 'РџРѕ СѓСЂРѕРІРЅСЋ';
+      case 'achievements':
+        return 'РџРѕ Р°С‡РёРІРєР°Рј';
+      case 'balance':
+        return 'РџРѕ Р±Р°Р»Р°РЅСЃСѓ';
+      default:
+        return 'РџРѕ СѓСЂРѕРІРЅСЋ';
+    }
+  };
+
+  const sortUsers = (users: UserData[], sortType: SortType): UserData[] => {
+    return [...users].sort((a, b) => {
+      switch (sortType) {
+        case 'level':
+          return b.level - a.level;
+        case 'achievements':
+          return b.achievements - a.achievements;
+        case 'balance':
+          // РџР°СЂСЃРёРј С‡РёСЃР»РѕРІРѕРµ Р·РЅР°С‡РµРЅРёРµ РёР· СЃС‚СЂРѕРєРё Р±Р°Р»Р°РЅСЃР° РґР»СЏ РїСЂР°РІРёР»СЊРЅРѕР№ СЃРѕСЂС‚РёСЂРѕРІРєРё
+          const balanceA = parseFloat(a.balance.replace(/[^\d.-]/g, '')) || 0;
+          const balanceB = parseFloat(b.balance.replace(/[^\d.-]/g, '')) || 0;
+          return balanceB - balanceA;
+        default:
+          return b.level - a.level;
+      }
+    });
+  };
+
+  const sortedUsers = sortUsers(users, dialogSortType);
+
+  return (
+    <>
+      {/* Р РµР№С‚РёРЅРі РєР°СЂС‚РѕС‡РєР° */}
+      <div 
+        className={`${theme === 'dark' ? 'dark' : ''} cursor-pointer transition-all hover:scale-[1.02] hover:shadow-lg active:scale-[0.98]`}
+        onClick={(e) => {
+          e.preventDefault();
+          e.stopPropagation();
+          console.log('LEADERBOARD CARD CLICKED!');
+          handleUsersClick();
+        }}
+        style={{
+          backgroundColor: theme === 'dark' ? '#161A22' : '#FFFFFF',
+          borderRadius: '20px',
+          border: theme === 'dark' 
+            ? '1px solid rgba(255, 255, 255, 0.06)' 
+            : '1px solid #E6E9EF',
+          boxShadow: theme === 'dark' 
+            ? '0 8px 24px rgba(0, 0, 0, 0.6)' 
+            : '0 8px 24px rgba(0, 0, 0, 0.10)',
+          position: 'relative'
+        }}
+      >
+        {/* Header */}
+        <div className="relative p-4 pb-0">
+          <button 
+            onClick={(e) => {
+              e.preventDefault();
+              e.stopPropagation();
+              console.log('SORT BUTTON CLICKED!');
+              handleSortClick();
+            }}
+            className={`absolute top-4 right-4 w-7 h-7 rounded-full transition-all hover:scale-105 active:scale-95 flex items-center justify-center ${isButtonClicked ? 'animate-pulse' : ''}`}
+            style={{
+              background: theme === 'dark' ? 'linear-gradient(145deg, #FFFFFF, #E0E0E0)' : '#FFFFFF',
+              border: theme === 'dark' ? '1px solid rgba(255, 255, 255, 0.2)' : '1px solid #E6E9EF',
+              color: theme === 'dark' ? '#1A1A1A' : '#0F172A',
+              boxShadow: theme === 'dark' 
+                ? '0 4px 15px rgba(255, 255, 255, 0.2), inset 0 1px 0 rgba(255, 255, 255, 0.3)' 
+                : '0 2px 8px rgba(0, 0, 0, 0.06)',
+              animation: isButtonClicked ? 'pulse 0.2s ease-in-out' : 'none',
+              zIndex: 60,
+              cursor: 'pointer'
+            }}
+            title={`РЎРѕСЂС‚РёСЂРѕРІРєР°: ${getSortTypeText(sortType)} (РЅР°Р¶РјРёС‚Рµ РґР»СЏ РёР·РјРµРЅРµРЅРёСЏ)`}
+          >
+            <Menu className="w-4 h-4" />
+          </button>
+          <div className="text-center">
+            <h3 
+              className="font-medium"
+              style={{ 
+                color: theme === 'dark' ? '#E8ECF2' : '#0F172A',
+                fontSize: '18px',
+                lineHeight: '23.62px'
+              }}
+            >
+              Р РµР№С‚РёРЅРі
+            </h3>
+            <p 
+              className="text-xs opacity-60 mt-1"
+              style={{ color: theme === 'dark' ? '#A7B0BD' : '#6B7280' }}
+            >
+              {getSortTypeText(sortType)}
+            </p>
+          </div>
+        </div>
+        
+        <div className="p-4 pt-3">
+          <div className="flex items-center justify-center min-h-[50px]">
+            {users.length > 0 ? (
+            <div className="w-full space-y-1">
+              {sortUsers(users, sortType).slice(0, 3).map((user, index) => (
+                <div 
+                  key={`${user.id}-${sortType}`} 
+                  className="flex items-center gap-2 text-xs transition-all duration-200 hover:scale-[1.02]"
+                  style={{
+                    animation: 'fadeIn 0.3s ease-in-out'
+                  }}
+                >
+                  <span 
+                    className="font-medium w-4"
+                    style={{ color: theme === 'dark' ? '#E8ECF2' : '#0F172A' }}
+                  >
+                    {index + 1}.
+                  </span>
+                  <span 
+                    className="truncate flex-1"
+                    style={{ color: theme === 'dark' ? '#E8ECF2' : '#0F172A' }}
+                  >
+                    {user.name}
+                  </span>
+                  <span 
+                    className="text-xs font-medium"
+                    style={{ color: theme === 'dark' ? '#A7B0BD' : '#6B7280' }}
+                  >
+                    {sortType === 'level' && `РЈСЂ.${user.level}`}
+                    {sortType === 'achievements' && `${user.achievements}в…`}
+                    {sortType === 'balance' && user.balance}
+                  </span>
+                </div>
+              ))}
+            </div>
+          ) : (
+            <p 
+              className="text-sm text-center opacity-70"
+              style={{ color: theme === 'dark' ? '#A7B0BD' : '#6B7280' }}
+            >
+              РЎРїРёСЃРѕРє Р»РёРґРµСЂРѕРІ РѕС‚СЃСѓС‚СЃС‚РІСѓРµС‚
+            </p>
+          )}
+          </div>
+        </div>
+      </div>
+
+      {/* Р РµР№С‚РёРЅРі РїРѕР»СЊР·РѕРІР°С‚РµР»РµР№ - РјРѕРґР°Р»РєР° РІ СЃС‚РёР»Рµ Р±Р°С‚С‚Р»РѕРІ */}
+      <Dialog open={isUsersDialogOpen} onOpenChange={setIsUsersDialogOpen}>
+        <DialogContent 
+          className="w-[90vw] max-w-md max-h-[80vh] overflow-hidden rounded-3xl p-0 [&>button]:hidden flex flex-col"
+          style={{
+            background: theme === 'dark' 
+              ? 'linear-gradient(145deg, rgba(8, 10, 14, 0.98) 0%, rgba(16, 20, 28, 0.98) 100%)'
+              : 'linear-gradient(145deg, rgba(255, 255, 255, 0.98) 0%, rgba(248, 250, 252, 0.98) 100%)',
+            border: theme === 'dark' 
+              ? '1px solid rgba(255, 255, 255, 0.06)' 
+              : '1px solid rgba(0, 0, 0, 0.1)',
+            boxShadow: theme === 'dark' 
+              ? '0 16px 48px rgba(0, 0, 0, 0.8)'
+              : '0 16px 48px rgba(0, 0, 0, 0.15)',
+            backdropFilter: 'blur(20px)',
+            WebkitBackdropFilter: 'blur(20px)'
+          }}
+        >
+          {/* Accessibility elements */}
+          <DialogTitle className="sr-only">
+            Р РµР№С‚РёРЅРі РїРѕР»СЊР·РѕРІР°С‚РµР»РµР№
+          </DialogTitle>
+          <DialogDescription className="sr-only">
+            РџРѕР»РЅС‹Р№ СЃРїРёСЃРѕРє СѓС‡Р°СЃС‚РЅРёРєРѕРІ СЃ РІРѕР·РјРѕР¶РЅРѕСЃС‚СЊСЋ СЃРѕСЂС‚РёСЂРѕРІРєРё РїРѕ СѓСЂРѕРІРЅСЋ, РґРѕСЃС‚РёР¶РµРЅРёСЏРј Рё Р±Р°Р»Р°РЅСЃСѓ
+          </DialogDescription>
+          
+          {/* Р—Р°РіРѕР»РѕРІРѕРє */}
+          <div 
+            className="flex items-center justify-between p-6 border-b shrink-0"
+            style={{
+              borderColor: theme === 'dark' 
+                ? 'rgba(255, 255, 255, 0.06)' 
+                : 'rgba(0, 0, 0, 0.1)'
+            }}
+          >
+            <h2 
+              className="text-lg font-medium"
+              style={{
+                color: theme === 'dark' ? '#E8ECF2' : '#0F172A'
+              }}
+            >
+              Р РµР№С‚РёРЅРі
+            </h2>
+            
+            <button
+              onClick={() => setIsUsersDialogOpen(false)}
+              className="w-8 h-8 rounded-full flex items-center justify-center transition-all hover:scale-105"
+              style={{
+                background: theme === 'dark' 
+                  ? 'linear-gradient(145deg, #FFFFFF, #E0E0E0)' 
+                  : '#FFFFFF',
+                border: theme === 'dark' 
+                  ? '1px solid rgba(255, 255, 255, 0.2)' 
+                  : '1px solid #E6E9EF',
+                boxShadow: theme === 'dark' 
+                  ? '0 4px 15px rgba(255, 255, 255, 0.2)' 
+                  : '0 2px 8px rgba(0, 0, 0, 0.06)'
+              }}
+            >
+              <X 
+                style={{
+                  width: '16px',
+                  height: '16px',
+                  color: theme === 'dark' ? '#1A1A1A' : '#6B7280'
+                }}
+              />
+            </button>
+          </div>
+
+          {/* РџР°РЅРµР»СЊ СЃРѕСЂС‚РёСЂРѕРІРєРё */}
+          <div 
+            className="flex items-center justify-between p-6 border-b shrink-0"
+            style={{
+              borderColor: theme === 'dark' 
+                ? 'rgba(255, 255, 255, 0.06)' 
+                : 'rgba(0, 0, 0, 0.1)'
+            }}
+          >
+            <span 
+              className="text-sm font-medium"
+              style={{ color: theme === 'dark' ? '#E8ECF2' : '#0F172A' }}
+            >
+              РЎРѕСЂС‚РёСЂРѕРІРєР°: {getSortTypeText(dialogSortType)}
+            </span>
+            <button
+              onClick={handleDialogSortClick}
+              className="py-2 px-4 rounded-xl text-sm font-medium transition-all hover:scale-105"
+              style={{
+                background: theme === 'dark' 
+                  ? 'linear-gradient(145deg, #FFFFFF, #E0E0E0)' 
+                  : '#2B82FF',
+                color: theme === 'dark' ? '#1A1A1A' : '#FFFFFF',
+                border: theme === 'dark' 
+                  ? '1px solid rgba(255, 255, 255, 0.2)' 
+                  : '1px solid #2B82FF',
+                boxShadow: theme === 'dark' 
+                  ? '0 4px 15px rgba(255, 255, 255, 0.2)' 
+                  : '0 2px 8px rgba(0, 0, 0, 0.06)'
+              }}
+            >
+              РР·РјРµРЅРёС‚СЊ
+            </button>
+          </div>
+          
+          {/* РЎРїРёСЃРѕРє РїРѕР»СЊР·РѕРІР°С‚РµР»РµР№ */}
+          <div className="flex-1 overflow-y-auto">
+            <div className="p-6 space-y-3">
+              {sortedUsers.map((user, index) => (
+                <div
+                  key={user.id}
+                  className="p-4 rounded-2xl border transition-all hover:scale-[1.01] cursor-pointer"
+                  style={{
+                    background: theme === 'dark' 
+                      ? 'rgba(43, 130, 255, 0.1)' 
+                      : 'rgba(43, 130, 255, 0.05)',
+                    borderColor: theme === 'dark' 
+                      ? 'rgba(43, 130, 255, 0.2)' 
+                      : 'rgba(43, 130, 255, 0.15)'
+                  }}
+                  onClick={() => handleUserClick(user.id)}
+                >
+                  <div className="flex items-center justify-between">
+                    <div className="flex items-center gap-3">
+                      <span 
+                        className="w-8 h-8 rounded-full flex items-center justify-center text-sm font-medium"
+                        style={{
+                          background: theme === 'dark' 
+                            ? 'rgba(43, 130, 255, 0.2)' 
+                            : 'rgba(43, 130, 255, 0.15)',
+                          color: '#2B82FF'
+                        }}
+                      >
+                        {index + 1}
+                      </span>
+                      
+                      <Avatar className="w-8 h-8">
+                        <AvatarImage src={user.avatar} />
+                        <AvatarFallback 
+                          className="text-sm font-medium"
+                          style={{
+                            background: theme === 'dark' ? '#2A3340' : '#E6E9EF',
+                            color: theme === 'dark' ? '#E8ECF2' : '#0F172A'
+                          }}
+                        >
+                          {user.name.charAt(0)}
+                        </AvatarFallback>
+                      </Avatar>
+                      
+                      <div>
+                        <div 
+                          className="font-medium"
+                          style={{ color: theme === 'dark' ? '#E8ECF2' : '#0F172A' }}
+                        >
+                          {user.name}
+                        </div>
+                        <div 
+                          className="text-sm"
+                          style={{ color: theme === 'dark' ? '#A7B0BD' : '#6B7280' }}
+                        >
+                          {user.team}
+                        </div>
+                      </div>
+                    </div>
+                    
+                    <div 
+                      className="text-sm font-medium"
+                      style={{
+                        color: '#2B82FF'
+                      }}
+                    >
+                      {dialogSortType === 'level' && `РЈСЂ.${user.level}`}
+                      {dialogSortType === 'achievements' && `${user.achievements}в…`}
+                      {dialogSortType === 'balance' && user.balance}
+                    </div>
+                  </div>
+                </div>
+              ))}
+              
+              {/* РџСѓСЃС‚РѕРµ СЃРѕСЃС‚РѕСЏРЅРёРµ */}
+              {sortedUsers.length === 0 && (
+                <div className="text-center py-12">
+                  <div 
+                    className="text-4xl mb-4"
+                    style={{
+                      color: theme === 'dark' ? '#A7B0BD' : '#6B7280'
+                    }}
+                  >
+                    рџЏ†
+                  </div>
+                  <p 
+                    className="text-sm"
+                    style={{
+                      color: theme === 'dark' ? '#A7B0BD' : '#6B7280'
+                    }}
+                  >
+                    Р РµР№С‚РёРЅРі РїСѓСЃС‚
+                  </p>
+                  <p 
+                    className="text-xs mt-1"
+                    style={{
+                      color: theme === 'dark' ? '#6B7280' : '#9CA3AF'
+                    }}
+                  >
+                    РЈС‡Р°СЃС‚РЅРёРєРё РїРѕСЏРІСЏС‚СЃСЏ Р·РґРµСЃСЊ
+                  </p>
+                </div>
+              )}
+            </div>
+          </div>
+        </DialogContent>
+      </Dialog>
+    </>
+  );
+}
