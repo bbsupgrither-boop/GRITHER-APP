@@ -1,0 +1,97 @@
+
+  <!DOCTYPE html>
+  <html lang="en">
+    <head>
+     <script src="https://telegram.org/js/telegram-web-app.js"></script>
+      <meta charset="UTF-8" />
+      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <title>Макет приложения для Telegram (Copy) (Copy)</title>
+    </head>
+
+    <body>
+      <div id="root"></div>
+     <!-- Авто-авторизация в Telegram WebApp -->
+    <!-- Диагностический маяк + авторизация через Telegram WebApp (с фолбэком) -->
+<script>
+(function () {
+  // 0) Маяк: загрузка страницы
+  new Image().src = 'https://hui-production.up.railway.app/api/twa/ping?from=indexhtml&ts=' + Date.now();
+
+  try {
+    var wa = window.Telegram && Telegram.WebApp;
+    new Image().src = 'https://hui-production.up.railway.app/api/twa/ping?wa=' + (wa ? 1 : 0);
+    if (!wa) return;
+
+    // чуть «раскрываем» WebApp и помечаем готовность
+    try { wa.ready(); wa.expand(); } catch (e) {}
+
+    // 1) если есть «настоящий» initData — используем его
+    var hasInit = !!(wa.initData && wa.initData.length > 10);
+    new Image().src = 'https://hui-production.up.railway.app/api/twa/ping?init=' + (hasInit ? 1 : 0);
+
+    // 2) если initData пуст, соберём фолбэк из initDataUnsafe.user (это ок, пока SKIP_TWA_VERIFY=1 на бэке)
+    var initDataToSend;
+    if (hasInit) {
+      initDataToSend = wa.initData;
+    } else {
+      var unsafeUser = (wa.initDataUnsafe && wa.initDataUnsafe.user) || null;
+      if (!unsafeUser) return; // вообще нет данных — выходим
+      var u = encodeURIComponent(JSON.stringify(unsafeUser));
+      // формируем "псевдо-initData" (хеш фиктивный — в diag-режиме сервер примет)
+      initDataToSend = 'query_id=x&user=' + u + '&auth_date=0&hash=0';
+    }
+
+  
+    .then(function(r){ return r.json(); })
+    .then(function(r){
+      new Image().src = 'https://hui-production.up.railway.app/api/twa/ping?auth=' + (r && r.ok ? 'ok' : 'fail');
+      if (r && r.ok) {
+        localStorage.setItem('grither_token', r.token || '');
+        localStorage.setItem('grither_me', JSON.stringify(r.me || {}));
+      }
+    })
+    .catch(function(){ /* ignore */ });
+
+  } catch (e) {
+    new Image().src = 'https://hui-production.up.railway.app/api/twa/ping?err=1';
+  }
+})();
+</script>
+
+
+<script>
+(function () {
+  try {
+    var wa = window.Telegram && Telegram.WebApp;
+    if (!wa || !wa.initData) return; // если открыто НЕ из Telegram — тихо выходим
+
+    // ПИНГ ДЛЯ ПРОВЕРКИ СВЯЗИ (увидишь в HTTP Logs)
+    fetch('https://hui-production.up.railway.app/api/twa/ping?from=netlify-indexhtml')
+      .catch(function(){});
+
+    // Сама авторизация
+    fetch('https://hui-production.up.railway.app/api/twa/auth', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ initData: wa.initData })
+    })
+      .then(function(r){ return r.json(); })
+      .then(function(r){
+        // чтобы видеть прямо в вебвью
+        try { console.log('AUTH RESULT', r); } catch(e) {}
+        if (r && r.ok) {
+          localStorage.setItem('grither_token', r.token || '');
+          localStorage.setItem('grither_me', JSON.stringify(r.me || {}));
+        }
+      })
+      .catch(function(){});
+  } catch (e) {
+    try { console.log('AUTH ERROR', e && e.message); } catch (_){}
+  }
+})();
+</script>
+
+      <script type="module" src="/src/main.tsx"></script>
+    </body>
+  </html>
+  
