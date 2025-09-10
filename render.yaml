@@ -2,7 +2,7 @@ services:
   - type: web
     name: grither-backend
     env: node
-    plan: free
+    plan: starter
     buildCommand: cd backend && npm install
     startCommand: cd backend && npm start
     envVars:
@@ -22,7 +22,7 @@ services:
   - type: web
     name: grither-frontend
     env: static
-    plan: free
+    plan: starter
     buildCommand: cd frontend && npm install && npm run build
     staticPublishPath: ./frontend/dist
     envVars:
@@ -35,6 +35,6 @@ services:
 
 databases:
   - name: grither-database
-    plan: free
+    plan: starter
     databaseName: grither_db
     user: grither_user
