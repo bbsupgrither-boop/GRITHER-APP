@@ -4,6 +4,11 @@ import express from 'express';
 import cors from 'cors';
 import crypto from 'node:crypto';
 import pkg from 'pg';
+import dotenv from 'dotenv';
+
+// Загружаем переменные окружения
+dotenv.config();
+
 const { Pool } = pkg;
 
 // ───────────────────────────────────────────────────────────
