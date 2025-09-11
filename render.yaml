@@ -32,6 +32,9 @@ services:
       - type: rewrite
         source: /api/*
         destination: https://grither-backend.onrender.com/api/*
+      - type: rewrite
+        source: /*
+        destination: /index.html
 
 databases:
   - name: grither-database

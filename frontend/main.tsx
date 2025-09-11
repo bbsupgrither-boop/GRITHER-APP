@@ -1,9 +1,9 @@
 ﻿import React from 'react'
 import ReactDOM from 'react-dom/client'
 import App from './App.tsx'
+import './index.css'
 
-
-// Р¤СѓРЅРєС†РёСЏ РґР»СЏ СЃРєСЂС‹С‚РёСЏ РїСЂРµР»РѕР°РґРµСЂР°
+// Function to hide preloader
 const hideLoader = () => {
   const loader = document.getElementById('app-loader');
   if (loader) {
@@ -19,5 +19,5 @@ ReactDOM.createRoot(document.getElementById('root')!).render(
   </React.StrictMode>,
 )
 
-// РЎРєСЂС‹РІР°РµРј РїСЂРµР»РѕР°РґРµСЂ РїРѕСЃР»Рµ СЂРµРЅРґРµСЂР°
+// Hide preloader after render
 setTimeout(hideLoader, 500);
