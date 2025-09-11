@@ -1,5 +1,5 @@
 ﻿import { useState } from 'react';
-import { motion } from 'motion/react';
+import { motion } from 'framer-motion';
 import { Header } from './Header';
 import { BottomNavigation } from './BottomNavigation';
 import { CaseRoulette } from './CaseRoulette';

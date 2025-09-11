@@ -1,5 +1,5 @@
 ﻿import { useState } from 'react';
-import { motion } from 'motion/react';
+import { motion } from 'framer-motion';
 import { CaseType, Prize } from '../types/cases';
 import { mockCaseTypes, mockPrizes } from '../data/mockData';
 import { Plus, Edit2, Trash2, Package, Gift, Eye, EyeOff, ChevronDown, ChevronRight } from 'lucide-react';
