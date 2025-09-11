@@ -5,17 +5,10 @@ import path from 'path';
 export default defineConfig({
   plugins: [
     react(),
-    {
-      name: 'telegram-webapp',
-      transformIndexHtml(html) {
-        return html.replace(
-          '</head>',
-          '    <script src="https://telegram.org/js/telegram-web-app.js"></script>\n  </head>'
-        );
-      },
-    },
   ],
-  // Убрали css: { postcss: false }
+  css: {
+    postcss: false,
+  },
   define: {
     __TELEGRAM_WEBAPP__: JSON.stringify(true),
   },
