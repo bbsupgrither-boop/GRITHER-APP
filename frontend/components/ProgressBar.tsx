@@ -24,19 +24,19 @@ export function ProgressBar({
         <div className="flex items-center mb-4 px-1">
           {showStatus && (
             <span className="text-sm flex-1 text-muted-foreground opacity-50">
-              РЎС‚Р°С‚СѓСЃ: вЂ”
+              Статус: —
             </span>
           )}
           <button 
             onClick={() => setIsXpDialogOpen(true)}
             className="text-sm flex-1 text-center transition-colors cursor-pointer text-muted-foreground opacity-50"
           >
-            XP: вЂ”
+            XP: —
           </button>
           <span 
             className={`text-sm font-medium text-muted-foreground opacity-50 ${showStatus ? 'flex-1 text-right' : 'ml-auto'}`}
           >
-            lvl вЂ”
+            lvl —
           </span>
         </div>
         <div 

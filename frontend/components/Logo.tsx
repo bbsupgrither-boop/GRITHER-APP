@@ -15,7 +15,7 @@ export function Logo({ theme = 'light' }: LogoProps) {
         zIndex: 10
       }}
     >
-      {/* Glow effect - С‚РѕР»СЊРєРѕ РґР»СЏ С‚РµРјРЅРѕР№ С‚РµРјС‹ */}
+      {/* Glow effect - только для темной темы */}
       {theme === 'dark' && (
         <div 
           className="absolute"

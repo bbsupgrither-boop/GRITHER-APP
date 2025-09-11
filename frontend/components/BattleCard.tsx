@@ -36,7 +36,7 @@ export function BattleCard({
         position: 'relative'
       }}
     >
-      {/* Р—Р°РіРѕР»РѕРІРѕРє */}
+      {/* Заголовок */}
       <div className="relative p-4 pb-0">
         <button
           onClick={(e) => {
@@ -74,21 +74,21 @@ export function BattleCard({
               lineHeight: '23.62px'
             }}
           >
-            Р‘Р°С‚С‚Р»С‹
+            Баттлы
           </h3>
         </div>
       </div>
 
-      {/* РљРѕРЅС‚РµРЅС‚ */}
+      {/* Контент */}
       <div className="space-y-3 px-4 pb-4" style={{ marginTop: '16px' }}>
-        {/* РђРєС‚РёРІРЅС‹Рµ Р±Р°С‚С‚Р»С‹ */}
+        {/* Активные баттлы */}
         {activeBattles.length > 0 && (
           <div>
             <div 
               className="text-xs font-medium mb-2"
               style={{ color: theme === 'dark' ? '#A7B0BD' : '#6B7280' }}
             >
-              РђРєС‚РёРІРЅС‹Рµ Р±Р°С‚С‚Р»С‹
+              Активные баттлы
             </div>
             
             <div className="space-y-2">
@@ -133,14 +133,14 @@ export function BattleCard({
                   className="text-xs text-center py-1"
                   style={{ color: theme === 'dark' ? '#A7B0BD' : '#6B7280' }}
                 >
-                  +{activeBattles.length - 2} РµС‰Рµ
+                  +{activeBattles.length - 2} еще
                 </div>
               )}
             </div>
           </div>
         )}
 
-        {/* РџСЂРёРіР»Р°С€РµРЅРёСЏ */}
+        {/* Приглашения */}
         {pendingInvitations.length > 0 && (
           <div>
             <div 

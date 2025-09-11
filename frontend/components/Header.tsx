@@ -65,7 +65,7 @@ export function Header({
                     : '1px solid #E6E9EF'
                 }}
               >
-                {(profilePhoto || user?.avatar) && <AvatarImage src={profilePhoto || user?.avatar} alt={user?.name || 'РџСЂРѕС„РёР»СЊ'} />}
+                {(profilePhoto || user?.avatar) && <AvatarImage src={profilePhoto || user?.avatar} alt={user?.name || 'Профиль'} />}
                 <AvatarFallback 
                   style={{
                     background: 'linear-gradient(135deg, #2B82FF 0%, #1E40AF 100%)',
@@ -93,7 +93,7 @@ export function Header({
                   color: theme === 'dark' ? '#E8ECF2' : '#0F172A' 
                 }}
               >
-                {user?.name || 'РџРѕР»СЊР·РѕРІР°С‚РµР»СЊ'}
+                {user?.name || 'Пользователь'}
               </span>
               {user && 'balance' in user && (
                 <div className="flex items-center gap-1">
@@ -104,7 +104,7 @@ export function Header({
                     }}
                   >
 {(() => {
-                      // РћРїСЂРµРґРµР»СЏРµРј СЂРѕР»СЊ РЅР° РѕСЃРЅРѕРІРµ ID РїРѕР»СЊР·РѕРІР°С‚РµР»СЏ РёР»Рё СѓСЂРѕРІРЅСЏ
+                      // Определяем роль на основе ID пользователя или уровня
                       // РРµСЂР°СЂС…РёСЏ: 1.GRITHER в†’ 2.GLEB в†’ 3.SUPPORT в†’ 4.TEAMLEAD в†’ 5.WORKER
                       if (user.id === 'current-user') return 'GRITHER';
                       if (user.level >= 20) return 'GLEB';
@@ -136,7 +136,7 @@ export function Header({
         {(hideUserIcon || title) && !title && <div />}
         
         <div className="flex items-center gap-2">
-          {/* РљРЅРѕРїРєР° СѓРІРµРґРѕРјР»РµРЅРёР№ */}
+          {/* Кнопка уведомлений */}
           <NotificationsButton
             notifications={notifications}
             unreadCount={unreadNotificationsCount}
@@ -147,7 +147,7 @@ export function Header({
             theme={theme}
           />
           
-          {/* РљРЅРѕРїРєР° РЅР°СЃС‚СЂРѕРµРє */}
+          {/* Кнопка настроек */}
           <button 
             onClick={onOpenSettings}
             className="apple-button transition-all hover:scale-105"

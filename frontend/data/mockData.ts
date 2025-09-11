@@ -5,12 +5,12 @@ import { CaseType, UserCase, CaseShopItem, Prize } from '../types/cases';
 import { Notification } from '../types/notifications';
 import { LeaderboardEntry, User } from '../types/global';
 
-// РџСЂРѕСЃС‚С‹Рµ РјРѕРє-РґР°РЅРЅС‹Рµ РґР»СЏ РґРѕСЃС‚РёР¶РµРЅРёР№
+// Простые мок-данные для достижений
 export const mockAchievements: Achievement[] = [
   {
     id: 'ach1',
-    title: 'РџРµСЂРІС‹Рµ С€Р°РіРё',
-    description: 'Р’С‹РїРѕР»РЅРёС‚Рµ РїРµСЂРІСѓСЋ Р·Р°РґР°С‡Сѓ',
+    title: 'Первые шаги',
+    description: 'Выполните первую задачу',
     category: 'general',
     rarity: 'common',
     requirements: {
@@ -24,12 +24,12 @@ export const mockAchievements: Achievement[] = [
     },
     status: 'available',
     isActive: true,
-    conditions: ['Р’С‹РїРѕР»РЅРёС‚СЊ Р»СЋР±СѓСЋ Р·Р°РґР°С‡Сѓ']
+    conditions: ['Выполнить любую задачу']
   },
   {
     id: 'ach2',
-    title: 'РўСЂСѓРґРѕР»СЋР±РёРІС‹Р№',
-    description: 'Р’С‹РїРѕР»РЅРёС‚Рµ 10 Р·Р°РґР°С‡',
+    title: 'Трудолюбивый',
+    description: 'Выполните 10 задач',
     category: 'tasks',
     rarity: 'rare',
     requirements: {
@@ -43,7 +43,7 @@ export const mockAchievements: Achievement[] = [
     },
     status: 'locked',
     isActive: true,
-    conditions: ['Р’С‹РїРѕР»РЅРёС‚СЊ 10 Р·Р°РґР°С‡ Р»СЋР±РѕР№ СЃР»РѕР¶РЅРѕСЃС‚Рё']
+    conditions: ['Выполнить 10 задач любой сложности']
   }
 ];
 

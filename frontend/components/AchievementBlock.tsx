@@ -11,7 +11,7 @@ interface AchievementBlockProps {
 export function AchievementBlock({ achievements = [], theme = 'light' }: AchievementBlockProps) {
   const [isOpen, setIsOpen] = useState(false);
 
-  // РџРѕР»СѓС‡Р°РµРј РґРѕСЃС‚РёР¶РµРЅРёСЏ СЃ РїСЂРѕРіСЂРµСЃСЃРѕРј РјРµРЅРµРµ 100%, РѕС‚СЃРѕСЂС‚РёСЂРѕРІР°РЅРЅС‹Рµ РїРѕ РїСЂРѕС†РµРЅС‚Сѓ РІС‹РїРѕР»РЅРµРЅРёСЏ (СѓР±С‹РІР°РЅРёРµ)
+  // Получаем достижения с прогрессом менее 100%, отсортированные по проценту выполнения (убывание)
   const achievementsInProgress = achievements
     .filter(achievement => {
       const percentage = (achievement.requirements.current / achievement.requirements.target) * 100;
@@ -23,10 +23,10 @@ export function AchievementBlock({ achievements = [], theme = 'light' }: Achieve
       return percentB - percentA;
     });
 
-  // РўРѕРї РґРѕСЃС‚РёР¶РµРЅРёСЏ РґР»СЏ РѕС‚РѕР±СЂР°Р¶РµРЅРёСЏ РЅР° РіР»Р°РІРЅРѕР№ СЃС‚СЂР°РЅРёС†Рµ
+  // Топ достижения для отображения на главной странице
   const topAchievements = achievementsInProgress.slice(0, 3);
   
-  // Р’СЃРµ РґРѕСЃС‚РёР¶РµРЅРёСЏ РІ РїСЂРѕРіСЂРµСЃСЃРµ РґР»СЏ РјРѕРґР°Р»СЊРЅРѕРіРѕ РѕРєРЅР°
+  // Все достижения в прогрессе для модального окна
   const allProgressAchievements = achievementsInProgress;
 
   const getProgressPercentage = (current: number, target: number) => {
@@ -72,7 +72,7 @@ export function AchievementBlock({ achievements = [], theme = 'light' }: Achieve
             className="font-medium flex-1 text-center"
             style={{ color: theme === 'dark' ? '#E8ECF2' : '#0F172A' }}
           >
-            Р’Р°С€Рё РґРѕСЃС‚РёР¶РµРЅРёСЏ
+            Ваши достижения
           </h3>
           <button 
             onClick={() => setIsOpen(true)}
@@ -104,7 +104,7 @@ export function AchievementBlock({ achievements = [], theme = 'light' }: Achieve
                       boxShadow: '0 8px 24px rgba(0, 0, 0, 0.10)'
                     }}
                   >
-                    {/* Р¤РѕРЅРѕРІР°СЏ Р·Р°Р»РёРІРєР° РїСЂРѕРіСЂРµСЃСЃР° */}
+                    {/* Фоновая заливка прогресса */}
                     <div 
                       className="absolute inset-0 transition-all duration-300"
                       style={{ 
@@ -114,7 +114,7 @@ export function AchievementBlock({ achievements = [], theme = 'light' }: Achieve
                       }}
                     />
                     
-                    {/* РљРѕРЅС‚РµРЅС‚ */}
+                    {/* Контент */}
                     <div className="relative flex items-center justify-between">
                       <div className="flex items-center gap-3">
                         <div 
@@ -182,7 +182,7 @@ export function AchievementBlock({ achievements = [], theme = 'light' }: Achieve
               </button>
               
               <DialogTitle className="text-lg font-medium text-foreground text-center">
-                Р’Р°С€Рё РґРѕСЃС‚РёР¶РµРЅРёСЏ
+                Ваши достижения
               </DialogTitle>
             </div>
             
@@ -200,7 +200,7 @@ export function AchievementBlock({ achievements = [], theme = 'light' }: Achieve
                       key={achievement.id}
                       className="relative glass-card rounded-2xl p-4 apple-shadow overflow-hidden"
                     >
-                      {/* Р¤РѕРЅРѕРІР°СЏ Р·Р°Р»РёРІРєР° РїСЂРѕРіСЂРµСЃСЃР° */}
+                      {/* Фоновая заливка прогресса */}
                       <div 
                         className="absolute inset-0 opacity-20 rounded-2xl transition-all duration-300"
                         style={{ 
@@ -209,7 +209,7 @@ export function AchievementBlock({ achievements = [], theme = 'light' }: Achieve
                         }}
                       />
                       
-                      {/* РљРѕРЅС‚РµРЅС‚ */}
+                      {/* Контент */}
                       <div className="relative flex items-center justify-between">
                         <div className="flex items-center gap-3">
                           <div className={`w-8 h-8 ${achievement.rarity === 'legendary' ? 'bg-yellow-500/20' : achievement.rarity === 'epic' ? 'bg-purple-500/20' : achievement.rarity === 'rare' ? 'bg-blue-500/20' : 'bg-primary/20'} rounded-xl flex items-center justify-center`}>

@@ -23,7 +23,7 @@ export function ModalXP({
   const currentXp = 0;
   const currentLevel = 0;
   const xpNeededForNextLevel = 100;
-  const nextLevelReward = 0; // G-coins Р·Р° РїРµСЂРµС…РѕРґ РЅР° СЃР»РµРґСѓСЋС‰РёР№ СѓСЂРѕРІРµРЅСЊ
+  const nextLevelReward = 0; // G-coins за переход на следующий уровень
   const progressPercentage = 0;
 
   const handleBackdropClick = (e: React.MouseEvent) => {
@@ -62,7 +62,7 @@ export function ModalXP({
         }}
         onClick={(e) => e.stopPropagation()}
       >
-        {/* Header - 40px РІС‹СЃРѕС‚РѕР№ */}
+        {/* Header - 40px высотой */}
         <div 
           className="flex items-center justify-center"
           style={{ 
@@ -70,7 +70,7 @@ export function ModalXP({
             minHeight: '40px'
           }}
         >
-          {/* Р—Р°РіРѕР»РѕРІРѕРє РїРѕ С†РµРЅС‚СЂСѓ */}
+          {/* Заголовок по центру */}
           <h2 
             className="font-semibold text-center"
             style={{ 
@@ -80,7 +80,7 @@ export function ModalXP({
               whiteSpace: 'nowrap'
             }}
           >
-            Р’Р°С€ С‚РµРєСѓС‰РёР№ РѕРїС‹С‚
+            Ваш текущий опыт
           </h2>
         </div>
 
@@ -94,10 +94,10 @@ export function ModalXP({
             style={{ 
               height: '48px',
               position: 'relative',
-              overflow: 'visible' // Clip content РІС‹РєР»СЋС‡РµРЅ
+              overflow: 'visible' // Clip content выключен
             }}
           >
-            {/* Р—РІРµР·РґР° СѓСЂРѕРІРЅСЏ - absolute РїРѕР·РёС†РёСЏ */}
+            {/* Звезда уровня - absolute позиция */}
             <div 
               style={{
                 position: 'absolute',
@@ -129,7 +129,7 @@ export function ModalXP({
               </div>
             </div>
 
-            {/* РџСЂРѕРіСЂРµСЃСЃ Р±Р°СЂ РїРѕ С€РёСЂРёРЅРµ 100%, РІС‹СЃРѕС‚Р° 16, СЂР°РґРёСѓСЃ 12 */}
+            {/* Прогресс бар по ширине 100%, высота 16, радиус 12 */}
             <div 
               style={{
                 width: '100%',
@@ -138,7 +138,7 @@ export function ModalXP({
                 borderRadius: '12px',
                 border: `1px solid ${theme === 'dark' ? '#2A2F36' : '#E6E9EF'}`,
                 position: 'relative',
-                top: '8px' // Р¦РµРЅС‚СЂРёСЂСѓРµРј РІ РєРѕРЅС‚РµР№РЅРµСЂРµ 48px
+                top: '8px' // Центрируем в контейнере 48px
               }}
             >
               <div 
@@ -154,7 +154,7 @@ export function ModalXP({
               />
             </div>
 
-            {/* РЎС‚СЂРѕРєР° Р·РЅР°С‡РµРЅРёСЏ РїРѕРґ РїРѕР»РѕСЃРѕР№ */}
+            {/* Строка значения под полосой */}
             <div 
               className="text-center"
               style={{ 
@@ -177,7 +177,7 @@ export function ModalXP({
             </div>
           </div>
 
-          {/* РћР±СЉРµРґРёРЅРµРЅРЅР°СЏ РЅР°РіСЂР°РґР° Р·Р° СѓСЂРѕРІРµРЅСЊ */}
+          {/* Объединенная награда за уровень */}
           <div className="flex justify-center">
             <div 
               className="flex items-center"
@@ -198,7 +198,7 @@ export function ModalXP({
                   whiteSpace: 'nowrap'
                 }}
               >
-                РќР°РіСЂР°РґР° Р·Р° СѓСЂРѕРІРµРЅСЊ:
+                Награда за уровень:
               </span>
 
               <span 

@@ -164,6 +164,10 @@
     @apply text-foreground;
     color: #0F172A;
     background: transparent; /* Фон управляется через BackgroundFX */
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
+    font-feature-settings: 'cv02', 'cv03', 'cv04', 'cv11';
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
   }
 
   .dark body {
@@ -586,6 +590,39 @@ html {
 /* Safe area для мобильных устройств */
 .safe-area-bottom {
   padding-bottom: env(safe-area-inset-bottom);
+}
+
+/* Дополнительные адаптивные стили для улучшения отображения */
+@media (max-width: 480px) {
+  .hero-zone {
+    height: clamp(120px, 140px, 160px) !important;
+  }
+  
+  .glass-card {
+    margin: 8px !important;
+    border-radius: 16px !important;
+  }
+  
+  .surface-card {
+    margin: 8px !important;
+    border-radius: 16px !important;
+  }
+}
+
+@media (max-width: 375px) {
+  .hero-zone {
+    height: clamp(100px, 120px, 140px) !important;
+  }
+  
+  .glass-card {
+    margin: 4px !important;
+    padding: 12px !important;
+  }
+  
+  .surface-card {
+    margin: 4px !important;
+    padding: 12px !important;
+  }
 }
 
 /* Анимации */

@@ -30,7 +30,7 @@ export function BattleLeaderboard({ leaderboard = [], onNavigate, theme = 'light
   const [isUsersDialogOpen, setIsUsersDialogOpen] = useState(false);
   const [dialogSortType, setDialogSortType] = useState<SortType>('level');
 
-  // РџСЂРµРѕР±СЂР°Р·СѓРµРј РґР°РЅРЅС‹Рµ Р»РёРґРµСЂР±РѕСЂРґР° РІ placeholder С„РѕСЂРјР°С‚ РёР»Рё РёСЃРїРѕР»СЊР·СѓРµРј С‚РµСЃС‚РѕРІС‹Рµ РґР°РЅРЅС‹Рµ
+  // Преобразуем данные лидерборда в placeholder формат или используем тестовые данные
   const users: UserData[] = leaderboard.length > 0 
     ? leaderboard.map((entry, index) => ({
         id: index + 1,
@@ -42,7 +42,7 @@ export function BattleLeaderboard({ leaderboard = [], onNavigate, theme = 'light
         avatar: entry.user.avatar || ''
       }))
     : [
-        // РўРµСЃС‚РѕРІС‹Рµ РґР°РЅРЅС‹Рµ РґР»СЏ РґРµРјРѕРЅСЃС‚СЂР°С†РёРё СЃРѕСЂС‚РёСЂРѕРІРєРё
+        // Тестовые данные для демонстрации сортировки
         { id: 1, name: 'РђРЅРЅР° РРІР°РЅРѕРІР°', team: 'Team 1', level: 15, balance: '5400g', achievements: 32, avatar: '' },
         { id: 2, name: 'РџРµС‚СЂ РџРµС‚СЂРѕРІ', team: 'Team 2', level: 12, balance: '8200g', achievements: 28, avatar: '' },
         { id: 3, name: 'РњР°СЂРёСЏ РЎРёРґРѕСЂРѕРІР°', team: 'Team 3', level: 18, balance: '3600g', achievements: 45, avatar: '' }
@@ -51,22 +51,22 @@ export function BattleLeaderboard({ leaderboard = [], onNavigate, theme = 'light
   const [isButtonClicked, setIsButtonClicked] = useState(false);
 
   const handleSortClick = () => {
-    // Р’РёР·СѓР°Р»СЊРЅС‹Р№ СЌС„С„РµРєС‚ РЅР°Р¶Р°С‚РёСЏ
+    // Визуальный эффект нажатия
     setIsButtonClicked(true);
     setTimeout(() => setIsButtonClicked(false), 200);
 
-    // РџРµСЂРµРєР»СЋС‡РµРЅРёРµ С‚РёРїР° СЃРѕСЂС‚РёСЂРѕРІРєРё РїРѕ РєСЂСѓРіСѓ
+    // Переключение типа сортировки по кругу
     const sortTypes: SortType[] = ['level', 'achievements', 'balance'];
     const currentIndex = sortTypes.indexOf(sortType);
     const nextIndex = (currentIndex + 1) % sortTypes.length;
     const newSortType = sortTypes[nextIndex];
     setSortType(newSortType);
     
-    console.log(`РЎРѕСЂС‚РёСЂРѕРІРєР° РёР·РјРµРЅРµРЅР° СЃ "${getSortTypeText(sortType)}" РЅР° "${getSortTypeText(newSortType)}"`);
+    console.log(`Сортировка изменена с "${getSortTypeText(sortType)}" на "${getSortTypeText(newSortType)}"`);
   };
 
   const handleDialogSortClick = () => {
-    // РџРµСЂРµРєР»СЋС‡РµРЅРёРµ С‚РёРїР° СЃРѕСЂС‚РёСЂРѕРІРєРё РІ РґРёР°Р»РѕРіРµ
+    // Переключение типа сортировки в диалоге
     const sortTypes: SortType[] = ['level', 'achievements', 'balance'];
     const currentIndex = sortTypes.indexOf(dialogSortType);
     const nextIndex = (currentIndex + 1) % sortTypes.length;
@@ -78,19 +78,19 @@ export function BattleLeaderboard({ leaderboard = [], onNavigate, theme = 'light
   };
 
   const handleUserClick = (userId: number) => {
-    console.log(`РћС‚РєСЂС‹С‚СЊ РїСЂРѕС„РёР»СЊ РїРѕР»СЊР·РѕРІР°С‚РµР»СЏ ${userId}`);
+    console.log(`Открыть профиль пользователя ${userId}`);
   };
 
   const getSortTypeText = (type: SortType) => {
     switch (type) {
       case 'level':
-        return 'РџРѕ СѓСЂРѕРІРЅСЋ';
+        return 'По уровню';
       case 'achievements':
-        return 'РџРѕ Р°С‡РёРІРєР°Рј';
+        return 'По ачивкам';
       case 'balance':
-        return 'РџРѕ Р±Р°Р»Р°РЅСЃСѓ';
+        return 'По балансу';
       default:
-        return 'РџРѕ СѓСЂРѕРІРЅСЋ';
+        return 'По уровню';
     }
   };
 
@@ -102,7 +102,7 @@ export function BattleLeaderboard({ leaderboard = [], onNavigate, theme = 'light
         case 'achievements':
           return b.achievements - a.achievements;
         case 'balance':
-          // РџР°СЂСЃРёРј С‡РёСЃР»РѕРІРѕРµ Р·РЅР°С‡РµРЅРёРµ РёР· СЃС‚СЂРѕРєРё Р±Р°Р»Р°РЅСЃР° РґР»СЏ РїСЂР°РІРёР»СЊРЅРѕР№ СЃРѕСЂС‚РёСЂРѕРІРєРё
+          // Парсим числовое значение из строки баланса для правильной сортировки
           const balanceA = parseFloat(a.balance.replace(/[^\d.-]/g, '')) || 0;
           const balanceB = parseFloat(b.balance.replace(/[^\d.-]/g, '')) || 0;
           return balanceB - balanceA;
@@ -116,7 +116,7 @@ export function BattleLeaderboard({ leaderboard = [], onNavigate, theme = 'light
 
   return (
     <>
-      {/* Р РµР№С‚РёРЅРі РєР°СЂС‚РѕС‡РєР° */}
+      {/* Рейтинг карточка */}
       <div 
         className={`${theme === 'dark' ? 'dark' : ''} cursor-pointer transition-all hover:scale-[1.02] hover:shadow-lg active:scale-[0.98]`}
         onClick={(e) => {
@@ -158,7 +158,7 @@ export function BattleLeaderboard({ leaderboard = [], onNavigate, theme = 'light
               zIndex: 60,
               cursor: 'pointer'
             }}
-            title={`РЎРѕСЂС‚РёСЂРѕРІРєР°: ${getSortTypeText(sortType)} (РЅР°Р¶РјРёС‚Рµ РґР»СЏ РёР·РјРµРЅРµРЅРёСЏ)`}
+            title={`Сортировка: ${getSortTypeText(sortType)} (нажмите для изменения)`}
           >
             <Menu className="w-4 h-4" />
           </button>
@@ -171,7 +171,7 @@ export function BattleLeaderboard({ leaderboard = [], onNavigate, theme = 'light
                 lineHeight: '23.62px'
               }}
             >
-              Р РµР№С‚РёРЅРі
+              Рейтинг
             </h3>
             <p 
               className="text-xs opacity-60 mt-1"
@@ -210,7 +210,7 @@ export function BattleLeaderboard({ leaderboard = [], onNavigate, theme = 'light
                     className="text-xs font-medium"
                     style={{ color: theme === 'dark' ? '#A7B0BD' : '#6B7280' }}
                   >
-                    {sortType === 'level' && `РЈСЂ.${user.level}`}
+                    {sortType === 'level' && `Ур.${user.level}`}
                     {sortType === 'achievements' && `${user.achievements}в…`}
                     {sortType === 'balance' && user.balance}
                   </span>
@@ -222,14 +222,14 @@ export function BattleLeaderboard({ leaderboard = [], onNavigate, theme = 'light
               className="text-sm text-center opacity-70"
               style={{ color: theme === 'dark' ? '#A7B0BD' : '#6B7280' }}
             >
-              РЎРїРёСЃРѕРє Р»РёРґРµСЂРѕРІ РѕС‚СЃСѓС‚СЃС‚РІСѓРµС‚
+              Список лидеров отсутствует
             </p>
           )}
           </div>
         </div>
       </div>
 
-      {/* Р РµР№С‚РёРЅРі РїРѕР»СЊР·РѕРІР°С‚РµР»РµР№ - РјРѕРґР°Р»РєР° РІ СЃС‚РёР»Рµ Р±Р°С‚С‚Р»РѕРІ */}
+      {/* Рейтинг пользователей - модалка в стиле баттлов */}
       <Dialog open={isUsersDialogOpen} onOpenChange={setIsUsersDialogOpen}>
         <DialogContent 
           className="w-[90vw] max-w-md max-h-[80vh] overflow-hidden rounded-3xl p-0 [&>button]:hidden flex flex-col"
@@ -249,13 +249,13 @@ export function BattleLeaderboard({ leaderboard = [], onNavigate, theme = 'light
         >
           {/* Accessibility elements */}
           <DialogTitle className="sr-only">
-            Р РµР№С‚РёРЅРі РїРѕР»СЊР·РѕРІР°С‚РµР»РµР№
+            Рейтинг пользователей
           </DialogTitle>
           <DialogDescription className="sr-only">
-            РџРѕР»РЅС‹Р№ СЃРїРёСЃРѕРє СѓС‡Р°СЃС‚РЅРёРєРѕРІ СЃ РІРѕР·РјРѕР¶РЅРѕСЃС‚СЊСЋ СЃРѕСЂС‚РёСЂРѕРІРєРё РїРѕ СѓСЂРѕРІРЅСЋ, РґРѕСЃС‚РёР¶РµРЅРёСЏРј Рё Р±Р°Р»Р°РЅСЃСѓ
+            Полный список участников с возможностью сортировки по уровню, достижениям и балансу
           </DialogDescription>
           
-          {/* Р—Р°РіРѕР»РѕРІРѕРє */}
+          {/* Заголовок */}
           <div 
             className="flex items-center justify-between p-6 border-b shrink-0"
             style={{
@@ -270,7 +270,7 @@ export function BattleLeaderboard({ leaderboard = [], onNavigate, theme = 'light
                 color: theme === 'dark' ? '#E8ECF2' : '#0F172A'
               }}
             >
-              Р РµР№С‚РёРЅРі
+              Рейтинг
             </h2>
             
             <button
@@ -298,7 +298,7 @@ export function BattleLeaderboard({ leaderboard = [], onNavigate, theme = 'light
             </button>
           </div>
 
-          {/* РџР°РЅРµР»СЊ СЃРѕСЂС‚РёСЂРѕРІРєРё */}
+          {/* Панель сортировки */}
           <div 
             className="flex items-center justify-between p-6 border-b shrink-0"
             style={{
@@ -311,7 +311,7 @@ export function BattleLeaderboard({ leaderboard = [], onNavigate, theme = 'light
               className="text-sm font-medium"
               style={{ color: theme === 'dark' ? '#E8ECF2' : '#0F172A' }}
             >
-              РЎРѕСЂС‚РёСЂРѕРІРєР°: {getSortTypeText(dialogSortType)}
+              Сортировка: {getSortTypeText(dialogSortType)}
             </span>
             <button
               onClick={handleDialogSortClick}
@@ -333,7 +333,7 @@ export function BattleLeaderboard({ leaderboard = [], onNavigate, theme = 'light
             </button>
           </div>
           
-          {/* РЎРїРёСЃРѕРє РїРѕР»СЊР·РѕРІР°С‚РµР»РµР№ */}
+          {/* Список пользователей */}
           <div className="flex-1 overflow-y-auto">
             <div className="p-6 space-y-3">
               {sortedUsers.map((user, index) => (
@@ -399,7 +399,7 @@ export function BattleLeaderboard({ leaderboard = [], onNavigate, theme = 'light
                         color: '#2B82FF'
                       }}
                     >
-                      {dialogSortType === 'level' && `РЈСЂ.${user.level}`}
+                      {dialogSortType === 'level' && `Ур.${user.level}`}
                       {dialogSortType === 'achievements' && `${user.achievements}в…`}
                       {dialogSortType === 'balance' && user.balance}
                     </div>
@@ -407,7 +407,7 @@ export function BattleLeaderboard({ leaderboard = [], onNavigate, theme = 'light
                 </div>
               ))}
               
-              {/* РџСѓСЃС‚РѕРµ СЃРѕСЃС‚РѕСЏРЅРёРµ */}
+              {/* Пустое состояние */}
               {sortedUsers.length === 0 && (
                 <div className="text-center py-12">
                   <div 
@@ -424,7 +424,7 @@ export function BattleLeaderboard({ leaderboard = [], onNavigate, theme = 'light
                       color: theme === 'dark' ? '#A7B0BD' : '#6B7280'
                     }}
                   >
-                    Р РµР№С‚РёРЅРі РїСѓСЃС‚
+                    Рейтинг пуст
                   </p>
                   <p 
                     className="text-xs mt-1"
@@ -432,7 +432,7 @@ export function BattleLeaderboard({ leaderboard = [], onNavigate, theme = 'light
                       color: theme === 'dark' ? '#6B7280' : '#9CA3AF'
                     }}
                   >
-                    РЈС‡Р°СЃС‚РЅРёРєРё РїРѕСЏРІСЏС‚СЃСЏ Р·РґРµСЃСЊ
+                    Участники появятся здесь
                   </p>
                 </div>
               )}

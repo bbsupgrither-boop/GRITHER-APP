@@ -13,7 +13,7 @@ export function Hero({ theme = 'light' }: HeroProps) {
         marginTop: '16px',
         marginBottom: '8px',
         overflow: 'visible',
-        background: 'transparent', // РџРѕР»РЅРѕСЃС‚СЊСЋ РїСЂРѕР·СЂР°С‡РЅС‹Р№ С„РѕРЅ
+        background: 'transparent', // Полностью прозрачный фон
         zIndex: 15
       }}
     >

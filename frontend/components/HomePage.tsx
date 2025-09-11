@@ -69,7 +69,7 @@ export function HomePage({
   // РСЃРїРѕР»СЊР·СѓРµРј СЂРµР°Р»СЊРЅС‹Рµ РёР»Рё placeholder РґР°РЅРЅС‹Рµ РґР»СЏ С‚РµРєСѓС‰РµРіРѕ РїРѕР»СЊР·РѕРІР°С‚РµР»СЏ
   const userDisplayData = {
     id: currentUser?.id || 'placeholder',
-    name: currentUser?.name || 'РџРѕР»СЊР·РѕРІР°С‚РµР»СЊ',
+    name: currentUser?.name || 'Пользователь',
     username: '@user',
     level: currentUser?.level || 0,
     experience: 0,
@@ -77,7 +77,7 @@ export function HomePage({
     balance: currentUser?.balance || 0
   };
 
-  // РЎРѕСЃС‚РѕСЏРЅРёСЏ РґР»СЏ РјРѕРґР°Р»РѕРє Р±Р°С‚С‚Р»РѕРІ
+  // Состояния для модалок баттлов
   const [isAllBattlesModalOpen, setIsAllBattlesModalOpen] = useState(false);
   const [isCreateBattleModalOpen, setIsCreateBattleModalOpen] = useState(false);
 
