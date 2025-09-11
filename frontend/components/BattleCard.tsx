@@ -147,7 +147,7 @@ export function BattleCard({
               className="text-xs font-medium mb-2"
               style={{ color: theme === 'dark' ? '#A7B0BD' : '#6B7280' }}
             >
-              РџСЂРёРіР»Р°С€РµРЅРёСЏ
+              Приглашения
             </div>
             
             <div className="space-y-2">
@@ -175,7 +175,7 @@ export function BattleCard({
                       className="text-xs"
                       style={{ color: theme === 'dark' ? '#A7B0BD' : '#6B7280' }}
                     >
-                      РІС‹Р·С‹РІР°РµС‚
+                      вызывает
                     </span>
                   </div>
                 </div>
@@ -186,14 +186,14 @@ export function BattleCard({
                   className="text-xs text-center py-1"
                   style={{ color: theme === 'dark' ? '#A7B0BD' : '#6B7280' }}
                 >
-                  +{pendingInvitations.length - 2} РµС‰Рµ
+                  +{pendingInvitations.length - 2} еще
                 </div>
               )}
             </div>
           </div>
         )}
 
-        {/* РџСѓСЃС‚РѕРµ СЃРѕСЃС‚РѕСЏРЅРёРµ */}
+        {/* Пустое состояние */}
         {totalCount === 0 && (
           <div className="text-center py-6">
             <div 
@@ -206,18 +206,18 @@ export function BattleCard({
               className="text-xs"
               style={{ color: theme === 'dark' ? '#A7B0BD' : '#6B7280' }}
             >
-              РќРµС‚ Р°РєС‚РёРІРЅС‹С… Р±Р°С‚С‚Р»РѕРІ
+              Нет активных баттлов
             </p>
             <p 
               className="text-xs mt-1"
               style={{ color: theme === 'dark' ? '#6B7280' : '#9CA3AF' }}
             >
-              РќР°Р¶РјРёС‚Рµ + С‡С‚РѕР±С‹ СЃРѕР·РґР°С‚СЊ РІС‹Р·РѕРІ
+              Нажмите + чтобы создать вызов
             </p>
           </div>
         )}
 
-        {/* РЎС‡РµС‚С‡РёРє РІРЅРёР·Сѓ */}
+        {/* Счетчик внизу */}
         {totalCount > 0 && (
           <div 
             className="text-xs text-center pt-2 border-t"
@@ -228,7 +228,7 @@ export function BattleCard({
                 : 'rgba(0, 0, 0, 0.1)'
             }}
           >
-            Р’СЃРµРіРѕ: {totalCount} {totalCount === 1 ? 'Р±Р°С‚С‚Р»' : 'Р±Р°С‚С‚Р»РѕРІ'}
+            Всего: {totalCount} {totalCount === 1 ? 'баттл' : 'баттлов'}
           </div>
         )}
       </div>

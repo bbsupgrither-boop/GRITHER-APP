@@ -47,11 +47,11 @@ export const mockAchievements: Achievement[] = [
   }
 ];
 
-// РџСЂРѕСЃС‚С‹Рµ РјРѕРє-РґР°РЅРЅС‹Рµ РґР»СЏ С‚РѕРІР°СЂРѕРІ РІ РјР°РіР°Р·РёРЅРµ
+// Простые мок-данные для товаров в магазине
 export const mockShopItems: ShopItem[] = [
   {
     id: 'shop1',
-    name: 'Р‘РѕРЅСѓСЃ РѕРїС‹С‚Р° 2x',
+    name: 'Бонус опыта 2x',
     price: 500,
     description: 'РЈРґРІР°РёРІР°РµС‚ РїРѕР»СѓС‡Р°РµРјС‹Р№ РѕРїС‹С‚ РЅР° 24 С‡Р°СЃР°',
     category: 'bonus',
