@@ -1,6 +1,7 @@
 ﻿import { useState, useEffect, useRef } from 'react';
 import { HomePage } from './components/HomePage';
 import { useTelegram } from './utils/telegram';
+import { useTheme } from './hooks/useTheme';
 import { AchievementsPageFixed } from './components/AchievementsPageFixed';
 import { TasksPage } from './components/TasksPage';
 import { CasesShopPage } from './components/CasesShopPage';
@@ -47,12 +48,12 @@ const cleanupLocalStorage = () => {
 
 export default function App() {
   const { user, webApp } = useTelegram();
+  const { theme, toggleTheme, setTheme } = useTheme();
   const [currentPage, setCurrentPage] = useState('home');
   const [showSettings, setShowSettings] = useState(false);
   const [showAdminPanel, setShowAdminPanel] = useState(false);
   const [profilePhoto, setProfilePhoto] = useState<string | null>(null);
   const [personalBattles, setPersonalBattles] = useState<any[]>([]);
-  const [theme, setTheme] = useState<'light' | 'dark'>('dark');
   const [notifications, setNotifications] = useState<Notification[]>(mockNotifications);
   const [achievements, setAchievements] = useState<Achievement[]>(mockAchievements);
   const [shopItems, setShopItems] = useState<ShopItem[]>(mockShopItems);

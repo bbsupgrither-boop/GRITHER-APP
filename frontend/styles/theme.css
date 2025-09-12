@@ -1,0 +1,510 @@
+/*! GRITHER THEME SYSTEM - Максимально подробная система стилей */
+
+/* ===== ГЛОБАЛЬНАЯ АРХИТЕКТУРА ТЕМИЗАЦИИ ===== */
+
+:root {
+  /* ===== ОСНОВНЫЕ ФОНЫ (СВЕТЛАЯ ТЕМА) ===== */
+  --background: linear-gradient(135deg, #F5F7FA 0%, #FFFFFF 100%); /* Градиент от серо-голубого к белому */
+  --card: #FFFFFF; /* Чисто белые карточки */
+  --surface: #FFFFFF; /* Основная поверхность */
+  --surface-2: #F3F5F8; /* Вторичная поверхность (светло-серая) */
+  --surface-3: #ECEFF3; /* Третичная поверхность (еще более серая) */
+  
+  /* ===== ТЕКСТ (СВЕТЛАЯ ТЕМА) ===== */
+  --foreground: #0F172A; /* Темно-синий основной текст */
+  --text: #0F172A; /* Дублирование для compatibility */
+  --text-muted: #6B7280; /* Приглушенный серый текст */
+  --muted-foreground: #6B7280; /* Серый для второстепенной информации */
+  
+  /* ===== ИНТЕРАКТИВНЫЕ ЭЛЕМЕНТЫ (СВЕТЛАЯ ТЕМА) ===== */
+  --primary: #2B82FF; /* Основной синий Apple */
+  --primary-foreground: #FFFFFF; /* Белый текст на синем */
+  --primary-pressed: #2066C8; /* Нажатое состояние (темнее) */
+  --primary-muted: rgba(43, 130, 255, 0.10); /* 10% прозрачность синего */
+  
+  /* ===== ВТОРИЧНЫЕ ЭЛЕМЕНТЫ (СВЕТЛАЯ ТЕМА) ===== */
+  --secondary: #F3F5F8; /* Светло-серый фон */
+  --secondary-foreground: #0F172A; /* Темный текст на светлом */
+  
+  /* ===== ГРАНИЦЫ И РАЗДЕЛИТЕЛИ (СВЕТЛАЯ ТЕМА) ===== */
+  --border: #E6E9EF; /* Светло-серые границы */
+  --input-background: #FFFFFF; /* Белый фон инпутов */
+  --switch-background: #F3F5F8; /* Фон переключателей */
+  
+  /* ===== СИСТЕМНЫЕ ЦВЕТА (СВЕТЛАЯ ТЕМА) ===== */
+  --destructive: #ff3b30; /* Красный для ошибок/удаления */
+  --ring: rgba(15, 23, 42, 0.06); /* Полупрозрачное кольцо фокуса */
+}
+
+/* ===== ТЕМНАЯ ТЕМА ===== */
+.dark {
+  /* ===== ОСНОВНЫЕ ФОНЫ (ТЕМНАЯ ТЕМА) ===== */
+  --background: radial-gradient(circle at center, #12151B 0%, #0B0D10 100%); /* Радиальный градиент от темно-синего к черному */
+  --card: #161A22; /* Темно-серые карточки */
+  --surface: #161A22; /* Основная темная поверхность */
+  --surface-2: #1C2029; /* Вторичная поверхность (чуть светлее) */
+  --surface-3: #202734; /* Третичная поверхность (еще светлее) */
+  
+  /* ===== ТЕКСТ (ТЕМНАЯ ТЕМА) ===== */
+  --foreground: #E8ECF2; /* Светло-серый основной текст */
+  --text: #E8ECF2; /* Дублирование */
+  --text-muted: #A7B0BD; /* Приглушенный светло-серый */
+  --muted-foreground: #A7B0BD; /* Серый для второстепенной информации */
+  
+  /* ===== ИНТЕРАКТИВНЫЕ ЭЛЕМЕНТЫ (ТЕМНАЯ ТЕМА) ===== */
+  --primary: #2B82FF; /* Тот же синий Apple (универсальный) */
+  --primary-foreground: #ffffff; /* Белый текст на синем */
+  --primary-pressed: #1E62C2; /* Темнее для нажатого состояния */
+  --primary-muted: rgba(43, 130, 255, 0.12); /* 12% прозрачность (больше чем в светлой) */
+  
+  /* ===== ВТОРИЧНЫЕ ЭЛЕМЕНТЫ (ТЕМНАЯ ТЕМА) ===== */
+  --secondary: #1C2029; /* Темно-серый фон */
+  --secondary-foreground: #E8ECF2; /* Светлый текст на темном */
+  
+  /* ===== ГРАНИЦЫ И РАЗДЕЛИТЕЛИ (ТЕМНАЯ ТЕМА) ===== */
+  --border: rgba(255, 255, 255, 0.06); /* Полупрозрачные белые границы */
+  --input-background: #161A22; /* Темный фон инпутов */
+  --switch-background: #1C2029; /* Темный фон переключателей */
+  
+  /* ===== СИСТЕМНЫЕ ЦВЕТА (ТЕМНАЯ ТЕМА) ===== */
+  --destructive: #ff453a; /* Более яркий красный для темной темы */
+  --ring: #2A3340; /* Темное кольцо фокуса */
+}
+
+/* ===== GLASS EFFECTS СИСТЕМА ===== */
+
+.glass-card {
+  /* СВЕТЛАЯ ТЕМА */
+  background: #FFFFFF; /* Непрозрачный белый фон */
+  border-radius: 20px; /* Сильно закругленные углы */
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.10); /* Мягкая тень */
+  border: 1px solid #E6E9EF; /* Светло-серая граница */
+  position: relative;
+  z-index: 10;
+}
+
+.dark .glass-card {
+  /* ТЕМНАЯ ТЕМА */
+  background: #161A22; /* Непрозрачный темно-серый фон */
+  border: 1px solid rgba(255, 255, 255, 0.06); /* Полупрозрачная белая граница */
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.6); /* Более интенсивная тень */
+  border-radius: 20px;
+}
+
+.glass-card-dark {
+  background: rgba(28, 28, 30, 0.8); /* 80% прозрачность */
+  backdrop-filter: blur(20px); /* Размытие фона сзади */
+  -webkit-backdrop-filter: blur(20px); /* Safari support */
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+}
+
+/* ===== МОДАЛЬНЫЕ ОКНА - BACKDROP И BLUR СИСТЕМА ===== */
+
+/* Светлая тема - backdrop */
+.modal-backdrop-light {
+  background: rgba(0, 0, 0, 0.75) !important; /* 75% черного фона */
+  backdrop-filter: blur(20px) !important; /* Размытие на 20px */
+  -webkit-backdrop-filter: blur(20px) !important;
+  cursor: pointer; /* Показывает что можно кликнуть для закрытия */
+}
+
+/* Темная тема - backdrop */
+.modal-backdrop-dark {
+  background: rgba(0, 0, 0, 0.85) !important; /* 85% черного (темнее) */
+  backdrop-filter: blur(20px) !important;
+  -webkit-backdrop-filter: blur(20px) !important;
+  cursor: pointer;
+}
+
+/* Radix Dialog стили (для Shadcn компонентов) */
+.dark [data-radix-dialog-overlay] {
+  background: rgba(0, 0, 0, 0.85) !important;
+  backdrop-filter: blur(20px) !important;
+  -webkit-backdrop-filter: blur(20px) !important;
+  cursor: pointer;
+}
+
+.dark [data-radix-dialog-content] {
+  background: #1C2029 !important; /* Непрозрачный темный фон */
+  border: 1px solid rgba(255, 255, 255, 0.06) !important;
+  box-shadow: 0 16px 48px rgba(0, 0, 0, 0.6) !important; /* Глубокая тень */
+  cursor: default; /* Контент не закрывает модал */
+}
+
+/* ===== КНОПКИ И ИНТЕРАКТИВНЫЕ ЭЛЕМЕНТЫ ===== */
+
+.apple-button {
+  /* СВЕТЛАЯ ТЕМА */
+  background: #FFFFFF;
+  border: 1px solid #E6E9EF;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+  border-radius: 50%; /* Круглые кнопки */
+  transition: all 0.2s ease;
+  position: relative;
+  z-index: 20;
+}
+
+.dark .apple-button {
+  /* ТЕМНАЯ ТЕМА - белые кнопки как в Apple дизайне */
+  background: linear-gradient(145deg, #FFFFFF, #E0E0E0); /* Белый градиент */
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  color: #1A1A1A; /* Темный текст на белом */
+  box-shadow: 0 4px 15px rgba(255, 255, 255, 0.2), inset 0 1px 0 rgba(255, 255, 255, 0.3);
+}
+
+.apple-button:hover {
+  transform: translateY(-1px); /* Поднимается на 1px */
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12);
+}
+
+.dark .apple-button:hover {
+  box-shadow: 0 6px 20px rgba(255, 255, 255, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.4);
+}
+
+/* ===== СИСТЕМА ВКЛАДОК (TABS) ===== */
+
+.tab-container {
+  /* СВЕТЛАЯ ТЕМА */
+  background: linear-gradient(145deg, rgba(255, 255, 255, 0.8) 0%, rgba(248, 250, 252, 0.8) 100%);
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.10);
+  backdrop-filter: blur(20px); /* Размытие фона позади */
+}
+
+.dark .tab-container {
+  /* ТЕМНАЯ ТЕМА */
+  background: linear-gradient(145deg, rgba(8, 10, 14, 0.95) 0%, rgba(16, 20, 28, 0.95) 100%) !important;
+  border: 1px solid rgba(255, 255, 255, 0.06) !important;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.6) !important;
+}
+
+.tab-button {
+  /* СВЕТЛАЯ ТЕМА */
+  background: #2B82FF; /* Синий фон */
+  border: 1px solid #E6E9EF;
+  color: #FFFFFF; /* Белый текст */
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+  transition: all 0.2s ease;
+}
+
+.dark .tab-button {
+  /* ТЕМНАЯ ТЕМА - белые кнопки */
+  background: linear-gradient(145deg, #FFFFFF, #E0E0E0) !important;
+  border: 1px solid rgba(255, 255, 255, 0.2) !important;
+  color: #1A1A1A !important; /* Темный текст на белом */
+  box-shadow: 0 4px 15px rgba(255, 255, 255, 0.2), inset 0 1px 0 rgba(255, 255, 255, 0.3) !important;
+}
+
+/* ===== СИСТЕМА УВЕДОМЛЕНИЙ - СПЕЦИАЛЬНЫЕ ЭФФЕКТЫ ===== */
+
+.notification-popover {
+  position: fixed !important;
+  top: 16px;
+  right: 16px;
+  width: clamp(296px, calc(100vw - 32px), 360px);
+  max-height: 70vh;
+  z-index: 1000 !important;
+  
+  /* Стеклянный эффект */
+  background: linear-gradient(145deg, 
+    rgba(255, 255, 255, 0.98) 0%, 
+    rgba(240, 248, 255, 0.95) 100%);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(0, 122, 255, 0.15);
+  box-shadow: 0 8px 32px rgba(0, 122, 255, 0.12);
+}
+
+.dark .notification-popover {
+  background: linear-gradient(145deg, 
+    rgba(28, 32, 41, 0.98) 0%, 
+    rgba(16, 20, 28, 0.95) 100%);
+  border: 1px solid rgba(43, 130, 255, 0.15);
+  box-shadow: 0 8px 32px rgba(43, 130, 255, 0.12);
+}
+
+/* ===== ПРОДВИНУТЫЕ ВИЗУАЛЬНЫЕ ЭФФЕКТЫ ===== */
+
+.enhanced-card {
+  background: linear-gradient(145deg, rgba(255, 255, 255, 0.95) 0%, rgba(240, 248, 255, 0.9) 100%);
+  border: 1px solid rgba(0, 122, 255, 0.12);
+  box-shadow: 
+    0 4px 20px rgba(0, 122, 255, 0.08),
+    0 8px 32px rgba(0, 0, 0, 0.06),
+    inset 0 1px 0 rgba(255, 255, 255, 0.8);
+  backdrop-filter: blur(12px);
+  transition: all 0.3s ease;
+}
+
+.dark .enhanced-card {
+  background: linear-gradient(145deg, rgba(28, 32, 41, 0.95) 0%, rgba(16, 20, 28, 0.9) 100%);
+  border: 1px solid rgba(43, 130, 255, 0.12);
+  box-shadow: 
+    0 4px 20px rgba(43, 130, 255, 0.08),
+    0 8px 32px rgba(0, 0, 0, 0.6),
+    inset 0 1px 0 rgba(255, 255, 255, 0.1);
+}
+
+.enhanced-card:hover {
+  border-color: rgba(0, 122, 255, 0.2);
+  transform: translateY(-2px);
+  box-shadow: 
+    0 6px 24px rgba(0, 122, 255, 0.12),
+    0 12px 40px rgba(0, 0, 0, 0.08);
+}
+
+.dark .enhanced-card:hover {
+  border-color: rgba(43, 130, 255, 0.2);
+  box-shadow: 
+    0 6px 24px rgba(43, 130, 255, 0.12),
+    0 12px 40px rgba(0, 0, 0, 0.8);
+}
+
+.gradient-button {
+  background: linear-gradient(145deg, #007AFF 0%, #0056CC 100%);
+  border: 1px solid rgba(0, 122, 255, 0.3);
+  color: #FFFFFF;
+  box-shadow: 
+    0 2px 12px rgba(0, 122, 255, 0.3),
+    0 4px 20px rgba(0, 0, 0, 0.08),
+    inset 0 1px 0 rgba(255, 255, 255, 0.25);
+  position: relative;
+  overflow: hidden;
+}
+
+.dark .gradient-button {
+  background: linear-gradient(145deg, #2B82FF 0%, #1E62C2 100%);
+  border: 1px solid rgba(43, 130, 255, 0.3);
+  box-shadow: 
+    0 2px 12px rgba(43, 130, 255, 0.3),
+    0 4px 20px rgba(0, 0, 0, 0.6),
+    inset 0 1px 0 rgba(255, 255, 255, 0.25);
+}
+
+/* Shimmer эффект */
+.gradient-button::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+  transition: left 0.5s;
+}
+
+.gradient-button:hover::before {
+  left: 100%; /* Shimmer пробегает по кнопке */
+}
+
+/* ===== СПЕЦИАЛЬНЫЕ АНИМИРОВАННЫЕ ЭФФЕКТЫ ===== */
+
+.pulse-glow {
+  animation: pulse-glow-effect 3s ease-in-out infinite;
+}
+
+@keyframes pulse-glow-effect {
+  0%, 100% {
+    box-shadow: 
+      0 0 0 0 rgba(0, 122, 255, 0.1),
+      0 4px 20px rgba(0, 122, 255, 0.08);
+  }
+  50% {
+    box-shadow: 
+      0 0 0 8px rgba(0, 122, 255, 0.05),
+      0 6px 28px rgba(0, 122, 255, 0.15);
+  }
+}
+
+.dark .pulse-glow {
+  animation: pulse-glow-effect-dark 3s ease-in-out infinite;
+}
+
+@keyframes pulse-glow-effect-dark {
+  0%, 100% {
+    box-shadow: 
+      0 0 0 0 rgba(43, 130, 255, 0.1),
+      0 4px 20px rgba(43, 130, 255, 0.08);
+  }
+  50% {
+    box-shadow: 
+      0 0 0 8px rgba(43, 130, 255, 0.05),
+      0 6px 28px rgba(43, 130, 255, 0.15);
+  }
+}
+
+.morphing-shadow {
+  animation: morphing-shadow-effect 8s ease-in-out infinite;
+}
+
+@keyframes morphing-shadow-effect {
+  0%, 100% { box-shadow: 0 4px 20px rgba(0, 122, 255, 0.08); }
+  25% { box-shadow: 0 6px 24px rgba(52, 199, 89, 0.06); }
+  50% { box-shadow: 0 5px 22px rgba(255, 149, 0, 0.05); }
+  75% { box-shadow: 0 7px 26px rgba(175, 82, 222, 0.04); }
+}
+
+.dark .morphing-shadow {
+  animation: morphing-shadow-effect-dark 8s ease-in-out infinite;
+}
+
+@keyframes morphing-shadow-effect-dark {
+  0%, 100% { box-shadow: 0 4px 20px rgba(43, 130, 255, 0.08); }
+  25% { box-shadow: 0 6px 24px rgba(52, 199, 89, 0.06); }
+  50% { box-shadow: 0 5px 22px rgba(255, 149, 0, 0.05); }
+  75% { box-shadow: 0 7px 26px rgba(175, 82, 222, 0.04); }
+}
+
+.iridescent {
+  background: linear-gradient(45deg,
+    rgba(0, 122, 255, 0.1) 0%,
+    rgba(52, 199, 89, 0.08) 25%,
+    rgba(255, 149, 0, 0.06) 50%,
+    rgba(175, 82, 222, 0.08) 75%,
+    rgba(0, 122, 255, 0.1) 100%
+  );
+  background-size: 400% 400%;
+  animation: iridescent-shift 6s ease-in-out infinite;
+}
+
+.dark .iridescent {
+  background: linear-gradient(45deg,
+    rgba(43, 130, 255, 0.1) 0%,
+    rgba(52, 199, 89, 0.08) 25%,
+    rgba(255, 149, 0, 0.06) 50%,
+    rgba(175, 82, 222, 0.08) 75%,
+    rgba(43, 130, 255, 0.1) 100%
+  );
+}
+
+@keyframes iridescent-shift {
+  0%, 100% { background-position: 0% 50%; }
+  25% { background-position: 100% 0%; }
+  50% { background-position: 100% 100%; }
+  75% { background-position: 0% 100%; }
+}
+
+/* ===== АНИМАЦИИ УВЕДОМЛЕНИЙ ===== */
+
+@keyframes fadeInNotification {
+  from {
+    opacity: 0;
+    transform: translateX(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+.notification-item {
+  animation: fadeInNotification 0.2s ease-out;
+  transition: all 0.15s ease;
+}
+
+.notification-item:hover {
+  transform: translateX(-2px); /* Сдвиг влево при hover */
+}
+
+/* ===== АДАПТИВНЫЕ СТИЛИ ПО УСТРОЙСТВАМ ===== */
+
+/* Мобильные устройства (до 360px) */
+@media (max-width: 360px) {
+  html { font-size: 12px; }
+  
+  .glass-card { padding: 12px !important; }
+  
+  [data-radix-dialog-content] { margin: 8px !important; }
+  
+  /* Отключаем сложные эффекты */
+  .interactive-card::before,
+  .glow-primary::before { display: none; }
+}
+
+/* Очень узкие экраны (до 320px) */
+@media (max-width: 320px) {
+  html { font-size: 11px; }
+  
+  .glass-card { padding: 8px !important; }
+  
+  [data-radix-dialog-content] { margin: 4px !important; }
+}
+
+/* Планшеты (768px+) */
+@media (min-width: 768px) {
+  .responsive-modal {
+    max-width: 480px;
+    padding: 24px;
+  }
+  
+  .notification-popover {
+    width: clamp(320px, 40vw, 400px) !important;
+  }
+}
+
+/* ===== Z-INDEX ИЕРАРХИЯ ===== */
+.background-fx { z-index: 1; } /* BackgroundFX - самый низ */
+.page-content { z-index: 10; } /* Основной контент */
+.content-card, .glass-card { z-index: 20; } /* Карточки */
+.hero-zone { z-index: 15; } /* Логотип */
+[data-radix-dialog-content] { z-index: 100; } /* Модальные окна */
+.notifications-panel { z-index: 1500 !important; } /* Уведомления */
+.notification-modal { z-index: 2147483647 !important; } /* Максимальный приоритет */
+
+/* ===== УТИЛИТАРНЫЕ КЛАССЫ ===== */
+.unified-heading {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  font-weight: 600;
+  color: var(--foreground);
+}
+
+.unified-text {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  color: var(--text-muted);
+}
+
+.apple-shadow {
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+}
+
+.dark .apple-shadow {
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.6);
+}
+
+/* ===== ПРОГРЕСС БАРЫ ===== */
+.progress-bar {
+  background: var(--surface-3);
+  border: 1px solid var(--border);
+  border-radius: 9999px;
+  overflow: hidden;
+}
+
+.progress-fill {
+  background: var(--primary);
+  transition: width 0.3s ease;
+  height: 100%;
+}
+
+.dark .progress-fill {
+  background: var(--primary);
+}
+
+/* ===== ИНПУТЫ И ФОРМЫ ===== */
+.form-input {
+  background: var(--input-background);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 12px 16px;
+  color: var(--foreground);
+  transition: all 0.2s ease;
+}
+
+.form-input:focus {
+  border-color: var(--primary);
+  box-shadow: 0 0 0 3px var(--primary-muted);
+}
+
+.form-input::placeholder {
+  color: var(--text-muted);
+}

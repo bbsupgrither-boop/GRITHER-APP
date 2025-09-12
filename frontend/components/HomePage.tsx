@@ -271,11 +271,7 @@ export const HomePage: React.FC<HomePageProps> = ({
         <div style={{ display: 'flex', flexDirection: 'column', gap: '12px' }}>
           
           {/* Achievement Block */}
-          <div className={`p-6 rounded-3xl border ${
-            theme === 'dark' 
-              ? 'bg-gray-800/50 border-gray-700' 
-              : 'bg-white/80 border-gray-200'
-          }`}>
+          <div className="glass-card p-6">
             <div className="flex items-center justify-between mb-4">
               <div className="w-8 h-8"></div>
               <h2 className="text-xl font-semibold">Ваши достижения</h2>
@@ -334,11 +330,7 @@ export const HomePage: React.FC<HomePageProps> = ({
           </div>
 
           {/* Progress Bar */}
-          <div className={`p-6 rounded-3xl border ${
-            theme === 'dark' 
-              ? 'bg-gray-800/50 border-gray-700' 
-              : 'bg-white/80 border-gray-200'
-          }`}>
+          <div className="glass-card p-6">
             <div className="flex items-center mb-4 px-1 gap-2">
               <span className="text-gray-400 whitespace-nowrap text-xs">
                 Статус: {getStatusByLevel(userDisplayData.level)}
@@ -381,11 +373,7 @@ export const HomePage: React.FC<HomePageProps> = ({
             {/* Battle Card */}
             <div 
               onClick={() => setIsAllBattlesModalOpen(true)}
-              className={`p-4 rounded-2xl border transition-all cursor-pointer hover:scale-[0.98] active:scale-[0.96] ${
-                theme === 'dark' 
-                  ? 'bg-gray-800/50 border-gray-700' 
-                  : 'bg-white/80 border-gray-200'
-              }`}
+              className="glass-card p-4 cursor-pointer transition-all hover:scale-[0.98] active:scale-[0.96]"
             >
               <div className="relative">
                 <h3 className="text-center font-medium mb-3">Баттлы</h3>
@@ -394,7 +382,7 @@ export const HomePage: React.FC<HomePageProps> = ({
                     e.stopPropagation();
                     setIsCreateBattleModalOpen(true);
                   }}
-                  className="absolute top-0 right-0 w-7 h-7 rounded-full bg-white border border-gray-300 flex items-center justify-center"
+                  className="apple-button absolute top-0 right-0 w-7 h-7 flex items-center justify-center"
                 >
                   <Plus style={{ width: '14px', height: '14px' }} />
                 </button>
@@ -457,11 +445,7 @@ export const HomePage: React.FC<HomePageProps> = ({
             {/* Battle Leaderboard */}
             <div 
               onClick={() => setIsLeaderboardModalOpen(true)}
-              className={`p-4 rounded-2xl border transition-all cursor-pointer hover:scale-[0.98] active:scale-[0.96] ${
-                theme === 'dark' 
-                  ? 'bg-gray-800/50 border-gray-700' 
-                  : 'bg-white/80 border-gray-200'
-              }`}
+              className="glass-card p-4 cursor-pointer transition-all hover:scale-[0.98] active:scale-[0.96]"
             >
               <div className="relative">
                 <h3 className="text-center font-medium mb-3">Рейтинг</h3>
@@ -470,7 +454,7 @@ export const HomePage: React.FC<HomePageProps> = ({
                     e.stopPropagation();
                     nextSortType();
                   }}
-                  className="absolute top-0 right-0 w-7 h-7 rounded-full bg-white border border-gray-300 flex items-center justify-center"
+                  className="apple-button absolute top-0 right-0 w-7 h-7 flex items-center justify-center"
                 >
                   <Menu style={{ width: '14px', height: '14px' }} />
                 </button>
@@ -498,11 +482,7 @@ export const HomePage: React.FC<HomePageProps> = ({
           </div>
 
           {/* Achievement Rewards Panel */}
-          <div className={`p-6 rounded-3xl border ${
-            theme === 'dark' 
-              ? 'bg-gray-800/50 border-gray-700' 
-              : 'bg-white/80 border-gray-200'
-          }`}>
+          <div className="glass-card p-6">
             <div className="flex items-center justify-between mb-4">
               <div></div>
               <h3 className="font-medium">Ачивки</h3>
@@ -569,14 +549,12 @@ export const HomePage: React.FC<HomePageProps> = ({
 
       {/* Achievement Modal */}
       {isAchievementModalOpen && (
-        <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50">
-          <div className={`p-6 rounded-3xl max-w-md w-full mx-4 max-h-[80vh] overflow-y-auto ${
-            theme === 'dark' ? 'bg-gray-800' : 'bg-white'
-          }`}>
+        <div className="fixed inset-0 modal-backdrop-light dark:modal-backdrop-dark flex items-center justify-center z-50">
+          <div className="glass-card p-6 max-w-md w-full mx-4 max-h-[80vh] overflow-y-auto">
             <div className="relative mb-6">
               <button 
                 onClick={() => setIsAchievementModalOpen(false)}
-                className="p-2 rounded-full hover:bg-gray-100 dark:hover:bg-gray-700"
+                className="apple-button p-2"
               >
                 <ArrowLeft className="w-4 h-4" />
               </button>
@@ -633,10 +611,8 @@ export const HomePage: React.FC<HomePageProps> = ({
 
       {/* Reward Modal */}
       {isRewardModalOpen && (
-        <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50">
-          <div className={`p-6 rounded-3xl max-w-md w-full mx-4 max-h-[80vh] overflow-y-auto ${
-            theme === 'dark' ? 'bg-gray-800' : 'bg-white'
-          }`}>
+        <div className="fixed inset-0 modal-backdrop-light dark:modal-backdrop-dark flex items-center justify-center z-50">
+          <div className="glass-card p-6 max-w-md w-full mx-4 max-h-[80vh] overflow-y-auto">
             <div className="relative mb-6">
               <button 
                 onClick={() => setIsRewardModalOpen(false)}
@@ -716,10 +692,8 @@ export const HomePage: React.FC<HomePageProps> = ({
 
       {/* XP Modal */}
       {isXpDialogOpen && (
-        <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50">
-          <div className={`p-6 rounded-3xl max-w-md w-full mx-4 ${
-            theme === 'dark' ? 'bg-gray-800' : 'bg-white'
-          }`}>
+        <div className="fixed inset-0 modal-backdrop-light dark:modal-backdrop-dark flex items-center justify-center z-50">
+          <div className="glass-card p-6 max-w-md w-full mx-4">
             <div className="flex items-center justify-between mb-6">
               <h2 className="text-xl font-semibold">Информация об опыте</h2>
               <button
@@ -758,10 +732,8 @@ export const HomePage: React.FC<HomePageProps> = ({
 
       {/* All Battles Modal */}
       {isAllBattlesModalOpen && (
-        <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50">
-          <div className={`p-6 rounded-3xl max-w-md w-full mx-4 max-h-[80vh] overflow-y-auto ${
-            theme === 'dark' ? 'bg-gray-800' : 'bg-white'
-          }`}>
+        <div className="fixed inset-0 modal-backdrop-light dark:modal-backdrop-dark flex items-center justify-center z-50">
+          <div className="glass-card p-6 max-w-md w-full mx-4 max-h-[80vh] overflow-y-auto">
             <div className="flex items-center justify-between mb-6">
               <h2 className="text-xl font-semibold">Все баттлы</h2>
               <button
@@ -820,10 +792,8 @@ export const HomePage: React.FC<HomePageProps> = ({
 
       {/* Create Battle Modal */}
       {isCreateBattleModalOpen && (
-        <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50">
-          <div className={`p-6 rounded-3xl max-w-md w-full mx-4 ${
-            theme === 'dark' ? 'bg-gray-800' : 'bg-white'
-          }`}>
+        <div className="fixed inset-0 modal-backdrop-light dark:modal-backdrop-dark flex items-center justify-center z-50">
+          <div className="glass-card p-6 max-w-md w-full mx-4">
             <div className="flex items-center justify-between mb-6">
               <h2 className="text-xl font-semibold">Создать баттл</h2>
               <button
@@ -863,10 +833,8 @@ export const HomePage: React.FC<HomePageProps> = ({
 
       {/* Leaderboard Modal */}
       {isLeaderboardModalOpen && (
-        <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50">
-          <div className={`p-6 rounded-3xl max-w-md w-full mx-4 max-h-[80vh] overflow-y-auto ${
-            theme === 'dark' ? 'bg-gray-800' : 'bg-white'
-          }`}>
+        <div className="fixed inset-0 modal-backdrop-light dark:modal-backdrop-dark flex items-center justify-center z-50">
+          <div className="glass-card p-6 max-w-md w-full mx-4 max-h-[80vh] overflow-y-auto">
             <div className="flex items-center justify-between mb-6">
               <h2 className="text-xl font-semibold">Полный рейтинг</h2>
               <button
