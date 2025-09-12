@@ -16,7 +16,7 @@ export const BottomNavigation: React.FC<BottomNavigationProps> = ({
     { id: 'home', icon: Home, label: 'Главная' },
     { id: 'achievements', icon: Trophy, label: 'Достижения' },
     { id: 'tasks', icon: CheckSquare, label: 'Задачи' },
-    { id: 'cases', icon: ShoppingCart, label: 'Магазин' },
+    { id: 'shop', icon: ShoppingCart, label: 'Магазин' },
   ];
 
   return (

@@ -9,6 +9,7 @@ interface HeaderProps {
 }
 
 export const Header: React.FC<HeaderProps> = ({
+  onNavigate,
   onOpenSettings,
   theme,
   hideUserIcon = false,
@@ -19,7 +20,10 @@ export const Header: React.FC<HeaderProps> = ({
     }`}>
       <div className="flex items-center justify-between max-w-md mx-auto">
         {!hideUserIcon && (
-          <div className="flex items-center gap-3">
+          <button 
+            onClick={() => onNavigate('profile')}
+            className="flex items-center gap-3 hover:opacity-80 transition-opacity"
+          >
             <div className="w-10 h-10 bg-blue-500 rounded-full flex items-center justify-center">
               <span className="text-white font-semibold">В</span>
             </div>
@@ -27,7 +31,7 @@ export const Header: React.FC<HeaderProps> = ({
               <div className="font-medium">Вы</div>
               <div className="text-sm text-gray-400">GRITHER</div>
             </div>
-          </div>
+          </button>
         )}
         
         <button

@@ -64,7 +64,8 @@ export default function App() {
   const [battleInvitations, setBattleInvitations] = useState<BattleInvitation[]>([]);
   const [users, setUsers] = useState<User[]>([]);
   const [leaderboard, setLeaderboard] = useState<LeaderboardEntry[]>(mockLeaderboard);
-  const [currentUser, setCurrentUser] = useState<User | null>(null);
+  const [currentUser, setCurrentUser] = useState<User | null>({ id: 'user1', name: 'Иван Иванов', username: '@iivanov', level: 5, balance: 1000, team: 'Team Alpha' });
+  const [userCoins, setUserCoins] = useState(1000);
 
   // Telegram Web App initialization
   useEffect(() => {
@@ -229,33 +230,30 @@ export default function App() {
             theme={theme}
           />
         );
-      case 'cases':
+      case 'shop':
         return (
           <CasesShopPage
-          onNavigate={handleNavigate} 
-            caseTypes={caseTypes}
-            setCaseTypes={setCaseTypes}
-          userCases={userCases}
-          setUserCases={setUserCases}
-          shopItems={shopItems}
-          setShopItems={setShopItems}
-          orders={orders}
-          setOrders={setOrders}
+            onNavigate={handleNavigate} 
+            cases={caseTypes}
+            setCases={setCaseTypes}
+            userCases={userCases}
+            setUserCases={setUserCases}
+            shopItems={shopItems}
+            setShopItems={setShopItems}
+            userCoins={userCoins}
+            setUserCoins={setUserCoins}
             theme={theme}
           />
         );
       case 'profile':
         return (
           <ProfilePage
-          onNavigate={handleNavigate} 
-          profilePhoto={profilePhoto}
-          setProfilePhoto={setProfilePhoto}
+            onNavigate={handleNavigate} 
+            user={currentUser || { id: 'user1', name: 'Иван Иванов', username: '@iivanov', level: 5, balance: 1000, team: 'Team Alpha' }}
+            setUser={setCurrentUser}
+            battles={battles}
+            leaderboard={leaderboard}
             theme={theme}
-            setTheme={setTheme}
-          battles={battles}
-          battleInvitations={battleInvitations}
-          users={users}
-            currentUser={currentUser}
           />
         );
       case 'battles':
@@ -314,27 +312,19 @@ export default function App() {
         {renderCurrentPage()}
       
       {showSettings && (
-      <SettingsModal 
+        <SettingsModal 
+          isOpen={showSettings}
           onClose={handleCloseSettings}
           theme={theme}
           setTheme={setTheme}
-        onOpenAdminPanel={handleOpenAdminPanel}
+          userRole="admin"
+          onNavigate={handleNavigate}
         />
       )}
       
       {showAdminPanel && (
         <AdminPanel
-          onClose={handleCloseAdminPanel}
-          achievements={achievements}
-          setAchievements={setAchievements}
-          shopItems={shopItems}
-          setShopItems={setShopItems}
-          tasks={tasks}
-          setTasks={setTasks}
-          caseTypes={caseTypes}
-          setCaseTypes={setCaseTypes}
-          userCases={userCases}
-          setUserCases={setUserCases}
+          onNavigate={handleNavigate}
           theme={theme}
         />
       )}
