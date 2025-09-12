@@ -317,8 +317,7 @@ export default function App() {
           isOpen={showSettings}
           onClose={handleCloseSettings}
           theme={theme}
-          setTheme={setTheme}
-          userRole="admin"
+          onToggleTheme={toggleTheme}
           onNavigate={handleNavigate}
         />
       )}

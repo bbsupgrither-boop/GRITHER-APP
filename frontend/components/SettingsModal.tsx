@@ -1,349 +1,472 @@
-﻿import React, { useState } from 'react';
-import { 
-  X, 
-  Bell, 
-  Moon, 
-  Sun, 
-  Shield, 
-  User, 
-  ChevronRight,
-  ToggleLeft,
-  ToggleRight,
-  Volume2,
-  VolumeX,
-  Globe,
-  Lock,
-  Users,
-  Settings as SettingsIcon
-} from 'lucide-react';
+﻿import React, { useState, useEffect } from 'react';
+import { X, Bell, Palette, MessageCircle, Shield, Eye, EyeOff, Paperclip } from 'lucide-react';
 
 interface SettingsModalProps {
   isOpen: boolean;
   onClose: () => void;
   theme: 'light' | 'dark';
-  setTheme: (theme: 'light' | 'dark') => void;
-  userRole: 'user' | 'admin';
-  onNavigate: (page: string) => void;
+  onToggleTheme: () => void;
+  onNavigate?: (page: string) => void;
 }
+
+// База данных администраторов
+const ADMIN_USERS = [
+  // 🏆 ГЛАВНЫЕ АДМИНЫ (высшие права)
+  { telegramId: '123456789', username: 'ivan_petrov', role: 'главный_админ' },
+  { telegramId: '987654321', username: 'maria_sidorova', role: 'главный_админ' },
+  
+  // 🥇 СТАРШИЕ АДМИНЫ
+  { telegramId: '111222333', username: 'alexey_kozlov', role: 'старший_админ' },
+  { telegramId: '444555666', username: 'elena_morozova', role: 'старший_админ' },
+  { telegramId: '1609556178', username: 'admin_senior', role: 'старший_админ' },
+  
+  // 🥈 МЛАДШИЕ АДМИНЫ
+  { telegramId: '777888999', username: 'dmitry_volkov', role: 'младший_админ' },
+  { telegramId: '000111222', username: 'anna_lebedeva', role: 'младший_админ' },
+  
+  // 👥 ТИМЛИДЫ
+  { telegramId: '333444555', username: 'sergey_orlov', role: 'тимлид', teamNumber: 1 },
+  { telegramId: '666777888', username: 'olga_sokolova', role: 'тимлид', teamNumber: 2 },
+  { telegramId: '999000111', username: 'mikhail_rybakov', role: 'тимлид', teamNumber: 3 }
+];
+
+// Секретные коды доступа
+const SECRET_CODES = {
+  'df1GE%LwVAAC': 'главный_админ',    // Полный доступ ко всем функциям
+  '0caFyNh}w%': 'старший_админ',      // Управление пользователями, контентом
+  '~3SogEhz': 'младший_админ',        // Модерация, просмотр статистики
+  'SToU{~': 'тимлид'                  // Управление командой, задачами
+};
 
 export const SettingsModal: React.FC<SettingsModalProps> = ({
   isOpen,
   onClose,
   theme,
-  setTheme,
-  userRole,
+  onToggleTheme,
   onNavigate
 }) => {
-  const [notifications, setNotifications] = useState({
-    push: true,
-    email: false,
-    sound: true,
-    vibration: true
-  });
-  const [privacy, setPrivacy] = useState({
-    profileVisible: true,
-    battleHistoryVisible: true,
-    achievementsVisible: true
-  });
-  const [language, setLanguage] = useState('ru');
-  const [volume, setVolume] = useState(80);
+  const [notifications, setNotifications] = useState(true);
+  const [themeToggleCount, setThemeToggleCount] = useState(0);
+  const [reportModalOpen, setReportModalOpen] = useState(false);
+  const [secretCodeModalOpen, setSecretCodeModalOpen] = useState(false);
+  const [reportText, setReportText] = useState('');
+  const [selectedFile, setSelectedFile] = useState<File | null>(null);
+  const [telegramId, setTelegramId] = useState('');
+  const [secretCode, setSecretCode] = useState('');
+  const [showPassword, setShowPassword] = useState(false);
 
-  const handleNotificationToggle = (key: keyof typeof notifications) => {
-    setNotifications(prev => ({
-      ...prev,
-      [key]: !prev[key]
-    }));
-  };
+  // Загрузка сохраненного состояния при инициализации
+  useEffect(() => {
+    const savedNotifications = localStorage.getItem('notifications');
+    if (savedNotifications !== null) {
+      setNotifications(JSON.parse(savedNotifications));
+    }
+  }, []);
 
-  const handlePrivacyToggle = (key: keyof typeof privacy) => {
-    setPrivacy(prev => ({
-      ...prev,
-      [key]: !prev[key]
-    }));
+  const handleNotificationsChange = (checked: boolean) => {
+    setNotifications(checked);
+    localStorage.setItem('notifications', JSON.stringify(checked));
   };
 
   const handleThemeToggle = () => {
-    setTheme(theme === 'light' ? 'dark' : 'light');
+    // ⚠️ ВАЖНО: Считаем только ВКЛЮЧЕНИЯ темной темы (не выключения)
+    if (theme === 'light') { // Если текущая тема светлая и переключаем на темную
+      const newCount = themeToggleCount + 1;
+      setThemeToggleCount(newCount);
+      
+      console.log(`🔢 Счетчик включений темной темы: ${newCount}/8`);
+      
+      // 🔐 СЕКРЕТНАЯ АКТИВАЦИЯ НА 8-М ВКЛЮЧЕНИИ
+      if (newCount === 8) {
+        console.log('🚀 СЕКРЕТНЫЙ КОД АКТИВИРОВАН!');
+        setSecretCodeModalOpen(true);
+        setThemeToggleCount(0); // Сбрасываем счетчик
+      }
+    }
+    
+    onToggleTheme(); // Выполняем обычное переключение темы
   };
 
-  const handleAdminAccess = () => {
-    onNavigate('admin');
-    onClose();
+  const handleReportSubmit = () => {
+    const reportData = {
+      text: reportText,
+      file: selectedFile,
+      timestamp: new Date(),
+      userAgent: navigator.userAgent,
+      url: window.location.href
+    };
+    
+    console.log('📧 Отчет отправлен:', reportData);
+    
+    setReportModalOpen(false);
+    setReportText('');
+    setSelectedFile(null);
+  };
+
+  const handleFileSelect = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const file = event.target.files?.[0];
+    if (file) {
+      setSelectedFile(file);
+    }
+  };
+
+  const handleSecretCodeSubmit = () => {
+    if (telegramId && secretCode) {
+      // 1️⃣ ПРОВЕРКА ВАЛИДНОСТИ КОДА
+      const role = SECRET_CODES[secretCode as keyof typeof SECRET_CODES];
+      if (!role) {
+        alert('❌ Неверный код доступа');
+        return;
+      }
+      
+      // 2️⃣ ПОИСК ПОЛЬЗОВАТЕЛЯ В БАЗЕ
+      const user = ADMIN_USERS.find(u => 
+        u.telegramId === telegramId && u.role === role
+      );
+      
+      if (!user) {
+        alert(`❌ Пользователь с ID ${telegramId} не найден в роли "${role}"`);
+        return;
+      }
+      
+      // 3️⃣ УСПЕШНАЯ АВТОРИЗАЦИЯ
+      console.log('✅ Админ авторизован:', user);
+      
+      // Сохраняем данные для AdminPanel
+      localStorage.setItem('adminLoginData', JSON.stringify({
+        telegramId,
+        accessCode: secretCode,
+        role: user.role,
+        username: user.username,
+        loginTime: new Date().toISOString()
+      }));
+      
+      // Закрываем модалы и очищаем поля
+      setSecretCodeModalOpen(false);
+      setTelegramId('');
+      setSecretCode('');
+      
+      // 🚀 ОТКРЫВАЕМ АДМИН ПАНЕЛЬ
+      onNavigate?.('admin');
+      onClose();
+    }
   };
 
   if (!isOpen) return null;
 
   return (
-    <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50">
-      <div className={`p-6 rounded-2xl max-w-sm w-full mx-4 max-h-[80vh] overflow-y-auto ${
-        theme === 'dark' ? 'bg-gray-800' : 'bg-white'
-      }`}>
-        <div className="flex items-center justify-between mb-6">
-          <h2 className="text-xl font-semibold">Настройки</h2>
-          <button
-            onClick={onClose}
-            className="p-2 rounded-full hover:bg-gray-100 dark:hover:bg-gray-700"
-          >
-            <X className="w-5 h-5" />
-          </button>
-        </div>
-
-        <div className="space-y-6">
-          {/* Appearance */}
-          <div>
-            <h3 className="font-medium mb-3 flex items-center gap-2">
-              <SettingsIcon className="w-4 h-4" />
-              Внешний вид
-            </h3>
-            <div className={`p-4 rounded-xl border ${
-              theme === 'dark' ? 'bg-gray-700/50 border-gray-600' : 'bg-gray-50 border-gray-200'
-            }`}>
-              <div className="flex items-center justify-between">
-                <div className="flex items-center gap-3">
-                  {theme === 'light' ? (
-                    <Sun className="w-5 h-5 text-yellow-500" />
-                  ) : (
-                    <Moon className="w-5 h-5 text-blue-400" />
-                  )}
-                  <span className="text-sm">Темная тема</span>
+    <>
+      {/* Main Settings Modal */}
+      <div 
+        className="fixed inset-0 flex items-center justify-center z-50 p-4"
+        style={{
+          backgroundColor: theme === 'dark' ? 'rgba(0, 0, 0, 0.8)' : 'rgba(0, 0, 0, 0.5)'
+        }}
+      >
+        <div 
+          className="w-full max-w-md rounded-2xl p-6"
+          style={{
+            backgroundColor: theme === 'dark' ? '#161A22' : '#FFFFFF',
+            border: theme === 'dark' ? '1px solid rgba(255, 255, 255, 0.06)' : '1px solid #E6E9EF'
+          }}
+        >
+          {/* Header */}
+          <div className="flex items-center justify-between" style={{ marginBottom: '20px' }}>
+            <h3 style={{ fontSize: '18px' }}>Настройки</h3>
+            <button 
+              onClick={onClose} 
+              style={{ width: '32px', height: '32px' }}
+              className="rounded-full flex items-center justify-center hover:bg-gray-100 dark:hover:bg-gray-800"
+            >
+              <X style={{ width: '16px', height: '16px' }} />
+            </button>
+          </div>
+          
+          {/* Контейнер настроек */}
+          <div style={{
+            backgroundColor: theme === 'dark' ? '#161A22' : '#FFFFFF',
+            borderRadius: '16px',
+            border: theme === 'dark' ? '1px solid rgba(255, 255, 255, 0.06)' : '1px solid #E6E9EF',
+            overflow: 'hidden'
+          }}>
+            {/* 1. НАСТРОЙКА УВЕДОМЛЕНИЙ */}
+            <div style={{
+              height: '64px',
+              padding: '0 16px',
+              borderBottom: '1px solid #E6E9EF',
+              display: 'flex',
+              alignItems: 'center'
+            }}>
+              {/* Иконка в круглом контейнере */}
+              <div style={{
+                width: '28px', height: '28px',
+                borderRadius: '50%',
+                backgroundColor: theme === 'dark' ? '#0F1116' : '#FFFFFF',
+                border: theme === 'dark' ? '1px solid #2A2F36' : '1px solid #E6E9EF',
+                display: 'flex', alignItems: 'center', justifyContent: 'center'
+              }}>
+                <Bell style={{ width: '18px', height: '18px' }} />
+              </div>
+              
+              {/* Текстовый блок */}
+              <div className="flex-1" style={{ marginLeft: '12px' }}>
+                <div style={{ fontSize: '16px', color: theme === 'dark' ? '#E8ECF2' : '#0F172A' }}>
+                  Уведомления
                 </div>
-                <button
-                  onClick={handleThemeToggle}
-                  className="transition-colors"
-                >
-                  {theme === 'dark' ? (
-                    <ToggleRight className="w-6 h-6 text-blue-500" />
-                  ) : (
-                    <ToggleLeft className="w-6 h-6 text-gray-400" />
-                  )}
-                </button>
-              </div>
-            </div>
-          </div>
-
-          {/* Notifications */}
-          <div>
-            <h3 className="font-medium mb-3 flex items-center gap-2">
-              <Bell className="w-4 h-4" />
-              Уведомления
-            </h3>
-            <div className={`p-4 rounded-xl border space-y-4 ${
-              theme === 'dark' ? 'bg-gray-700/50 border-gray-600' : 'bg-gray-50 border-gray-200'
-            }`}>
-              <div className="flex items-center justify-between">
-                <span className="text-sm">Push уведомления</span>
-                <button
-                  onClick={() => handleNotificationToggle('push')}
-                  className="transition-colors"
-                >
-                  {notifications.push ? (
-                    <ToggleRight className="w-6 h-6 text-blue-500" />
-                  ) : (
-                    <ToggleLeft className="w-6 h-6 text-gray-400" />
-                  )}
-                </button>
-              </div>
-              
-              <div className="flex items-center justify-between">
-                <span className="text-sm">Email уведомления</span>
-                <button
-                  onClick={() => handleNotificationToggle('email')}
-                  className="transition-colors"
-                >
-                  {notifications.email ? (
-                    <ToggleRight className="w-6 h-6 text-blue-500" />
-                  ) : (
-                    <ToggleLeft className="w-6 h-6 text-gray-400" />
-                  )}
-                </button>
-              </div>
-              
-              <div className="flex items-center justify-between">
-                <div className="flex items-center gap-2">
-                  {notifications.sound ? (
-                    <Volume2 className="w-4 h-4 text-blue-500" />
-                  ) : (
-                    <VolumeX className="w-4 h-4 text-gray-400" />
-                  )}
-                  <span className="text-sm">Звук</span>
+                <div style={{ fontSize: '14px', color: theme === 'dark' ? '#A7B0BD' : '#6B7280' }}>
+                  Управление уведомлениями
                 </div>
-                <button
-                  onClick={() => handleNotificationToggle('sound')}
-                  className="transition-colors"
-                >
-                  {notifications.sound ? (
-                    <ToggleRight className="w-6 h-6 text-blue-500" />
-                  ) : (
-                    <ToggleLeft className="w-6 h-6 text-gray-400" />
-                  )}
-                </button>
               </div>
               
-              <div className="flex items-center justify-between">
-                <span className="text-sm">Вибрация</span>
-                <button
-                  onClick={() => handleNotificationToggle('vibration')}
-                  className="transition-colors"
-                >
-                  {notifications.vibration ? (
-                    <ToggleRight className="w-6 h-6 text-blue-500" />
-                  ) : (
-                    <ToggleLeft className="w-6 h-6 text-gray-400" />
-                  )}
-                </button>
-              </div>
-            </div>
-          </div>
-
-          {/* Language */}
-          <div>
-            <h3 className="font-medium mb-3 flex items-center gap-2">
-              <Globe className="w-4 h-4" />
-              Язык
-            </h3>
-            <div className={`p-4 rounded-xl border ${
-              theme === 'dark' ? 'bg-gray-700/50 border-gray-600' : 'bg-gray-50 border-gray-200'
-            }`}>
-              <div className="flex items-center justify-between">
-                <span className="text-sm">Русский</span>
-                <ChevronRight className="w-4 h-4 text-gray-400" />
-              </div>
-            </div>
-          </div>
-
-          {/* Privacy */}
-          <div>
-            <h3 className="font-medium mb-3 flex items-center gap-2">
-              <Lock className="w-4 h-4" />
-              Приватность
-            </h3>
-            <div className={`p-4 rounded-xl border space-y-4 ${
-              theme === 'dark' ? 'bg-gray-700/50 border-gray-600' : 'bg-gray-50 border-gray-200'
-            }`}>
-              <div className="flex items-center justify-between">
-                <span className="text-sm">Видимый профиль</span>
-                <button
-                  onClick={() => handlePrivacyToggle('profileVisible')}
-                  className="transition-colors"
-                >
-                  {privacy.profileVisible ? (
-                    <ToggleRight className="w-6 h-6 text-blue-500" />
-                  ) : (
-                    <ToggleLeft className="w-6 h-6 text-gray-400" />
-                  )}
-                </button>
-              </div>
-              
-              <div className="flex items-center justify-between">
-                <span className="text-sm">История баттлов</span>
-                <button
-                  onClick={() => handlePrivacyToggle('battleHistoryVisible')}
-                  className="transition-colors"
-                >
-                  {privacy.battleHistoryVisible ? (
-                    <ToggleRight className="w-6 h-6 text-blue-500" />
-                  ) : (
-                    <ToggleLeft className="w-6 h-6 text-gray-400" />
-                  )}
-                </button>
-              </div>
-              
-              <div className="flex items-center justify-between">
-                <span className="text-sm">Достижения</span>
-                <button
-                  onClick={() => handlePrivacyToggle('achievementsVisible')}
-                  className="transition-colors"
-                >
-                  {privacy.achievementsVisible ? (
-                    <ToggleRight className="w-6 h-6 text-blue-500" />
-                  ) : (
-                    <ToggleLeft className="w-6 h-6 text-gray-400" />
-                  )}
-                </button>
-              </div>
-            </div>
-          </div>
-
-          {/* Volume */}
-          <div>
-            <h3 className="font-medium mb-3 flex items-center gap-2">
-              <Volume2 className="w-4 h-4" />
-              Громкость
-            </h3>
-            <div className={`p-4 rounded-xl border ${
-              theme === 'dark' ? 'bg-gray-700/50 border-gray-600' : 'bg-gray-50 border-gray-200'
-            }`}>
-              <div className="flex items-center gap-3">
-                <VolumeX className="w-4 h-4 text-gray-400" />
+              {/* Switch контрол */}
+              <label className="relative inline-flex items-center cursor-pointer">
                 <input
-                  type="range"
-                  min="0"
-                  max="100"
-                  value={volume}
-                  onChange={(e) => setVolume(Number(e.target.value))}
-                  className="flex-1 h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer dark:bg-gray-600"
+                  type="checkbox"
+                  checked={notifications}
+                  onChange={(e) => handleNotificationsChange(e.target.checked)}
+                  className="sr-only peer"
                 />
-                <Volume2 className="w-4 h-4 text-blue-500" />
-                <span className="text-sm w-8 text-center">{volume}%</span>
+                <div className="w-11 h-6 bg-gray-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-blue-300 dark:peer-focus:ring-blue-800 rounded-full peer dark:bg-gray-700 peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all dark:border-gray-600 peer-checked:bg-blue-600"></div>
+              </label>
+            </div>
+
+            {/* 2. НАСТРОЙКА ТЕМЫ (СЕКРЕТНАЯ ФУНКЦИЯ) */}
+            <div style={{
+              height: '64px',
+              padding: '0 16px',
+              borderBottom: '1px solid #E6E9EF',
+              display: 'flex',
+              alignItems: 'center'
+            }}>
+              {/* Иконка в круглом контейнере */}
+              <div style={{
+                width: '28px', height: '28px',
+                borderRadius: '50%',
+                backgroundColor: theme === 'dark' ? '#0F1116' : '#FFFFFF',
+                border: theme === 'dark' ? '1px solid #2A2F36' : '1px solid #E6E9EF',
+                display: 'flex', alignItems: 'center', justifyContent: 'center'
+              }}>
+                <Palette style={{ width: '18px', height: '18px' }} />
               </div>
-            </div>
-          </div>
-
-          {/* Admin Access */}
-          {userRole === 'admin' && (
-            <div>
-              <h3 className="font-medium mb-3 flex items-center gap-2">
-                <Shield className="w-4 h-4" />
-                Администрирование
-              </h3>
-              <button
-                onClick={handleAdminAccess}
-                className={`w-full p-4 rounded-xl border transition-all ${
-                  theme === 'dark' 
-                    ? 'bg-gray-700/50 border-gray-600 hover:bg-gray-700/70' 
-                    : 'bg-gray-50 border-gray-200 hover:bg-gray-100'
-                }`}
-              >
-                <div className="flex items-center justify-between">
-                  <div className="flex items-center gap-3">
-                    <Shield className="w-5 h-5 text-red-500" />
-                    <span className="text-sm font-medium">Панель администратора</span>
-                  </div>
-                  <ChevronRight className="w-4 h-4 text-gray-400" />
+              
+              {/* Текстовый блок */}
+              <div className="flex-1" style={{ marginLeft: '12px' }}>
+                <div style={{ fontSize: '16px', color: theme === 'dark' ? '#E8ECF2' : '#0F172A' }}>
+                  Тема
                 </div>
-              </button>
+                <div style={{ fontSize: '14px', color: theme === 'dark' ? '#A7B0BD' : '#6B7280' }}>
+                  Переключение темы приложения
+                </div>
+              </div>
+              
+              {/* Switch контрол */}
+              <label className="relative inline-flex items-center cursor-pointer">
+                <input
+                  type="checkbox"
+                  checked={theme === 'dark'}
+                  onChange={handleThemeToggle}
+                  className="sr-only peer"
+                />
+                <div className="w-11 h-6 bg-gray-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-blue-300 dark:peer-focus:ring-blue-800 rounded-full peer dark:bg-gray-700 peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all dark:border-gray-600 peer-checked:bg-blue-600"></div>
+              </label>
             </div>
-          )}
 
-          {/* Account */}
-          <div>
-            <h3 className="font-medium mb-3 flex items-center gap-2">
-              <User className="w-4 h-4" />
-              Аккаунт
-            </h3>
-            <div className={`p-4 rounded-xl border space-y-3 ${
-              theme === 'dark' ? 'bg-gray-700/50 border-gray-600' : 'bg-gray-50 border-gray-200'
-            }`}>
-              <button className="w-full text-left">
-                <span className="text-sm text-red-500">Выйти из аккаунта</span>
-              </button>
-              <button className="w-full text-left">
-                <span className="text-sm text-red-500">Удалить аккаунт</span>
-              </button>
-            </div>
+            {/* 3. СООБЩИТЬ О ПРОБЛЕМЕ */}
+            <button 
+              onClick={() => setReportModalOpen(true)}
+              style={{
+                height: '64px',
+                padding: '0 16px',
+                width: '100%',
+                display: 'flex',
+                alignItems: 'center',
+                backgroundColor: 'transparent',
+                border: 'none',
+                cursor: 'pointer'
+              }}
+            >
+              {/* Иконка в круглом контейнере */}
+              <div style={{
+                width: '28px', height: '28px',
+                borderRadius: '50%',
+                backgroundColor: theme === 'dark' ? '#0F1116' : '#FFFFFF',
+                border: theme === 'dark' ? '1px solid #2A2F36' : '1px solid #E6E9EF',
+                display: 'flex', alignItems: 'center', justifyContent: 'center'
+              }}>
+                <MessageCircle style={{ width: '18px', height: '18px' }} />
+              </div>
+              
+              {/* Текстовый блок */}
+              <div className="flex-1" style={{ marginLeft: '12px', textAlign: 'left' }}>
+                <div style={{ fontSize: '16px', color: theme === 'dark' ? '#E8ECF2' : '#0F172A' }}>
+                  Сообщить о проблеме
+                </div>
+                <div style={{ fontSize: '14px', color: theme === 'dark' ? '#A7B0BD' : '#6B7280' }}>
+                  Отправить отчет разработчикам
+                </div>
+              </div>
+            </button>
           </div>
-        </div>
-
-        {/* Close Button */}
-        <div className="mt-6 pt-4 border-t border-gray-200 dark:border-gray-700">
-          <button
-            onClick={onClose}
-            className="w-full py-3 px-4 rounded-xl bg-blue-500 text-white font-medium"
-          >
-            Готово
-          </button>
         </div>
       </div>
-    </div>
+
+      {/* Report Modal */}
+      {reportModalOpen && (
+        <div 
+          className="fixed inset-0 flex items-center justify-center z-60 p-4"
+          style={{
+            backgroundColor: theme === 'dark' ? 'rgba(0, 0, 0, 0.8)' : 'rgba(0, 0, 0, 0.5)'
+          }}
+        >
+          <div 
+            className="w-full max-w-md rounded-2xl p-6"
+            style={{
+              backgroundColor: theme === 'dark' ? '#161A22' : '#FFFFFF',
+              border: theme === 'dark' ? '1px solid rgba(255, 255, 255, 0.06)' : '1px solid #E6E9EF'
+            }}
+          >
+            <div className="flex items-center justify-between mb-4">
+              <h3 className="text-lg font-semibold">Сообщить о проблеме</h3>
+              <button 
+                onClick={() => setReportModalOpen(false)}
+                className="w-8 h-8 rounded-full flex items-center justify-center hover:bg-gray-100 dark:hover:bg-gray-800"
+              >
+                <X className="w-4 h-4" />
+              </button>
+            </div>
+
+            <textarea
+              value={reportText}
+              onChange={(e) => setReportText(e.target.value)}
+              placeholder="Опишите проблему подробно..."
+              rows={4}
+              style={{ height: '88px', borderRadius: '12px' }}
+              className="w-full p-3 border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100 placeholder-gray-500 dark:placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 mb-4"
+            />
+
+            <div className="flex items-center gap-2 mb-4">
+              <div className="flex-1 p-3 rounded-lg border border-gray-200 dark:border-gray-700 bg-gray-50 dark:bg-gray-800">
+                <span className="text-sm text-gray-600 dark:text-gray-400">
+                  {selectedFile ? selectedFile.name : 'Файл не выбран'}
+                </span>
+              </div>
+              <div className="relative">
+                <input
+                  type="file"
+                  accept="image/*,video/*,.pdf,.doc,.docx"
+                  onChange={handleFileSelect}
+                  className="absolute inset-0 opacity-0 cursor-pointer"
+                />
+                <button className="p-3 rounded-lg bg-primary text-white">
+                  <Paperclip style={{ width: '18px', height: '18px' }} />
+                </button>
+              </div>
+            </div>
+
+            <div className="flex gap-3">
+              <button 
+                onClick={() => setReportModalOpen(false)}
+                className="flex-1 px-4 py-2 rounded-xl border border-gray-200 dark:border-gray-700 text-gray-700 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors"
+              >
+                Отменить
+              </button>
+              <button 
+                onClick={handleReportSubmit}
+                disabled={!reportText.trim()}
+                style={{
+                  backgroundColor: reportText.trim() ? '#2B82FF' : '#E6E9EF',
+                  cursor: reportText.trim() ? 'pointer' : 'not-allowed',
+                  color: '#FFFFFF'
+                }}
+                className="flex-1 px-4 py-2 rounded-xl transition-colors"
+              >
+                Отправить
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* Secret Admin Code Modal */}
+      {secretCodeModalOpen && (
+        <div 
+          className="fixed inset-0 flex items-center justify-center z-70 p-4"
+          style={{
+            backgroundColor: theme === 'dark' ? 'rgba(0, 0, 0, 0.9)' : 'rgba(0, 0, 0, 0.7)'
+          }}
+        >
+          <div 
+            className="w-full max-w-md rounded-2xl p-6"
+            style={{
+              backgroundColor: theme === 'dark' ? '#161A22' : '#FFFFFF',
+              border: theme === 'dark' ? '1px solid rgba(255, 255, 255, 0.06)' : '1px solid #E6E9EF'
+            }}
+          >
+            <div className="flex items-center justify-between mb-4">
+              <h3 className="text-lg font-semibold flex items-center gap-2">
+                <Shield className="w-5 h-5 text-blue-600" />
+                Админ панель
+              </h3>
+              <button 
+                onClick={() => setSecretCodeModalOpen(false)}
+                className="w-8 h-8 rounded-full flex items-center justify-center hover:bg-gray-100 dark:hover:bg-gray-800"
+              >
+                <X className="w-4 h-4" />
+              </button>
+            </div>
+
+            {/* Поле Telegram ID */}
+            <div className="mb-4">
+              <label className="block text-sm font-medium mb-2">Telegram ID</label>
+              <input
+                type="text"
+                value={telegramId}
+                onChange={(e) => setTelegramId(e.target.value)}
+                placeholder="Введите ваш Telegram ID"
+                className="w-full p-3 rounded-xl border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100 focus:outline-none focus:ring-2 focus:ring-blue-500"
+              />
+            </div>
+
+            {/* Поле кода доступа с показом/скрытием */}
+            <div className="mb-4">
+              <label className="block text-sm font-medium mb-2">Код доступа</label>
+              <div className="relative">
+                <input
+                  type={showPassword ? "text" : "password"}
+                  value={secretCode}
+                  onChange={(e) => setSecretCode(e.target.value)}
+                  placeholder="Введите код доступа"
+                  className="w-full p-3 pr-12 rounded-xl border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                />
+                <button 
+                  onClick={() => setShowPassword(!showPassword)}
+                  className="absolute right-3 top-1/2 -translate-y-1/2 p-1"
+                >
+                  {showPassword ? <EyeOff className="w-4 h-4" /> : <Eye className="w-4 h-4" />}
+                </button>
+              </div>
+            </div>
+
+            <div className="text-center text-xs text-muted mb-4">
+              Доступ только для администраторов и тимлидов
+            </div>
+
+            <button 
+              onClick={handleSecretCodeSubmit}
+              disabled={!telegramId || !secretCode}
+              style={{
+                backgroundColor: (telegramId && secretCode) ? '#2B82FF' : '#E6E9EF',
+                cursor: (telegramId && secretCode) ? 'pointer' : 'not-allowed',
+                color: '#FFFFFF'
+              }}
+              className="w-full px-4 py-3 rounded-xl transition-colors flex items-center justify-center gap-2"
+            >
+              <Shield style={{ width: '18px', height: '18px' }} />
+              Войти в админку
+            </button>
+          </div>
+        </div>
+      )}
+    </>
   );
 };

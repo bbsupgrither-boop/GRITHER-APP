@@ -29,69 +29,31 @@ export const BackgroundFX: React.FC<BackgroundFXProps> = ({ theme, isHomePage = 
   };
 
   if (isHomePage && theme === 'light') {
-    // Многослойная система для главной страницы
+    // Простая система для главной страницы - как на первом фото
     return (
       <div className="fixed inset-0 background-fx">
-        {/* 1. ОСНОВНОЙ ГРАДИЕНТНЫЙ СЛОЙ */}
+        {/* 1. ОСНОВНОЙ ГРАДИЕНТНЫЙ СЛОЙ - как на первом фото */}
         <div 
-          className="absolute inset-0 gradient-layer gradient-smooth"
+          className="absolute inset-0"
           style={{
             position: 'absolute',
             top: 0,
             left: 0,
             right: 0,
-            height: 'clamp(320px, 40vh, 400px)',
-            background: `linear-gradient(180deg, 
-              ${gradientColors.primary} 0%, 
-              ${gradientColors.primaryLight} 30%, 
-              ${gradientColors.primaryMuted} 70%, 
-              rgba(255, 255, 255, 0) 100%
-            )`,
+            height: 'clamp(280px, 32vh, 340px)',
+            background: 'linear-gradient(180deg, #0084FF 0%, rgba(255, 255, 255, 0) 100%)',
             zIndex: 1,
             pointerEvents: 'none'
           }}
         />
 
-        {/* 2. ДОПОЛНИТЕЛЬНЫЙ ПЕРЕХОДНЫЙ СЛОЙ */}
+        {/* 2. ЗЕРНИСТОСТЬ (Noise/Grain эффект) - как на первом фото */}
         <div 
-          className="absolute inset-0 gradient-layer gradient-smooth"
+          className="absolute inset-0 opacity-30 mix-blend-overlay"
           style={{
-            position: 'absolute',
-            top: 'clamp(280px, 35vh, 360px)',
-            left: 0,
-            right: 0,
-            height: 'clamp(80px, 10vh, 120px)',
-            background: `linear-gradient(180deg, 
-              rgba(64, 160, 255, 0.15) 0%, 
-              rgba(255, 255, 255, 0) 100%
-            )`,
-            zIndex: 1,
-            pointerEvents: 'none'
-          }}
-        />
-
-        {/* 3. ТЕКСТУРНЫЙ СЛОЙ (ЗЕРНИСТОСТЬ) */}
-        <div 
-          className="absolute inset-0 opacity-25 mix-blend-overlay"
-          style={{
-            height: 'clamp(400px, 50vh, 520px)',
-            background: `url("data:image/svg+xml,%3Csvg viewBox='0 0 400 400' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E")`,
+            height: 'clamp(280px, 32vh, 340px)',
+            background: `url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='1' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.3'/%3E%3C/svg%3E")`,
             zIndex: 2,
-            pointerEvents: 'none'
-          }}
-        />
-
-        {/* 4. РАДИАЛЬНАЯ ВИНЬЕТКА ДЛЯ ГЛУБИНЫ */}
-        <div 
-          className="absolute inset-0 mix-blend-multiply"
-          style={{
-            height: 'clamp(400px, 50vh, 520px)',
-            background: `radial-gradient(ellipse 120% 80% at 50% 0%, 
-              transparent 40%, 
-              ${gradientColors.primaryMuted} 70%, 
-              rgba(0, 132, 255, 0.02) 100%
-            )`,
-            zIndex: 3,
             pointerEvents: 'none'
           }}
         />
