@@ -1,4 +1,5 @@
-﻿import React from 'react';
+﻿import React, { useState, useEffect } from 'react';
+import { createPortal } from 'react-dom';
 import { Home, Trophy, CheckSquare, ShoppingCart } from 'lucide-react';
 
 interface BottomNavigationProps {
@@ -12,42 +13,96 @@ export const BottomNavigation: React.FC<BottomNavigationProps> = ({
   onNavigate,
   theme,
 }) => {
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
   const navItems = [
-    { id: 'home', icon: Home, label: 'Главная' },
-    { id: 'achievements', icon: Trophy, label: 'Достижения' },
-    { id: 'tasks', icon: CheckSquare, label: 'Задачи' },
-    { id: 'shop', icon: ShoppingCart, label: 'Магазин' },
+    { icon: Home, page: 'home' },           // 🏠 Главная
+    { icon: Trophy, page: 'achievements' }, // 🏆 Достижения  
+    { icon: CheckSquare, page: 'tasks' },   // ✅ Задачи
+    { icon: ShoppingCart, page: 'shop' },   // 🛒 Магазин
   ];
 
-  return (
-    <div className={`fixed bottom-6 left-1/2 transform -translate-x-1/2 ${
-      theme === 'dark' 
-        ? 'bg-gray-800/90 border-gray-700' 
-        : 'bg-white/90 border-gray-200'
-    } rounded-3xl border px-3 py-2 max-w-[320px] w-full mx-4`}>
-      <div className="flex justify-around">
+  const navigationContent = (
+    <div 
+      style={{ 
+        position: 'fixed',      // Всегда поверх контента
+        bottom: '24px',         // Отступ от нижнего края экрана
+        left: '50%',           // Начало от центра экрана
+        marginLeft: '-160px',   // Смещение для точного центрирования
+        zIndex: 1000,          // Высокий приоритет над контентом
+        width: 'calc(100vw - 48px)',  // Ширина экрана минус отступы по 24px с каждой стороны
+        maxWidth: '320px'             // Максимальная ширина 320px для больших экранов
+      }}
+    >
+      <div
+        className="flex items-center justify-center"
+        style={{
+          backgroundColor: theme === 'dark' ? '#12151B' : '#F3F5F8', // Полупрозрачный фон
+          borderRadius: '24px',        // Сильно закругленные углы
+          padding: '8px',              // Внутренние отступы
+          gap: '12px',                 // Равномерные отступы между кнопками
+          overflow: 'hidden',          // Clip content - кнопки не выходят за пределы
+          width: '100%',
+          boxSizing: 'border-box'
+        }}
+      >
         {navItems.map((item) => {
           const Icon = item.icon;
-          const isActive = currentPage === item.id;
+          const isActive = currentPage === item.page;
           
           return (
             <button
-              key={item.id}
-              onClick={() => onNavigate(item.id)}
-              className={`flex flex-col items-center p-2 rounded-xl transition-all ${
-                isActive
-                  ? 'bg-blue-500/20 text-blue-400'
-                  : theme === 'dark'
-                  ? 'text-gray-400 hover:text-white'
-                  : 'text-gray-500 hover:text-gray-700'
-              }`}
+              key={item.page}
+              onClick={() => onNavigate(item.page)}
+              className="relative flex items-center justify-center transition-all duration-200"
+              style={{ 
+                width: '44px',      // Фиксированная ширина
+                height: '44px',     // Фиксированная высота
+                minWidth: '44px',   // Минимальная ширина
+                minHeight: '44px',  // Минимальная высота
+                maxWidth: '44px',   // Максимальная ширина (предотвращает растягивание)
+                maxHeight: '44px',  // Максимальная высота
+                borderRadius: '50%', // Круглая форма
+                flexShrink: 0,      // Hug contents - кнопки не сжимаются
+                flexGrow: 0         // Кнопки не растягиваются
+              }}
             >
-              <Icon className="w-5 h-5 mb-1" />
-              <span className="text-xs">{item.label}</span>
+              {/* Active indicator */}
+              {isActive && (
+                <div 
+                  className="absolute rounded-full"
+                  style={{
+                    width: '36px',              // Немного меньше кнопки
+                    height: '36px',
+                    backgroundColor: theme === 'dark' 
+                      ? 'rgba(43, 130, 255, 0.12)'  // Темная тема: 12% прозрачности
+                      : 'rgba(43, 130, 255, 0.10)'  // Светлая тема: 10% прозрачности
+                  }}
+                />
+              )}
+              
+              {/* Icon */}
+              <Icon 
+                className="relative z-10 transition-colors duration-200"
+                style={{
+                  width: '24px',   // Оптимальный размер для круглых кнопок 44px
+                  height: '24px',
+                  color: isActive 
+                    ? '#2B82FF'                                    // Активная: синий Apple
+                    : theme === 'dark' ? '#A7B0BD' : '#6B7280'    // Неактивная: серый по теме
+                }}
+              />
             </button>
           );
         })}
       </div>
     </div>
   );
+
+  // Рендерим через портал для избежания влияния родительских контекстов
+  return mounted ? createPortal(navigationContent, document.body) : null;
 };
