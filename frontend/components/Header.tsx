@@ -15,30 +15,93 @@ export const Header: React.FC<HeaderProps> = ({
   hideUserIcon = false,
 }) => {
   return (
-    <div className="w-full px-4 py-4 relative z-10" style={{
-      backgroundColor: theme === 'dark' ? 'rgba(0, 0, 0, 0.2)' : 'rgba(255, 255, 255, 0.2)'
+    <div className="w-full px-4 py-4 relative" style={{
+      backgroundColor: theme === 'dark' ? 'rgba(0, 0, 0, 0.2)' : 'rgba(255, 255, 255, 0.2)',
+      zIndex: 50
     }}>
       <div className="flex items-center justify-between max-w-md mx-auto">
         {!hideUserIcon && (
           <button 
-            onClick={() => onNavigate('profile')}
-            className="flex items-center gap-3 hover:opacity-80 transition-opacity"
+            onClick={() => {
+              console.log('Profile button clicked');
+              onNavigate('profile');
+            }}
+            style={{
+              display: 'flex',
+              alignItems: 'center',
+              gap: '12px',
+              cursor: 'pointer',
+              backgroundColor: 'transparent',
+              border: 'none',
+              padding: '8px',
+              borderRadius: '8px',
+              transition: 'opacity 0.2s ease',
+              zIndex: 20,
+              position: 'relative'
+            }}
+            onMouseEnter={(e) => e.currentTarget.style.opacity = '0.8'}
+            onMouseLeave={(e) => e.currentTarget.style.opacity = '1'}
           >
-            <div className="w-10 h-10 bg-blue-500 rounded-full flex items-center justify-center">
-              <span className="text-white font-semibold">В</span>
+            <div style={{
+              width: '40px',
+              height: '40px',
+              backgroundColor: '#3B82F6',
+              borderRadius: '50%',
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center'
+            }}>
+              <span style={{
+                color: 'white',
+                fontWeight: '600',
+                fontSize: '16px'
+              }}>В</span>
             </div>
             <div>
-              <div className="font-medium text-foreground">Вы</div>
-              <div className="text-sm text-muted-foreground">GRITHER</div>
+              <div style={{
+                fontWeight: '500',
+                color: theme === 'dark' ? '#E8ECF2' : '#0F172A',
+                fontSize: '16px'
+              }}>Вы</div>
+              <div style={{
+                fontSize: '14px',
+                color: theme === 'dark' ? '#A7B0BD' : '#6B7280'
+              }}>GRITHER</div>
             </div>
           </button>
         )}
         
         <button
-          onClick={onOpenSettings}
-          className="apple-button p-2"
+          onClick={() => {
+            console.log('Settings button clicked');
+            onOpenSettings();
+          }}
+          style={{
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            width: '40px',
+            height: '40px',
+            backgroundColor: theme === 'dark' ? '#202734' : '#F3F5F8',
+            border: theme === 'dark' ? '1px solid rgba(255, 255, 255, 0.06)' : '1px solid #E6E9EF',
+            borderRadius: '50%',
+            cursor: 'pointer',
+            transition: 'all 0.2s ease',
+            zIndex: 20,
+            position: 'relative'
+          }}
+          onMouseEnter={(e) => {
+            e.currentTarget.style.backgroundColor = theme === 'dark' ? '#2A3140' : '#E8EBF0';
+          }}
+          onMouseLeave={(e) => {
+            e.currentTarget.style.backgroundColor = theme === 'dark' ? '#202734' : '#F3F5F8';
+          }}
         >
-          <Settings className="w-5 h-5" />
+          <Settings style={{
+            width: '20px',
+            height: '20px',
+            color: theme === 'dark' ? '#E8ECF2' : '#0F172A'
+          }} />
         </button>
       </div>
     </div>
