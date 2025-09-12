@@ -65,7 +65,18 @@ export default function App() {
   const [battleInvitations, setBattleInvitations] = useState<BattleInvitation[]>([]);
   const [users, setUsers] = useState<User[]>([]);
   const [leaderboard, setLeaderboard] = useState<LeaderboardEntry[]>(mockLeaderboard);
-  const [currentUser, setCurrentUser] = useState<User | null>({ id: 'user1', name: 'Иван Иванов', username: '@iivanov', level: 5, balance: 1000, team: 'Team Alpha' });
+  const [currentUser, setCurrentUser] = useState<User | null>({ 
+    id: 'user1', 
+    name: 'Иван Иванов', 
+    username: '@iivanov', 
+    level: 5, 
+    experience: 0,
+    maxExperience: 100,
+    balance: 1000, 
+    team: 'Team Alpha',
+    role: 'user',
+    online: true
+  });
   const [userCoins, setUserCoins] = useState(1000);
 
   // Telegram Web App initialization
@@ -250,7 +261,18 @@ export default function App() {
         return (
           <ProfilePage
             onNavigate={handleNavigate} 
-            user={currentUser || { id: 'user1', name: 'Иван Иванов', username: '@iivanov', level: 5, balance: 1000, team: 'Team Alpha' }}
+            user={currentUser || { 
+              id: 'user1', 
+              name: 'Иван Иванов', 
+              username: '@iivanov', 
+              level: 5, 
+              experience: 0,
+              maxExperience: 100,
+              balance: 1000, 
+              team: 'Team Alpha',
+              role: 'user',
+              online: true
+            }}
             setUser={setCurrentUser}
             battles={battles}
             leaderboard={leaderboard}

@@ -2,6 +2,7 @@
 import { Header } from './Header';
 import { BottomNavigation } from './BottomNavigation';
 import { BackgroundFX } from './BackgroundFX';
+import { Logo } from './Logo';
 import { 
   Trophy, 
   Eye, 
@@ -239,17 +240,22 @@ export const HomePage: React.FC<HomePageProps> = ({
 
       {/* Hero Zone - Logo */}
       <div 
-        className="flex items-center justify-center relative"
+        className="hero-zone relative w-full"
         style={{ 
           height: 'clamp(160px, 180px, 200px)',
+          marginTop: '0px',
+          marginBottom: '8px',
+          overflow: 'visible',
+          background: 'transparent',
           zIndex: 10,
-          background: 'transparent'
+          position: 'relative',
+          width: '100%',
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'center'
         }}
       >
-        <div className="text-center">
-          <h1 className="text-4xl font-bold text-white mb-2">GRITHER</h1>
-          <p className="text-white/80 text-sm">Ваша платформа для роста</p>
-        </div>
+        <Logo theme={theme} />
       </div>
 
       {/* Main Content */}
