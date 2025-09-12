@@ -100,8 +100,11 @@ export default function App() {
   }, []);
 
   const handleNavigate = (page: string) => {
+      console.log('🔥 HANDLE NAVIGATE CALLED 🔥');
       console.log('Navigating to:', page);
+      console.log('Page type:', typeof page);
       setCurrentPage(page);
+      console.log('Current page set to:', page);
   };
 
   const handleOpenSettings = () => {
@@ -196,7 +199,9 @@ export default function App() {
   };
 
   const renderCurrentPage = () => {
-    console.log('Rendering page:', currentPage);
+    console.log('🔥 RENDER CURRENT PAGE CALLED 🔥');
+    console.log('Current page:', currentPage);
+    console.log('Current page type:', typeof currentPage);
     switch (currentPage) {
       case 'home':
         return (
@@ -260,7 +265,8 @@ export default function App() {
           />
         );
       case 'profile':
-        console.log('Rendering ProfilePage');
+        console.log('🔥 ENTERING PROFILE CASE 🔥');
+        console.log('ProfilePage component:', typeof ProfilePage);
         return (
           <ProfilePage
             onNavigate={handleNavigate} 
@@ -275,7 +281,7 @@ export default function App() {
               team: 'Team Alpha',
               role: 'user',
               online: true
-            }}
+            } as any}
             setUser={setCurrentUser}
             battles={battles}
             leaderboard={leaderboard}
