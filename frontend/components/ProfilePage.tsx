@@ -27,8 +27,10 @@ export const ProfilePage: React.FC<ProfilePageProps> = ({
   return (
     <div style={{ 
       minHeight: '100vh', 
-      backgroundColor: theme === 'dark' ? '#12151B' : '#F5F7FA',
-      padding: '20px'
+      backgroundColor: 'red', // Ярко-красный фон для видимости
+      padding: '20px',
+      position: 'relative',
+      zIndex: 1000
     }}>
       {/* ЭКСТРЕННЫЙ ИНДИКАТОР РЕНДЕРА */}
       <div style={{
@@ -45,24 +47,22 @@ export const ProfilePage: React.FC<ProfilePageProps> = ({
       }}>
         PROFILE PAGE LOADED! {Date.now()}
       </div>
-      <BackgroundFX theme={theme} />
+      {/* BackgroundFX убран для отладки */}
       
-      {/* Header */}
-      <Header 
-        onNavigate={onNavigate} 
-        hideUserIcon={true}
-        onOpenSettings={() => onNavigate('home')}
-        theme={theme}
-      />
+      {/* Header убран для отладки */}
       
       {/* ОТЛАДОЧНЫЙ БЛОК */}
       <div style={{ 
-        padding: '20px', 
+        padding: '40px', 
         textAlign: 'center',
-        backgroundColor: 'rgba(255, 0, 0, 0.3)',
-        border: '5px solid red',
-        margin: '20px',
-        borderRadius: '15px'
+        backgroundColor: 'white',
+        border: '10px solid yellow',
+        margin: '50px auto',
+        borderRadius: '20px',
+        maxWidth: '500px',
+        boxShadow: '0 0 50px rgba(255,255,0,0.8)',
+        zIndex: 9998,
+        position: 'relative'
       }}>
         <h1 style={{ color: 'red', fontSize: '32px', fontWeight: 'bold', marginBottom: '20px' }}>
           🔍 PROFILE PAGE WORKS! 🔍
@@ -100,12 +100,7 @@ export const ProfilePage: React.FC<ProfilePageProps> = ({
         </button>
       </div>
 
-      {/* Bottom Navigation */}
-      <BottomNavigation 
-        currentPage="profile"
-        onNavigate={onNavigate}
-        theme={theme}
-      />
+      {/* Bottom Navigation убрана для отладки */}
     </div>
   );
 };
