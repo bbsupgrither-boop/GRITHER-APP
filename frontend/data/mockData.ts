@@ -182,26 +182,50 @@ export const mockTasks: Task[] = [
 export const mockCaseTypes: CaseType[] = [
   {
     id: 'case1',
-    name: 'Базовый кейс',
-    description: 'Содержит обычные призы',
+    name: 'Обычный кейс',
+    description: 'Содержит обычные предметы и небольшие награды',
     price: 100,
-    color: '#3B82F6',
-    image: '/assets/case1.png',
+    rarity: 'common',
     prizes: [
-      {
-        id: 'prize1',
-        name: '50 коинов',
-        type: 'coins',
-        amount: 50,
-        probability: 0.4
-      },
-      {
-        id: 'prize2',
-        name: '100 коинов',
-        type: 'coins',
-        amount: 100,
-        probability: 0.3
-      }
+      { id: 'p1', name: '10 монет', type: 'coins', amount: 10, rarity: 'common' },
+      { id: 'p2', name: '20 монет', type: 'coins', amount: 20, rarity: 'common' },
+      { id: 'p3', name: '50 монет', type: 'coins', amount: 50, rarity: 'common' }
+    ]
+  },
+  {
+    id: 'case2',
+    name: 'Редкий кейс',
+    description: 'Содержит редкие предметы и ценные награды',
+    price: 500,
+    rarity: 'rare',
+    prizes: [
+      { id: 'p4', name: '100 монет', type: 'coins', amount: 100, rarity: 'rare' },
+      { id: 'p5', name: '200 монет', type: 'coins', amount: 200, rarity: 'rare' },
+      { id: 'p6', name: 'Редкий аватар', type: 'avatar', rarity: 'rare' }
+    ]
+  },
+  {
+    id: 'case3',
+    name: 'Эпический кейс',
+    description: 'Содержит эпические предметы и большие награды',
+    price: 1000,
+    rarity: 'epic',
+    prizes: [
+      { id: 'p7', name: '500 монет', type: 'coins', amount: 500, rarity: 'epic' },
+      { id: 'p8', name: '1000 монет', type: 'coins', amount: 1000, rarity: 'epic' },
+      { id: 'p9', name: 'Эпический аватар', type: 'avatar', rarity: 'epic' }
+    ]
+  },
+  {
+    id: 'case4',
+    name: 'Легендарный кейс',
+    description: 'Содержит легендарные предметы и огромные награды',
+    price: 2500,
+    rarity: 'legendary',
+    prizes: [
+      { id: 'p10', name: '2000 монет', type: 'coins', amount: 2000, rarity: 'legendary' },
+      { id: 'p11', name: '5000 монет', type: 'coins', amount: 5000, rarity: 'legendary' },
+      { id: 'p12', name: 'Легендарный аватар', type: 'avatar', rarity: 'legendary' }
     ]
   }
 ];
