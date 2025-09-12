@@ -47,16 +47,6 @@ export const BackgroundFX: React.FC<BackgroundFXProps> = ({ theme, isHomePage = 
           }}
         />
 
-        {/* 2. ЗЕРНИСТОСТЬ (Noise/Grain эффект) - как на первом фото */}
-        <div 
-          className="absolute inset-0 opacity-30 mix-blend-overlay"
-          style={{
-            height: 'clamp(280px, 32vh, 340px)',
-            background: `url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='1' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.3'/%3E%3C/svg%3E")`,
-            zIndex: 2,
-            pointerEvents: 'none'
-          }}
-        />
       </div>
     );
   }
@@ -160,13 +150,6 @@ export const BackgroundFX: React.FC<BackgroundFXProps> = ({ theme, isHomePage = 
             }}
           />
 
-          {/* 7. ТЕКСТУРНЫЙ СЛОЙ */}
-          <div 
-            className="absolute inset-0 opacity-20 mix-blend-overlay"
-            style={{
-              background: `url("data:image/svg+xml,%3Csvg viewBox='0 0 400 400' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E")`
-            }}
-          />
         </>
       )}
     </div>
