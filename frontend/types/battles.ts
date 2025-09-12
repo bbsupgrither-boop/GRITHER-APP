@@ -1,50 +1,35 @@
-﻿export interface User {
+﻿export interface Battle {
   id: string;
-  name: string;
-  avatar?: string;
-  level: number;
-  rating: number;
-  balance: number;
-  experience?: number;
-  isOnline?: boolean;
+  challengerId: string;
+  opponentId: string;
+  stake: number;
+  status: 'pending' | 'active' | 'completed' | 'cancelled';
+  createdAt: Date;
+  completedAt?: Date;
+  winnerId?: string;
+  evidence?: string[];
 }
 
 export interface BattleInvitation {
   id: string;
   challengerId: string;
-  challengerName: string;
   opponentId: string;
-  opponentName: string;
   stake: number;
   message?: string;
+  status: 'pending' | 'accepted' | 'declined' | 'expired';
   createdAt: Date;
   expiresAt: Date;
-  status: 'pending' | 'accepted' | 'declined' | 'expired';
 }
 
-export interface Battle {
+export interface User {
   id: string;
-  challengerId: string;
-  challengerName: string;
-  opponentId: string;
-  opponentName: string;
-  stake: number;
-  status: 'active' | 'completed' | 'cancelled';
-  startedAt: Date;
-  completedAt?: Date;
-  winnerId?: string;
-  winnerName?: string;
-  loserId?: string;
-  loserName?: string;
-}
-
-export interface BattleStats {
-  wins: number;
-  losses: number;
-  totalBattles: number;
-  totalEarned: number;
-  totalLost: number;
-  winRate: number;
-  currentStreak: number;
-  bestStreak: number;
+  name: string;
+  username?: string;
+  avatar?: string;
+  level: number;
+  experience: number;
+  balance: number;
+  team: string;
+  role: string;
+  online: boolean;
 }

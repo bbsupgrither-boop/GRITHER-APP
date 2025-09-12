@@ -7,8 +7,8 @@
   deadline: string;
   category: 'individual' | 'team' | 'global';
   status: 'active' | 'completed' | 'expired';
-  assignedTo?: string; // РґР»СЏ РёРЅРґРёРІРёРґСѓР°Р»СЊРЅС‹С… Р·Р°РґР°С‡
-  teamId?: number; // РґР»СЏ РєРѕРјР°РЅРґРЅС‹С… Р·Р°РґР°С‡
+  assignedTo?: string;
+  teamId?: number;
   createdBy: string;
   createdAt: string;
   completedAt?: string;

@@ -1,4 +1,22 @@
-﻿import { useState, useEffect } from 'react';
+﻿import { useState, useEffect, useRef } from 'react';
+import { HomePage } from './components/HomePage';
+import { useTelegram } from './utils/telegram';
+import { AchievementsPageFixed } from './components/AchievementsPageFixed';
+import { TasksPage } from './components/TasksPage';
+import { CasesShopPage } from './components/CasesShopPage';
+import { ProfilePage } from './components/ProfilePage';
+import { BattlesPageExtended } from './components/BattlesPageExtended';
+import { BackgroundFX } from './components/BackgroundFX';
+import { SettingsModal } from './components/SettingsModal';
+import { AdminPanel } from './components/AdminPanel';
+import { Achievement } from './types/achievements';
+import { ShopItem, Order } from './types/shop';
+import { Task } from './types/tasks';
+import { CaseType, UserCase } from './types/cases';
+import { Notification } from './types/notifications';
+import { Battle, BattleInvitation, User } from './types/battles';
+import { mockShopItems, mockOrders, mockAchievements, mockTasks, mockCaseTypes, mockUserCases, mockNotifications, mockLeaderboard } from './data/mockData';
+import { LeaderboardEntry } from './types/global';
 
 // Utility function for monitoring localStorage
 const getLocalStorageSize = () => {
@@ -28,7 +46,25 @@ const cleanupLocalStorage = () => {
 };
 
 export default function App() {
+  const { user, webApp } = useTelegram();
+  const [currentPage, setCurrentPage] = useState('home');
+  const [showSettings, setShowSettings] = useState(false);
+  const [showAdminPanel, setShowAdminPanel] = useState(false);
+  const [profilePhoto, setProfilePhoto] = useState<string | null>(null);
+  const [personalBattles, setPersonalBattles] = useState<any[]>([]);
   const [theme, setTheme] = useState<'light' | 'dark'>('dark');
+  const [notifications, setNotifications] = useState<Notification[]>(mockNotifications);
+  const [achievements, setAchievements] = useState<Achievement[]>(mockAchievements);
+  const [shopItems, setShopItems] = useState<ShopItem[]>(mockShopItems);
+  const [orders, setOrders] = useState<Order[]>(mockOrders);
+  const [tasks, setTasks] = useState<Task[]>(mockTasks);
+  const [caseTypes, setCaseTypes] = useState<CaseType[]>(mockCaseTypes);
+  const [userCases, setUserCases] = useState<UserCase[]>(mockUserCases);
+  const [battles, setBattles] = useState<Battle[]>([]);
+  const [battleInvitations, setBattleInvitations] = useState<BattleInvitation[]>([]);
+  const [users, setUsers] = useState<User[]>([]);
+  const [leaderboard, setLeaderboard] = useState<LeaderboardEntry[]>(mockLeaderboard);
+  const [currentUser, setCurrentUser] = useState<User | null>(null);
 
   // Telegram Web App initialization
   useEffect(() => {
@@ -38,113 +74,270 @@ export default function App() {
     }
   }, []);
 
+  // Cleanup localStorage periodically
+  useEffect(() => {
+    const interval = setInterval(() => {
+      const size = getLocalStorageSize();
+      if (size > 4.5 * 1024 * 1024) { // 4.5MB limit
+        cleanupLocalStorage();
+      }
+    }, 30000); // Check every 30 seconds
+
+    return () => clearInterval(interval);
+  }, []);
+
+  const handleNavigate = (page: string) => {
+      setCurrentPage(page);
+  };
+
+  const handleOpenSettings = () => {
+    setShowSettings(true);
+  };
+
+  const handleCloseSettings = () => {
+    setShowSettings(false);
+  };
+
+  const handleOpenAdminPanel = () => {
+    setShowAdminPanel(true);
+  };
+
+  const handleCloseAdminPanel = () => {
+    setShowAdminPanel(false);
+  };
+
+  const handleMarkNotificationAsRead = (id: string) => {
+    setNotifications(prev => 
+      prev.map(notification => 
+        notification.id === id 
+          ? { ...notification, read: true }
+          : notification
+      )
+    );
+  };
+
+  const handleMarkAllNotificationsAsRead = () => {
+    setNotifications(prev => 
+      prev.map(notification => ({ ...notification, read: true }))
+    );
+  };
+
+  const handleRemoveNotification = (id: string) => {
+    setNotifications(prev => prev.filter(notification => notification.id !== id));
+  };
+
+  const handleClearAllNotifications = () => {
+    setNotifications([]);
+  };
+
+  const handleAddNotification = (notification: Omit<Notification, 'id' | 'timestamp' | 'read'>) => {
+    const newNotification: Notification = {
+      ...notification,
+      id: Date.now().toString(),
+      timestamp: new Date(),
+      read: false
+    };
+    setNotifications(prev => [newNotification, ...prev]);
+  };
+
+  const handleCreateBattleInvitation = (invitation: Omit<BattleInvitation, 'id' | 'createdAt' | 'expiresAt' | 'status'>) => {
+    const newInvitation: BattleInvitation = {
+      ...invitation,
+      id: Date.now().toString(),
+      createdAt: new Date(),
+      expiresAt: new Date(Date.now() + 24 * 60 * 60 * 1000), // 24 hours
+      status: 'pending'
+    };
+    setBattleInvitations(prev => [newInvitation, ...prev]);
+  };
+
+  const handleAcceptBattleInvitation = (invitationId: string) => {
+      setBattleInvitations(prev => 
+      prev.map(invitation => 
+        invitation.id === invitationId 
+          ? { ...invitation, status: 'accepted' }
+          : invitation
+      )
+    );
+  };
+
+  const handleDeclineBattleInvitation = (invitationId: string) => {
+    setBattleInvitations(prev => 
+      prev.map(invitation => 
+        invitation.id === invitationId 
+          ? { ...invitation, status: 'declined' }
+          : invitation
+      )
+    );
+  };
+
+  const handleCompleteBattle = (battleId: string, winnerId: string) => {
+    setBattles(prev => 
+      prev.map(battle => 
+        battle.id === battleId 
+          ? { ...battle, status: 'completed', winnerId }
+          : battle
+      )
+    );
+  };
+
+  const renderCurrentPage = () => {
+    switch (currentPage) {
+      case 'home':
+        return (
+          <HomePage
+          onNavigate={handleNavigate} 
+          currentPage={currentPage} 
+          onOpenSettings={handleOpenSettings}
+          achievements={achievements}
+          profilePhoto={profilePhoto}
+            personalBattles={personalBattles}
+            setPersonalBattles={setPersonalBattles}
+            theme={theme}
+          notifications={notifications}
+            onMarkNotificationAsRead={handleMarkNotificationAsRead}
+            onMarkAllNotificationsAsRead={handleMarkAllNotificationsAsRead}
+            onRemoveNotification={handleRemoveNotification}
+            onClearAllNotifications={handleClearAllNotifications}
+            addNotification={handleAddNotification}
+            battles={battles}
+            battleInvitations={battleInvitations}
+            users={users}
+            leaderboard={leaderboard}
+            onCreateBattleInvitation={handleCreateBattleInvitation}
+            onAcceptBattleInvitation={handleAcceptBattleInvitation}
+            onDeclineBattleInvitation={handleDeclineBattleInvitation}
+            onCompleteBattle={handleCompleteBattle}
+            currentUser={currentUser}
+          />
+        );
+      case 'achievements':
+        return (
+          <AchievementsPageFixed
+            onNavigate={handleNavigate}
+            achievements={achievements}
+            setAchievements={setAchievements}
+            theme={theme}
+          />
+        );
+      case 'tasks':
+        return (
+          <TasksPage
+          onNavigate={handleNavigate} 
+          tasks={tasks}
+          setTasks={setTasks}
+            theme={theme}
+          />
+        );
+      case 'cases':
+        return (
+          <CasesShopPage
+          onNavigate={handleNavigate} 
+            caseTypes={caseTypes}
+            setCaseTypes={setCaseTypes}
+          userCases={userCases}
+          setUserCases={setUserCases}
+          shopItems={shopItems}
+          setShopItems={setShopItems}
+          orders={orders}
+          setOrders={setOrders}
+            theme={theme}
+          />
+        );
+      case 'profile':
+        return (
+          <ProfilePage
+          onNavigate={handleNavigate} 
+          profilePhoto={profilePhoto}
+          setProfilePhoto={setProfilePhoto}
+            theme={theme}
+            setTheme={setTheme}
+          battles={battles}
+          battleInvitations={battleInvitations}
+          users={users}
+            currentUser={currentUser}
+          />
+        );
+      case 'battles':
+        return (
+          <BattlesPageExtended
+          onNavigate={handleNavigate} 
+          battles={battles}
+          setBattles={setBattles}
+          battleInvitations={battleInvitations}
+          setBattleInvitations={setBattleInvitations}
+          users={users}
+            setUsers={setUsers}
+            currentUser={currentUser}
+            setCurrentUser={setCurrentUser}
+            onCreateBattleInvitation={handleCreateBattleInvitation}
+            onAcceptBattleInvitation={handleAcceptBattleInvitation}
+            onDeclineBattleInvitation={handleDeclineBattleInvitation}
+            onCompleteBattle={handleCompleteBattle}
+            theme={theme}
+          />
+        );
+      default:
+        return (
+          <HomePage
+          onNavigate={handleNavigate} 
+          currentPage={currentPage} 
+          onOpenSettings={handleOpenSettings}
+          achievements={achievements}
+          profilePhoto={profilePhoto}
+          personalBattles={personalBattles}
+          setPersonalBattles={setPersonalBattles}
+            theme={theme}
+          notifications={notifications}
+            onMarkNotificationAsRead={handleMarkNotificationAsRead}
+            onMarkAllNotificationsAsRead={handleMarkAllNotificationsAsRead}
+            onRemoveNotification={handleRemoveNotification}
+            onClearAllNotifications={handleClearAllNotifications}
+            addNotification={handleAddNotification}
+          battles={battles}
+          battleInvitations={battleInvitations}
+          users={users}
+          leaderboard={leaderboard}
+            onCreateBattleInvitation={handleCreateBattleInvitation}
+            onAcceptBattleInvitation={handleAcceptBattleInvitation}
+            onDeclineBattleInvitation={handleDeclineBattleInvitation}
+            onCompleteBattle={handleCompleteBattle}
+            currentUser={currentUser}
+          />
+        );
+    }
+  };
+
   return (
     <div className={`min-h-screen ${theme === 'dark' ? 'bg-black text-white' : 'bg-white text-black'}`}>
-      <div className="container mx-auto px-4 py-8">
-        <div className="text-center mb-8">
-          <h1 className="text-4xl font-bold mb-4">
-            GRITHER
-          </h1>
-          <p className="text-lg text-gray-400">
-            Приложение для Telegram
-          </p>
-        </div>
-        
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-4xl mx-auto">
-          <div className="bg-gray-800 p-6 rounded-lg border border-gray-700">
-            <div className="flex items-center justify-between mb-4">
-              <h2 className="text-xl font-semibold">Ваши достижения</h2>
-              <div className="w-6 h-6 bg-blue-500 rounded-full flex items-center justify-center">
-                <span className="text-xs">👁️</span>
-              </div>
-            </div>
-            <p className="text-gray-300">
-              Нет достижений в процессе выполнения
-            </p>
-          </div>
-          
-          <div className="bg-gray-800 p-6 rounded-lg border border-gray-700">
-            <h2 className="text-xl font-semibold mb-4">Статус</h2>
-            <div className="flex justify-between items-center mb-2">
-              <span className="text-sm">Статус: Новичок</span>
-              <span className="text-sm">XP: 0</span>
-              <span className="text-sm">lvl 1</span>
-            </div>
-            <div className="w-full bg-gray-700 rounded-full h-2">
-              <div className="bg-blue-500 h-2 rounded-full" style={{ width: '0%' }}></div>
-            </div>
-          </div>
-          
-          <div className="bg-gray-800 p-6 rounded-lg border border-gray-700">
-            <div className="flex items-center justify-between mb-4">
-              <h2 className="text-xl font-semibold">Баттлы</h2>
-              <div className="w-6 h-6 bg-green-500 rounded-full flex items-center justify-center">
-                <span className="text-xs text-white">+</span>
-              </div>
-            </div>
-            <div className="space-y-3">
-              <div className="text-sm text-gray-400 mb-2">Активные баттлы</div>
-              <div className="bg-gray-700 p-3 rounded border border-blue-500">
-                <div className="text-sm">Елена Морозова VS Вы</div>
-              </div>
-              <div className="bg-gray-700 p-3 rounded border border-blue-500">
-                <div className="text-sm">Алексей Козлов VS Анна Иванова</div>
-              </div>
-              <div className="text-sm text-gray-400">+1 еще</div>
-              <div className="text-sm text-gray-400 mt-3 mb-2">Приглашения</div>
-              <div className="bg-gray-700 p-3 rounded border border-blue-500">
-                <div className="text-sm">Мария Силопова вызывает</div>
-              </div>
-            </div>
-          </div>
-          
-          <div className="bg-gray-800 p-6 rounded-lg border border-gray-700">
-            <div className="flex items-center justify-between mb-4">
-              <h2 className="text-xl font-semibold">Рейтинг</h2>
-              <div className="w-6 h-6 bg-gray-500 rounded flex items-center justify-center">
-                <span className="text-xs">☰</span>
-              </div>
-            </div>
-            <div className="space-y-3">
-              <div className="text-sm text-gray-400 mb-2">По уровню</div>
-              <div className="space-y-2">
-                <div className="text-sm">1. Петр Петров Ур.18</div>
-                <div className="text-sm">2. Елена Мороз... Ур.16</div>
-                <div className="text-sm">3. Анна Иванова Ур.15</div>
-              </div>
-            </div>
-          </div>
-        </div>
-        
-        <div className="fixed bottom-0 left-0 right-0 bg-gray-800 border-t border-gray-700">
-          <div className="flex justify-around py-3">
-            <div className="flex flex-col items-center">
-              <div className="w-8 h-8 bg-blue-500 rounded-lg flex items-center justify-center mb-1">
-                <span className="text-sm">🏠</span>
-              </div>
-              <span className="text-xs text-blue-400">Главная</span>
-            </div>
-            <div className="flex flex-col items-center">
-              <div className="w-8 h-8 bg-gray-600 rounded-lg flex items-center justify-center mb-1">
-                <span className="text-sm">🏆</span>
-              </div>
-              <span className="text-xs text-gray-400">Достижения</span>
-            </div>
-            <div className="flex flex-col items-center">
-              <div className="w-8 h-8 bg-gray-600 rounded-lg flex items-center justify-center mb-1">
-                <span className="text-sm">✓</span>
-              </div>
-              <span className="text-xs text-gray-400">Задачи</span>
-            </div>
-            <div className="flex flex-col items-center">
-              <div className="w-8 h-8 bg-gray-600 rounded-lg flex items-center justify-center mb-1">
-                <span className="text-sm">🛒</span>
-              </div>
-              <span className="text-xs text-gray-400">Магазин</span>
-            </div>
-          </div>
-        </div>
-      </div>
+      <BackgroundFX theme={theme} />
+        {renderCurrentPage()}
+      
+      {showSettings && (
+      <SettingsModal 
+          onClose={handleCloseSettings}
+          theme={theme}
+          setTheme={setTheme}
+        onOpenAdminPanel={handleOpenAdminPanel}
+        />
+      )}
+      
+      {showAdminPanel && (
+        <AdminPanel
+          onClose={handleCloseAdminPanel}
+          achievements={achievements}
+          setAchievements={setAchievements}
+          shopItems={shopItems}
+          setShopItems={setShopItems}
+          tasks={tasks}
+          setTasks={setTasks}
+          caseTypes={caseTypes}
+          setCaseTypes={setCaseTypes}
+          userCases={userCases}
+          setUserCases={setUserCases}
+          theme={theme}
+        />
+      )}
     </div>
   );
 }

@@ -1,90 +1,53 @@
-﻿import { useEffect, useState } from 'react';
-import { createPortal } from 'react-dom';
-import { Home, Trophy, CheckSquare, ShoppingCart, Gift } from './Icons';
+﻿import React from 'react';
+import { Home, Trophy, CheckSquare, ShoppingCart } from 'lucide-react';
 
 interface BottomNavigationProps {
-  onNavigate: (page: string) => void;
   currentPage: string;
-  theme?: 'light' | 'dark';
+  onNavigate: (page: string) => void;
+  theme: 'light' | 'dark';
 }
 
-export function BottomNavigation({ onNavigate, currentPage, theme = 'light' }: BottomNavigationProps) {
-  const [mounted, setMounted] = useState(false);
-
-  useEffect(() => {
-    setMounted(true);
-  }, []);
+export const BottomNavigation: React.FC<BottomNavigationProps> = ({
+  currentPage,
+  onNavigate,
+  theme,
+}) => {
   const navItems = [
-    { icon: Home, page: 'home' },
-    { icon: Trophy, page: 'achievements' },
-    { icon: CheckSquare, page: 'tasks' },
-    { icon: Gift, page: 'cases' },
-    { icon: ShoppingCart, page: 'shop' },
+    { id: 'home', icon: Home, label: 'Главная' },
+    { id: 'achievements', icon: Trophy, label: 'Достижения' },
+    { id: 'tasks', icon: CheckSquare, label: 'Задачи' },
+    { id: 'cases', icon: ShoppingCart, label: 'Магазин' },
   ];
 
-  const navigationContent = (
-    <div 
-      style={{ 
-        position: 'fixed',
-        bottom: '24px',
-        left: '50%',
-        transform: 'translateX(-50%)',
-        zIndex: 50,
-        // РР·РѕР»РёСЂСѓРµРј РѕС‚ РІР»РёСЏРЅРёСЏ СЂРѕРґРёС‚РµР»СЊСЃРєРёС… СЌР»РµРјРµРЅС‚РѕРІ
-        isolation: 'isolate'
-      }}
-    >
-      <div 
-        className="flex items-center gap-2"
-        style={{
-          backgroundColor: theme === 'dark' ? '#12151B' : '#F3F5F8',
-          borderRadius: '24px',
-          padding: '8px'
-        }}
-      >
-        {navItems.map((item, index) => {
+  return (
+    <div className={`fixed bottom-6 left-1/2 transform -translate-x-1/2 ${
+      theme === 'dark' 
+        ? 'bg-gray-800/90 border-gray-700' 
+        : 'bg-white/90 border-gray-200'
+    } rounded-3xl border px-3 py-2 max-w-[320px] w-full mx-4`}>
+      <div className="flex justify-around">
+        {navItems.map((item) => {
           const Icon = item.icon;
-          const isActive = currentPage === item.page;
+          const isActive = currentPage === item.id;
+          
           return (
-            <button 
-              key={index}
-              onClick={() => onNavigate(item.page)}
-              className="relative flex items-center justify-center transition-all duration-200"
-              style={{ 
-                minWidth: '44px', 
-                minHeight: '44px',
-                borderRadius: '50%'
-              }}
+            <button
+              key={item.id}
+              onClick={() => onNavigate(item.id)}
+              className={`flex flex-col items-center p-2 rounded-xl transition-all ${
+                isActive
+                  ? 'bg-blue-500/20 text-blue-400'
+                  : theme === 'dark'
+                  ? 'text-gray-400 hover:text-white'
+                  : 'text-gray-500 hover:text-gray-700'
+              }`}
             >
-              {isActive && (
-                <div 
-                  className="absolute rounded-full"
-                  style={{
-                    width: '36px',
-                    height: '36px',
-                    backgroundColor: theme === 'dark' 
-                      ? 'rgba(43, 130, 255, 0.12)' 
-                      : 'rgba(43, 130, 255, 0.10)'
-                  }}
-                />
-              )}
-              <Icon 
-                className="relative z-10 transition-colors duration-200"
-                style={{
-                  width: '26px',
-                  height: '26px',
-                  color: isActive 
-                    ? '#2B82FF' 
-                    : theme === 'dark' ? '#A7B0BD' : '#6B7280'
-                }}
-              />
+              <Icon className="w-5 h-5 mb-1" />
+              <span className="text-xs">{item.label}</span>
             </button>
           );
         })}
       </div>
     </div>
   );
-
-  // Р РµРЅРґРµСЂРёРј С‡РµСЂРµР· РїРѕСЂС‚Р°Р» РґР»СЏ РёР·Р±РµР¶Р°РЅРёСЏ РІР»РёСЏРЅРёСЏ СЂРѕРґРёС‚РµР»СЊСЃРєРёС… РєРѕРЅС‚РµРєСЃС‚РѕРІ
-  return mounted ? createPortal(navigationContent, document.body) : null;
-}
+};
