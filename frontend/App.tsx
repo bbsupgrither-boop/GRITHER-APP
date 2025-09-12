@@ -50,6 +50,11 @@ export default function App() {
   const { user, webApp } = useTelegram();
   const { theme, toggleTheme, setTheme } = useTheme();
   const [currentPage, setCurrentPage] = useState('home');
+  
+  // Отладка изменений currentPage
+  useEffect(() => {
+    console.log('🔥 CURRENT PAGE CHANGED TO:', currentPage);
+  }, [currentPage]);
   const [showSettings, setShowSettings] = useState(false);
   const [showAdminPanel, setShowAdminPanel] = useState(false);
   const [profilePhoto, setProfilePhoto] = useState<string | null>(null);
@@ -202,6 +207,11 @@ export default function App() {
     console.log('🔥 RENDER CURRENT PAGE CALLED 🔥');
     console.log('Current page:', currentPage);
     console.log('Current page type:', typeof currentPage);
+    
+    // Принудительно обновляем компонент при каждом вызове
+    const timestamp = Date.now();
+    console.log('Render timestamp:', timestamp);
+    
     switch (currentPage) {
       case 'home':
         return (
@@ -269,6 +279,7 @@ export default function App() {
         console.log('ProfilePage component:', typeof ProfilePage);
         return (
           <ProfilePage
+            key={`profile-${Date.now()}`}
             onNavigate={handleNavigate} 
             user={currentUser || { 
               id: 'user1', 

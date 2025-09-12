@@ -20,7 +20,9 @@ export const ProfilePage: React.FC<ProfilePageProps> = ({
   leaderboard,
   theme,
 }) => {
+  console.log('🔥 PROFILE PAGE COMPONENT CALLED 🔥');
   console.log('ProfilePage rendering with:', { user, battles, leaderboard, theme });
+  console.log('ProfilePage props:', { onNavigate: typeof onNavigate, user: typeof user, theme: typeof theme });
 
   return (
     <div style={{ 
@@ -28,6 +30,21 @@ export const ProfilePage: React.FC<ProfilePageProps> = ({
       backgroundColor: theme === 'dark' ? '#12151B' : '#F5F7FA',
       padding: '20px'
     }}>
+      {/* ЭКСТРЕННЫЙ ИНДИКАТОР РЕНДЕРА */}
+      <div style={{
+        position: 'fixed',
+        top: '10px',
+        left: '10px',
+        backgroundColor: 'red',
+        color: 'white',
+        padding: '10px',
+        borderRadius: '5px',
+        zIndex: 9999,
+        fontSize: '14px',
+        fontWeight: 'bold'
+      }}>
+        PROFILE PAGE LOADED! {Date.now()}
+      </div>
       <BackgroundFX theme={theme} />
       
       {/* Header */}
