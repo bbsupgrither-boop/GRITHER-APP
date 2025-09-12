@@ -26,7 +26,9 @@ export const Header: React.FC<HeaderProps> = ({
             onClick={(e) => {
               e.preventDefault();
               e.stopPropagation();
-              console.log('Profile button clicked');
+              console.log('🔥 PROFILE BUTTON CLICKED 🔥');
+              console.log('onNavigate function:', typeof onNavigate);
+              alert('Profile button clicked! Check console for details.');
               onNavigate('profile');
             }}
             onTouchStart={(e) => {
@@ -83,7 +85,9 @@ export const Header: React.FC<HeaderProps> = ({
           onClick={(e) => {
             e.preventDefault();
             e.stopPropagation();
-            console.log('Settings button clicked');
+            console.log('⚙️ SETTINGS BUTTON CLICKED ⚙️');
+            console.log('onOpenSettings function:', typeof onOpenSettings);
+            alert('Settings button clicked! Check console for details.');
             onOpenSettings();
           }}
           onTouchStart={(e) => {
