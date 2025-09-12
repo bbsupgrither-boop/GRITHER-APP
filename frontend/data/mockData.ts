@@ -4,6 +4,7 @@ import { Task } from '../types/tasks';
 import { CaseType, UserCase, CaseShopItem, Prize } from '../types/cases';
 import { Notification } from '../types/notifications';
 import { LeaderboardEntry, User } from '../types/global';
+import { Battle } from '../types/battles';
 
 // Простые мок-данные для достижений
 export const mockAchievements: Achievement[] = [
@@ -277,5 +278,49 @@ export const mockLeaderboard: LeaderboardEntry[] = [
     achievements: 10,
     team: 'Team 1',
     rank: 3
+  }
+];
+
+// Мок-данные для баттлов пользователя
+export const mockBattles: Battle[] = [
+  {
+    id: 'battle1',
+    title: 'Баттл с Анной',
+    challengerId: 'user1',
+    challengerName: 'Вы',
+    opponentId: 'user3',
+    opponentName: 'Анна Иванова',
+    stake: 150,
+    status: 'completed',
+    createdAt: new Date('2024-01-15T10:00:00Z'),
+    completedAt: new Date('2024-01-15T12:00:00Z'),
+    winnerId: 'user3',
+    evidence: []
+  },
+  {
+    id: 'battle2',
+    title: 'Баттл с Марией',
+    challengerId: 'user1',
+    challengerName: 'Вы',
+    opponentId: 'user4',
+    opponentName: 'Мария Сидорова',
+    stake: 200,
+    status: 'completed',
+    createdAt: new Date('2024-01-16T14:00:00Z'),
+    completedAt: new Date('2024-01-16T16:00:00Z'),
+    winnerId: 'user1',
+    evidence: []
+  },
+  {
+    id: 'battle3',
+    title: 'Баттл с Еленой',
+    challengerId: 'user1',
+    challengerName: 'Вы',
+    opponentId: 'user2',
+    opponentName: 'Елена Морозова',
+    stake: 75,
+    status: 'active',
+    createdAt: new Date('2024-01-17T09:00:00Z'),
+    evidence: []
   }
 ];

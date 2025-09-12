@@ -16,7 +16,7 @@ import { Task } from './types/tasks';
 import { CaseType, UserCase } from './types/cases';
 import { Notification } from './types/notifications';
 import { Battle, BattleInvitation, User } from './types/battles';
-import { mockShopItems, mockOrders, mockAchievements, mockTasks, mockCaseTypes, mockUserCases, mockNotifications, mockLeaderboard } from './data/mockData';
+import { mockShopItems, mockOrders, mockAchievements, mockTasks, mockCaseTypes, mockUserCases, mockNotifications, mockLeaderboard, mockBattles } from './data/mockData';
 import { LeaderboardEntry } from './types/global';
 
 // Utility function for monitoring localStorage
@@ -61,7 +61,7 @@ export default function App() {
   const [tasks, setTasks] = useState<Task[]>(mockTasks);
   const [caseTypes, setCaseTypes] = useState<CaseType[]>(mockCaseTypes);
   const [userCases, setUserCases] = useState<UserCase[]>(mockUserCases);
-  const [battles, setBattles] = useState<Battle[]>([]);
+  const [battles, setBattles] = useState<Battle[]>(mockBattles);
   const [battleInvitations, setBattleInvitations] = useState<BattleInvitation[]>([]);
   const [users, setUsers] = useState<User[]>([]);
   const [leaderboard, setLeaderboard] = useState<LeaderboardEntry[]>(mockLeaderboard);
