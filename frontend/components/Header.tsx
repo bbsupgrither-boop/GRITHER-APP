@@ -15,9 +15,9 @@ export const Header: React.FC<HeaderProps> = ({
   hideUserIcon = false,
 }) => {
   return (
-    <div className={`w-full px-4 py-4 ${
-      theme === 'dark' ? 'bg-black/20' : 'bg-white/20'
-    }`}>
+    <div className="w-full px-4 py-4 relative z-10" style={{
+      backgroundColor: theme === 'dark' ? 'rgba(0, 0, 0, 0.2)' : 'rgba(255, 255, 255, 0.2)'
+    }}>
       <div className="flex items-center justify-between max-w-md mx-auto">
         {!hideUserIcon && (
           <button 
@@ -28,19 +28,15 @@ export const Header: React.FC<HeaderProps> = ({
               <span className="text-white font-semibold">В</span>
             </div>
             <div>
-              <div className="font-medium">Вы</div>
-              <div className="text-sm text-gray-400">GRITHER</div>
+              <div className="font-medium text-foreground">Вы</div>
+              <div className="text-sm text-muted-foreground">GRITHER</div>
             </div>
           </button>
         )}
         
         <button
           onClick={onOpenSettings}
-          className={`p-2 rounded-xl transition-all hover:scale-105 ${
-            theme === 'dark' 
-              ? 'bg-white/10 hover:bg-white/20' 
-              : 'bg-gray-100 hover:bg-gray-200'
-          }`}
+          className="apple-button p-2"
         >
           <Settings className="w-5 h-5" />
         </button>

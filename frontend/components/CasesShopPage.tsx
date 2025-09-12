@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { Header } from './Header';
 import { BottomNavigation } from './BottomNavigation';
+import { BackgroundFX } from './BackgroundFX';
 import { 
   ShoppingBag, 
   Gift, 
@@ -179,6 +180,7 @@ export const CasesShopPage: React.FC<CasesShopPageProps> = ({
 
   return (
     <div className="min-h-screen">
+      <BackgroundFX theme={theme} />
       <Header 
         onNavigate={onNavigate}
         onOpenSettings={() => {}}
@@ -187,11 +189,7 @@ export const CasesShopPage: React.FC<CasesShopPageProps> = ({
       
       <div className="container mx-auto px-4 py-8 max-w-md pb-32">
         {/* Coins Display */}
-        <div className={`p-4 rounded-2xl border mb-6 ${
-          theme === 'dark' 
-            ? 'bg-gray-800/50 border-gray-700' 
-            : 'bg-white/80 border-gray-200'
-        }`}>
+        <div className="glass-card p-4 mb-6">
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-2">
               <Coins className="w-6 h-6 text-yellow-500" />

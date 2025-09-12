@@ -1,6 +1,7 @@
 ﻿import React, { useState, useMemo } from 'react';
 import { Header } from './Header';
 import { BottomNavigation } from './BottomNavigation';
+import { BackgroundFX } from './BackgroundFX';
 import { Trophy, Menu, ArrowLeft, Paperclip, X } from 'lucide-react';
 import { Achievement } from '../types/achievements';
 
@@ -89,6 +90,7 @@ export const AchievementsPageFixed: React.FC<AchievementsPageFixedProps> = ({
 
   return (
     <div className="min-h-screen">
+      <BackgroundFX theme={theme} />
       <Header 
         onNavigate={onNavigate}
         onOpenSettings={() => {}}
@@ -96,11 +98,7 @@ export const AchievementsPageFixed: React.FC<AchievementsPageFixedProps> = ({
       />
       
       <div className="container mx-auto px-4 py-8 max-w-md pb-32">
-        <div className={`p-6 rounded-3xl border ${
-          theme === 'dark' 
-            ? 'bg-gray-800/50 border-gray-700' 
-            : 'bg-white/80 border-gray-200'
-        }`}>
+        <div className="glass-card p-6">
           <div className="flex items-center justify-between mb-6">
             <h1 className="text-xl font-semibold">Доступные достижения</h1>
             <button 

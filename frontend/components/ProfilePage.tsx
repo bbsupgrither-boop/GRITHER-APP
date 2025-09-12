@@ -1,6 +1,7 @@
 ﻿import React, { useState, useRef } from 'react';
 import { Header } from './Header';
 import { BottomNavigation } from './BottomNavigation';
+import { BackgroundFX } from './BackgroundFX';
 import { 
   User, 
   Camera, 
@@ -158,6 +159,7 @@ export const ProfilePage: React.FC<ProfilePageProps> = ({
 
   return (
     <div className="min-h-screen">
+      <BackgroundFX theme={theme} />
       <Header 
         onNavigate={onNavigate}
         onOpenSettings={() => onNavigate('settings')}
