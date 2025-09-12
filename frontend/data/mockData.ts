@@ -121,17 +121,60 @@ export const mockOrders: Order[] = [];
 export const mockTasks: Task[] = [
   {
     id: 'task1',
-    title: 'Создать новый компонент',
-    description: 'Разработать компонент для главной страницы',
-    reward: 300,
-    rewardType: 'coins',
-    deadline: '2024-01-25T23:59:59Z',
-    category: 'individual',
-    status: 'active',
-    assignedTo: 'user1',
-    createdBy: 'admin',
-    createdAt: '2024-01-20T09:00:00Z',
-    isPublished: true
+    title: 'Изучить React',
+    description: 'Освоить основы React и создать первый компонент',
+    deadline: '2024-12-25T18:00:00.000Z',
+    priority: 'high',
+    status: 'not_started',
+    completed: false,
+    createdAt: '2024-12-01T10:00:00.000Z',
+    timeSpent: 0
+  },
+  {
+    id: 'task2',
+    title: 'Создать API для пользователей',
+    description: 'Разработать REST API для управления пользователями',
+    deadline: '2024-12-20T17:00:00.000Z',
+    priority: 'medium',
+    status: 'in_progress',
+    completed: false,
+    createdAt: '2024-12-02T09:00:00.000Z',
+    timeSpent: 7200, // 2 hours
+    attachedFiles: ['api_design.pdf', 'user_schema.json']
+  },
+  {
+    id: 'task3',
+    title: 'Написать тесты для компонентов',
+    description: 'Покрыть тестами все основные компоненты приложения',
+    deadline: '2024-12-15T16:00:00.000Z',
+    priority: 'low',
+    status: 'completed',
+    completed: true,
+    createdAt: '2024-11-28T14:00:00.000Z',
+    timeSpent: 14400 // 4 hours
+  },
+  {
+    id: 'task4',
+    title: 'Оптимизировать производительность',
+    description: 'Улучшить скорость загрузки и отзывчивость интерфейса',
+    deadline: '2024-12-10T15:00:00.000Z',
+    priority: 'high',
+    status: 'not_started',
+    completed: false,
+    createdAt: '2024-12-03T11:00:00.000Z',
+    timeSpent: 0
+  },
+  {
+    id: 'task5',
+    title: 'Документация проекта',
+    description: 'Создать подробную документацию для разработчиков',
+    deadline: '2024-12-18T12:00:00.000Z',
+    priority: 'medium',
+    status: 'in_progress',
+    completed: false,
+    createdAt: '2024-12-01T16:00:00.000Z',
+    timeSpent: 3600, // 1 hour
+    attachedFiles: ['project_overview.md']
   }
 ];
 
