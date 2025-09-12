@@ -227,22 +227,8 @@ export const HomePage: React.FC<HomePageProps> = ({
 
   return (
     <div className="min-h-screen">
-      {/* Background Effects */}
-      <BackgroundFX theme={theme} />
-      
-      {/* Gradient Background for Light Theme */}
-      {theme === 'light' && (
-        <div 
-          style={{
-            position: 'absolute',
-            top: 0,
-            height: 'clamp(280px, 32vh, 340px)',
-            background: 'linear-gradient(180deg, #0084FF 0%, rgba(255, 255, 255, 0) 100%)',
-            zIndex: 1,
-            width: '100%'
-          }}
-        />
-      )}
+      {/* Background Effects - Multi-layer gradient system */}
+      <BackgroundFX theme={theme} isHomePage={true} />
 
       {/* Header */}
       <Header 
