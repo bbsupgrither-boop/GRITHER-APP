@@ -17,14 +17,21 @@ export const Header: React.FC<HeaderProps> = ({
   return (
     <div className="w-full px-4 py-4 relative" style={{
       backgroundColor: theme === 'dark' ? 'rgba(0, 0, 0, 0.2)' : 'rgba(255, 255, 255, 0.2)',
-      zIndex: 50
+      zIndex: 100,
+      pointerEvents: 'auto'
     }}>
       <div className="flex items-center justify-between max-w-md mx-auto">
         {!hideUserIcon && (
           <button 
-            onClick={() => {
+            onClick={(e) => {
+              e.preventDefault();
+              e.stopPropagation();
               console.log('Profile button clicked');
               onNavigate('profile');
+            }}
+            onTouchStart={(e) => {
+              e.preventDefault();
+              e.stopPropagation();
             }}
             style={{
               display: 'flex',
@@ -36,8 +43,9 @@ export const Header: React.FC<HeaderProps> = ({
               padding: '8px',
               borderRadius: '8px',
               transition: 'opacity 0.2s ease',
-              zIndex: 20,
-              position: 'relative'
+              zIndex: 101,
+              position: 'relative',
+              pointerEvents: 'auto'
             }}
             onMouseEnter={(e) => e.currentTarget.style.opacity = '0.8'}
             onMouseLeave={(e) => e.currentTarget.style.opacity = '1'}
@@ -72,9 +80,15 @@ export const Header: React.FC<HeaderProps> = ({
         )}
         
         <button
-          onClick={() => {
+          onClick={(e) => {
+            e.preventDefault();
+            e.stopPropagation();
             console.log('Settings button clicked');
             onOpenSettings();
+          }}
+          onTouchStart={(e) => {
+            e.preventDefault();
+            e.stopPropagation();
           }}
           style={{
             display: 'flex',
@@ -87,8 +101,9 @@ export const Header: React.FC<HeaderProps> = ({
             borderRadius: '50%',
             cursor: 'pointer',
             transition: 'all 0.2s ease',
-            zIndex: 20,
-            position: 'relative'
+            zIndex: 101,
+            position: 'relative',
+            pointerEvents: 'auto'
           }}
           onMouseEnter={(e) => {
             e.currentTarget.style.backgroundColor = theme === 'dark' ? '#2A3140' : '#E8EBF0';

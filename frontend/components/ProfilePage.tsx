@@ -1,4 +1,4 @@
-﻿import React, { useState, useRef } from 'react';
+﻿import React, { useState, useEffect } from 'react';
 import { Header } from './Header';
 import { BottomNavigation } from './BottomNavigation';
 import { BackgroundFX } from './BackgroundFX';
@@ -18,7 +18,9 @@ import {
   X,
   Upload,
   CheckCircle,
-  AlertCircle
+  AlertCircle,
+  Eye,
+  Zap
 } from 'lucide-react';
 import { User as UserType, Battle, LeaderboardEntry } from '../types/global';
 
@@ -48,78 +50,81 @@ export const ProfilePage: React.FC<ProfilePageProps> = ({
   const [selectedBattle, setSelectedBattle] = useState<Battle | null>(null);
   const [editingField, setEditingField] = useState<string | null>(null);
   const [editValue, setEditValue] = useState('');
-  
-  const fileInputRef = useRef<HTMLInputElement>(null);
+  const [profilePhoto, setProfilePhoto] = useState<string | null>(user.avatar || null);
 
-  // Mock battle data
-  const mockBattles: Battle[] = [
-    {
-      id: 'battle1',
-      title: 'Турнир по программированию',
-      description: 'Еженедельный турнир по алгоритмам',
-      participants: ['user1', 'user2', 'user3'],
-      winner: 'user1',
-      prize: 500,
-      startTime: new Date('2024-12-15T10:00:00'),
-      endTime: new Date('2024-12-15T12:00:00'),
-      status: 'completed',
-      category: 'programming'
-    },
-    {
-      id: 'battle2',
-      title: 'Конкурс дизайна',
-      description: 'Создание логотипа для нового проекта',
-      participants: ['user1', 'user4', 'user5'],
-      winner: 'user4',
-      prize: 300,
-      startTime: new Date('2024-12-10T14:00:00'),
-      endTime: new Date('2024-12-10T16:00:00'),
-      status: 'completed',
-      category: 'design'
-    },
-    {
-      id: 'battle3',
-      title: 'Марафон задач',
-      description: 'Решение максимального количества задач за 24 часа',
-      participants: ['user1', 'user2', 'user3', 'user4', 'user5'],
-      winner: 'user2',
-      prize: 1000,
-      startTime: new Date('2024-12-08T00:00:00'),
-      endTime: new Date('2024-12-09T00:00:00'),
-      status: 'completed',
-      category: 'marathon'
-    }
-  ];
+  // Подсчитываем статистику пользователя
+  const userWins = battles.filter(battle => 
+    battle.status === 'completed' && battle.winnerId === user.id
+  ).length;
 
-  // Mock achievements data
-  const mockAchievements = [
-    { id: 'ach1', name: 'Первый баттл', description: 'Участие в первом баттле', icon: '🏆', unlocked: true },
-    { id: 'ach2', name: 'Победитель', description: 'Победа в 5 баттлах', icon: '🥇', unlocked: true },
-    { id: 'ach3', name: 'Марафонец', description: 'Участие в марафоне', icon: '🏃', unlocked: true },
-    { id: 'ach4', name: 'Легенда', description: 'Победа в 10 баттлах', icon: '👑', unlocked: false },
-    { id: 'ach5', name: 'Мастер', description: 'Победа в турнире', icon: '🎯', unlocked: false }
-  ];
+  const userBalance = user.balance || 0;
+  const userAchievements = 0; // Placeholder
 
-  const getUserRank = () => {
-    const rank = leaderboard.findIndex(entry => entry.id === user.id);
-    return rank !== -1 ? rank + 1 : leaderboard.length + 1;
+  // Создаем профиль пользователя согласно спецификации
+  const userProfile = {
+    id: user.id || 'current-user',
+    name: user.name || 'Вы',
+    birthDate: '—', // Из админки
+    position: '—', // Из админки
+    team: '—', // Из админки
+    experience: '—', // Из админки
+    teamLead: '—', // Из админки
+    registrationDate: '—', // Из админки
+    level: user.level || 1,
+    experience_points: user.experience || 0,
+    max_experience: user.maxExperience || 100,
+    wins: userWins,
+    balance: userBalance.toString(),
+    achievements: userAchievements,
+    avatar: profilePhoto
   };
 
-  const getUserStats = () => {
-    const userBattles = battles.filter(battle => 
-      battle.participants.includes(user.id)
-    );
-    const wins = userBattles.filter(battle => battle.winner === user.id).length;
-    const totalPrize = userBattles
-      .filter(battle => battle.winner === user.id)
-      .reduce((sum, battle) => sum + battle.prize, 0);
-    
-    return {
-      battlesPlayed: userBattles.length,
-      battlesWon: wins,
-      winRate: userBattles.length > 0 ? Math.round((wins / userBattles.length) * 100) : 0,
-      totalPrize
-    };
+  // Объединяем баттлы пользователя
+  const userBattles = battles.filter(battle => 
+    battle.challengerId === user.id || battle.opponentId === user.id
+  ).map(battle => ({
+    id: battle.id,
+    opponent: {
+      name: battle.challengerId === user.id ? battle.opponentName : battle.challengerName,
+      team: 'Team 1', // placeholder
+      avatar: undefined
+    },
+    reward: battle.stake,
+    status: battle.status === 'completed' ? 'completed' : 
+            battle.status === 'active' ? 'active' : 'waiting',
+    dateCreated: battle.createdAt?.toISOString() || new Date().toISOString(),
+    result: battle.status === 'completed' ? 
+      (battle.winnerId === user.id ? 'won' : 'lost') : 
+      undefined
+  }));
+
+  // Функции для статусов баттлов
+  const getStatusColor = (status: string, result?: string) => {
+    switch (status) {
+      case 'active': return 'text-blue-500';
+      case 'waiting': return 'text-orange-500';
+      case 'completed':
+        return result === 'won' ? 'text-green-500' : 'text-red-500';
+      default: return 'text-gray-500';
+    }
+  };
+
+  const getStatusText = (status: string, result?: string) => {
+    switch (status) {
+      case 'active': return 'В процессе';
+      case 'waiting': return 'Ожидание';
+      case 'completed': return result === 'won' ? 'Победа' : 'Поражение';
+      default: return status;
+    }
+  };
+
+  const getStatusIcon = (status: string, result?: string) => {
+    switch (status) {
+      case 'active': return <Zap size={16} className="text-blue-500" />;
+      case 'waiting': return <Calendar size={16} className="text-orange-500" />;
+      case 'completed': return <Trophy size={16} className={result === 'won' ? 'text-green-500' : 'text-red-500'} />;
+      default: return null;
+    }
   };
 
   const handlePhotoUpload = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -127,6 +132,7 @@ export const ProfilePage: React.FC<ProfilePageProps> = ({
     if (file) {
       const reader = new FileReader();
       reader.onload = (e) => {
+        setProfilePhoto(e.target?.result as string);
         setUser({
           ...user,
           avatar: e.target?.result as string
@@ -137,346 +143,573 @@ export const ProfilePage: React.FC<ProfilePageProps> = ({
     }
   };
 
-  const handleEditStart = (field: string, currentValue: string) => {
-    setEditingField(field);
-    setEditValue(currentValue);
-    setIsEditModalOpen(true);
+  const handleOpenSettings = () => {
+    onNavigate('home'); // Возвращаемся на главную для открытия настроек
+    setTimeout(() => {
+      // Здесь должен быть вызов onOpenSettings, но пока просто возвращаемся на главную
+    }, 100);
   };
-
-  const handleEditSave = () => {
-    if (editingField) {
-      setUser({
-        ...user,
-        [editingField]: editValue
-      });
-      setIsEditModalOpen(false);
-      setEditingField(null);
-      setEditValue('');
-    }
-  };
-
-  const stats = getUserStats();
 
   return (
     <div className="min-h-screen">
       <BackgroundFX theme={theme} />
+      
+      {/* Header без иконки пользователя */}
       <Header 
-        onNavigate={onNavigate}
-        onOpenSettings={() => onNavigate('settings')}
+        onNavigate={onNavigate} 
+        hideUserIcon={true}
+        onOpenSettings={handleOpenSettings}
         theme={theme}
       />
       
-      <div className="container mx-auto px-4 py-8 max-w-md pb-32">
-        {/* Profile Header */}
-        <div className={`p-6 rounded-3xl border mb-6 ${
-          theme === 'dark' 
-            ? 'bg-gray-800/50 border-gray-700' 
-            : 'bg-white/80 border-gray-200'
-        }`}>
-          <div className="flex items-center gap-4 mb-6">
-            <div className="relative">
-              <div className="w-20 h-20 rounded-2xl bg-gradient-to-br from-blue-400 to-purple-600 flex items-center justify-center overflow-hidden">
-                {user.avatar ? (
-                  <img 
-                    src={user.avatar} 
-                    alt="Profile" 
-                    className="w-full h-full object-cover"
-                  />
-                ) : (
-                  <User className="w-10 h-10 text-white" />
-                )}
-              </div>
-              <button
+      {/* Основной контейнер */}
+      <div className="max-w-md mx-auto px-4 pb-24">
+        
+        {/* Блок фото и базовой информации */}
+        <div className="flex gap-4 mb-6">
+          
+          {/* Левая колонка - Фото пользователя */}
+          <div className="flex flex-col items-center gap-2">
+            <div 
+              className="rounded-3xl p-3 w-32 h-32 flex items-center justify-center relative"
+              style={{
+                backgroundColor: theme === 'dark' ? 'rgba(255, 255, 255, 0.1)' : 'rgba(255, 255, 255, 0.8)',
+                border: theme === 'dark' ? '1px solid rgba(255, 255, 255, 0.1)' : '1px solid rgba(0, 0, 0, 0.1)',
+                backdropFilter: 'blur(10px)'
+              }}
+            >
+              {/* Кнопка редактирования */}
+              <button 
                 onClick={() => setIsPhotoUploadOpen(true)}
-                className="absolute -bottom-1 -right-1 w-8 h-8 bg-blue-500 rounded-full flex items-center justify-center hover:bg-blue-600 transition-colors"
+                style={{
+                  position: 'absolute',
+                  top: '8px',
+                  right: '8px',
+                  width: '24px',
+                  height: '24px',
+                  backgroundColor: 'rgba(0, 0, 0, 0.2)',
+                  borderRadius: '50%',
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  cursor: 'pointer'
+                }}
               >
-                <Camera className="w-4 h-4 text-white" />
+                <Edit3 style={{ width: '12px', height: '12px', color: 'white' }} />
               </button>
+
+              {/* Аватар или заглушка */}
+              {profilePhoto ? (
+                <img 
+                  src={profilePhoto} 
+                  alt="Профиль" 
+                  style={{
+                    width: '96px',
+                    height: '96px',
+                    borderRadius: '16px',
+                    objectFit: 'cover'
+                  }}
+                />
+              ) : (
+                <div 
+                  style={{
+                    width: '96px',
+                    height: '96px',
+                    borderRadius: '16px',
+                    backgroundColor: theme === 'dark' ? 'rgba(255, 255, 255, 0.1)' : 'rgba(0, 0, 0, 0.1)',
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center'
+                  }}
+                >
+                  <User style={{ 
+                    width: '40px', 
+                    height: '40px', 
+                    color: theme === 'dark' ? 'rgba(255, 255, 255, 0.5)' : 'rgba(0, 0, 0, 0.5)' 
+                  }} />
+                </div>
+              )}
             </div>
             
-            <div className="flex-1">
-              <div className="flex items-center gap-2 mb-1">
-                <h1 className="text-xl font-semibold">{user.name}</h1>
-                <button
-                  onClick={() => handleEditStart('name', user.name)}
-                  className="p-1 rounded hover:bg-gray-100 dark:hover:bg-gray-700"
-                >
-                  <Edit3 className="w-4 h-4" />
-                </button>
-              </div>
-              <div className="flex items-center gap-2 mb-2">
-                <span className="text-sm text-gray-400">{user.username}</span>
-                <button
-                  onClick={() => handleEditStart('username', user.username)}
-                  className="p-1 rounded hover:bg-gray-100 dark:hover:bg-gray-700"
-                >
-                  <Edit3 className="w-4 h-4" />
-                </button>
-              </div>
-              <div className="flex items-center gap-4 text-sm">
-                <div className="flex items-center gap-1">
-                  <TrendingUp className="w-4 h-4 text-blue-500" />
-                  <span>Ранг #{getUserRank()}</span>
-                </div>
-                <div className="flex items-center gap-1">
-                  <Star className="w-4 h-4 text-yellow-500" />
-                  <span>Уровень {user.level}</span>
-                </div>
-              </div>
+            {/* Никнейм */}
+            <div 
+              style={{
+                fontSize: '14px',
+                color: theme === 'dark' ? 'rgba(255, 255, 255, 0.5)' : 'rgba(0, 0, 0, 0.5)',
+                textAlign: 'center',
+                opacity: 0.5
+              }}
+            >
+              @user
             </div>
           </div>
 
-          {/* Quick Stats */}
-          <div className="grid grid-cols-2 gap-4">
-            <div className={`p-3 rounded-xl ${
-              theme === 'dark' ? 'bg-gray-700/50' : 'bg-gray-50'
-            }`}>
-              <div className="text-2xl font-bold text-blue-500">{stats.battlesWon}</div>
-              <div className="text-sm text-gray-400">Побед</div>
-            </div>
-            <div className={`p-3 rounded-xl ${
-              theme === 'dark' ? 'bg-gray-700/50' : 'bg-gray-50'
-            }`}>
-              <div className="text-2xl font-bold text-green-500">{stats.winRate}%</div>
-              <div className="text-sm text-gray-400">Процент побед</div>
-            </div>
-            <div className={`p-3 rounded-xl ${
-              theme === 'dark' ? 'bg-gray-700/50' : 'bg-gray-50'
-            }`}>
-              <div className="text-2xl font-bold text-yellow-500">{stats.totalPrize}</div>
-              <div className="text-sm text-gray-400">Монет заработано</div>
-            </div>
-            <div className={`p-3 rounded-xl ${
-              theme === 'dark' ? 'bg-gray-700/50' : 'bg-gray-50'
-            }`}>
-              <div className="text-2xl font-bold text-purple-500">{user.balance}</div>
-              <div className="text-sm text-gray-400">Текущий баланс</div>
+          {/* Правая колонка - Информационная карточка */}
+          <div 
+            className="flex-1 rounded-3xl p-4"
+            style={{
+              backgroundColor: theme === 'dark' ? 'rgba(255, 255, 255, 0.1)' : 'rgba(255, 255, 255, 0.8)',
+              border: theme === 'dark' ? '1px solid rgba(255, 255, 255, 0.1)' : '1px solid rgba(0, 0, 0, 0.1)',
+              backdropFilter: 'blur(10px)'
+            }}
+          >
+            <div style={{ display: 'flex', flexDirection: 'column', gap: '12px', fontSize: '12px' }}>
+              {/* Каждая строка информации */}
+              <div style={{ display: 'flex', alignItems: 'center' }}>
+                <span style={{ 
+                  color: theme === 'dark' ? 'rgba(255, 255, 255, 0.7)' : 'rgba(0, 0, 0, 0.7)',
+                  width: '80px'
+                }}>Id:</span>
+                <span style={{
+                  color: theme === 'dark' ? 'rgba(255, 255, 255, 0.5)' : 'rgba(0, 0, 0, 0.5)',
+                  flex: 1,
+                  borderBottom: theme === 'dark' ? '1px solid rgba(255, 255, 255, 0.1)' : '1px solid rgba(0, 0, 0, 0.1)',
+                  paddingBottom: '4px'
+                }}>
+                  {userProfile.id || '—'}
+                </span>
+              </div>
+              
+              <div style={{ display: 'flex', alignItems: 'center' }}>
+                <span style={{ 
+                  color: theme === 'dark' ? 'rgba(255, 255, 255, 0.7)' : 'rgba(0, 0, 0, 0.7)',
+                  width: '80px'
+                }}>Имя:</span>
+                <span style={{
+                  color: theme === 'dark' ? 'rgba(255, 255, 255, 0.5)' : 'rgba(0, 0, 0, 0.5)',
+                  flex: 1,
+                  borderBottom: theme === 'dark' ? '1px solid rgba(255, 255, 255, 0.1)' : '1px solid rgba(0, 0, 0, 0.1)',
+                  paddingBottom: '4px'
+                }}>
+                  {userProfile.name || '—'}
+                </span>
+              </div>
+              
+              <div style={{ display: 'flex', alignItems: 'center' }}>
+                <span style={{ 
+                  color: theme === 'dark' ? 'rgba(255, 255, 255, 0.7)' : 'rgba(0, 0, 0, 0.7)',
+                  width: '80px'
+                }}>ДР:</span>
+                <span style={{
+                  color: theme === 'dark' ? 'rgba(255, 255, 255, 0.5)' : 'rgba(0, 0, 0, 0.5)',
+                  flex: 1,
+                  borderBottom: theme === 'dark' ? '1px solid rgba(255, 255, 255, 0.1)' : '1px solid rgba(0, 0, 0, 0.1)',
+                  paddingBottom: '4px'
+                }}>
+                  {userProfile.birthDate || '—'}
+                </span>
+              </div>
+              
+              <div style={{ display: 'flex', alignItems: 'center' }}>
+                <span style={{ 
+                  color: theme === 'dark' ? 'rgba(255, 255, 255, 0.7)' : 'rgba(0, 0, 0, 0.7)',
+                  width: '80px'
+                }}>Должность:</span>
+                <span style={{
+                  color: theme === 'dark' ? 'rgba(255, 255, 255, 0.5)' : 'rgba(0, 0, 0, 0.5)',
+                  flex: 1,
+                  borderBottom: theme === 'dark' ? '1px solid rgba(255, 255, 255, 0.1)' : '1px solid rgba(0, 0, 0, 0.1)',
+                  paddingBottom: '4px'
+                }}>
+                  {userProfile.position || '—'}
+                </span>
+              </div>
+              
+              <div style={{ display: 'flex', alignItems: 'center' }}>
+                <span style={{ 
+                  color: theme === 'dark' ? 'rgba(255, 255, 255, 0.7)' : 'rgba(0, 0, 0, 0.7)',
+                  width: '80px'
+                }}>Команда:</span>
+                <span style={{
+                  color: theme === 'dark' ? 'rgba(255, 255, 255, 0.5)' : 'rgba(0, 0, 0, 0.5)',
+                  flex: 1,
+                  borderBottom: theme === 'dark' ? '1px solid rgba(255, 255, 255, 0.1)' : '1px solid rgba(0, 0, 0, 0.1)',
+                  paddingBottom: '4px'
+                }}>
+                  {userProfile.team || '—'}
+                </span>
+              </div>
+              
+              <div style={{ display: 'flex', alignItems: 'center' }}>
+                <span style={{ 
+                  color: theme === 'dark' ? 'rgba(255, 255, 255, 0.7)' : 'rgba(0, 0, 0, 0.7)',
+                  width: '80px'
+                }}>Стаж:</span>
+                <span style={{
+                  color: theme === 'dark' ? 'rgba(255, 255, 255, 0.5)' : 'rgba(0, 0, 0, 0.5)',
+                  flex: 1,
+                  borderBottom: theme === 'dark' ? '1px solid rgba(255, 255, 255, 0.1)' : '1px solid rgba(0, 0, 0, 0.1)',
+                  paddingBottom: '4px'
+                }}>
+                  {userProfile.experience || '—'}
+                </span>
+              </div>
+              
+              <div style={{ display: 'flex', alignItems: 'center' }}>
+                <span style={{ 
+                  color: theme === 'dark' ? 'rgba(255, 255, 255, 0.7)' : 'rgba(0, 0, 0, 0.7)',
+                  width: '80px'
+                }}>Тимлид:</span>
+                <span style={{
+                  color: theme === 'dark' ? 'rgba(255, 255, 255, 0.5)' : 'rgba(0, 0, 0, 0.5)',
+                  flex: 1,
+                  borderBottom: theme === 'dark' ? '1px solid rgba(255, 255, 255, 0.1)' : '1px solid rgba(0, 0, 0, 0.1)',
+                  paddingBottom: '4px'
+                }}>
+                  {userProfile.teamLead || '—'}
+                </span>
+              </div>
+              
+              <div style={{ display: 'flex', alignItems: 'center' }}>
+                <span style={{ 
+                  color: theme === 'dark' ? 'rgba(255, 255, 255, 0.7)' : 'rgba(0, 0, 0, 0.7)',
+                  width: '80px'
+                }}>Регистрация:</span>
+                <span style={{
+                  color: theme === 'dark' ? 'rgba(255, 255, 255, 0.5)' : 'rgba(0, 0, 0, 0.5)',
+                  flex: 1,
+                  borderBottom: theme === 'dark' ? '1px solid rgba(255, 255, 255, 0.1)' : '1px solid rgba(0, 0, 0, 0.1)',
+                  paddingBottom: '4px'
+                }}>
+                  {userProfile.registrationDate || '—'}
+                </span>
+              </div>
             </div>
           </div>
         </div>
 
-        {/* Tabs */}
-        <div className={`p-1 rounded-2xl border mb-6 ${
-          theme === 'dark' 
-            ? 'bg-gray-800/50 border-gray-700' 
-            : 'bg-white/80 border-gray-200'
-        }`}>
-          <div className="flex">
-            {[
-              { key: 'overview', label: 'Обзор', icon: User },
-              { key: 'battles', label: 'Баттлы', icon: Trophy },
-              { key: 'achievements', label: 'Достижения', icon: Award }
-            ].map(({ key, label, icon: Icon }) => (
+        {/* Блок "Мои баттлы" */}
+        <div 
+          className="rounded-3xl p-4 mb-6"
+          style={{
+            backgroundColor: theme === 'dark' ? 'rgba(255, 255, 255, 0.1)' : 'rgba(255, 255, 255, 0.8)',
+            border: theme === 'dark' ? '1px solid rgba(255, 255, 255, 0.1)' : '1px solid rgba(0, 0, 0, 0.1)',
+            backdropFilter: 'blur(10px)'
+          }}
+        >
+          {/* Заголовок с кнопкой */}
+          <div style={{ display: 'flex', alignItems: 'center', marginBottom: '12px', position: 'relative' }}>
+            <div style={{ flex: 1 }}></div>
+            <h3 style={{ 
+              fontWeight: '500',
+              color: theme === 'dark' ? '#E8ECF2' : '#0F172A',
+              fontSize: '16px'
+            }}>Мои баттлы</h3>
+            <div style={{ flex: 1, display: 'flex', justifyContent: 'flex-end' }}>
               <button
-                key={key}
-                onClick={() => setActiveTab(key as TabType)}
-                className={`flex-1 flex items-center justify-center gap-2 py-3 px-4 rounded-xl transition-all ${
-                  activeTab === key
-                    ? 'bg-blue-500 text-white'
-                    : theme === 'dark'
-                    ? 'text-gray-300 hover:bg-white/10'
-                    : 'text-gray-600 hover:bg-gray-100'
-                }`}
+                onClick={() => setIsBattleHistoryOpen(true)}
+                style={{
+                  width: '32px',
+                  height: '32px',
+                  borderRadius: '8px',
+                  backgroundColor: 'transparent',
+                  border: 'none',
+                  cursor: 'pointer',
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center'
+                }}
               >
-                <Icon className="w-4 h-4" />
-                <span className="text-sm font-medium">{label}</span>
+                <Eye style={{ width: '16px', height: '16px', color: theme === 'dark' ? '#E8ECF2' : '#0F172A' }} />
               </button>
-            ))}
-          </div>
-        </div>
-
-        {/* Tab Content */}
-        {activeTab === 'overview' && (
-          <div className="space-y-4">
-            {/* Recent Activity */}
-            <div className={`p-6 rounded-2xl border ${
-              theme === 'dark' 
-                ? 'bg-gray-800/50 border-gray-700' 
-                : 'bg-white/80 border-gray-200'
-            }`}>
-              <h3 className="font-semibold mb-4">Последняя активность</h3>
-              <div className="space-y-3">
-                <div className="flex items-center gap-3">
-                  <div className="w-8 h-8 rounded-full bg-green-500 flex items-center justify-center">
-                    <CheckCircle className="w-4 h-4 text-white" />
-                  </div>
-                  <div className="flex-1">
-                    <div className="text-sm font-medium">Победа в турнире</div>
-                    <div className="text-xs text-gray-400">2 часа назад</div>
-                  </div>
-                </div>
-                <div className="flex items-center gap-3">
-                  <div className="w-8 h-8 rounded-full bg-blue-500 flex items-center justify-center">
-                    <Target className="w-4 h-4 text-white" />
-                  </div>
-                  <div className="flex-1">
-                    <div className="text-sm font-medium">Участие в баттле</div>
-                    <div className="text-xs text-gray-400">1 день назад</div>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            {/* Team Info */}
-            <div className={`p-6 rounded-2xl border ${
-              theme === 'dark' 
-                ? 'bg-gray-800/50 border-gray-700' 
-                : 'bg-white/80 border-gray-200'
-            }`}>
-              <h3 className="font-semibold mb-4">Команда</h3>
-              <div className="flex items-center gap-3">
-                <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-purple-400 to-pink-500 flex items-center justify-center">
-                  <span className="text-white font-bold">T</span>
-                </div>
-                <div>
-                  <div className="font-medium">{user.team || 'Без команды'}</div>
-                  <div className="text-sm text-gray-400">Участник команды</div>
-                </div>
-              </div>
             </div>
           </div>
-        )}
 
-        {activeTab === 'battles' && (
-          <div className="space-y-4">
-            {mockBattles.length === 0 ? (
-              <div className="text-center py-8">
-                <div className="text-gray-400 mb-2">Нет истории баттлов</div>
-              </div>
-            ) : (
-              mockBattles.map((battle) => (
+          {/* Список баттлов */}
+          {userBattles.length > 0 ? (
+            <div style={{ display: 'flex', flexDirection: 'column', gap: '8px' }}>
+              {userBattles.slice(0, 3).map((battle) => (
                 <div 
-                  key={battle.id}
-                  onClick={() => {
-                    setSelectedBattle(battle);
-                    setIsBattleHistoryOpen(true);
+                  key={battle.id} 
+                  style={{
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'space-between',
+                    padding: '12px',
+                    backgroundColor: theme === 'dark' ? 'rgba(255, 255, 255, 0.05)' : 'rgba(0, 0, 0, 0.05)',
+                    borderRadius: '12px',
+                    border: theme === 'dark' ? '1px solid rgba(255, 255, 255, 0.1)' : '1px solid rgba(0, 0, 0, 0.1)'
                   }}
-                  className={`p-4 rounded-2xl border transition-all cursor-pointer hover:scale-98 ${
-                    theme === 'dark' 
-                      ? 'bg-gray-800/50 border-gray-700 hover:bg-gray-800/70' 
-                      : 'bg-white/80 border-gray-200 hover:bg-white/90'
-                  }`}
                 >
-                  <div className="flex items-center gap-4">
-                    <div className={`w-12 h-12 rounded-xl flex items-center justify-center ${
-                      battle.winner === user.id 
-                        ? 'bg-green-500' 
-                        : 'bg-gray-500'
-                    }`}>
-                      <Trophy className="w-6 h-6 text-white" />
+                  {/* Левая часть - информация о сопернике */}
+                  <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
+                    <div 
+                      style={{
+                        width: '32px',
+                        height: '32px',
+                        backgroundColor: theme === 'dark' ? 'rgba(255, 255, 255, 0.1)' : 'rgba(0, 0, 0, 0.1)',
+                        borderRadius: '50%',
+                        display: 'flex',
+                        alignItems: 'center',
+                        justifyContent: 'center'
+                      }}
+                    >
+                      <User size={16} style={{ color: theme === 'dark' ? 'rgba(255, 255, 255, 0.7)' : 'rgba(0, 0, 0, 0.7)' }} />
                     </div>
-                    <div className="flex-1">
-                      <div className="font-medium">{battle.title}</div>
-                      <div className="text-sm text-gray-400 mb-1">{battle.description}</div>
-                      <div className="flex items-center gap-4 text-xs">
-                        <div className="flex items-center gap-1">
-                          <Calendar className="w-3 h-3" />
-                          <span>{battle.startTime.toLocaleDateString('ru-RU')}</span>
-                        </div>
-                        <div className="flex items-center gap-1">
-                          <Coins className="w-3 h-3" />
-                          <span>{battle.prize} монет</span>
-                        </div>
+                    <div>
+                      <div style={{ fontSize: '14px', fontWeight: '500', color: theme === 'dark' ? '#E8ECF2' : '#0F172A' }}>
+                        {battle.opponent.name || 'Соперник'}
+                      </div>
+                      <div style={{ fontSize: '12px', color: theme === 'dark' ? 'rgba(255, 255, 255, 0.7)' : 'rgba(0, 0, 0, 0.7)' }}>
+                        {battle.opponent.team}
                       </div>
                     </div>
-                    <div className={`text-sm font-medium ${
-                      battle.winner === user.id ? 'text-green-500' : 'text-gray-400'
-                    }`}>
-                      {battle.winner === user.id ? 'Победа' : 'Поражение'}
+                  </div>
+                  
+                  {/* Правая часть - статус и награда */}
+                  <div style={{ textAlign: 'right' }}>
+                    <div style={{ display: 'flex', alignItems: 'center', gap: '4px', marginBottom: '4px' }}>
+                      {getStatusIcon(battle.status, battle.result)}
+                      <span style={{ 
+                        fontSize: '12px', 
+                        fontWeight: '500',
+                        color: getStatusColor(battle.status, battle.result)
+                      }}>
+                        {getStatusText(battle.status, battle.result)}
+                      </span>
+                    </div>
+                    <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'flex-end', gap: '4px' }}>
+                      <span style={{ fontSize: '12px', color: theme === 'dark' ? 'rgba(255, 255, 255, 0.7)' : 'rgba(0, 0, 0, 0.7)' }}>
+                        {battle.reward}
+                      </span>
+                      <div style={{ 
+                        width: '12px', 
+                        height: '12px', 
+                        backgroundColor: '#FCD34D',
+                        borderRadius: '50%'
+                      }} />
                     </div>
                   </div>
                 </div>
-              ))
-            )}
-          </div>
-        )}
+              ))}
+            </div>
+          ) : (
+            <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', minHeight: '60px' }}>
+              <p style={{ 
+                color: theme === 'dark' ? 'rgba(255, 255, 255, 0.7)' : 'rgba(0, 0, 0, 0.7)',
+                fontSize: '14px',
+                textAlign: 'center',
+                opacity: 0.7
+              }}>
+                История баттлов отсутствует
+              </p>
+            </div>
+          )}
+        </div>
 
-        {activeTab === 'achievements' && (
-          <div className="space-y-4">
-            {mockAchievements.length === 0 ? (
-              <div className="text-center py-8">
-                <div className="text-gray-400 mb-2">Нет достижений</div>
-              </div>
-            ) : (
-              mockAchievements.map((achievement) => (
-                <div 
-                  key={achievement.id}
-                  className={`p-4 rounded-2xl border transition-all ${
-                    theme === 'dark' 
-                      ? 'bg-gray-800/50 border-gray-700' 
-                      : 'bg-white/80 border-gray-200'
-                  } ${!achievement.unlocked ? 'opacity-50 grayscale' : ''}`}
-                >
-                  <div className="flex items-center gap-4">
-                    <div className={`w-12 h-12 rounded-xl flex items-center justify-center text-2xl ${
-                      achievement.unlocked 
-                        ? 'bg-gradient-to-br from-yellow-400 to-yellow-600' 
-                        : 'bg-gray-500'
-                    }`}>
-                      {achievement.unlocked ? achievement.icon : '🔒'}
-                    </div>
-                    <div className="flex-1">
-                      <div className="font-medium">{achievement.name}</div>
-                      <div className="text-sm text-gray-400">{achievement.description}</div>
-                    </div>
-                    {achievement.unlocked && (
-                      <CheckCircle className="w-5 h-5 text-green-500" />
-                    )}
-                  </div>
-                </div>
-              ))
-            )}
+        {/* Полоска прогресса уровня */}
+        <div 
+          className="rounded-3xl p-4 mb-6"
+          style={{
+            backgroundColor: theme === 'dark' ? 'rgba(255, 255, 255, 0.1)' : 'rgba(255, 255, 255, 0.8)',
+            border: theme === 'dark' ? '1px solid rgba(255, 255, 255, 0.1)' : '1px solid rgba(0, 0, 0, 0.1)',
+            backdropFilter: 'blur(10px)'
+          }}
+        >
+          <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '8px' }}>
+            <span style={{ 
+              fontSize: '14px',
+              color: theme === 'dark' ? 'rgba(255, 255, 255, 0.7)' : 'rgba(0, 0, 0, 0.7)'
+            }}>Статус: Новичок</span>
+            <span style={{ 
+              fontSize: '14px',
+              color: theme === 'dark' ? 'rgba(255, 255, 255, 0.7)' : 'rgba(0, 0, 0, 0.7)'
+            }}>XP: {userProfile.experience_points}</span>
+            <span style={{ 
+              fontSize: '14px',
+              color: theme === 'dark' ? 'rgba(255, 255, 255, 0.7)' : 'rgba(0, 0, 0, 0.7)'
+            }}>lvl {userProfile.level}</span>
           </div>
-        )}
+          <div 
+            style={{
+              width: '100%',
+              height: '8px',
+              backgroundColor: theme === 'dark' ? 'rgba(255, 255, 255, 0.1)' : 'rgba(0, 0, 0, 0.1)',
+              borderRadius: '4px',
+              overflow: 'hidden'
+            }}
+          >
+            <div 
+              style={{
+                width: `${(userProfile.experience_points / userProfile.max_experience) * 100}%`,
+                height: '100%',
+                backgroundColor: '#3B82F6',
+                borderRadius: '4px',
+                transition: 'width 0.3s ease'
+              }}
+            />
+          </div>
+        </div>
+
+        {/* Блок статистики (3 колонки) */}
+        <div 
+          className="rounded-3xl p-4"
+          style={{
+            backgroundColor: theme === 'dark' ? 'rgba(255, 255, 255, 0.1)' : 'rgba(255, 255, 255, 0.8)',
+            border: theme === 'dark' ? '1px solid rgba(255, 255, 255, 0.1)' : '1px solid rgba(0, 0, 0, 0.1)',
+            backdropFilter: 'blur(10px)'
+          }}
+        >
+          <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr 1fr', gap: '12px' }}>
+            
+            {/* 1. Количество побед */}
+            <div 
+              style={{
+                backgroundColor: theme === 'dark' ? 'rgba(255, 255, 255, 0.05)' : 'rgba(0, 0, 0, 0.05)',
+                borderRadius: '16px',
+                padding: '12px',
+                textAlign: 'center'
+              }}
+            >
+              <div style={{ 
+                fontSize: '12px', 
+                color: theme === 'dark' ? 'rgba(255, 255, 255, 0.7)' : 'rgba(0, 0, 0, 0.7)',
+                marginBottom: '4px'
+              }}>Побед</div>
+              <div style={{ 
+                fontWeight: '500',
+                color: theme === 'dark' ? '#E8ECF2' : '#0F172A',
+                fontSize: '16px'
+              }}>{userProfile.wins}</div>
+            </div>
+            
+            {/* 2. Баланс коинов */}
+            <div 
+              style={{
+                backgroundColor: theme === 'dark' ? 'rgba(255, 255, 255, 0.05)' : 'rgba(0, 0, 0, 0.05)',
+                borderRadius: '16px',
+                padding: '12px',
+                textAlign: 'center'
+              }}
+            >
+              <div style={{ 
+                fontSize: '12px', 
+                color: theme === 'dark' ? 'rgba(255, 255, 255, 0.7)' : 'rgba(0, 0, 0, 0.7)',
+                marginBottom: '4px'
+              }}>Баланс</div>
+              <div style={{ 
+                display: 'flex', 
+                alignItems: 'center', 
+                justifyContent: 'center', 
+                gap: '4px'
+              }}>
+                <span style={{ 
+                  fontWeight: '500',
+                  color: theme === 'dark' ? '#E8ECF2' : '#0F172A',
+                  fontSize: '16px'
+                }}>{userProfile.balance}</span>
+                <div style={{ 
+                  width: '16px', 
+                  height: '16px', 
+                  backgroundColor: '#FCD34D',
+                  borderRadius: '50%'
+                }} />
+              </div>
+            </div>
+            
+            {/* 3. Достижения */}
+            <div 
+              style={{
+                backgroundColor: theme === 'dark' ? 'rgba(255, 255, 255, 0.05)' : 'rgba(0, 0, 0, 0.05)',
+                borderRadius: '16px',
+                padding: '12px',
+                textAlign: 'center'
+              }}
+            >
+              <div style={{ 
+                fontSize: '12px', 
+                color: theme === 'dark' ? 'rgba(255, 255, 255, 0.7)' : 'rgba(0, 0, 0, 0.7)',
+                marginBottom: '4px'
+              }}>Ачивки</div>
+              <div style={{ 
+                fontWeight: '500',
+                color: theme === 'dark' ? 'rgba(255, 255, 255, 0.5)' : 'rgba(0, 0, 0, 0.5)',
+                fontSize: '16px',
+                opacity: 0.5
+              }}>—</div>
+            </div>
+          </div>
+        </div>
       </div>
-      
+
+      {/* Bottom Navigation */}
       <BottomNavigation 
         currentPage="profile"
         onNavigate={onNavigate}
         theme={theme}
       />
 
-      {/* Photo Upload Modal */}
+      {/* Модал загрузки фото */}
       {isPhotoUploadOpen && (
-        <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50">
-          <div className={`p-6 rounded-2xl max-w-sm w-full mx-4 ${
-            theme === 'dark' ? 'bg-gray-800' : 'bg-white'
-          }`}>
-            <div className="flex items-center justify-between mb-6">
-              <h2 className="text-xl font-semibold">Загрузить фото</h2>
-              <button
-                onClick={() => setIsPhotoUploadOpen(false)}
-                className="p-2 rounded-full hover:bg-gray-100 dark:hover:bg-gray-700"
-              >
-                <X className="w-5 h-5" />
-              </button>
+        <div 
+          style={{
+            position: 'fixed',
+            inset: 0,
+            backgroundColor: 'rgba(0, 0, 0, 0.5)',
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            zIndex: 1000
+          }}
+        >
+          <div 
+            style={{
+              backgroundColor: theme === 'dark' ? '#1F2937' : '#FFFFFF',
+              borderRadius: '16px',
+              padding: '24px',
+              maxWidth: '320px',
+              width: '90%',
+              maxHeight: '80vh',
+              overflow: 'auto'
+            }}
+          >
+            <div style={{ marginBottom: '16px' }}>
+              <h3 style={{ 
+                fontSize: '18px',
+                fontWeight: '600',
+                color: theme === 'dark' ? '#E8ECF2' : '#0F172A',
+                marginBottom: '8px'
+              }}>Фото профиля</h3>
+              <p style={{ 
+                fontSize: '14px',
+                color: theme === 'dark' ? 'rgba(255, 255, 255, 0.7)' : 'rgba(0, 0, 0, 0.7)',
+                textAlign: 'center'
+              }}>Выберите фото для профиля</p>
             </div>
-
-            <div className="text-center mb-6">
-              <div className="w-20 h-20 mx-auto mb-4 rounded-2xl bg-gradient-to-br from-blue-400 to-purple-600 flex items-center justify-center">
-                <Upload className="w-8 h-8 text-white" />
-              </div>
-              <p className="text-sm text-gray-400">Выберите фото профиля</p>
-            </div>
-
-            <input
-              ref={fileInputRef}
-              type="file"
-              accept="image/*"
-              onChange={handlePhotoUpload}
-              className="hidden"
-            />
-
-            <div className="flex gap-3">
-              <button
-                onClick={() => fileInputRef.current?.click()}
-                className="flex-1 py-2 px-4 rounded-xl bg-blue-500 text-white"
-              >
-                Выбрать файл
-              </button>
-              <button
+            
+            <div style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
+              <label style={{ cursor: 'pointer' }}>
+                <input 
+                  type="file" 
+                  accept="image/*" 
+                  onChange={handlePhotoUpload} 
+                  style={{ display: 'none' }} 
+                />
+                <div 
+                  style={{
+                    textAlign: 'center',
+                    padding: '12px',
+                    backgroundColor: theme === 'dark' ? 'rgba(255, 255, 255, 0.1)' : 'rgba(0, 0, 0, 0.1)',
+                    borderRadius: '12px',
+                    transition: 'transform 0.2s ease'
+                  }}
+                  onMouseEnter={(e) => e.currentTarget.style.transform = 'scale(0.98)'}
+                  onMouseLeave={(e) => e.currentTarget.style.transform = 'scale(1)'}
+                >
+                  Загрузить фото
+                </div>
+              </label>
+              
+              <button 
                 onClick={() => setIsPhotoUploadOpen(false)}
-                className="flex-1 py-2 px-4 rounded-xl bg-gray-200 dark:bg-gray-700 text-gray-700 dark:text-gray-300"
+                style={{
+                  padding: '12px',
+                  backgroundColor: 'transparent',
+                  border: theme === 'dark' ? '1px solid rgba(255, 255, 255, 0.2)' : '1px solid rgba(0, 0, 0, 0.2)',
+                  borderRadius: '12px',
+                  color: theme === 'dark' ? '#E8ECF2' : '#0F172A',
+                  cursor: 'pointer'
+                }}
               >
                 Отменить
               </button>
@@ -485,123 +718,137 @@ export const ProfilePage: React.FC<ProfilePageProps> = ({
         </div>
       )}
 
-      {/* Edit Modal */}
-      {isEditModalOpen && editingField && (
-        <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50">
-          <div className={`p-6 rounded-2xl max-w-sm w-full mx-4 ${
-            theme === 'dark' ? 'bg-gray-800' : 'bg-white'
-          }`}>
-            <div className="flex items-center justify-between mb-6">
-              <h2 className="text-xl font-semibold">
-                Редактировать {editingField === 'name' ? 'имя' : 'username'}
-              </h2>
-              <button
-                onClick={() => setIsEditModalOpen(false)}
-                className="p-2 rounded-full hover:bg-gray-100 dark:hover:bg-gray-700"
-              >
-                <X className="w-5 h-5" />
-              </button>
-            </div>
-
-            <div className="space-y-4">
-              <div>
-                <label className="block text-sm font-medium mb-2">
-                  {editingField === 'name' ? 'Имя' : 'Username'}
-                </label>
-                <input
-                  type="text"
-                  value={editValue}
-                  onChange={(e) => setEditValue(e.target.value)}
-                  className={`w-full p-3 rounded-xl border ${
-                    theme === 'dark'
-                      ? 'bg-gray-700 border-gray-600 text-white'
-                      : 'bg-white border-gray-300 text-gray-900'
-                  }`}
-                  placeholder={`Введите ${editingField === 'name' ? 'имя' : 'username'}`}
-                />
-              </div>
-
-              <div className="flex gap-3">
-                <button
-                  onClick={() => setIsEditModalOpen(false)}
-                  className="flex-1 py-2 px-4 rounded-xl bg-gray-200 dark:bg-gray-700 text-gray-700 dark:text-gray-300"
-                >
-                  Отменить
-                </button>
-                <button
-                  onClick={handleEditSave}
-                  className="flex-1 py-2 px-4 rounded-xl bg-blue-500 text-white"
-                >
-                  Сохранить
-                </button>
-              </div>
-            </div>
-          </div>
-        </div>
-      )}
-
-      {/* Battle Detail Modal */}
-      {isBattleHistoryOpen && selectedBattle && (
-        <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50">
-          <div className={`p-6 rounded-2xl max-w-sm w-full mx-4 max-h-[80vh] overflow-y-auto ${
-            theme === 'dark' ? 'bg-gray-800' : 'bg-white'
-          }`}>
-            <div className="flex items-center justify-between mb-6">
-              <h2 className="text-xl font-semibold">Детали баттла</h2>
-              <button
+      {/* Модал всех баттлов */}
+      {isBattleHistoryOpen && (
+        <div 
+          style={{
+            position: 'fixed',
+            inset: 0,
+            backgroundColor: 'rgba(0, 0, 0, 0.5)',
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            zIndex: 1000
+          }}
+        >
+          <div 
+            style={{
+              backgroundColor: theme === 'dark' ? '#1F2937' : '#FFFFFF',
+              borderRadius: '16px',
+              padding: '24px',
+              maxWidth: '400px',
+              width: '90%',
+              maxHeight: '60vh',
+              overflow: 'auto'
+            }}
+          >
+            <div style={{ 
+              display: 'flex', 
+              alignItems: 'center', 
+              justifyContent: 'space-between',
+              marginBottom: '16px'
+            }}>
+              <h3 style={{ 
+                fontSize: '18px',
+                fontWeight: '600',
+                color: theme === 'dark' ? '#E8ECF2' : '#0F172A'
+              }}>Все мои баттлы</h3>
+              <button 
                 onClick={() => setIsBattleHistoryOpen(false)}
-                className="p-2 rounded-full hover:bg-gray-100 dark:hover:bg-gray-700"
+                style={{
+                  width: '32px',
+                  height: '32px',
+                  borderRadius: '50%',
+                  backgroundColor: 'transparent',
+                  border: 'none',
+                  cursor: 'pointer',
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center'
+                }}
               >
-                <X className="w-5 h-5" />
+                <X style={{ width: '20px', height: '20px', color: theme === 'dark' ? '#E8ECF2' : '#0F172A' }} />
               </button>
             </div>
-
-            <div className="space-y-6">
-              <div>
-                <h3 className="font-semibold text-lg mb-2">{selectedBattle.title}</h3>
-                <p className="text-sm text-gray-400 mb-4">{selectedBattle.description}</p>
-              </div>
-
-              <div className={`p-4 rounded-xl border ${
-                theme === 'dark' ? 'bg-gray-700/50 border-gray-600' : 'bg-gray-50 border-gray-200'
-              }`}>
-                <div className="space-y-3">
-                  <div className="flex items-center justify-between">
-                    <span className="text-sm">Статус:</span>
-                    <span className={`text-sm font-medium ${
-                      selectedBattle.winner === user.id ? 'text-green-500' : 'text-red-500'
-                    }`}>
-                      {selectedBattle.winner === user.id ? 'Победа' : 'Поражение'}
-                    </span>
-                  </div>
-                  <div className="flex items-center justify-between">
-                    <span className="text-sm">Приз:</span>
-                    <div className="flex items-center gap-1">
-                      <Coins className="w-4 h-4 text-yellow-500" />
-                      <span className="font-medium">{selectedBattle.prize}</span>
+            
+            <div style={{ display: 'flex', flexDirection: 'column', gap: '12px' }}>
+              {userBattles.length > 0 ? (
+                userBattles.map((battle) => (
+                  <div 
+                    key={battle.id} 
+                    style={{
+                      padding: '12px',
+                      backgroundColor: theme === 'dark' ? 'rgba(255, 255, 255, 0.05)' : 'rgba(0, 0, 0, 0.05)',
+                      borderRadius: '12px',
+                      border: theme === 'dark' ? '1px solid rgba(255, 255, 255, 0.1)' : '1px solid rgba(0, 0, 0, 0.1)'
+                    }}
+                  >
+                    <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
+                      <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
+                        <div 
+                          style={{
+                            width: '40px',
+                            height: '40px',
+                            backgroundColor: theme === 'dark' ? 'rgba(255, 255, 255, 0.1)' : 'rgba(0, 0, 0, 0.1)',
+                            borderRadius: '50%',
+                            display: 'flex',
+                            alignItems: 'center',
+                            justifyContent: 'center'
+                          }}
+                        >
+                          <User size={18} style={{ color: theme === 'dark' ? 'rgba(255, 255, 255, 0.7)' : 'rgba(0, 0, 0, 0.7)' }} />
+                        </div>
+                        <div>
+                          <div style={{ fontSize: '14px', fontWeight: '500', color: theme === 'dark' ? '#E8ECF2' : '#0F172A' }}>
+                            {battle.opponent.name || 'Соперник'}
+                          </div>
+                          <div style={{ fontSize: '12px', color: theme === 'dark' ? 'rgba(255, 255, 255, 0.7)' : 'rgba(0, 0, 0, 0.7)' }}>
+                            {battle.opponent.team}
+                          </div>
+                          <div style={{ fontSize: '12px', marginTop: '4px', color: theme === 'dark' ? 'rgba(255, 255, 255, 0.5)' : 'rgba(0, 0, 0, 0.5)' }}>
+                            {new Date(battle.dateCreated).toLocaleDateString('ru-RU')}
+                          </div>
+                        </div>
+                      </div>
+                      
+                      <div style={{ textAlign: 'right' }}>
+                        <div style={{ display: 'flex', alignItems: 'center', gap: '4px', marginBottom: '4px' }}>
+                          {getStatusIcon(battle.status, battle.result)}
+                          <span style={{ 
+                            fontSize: '14px', 
+                            fontWeight: '500',
+                            color: getStatusColor(battle.status, battle.result)
+                          }}>
+                            {getStatusText(battle.status, battle.result)}
+                          </span>
+                        </div>
+                        <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'flex-end', gap: '4px' }}>
+                          <span style={{ fontSize: '14px', color: theme === 'dark' ? 'rgba(255, 255, 255, 0.7)' : 'rgba(0, 0, 0, 0.7)' }}>
+                            {battle.reward}
+                          </span>
+                          <div style={{ 
+                            width: '16px', 
+                            height: '16px', 
+                            backgroundColor: '#FCD34D',
+                            borderRadius: '50%'
+                          }} />
+                        </div>
+                      </div>
                     </div>
                   </div>
-                  <div className="flex items-center justify-between">
-                    <span className="text-sm">Начало:</span>
-                    <span className="text-sm">{selectedBattle.startTime.toLocaleString('ru-RU')}</span>
-                  </div>
-                  <div className="flex items-center justify-between">
-                    <span className="text-sm">Окончание:</span>
-                    <span className="text-sm">{selectedBattle.endTime.toLocaleString('ru-RU')}</span>
-                  </div>
-                  <div className="flex items-center justify-between">
-                    <span className="text-sm">Участников:</span>
-                    <span className="text-sm">{selectedBattle.participants.length}</span>
-                  </div>
+                ))
+              ) : (
+                <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', minHeight: '120px' }}>
+                  <p style={{ 
+                    color: theme === 'dark' ? 'rgba(255, 255, 255, 0.7)' : 'rgba(0, 0, 0, 0.7)',
+                    fontSize: '14px',
+                    textAlign: 'center',
+                    opacity: 0.7
+                  }}>
+                    История баттлов отсутствует
+                  </p>
                 </div>
-              </div>
-
-              <button
-                onClick={() => setIsBattleHistoryOpen(false)}
-                className="w-full py-2 px-4 rounded-xl bg-blue-500 text-white"
-              >
-                Закрыть
-              </button>
+              )}
             </div>
           </div>
         </div>
