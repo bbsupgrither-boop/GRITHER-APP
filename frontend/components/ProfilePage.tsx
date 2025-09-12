@@ -43,6 +43,7 @@ export const ProfilePage: React.FC<ProfilePageProps> = ({
   leaderboard,
   theme,
 }) => {
+  console.log('ProfilePage rendering with:', { user, battles, leaderboard, theme });
   const [activeTab, setActiveTab] = useState<TabType>('overview');
   const [isEditModalOpen, setIsEditModalOpen] = useState(false);
   const [isPhotoUploadOpen, setIsPhotoUploadOpen] = useState(false);
@@ -149,6 +150,8 @@ export const ProfilePage: React.FC<ProfilePageProps> = ({
       // Здесь должен быть вызов onOpenSettings, но пока просто возвращаемся на главную
     }, 100);
   };
+
+  console.log('ProfilePage render start');
 
   return (
     <div className="min-h-screen">

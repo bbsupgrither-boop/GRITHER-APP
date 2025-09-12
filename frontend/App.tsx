@@ -100,6 +100,7 @@ export default function App() {
   }, []);
 
   const handleNavigate = (page: string) => {
+      console.log('Navigating to:', page);
       setCurrentPage(page);
   };
 
@@ -195,6 +196,7 @@ export default function App() {
   };
 
   const renderCurrentPage = () => {
+    console.log('Rendering page:', currentPage);
     switch (currentPage) {
       case 'home':
         return (
@@ -258,6 +260,7 @@ export default function App() {
           />
         );
       case 'profile':
+        console.log('Rendering ProfilePage');
         return (
           <ProfilePage
             onNavigate={handleNavigate} 
