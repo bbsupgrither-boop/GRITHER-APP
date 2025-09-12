@@ -381,7 +381,7 @@ export const HomePage: React.FC<HomePageProps> = ({
             {/* Battle Card */}
             <div 
               onClick={() => setIsAllBattlesModalOpen(true)}
-              className={`p-4 rounded-2xl border transition-all cursor-pointer hover:scale-98 active:scale-96 ${
+              className={`p-4 rounded-2xl border transition-all cursor-pointer hover:scale-[0.98] active:scale-[0.96] ${
                 theme === 'dark' 
                   ? 'bg-gray-800/50 border-gray-700' 
                   : 'bg-white/80 border-gray-200'
@@ -457,7 +457,7 @@ export const HomePage: React.FC<HomePageProps> = ({
             {/* Battle Leaderboard */}
             <div 
               onClick={() => setIsLeaderboardModalOpen(true)}
-              className={`p-4 rounded-2xl border transition-all cursor-pointer hover:scale-98 active:scale-96 ${
+              className={`p-4 rounded-2xl border transition-all cursor-pointer hover:scale-[0.98] active:scale-[0.96] ${
                 theme === 'dark' 
                   ? 'bg-gray-800/50 border-gray-700' 
                   : 'bg-white/80 border-gray-200'
@@ -483,7 +483,7 @@ export const HomePage: React.FC<HomePageProps> = ({
 
               <div className="space-y-2">
                 {sortUsers(mockUsers, sortType).slice(0, 3).map((user, index) => (
-                  <div key={`${user.id}-${sortType}`} className="flex items-center gap-2 text-xs" style={{ animation: 'fadeIn 0.3s ease-in-out' }}>
+                  <div key={`${user.id}-${sortType}`} className="flex items-center gap-2 text-xs fade-in">
                     <span className="font-medium w-4">{index + 1}.</span>
                     <span className="truncate flex-1">{user.name}</span>
                     <span className="text-xs font-medium">
@@ -699,7 +699,11 @@ export const HomePage: React.FC<HomePageProps> = ({
                       )}
                     </div>
                     
-                    <div className="text-xs font-medium text-center line-clamp-2">
+                    <div className="text-xs font-medium text-center overflow-hidden" style={{
+                      display: '-webkit-box',
+                      WebkitLineClamp: 2,
+                      WebkitBoxOrient: 'vertical'
+                    }}>
                       {achievement.title}
                     </div>
                   </div>
@@ -874,8 +878,8 @@ export const HomePage: React.FC<HomePageProps> = ({
             </div>
 
             <div className="space-y-3">
-              {sortUsers(mockUsers, sortType).map((user, index) => (
-                <div key={`${user.id}-${sortType}`} className="flex items-center gap-3 p-3 rounded-xl border">
+                {sortUsers(mockUsers, sortType).map((user, index) => (
+                  <div key={`${user.id}-${sortType}`} className="flex items-center gap-3 p-3 rounded-xl border fade-in">
                   <div className="w-8 h-8 rounded-full bg-blue-500 flex items-center justify-center text-white font-bold text-sm">
                     {index + 1}
                   </div>
