@@ -153,8 +153,9 @@ export const ProfilePage: React.FC<ProfilePageProps> = ({
 
   console.log('ProfilePage render start');
 
-  return (
-    <div className="min-h-screen">
+  try {
+    return (
+      <div className="min-h-screen" style={{ backgroundColor: theme === 'dark' ? '#12151B' : '#F5F7FA' }}>
       <BackgroundFX theme={theme} />
       
       {/* Header без иконки пользователя */}
@@ -164,6 +165,20 @@ export const ProfilePage: React.FC<ProfilePageProps> = ({
         onOpenSettings={handleOpenSettings}
         theme={theme}
       />
+      
+      {/* Отладочный заголовок */}
+      <div style={{ 
+        padding: '20px', 
+        textAlign: 'center',
+        backgroundColor: 'rgba(255, 0, 0, 0.1)',
+        border: '2px solid red',
+        margin: '10px'
+      }}>
+        <h1 style={{ color: 'red', fontSize: '24px' }}>PROFILE PAGE DEBUG</h1>
+        <p style={{ color: 'red' }}>User: {user?.name || 'No user'}</p>
+        <p style={{ color: 'red' }}>Battles: {battles?.length || 0}</p>
+        <p style={{ color: 'red' }}>Theme: {theme}</p>
+      </div>
       
       {/* Основной контейнер */}
       <div className="max-w-md mx-auto px-4 pb-24">
@@ -858,4 +873,21 @@ export const ProfilePage: React.FC<ProfilePageProps> = ({
       )}
     </div>
   );
+  } catch (error) {
+    console.error('ProfilePage render error:', error);
+    return (
+      <div className="min-h-screen flex items-center justify-center">
+        <div className="text-center">
+          <h2 className="text-xl font-semibold mb-4">Ошибка загрузки профиля</h2>
+          <p className="text-gray-600 mb-4">Произошла ошибка при загрузке страницы профиля</p>
+          <button 
+            onClick={() => onNavigate('home')}
+            className="px-4 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600"
+          >
+            Вернуться на главную
+          </button>
+        </div>
+      </div>
+    );
+  }
 };
