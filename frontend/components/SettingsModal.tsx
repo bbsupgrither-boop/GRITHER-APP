@@ -1,5 +1,5 @@
 ﻿import React, { useState, useEffect } from 'react';
-import { X, Bell, Palette, MessageCircle, Shield, Eye, EyeOff, Paperclip } from 'lucide-react';
+import { X, Bell, Palette, MessageCircle, Shield, Eye, EyeOff, Paperclip, ChevronRight } from 'lucide-react';
 
 interface SettingsModalProps {
   isOpen: boolean;
@@ -7,6 +7,7 @@ interface SettingsModalProps {
   theme: 'light' | 'dark';
   onToggleTheme: () => void;
   onNavigate?: (page: string) => void;
+  onOpenAdminPanel?: () => void;
 }
 
 // База данных администраторов
@@ -43,10 +44,12 @@ export const SettingsModal: React.FC<SettingsModalProps> = ({
   onClose,
   theme,
   onToggleTheme,
-  onNavigate
+  onNavigate,
+  onOpenAdminPanel
 }) => {
   const [notifications, setNotifications] = useState(true);
   const [themeToggleCount, setThemeToggleCount] = useState(0);
+  const [adminAuthorized, setAdminAuthorized] = useState(false);
   const [reportModalOpen, setReportModalOpen] = useState(false);
   const [secretCodeModalOpen, setSecretCodeModalOpen] = useState(false);
   const [reportText, setReportText] = useState('');
@@ -60,6 +63,19 @@ export const SettingsModal: React.FC<SettingsModalProps> = ({
     const savedNotifications = localStorage.getItem('notifications');
     if (savedNotifications !== null) {
       setNotifications(JSON.parse(savedNotifications));
+    }
+
+    // Проверяем авторизацию админа
+    const adminData = localStorage.getItem('adminLoginData');
+    if (adminData) {
+      try {
+        const parsedData = JSON.parse(adminData);
+        if (parsedData.telegramId && parsedData.accessCode) {
+          setAdminAuthorized(true);
+        }
+      } catch (error) {
+        console.error('Ошибка при проверке админских данных:', error);
+      }
     }
   }, []);
 
@@ -141,15 +157,21 @@ export const SettingsModal: React.FC<SettingsModalProps> = ({
         loginTime: new Date().toISOString()
       }));
       
-      // Закрываем модалы и очищаем поля
+      // ✅ Устанавливаем флаг авторизации (КНОПКА ПОЯВИТСЯ В НАСТРОЙКАХ)
+      setAdminAuthorized(true);
+      
+      // Закрываем секретный модал и очищаем поля
       setSecretCodeModalOpen(false);
       setTelegramId('');
       setSecretCode('');
       
-      // 🚀 ОТКРЫВАЕМ АДМИН ПАНЕЛЬ
-      onNavigate?.('admin');
-      onClose();
+      console.log('✅ Админ авторизован. Кнопка админ панели появилась в настройках.');
     }
+  };
+
+  const handleAdminPanelClick = () => {
+    onOpenAdminPanel?.();
+    onClose();
   };
 
   if (!isOpen) return null;
@@ -170,13 +192,29 @@ export const SettingsModal: React.FC<SettingsModalProps> = ({
             border: theme === 'dark' ? '1px solid rgba(255, 255, 255, 0.06)' : '1px solid #E6E9EF'
           }}
         >
-          {/* Header */}
+          {/* Заголовок модального окна */}
           <div className="flex items-center justify-between" style={{ marginBottom: '20px' }}>
-            <h3 style={{ fontSize: '18px' }}>Настройки</h3>
+            <h3 style={{ 
+              color: theme === 'dark' ? '#E8ECF2' : '#0F172A',
+              fontSize: '18px',
+              lineHeight: '24px',
+              fontWeight: 'var(--font-weight-medium)'
+            }}>
+              Настройки
+            </h3>
+            
+            {/* Кнопка закрытия - круглая с иконкой X */}
             <button 
-              onClick={onClose} 
-              style={{ width: '32px', height: '32px' }}
-              className="rounded-full flex items-center justify-center hover:bg-gray-100 dark:hover:bg-gray-800"
+              onClick={onClose}
+              style={{
+                width: '32px', height: '32px',
+                borderRadius: '50%',
+                backgroundColor: theme === 'dark' ? '#202734' : '#F3F5F8',
+                border: theme === 'dark' ? '1px solid rgba(255, 255, 255, 0.06)' : '1px solid #E6E9EF',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center'
+              }}
             >
               <X style={{ width: '16px', height: '16px' }} />
             </button>
@@ -186,9 +224,11 @@ export const SettingsModal: React.FC<SettingsModalProps> = ({
           <div style={{
             backgroundColor: theme === 'dark' ? '#161A22' : '#FFFFFF',
             borderRadius: '16px',
+            padding: '0',
             border: theme === 'dark' ? '1px solid rgba(255, 255, 255, 0.06)' : '1px solid #E6E9EF',
             overflow: 'hidden'
           }}>
+            
             {/* 1. НАСТРОЙКА УВЕДОМЛЕНИЙ */}
             <div style={{
               height: '64px',
@@ -197,7 +237,7 @@ export const SettingsModal: React.FC<SettingsModalProps> = ({
               display: 'flex',
               alignItems: 'center'
             }}>
-              {/* Иконка в круглом контейнере */}
+              {/* Иконка колокольчика в круглом контейнере */}
               <div style={{
                 width: '28px', height: '28px',
                 borderRadius: '50%',
@@ -218,7 +258,7 @@ export const SettingsModal: React.FC<SettingsModalProps> = ({
                 </div>
               </div>
               
-              {/* Switch контрол */}
+              {/* Тумблер уведомлений */}
               <label className="relative inline-flex items-center cursor-pointer">
                 <input
                   type="checkbox"
@@ -238,7 +278,7 @@ export const SettingsModal: React.FC<SettingsModalProps> = ({
               display: 'flex',
               alignItems: 'center'
             }}>
-              {/* Иконка в круглом контейнере */}
+              {/* Иконка палитры в круглом контейнере */}
               <div style={{
                 width: '28px', height: '28px',
                 borderRadius: '50%',
@@ -259,7 +299,7 @@ export const SettingsModal: React.FC<SettingsModalProps> = ({
                 </div>
               </div>
               
-              {/* Switch контрол */}
+              {/* Тумблер темы - секретная функция */}
               <label className="relative inline-flex items-center cursor-pointer">
                 <input
                   type="checkbox"
@@ -285,7 +325,7 @@ export const SettingsModal: React.FC<SettingsModalProps> = ({
                 cursor: 'pointer'
               }}
             >
-              {/* Иконка в круглом контейнере */}
+              {/* Иконка сообщения в круглом контейнере */}
               <div style={{
                 width: '28px', height: '28px',
                 borderRadius: '50%',
@@ -306,6 +346,49 @@ export const SettingsModal: React.FC<SettingsModalProps> = ({
                 </div>
               </div>
             </button>
+
+            {/* 4. КНОПКА АДМИН ПАНЕЛИ (ПОЯВЛЯЕТСЯ ПОСЛЕ АВТОРИЗАЦИИ) */}
+            {adminAuthorized && (
+              <button 
+                onClick={handleAdminPanelClick}
+                style={{
+                  height: '64px',
+                  padding: '0 16px',
+                  width: '100%',
+                  display: 'flex',
+                  alignItems: 'center',
+                  backgroundColor: 'transparent',
+                  border: 'none',
+                  cursor: 'pointer'
+                }}
+              >
+                {/* Иконка щита в круглом контейнере */}
+                <div style={{
+                  width: '28px', height: '28px',
+                  borderRadius: '50%',
+                  backgroundColor: theme === 'dark' ? '#0F1116' : '#FFFFFF',
+                  border: theme === 'dark' ? '1px solid #2A2F36' : '1px solid #E6E9EF',
+                  display: 'flex', alignItems: 'center', justifyContent: 'center'
+                }}>
+                  <Shield style={{ width: '18px', height: '18px' }} />
+                </div>
+                
+                {/* Текстовый блок */}
+                <div className="flex-1" style={{ marginLeft: '12px', textAlign: 'left' }}>
+                  <div style={{ fontSize: '16px', color: theme === 'dark' ? '#E8ECF2' : '#0F172A' }}>
+                    Админ панель
+                  </div>
+                  <div style={{ fontSize: '14px', color: theme === 'dark' ? '#A7B0BD' : '#6B7280' }}>
+                    Панель управления системой
+                  </div>
+                </div>
+                
+                {/* Стрелка вправо вместо тумблера */}
+                <div className="w-5 h-5 flex items-center justify-center">
+                  <ChevronRight style={{ width: '16px', height: '16px' }} />
+                </div>
+              </button>
+            )}
           </div>
         </div>
       </div>

@@ -101,7 +101,7 @@ export default function App() {
   };
 
   const handleOpenAdminPanel = () => {
-    setShowAdminPanel(true);
+    setCurrentPage('admin');
   };
 
   const handleCloseAdminPanel = () => {
@@ -319,6 +319,7 @@ export default function App() {
           theme={theme}
           onToggleTheme={toggleTheme}
           onNavigate={handleNavigate}
+          onOpenAdminPanel={handleOpenAdminPanel}
         />
       )}
       
