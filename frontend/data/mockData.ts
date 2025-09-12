@@ -32,12 +32,65 @@ export const mockAchievements: Achievement[] = [
     requirements: {
       type: 'tasks_completed',
       target: 10,
-      current: 0
+      current: 3
     },
     reward: {
       type: 'coins',
       amount: 100
     }
+  },
+  {
+    id: 'ach3',
+    title: 'Воин',
+    description: 'Выиграйте 5 баттлов',
+    category: 'battles',
+    rarity: 'epic',
+    requirements: {
+      type: 'battles_won',
+      target: 5,
+      current: 2
+    },
+    reward: {
+      type: 'coins',
+      amount: 500
+    },
+    conditions: [
+      'Участвуйте в баттлах',
+      'Выиграйте 5 сражений подряд'
+    ]
+  },
+  {
+    id: 'ach4',
+    title: 'Легенда',
+    description: 'Достигните 20 уровня',
+    category: 'progression',
+    rarity: 'legendary',
+    requirements: {
+      type: 'level_reached',
+      target: 20,
+      current: 1
+    },
+    reward: {
+      type: 'badge',
+      amount: 1
+    }
+  },
+  {
+    id: 'ach5',
+    title: 'Покупатель',
+    description: 'Совершите 10 покупок в магазине',
+    category: 'shop',
+    rarity: 'common',
+    requirements: {
+      type: 'shop_purchases',
+      target: 10,
+      current: 7
+    },
+    reward: {
+      type: 'coins',
+      amount: 200
+    },
+    userFile: 'receipt.pdf'
   }
 ];
 
