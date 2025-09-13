@@ -55,27 +55,39 @@ jobs:
 
   deploy-frontend:
     needs: detect-changes
-    if: needs.detect-changes.outputs.frontend == 'true' || needs.detect-changes.outputs.config == 'true'
+    if: needs.detect-changes.outputs.frontend == 'true'
     runs-on: ubuntu-latest
     steps:
       - name: Deploy Frontend
         run: |
           echo "🚀 Frontend deployment triggered"
-          echo "Reason: Frontend changes: ${{ needs.detect-changes.outputs.frontend }}"
-          echo "Reason: Config changes: ${{ needs.detect-changes.outputs.config }}"
-          echo "Render will deploy frontend automatically"
+          echo "Reason: Frontend changes detected"
+          echo "✅ Only frontend will be deployed"
+          echo "Go to Render Dashboard to manually deploy frontend"
 
   deploy-backend:
     needs: detect-changes
-    if: needs.detect-changes.outputs.backend == 'true' || needs.detect-changes.outputs.config == 'true'
+    if: needs.detect-changes.outputs.backend == 'true'
     runs-on: ubuntu-latest
     steps:
       - name: Deploy Backend
         run: |
           echo "🚀 Backend deployment triggered"
-          echo "Reason: Backend changes: ${{ needs.detect-changes.outputs.backend }}"
-          echo "Reason: Config changes: ${{ needs.detect-changes.outputs.config }}"
-          echo "Render will deploy backend automatically"
+          echo "Reason: Backend changes detected"
+          echo "✅ Only backend will be deployed"
+          echo "Go to Render Dashboard to manually deploy backend"
+
+  deploy-config:
+    needs: detect-changes
+    if: needs.detect-changes.outputs.config == 'true'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Deploy Both Services
+        run: |
+          echo "🚀 Config deployment triggered"
+          echo "Reason: Configuration changes detected"
+          echo "✅ Both frontend and backend need to be deployed"
+          echo "Go to Render Dashboard to manually deploy both services"
 
   deploy-summary:
     needs: [detect-changes, deploy-frontend, deploy-backend]
