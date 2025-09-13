@@ -1,0 +1,49 @@
+name: Deploy to Render
+
+on:
+  push:
+    branches: [ main ]
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+      
+      - name: Detect changes
+        id: changes
+        run: |
+          echo "🔍 Detecting changes..."
+          
+          # Check what changed
+          CHANGED_FILES=$(git diff --name-only HEAD~1 HEAD)
+          echo "Changed files:"
+          echo "$CHANGED_FILES"
+          
+          # Check for frontend changes
+          if echo "$CHANGED_FILES" | grep -E '^frontend/|^package\.json$|^render\.yaml$'; then
+            echo "frontend_changed=true" >> $GITHUB_OUTPUT
+            echo "✅ Frontend changes detected"
+          else
+            echo "frontend_changed=false" >> $GITHUB_OUTPUT
+            echo "❌ No frontend changes"
+          fi
+          
+          # Check for backend changes
+          if echo "$CHANGED_FILES" | grep -E '^backend/|^package\.json$|^render\.yaml$'; then
+            echo "backend_changed=true" >> $GITHUB_OUTPUT
+            echo "✅ Backend changes detected"
+          else
+            echo "backend_changed=false" >> $GITHUB_OUTPUT
+            echo "❌ No backend changes"
+          fi
+      
+      - name: Deploy Summary
+        run: |
+          echo "📋 Deploy Summary:"
+          echo "Frontend changes: ${{ steps.changes.outputs.frontend_changed }}"
+          echo "Backend changes: ${{ steps.changes.outputs.backend_changed }}"
+          echo ""
+          echo "🚀 Render will automatically deploy based on render.yaml configuration"
+          echo "This is normal behavior for monorepo setup."
