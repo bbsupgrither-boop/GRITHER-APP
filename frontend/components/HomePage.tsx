@@ -97,14 +97,14 @@ export const HomePage: React.FC<HomePageProps> = ({
         top: '10px',
         left: '10px',
         right: '10px',
-        backgroundColor: 'red',
+        backgroundColor: 'green',
         color: 'white',
         padding: '10px',
         zIndex: 9999,
         fontSize: '12px',
         borderRadius: '8px'
       }}>
-        🔥 HomePage загружен! Theme: {theme}, Achievements: {achievements?.length || 0}
+        ✅ HomePage загружен! Theme: {theme}, Achievements: {achievements?.length || 0}
       </div>
       
       <BackgroundFX theme={theme} />
