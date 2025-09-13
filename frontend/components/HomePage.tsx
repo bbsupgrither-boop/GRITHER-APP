@@ -19,7 +19,8 @@ import {
   Crown,
   Coins,
   Clock,
-  Shield
+  Shield,
+  Bell
 } from 'lucide-react';
 import { Achievement } from '../types/achievements';
 import { Battle, BattleInvitation, User as UserType } from '../types/battles';
@@ -37,17 +38,14 @@ interface HomePageProps {
   onMarkAllNotificationsAsRead: () => void;
   onRemoveNotification: (id: string) => void;
   onClearAllNotifications: () => void;
-  addNotification?: (notification: Omit<Notification, 'id' | 'timestamp' | 'read'>) => void;
   battles: Battle[];
   battleInvitations: BattleInvitation[];
   users: UserType[];
   leaderboard: LeaderboardEntry[];
-  onCreateBattleInvitation?: (invitation: Omit<BattleInvitation, 'id' | 'createdAt' | 'expiresAt' | 'status'>) => void;
+  currentUser?: UserType;
+  onCreateBattle?: () => void;
   onAcceptBattleInvitation?: (invitationId: string) => void;
   onDeclineBattleInvitation?: (invitationId: string) => void;
-  onCompleteBattle?: (battleId: string) => void;
-  onCreateBattle?: () => void;
-  currentUser?: UserType;
 }
 
 export const HomePage: React.FC<HomePageProps> = ({
@@ -55,24 +53,18 @@ export const HomePage: React.FC<HomePageProps> = ({
   currentPage,
   onOpenSettings,
   achievements,
-  profilePhoto,
-  personalBattles,
-  setPersonalBattles,
   theme,
   notifications,
   onMarkNotificationAsRead,
   onMarkAllNotificationsAsRead,
   onRemoveNotification,
   onClearAllNotifications,
-  addNotification,
   battles,
   battleInvitations,
   users,
   leaderboard,
-  onCreateBattleInvitation,
   onAcceptBattleInvitation,
   onDeclineBattleInvitation,
-  onCompleteBattle,
   onCreateBattle,
   currentUser
 }) => {
@@ -81,19 +73,21 @@ export const HomePage: React.FC<HomePageProps> = ({
   const [isAchievementModalOpen, setIsAchievementModalOpen] = useState(false);
   const [isNotificationsModalOpen, setIsNotificationsModalOpen] = useState(false);
 
-  // Подготавливаем данные пользователя для отображения
-  const userDisplayData = {
-    id: currentUser?.id || 'placeholder',
-    name: currentUser?.name || 'Пользователь',
-    username: '@user',
-    level: currentUser?.level || 0,
-    experience: currentUser?.experience || 0,
-    maxExperience: currentUser?.maxExperience || 100,
-    balance: currentUser?.balance || 0,
-    team: currentUser?.team || 'Не указана',
-    role: currentUser?.role || 'user',
-    online: currentUser?.online || false
-  };
+  // Mock data for battles
+  const activeBattles = [
+    { id: '1', opponent: 'Елена Морозова', status: 'active' }
+  ];
+
+  const mockBattleInvitations = [
+    { id: '1', challenger: 'Мария Сидорова', status: 'pending' },
+    { id: '2', challenger: 'Анна Иванова', status: 'pending' }
+  ];
+
+  const mockLeaderboard = [
+    { id: '1', name: 'Петр Петров', level: 18 },
+    { id: '2', name: 'Елена Морозова', level: 16 },
+    { id: '3', name: 'Анна Иванова', level: 15 }
+  ];
 
   return (
     <div 
@@ -135,7 +129,7 @@ export const HomePage: React.FC<HomePageProps> = ({
       >
         <div style={{ display: 'flex', flexDirection: 'column', gap: '12px' }}>
           
-          {/* Achievement Block */}
+          {/* Ваши достижения */}
           <div 
             className="glass-card p-4"
             style={{
@@ -162,64 +156,17 @@ export const HomePage: React.FC<HomePageProps> = ({
               </button>
             </div>
 
-            {achievements && achievements.length > 0 ? (
-              <div className="space-y-3">
-                {achievements.slice(0, 3).map((achievement) => (
-                  <div 
-                    key={achievement.id}
-                    style={{
-                      display: 'flex',
-                      alignItems: 'center',
-                      gap: '12px',
-                      padding: '12px',
-                      backgroundColor: theme === 'dark' ? 'rgba(255, 255, 255, 0.05)' : 'rgba(0, 0, 0, 0.02)',
-                      borderRadius: '12px'
-                    }}
-                  >
-                    <div 
-                      style={{
-                        width: '40px',
-                        height: '40px',
-                        borderRadius: '50%',
-                        backgroundColor: '#2B82FF',
-                        display: 'flex',
-                        alignItems: 'center',
-                        justifyContent: 'center',
-                        fontSize: '18px'
-                      }}
-                    >
-                      ⭐
-                    </div>
-                    <div style={{ flex: 1 }}>
-                      <h4 
-                        style={{ 
-                          fontSize: '14px', 
-                          fontWeight: '600',
-                          color: theme === 'dark' ? '#E8ECF2' : '#0F172A',
-                          marginBottom: '4px'
-                        }}
-                      >
-                        {achievement.title}
-                      </h4>
-                    </div>
-                  </div>
-                ))}
-              </div>
-            ) : (
-              <div 
-                style={{
-                  textAlign: 'center',
-                  padding: '20px',
-                  color: theme === 'dark' ? '#A7B0BD' : '#6B7280',
-                  fontSize: '14px'
-                }}
-              >
-                Нет достижений в процессе
-              </div>
-            )}
+            <div 
+              style={{
+                color: theme === 'dark' ? '#A7B0BD' : '#6B7280',
+                fontSize: '14px'
+              }}
+            >
+              Нет достижений в процессе выполнения
+            </div>
           </div>
 
-          {/* Progress Bar */}
+          {/* Статус/XP/Уровень */}
           <div 
             className="glass-card p-4"
             style={{
@@ -228,34 +175,37 @@ export const HomePage: React.FC<HomePageProps> = ({
             }}
           >
             <div className="flex items-center justify-between mb-3">
-              <div className="flex items-center gap-2">
-                <span 
-                  style={{ 
-                    fontSize: '16px', 
-                    fontWeight: 'bold',
-                    color: theme === 'dark' ? '#E8ECF2' : '#0F172A'
-                  }}
-                >
-                  lvl {currentUser?.level || 1}
-                </span>
-                <span 
-                  style={{ 
-                    fontSize: '12px',
-                    color: theme === 'dark' ? '#A7B0BD' : '#6B7280'
-                  }}
-                >
-                  Опыт
-                </span>
-              </div>
-              
-              <div 
-                style={{
-                  fontSize: '14px',
-                  fontWeight: 'bold',
-                  color: theme === 'dark' ? '#E8ECF2' : '#0F172A'
-                }}
-              >
-                {currentUser?.experience || 0}/{currentUser?.maxExperience || 100} XP
+              <div style={{ display: 'flex', gap: '16px' }}>
+                <div>
+                  <span 
+                    style={{ 
+                      fontSize: '14px',
+                      color: theme === 'dark' ? '#A7B0BD' : '#6B7280'
+                    }}
+                  >
+                    Статус: —
+                  </span>
+                </div>
+                <div>
+                  <span 
+                    style={{ 
+                      fontSize: '14px',
+                      color: theme === 'dark' ? '#A7B0BD' : '#6B7280'
+                    }}
+                  >
+                    XP: —
+                  </span>
+                </div>
+                <div>
+                  <span 
+                    style={{ 
+                      fontSize: '14px',
+                      color: theme === 'dark' ? '#A7B0BD' : '#6B7280'
+                    }}
+                  >
+                    Lvl —
+                  </span>
+                </div>
               </div>
             </div>
 
@@ -264,35 +214,23 @@ export const HomePage: React.FC<HomePageProps> = ({
                 width: '100%',
                 height: '8px',
                 backgroundColor: theme === 'dark' ? 'rgba(255, 255, 255, 0.1)' : 'rgba(0, 0, 0, 0.1)',
-                borderRadius: '4px',
-                overflow: 'hidden'
+                borderRadius: '4px'
               }}
-            >
-              <div 
-                style={{
-                  width: `${((currentUser?.experience || 0) / (currentUser?.maxExperience || 100)) * 100}%`,
-                  height: '100%',
-                  background: 'linear-gradient(90deg, #2B82FF 0%, #40A0FF 100%)',
-                  borderRadius: '4px',
-                  transition: 'width 0.3s ease'
-                }}
-              />
-            </div>
+            />
           </div>
 
-          {/* Battle Card + Leaderboard */}
+          {/* Баттлы и Рейтинг */}
           <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '12px' }}>
             
-            {/* Battle Card */}
+            {/* Баттлы */}
             <div 
-              className="glass-card p-4 cursor-pointer transition-all hover:scale-[0.98]"
-              onClick={() => setIsAllBattlesModalOpen(true)}
+              className="glass-card p-4"
               style={{
                 backgroundColor: theme === 'dark' ? '#161A22' : '#FFFFFF',
                 borderColor: theme === 'dark' ? 'rgba(255, 255, 255, 0.06)' : '#E6E9EF'
               }}
             >
-              <div className="flex items-center justify-between mb-3">
+              <div className="flex items-center justify-between mb-4">
                 <h3 
                   style={{ 
                     fontSize: '16px', 
@@ -304,50 +242,106 @@ export const HomePage: React.FC<HomePageProps> = ({
                 </h3>
                 
                 <button
-                  onClick={(e) => {
-                    e.stopPropagation();
-                    setIsCreateBattleModalOpen(true);
-                  }}
+                  onClick={() => setIsCreateBattleModalOpen(true)}
                   className={`apple-button w-7 h-7 flex items-center justify-center ${theme === 'dark' ? 'white-button' : ''}`}
                 >
                   <Plus className="w-4 h-4" />
                 </button>
               </div>
 
-              {battles && battles.length > 0 ? (
-                <div className="space-y-2">
-                  {battles.slice(0, 2).map((battle) => (
-                    <div 
-                      key={battle.id}
+              {/* Активные баттлы */}
+              <div className="mb-4">
+                <h4 
+                  style={{ 
+                    fontSize: '14px', 
+                    fontWeight: '600',
+                    color: theme === 'dark' ? '#E8ECF2' : '#0F172A',
+                    marginBottom: '8px'
+                  }}
+                >
+                  Активные баттлы
+                </h4>
+                
+                {activeBattles.map((battle) => (
+                  <div 
+                    key={battle.id}
+                    style={{
+                      padding: '8px 12px',
+                      backgroundColor: 'rgba(43, 130, 255, 0.1)',
+                      borderRadius: '8px',
+                      fontSize: '14px',
+                      color: theme === 'dark' ? '#E8ECF2' : '#0F172A',
+                      marginBottom: '4px'
+                    }}
+                  >
+                    {battle.opponent} vs Вы
+                  </div>
+                ))}
+              </div>
+
+              {/* Приглашения */}
+              <div className="mb-4">
+                <h4 
+                  style={{ 
+                    fontSize: '14px', 
+                    fontWeight: '600',
+                    color: theme === 'dark' ? '#E8ECF2' : '#0F172A',
+                    marginBottom: '8px'
+                  }}
+                >
+                  Приглашения
+                </h4>
+                
+                {mockBattleInvitations.map((invitation) => (
+                  <div 
+                    key={invitation.id}
+                    style={{
+                      display: 'flex',
+                      alignItems: 'center',
+                      justifyContent: 'space-between',
+                      padding: '8px 12px',
+                      backgroundColor: theme === 'dark' ? 'rgba(255, 255, 255, 0.05)' : 'rgba(0, 0, 0, 0.02)',
+                      borderRadius: '8px',
+                      marginBottom: '4px'
+                    }}
+                  >
+                    <span 
                       style={{
-                        padding: '8px 12px',
-                        backgroundColor: 'rgba(43, 130, 255, 0.1)',
-                        borderRadius: '8px',
                         fontSize: '14px',
-                        fontWeight: '500',
                         color: theme === 'dark' ? '#E8ECF2' : '#0F172A'
                       }}
                     >
-                      Баттл #{battle.id.slice(0, 6)}
-                    </div>
-                  ))}
-                </div>
-              ) : (
-                <div 
-                  style={{
-                    textAlign: 'center',
-                    padding: '20px 0',
-                    color: theme === 'dark' ? '#A7B0BD' : '#6B7280'
-                  }}
-                >
-                  <div style={{ fontSize: '24px', marginBottom: '8px' }}>⚔️</div>
-                  <div style={{ fontSize: '14px', marginBottom: '4px' }}>Нет активных баттлов</div>
-                  <div style={{ fontSize: '12px' }}>Нажмите + чтобы создать вызов</div>
-                </div>
-              )}
+                      {invitation.challenger}
+                    </span>
+                    <button
+                      style={{
+                        padding: '4px 8px',
+                        backgroundColor: '#FF6B35',
+                        color: 'white',
+                        border: 'none',
+                        borderRadius: '4px',
+                        fontSize: '12px',
+                        fontWeight: '500'
+                      }}
+                    >
+                      вызывает
+                    </button>
+                  </div>
+                ))}
+              </div>
+
+              <div 
+                style={{
+                  fontSize: '12px',
+                  color: theme === 'dark' ? '#A7B0BD' : '#6B7280',
+                  textAlign: 'center'
+                }}
+              >
+                Всего: 3 баттлов
+              </div>
             </div>
 
-            {/* Leaderboard */}
+            {/* Рейтинг */}
             <div 
               className="glass-card p-4"
               style={{
@@ -355,7 +349,7 @@ export const HomePage: React.FC<HomePageProps> = ({
                 borderColor: theme === 'dark' ? 'rgba(255, 255, 255, 0.06)' : '#E6E9EF'
               }}
             >
-              <div className="flex items-center justify-between mb-3">
+              <div className="flex items-center justify-between mb-4">
                 <h3 
                   style={{ 
                     fontSize: '16px', 
@@ -365,63 +359,71 @@ export const HomePage: React.FC<HomePageProps> = ({
                 >
                   Рейтинг
                 </h3>
+                
+                <button className={`apple-button w-7 h-7 flex items-center justify-center ${theme === 'dark' ? 'white-button' : ''}`}>
+                  <Menu className="w-4 h-4" />
+                </button>
               </div>
 
-              {leaderboard && leaderboard.length > 0 ? (
-                <div className="space-y-2">
-                  {leaderboard.slice(0, 3).map((player, index) => (
+              <div 
+                style={{
+                  fontSize: '14px',
+                  color: theme === 'dark' ? '#A7B0BD' : '#6B7280',
+                  marginBottom: '12px'
+                }}
+              >
+                По уровню
+              </div>
+
+              <div className="space-y-2">
+                {mockLeaderboard.map((player, index) => (
+                  <div 
+                    key={player.id}
+                    style={{
+                      display: 'flex',
+                      alignItems: 'center',
+                      gap: '8px',
+                      padding: '8px 12px',
+                      backgroundColor: theme === 'dark' ? 'rgba(255, 255, 255, 0.05)' : 'rgba(0, 0, 0, 0.02)',
+                      borderRadius: '8px'
+                    }}
+                  >
                     <div 
-                      key={player.id}
                       style={{
-                        display: 'flex',
-                        alignItems: 'center',
-                        gap: '8px',
-                        padding: '8px 12px',
-                        backgroundColor: theme === 'dark' ? 'rgba(255, 255, 255, 0.05)' : 'rgba(0, 0, 0, 0.02)',
-                        borderRadius: '8px'
+                        fontSize: '14px',
+                        fontWeight: 'bold',
+                        color: theme === 'dark' ? '#E8ECF2' : '#0F172A',
+                        minWidth: '20px'
                       }}
                     >
-                      <div style={{ fontSize: '16px' }}>
-                        {index === 0 ? '🥇' : index === 1 ? '🥈' : '🥉'}
-                      </div>
-                      <div 
-                        style={{
-                          flex: 1,
-                          fontSize: '14px',
-                          fontWeight: '500',
-                          color: theme === 'dark' ? '#E8ECF2' : '#0F172A'
-                        }}
-                      >
-                        {player.name}
-                      </div>
-                      <div 
-                        style={{
-                          fontSize: '12px',
-                          fontWeight: 'bold',
-                          color: theme === 'dark' ? '#A7B0BD' : '#6B7280'
-                        }}
-                      >
-                        Ур.{player.level}
-                      </div>
+                      {index + 1}.
                     </div>
-                  ))}
-                </div>
-              ) : (
-                <div 
-                  style={{
-                    textAlign: 'center',
-                    padding: '20px 0',
-                    color: theme === 'dark' ? '#A7B0BD' : '#6B7280',
-                    fontSize: '14px'
-                  }}
-                >
-                  Нет данных рейтинга
-                </div>
-              )}
+                    <div 
+                      style={{
+                        flex: 1,
+                        fontSize: '14px',
+                        fontWeight: '500',
+                        color: theme === 'dark' ? '#E8ECF2' : '#0F172A'
+                      }}
+                    >
+                      {player.name}
+                    </div>
+                    <div 
+                      style={{
+                        fontSize: '12px',
+                        fontWeight: 'bold',
+                        color: theme === 'dark' ? '#A7B0BD' : '#6B7280'
+                      }}
+                    >
+                      Ур.{player.level}
+                    </div>
+                  </div>
+                ))}
+              </div>
             </div>
           </div>
 
-          {/* Achievement Rewards */}
+          {/* Ачивки */}
           <div 
             className="glass-card p-4"
             style={{
@@ -456,14 +458,16 @@ export const HomePage: React.FC<HomePageProps> = ({
                     width: '48px',
                     height: '48px',
                     borderRadius: '50%',
-                    backgroundColor: '#2B82FF',
+                    backgroundColor: 'transparent',
+                    border: `2px dashed ${theme === 'dark' ? '#A7B0BD' : '#6B7280'}`,
                     display: 'flex',
                     alignItems: 'center',
                     justifyContent: 'center',
-                    fontSize: '20px'
+                    fontSize: '20px',
+                    color: theme === 'dark' ? '#A7B0BD' : '#6B7280'
                   }}
                 >
-                  ⭐
+                  ?
                 </div>
               ))}
             </div>
