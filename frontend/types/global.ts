@@ -16,8 +16,10 @@ export interface User {
   avatar?: string;
   level: number;
   experience: number;
+  maxExperience?: number;
   balance: number;
   team: string;
   role: string;
   online: boolean;
+  telegramId?: number;
 }

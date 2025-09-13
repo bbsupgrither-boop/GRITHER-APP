@@ -162,6 +162,20 @@
   box-shadow: 0 6px 20px rgba(255, 255, 255, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.4);
 }
 
+/* ===== БЕЛЫЕ КНОПКИ В ТЕМНОЙ ТЕМЕ ===== */
+
+.white-button {
+  background: linear-gradient(145deg, #FFFFFF, #E0E0E0) !important;
+  color: #1A1A1A !important;
+  box-shadow: 0 4px 15px rgba(255, 255, 255, 0.2);
+  border: 1px solid rgba(255, 255, 255, 0.1) !important;
+}
+
+.white-button:hover {
+  background: linear-gradient(145deg, #F5F5F5, #D5D5D5) !important;
+  box-shadow: 0 6px 20px rgba(255, 255, 255, 0.3) !important;
+}
+
 /* ===== СИСТЕМА ВКЛАДОК (TABS) ===== */
 
 .tab-container {

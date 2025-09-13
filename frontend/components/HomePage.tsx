@@ -374,7 +374,7 @@ export const HomePage: React.FC<HomePageProps> = ({
                     e.stopPropagation();
                     setIsCreateBattleModalOpen(true);
                   }}
-                  className="apple-button absolute top-0 right-0 w-7 h-7 flex items-center justify-center"
+                  className={`apple-button absolute top-0 right-0 w-7 h-7 flex items-center justify-center ${theme === 'dark' ? 'white-button' : ''}`}
                 >
                   <Plus style={{ width: '14px', height: '14px' }} />
                 </button>
@@ -446,7 +446,7 @@ export const HomePage: React.FC<HomePageProps> = ({
                     e.stopPropagation();
                     nextSortType();
                   }}
-                  className="apple-button absolute top-0 right-0 w-7 h-7 flex items-center justify-center"
+                  className={`apple-button absolute top-0 right-0 w-7 h-7 flex items-center justify-center ${theme === 'dark' ? 'white-button' : ''}`}
                 >
                   <Menu style={{ width: '14px', height: '14px' }} />
                 </button>
@@ -546,7 +546,7 @@ export const HomePage: React.FC<HomePageProps> = ({
             <div className="relative mb-6">
               <button 
                 onClick={() => setIsAchievementModalOpen(false)}
-                className="apple-button p-2"
+                className={`apple-button p-2 ${theme === 'dark' ? 'white-button' : ''}`}
               >
                 <ArrowLeft className="w-4 h-4" />
               </button>
