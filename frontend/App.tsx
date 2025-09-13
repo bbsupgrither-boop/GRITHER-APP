@@ -200,29 +200,24 @@ export default function App() {
       case 'home':
         return (
           <HomePage
-          onNavigate={handleNavigate} 
-          currentPage={currentPage} 
-          onOpenSettings={handleOpenSettings}
-          achievements={achievements}
-          profilePhoto={profilePhoto}
-            personalBattles={personalBattles}
-            setPersonalBattles={setPersonalBattles}
+            onNavigate={handleNavigate} 
+            currentPage={currentPage} 
+            onOpenSettings={handleOpenSettings}
+            achievements={achievements}
             theme={theme}
-          notifications={notifications}
+            notifications={notifications}
             onMarkNotificationAsRead={handleMarkNotificationAsRead}
             onMarkAllNotificationsAsRead={handleMarkAllNotificationsAsRead}
             onRemoveNotification={handleRemoveNotification}
             onClearAllNotifications={handleClearAllNotifications}
-            addNotification={handleAddNotification}
             battles={battles}
             battleInvitations={battleInvitations}
             users={users}
             leaderboard={leaderboard}
-            onCreateBattleInvitation={handleCreateBattleInvitation}
+            currentUser={currentUser || undefined}
+            onCreateBattle={() => handleNavigate('battles')}
             onAcceptBattleInvitation={handleAcceptBattleInvitation}
             onDeclineBattleInvitation={handleDeclineBattleInvitation}
-            onCompleteBattle={handleCompleteBattle}
-            currentUser={currentUser}
           />
         );
       case 'achievements':
@@ -291,7 +286,7 @@ export default function App() {
           setBattleInvitations={setBattleInvitations}
           users={users}
             setUsers={setUsers}
-            currentUser={currentUser}
+            currentUser={currentUser || undefined}
             setCurrentUser={setCurrentUser}
             onCreateBattleInvitation={handleCreateBattleInvitation}
             onAcceptBattleInvitation={handleAcceptBattleInvitation}
@@ -303,29 +298,24 @@ export default function App() {
       default:
         return (
           <HomePage
-          onNavigate={handleNavigate} 
-          currentPage={currentPage} 
-          onOpenSettings={handleOpenSettings}
-          achievements={achievements}
-          profilePhoto={profilePhoto}
-          personalBattles={personalBattles}
-          setPersonalBattles={setPersonalBattles}
+            onNavigate={handleNavigate} 
+            currentPage={currentPage} 
+            onOpenSettings={handleOpenSettings}
+            achievements={achievements}
             theme={theme}
-          notifications={notifications}
+            notifications={notifications}
             onMarkNotificationAsRead={handleMarkNotificationAsRead}
             onMarkAllNotificationsAsRead={handleMarkAllNotificationsAsRead}
             onRemoveNotification={handleRemoveNotification}
             onClearAllNotifications={handleClearAllNotifications}
-            addNotification={handleAddNotification}
-          battles={battles}
-          battleInvitations={battleInvitations}
-          users={users}
-          leaderboard={leaderboard}
-            onCreateBattleInvitation={handleCreateBattleInvitation}
+            battles={battles}
+            battleInvitations={battleInvitations}
+            users={users}
+            leaderboard={leaderboard}
+            currentUser={currentUser || undefined}
+            onCreateBattle={() => handleNavigate('battles')}
             onAcceptBattleInvitation={handleAcceptBattleInvitation}
             onDeclineBattleInvitation={handleDeclineBattleInvitation}
-            onCompleteBattle={handleCompleteBattle}
-            currentUser={currentUser}
           />
         );
     }
