@@ -196,8 +196,10 @@ export default function App() {
   };
 
   const renderCurrentPage = () => {
+    console.log('🔥 App.tsx: renderCurrentPage called, currentPage:', currentPage);
     switch (currentPage) {
       case 'home':
+        console.log('🔥 App.tsx: Rendering HomePage case');
         return (
           <HomePage
             onNavigate={handleNavigate} 
@@ -296,6 +298,7 @@ export default function App() {
           />
         );
       default:
+        console.log('🔥 App.tsx: Rendering default case (HomePage)');
         return (
           <HomePage
             onNavigate={handleNavigate} 

@@ -54,6 +54,14 @@ export const HomePage: React.FC<HomePageProps> = ({
   onAcceptBattleInvitation,
   onDeclineBattleInvitation
 }) => {
+  // Отладочная информация
+  console.log('🔥 HomePage rendering with:', {
+    theme,
+    achievements: achievements?.length,
+    battles: battles?.length,
+    notifications: notifications?.length,
+    currentUser: currentUser?.name
+  });
   const [isAllBattlesModalOpen, setIsAllBattlesModalOpen] = useState(false);
   const [isCreateBattleModalOpen, setIsCreateBattleModalOpen] = useState(false);
   const [isAchievementsModalOpen, setIsAchievementsModalOpen] = useState(false);
@@ -81,6 +89,22 @@ export const HomePage: React.FC<HomePageProps> = ({
         position: 'relative'
       }}
     >
+      {/* Отладочный блок */}
+      <div style={{
+        position: 'fixed',
+        top: '10px',
+        left: '10px',
+        right: '10px',
+        backgroundColor: 'red',
+        color: 'white',
+        padding: '10px',
+        zIndex: 9999,
+        fontSize: '12px',
+        borderRadius: '8px'
+      }}>
+        🔥 HomePage загружен! Theme: {theme}, Achievements: {achievements?.length || 0}
+      </div>
+      
       <BackgroundFX theme={theme} />
 
       {/* Header */}
