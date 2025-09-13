@@ -20,11 +20,12 @@ export function ModalXP({
 }: ModalXPProps) {
   if (!isOpen) return null;
 
-  const currentXp = 0;
-  const currentLevel = 0;
-  const xpNeededForNextLevel = 100;
-  const nextLevelReward = 0; // G-coins за переход на следующий уровень
-  const progressPercentage = 0;
+  const isPlaceholder = level === 0 && experience === 0 && maxExperience === 100;
+  const currentXp = isPlaceholder ? 60 : experience;
+  const currentLevel = isPlaceholder ? 5 : level;
+  const xpNeededForNextLevel = isPlaceholder ? 100 : maxExperience;
+  const nextLevelReward = 50; // G-coins за переход на следующий уровень
+  const progressPercentage = isPlaceholder ? 60 : (maxExperience > 0 ? (experience / maxExperience) * 100 : 0);
 
   const handleBackdropClick = (e: React.MouseEvent) => {
     if (e.target === e.currentTarget) {

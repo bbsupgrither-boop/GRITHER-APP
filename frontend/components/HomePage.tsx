@@ -2,6 +2,7 @@
 import { Header } from './Header';
 import { BottomNavigation } from './BottomNavigation';
 import { BackgroundFX } from './BackgroundFX';
+<<<<<<< HEAD
 import { Logo } from './Logo';
 import { 
   Trophy, 
@@ -22,6 +23,15 @@ import {
   Shield,
   Bell
 } from 'lucide-react';
+=======
+import { Hero } from './Hero';
+import { AchievementBlock } from './AchievementBlock';
+import { ProgressBar } from './ProgressBar';
+import { BattleCard } from './BattleCard';
+import { BattleLeaderboard } from './BattleLeaderboard';
+import { AchievementRewards } from './AchievementRewards';
+import { ModalXP } from './ModalXP';
+>>>>>>> e85154d23eaa2a469f3f7bfedb36f39213584def
 import { Achievement } from '../types/achievements';
 import { Battle, BattleInvitation, User as UserType } from '../types/battles';
 import { Notification } from '../types/notifications';
@@ -72,6 +82,7 @@ export const HomePage: React.FC<HomePageProps> = ({
   const [isCreateBattleModalOpen, setIsCreateBattleModalOpen] = useState(false);
   const [isAchievementModalOpen, setIsAchievementModalOpen] = useState(false);
   const [isNotificationsModalOpen, setIsNotificationsModalOpen] = useState(false);
+  const [isXPModalOpen, setIsXPModalOpen] = useState(false);
 
   // Mock data for battles
   const activeBattles = [
@@ -97,6 +108,25 @@ export const HomePage: React.FC<HomePageProps> = ({
         position: 'relative'
       }}
     >
+<<<<<<< HEAD
+=======
+      {/* Отладочный блок */}
+      <div style={{
+        position: 'fixed',
+        top: '10px',
+        left: '10px',
+        right: '10px',
+        backgroundColor: 'green',
+        color: 'white',
+        padding: '10px',
+        zIndex: 9999,
+        fontSize: '12px',
+        borderRadius: '8px'
+      }}>
+        🚀 Умный автодеплой работает! Theme: {theme}, Achievements: {achievements?.length || 0}
+      </div>
+      
+>>>>>>> e85154d23eaa2a469f3f7bfedb36f39213584def
       <BackgroundFX theme={theme} />
 
       {/* Header */}
@@ -128,6 +158,7 @@ export const HomePage: React.FC<HomePageProps> = ({
         }}
       >
         <div style={{ display: 'flex', flexDirection: 'column', gap: '12px' }}>
+<<<<<<< HEAD
           
           {/* Ваши достижения */}
           <div 
@@ -155,6 +186,23 @@ export const HomePage: React.FC<HomePageProps> = ({
                 <Eye className="w-4 h-4" />
               </button>
             </div>
+=======
+          {/* Achievement Block */}
+          <AchievementBlock 
+            achievements={achievements}
+            theme={theme}
+            onViewAll={() => setIsAchievementsModalOpen(true)}
+          />
+
+          {/* Progress Bar */}
+          <ProgressBar 
+            level={userDisplayData.level}
+            experience={userDisplayData.experience}
+            maxExperience={userDisplayData.maxExperience}
+            theme={theme}
+            onExperienceClick={() => setIsXPModalOpen(true)}
+          />
+>>>>>>> e85154d23eaa2a469f3f7bfedb36f39213584def
 
             <div 
               style={{
@@ -482,6 +530,19 @@ export const HomePage: React.FC<HomePageProps> = ({
         onNavigate={onNavigate}
         theme={theme}
       />
+<<<<<<< HEAD
+=======
+
+      {/* XP Modal */}
+      <ModalXP 
+        isOpen={isXPModalOpen}
+        onClose={() => setIsXPModalOpen(false)}
+        level={userDisplayData.level}
+        experience={userDisplayData.experience}
+        maxExperience={userDisplayData.maxExperience}
+        theme={theme}
+      />
+>>>>>>> e85154d23eaa2a469f3f7bfedb36f39213584def
     </div>
   );
 };

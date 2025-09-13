@@ -5,6 +5,9 @@ services:
     plan: free
     buildCommand: cd backend && npm install
     startCommand: cd backend && npm start
+    # Умный автодеплой через GitHub Actions
+    branch: main
+    autoDeploy: true
     envVars:
       - key: NODE_ENV
         value: production
@@ -25,6 +28,9 @@ services:
     plan: free
     buildCommand: cd frontend && npm ci && npm run build
     staticPublishPath: ./frontend/dist
+    # Умный автодеплой через GitHub Actions
+    branch: main
+    autoDeploy: true
     envVars:
       - key: VITE_API_URL
         value: https://grither-backend.onrender.com

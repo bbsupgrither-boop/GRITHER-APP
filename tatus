@@ -1,0 +1,11 @@
+[33mcommit 122eeef389fa5cba9481bc64b7fff25984057504[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mmain[m[33m, [m[1;31morigin/main[m[33m, [m[1;31morigin/HEAD[m[33m)[m
+Author: bbsupgrither-boop <bbsupgrither@gmail.com>
+Date:   Sat Sep 13 18:25:52 2025 +0300
+
+    лучшения главной страницы: модалки XP, центрирование текста, прогресс-бар 60%
+
+ frontend/components/BattleCard.tsx  |  2 [32m+[m[31m-[m
+ frontend/components/HomePage.tsx    | 16 [32m++++++++[m[31m---[m
+ frontend/components/ModalXP.tsx     | 11 [32m+++[m[31m----[m
+ frontend/components/ProgressBar.tsx | 57 [32m++++++++++++++++[m[31m---------------------[m
+ 4 files changed, 44 insertions(+), 42 deletions(-)
