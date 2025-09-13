@@ -104,7 +104,7 @@ export const HomePage: React.FC<HomePageProps> = ({
         fontSize: '12px',
         borderRadius: '8px'
       }}>
-        ✅ HomePage загружен! Theme: {theme}, Achievements: {achievements?.length || 0}
+        🚀 Умный автодеплой работает! Theme: {theme}, Achievements: {achievements?.length || 0}
       </div>
       
       <BackgroundFX theme={theme} />
