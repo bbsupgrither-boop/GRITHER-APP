@@ -1,71 +1,99 @@
-﻿import { useState } from 'react';
-import { ModalXP } from './ModalXP';
+﻿import React from 'react';
 
 interface ProgressBarProps {
-  level?: number;
-  experience?: number;
-  maxExperience?: number;
-  showStatus?: boolean;
-  theme?: 'light' | 'dark';
+  level: number;
+  experience: number;
+  maxExperience: number;
+  theme: 'light' | 'dark';
+  onExperienceClick?: () => void;
 }
 
-export function ProgressBar({ 
-  level = 0, 
-  experience = 0, 
-  maxExperience = 100,
-  showStatus = true,
-  theme = 'light'
-}: ProgressBarProps) {
-  const [isXpDialogOpen, setIsXpDialogOpen] = useState(false);
+export const ProgressBar: React.FC<ProgressBarProps> = ({ 
+  level, 
+  experience, 
+  maxExperience, 
+  theme,
+  onExperienceClick 
+}) => {
+  const progressPercentage = maxExperience > 0 ? (experience / maxExperience) * 100 : 0;
+  const isPlaceholder = level === 0 && experience === 0 && maxExperience === 100;
 
   return (
-    <>
-      <div className="glass-card rounded-3xl p-4">
-        <div className="flex items-center mb-4 px-1">
-          {showStatus && (
-            <span className="text-sm flex-1 text-muted-foreground opacity-50">
-              Статус: —
-            </span>
-          )}
-          <button 
-            onClick={() => setIsXpDialogOpen(true)}
-            className="text-sm flex-1 text-center transition-colors cursor-pointer text-muted-foreground opacity-50"
-          >
-            XP: —
-          </button>
+    <div 
+      className="glass-card p-4"
+      style={{
+        backgroundColor: theme === 'dark' ? '#161A22' : '#FFFFFF',
+        borderColor: theme === 'dark' ? 'rgba(255, 255, 255, 0.06)' : '#E6E9EF'
+      }}
+    >
+      <div className="flex items-center justify-between mb-3">
+        <div className="flex items-center gap-2">
           <span 
-            className={`text-sm font-medium text-muted-foreground opacity-50 ${showStatus ? 'flex-1 text-right' : 'ml-auto'}`}
+            style={{ 
+              fontSize: '16px', 
+              fontWeight: 'bold',
+              color: theme === 'dark' ? '#E8ECF2' : '#0F172A'
+            }}
           >
-            lvl —
+            {isPlaceholder ? 'lvl —' : `lvl ${level}`}
+          </span>
+          <span 
+            style={{ 
+              fontSize: '12px',
+              color: theme === 'dark' ? '#A7B0BD' : '#6B7280'
+            }}
+          >
+            {isPlaceholder ? '—' : 'Опыт'}
           </span>
         </div>
-        <div 
-          className="w-full rounded-full h-3"
+        
+        <button
+          onClick={onExperienceClick}
           style={{
-            backgroundColor: theme === 'dark' ? '#0F1116' : '#ECEFF3',
-            border: `1px solid ${theme === 'dark' ? '#2A2F36' : '#E6E9EF'}`
+            fontSize: '14px',
+            fontWeight: 'bold',
+            color: theme === 'dark' ? '#E8ECF2' : '#0F172A',
+            opacity: isPlaceholder ? 0.5 : 1,
+            cursor: isPlaceholder ? 'default' : 'pointer',
+            background: 'none',
+            border: 'none',
+            padding: '4px 8px',
+            borderRadius: '6px',
+            transition: 'background-color 0.2s ease'
+          }}
+          onMouseEnter={(e) => {
+            if (!isPlaceholder) {
+              e.currentTarget.style.backgroundColor = theme === 'dark' ? 'rgba(255, 255, 255, 0.1)' : 'rgba(0, 0, 0, 0.05)';
+            }
+          }}
+          onMouseLeave={(e) => {
+            e.currentTarget.style.backgroundColor = 'transparent';
           }}
         >
-          <div 
-            className="h-3 rounded-full transition-all duration-500 opacity-50" 
-            style={{ 
-              width: '0%',
-              background: theme === 'dark' 
-                ? '#2B82FF'
-                : 'linear-gradient(90deg, #2B82FF 0%, #62A6FF 100%)'
-            }}
-          ></div>
-        </div>
+          {isPlaceholder ? '—' : `${experience}/${maxExperience} XP`}
+        </button>
       </div>
 
-      <ModalXP 
-        isOpen={isXpDialogOpen}
-        onClose={() => setIsXpDialogOpen(false)}
-        level={level}
-        experience={experience}
-        maxExperience={maxExperience}
-        theme={theme}
-      />
-    </>
+      <div 
+        style={{
+          width: '100%',
+          height: '8px',
+          backgroundColor: theme === 'dark' ? 'rgba(255, 255, 255, 0.1)' : 'rgba(0, 0, 0, 0.1)',
+          borderRadius: '4px',
+          overflow: 'hidden',
+          opacity: isPlaceholder ? 0.5 : 1
+        }}
+      >
+        <div 
+          style={{
+            width: `${progressPercentage}%`,
+            height: '100%',
+            background: 'linear-gradient(90deg, #2B82FF 0%, #40A0FF 100%)',
+            borderRadius: '4px',
+            transition: 'width 0.3s ease'
+          }}
+        />
+      </div>
+    </div>
   );
-}
+};

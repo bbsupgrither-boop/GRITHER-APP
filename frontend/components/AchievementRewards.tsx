@@ -1,273 +1,158 @@
-﻿import { useState } from 'react';
-import { Eye, ArrowLeft, Trophy, Star, Award, Medal, Menu, Check } from './Icons';
-import { Dialog, DialogContent, DialogTitle, DialogDescription } from './ui/dialog';
+﻿import React from 'react';
+import { Eye, Trophy } from 'lucide-react';
 import { Achievement } from '../types/achievements';
 
 interface AchievementRewardsProps {
-  achievements?: Achievement[];
-  theme?: 'light' | 'dark';
+  achievements: Achievement[];
+  theme: 'light' | 'dark';
+  onViewAll?: () => void;
 }
 
-export function AchievementRewards({ achievements = [], theme = 'light' }: AchievementRewardsProps) {
-  const [isOpen, setIsOpen] = useState(false);
-  const [isSelectionMode, setIsSelectionMode] = useState(false);
-  const [selectedAchievements, setSelectedAchievements] = useState<string[]>([]);
+export const AchievementRewards: React.FC<AchievementRewardsProps> = ({ 
+  achievements, 
+  theme, 
+  onViewAll 
+}) => {
+  // Получаем последние 5 разблокированных достижений
+  const unlockedAchievements = achievements
+    .filter(achievement => achievement.unlocked)
+    .slice(-5);
 
-  // РџРѕР»СѓС‡Р°РµРј С‚РѕР»СЊРєРѕ РїРѕР»СѓС‡РµРЅРЅС‹Рµ РґРѕСЃС‚РёР¶РµРЅРёСЏ (100% РІС‹РїРѕР»РЅРµРЅРЅС‹Рµ)
-  const completedAchievements = achievements.filter(achievement => {
-    const percentage = (achievement.requirements.current / achievement.requirements.target) * 100;
-    return percentage >= 100;
-  });
+  // Заполняем до 5 слотов (пустые слоты в конце)
+  const slots = [...unlockedAchievements];
+  while (slots.length < 5) {
+    slots.push(null);
+  }
 
-  const getAchievementIcon = (iconName: string, rarity: string) => {
-    const iconClass = "w-6 h-6 text-white";
-    
-    switch (iconName) {
-      case 'trophy':
-        return <Trophy className={iconClass} />;
-      case 'star':
-        return <Star className={iconClass} />;
-      case 'award':
-        return <Award className={iconClass} />;
-      case 'medal':
-        return <Medal className={iconClass} />;
-      default:
-        return <Trophy className={iconClass} />;
+  const getRarityGradient = (rarity?: string) => {
+    switch (rarity) {
+      case 'legendary': 
+        return 'linear-gradient(135deg, #fbbf24 0%, #d97706 100%)';
+      case 'epic': 
+        return 'linear-gradient(135deg, #a855f7 0%, #7c3aed 100%)';
+      case 'rare': 
+        return 'linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%)';
+      case 'common':
+      default: 
+        return 'linear-gradient(135deg, #2B82FF 0%, #1E40AF 100%)';
     }
   };
 
-  // РЎРѕР·РґР°РµРј РјР°СЃСЃРёРІ РёР· 5 СЃР»РѕС‚РѕРІ РґР»СЏ РѕС‚РѕР±СЂР°Р¶РµРЅРёСЏ РЅР° РіР»Р°РІРЅРѕР№
-  const achievementSlots = Array(5).fill(null).map((_, index) => 
-    completedAchievements[index] || null
-  );
-
-  const handleSelectionModeToggle = () => {
-    setIsSelectionMode(!isSelectionMode);
-    if (!isSelectionMode) {
-      // РџСЂРё РІС…РѕРґРµ РІ СЂРµР¶РёРј РІС‹Р±РѕСЂР°, РІС‹Р±РёСЂР°РµРј РїРµСЂРІС‹Рµ 5 РґРѕСЃС‚РёР¶РµРЅРёР№ РїРѕ СѓРјРѕР»С‡Р°РЅРёСЋ
-      setSelectedAchievements(completedAchievements.slice(0, 5).map(a => a.id));
+  const getRarityIcon = (rarity?: string) => {
+    switch (rarity) {
+      case 'legendary': return '👑';
+      case 'epic': return '💜';
+      case 'rare': return '🔵';
+      case 'common':
+      default: return '⭐';
     }
-  };
-
-  const handleConfirmSelection = () => {
-    setIsSelectionMode(false);
-    // Р—РґРµСЃСЊ Р±СѓРґРµС‚ Р»РѕРіРёРєР° СЃРѕС…СЂР°РЅРµРЅРёСЏ РІС‹Р±СЂР°РЅРЅС‹С… РґРѕСЃС‚РёР¶РµРЅРёР№ РґР»СЏ РѕС‚РѕР±СЂР°Р¶РµРЅРёСЏ РЅР° РіР»Р°РІРЅРѕР№
-    console.log('Р’С‹Р±СЂР°РЅРЅС‹Рµ РґРѕСЃС‚РёР¶РµРЅРёСЏ:', selectedAchievements);
-  };
-
-  const handleAchievementToggle = (achievementId: string) => {
-    if (!isSelectionMode) return;
-    
-    setSelectedAchievements(prev => {
-      if (prev.includes(achievementId)) {
-        return prev.filter(id => id !== achievementId);
-      } else if (prev.length < 5) {
-        return [...prev, achievementId];
-      }
-      return prev;
-    });
   };
 
   return (
-    <>
-      <div 
-        className={theme === 'dark' ? 'dark' : ''}
-        style={{
-          backgroundColor: theme === 'dark' ? '#161A22' : '#FFFFFF',
-          borderRadius: '20px',
-          border: theme === 'dark' 
-            ? '1px solid rgba(255, 255, 255, 0.06)' 
-            : '1px solid #E6E9EF',
-          boxShadow: theme === 'dark' 
-            ? '0 8px 24px rgba(0, 0, 0, 0.6)' 
-            : '0 8px 24px rgba(0, 0, 0, 0.10)'
-        }}
-      >
-        {/* Header */}
-        <div className="flex items-center justify-between p-4 pb-0">
-          <div className="w-8 h-8"></div>
-          <h3 
-            className="font-medium flex-1 text-center"
-            style={{ color: theme === 'dark' ? '#E8ECF2' : '#0F172A' }}
-          >
-            РђС‡РёРІРєРё
-          </h3>
-          <button 
-            onClick={() => setIsOpen(true)}
-            className="p-2 rounded-full transition-all hover:scale-105"
-            style={{
-              backgroundColor: theme === 'dark' ? '#0F1116' : '#FFFFFF',
-              border: theme === 'dark' ? '1px solid #2A2F36' : '1px solid #E6E9EF',
-              color: theme === 'dark' ? '#FFFFFF' : '#0F172A'
-            }}
-          >
-            <Eye className="w-4 h-4" />
-          </button>
-        </div>
+    <div 
+      className="glass-card p-4"
+      style={{
+        backgroundColor: theme === 'dark' ? '#161A22' : '#FFFFFF',
+        borderColor: theme === 'dark' ? 'rgba(255, 255, 255, 0.06)' : '#E6E9EF'
+      }}
+    >
+      <div className="flex items-center justify-between mb-4">
+        <h3 
+          style={{ 
+            fontSize: '16px', 
+            fontWeight: 'bold',
+            color: theme === 'dark' ? '#E8ECF2' : '#0F172A'
+          }}
+        >
+          Ачивки
+        </h3>
         
-        <div className="p-4 pt-3">
-          <div className="flex justify-center gap-3">
-            {achievementSlots.map((achievement, index) => (
-              <div
-                key={index}
-                className="flex items-center justify-center"
-              >
-                {achievement ? (
-                  <div 
-                    className="w-12 h-12 rounded-full flex items-center justify-center"
-                    style={{
-                      background: achievement.rarity === 'legendary' 
-                        ? 'linear-gradient(135deg, #fbbf24 0%, #d97706 100%)' 
-                        : achievement.rarity === 'epic' 
-                          ? 'linear-gradient(135deg, #a855f7 0%, #7c3aed 100%)' 
-                          : achievement.rarity === 'rare' 
-                            ? 'linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%)' 
-                            : 'linear-gradient(135deg, #2B82FF 0%, #1E40AF 100%)',
-                      boxShadow: '0 8px 24px rgba(0, 0, 0, 0.10)',
-                      border: '2px solid rgba(255, 255, 255, 0.20)'
-                    }}
-                  >
-                    {getAchievementIcon(achievement.icon, achievement.rarity)}
-                  </div>
-                ) : (
-                  <div 
-                    className="w-12 h-12 rounded-full flex items-center justify-center border-2 border-dashed"
-                    style={{
-                      backgroundColor: theme === 'dark' 
-                        ? 'rgba(167, 176, 189, 0.10)' 
-                        : 'rgba(107, 114, 128, 0.10)',
-                      borderColor: theme === 'dark' 
-                        ? 'rgba(167, 176, 189, 0.30)' 
-                        : 'rgba(107, 114, 128, 0.30)'
-                    }}
-                  >
-                    <Trophy 
-                      style={{ 
-                        width: '20px', 
-                        height: '20px', 
-                        color: theme === 'dark' 
-                          ? 'rgba(167, 176, 189, 0.40)' 
-                          : 'rgba(107, 114, 128, 0.40)' 
-                      }} 
-                    />
-                  </div>
-                )}
-              </div>
-            ))}
-          </div>
-        </div>
+        <button
+          onClick={onViewAll}
+          className={`apple-button w-7 h-7 flex items-center justify-center ${theme === 'dark' ? 'white-button' : ''}`}
+        >
+          <Eye className="w-4 h-4" />
+        </button>
       </div>
 
-      <Dialog open={isOpen} onOpenChange={(open) => {
-        setIsOpen(open);
-        if (!open) {
-          setIsSelectionMode(false);
-          setSelectedAchievements([]);
-        }
-      }}>
-        <DialogContent className="glass-card rounded-3xl border-2 border-border apple-shadow w-[90vw] max-w-md p-0 max-h-[80vh] flex flex-col [&>button]:hidden">
-          <div className="p-6 flex-1 flex flex-col">
-            <div className="relative mb-6">
-              <button 
-                onClick={() => {
-                  setIsOpen(false);
-                  setIsSelectionMode(false);
-                  setSelectedAchievements([]);
-                }}
-                className="absolute left-0 top-0 apple-button p-2 rounded-full hover:scale-105 transition-transform"
-              >
-                <ArrowLeft className="w-4 h-4 text-foreground/70" />
-              </button>
-              
-              <DialogTitle className="text-lg font-medium text-foreground text-center">
-                РџРѕР»СѓС‡РµРЅРЅС‹Рµ Р°С‡РёРІРєРё
-              </DialogTitle>
-
-              {/* РљРЅРѕРїРєР° РІС‹Р±РѕСЂР° (С‚СЂРё Р»РёРЅРёРё) */}
-              {!isSelectionMode && (
-                <button 
-                  onClick={handleSelectionModeToggle}
-                  className="absolute top-0 right-0 apple-button p-2 rounded-full hover:scale-105 transition-transform"
+      <div className="flex justify-center gap-2">
+        {slots.map((achievement, index) => (
+          <div
+            key={index}
+            style={{
+              width: '48px',
+              height: '48px',
+              borderRadius: '50%',
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              fontSize: '20px',
+              position: 'relative'
+            }}
+          >
+            {achievement ? (
+              <>
+                {/* Градиентный фон */}
+                <div 
+                  style={{
+                    position: 'absolute',
+                    inset: 0,
+                    borderRadius: '50%',
+                    background: getRarityGradient(achievement.rarity),
+                    zIndex: 1
+                  }}
+                />
+                
+                {/* Иконка */}
+                <div 
+                  style={{
+                    position: 'relative',
+                    zIndex: 2,
+                    color: 'white',
+                    filter: 'drop-shadow(0 1px 2px rgba(0, 0, 0, 0.3))'
+                  }}
                 >
-                  <Menu className="w-4 h-4 text-foreground/70" />
-                </button>
-              )}
-
-              {/* РљРЅРѕРїРєР° РїРѕРґС‚РІРµСЂР¶РґРµРЅРёСЏ (РіР°Р»РѕС‡РєР°) */}
-              {isSelectionMode && (
-                <button 
-                  onClick={handleConfirmSelection}
-                  className="absolute top-0 right-0 apple-button p-2 rounded-full hover:scale-105 transition-transform"
+                  {getRarityIcon(achievement.rarity)}
+                </div>
+              </>
+            ) : (
+              <>
+                {/* Пустой слот */}
+                <div 
+                  style={{
+                    width: '100%',
+                    height: '100%',
+                    borderRadius: '50%',
+                    border: `2px dashed ${theme === 'dark' ? 'rgba(255, 255, 255, 0.2)' : 'rgba(0, 0, 0, 0.2)'}`,
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    backgroundColor: theme === 'dark' ? 'rgba(255, 255, 255, 0.05)' : 'rgba(0, 0, 0, 0.02)'
+                  }}
                 >
-                  <Check className="w-4 h-4 text-foreground/70" />
-                </button>
-              )}
-            </div>
-            
-            <DialogDescription className="sr-only">
-              РџСЂРѕСЃРјРѕС‚СЂ РІСЃРµС… РїРѕР»СѓС‡РµРЅРЅС‹С… РґРѕСЃС‚РёР¶РµРЅРёР№
-            </DialogDescription>
-
-            {/* РџРѕРґСЃРєР°Р·РєР° РІ СЂРµР¶РёРјРµ РІС‹Р±РѕСЂР° */}
-            {isSelectionMode && (
-              <div className="mb-4 p-3 glass-card rounded-xl border border-primary/30">
-                <p className="text-xs text-center text-muted-foreground">
-                  Р’С‹Р±РµСЂРёС‚Рµ РґРѕ 5 РґРѕСЃС‚РёР¶РµРЅРёР№ РґР»СЏ РѕС‚РѕР±СЂР°Р¶РµРЅРёСЏ РЅР° РіР»Р°РІРЅРѕР№ СЃС‚СЂР°РЅРёС†Рµ
-                </p>
-                <p className="text-xs text-center text-primary mt-1">
-                  Р’С‹Р±СЂР°РЅРѕ: {selectedAchievements.length}/5
-                </p>
-              </div>
+                  <Trophy 
+                    size={20} 
+                    color={theme === 'dark' ? 'rgba(255, 255, 255, 0.3)' : 'rgba(0, 0, 0, 0.3)'}
+                  />
+                </div>
+              </>
             )}
-
-            {/* РЎРµС‚РєР° РїРѕР»СѓС‡РµРЅРЅС‹С… РґРѕСЃС‚РёР¶РµРЅРёР№ */}
-            <div className="flex-1 overflow-y-auto">
-              <div className="grid grid-cols-4 gap-4">
-                {completedAchievements.length > 0 ? (
-                  completedAchievements.map((achievement) => {
-                    const isSelected = selectedAchievements.includes(achievement.id);
-                    const canSelect = selectedAchievements.length < 5 || isSelected;
-                    
-                    return (
-                      <div
-                        key={achievement.id}
-                        className={`flex flex-col items-center gap-2 transition-all duration-200 ${
-                          isSelectionMode 
-                            ? canSelect 
-                              ? 'hover:scale-[0.98] cursor-pointer' 
-                              : 'opacity-50 cursor-not-allowed'
-                            : 'hover:scale-[0.98]'
-                        }`}
-                        onClick={() => isSelectionMode && canSelect && handleAchievementToggle(achievement.id)}
-                      >
-                        <div className={`relative w-16 h-16 ${achievement.rarity === 'legendary' ? 'bg-gradient-to-br from-yellow-400 to-yellow-600' : achievement.rarity === 'epic' ? 'bg-gradient-to-br from-purple-400 to-purple-600' : achievement.rarity === 'rare' ? 'bg-gradient-to-br from-blue-400 to-blue-600' : 'bg-gradient-to-br from-primary to-blue-600'} rounded-full flex items-center justify-center apple-shadow border-2 ${isSelected ? 'border-primary' : 'border-white/20'}`}>
-                          {getAchievementIcon(achievement.icon, achievement.rarity)}
-                          
-                          {/* РРЅРґРёРєР°С‚РѕСЂ РІС‹Р±РѕСЂР° */}
-                          {isSelectionMode && isSelected && (
-                            <div className="absolute -top-1 -right-1 w-5 h-5 bg-primary rounded-full flex items-center justify-center border-2 border-white">
-                              <Check className="w-3 h-3 text-white" />
-                            </div>
-                          )}
-                        </div>
-                        <div className="text-xs font-medium text-foreground text-center line-clamp-2">
-                          {achievement.title}
-                        </div>
-                      </div>
-                    );
-                  })
-                ) : (
-                  <div className="col-span-4 flex items-center justify-center min-h-[120px]">
-                    <p className="text-muted-foreground text-center">
-                      РќРµС‚ РїРѕР»СѓС‡РµРЅРЅС‹С… РґРѕСЃС‚РёР¶РµРЅРёР№
-                    </p>
-                  </div>
-                )}
-              </div>
-            </div>
           </div>
-        </DialogContent>
-      </Dialog>
-    </>
+        ))}
+      </div>
+
+      {unlockedAchievements.length === 0 && (
+        <div 
+          style={{
+            textAlign: 'center',
+            marginTop: '12px',
+            fontSize: '12px',
+            color: theme === 'dark' ? '#A7B0BD' : '#6B7280'
+          }}
+        >
+          Нет разблокированных достижений
+        </div>
+      )}
+    </div>
   );
-}
+};

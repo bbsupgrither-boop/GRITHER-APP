@@ -1,250 +1,171 @@
-﻿import { useState } from 'react';
-import { Eye, ArrowLeft, Trophy, Star, Award, Medal } from './Icons';
-import { Dialog, DialogContent, DialogTitle, DialogDescription } from './ui/dialog';
+﻿import React from 'react';
+import { Eye } from 'lucide-react';
 import { Achievement } from '../types/achievements';
 
 interface AchievementBlockProps {
-  achievements?: Achievement[];
-  theme?: 'light' | 'dark';
+  achievements: Achievement[];
+  theme: 'light' | 'dark';
+  onViewAll?: () => void;
 }
 
-export function AchievementBlock({ achievements = [], theme = 'light' }: AchievementBlockProps) {
-  const [isOpen, setIsOpen] = useState(false);
+export const AchievementBlock: React.FC<AchievementBlockProps> = ({ 
+  achievements, 
+  theme, 
+  onViewAll 
+}) => {
+  // Получаем ТОП-3 достижения в процессе выполнения
+  const inProgressAchievements = achievements
+    .filter(achievement => !achievement.unlocked && achievement.requirements.current > 0)
+    .slice(0, 3);
 
-  // Получаем достижения с прогрессом менее 100%, отсортированные по проценту выполнения (убывание)
-  const achievementsInProgress = achievements
-    .filter(achievement => {
-      const percentage = (achievement.requirements.current / achievement.requirements.target) * 100;
-      return percentage > 0 && percentage < 100;
-    })
-    .sort((a, b) => {
-      const percentA = (a.requirements.current / a.requirements.target) * 100;
-      const percentB = (b.requirements.current / b.requirements.target) * 100;
-      return percentB - percentA;
-    });
-
-  // Топ достижения для отображения на главной странице
-  const topAchievements = achievementsInProgress.slice(0, 3);
-  
-  // Все достижения в прогрессе для модального окна
-  const allProgressAchievements = achievementsInProgress;
-
-  const getProgressPercentage = (current: number, target: number) => {
-    return Math.round((current / target) * 100);
+  const getRarityColor = (rarity?: string) => {
+    switch (rarity) {
+      case 'legendary': return '#fbbf24';
+      case 'epic': return '#a855f7';
+      case 'rare': return '#3b82f6';
+      case 'common': 
+      default: return '#2B82FF';
+    }
   };
 
-  const getAchievementIcon = (iconName: string, rarity: string) => {
-    const iconClass = `w-4 h-4 ${rarity === 'legendary' ? 'text-yellow-500' : rarity === 'epic' ? 'text-purple-500' : rarity === 'rare' ? 'text-blue-500' : 'text-primary'}`;
-    
-    switch (iconName) {
-      case 'trophy':
-        return <Trophy className={iconClass} />;
-      case 'star':
-        return <Star className={iconClass} />;
-      case 'award':
-        return <Award className={iconClass} />;
-      case 'medal':
-        return <Medal className={iconClass} />;
-      default:
-        return <Trophy className={iconClass} />;
+  const getRarityIcon = (rarity?: string) => {
+    switch (rarity) {
+      case 'legendary': return '👑';
+      case 'epic': return '💜';
+      case 'rare': return '🔵';
+      case 'common':
+      default: return '⭐';
     }
   };
 
   return (
-    <>
-      <div 
-        className={theme === 'dark' ? 'dark' : ''}
-        style={{
-          backgroundColor: theme === 'dark' ? '#161A22' : '#FFFFFF',
-          borderRadius: '20px',
-          border: theme === 'dark' 
-            ? '1px solid rgba(255, 255, 255, 0.06)' 
-            : '1px solid #E6E9EF',
-          boxShadow: theme === 'dark' 
-            ? '0 8px 24px rgba(0, 0, 0, 0.6)' 
-            : '0 8px 24px rgba(0, 0, 0, 0.10)'
-        }}
-      >
-        {/* Header */}
-        <div className="flex items-center justify-between p-4 pb-0">
-          <div className="w-8 h-8"></div>
-          <h3 
-            className="font-medium flex-1 text-center"
-            style={{ color: theme === 'dark' ? '#E8ECF2' : '#0F172A' }}
-          >
-            Ваши достижения
-          </h3>
-          <button 
-            onClick={() => setIsOpen(true)}
-            className="p-2 rounded-full transition-all hover:scale-105"
-            style={{
-              backgroundColor: theme === 'dark' ? '#0F1116' : '#FFFFFF',
-              border: theme === 'dark' ? '1px solid #2A2F36' : '1px solid #E6E9EF',
-              color: theme === 'dark' ? '#FFFFFF' : '#0F172A'
-            }}
-          >
-            <Eye className="w-4 h-4" />
-          </button>
-        </div>
+    <div 
+      className="glass-card p-4"
+      style={{
+        backgroundColor: theme === 'dark' ? '#161A22' : '#FFFFFF',
+        borderColor: theme === 'dark' ? 'rgba(255, 255, 255, 0.06)' : '#E6E9EF'
+      }}
+    >
+      <div className="flex items-center justify-between mb-4">
+        <h3 
+          style={{ 
+            fontSize: '16px', 
+            fontWeight: 'bold',
+            color: theme === 'dark' ? '#E8ECF2' : '#0F172A'
+          }}
+        >
+          Ваши достижения
+        </h3>
         
-        <div className="p-4 pt-3">
-          <div className="space-y-3">
-            {topAchievements.length > 0 ? (
-              topAchievements.map((achievement) => {
-                const percentage = getProgressPercentage(achievement.requirements.current, achievement.requirements.target);
-                return (
-                  <div
-                    key={achievement.id}
-                    className="relative overflow-hidden"
-                    style={{
-                      backgroundColor: '#FFFFFF',
-                      borderRadius: '16px',
-                      padding: '16px',
-                      border: '1px solid #E6E9EF',
-                      boxShadow: '0 8px 24px rgba(0, 0, 0, 0.10)'
-                    }}
-                  >
-                    {/* Фоновая заливка прогресса */}
-                    <div 
-                      className="absolute inset-0 transition-all duration-300"
-                      style={{ 
-                        width: `${percentage}%`,
-                        backgroundColor: 'rgba(43, 130, 255, 0.10)',
-                        borderRadius: '16px'
-                      }}
-                    />
-                    
-                    {/* Контент */}
-                    <div className="relative flex items-center justify-between">
-                      <div className="flex items-center gap-3">
-                        <div 
-                          className="w-8 h-8 rounded-xl flex items-center justify-center"
-                          style={{
-                            backgroundColor: achievement.rarity === 'legendary' 
-                              ? 'rgba(255, 193, 7, 0.20)' 
-                              : achievement.rarity === 'epic' 
-                                ? 'rgba(156, 39, 176, 0.20)' 
-                                : achievement.rarity === 'rare' 
-                                  ? 'rgba(33, 150, 243, 0.20)' 
-                                  : 'rgba(43, 130, 255, 0.20)'
-                          }}
-                        >
-                          {getAchievementIcon(achievement.icon, achievement.rarity)}
-                        </div>
-                        <div className="flex-1">
-                          <div 
-                            className="font-medium text-sm mb-1"
-                            style={{ color: '#0F172A' }}
-                          >
-                            {achievement.title}
-                          </div>
-                          <div 
-                            className="text-xs"
-                            style={{ color: '#6B7280' }}
-                          >
-                            {achievement.description}
-                          </div>
-                        </div>
-                      </div>
-                      <div 
-                        className="text-sm font-medium ml-2"
-                        style={{ color: '#2B82FF' }}
-                      >
-                        {percentage}%
-                      </div>
-                    </div>
-                  </div>
-                );
-              })
-            ) : (
-              <div className="flex items-center justify-center min-h-[60px]">
-                <p 
-                  className="text-center opacity-70"
-                  style={{ color: '#6B7280' }}
-                >
-                  РќРµС‚ РґРѕСЃС‚РёР¶РµРЅРёР№ РІ РїСЂРѕС†РµСЃСЃРµ РІС‹РїРѕР»РЅРµРЅРёСЏ
-                </p>
-              </div>
-            )}
-          </div>
-        </div>
+        <button
+          onClick={onViewAll}
+          className={`apple-button w-7 h-7 flex items-center justify-center ${theme === 'dark' ? 'white-button' : ''}`}
+        >
+          <Eye className="w-4 h-4" />
+        </button>
       </div>
 
-      <Dialog open={isOpen} onOpenChange={setIsOpen}>
-        <DialogContent className="glass-card rounded-3xl border-2 border-border apple-shadow w-[90vw] max-w-md p-0 max-h-[80vh] flex flex-col [&>button]:hidden">
-          <div className="p-6 flex-1 flex flex-col">
-            <div className="relative mb-6">
-              <button 
-                onClick={() => setIsOpen(false)}
-                className="absolute left-0 top-0 apple-button p-2 rounded-full hover:scale-105 transition-transform"
-              >
-                <ArrowLeft className="w-4 h-4 text-foreground/70" />
-              </button>
-              
-              <DialogTitle className="text-lg font-medium text-foreground text-center">
-                Ваши достижения
-              </DialogTitle>
-            </div>
+      {inProgressAchievements.length > 0 ? (
+        <div className="space-y-3">
+          {inProgressAchievements.map((achievement) => {
+            const progressPercentage = (achievement.requirements.current / achievement.requirements.target) * 100;
             
-            <DialogDescription className="sr-only">
-              РџСЂРѕСЃРјРѕС‚СЂ РІР°С€РёС… С‚РµРєСѓС‰РёС… РґРѕСЃС‚РёР¶РµРЅРёР№ Рё РїСЂРѕРіСЂРµСЃСЃР°
-            </DialogDescription>
-
-            {/* РЎРїРёСЃРѕРє РґРѕСЃС‚РёР¶РµРЅРёР№ */}
-            <div className="flex-1 overflow-y-auto space-y-3">
-              {allProgressAchievements.length > 0 ? (
-                allProgressAchievements.map((achievement) => {
-                  const percentage = getProgressPercentage(achievement.requirements.current, achievement.requirements.target);
-                  return (
-                    <div
-                      key={achievement.id}
-                      className="relative glass-card rounded-2xl p-4 apple-shadow overflow-hidden"
-                    >
-                      {/* Фоновая заливка прогресса */}
-                      <div 
-                        className="absolute inset-0 opacity-20 rounded-2xl transition-all duration-300"
-                        style={{ 
-                          width: `${percentage}%`,
-                          background: `linear-gradient(90deg, rgba(0, 122, 255, 0.2) 0%, rgba(0, 122, 255, 0.1) 100%)`
-                        }}
-                      />
-                      
-                      {/* Контент */}
-                      <div className="relative flex items-center justify-between">
-                        <div className="flex items-center gap-3">
-                          <div className={`w-8 h-8 ${achievement.rarity === 'legendary' ? 'bg-yellow-500/20' : achievement.rarity === 'epic' ? 'bg-purple-500/20' : achievement.rarity === 'rare' ? 'bg-blue-500/20' : 'bg-primary/20'} rounded-xl flex items-center justify-center`}>
-                            {getAchievementIcon(achievement.icon, achievement.rarity)}
-                          </div>
-                          <div className="flex-1">
-                            <div className="font-medium text-foreground text-sm mb-1">
-                              {achievement.title}
-                            </div>
-                            <div className="text-xs text-muted-foreground">
-                              {achievement.description}
-                            </div>
-                            <div className="text-xs text-muted-foreground mt-1">
-                              {achievement.requirements.current}/{achievement.requirements.target}
-                            </div>
-                          </div>
-                        </div>
-                        <div className="text-sm font-medium text-primary ml-2">
-                          {percentage}%
-                        </div>
-                      </div>
-                    </div>
-                  );
-                })
-              ) : (
-                <div className="flex items-center justify-center min-h-[120px]">
-                  <p className="text-muted-foreground text-center">
-                    РќРµС‚ РґРѕСЃС‚РёР¶РµРЅРёР№ РІ РїСЂРѕС†РµСЃСЃРµ РІС‹РїРѕР»РЅРµРЅРёСЏ
-                  </p>
+            return (
+              <div 
+                key={achievement.id}
+                style={{
+                  display: 'flex',
+                  alignItems: 'center',
+                  gap: '12px',
+                  padding: '12px',
+                  backgroundColor: theme === 'dark' ? 'rgba(255, 255, 255, 0.05)' : 'rgba(0, 0, 0, 0.02)',
+                  borderRadius: '12px',
+                  border: `1px solid ${theme === 'dark' ? 'rgba(255, 255, 255, 0.05)' : 'rgba(0, 0, 0, 0.05)'}`
+                }}
+              >
+                {/* Иконка в цветном кружке */}
+                <div 
+                  style={{
+                    width: '40px',
+                    height: '40px',
+                    borderRadius: '50%',
+                    backgroundColor: getRarityColor(achievement.rarity),
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    fontSize: '18px',
+                    flexShrink: 0
+                  }}
+                >
+                  {getRarityIcon(achievement.rarity)}
                 </div>
-              )}
-            </div>
-          </div>
-        </DialogContent>
-      </Dialog>
-    </>
+
+                {/* Информация о достижении */}
+                <div style={{ flex: 1, minWidth: 0 }}>
+                  <h4 
+                    style={{ 
+                      fontSize: '14px', 
+                      fontWeight: '600',
+                      color: theme === 'dark' ? '#E8ECF2' : '#0F172A',
+                      marginBottom: '4px',
+                      overflow: 'hidden',
+                      textOverflow: 'ellipsis',
+                      whiteSpace: 'nowrap'
+                    }}
+                  >
+                    {achievement.title}
+                  </h4>
+                  
+                  {/* Прогресс-бар */}
+                  <div 
+                    style={{
+                      width: '100%',
+                      height: '4px',
+                      backgroundColor: theme === 'dark' ? 'rgba(255, 255, 255, 0.1)' : 'rgba(0, 0, 0, 0.1)',
+                      borderRadius: '2px',
+                      overflow: 'hidden'
+                    }}
+                  >
+                    <div 
+                      style={{
+                        width: `${progressPercentage}%`,
+                        height: '100%',
+                        backgroundColor: getRarityColor(achievement.rarity),
+                        borderRadius: '2px',
+                        transition: 'width 0.3s ease'
+                      }}
+                    />
+                  </div>
+                </div>
+
+                {/* Процент выполнения */}
+                <div 
+                  style={{
+                    fontSize: '12px',
+                    fontWeight: 'bold',
+                    color: getRarityColor(achievement.rarity),
+                    minWidth: '35px',
+                    textAlign: 'right'
+                  }}
+                >
+                  {Math.round(progressPercentage)}%
+                </div>
+              </div>
+            );
+          })}
+        </div>
+      ) : (
+        <div 
+          style={{
+            textAlign: 'center',
+            padding: '20px',
+            color: theme === 'dark' ? '#A7B0BD' : '#6B7280',
+            fontSize: '14px'
+          }}
+        >
+          Нет достижений в процессе
+        </div>
+      )}
+    </div>
   );
-}
+};
