@@ -352,6 +352,7 @@ const CreateTaskModal: React.FC<CreateTaskModalProps> = ({ theme, onClose, onCre
 
   return (
     <div className="fixed inset-0 bg-black/50 flex items-center justify-center"
+         style={{ zIndex: 99999, pointerEvents: 'auto' }}
 style={{ zIndex: 9999, pointerEvents: 'auto' }}>
       <div className={`p-6 rounded-2xl max-w-sm w-full mx-4 ${
         theme === 'dark' ? 'bg-gray-800' : 'bg-white'
@@ -491,6 +492,7 @@ const TaskDetailModal: React.FC<TaskDetailModalProps> = ({
 
   return (
     <div className="fixed inset-0 bg-black/50 flex items-center justify-center"
+         style={{ zIndex: 99999, pointerEvents: 'auto' }}
 style={{ zIndex: 9999, pointerEvents: 'auto' }}>
       <div className={`p-6 rounded-2xl max-w-sm w-full mx-4 max-h-[80vh] overflow-y-auto ${
         theme === 'dark' ? 'bg-gray-800' : 'bg-white'
