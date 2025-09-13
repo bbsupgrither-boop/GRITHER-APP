@@ -21,10 +21,6 @@ export const ProfilePage: React.FC<ProfilePageProps> = ({
   leaderboard,
   theme,
 }) => {
-  console.log('🔥 PROFILE PAGE COMPONENT CALLED 🔥');
-  console.log('ProfilePage rendering with:', { user, battles, leaderboard, theme });
-  console.log('ProfilePage props:', { onNavigate: typeof onNavigate, user: typeof user, theme: typeof theme });
-
   return (
     <div style={{ 
       minHeight: '100vh', 

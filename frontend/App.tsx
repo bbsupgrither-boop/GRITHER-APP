@@ -1,4 +1,4 @@
-﻿import { useState, useEffect, useRef } from 'react';
+﻿import React, { useState, useEffect, useRef } from 'react';
 import { HomePage } from './components/HomePage';
 import { useTelegram } from './utils/telegram';
 import { useTheme } from './hooks/useTheme';
@@ -51,10 +51,6 @@ export default function App() {
   const { theme, toggleTheme, setTheme } = useTheme();
   const [currentPage, setCurrentPage] = useState('home');
   
-  // Отладка изменений currentPage
-  useEffect(() => {
-    console.log('🔥 CURRENT PAGE CHANGED TO:', currentPage);
-  }, [currentPage]);
   const [showSettings, setShowSettings] = useState(false);
   const [showAdminPanel, setShowAdminPanel] = useState(false);
   const [profilePhoto, setProfilePhoto] = useState<string | null>(null);
@@ -105,11 +101,7 @@ export default function App() {
   }, []);
 
   const handleNavigate = (page: string) => {
-      console.log('🔥 HANDLE NAVIGATE CALLED 🔥');
-      console.log('Navigating to:', page);
-      console.log('Page type:', typeof page);
-      setCurrentPage(page);
-      console.log('Current page set to:', page);
+    setCurrentPage(page);
   };
 
   const handleOpenSettings = () => {
@@ -204,14 +196,6 @@ export default function App() {
   };
 
   const renderCurrentPage = () => {
-    console.log('🔥 RENDER CURRENT PAGE CALLED 🔥');
-    console.log('Current page:', currentPage);
-    console.log('Current page type:', typeof currentPage);
-    
-    // Принудительно обновляем компонент при каждом вызове
-    const timestamp = Date.now();
-    console.log('Render timestamp:', timestamp);
-    
     switch (currentPage) {
       case 'home':
         return (
@@ -275,8 +259,6 @@ export default function App() {
           />
         );
       case 'profile':
-        console.log('🔥 ENTERING PROFILE CASE 🔥');
-        console.log('ProfilePage component:', typeof ProfilePage);
         return (
           <ProfilePage
             key={`profile-${Date.now()}`}
