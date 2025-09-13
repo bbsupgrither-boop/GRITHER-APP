@@ -2,6 +2,8 @@
 import { Header } from './Header';
 import { BottomNavigation } from './BottomNavigation';
 import { BackgroundFX } from './BackgroundFX';
+import { User as UserIcon, Edit3, Trophy, Calendar, Zap, Coins } from 'lucide-react';
+import coinIcon from '../assets/coin.svg';
 
 interface ProfilePageProps {
   onNavigate: (page: string) => void;
@@ -27,80 +29,162 @@ export const ProfilePage: React.FC<ProfilePageProps> = ({
   return (
     <div style={{ 
       minHeight: '100vh', 
-      backgroundColor: 'red', // Ярко-красный фон для видимости
-      padding: '20px',
+      backgroundColor: theme === 'dark' ? '#12151B' : '#F5F7FA',
       position: 'relative',
       zIndex: 1000
     }}>
-      {/* ЭКСТРЕННЫЙ ИНДИКАТОР РЕНДЕРА */}
+      <BackgroundFX theme={theme} />
+      
+      {/* Header */}
+      <Header 
+        onNavigate={onNavigate} 
+        hideUserIcon={true}
+        onOpenSettings={() => onNavigate('settings')}
+        theme={theme}
+      />
+      
+      {/* Основной контент */}
       <div style={{
-        position: 'fixed',
-        top: '10px',
-        left: '10px',
-        backgroundColor: 'red',
-        color: 'white',
-        padding: '10px',
-        borderRadius: '5px',
-        zIndex: 9999,
-        fontSize: '14px',
-        fontWeight: 'bold'
-      }}>
-        PROFILE PAGE LOADED! {Date.now()}
-      </div>
-      {/* BackgroundFX убран для отладки */}
-      
-      {/* Header убран для отладки */}
-      
-      {/* ОТЛАДОЧНЫЙ БЛОК */}
-      <div style={{ 
-        padding: '40px', 
-        textAlign: 'center',
-        backgroundColor: 'white',
-        border: '10px solid yellow',
-        margin: '50px auto',
-        borderRadius: '20px',
-        maxWidth: '500px',
-        boxShadow: '0 0 50px rgba(255,255,0,0.8)',
-        zIndex: 9998,
+        maxWidth: '448px',
+        margin: '20px auto',
+        padding: '16px',
+        backgroundColor: theme === 'dark' ? '#161A22' : '#FFFFFF',
+        borderRadius: '16px',
+        border: theme === 'dark' ? '1px solid rgba(255, 255, 255, 0.06)' : '1px solid #E6E9EF',
+        boxShadow: '0 4px 12px rgba(0,0,0,0.1)',
+        color: theme === 'dark' ? '#E8ECF2' : '#0F172A',
+        zIndex: 10,
         position: 'relative'
       }}>
-        <h1 style={{ color: 'red', fontSize: '32px', fontWeight: 'bold', marginBottom: '20px' }}>
-          🔍 PROFILE PAGE WORKS! 🔍
-        </h1>
-        <p style={{ color: 'red', fontSize: '20px', marginBottom: '10px' }}>
-          User: {user?.name || 'No user'}
-        </p>
-        <p style={{ color: 'red', fontSize: '20px', marginBottom: '10px' }}>
-          Battles: {battles?.length || 0}
-        </p>
-        <p style={{ color: 'red', fontSize: '20px', marginBottom: '10px' }}>
-          Theme: {theme}
-        </p>
-        <p style={{ color: 'red', fontSize: '20px', marginBottom: '10px' }}>
-          User ID: {user?.id || 'No ID'}
-        </p>
-        <p style={{ color: 'red', fontSize: '20px', marginBottom: '20px' }}>
-          User Level: {user?.level || 'No level'}
-        </p>
+        <h2 style={{ fontSize: '20px', fontWeight: 'bold', marginBottom: '16px' }}>Профиль пользователя</h2>
         
-        <button 
+        {/* Фото и основная информация */}
+        <div style={{ display: 'flex', alignItems: 'center', gap: '16px', marginBottom: '20px' }}>
+          <div style={{
+            width: '80px',
+            height: '80px',
+            borderRadius: '50%',
+            backgroundColor: '#3B82F6',
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            cursor: 'pointer'
+          }}>
+            <UserIcon size={40} color="white" />
+          </div>
+          <div>
+            <p style={{ fontSize: '18px', fontWeight: 'bold' }}>{user?.name || 'Пользователь'}</p>
+            <p style={{ fontSize: '14px', color: theme === 'dark' ? '#A7B0BD' : '#6B7280' }}>Уровень: {user?.level || 1}</p>
+            <p style={{ fontSize: '14px', color: theme === 'dark' ? '#A7B0BD' : '#6B7280' }}>Команда: {user?.team || 'Не указана'}</p>
+          </div>
+        </div>
+
+        {/* Мои баттлы */}
+        <div style={{ marginBottom: '20px' }}>
+          <h3 style={{ fontSize: '16px', fontWeight: 'bold', marginBottom: '12px', display: 'flex', alignItems: 'center', gap: '8px' }}>
+            <Trophy size={16} color="#3B82F6" />
+            Мои баттлы
+          </h3>
+          <div style={{
+            backgroundColor: theme === 'dark' ? 'rgba(255, 255, 255, 0.05)' : 'rgba(0, 0, 0, 0.05)',
+            borderRadius: '12px',
+            padding: '12px',
+            minHeight: '60px',
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center'
+          }}>
+            <p style={{ color: theme === 'dark' ? '#A7B0BD' : '#6B7280', fontSize: '14px' }}>
+              {battles?.length > 0 ? `Участвовал в ${battles.length} баттлах` : 'Пока нет баттлов'}
+            </p>
+          </div>
+        </div>
+
+        {/* Прогресс уровня */}
+        <div style={{ marginBottom: '20px' }}>
+          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '8px' }}>
+            <span style={{ fontSize: '14px', fontWeight: 'bold' }}>Уровень {user?.level || 1}</span>
+            <span style={{ fontSize: '12px', color: theme === 'dark' ? '#A7B0BD' : '#6B7280' }}>
+              {user?.experience || 0}/{user?.maxExperience || 100} XP
+            </span>
+          </div>
+          <div style={{
+            width: '100%',
+            height: '8px',
+            backgroundColor: theme === 'dark' ? 'rgba(255, 255, 255, 0.1)' : 'rgba(0, 0, 0, 0.1)',
+            borderRadius: '4px',
+            overflow: 'hidden'
+          }}>
+            <div style={{
+              width: `${((user?.experience || 0) / (user?.maxExperience || 100)) * 100}%`,
+              height: '100%',
+              backgroundColor: '#3B82F6',
+              borderRadius: '4px',
+              transition: 'width 0.3s ease'
+            }} />
+          </div>
+        </div>
+
+        {/* Статистика */}
+        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '12px', marginBottom: '20px' }}>
+          <div style={{
+            backgroundColor: theme === 'dark' ? 'rgba(255, 255, 255, 0.05)' : 'rgba(0, 0, 0, 0.05)',
+            borderRadius: '12px',
+            padding: '12px',
+            textAlign: 'center'
+          }}>
+            <div style={{ fontSize: '12px', color: theme === 'dark' ? 'rgba(255, 255, 255, 0.7)' : 'rgba(0, 0, 0, 0.7)', marginBottom: '4px' }}>Побед</div>
+            <div style={{ fontSize: '16px', fontWeight: 'bold' }}>{battles?.filter(b => b.winnerId === user?.id).length || 0}</div>
+          </div>
+          <div style={{
+            backgroundColor: theme === 'dark' ? 'rgba(255, 255, 255, 0.05)' : 'rgba(0, 0, 0, 0.05)',
+            borderRadius: '12px',
+            padding: '12px',
+            textAlign: 'center'
+          }}>
+            <div style={{ fontSize: '12px', color: theme === 'dark' ? 'rgba(255, 255, 255, 0.7)' : 'rgba(0, 0, 0, 0.7)', marginBottom: '4px' }}>Баланс</div>
+            <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '4px', fontSize: '16px', fontWeight: 'bold' }}>
+              {user?.balance || 0} <img src={coinIcon} alt="coins" style={{ width: '16px', height: '16px' }} />
+            </div>
+          </div>
+          <div style={{
+            backgroundColor: theme === 'dark' ? 'rgba(255, 255, 255, 0.05)' : 'rgba(0, 0, 0, 0.05)',
+            borderRadius: '12px',
+            padding: '12px',
+            textAlign: 'center'
+          }}>
+            <div style={{ fontSize: '12px', color: theme === 'dark' ? 'rgba(255, 255, 255, 0.7)' : 'rgba(0, 0, 0, 0.7)', marginBottom: '4px' }}>Ачивки</div>
+            <div style={{ fontSize: '16px', fontWeight: 'bold' }}>0</div>
+          </div>
+        </div>
+
+        <button
           onClick={() => onNavigate('home')}
           style={{
-            padding: '15px 30px',
-            backgroundColor: 'red',
+            width: '100%',
+            padding: '12px',
+            backgroundColor: '#0084FF',
             color: 'white',
+            borderRadius: '8px',
             border: 'none',
-            borderRadius: '10px',
-            fontSize: '18px',
+            cursor: 'pointer',
+            fontSize: '16px',
             fontWeight: 'bold',
-            cursor: 'pointer'
+            transition: 'background-color 0.2s ease'
           }}
+          onMouseEnter={(e) => e.currentTarget.style.backgroundColor = '#006DD9'}
+          onMouseLeave={(e) => e.currentTarget.style.backgroundColor = '#0084FF'}
         >
-          ← ВЕРНУТЬСЯ НА ГЛАВНУЮ
+          Вернуться на главную
         </button>
       </div>
 
-      {/* Bottom Navigation убрана для отладки */}
+      {/* Bottom Navigation */}
+      <BottomNavigation 
+        currentPage="profile"
+        onNavigate={onNavigate}
+        theme={theme}
+      />
     </div>
   );
 };
