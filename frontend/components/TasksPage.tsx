@@ -355,7 +355,16 @@ const CreateTaskModal: React.FC<CreateTaskModalProps> = ({ theme, onClose, onCre
          style={{ 
            zIndex: 99999, 
            pointerEvents: 'auto',
-           backgroundColor: 'rgba(0, 0, 0, 0.95)'
+           backgroundColor: 'rgba(0, 0, 0, 1)',
+           backdropFilter: 'blur(10px)',
+           WebkitBackdropFilter: 'blur(10px)',
+           position: 'fixed',
+           top: 0,
+           left: 0,
+           right: 0,
+           bottom: 0,
+           width: '100vw',
+           height: '100vh'
          }}>
       <div className={`p-6 rounded-2xl max-w-sm w-full mx-4 ${
         theme === 'dark' ? 'bg-gray-800' : 'bg-white'
@@ -498,7 +507,16 @@ const TaskDetailModal: React.FC<TaskDetailModalProps> = ({
          style={{ 
            zIndex: 99999, 
            pointerEvents: 'auto',
-           backgroundColor: 'rgba(0, 0, 0, 0.95)'
+           backgroundColor: 'rgba(0, 0, 0, 1)',
+           backdropFilter: 'blur(10px)',
+           WebkitBackdropFilter: 'blur(10px)',
+           position: 'fixed',
+           top: 0,
+           left: 0,
+           right: 0,
+           bottom: 0,
+           width: '100vw',
+           height: '100vh'
          }}>
       <div className={`p-6 rounded-2xl max-w-sm w-full mx-4 max-h-[80vh] overflow-y-auto ${
         theme === 'dark' ? 'bg-gray-800' : 'bg-white'
