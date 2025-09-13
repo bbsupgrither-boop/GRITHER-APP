@@ -3,7 +3,6 @@ import { Header } from './Header';
 import { BottomNavigation } from './BottomNavigation';
 import { BackgroundFX } from './BackgroundFX';
 import { User as UserIcon, Edit3, Trophy, Calendar, Zap, Coins } from 'lucide-react';
-import coinIcon from '../assets/coin.svg';
 
 interface ProfilePageProps {
   onNavigate: (page: string) => void;
@@ -144,7 +143,7 @@ export const ProfilePage: React.FC<ProfilePageProps> = ({
           }}>
             <div style={{ fontSize: '12px', color: theme === 'dark' ? 'rgba(255, 255, 255, 0.7)' : 'rgba(0, 0, 0, 0.7)', marginBottom: '4px' }}>Баланс</div>
             <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '4px', fontSize: '16px', fontWeight: 'bold' }}>
-              {user?.balance || 0} <img src={coinIcon} alt="coins" style={{ width: '16px', height: '16px' }} />
+              {user?.balance || 0} <Coins size={16} color="#FFD700" />
             </div>
           </div>
           <div style={{
