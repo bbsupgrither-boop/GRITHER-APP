@@ -66,7 +66,7 @@ export const BattleCard: React.FC<BattleCardProps> = ({
                 color: theme === 'dark' ? '#E8ECF2' : '#0F172A'
               }}
             >
-              {battle.participants[0]?.name || 'Игрок 1'} VS {battle.participants[1]?.name || 'Игрок 2'}
+              {battle.participants[0]?.name || 'Игрок 1'} vs {battle.participants[1]?.name || 'Игрок 2'}
             </div>
           ))}
 

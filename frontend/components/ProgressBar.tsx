@@ -15,12 +15,16 @@ export const ProgressBar: React.FC<ProgressBarProps> = ({
   theme,
   onExperienceClick 
 }) => {
-  const progressPercentage = maxExperience > 0 ? (experience / maxExperience) * 100 : 0;
+  // Устанавливаем прогресс на 60% если это плейсхолдер
   const isPlaceholder = level === 0 && experience === 0 && maxExperience === 100;
+  const actualProgress = isPlaceholder ? 60 : (maxExperience > 0 ? (experience / maxExperience) * 100 : 0);
+  const displayExperience = isPlaceholder ? 60 : experience;
+  const displayMaxExperience = isPlaceholder ? 100 : maxExperience;
 
   return (
     <div 
-      className="glass-card p-4"
+      className="glass-card p-4 cursor-pointer transition-all hover:scale-[0.98] active:scale-[0.96]"
+      onClick={onExperienceClick}
       style={{
         backgroundColor: theme === 'dark' ? '#161A22' : '#FFFFFF',
         borderColor: theme === 'dark' ? 'rgba(255, 255, 255, 0.06)' : '#E6E9EF'
@@ -35,7 +39,7 @@ export const ProgressBar: React.FC<ProgressBarProps> = ({
               color: theme === 'dark' ? '#E8ECF2' : '#0F172A'
             }}
           >
-            {isPlaceholder ? 'lvl —' : `lvl ${level}`}
+            {isPlaceholder ? 'lvl 5' : `lvl ${level}`}
           </span>
           <span 
             style={{ 
@@ -43,35 +47,25 @@ export const ProgressBar: React.FC<ProgressBarProps> = ({
               color: theme === 'dark' ? '#A7B0BD' : '#6B7280'
             }}
           >
-            {isPlaceholder ? '—' : 'Опыт'}
+            Опыт
           </span>
         </div>
         
-        <button
-          onClick={onExperienceClick}
-          style={{
-            fontSize: '14px',
-            fontWeight: 'bold',
-            color: theme === 'dark' ? '#E8ECF2' : '#0F172A',
-            opacity: isPlaceholder ? 0.5 : 1,
-            cursor: isPlaceholder ? 'default' : 'pointer',
-            background: 'none',
-            border: 'none',
-            padding: '4px 8px',
-            borderRadius: '6px',
-            transition: 'background-color 0.2s ease'
-          }}
-          onMouseEnter={(e) => {
-            if (!isPlaceholder) {
-              e.currentTarget.style.backgroundColor = theme === 'dark' ? 'rgba(255, 255, 255, 0.1)' : 'rgba(0, 0, 0, 0.05)';
-            }
-          }}
-          onMouseLeave={(e) => {
-            e.currentTarget.style.backgroundColor = 'transparent';
-          }}
-        >
-          {isPlaceholder ? '—' : `${experience}/${maxExperience} XP`}
-        </button>
+        {/* XP по центру блока */}
+        <div className="flex-1 text-center">
+          <span
+            style={{
+              fontSize: '14px',
+              fontWeight: 'bold',
+              color: theme === 'dark' ? '#E8ECF2' : '#0F172A'
+            }}
+          >
+            {displayExperience}/{displayMaxExperience} XP
+          </span>
+        </div>
+        
+        {/* Пустой div для балансировки */}
+        <div style={{ width: '80px' }}></div>
       </div>
 
       <div 
@@ -80,13 +74,12 @@ export const ProgressBar: React.FC<ProgressBarProps> = ({
           height: '8px',
           backgroundColor: theme === 'dark' ? 'rgba(255, 255, 255, 0.1)' : 'rgba(0, 0, 0, 0.1)',
           borderRadius: '4px',
-          overflow: 'hidden',
-          opacity: isPlaceholder ? 0.5 : 1
+          overflow: 'hidden'
         }}
       >
         <div 
           style={{
-            width: `${progressPercentage}%`,
+            width: `${actualProgress}%`,
             height: '100%',
             background: 'linear-gradient(90deg, #2B82FF 0%, #40A0FF 100%)',
             borderRadius: '4px',

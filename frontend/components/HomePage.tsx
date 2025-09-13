@@ -8,6 +8,7 @@ import { ProgressBar } from './ProgressBar';
 import { BattleCard } from './BattleCard';
 import { BattleLeaderboard } from './BattleLeaderboard';
 import { AchievementRewards } from './AchievementRewards';
+import { ModalXP } from './ModalXP';
 import { Achievement } from '../types/achievements';
 import { Battle, BattleInvitation, User as UserType } from '../types/battles';
 import { Notification } from '../types/notifications';
@@ -66,6 +67,7 @@ export const HomePage: React.FC<HomePageProps> = ({
   const [isCreateBattleModalOpen, setIsCreateBattleModalOpen] = useState(false);
   const [isAchievementsModalOpen, setIsAchievementsModalOpen] = useState(false);
   const [isNotificationsModalOpen, setIsNotificationsModalOpen] = useState(false);
+  const [isXPModalOpen, setIsXPModalOpen] = useState(false);
 
   // Подготавливаем данные пользователя для отображения
   const userDisplayData = {
@@ -146,9 +148,7 @@ export const HomePage: React.FC<HomePageProps> = ({
             experience={userDisplayData.experience}
             maxExperience={userDisplayData.maxExperience}
             theme={theme}
-            onExperienceClick={() => {
-              // TODO: Открыть модальное окно с детальной информацией об опыте
-            }}
+            onExperienceClick={() => setIsXPModalOpen(true)}
           />
 
           {/* Battle Card + Leaderboard (2 колонки) */}
@@ -183,7 +183,15 @@ export const HomePage: React.FC<HomePageProps> = ({
         theme={theme}
       />
 
-      {/* Модальные окна будут добавлены позже */}
+      {/* XP Modal */}
+      <ModalXP 
+        isOpen={isXPModalOpen}
+        onClose={() => setIsXPModalOpen(false)}
+        level={userDisplayData.level}
+        experience={userDisplayData.experience}
+        maxExperience={userDisplayData.maxExperience}
+        theme={theme}
+      />
     </div>
   );
 };
