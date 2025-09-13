@@ -124,9 +124,9 @@ export const TasksPage: React.FC<TasksPageProps> = ({
 
   const handleCompleteTask = (taskId: string) => {
     setTasks(tasks.map(task => 
-      task.id === taskId 
+        task.id === taskId
         ? { ...task, completed: true, status: 'completed' }
-        : task
+          : task
     ));
   };
 
@@ -134,7 +134,7 @@ export const TasksPage: React.FC<TasksPageProps> = ({
     const file = event.target.files?.[0];
     if (file) {
       setTasks(tasks.map(task => 
-        task.id === taskId 
+        task.id === taskId
           ? { ...task, attachedFiles: [...(task.attachedFiles || []), file.name] }
           : task
       ));
@@ -211,12 +211,12 @@ export const TasksPage: React.FC<TasksPageProps> = ({
             {filteredTasks.length === 0 ? (
               <div className="text-center py-8">
                 <div className="text-gray-400 mb-2">Нет задач</div>
-                <button
+              <button
                   onClick={() => setIsCreateModalOpen(true)}
                   className="text-blue-500 text-sm"
                 >
                   Создать первую задачу
-                </button>
+              </button>
               </div>
             ) : (
               filteredTasks.map((task) => {
@@ -225,7 +225,7 @@ export const TasksPage: React.FC<TasksPageProps> = ({
                 const timeSpent = timerSeconds[task.id] || 0;
                 
                 return (
-                  <div 
+                  <div
                     key={task.id}
                     onClick={() => handleTaskClick(task)}
                     className={`flex items-center gap-4 p-4 rounded-xl transition-all cursor-pointer hover:scale-98 ${
@@ -254,7 +254,7 @@ export const TasksPage: React.FC<TasksPageProps> = ({
                           </span>
                         </div>
                       )}
-                    </div>
+                          </div>
 
                     {/* Timer and controls */}
                     <div className="flex items-center gap-2">
@@ -263,9 +263,9 @@ export const TasksPage: React.FC<TasksPageProps> = ({
                           {formatTime(timeSpent)}
                         </div>
                       )}
-                      <button
-                        onClick={(e) => {
-                          e.stopPropagation();
+                        <button
+                          onClick={(e) => {
+                            e.stopPropagation();
                           handleTimerToggle(task.id);
                         }}
                         className={`p-2 rounded-full transition-all ${
@@ -279,7 +279,7 @@ export const TasksPage: React.FC<TasksPageProps> = ({
                         ) : (
                           <Play className="w-4 h-4" />
                         )}
-                      </button>
+                        </button>
                     </div>
                   </div>
                 );
@@ -288,7 +288,7 @@ export const TasksPage: React.FC<TasksPageProps> = ({
           </div>
         </div>
       </div>
-      
+
       <BottomNavigation 
         currentPage="tasks"
         onNavigate={onNavigate}
@@ -351,7 +351,8 @@ const CreateTaskModal: React.FC<CreateTaskModalProps> = ({ theme, onClose, onCre
   };
 
   return (
-    <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50">
+    <div className="fixed inset-0 bg-black/50 flex items-center justify-center"
+style={{ zIndex: 9999, pointerEvents: 'auto' }}>
       <div className={`p-6 rounded-2xl max-w-sm w-full mx-4 ${
         theme === 'dark' ? 'bg-gray-800' : 'bg-white'
       }`}>
@@ -489,19 +490,20 @@ const TaskDetailModal: React.FC<TaskDetailModalProps> = ({
   };
 
   return (
-    <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50">
+    <div className="fixed inset-0 bg-black/50 flex items-center justify-center"
+style={{ zIndex: 9999, pointerEvents: 'auto' }}>
       <div className={`p-6 rounded-2xl max-w-sm w-full mx-4 max-h-[80vh] overflow-y-auto ${
         theme === 'dark' ? 'bg-gray-800' : 'bg-white'
       }`}>
         <div className="flex items-center justify-between mb-6">
           <h2 className="text-xl font-semibold">Детали задачи</h2>
-          <button
+                            <button
             onClick={onClose}
             className="p-2 rounded-full hover:bg-gray-100 dark:hover:bg-gray-700"
           >
             <X className="w-5 h-5" />
-          </button>
-        </div>
+                            </button>
+                          </div>
 
         <div className="space-y-6">
           {/* Task Info */}
@@ -509,34 +511,34 @@ const TaskDetailModal: React.FC<TaskDetailModalProps> = ({
             <h3 className="font-medium text-lg mb-2">{task.title}</h3>
             {task.description && (
               <p className="text-sm text-gray-400 mb-4">{task.description}</p>
-            )}
-          </div>
+                  )}
+                </div>
 
           {/* Task Details */}
           <div className={`p-4 rounded-xl border ${
             theme === 'dark' ? 'bg-gray-700/50 border-gray-600' : 'bg-gray-50 border-gray-200'
           }`}>
-            <div className="space-y-3">
+                  <div className="space-y-3">
               <div className="flex items-center justify-between">
                 <span className="text-sm">Дедлайн:</span>
                 <span className="text-sm">{new Date(task.deadline).toLocaleString('ru-RU')}</span>
-              </div>
+                    </div>
               <div className="flex items-center justify-between">
                 <span className="text-sm">Приоритет:</span>
                 <span className={`text-sm ${getPriorityColor(task.priority)}`}>
                   {task.priority === 'high' ? 'Высокий' : 
                    task.priority === 'medium' ? 'Средний' : 'Низкий'}
                 </span>
-              </div>
+                    </div>
               <div className="flex items-center justify-between">
                 <span className="text-sm">Статус:</span>
                 <span className="text-sm">
                   {task.completed ? 'Выполнено' : 
                    task.status === 'in_progress' ? 'В работе' : 'Не начато'}
                 </span>
-              </div>
-            </div>
-          </div>
+                    </div>
+                  </div>
+                </div>
 
           {/* Timer */}
           <div className={`p-4 rounded-xl border ${
@@ -545,8 +547,8 @@ const TaskDetailModal: React.FC<TaskDetailModalProps> = ({
             <div className="flex items-center justify-between mb-3">
               <span className="text-sm font-medium">Время работы</span>
               <span className="text-sm font-mono">{formatTime(timeSpent)}</span>
-            </div>
-            <button
+                </div>
+                  <button
               onClick={onTimerToggle}
               className={`w-full py-2 px-4 rounded-xl flex items-center justify-center gap-2 transition-all ${
                 isTimerActive
@@ -565,7 +567,7 @@ const TaskDetailModal: React.FC<TaskDetailModalProps> = ({
                   Запустить
                 </>
               )}
-            </button>
+                  </button>
           </div>
 
           {/* Attached Files */}
@@ -576,12 +578,12 @@ const TaskDetailModal: React.FC<TaskDetailModalProps> = ({
               <span className="text-sm font-medium">Прикрепленные файлы</span>
               <label className="p-1 rounded cursor-pointer hover:bg-gray-100 dark:hover:bg-gray-600">
                 <Upload className="w-4 h-4" />
-                <input
-                  type="file"
+              <input
+                type="file"
                   onChange={onFileUpload}
-                  className="hidden"
-                  accept="image/*,video/*,.pdf,.doc,.docx"
-                />
+                className="hidden"
+                accept="image/*,video/*,.pdf,.doc,.docx"
+              />
               </label>
             </div>
             {task.attachedFiles && task.attachedFiles.length > 0 ? (
@@ -596,7 +598,7 @@ const TaskDetailModal: React.FC<TaskDetailModalProps> = ({
             ) : (
               <div className="text-sm text-gray-400">Нет прикрепленных файлов</div>
             )}
-          </div>
+            </div>
 
           {/* Actions */}
           {!task.completed && (
@@ -615,8 +617,8 @@ const TaskDetailModal: React.FC<TaskDetailModalProps> = ({
               </button>
             </div>
           )}
-        </div>
-      </div>
-    </div>
+                      </div>
+                    </div>
+                  </div>
   );
 };

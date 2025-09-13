@@ -136,10 +136,10 @@ export const SettingsModal: React.FC<SettingsModalProps> = ({
       }
       
       // 2️⃣ ПОИСК ПОЛЬЗОВАТЕЛЯ В БАЗЕ
-      const user = ADMIN_USERS.find(u => 
-        u.telegramId === telegramId && u.role === role
-      );
-      
+        const user = ADMIN_USERS.find(u => 
+          u.telegramId === telegramId && u.role === role
+        );
+        
       if (!user) {
         alert(`❌ Пользователь с ID ${telegramId} не найден в роли "${role}"`);
         return;
@@ -149,21 +149,21 @@ export const SettingsModal: React.FC<SettingsModalProps> = ({
       console.log('✅ Админ авторизован:', user);
       
       // Сохраняем данные для AdminPanel
-      localStorage.setItem('adminLoginData', JSON.stringify({
-        telegramId,
+          localStorage.setItem('adminLoginData', JSON.stringify({
+            telegramId,
         accessCode: secretCode,
         role: user.role,
         username: user.username,
         loginTime: new Date().toISOString()
-      }));
-      
+          }));
+          
       // ✅ Устанавливаем флаг авторизации (КНОПКА ПОЯВИТСЯ В НАСТРОЙКАХ)
       setAdminAuthorized(true);
-      
+          
       // Закрываем секретный модал и очищаем поля
-      setSecretCodeModalOpen(false);
-      setTelegramId('');
-      setSecretCode('');
+          setSecretCodeModalOpen(false);
+          setTelegramId('');
+          setSecretCode('');
       
       console.log('✅ Админ авторизован. Кнопка админ панели появилась в настройках.');
     }
@@ -180,8 +180,9 @@ export const SettingsModal: React.FC<SettingsModalProps> = ({
     <>
       {/* Main Settings Modal */}
       <div 
-        className="fixed inset-0 flex items-center justify-center z-50 p-4"
+        className="fixed inset-0 flex items-center justify-center p-4"
         style={{
+          zIndex: 9998,
           backgroundColor: theme === 'dark' ? 'rgba(0, 0, 0, 0.8)' : 'rgba(0, 0, 0, 0.5)'
         }}
       >
@@ -201,24 +202,24 @@ export const SettingsModal: React.FC<SettingsModalProps> = ({
               fontWeight: 'var(--font-weight-medium)'
             }}>
               Настройки
-            </h3>
+          </h3>
             
             {/* Кнопка закрытия - круглая с иконкой X */}
-            <button 
-              onClick={onClose}
-              style={{
+          <button
+            onClick={onClose}
+            style={{
                 width: '32px', height: '32px',
-                borderRadius: '50%',
-                backgroundColor: theme === 'dark' ? '#202734' : '#F3F5F8',
+              borderRadius: '50%',
+              backgroundColor: theme === 'dark' ? '#202734' : '#F3F5F8',
                 border: theme === 'dark' ? '1px solid rgba(255, 255, 255, 0.06)' : '1px solid #E6E9EF',
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'center'
-              }}
-            >
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center'
+            }}
+          >
               <X style={{ width: '16px', height: '16px' }} />
-            </button>
-          </div>
+          </button>
+        </div>
           
           {/* Контейнер настроек */}
           <div style={{
@@ -231,8 +232,8 @@ export const SettingsModal: React.FC<SettingsModalProps> = ({
             
             {/* 1. НАСТРОЙКА УВЕДОМЛЕНИЙ */}
             <div style={{
-              height: '64px',
-              padding: '0 16px',
+                  height: '64px',
+                  padding: '0 16px',
               borderBottom: '1px solid #E6E9EF',
               display: 'flex',
               alignItems: 'center'
@@ -287,8 +288,8 @@ export const SettingsModal: React.FC<SettingsModalProps> = ({
                   }} />
                 </div>
               </label>
-            </div>
-
+                </div>
+                
             {/* 2. НАСТРОЙКА ТЕМЫ (СЕКРЕТНАЯ ФУНКЦИЯ) */}
             <div style={{
               height: '64px',
@@ -306,7 +307,7 @@ export const SettingsModal: React.FC<SettingsModalProps> = ({
                 display: 'flex', alignItems: 'center', justifyContent: 'center'
               }}>
                 <Palette style={{ width: '18px', height: '18px' }} />
-              </div>
+                  </div>
               
               {/* Текстовый блок */}
               <div className="flex-1" style={{ marginLeft: '12px' }}>
@@ -315,7 +316,7 @@ export const SettingsModal: React.FC<SettingsModalProps> = ({
                 </div>
                 <div style={{ fontSize: '14px', color: theme === 'dark' ? '#A7B0BD' : '#6B7280' }}>
                   Переключение темы приложения
-                </div>
+                  </div>
               </div>
               
               {/* Тумблер темы - секретная функция */}
@@ -366,8 +367,8 @@ export const SettingsModal: React.FC<SettingsModalProps> = ({
               {/* Иконка сообщения в круглом контейнере */}
               <div style={{
                 width: '28px', height: '28px',
-                borderRadius: '50%',
-                backgroundColor: theme === 'dark' ? '#0F1116' : '#FFFFFF',
+                  borderRadius: '50%',
+                  backgroundColor: theme === 'dark' ? '#0F1116' : '#FFFFFF',
                 border: theme === 'dark' ? '1px solid #2A2F36' : '1px solid #E6E9EF',
                 display: 'flex', alignItems: 'center', justifyContent: 'center'
               }}>
@@ -389,7 +390,7 @@ export const SettingsModal: React.FC<SettingsModalProps> = ({
             {adminAuthorized && (
               <button 
                 onClick={handleAdminPanelClick}
-                style={{
+                  style={{ 
                   height: '64px',
                   padding: '0 16px',
                   width: '100%',
@@ -418,8 +419,8 @@ export const SettingsModal: React.FC<SettingsModalProps> = ({
                   </div>
                   <div style={{ fontSize: '14px', color: theme === 'dark' ? '#A7B0BD' : '#6B7280' }}>
                     Панель управления системой
-                  </div>
-                </div>
+              </div>
+            </div>
                 
                 {/* Стрелка вправо вместо тумблера */}
                 <div className="w-5 h-5 flex items-center justify-center">
@@ -434,14 +435,15 @@ export const SettingsModal: React.FC<SettingsModalProps> = ({
       {/* Report Modal */}
       {reportModalOpen && (
         <div 
-          className="fixed inset-0 flex items-center justify-center z-60 p-4"
-          style={{
+          className="fixed inset-0 flex items-center justify-center p-4"
+              style={{
+            zIndex: 9999,
             backgroundColor: theme === 'dark' ? 'rgba(0, 0, 0, 0.8)' : 'rgba(0, 0, 0, 0.5)'
           }}
         >
           <div 
             className="w-full max-w-md rounded-2xl p-6"
-            style={{
+              style={{
               backgroundColor: theme === 'dark' ? '#161A22' : '#FFFFFF',
               border: theme === 'dark' ? '1px solid rgba(255, 255, 255, 0.06)' : '1px solid #E6E9EF'
             }}
@@ -453,8 +455,8 @@ export const SettingsModal: React.FC<SettingsModalProps> = ({
                 className="w-8 h-8 rounded-full flex items-center justify-center hover:bg-gray-100 dark:hover:bg-gray-800"
               >
                 <X className="w-4 h-4" />
-              </button>
-            </div>
+            </button>
+          </div>
 
             <textarea
               value={reportText}
@@ -511,8 +513,9 @@ export const SettingsModal: React.FC<SettingsModalProps> = ({
       {/* Secret Admin Code Modal */}
       {secretCodeModalOpen && (
         <div 
-          className="fixed inset-0 flex items-center justify-center z-70 p-4"
+          className="fixed inset-0 flex items-center justify-center p-4"
           style={{
+            zIndex: 10000,
             backgroundColor: theme === 'dark' ? 'rgba(0, 0, 0, 0.9)' : 'rgba(0, 0, 0, 0.7)'
           }}
         >
@@ -539,35 +542,35 @@ export const SettingsModal: React.FC<SettingsModalProps> = ({
             {/* Поле Telegram ID */}
             <div className="mb-4">
               <label className="block text-sm font-medium mb-2">Telegram ID</label>
-              <input
-                type="text"
-                value={telegramId}
-                onChange={(e) => setTelegramId(e.target.value)}
+            <input
+              type="text"
+              value={telegramId}
+              onChange={(e) => setTelegramId(e.target.value)}
                 placeholder="Введите ваш Telegram ID"
                 className="w-full p-3 rounded-xl border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100 focus:outline-none focus:ring-2 focus:ring-blue-500"
-              />
-            </div>
-
+            />
+          </div>
+          
             {/* Поле кода доступа с показом/скрытием */}
             <div className="mb-4">
               <label className="block text-sm font-medium mb-2">Код доступа</label>
-              <div className="relative">
-                <input
-                  type={showPassword ? "text" : "password"}
-                  value={secretCode}
-                  onChange={(e) => setSecretCode(e.target.value)}
+            <div className="relative">
+              <input
+                type={showPassword ? "text" : "password"}
+                value={secretCode}
+                onChange={(e) => setSecretCode(e.target.value)}
                   placeholder="Введите код доступа"
                   className="w-full p-3 pr-12 rounded-xl border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100 focus:outline-none focus:ring-2 focus:ring-blue-500"
-                />
-                <button 
-                  onClick={() => setShowPassword(!showPassword)}
+              />
+              <button
+                onClick={() => setShowPassword(!showPassword)}
                   className="absolute right-3 top-1/2 -translate-y-1/2 p-1"
-                >
+              >
                   {showPassword ? <EyeOff className="w-4 h-4" /> : <Eye className="w-4 h-4" />}
-                </button>
-              </div>
+              </button>
             </div>
-
+          </div>
+          
             <div className="text-center text-xs text-muted mb-4">
               Доступ только для администраторов и тимлидов
             </div>
@@ -575,13 +578,13 @@ export const SettingsModal: React.FC<SettingsModalProps> = ({
             <button 
               onClick={handleSecretCodeSubmit}
               disabled={!telegramId || !secretCode}
-              style={{
+            style={{ 
                 backgroundColor: (telegramId && secretCode) ? '#2B82FF' : '#E6E9EF',
                 cursor: (telegramId && secretCode) ? 'pointer' : 'not-allowed',
                 color: '#FFFFFF'
-              }}
+            }}
               className="w-full px-4 py-3 rounded-xl transition-colors flex items-center justify-center gap-2"
-            >
+          >
               <Shield style={{ width: '18px', height: '18px' }} />
               Войти в админку
             </button>
