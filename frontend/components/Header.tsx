@@ -47,7 +47,10 @@ export const Header: React.FC<HeaderProps> = ({
               transition: 'opacity 0.2s ease',
               zIndex: 101,
               position: 'relative',
-              pointerEvents: 'auto'
+              pointerEvents: 'auto',
+              userSelect: 'none',
+              WebkitUserSelect: 'none',
+              WebkitTouchCallout: 'none'
             }}
             onMouseEnter={(e) => e.currentTarget.style.opacity = '0.8'}
             onMouseLeave={(e) => e.currentTarget.style.opacity = '1'}
@@ -107,7 +110,10 @@ export const Header: React.FC<HeaderProps> = ({
             transition: 'all 0.2s ease',
             zIndex: 101,
             position: 'relative',
-            pointerEvents: 'auto'
+            pointerEvents: 'auto',
+            userSelect: 'none',
+            WebkitUserSelect: 'none',
+            WebkitTouchCallout: 'none'
           }}
           onMouseEnter={(e) => {
             e.currentTarget.style.backgroundColor = theme === 'dark' ? '#2A3140' : '#E8EBF0';

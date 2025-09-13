@@ -35,7 +35,10 @@ export const BottomNavigation: React.FC<BottomNavigationProps> = ({
         marginLeft: '-160px',   // Смещение для точного центрирования
         zIndex: 1000,          // Высокий приоритет над контентом
         width: 'calc(100vw - 48px)',  // Ширина экрана минус отступы по 24px с каждой стороны
-        maxWidth: '320px'             // Максимальная ширина 320px для больших экранов
+        maxWidth: '320px',             // Максимальная ширина 320px для больших экранов
+        userSelect: 'none',
+        WebkitUserSelect: 'none',
+        WebkitTouchCallout: 'none'
       }}
     >
       <div
