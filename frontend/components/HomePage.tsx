@@ -89,6 +89,25 @@ export const HomePage: React.FC<HomePageProps> = ({
   const userExperience = currentUser?.experience || 0;
   const currentLevelData = getCurrentLevelData(userExperience);
 
+  // Sorting state for leaderboard
+  const [leaderboardSort, setLeaderboardSort] = useState<'level' | 'achievements' | 'balance'>('level');
+  
+  const getSortLabel = (sort: string) => {
+    switch (sort) {
+      case 'level': return 'По уровню';
+      case 'achievements': return 'По достижениям';
+      case 'balance': return 'По балансу';
+      default: return 'По уровню';
+    }
+  };
+
+  const cycleSort = () => {
+    const sorts: Array<'level' | 'achievements' | 'balance'> = ['level', 'achievements', 'balance'];
+    const currentIndex = sorts.indexOf(leaderboardSort);
+    const nextIndex = (currentIndex + 1) % sorts.length;
+    setLeaderboardSort(sorts[nextIndex]);
+  };
+
   return (
     <div 
       style={{ 
@@ -111,7 +130,7 @@ export const HomePage: React.FC<HomePageProps> = ({
       <div 
         className="relative w-full"
         style={{
-          height: 'clamp(136px, 150px, 168px)',
+          height: 'clamp(160px, 180px, 200px)',
           zIndex: 15
         }}
       >
@@ -149,19 +168,79 @@ export const HomePage: React.FC<HomePageProps> = ({
               </h3>
               
               <button
+                onClick={() => onNavigate('achievements')}
                 className={`apple-button w-7 h-7 flex items-center justify-center ${theme === 'dark' ? 'white-button' : ''}`}
               >
                 <Eye className="w-4 h-4" />
               </button>
             </div>
 
-            <div 
-              style={{
-                color: theme === 'dark' ? '#A7B0BD' : '#6B7280',
-                fontSize: '14px'
-              }}
-            >
-              Нет достижений в процессе выполнения
+            {/* Mock achievements in progress */}
+            <div className="space-y-3">
+              {[
+                { name: 'Первый шаг', progress: 75, rarity: 'common' },
+                { name: 'Активный участник', progress: 45, rarity: 'rare' },
+                { name: 'Мастер баттлов', progress: 90, rarity: 'epic' }
+              ].map((achievement, index) => (
+                <div key={index} className="flex items-center gap-3">
+                  {/* Achievement icon */}
+                  <div 
+                    className="w-8 h-8 rounded-full flex items-center justify-center text-white text-xs font-bold"
+                    style={{
+                      backgroundColor: achievement.rarity === 'common' ? '#6b7280' : 
+                                     achievement.rarity === 'rare' ? '#3b82f6' :
+                                     achievement.rarity === 'epic' ? '#a855f7' : '#fbbf24'
+                    }}
+                  >
+                    🏆
+                  </div>
+                  
+                  {/* Achievement info */}
+                  <div className="flex-1">
+                    <div 
+                      style={{
+                        fontSize: '14px',
+                        fontWeight: '600',
+                        color: theme === 'dark' ? '#E8ECF2' : '#0F172A',
+                        marginBottom: '2px'
+                      }}
+                    >
+                      {achievement.name}
+                    </div>
+                    
+                    {/* Progress bar */}
+                    <div 
+                      style={{
+                        width: '100%',
+                        height: '6px',
+                        backgroundColor: theme === 'dark' ? '#2A2F36' : '#E6E9EF',
+                        borderRadius: '3px',
+                        overflow: 'hidden'
+                      }}
+                    >
+                      <div 
+                        style={{
+                          width: `${achievement.progress}%`,
+                          height: '100%',
+                          backgroundColor: theme === 'dark' ? '#2B82FF' : '#2B82FF',
+                          borderRadius: '3px',
+                          transition: 'width 0.3s ease'
+                        }}
+                      />
+                    </div>
+                    
+                    <div 
+                      style={{
+                        fontSize: '12px',
+                        color: theme === 'dark' ? '#A7B0BD' : '#6B7280',
+                        marginTop: '2px'
+                      }}
+                    >
+                      {achievement.progress}%
+                    </div>
+                  </div>
+                </div>
+              ))}
             </div>
           </div>
 
@@ -186,14 +265,22 @@ export const HomePage: React.FC<HomePageProps> = ({
                   </span>
                 </div>
                 <div>
-                  <span 
+                  <button
+                    onClick={() => {
+                      // TODO: Open XP modal
+                    }}
                     style={{ 
                       fontSize: '14px',
-                      color: theme === 'dark' ? '#A7B0BD' : '#6B7280'
+                      color: theme === 'dark' ? '#2B82FF' : '#2B82FF',
+                      backgroundColor: 'transparent',
+                      border: 'none',
+                      cursor: 'pointer',
+                      fontWeight: '600',
+                      textDecoration: 'underline'
                     }}
                   >
                     XP: {userExperience}
-                  </span>
+                  </button>
                 </div>
                 <div>
                   <span 
@@ -358,7 +445,10 @@ export const HomePage: React.FC<HomePageProps> = ({
                   Рейтинг
                 </h3>
                 
-                <button className={`apple-button w-7 h-7 flex items-center justify-center ${theme === 'dark' ? 'white-button' : ''}`}>
+                <button 
+                  onClick={cycleSort}
+                  className={`apple-button w-7 h-7 flex items-center justify-center ${theme === 'dark' ? 'white-button' : ''}`}
+                >
                   <Menu className="w-4 h-4" />
                 </button>
               </div>
@@ -370,7 +460,7 @@ export const HomePage: React.FC<HomePageProps> = ({
                   marginBottom: '12px'
                 }}
               >
-                По уровню
+                {getSortLabel(leaderboardSort)}
               </div>
 
               <div className="space-y-2">
@@ -441,6 +531,7 @@ export const HomePage: React.FC<HomePageProps> = ({
               </h3>
               
               <button
+                onClick={() => onNavigate('achievements')}
                 className={`apple-button w-7 h-7 flex items-center justify-center ${theme === 'dark' ? 'white-button' : ''}`}
               >
                 <Eye className="w-4 h-4" />
@@ -448,23 +539,54 @@ export const HomePage: React.FC<HomePageProps> = ({
             </div>
 
             <div className="flex justify-center gap-2">
-              {[1, 2, 3, 4, 5].map((index) => (
+              {[
+                { icon: '🏆', rarity: 'legendary', completed: true },
+                { icon: '🥇', rarity: 'epic', completed: true },
+                { icon: '🥈', rarity: 'rare', completed: true },
+                { icon: '🥉', rarity: 'common', completed: false },
+                { icon: '🎯', rarity: 'common', completed: false }
+              ].map((achievement, index) => (
                 <div
                   key={index}
                   style={{
                     width: '48px',
                     height: '48px',
                     borderRadius: '50%',
-                    backgroundColor: 'transparent',
-                    border: `2px dashed ${theme === 'dark' ? '#A7B0BD' : '#6B7280'}`,
+                    backgroundColor: achievement.completed 
+                      ? (achievement.rarity === 'legendary' ? '#fbbf24' :
+                         achievement.rarity === 'epic' ? '#a855f7' :
+                         achievement.rarity === 'rare' ? '#3b82f6' : '#6b7280')
+                      : 'transparent',
+                    border: achievement.completed 
+                      ? `2px solid ${theme === 'dark' ? '#FFFFFF' : '#000000'}`
+                      : `2px dashed ${theme === 'dark' ? '#A7B0BD' : '#6B7280'}`,
                     display: 'flex',
                     alignItems: 'center',
                     justifyContent: 'center',
                     fontSize: '20px',
-                    color: theme === 'dark' ? '#A7B0BD' : '#6B7280'
+                    color: achievement.completed ? 'white' : (theme === 'dark' ? '#A7B0BD' : '#6B7280'),
+                    position: 'relative',
+                    overflow: 'hidden'
                   }}
                 >
-                  ?
+                  {achievement.completed ? achievement.icon : '?'}
+                  
+                  {/* Rarity glow effect for completed achievements */}
+                  {achievement.completed && (
+                    <div
+                      style={{
+                        position: 'absolute',
+                        inset: '-2px',
+                        borderRadius: '50%',
+                        background: `radial-gradient(circle, ${
+                          achievement.rarity === 'legendary' ? 'rgba(251, 191, 36, 0.3)' :
+                          achievement.rarity === 'epic' ? 'rgba(168, 85, 247, 0.3)' :
+                          achievement.rarity === 'rare' ? 'rgba(59, 130, 246, 0.3)' : 'rgba(107, 114, 128, 0.3)'
+                        } 0%, transparent 70%)`,
+                        zIndex: -1
+                      }}
+                    />
+                  )}
                 </div>
               ))}
             </div>
