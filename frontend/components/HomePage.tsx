@@ -4,7 +4,6 @@ import { BottomNavigation } from './BottomNavigation';
 import { BackgroundFX } from './BackgroundFX';
 import { Logo } from './Logo';
 import { ProductionModal } from './ProductionModal';
-import { initViewport } from '../src/layout/viewport';
 import { 
   Trophy, 
   Eye, 
@@ -97,12 +96,6 @@ export const HomePage: React.FC<HomePageProps> = ({
   // Achievements modal state
   const [isAchievementsModalOpen, setIsAchievementsModalOpen] = useState(false);
   
-  // Initialize viewport manager
-  useEffect(() => {
-    const cleanup = initViewport();
-    return cleanup;
-  }, []);
-  
   const getSortLabel = (sort: string) => {
     switch (sort) {
       case 'level': return 'По уровню';
@@ -122,7 +115,7 @@ export const HomePage: React.FC<HomePageProps> = ({
   return (
     <div 
       style={{ 
-        minHeight: 'var(--vh, 100vh)',
+        minHeight: '100vh',
         backgroundColor: theme === 'dark' ? '#12151B' : '#F5F7FA',
         position: 'relative'
       }}

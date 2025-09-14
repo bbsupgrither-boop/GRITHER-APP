@@ -11,7 +11,6 @@ import { BattlesPageExtended } from './components/BattlesPageExtended';
 import { BackgroundFX } from './components/BackgroundFX';
 import { SettingsModal } from './components/SettingsModal';
 import { AdminPanel } from './components/AdminPanel';
-import Home from './src/pages/Home';
 import { Achievement } from './types/achievements';
 import { ShopItem, Order } from './types/shop';
 import { Task } from './types/tasks';
@@ -363,9 +362,7 @@ export default function App() {
   return (
     <div className={`min-h-screen ${theme === 'dark' ? 'bg-black text-white' : 'bg-white text-black'}`}>
       <BackgroundFX theme={theme} />
-      <div className="app-container">
         {renderCurrentPage()}
-      </div>
       
       {showSettings && (
         <SettingsModal 
