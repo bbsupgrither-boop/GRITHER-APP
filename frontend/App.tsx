@@ -118,7 +118,7 @@ const mockCases: UserCase[] = [
 ];
 
 // Mock user data
-const mockCurrentUser = {
+const initialMockCurrentUser = {
   id: '1',
   name: 'Пользователь',
   level: 1,
@@ -132,6 +132,7 @@ export default function App() {
   const { user, webApp } = useTelegram();
   const { theme, toggleTheme, setTheme, themeToggleCount, resetThemeToggleCount } = useTheme();
   const [currentPage, setCurrentPage] = useState('home');
+  const [mockCurrentUser, setMockCurrentUser] = useState(initialMockCurrentUser);
   
   // Получаем роль пользователя по его ID
   const { user: userWithRole, userRole, teamMembers } = useUserRole(user?.id?.toString() || '');
@@ -166,6 +167,13 @@ export default function App() {
   const [hasSecretAccess, setHasSecretAccess] = useState(false); // Новое состояние для секретного доступа
   const [profilePhoto, setProfilePhoto] = useState<string | null>(null);
   const [personalBattles, setPersonalBattles] = useState<any[]>([]);
+  const [battles, setBattles] = useState<any[]>([]);
+  const [battleInvitations, setBattleInvitations] = useState<any[]>([]);
+  const [leaderboard, setLeaderboard] = useState<any[]>([
+    { id: '1', name: 'Игрок 1', level: 5, experience: 1200, rank: 1 },
+    { id: '2', name: 'Игрок 2', level: 4, experience: 950, rank: 2 },
+    { id: '3', name: 'Игрок 3', level: 3, experience: 780, rank: 3 }
+  ]);
   const [notifications, setNotifications] = useState<Notification[]>(mockNotifications);
   const [achievements, setAchievements] = useState<Achievement[]>(mockAchievements);
   const [shopItems, setShopItems] = useState<ShopItem[]>(mockShopItems);
@@ -247,8 +255,22 @@ export default function App() {
             achievements={achievements}
             setAchievements={setAchievements}
             theme={theme}
-            currentUser={mockCurrentUser}
+            user={mockCurrentUser}
             notifications={notifications}
+            onMarkNotificationAsRead={(id) => {
+              setNotifications(notifications.map(n => 
+                n.id === id ? { ...n, read: true } : n
+              ));
+            }}
+            onMarkAllNotificationsAsRead={() => {
+              setNotifications(notifications.map(n => ({ ...n, read: true })));
+            }}
+            onRemoveNotification={(id) => {
+              setNotifications(notifications.filter(n => n.id !== id));
+            }}
+            onClearAllNotifications={() => {
+              setNotifications([]);
+            }}
             onOpenSettings={handleOpenSettings}
           />
         );
@@ -259,8 +281,22 @@ export default function App() {
             tasks={tasks}
             setTasks={setTasks}
             theme={theme}
-            currentUser={mockCurrentUser}
+            user={mockCurrentUser}
             notifications={notifications}
+            onMarkNotificationAsRead={(id) => {
+              setNotifications(notifications.map(n => 
+                n.id === id ? { ...n, read: true } : n
+              ));
+            }}
+            onMarkAllNotificationsAsRead={() => {
+              setNotifications(notifications.map(n => ({ ...n, read: true })));
+            }}
+            onRemoveNotification={(id) => {
+              setNotifications(notifications.filter(n => n.id !== id));
+            }}
+            onClearAllNotifications={() => {
+              setNotifications([]);
+            }}
             onOpenSettings={handleOpenSettings}
           />
         );
@@ -268,13 +304,34 @@ export default function App() {
         return (
           <CasesShopPage
             onNavigate={handleNavigate}
+            cases={userCases}
+            setCases={setUserCases}
+            userCases={userCases}
+            setUserCases={setUserCases}
             shopItems={shopItems}
             setShopItems={setShopItems}
-            orders={orders}
-            setOrders={setOrders}
+            userCoins={mockCurrentUser.gCoins}
+            setUserCoins={(coins) => {
+              // Обновляем монеты пользователя
+              setMockCurrentUser({ ...mockCurrentUser, gCoins: coins });
+            }}
             theme={theme}
-            currentUser={mockCurrentUser}
+            user={mockCurrentUser}
             notifications={notifications}
+            onMarkNotificationAsRead={(id) => {
+              setNotifications(notifications.map(n => 
+                n.id === id ? { ...n, read: true } : n
+              ));
+            }}
+            onMarkAllNotificationsAsRead={() => {
+              setNotifications(notifications.map(n => ({ ...n, read: true })));
+            }}
+            onRemoveNotification={(id) => {
+              setNotifications(notifications.filter(n => n.id !== id));
+            }}
+            onClearAllNotifications={() => {
+              setNotifications([]);
+            }}
             onOpenSettings={handleOpenSettings}
           />
         );
@@ -282,9 +339,10 @@ export default function App() {
         return (
           <ProfilePage
             theme={theme}
-            currentUser={mockCurrentUser}
-            notifications={notifications}
-            onOpenSettings={handleOpenSettings}
+            user={mockCurrentUser}
+            setUser={setMockCurrentUser}
+            battles={battles}
+            leaderboard={leaderboard}
             onNavigate={handleNavigate}
           />
         );
@@ -308,6 +366,38 @@ export default function App() {
             notifications={notifications}
             onOpenSettings={handleOpenSettings}
             onNavigate={handleNavigate}
+            currentPage={currentPage}
+            achievements={achievements}
+            onMarkNotificationAsRead={(id) => {
+              setNotifications(notifications.map(n => 
+                n.id === id ? { ...n, read: true } : n
+              ));
+            }}
+            onMarkAllNotificationsAsRead={() => {
+              setNotifications(notifications.map(n => ({ ...n, read: true })));
+            }}
+            onRemoveNotification={(id) => {
+              setNotifications(notifications.filter(n => n.id !== id));
+            }}
+            onClearAllNotifications={() => {
+              setNotifications([]);
+            }}
+            battles={battles}
+            battleInvitations={battleInvitations}
+            users={[mockCurrentUser]}
+            leaderboard={leaderboard}
+            onCreateBattle={() => {
+              // Создание баттла
+              console.log('Creating battle');
+            }}
+            onAcceptBattleInvitation={(invitationId) => {
+              // Принятие приглашения на баттл
+              console.log('Accepting battle invitation:', invitationId);
+            }}
+            onDeclineBattleInvitation={(invitationId) => {
+              // Отклонение приглашения на баттл
+              console.log('Declining battle invitation:', invitationId);
+            }}
           />
         );
     }
