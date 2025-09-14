@@ -20,6 +20,8 @@ import {
 } from 'lucide-react';
 import { CaseType, UserCase, CaseShopItem, Prize } from '../types/cases';
 import { ShopItem } from '../types/shop';
+import { User } from '../types/global';
+import { Notification } from '../types/notifications';
 
 interface CasesShopPageProps {
   onNavigate: (page: string) => void;
@@ -32,6 +34,13 @@ interface CasesShopPageProps {
   userCoins: number;
   setUserCoins: (coins: number) => void;
   theme: 'light' | 'dark';
+  user?: User;
+  notifications?: Notification[];
+  onMarkNotificationAsRead?: (id: string) => void;
+  onMarkAllNotificationsAsRead?: () => void;
+  onRemoveNotification?: (id: string) => void;
+  onClearAllNotifications?: () => void;
+  onOpenSettings?: () => void;
 }
 
 type TabType = 'cases' | 'shop' | 'roulette';
@@ -47,6 +56,13 @@ export const CasesShopPage: React.FC<CasesShopPageProps> = ({
   userCoins,
   setUserCoins,
   theme,
+  user,
+  notifications = [],
+  onMarkNotificationAsRead,
+  onMarkAllNotificationsAsRead,
+  onRemoveNotification,
+  onClearAllNotifications,
+  onOpenSettings = () => {},
 }) => {
   const [activeTab, setActiveTab] = useState<TabType>('cases');
   const [selectedCase, setSelectedCase] = useState<CaseType | null>(null);
@@ -183,8 +199,14 @@ export const CasesShopPage: React.FC<CasesShopPageProps> = ({
       <BackgroundFX theme={theme} />
       <Header 
         onNavigate={onNavigate}
-        onOpenSettings={() => {}}
+        onOpenSettings={onOpenSettings}
         theme={theme}
+        user={user}
+        notifications={notifications}
+        onMarkNotificationAsRead={onMarkNotificationAsRead}
+        onMarkAllNotificationsAsRead={onMarkAllNotificationsAsRead}
+        onRemoveNotification={onRemoveNotification}
+        onClearAllNotifications={onClearAllNotifications}
       />
       
       <div className="container mx-auto px-4 py-8 max-w-md pb-32">

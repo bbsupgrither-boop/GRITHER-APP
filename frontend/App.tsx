@@ -230,15 +230,29 @@ export default function App() {
             achievements={achievements}
             setAchievements={setAchievements}
             theme={theme}
+            user={currentUser || undefined}
+            notifications={notifications}
+            onMarkNotificationAsRead={handleMarkNotificationAsRead}
+            onMarkAllNotificationsAsRead={handleMarkAllNotificationsAsRead}
+            onRemoveNotification={handleRemoveNotification}
+            onClearAllNotifications={handleClearAllNotifications}
+            onOpenSettings={handleOpenSettings}
           />
         );
       case 'tasks':
         return (
           <TasksPage
-          onNavigate={handleNavigate} 
-          tasks={tasks}
-          setTasks={setTasks}
+            onNavigate={handleNavigate} 
+            tasks={tasks}
+            setTasks={setTasks}
             theme={theme}
+            user={currentUser || undefined}
+            notifications={notifications}
+            onMarkNotificationAsRead={handleMarkNotificationAsRead}
+            onMarkAllNotificationsAsRead={handleMarkAllNotificationsAsRead}
+            onRemoveNotification={handleRemoveNotification}
+            onClearAllNotifications={handleClearAllNotifications}
+            onOpenSettings={handleOpenSettings}
           />
         );
       case 'shop':
@@ -254,6 +268,13 @@ export default function App() {
             userCoins={userCoins}
             setUserCoins={setUserCoins}
             theme={theme}
+            user={currentUser || undefined}
+            notifications={notifications}
+            onMarkNotificationAsRead={handleMarkNotificationAsRead}
+            onMarkAllNotificationsAsRead={handleMarkAllNotificationsAsRead}
+            onRemoveNotification={handleRemoveNotification}
+            onClearAllNotifications={handleClearAllNotifications}
+            onOpenSettings={handleOpenSettings}
           />
         );
       case 'profile':

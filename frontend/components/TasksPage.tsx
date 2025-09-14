@@ -20,12 +20,21 @@ import {
   Trash2
 } from 'lucide-react';
 import { Task } from '../types/tasks';
+import { User } from '../types/global';
+import { Notification } from '../types/notifications';
 
 interface TasksPageProps {
   onNavigate: (page: string) => void;
   tasks: Task[];
   setTasks: (tasks: Task[]) => void;
   theme: 'light' | 'dark';
+  user?: User;
+  notifications?: Notification[];
+  onMarkNotificationAsRead?: (id: string) => void;
+  onMarkAllNotificationsAsRead?: () => void;
+  onRemoveNotification?: (id: string) => void;
+  onClearAllNotifications?: () => void;
+  onOpenSettings?: () => void;
 }
 
 type TaskStatus = 'not_started' | 'in_progress' | 'completed' | 'overdue';
@@ -36,6 +45,13 @@ export const TasksPage: React.FC<TasksPageProps> = ({
   tasks,
   setTasks,
   theme,
+  user,
+  notifications = [],
+  onMarkNotificationAsRead,
+  onMarkAllNotificationsAsRead,
+  onRemoveNotification,
+  onClearAllNotifications,
+  onOpenSettings = () => {},
 }) => {
   const [isCreateModalOpen, setIsCreateModalOpen] = useState(false);
   const [isDetailModalOpen, setIsDetailModalOpen] = useState(false);
@@ -160,8 +176,14 @@ export const TasksPage: React.FC<TasksPageProps> = ({
       <BackgroundFX theme={theme} />
       <Header 
         onNavigate={onNavigate}
-        onOpenSettings={() => {}}
+        onOpenSettings={onOpenSettings}
         theme={theme}
+        user={user}
+        notifications={notifications}
+        onMarkNotificationAsRead={onMarkNotificationAsRead}
+        onMarkAllNotificationsAsRead={onMarkAllNotificationsAsRead}
+        onRemoveNotification={onRemoveNotification}
+        onClearAllNotifications={onClearAllNotifications}
       />
       
       <div className="container mx-auto px-4 py-8 max-w-md pb-32">

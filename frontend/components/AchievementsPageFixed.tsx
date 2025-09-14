@@ -4,12 +4,21 @@ import { BottomNavigation } from './BottomNavigation';
 import { BackgroundFX } from './BackgroundFX';
 import { Trophy, Menu, ArrowLeft, Paperclip, X } from 'lucide-react';
 import { Achievement } from '../types/achievements';
+import { User } from '../types/global';
+import { Notification } from '../types/notifications';
 
 interface AchievementsPageFixedProps {
   onNavigate: (page: string) => void;
   achievements: Achievement[];
   setAchievements: (achievements: Achievement[]) => void;
   theme: 'light' | 'dark';
+  user?: User;
+  notifications?: Notification[];
+  onMarkNotificationAsRead?: (id: string) => void;
+  onMarkAllNotificationsAsRead?: () => void;
+  onRemoveNotification?: (id: string) => void;
+  onClearAllNotifications?: () => void;
+  onOpenSettings?: () => void;
 }
 
 type SortType = 'alphabet' | 'progress_asc' | 'progress_desc';
@@ -19,6 +28,13 @@ export const AchievementsPageFixed: React.FC<AchievementsPageFixedProps> = ({
   achievements,
   setAchievements,
   theme,
+  user,
+  notifications = [],
+  onMarkNotificationAsRead,
+  onMarkAllNotificationsAsRead,
+  onRemoveNotification,
+  onClearAllNotifications,
+  onOpenSettings = () => {},
 }) => {
   const [sortMenuOpen, setSortMenuOpen] = useState(false);
   const [selectedAchievement, setSelectedAchievement] = useState<Achievement | null>(null);
@@ -93,8 +109,14 @@ export const AchievementsPageFixed: React.FC<AchievementsPageFixedProps> = ({
       <BackgroundFX theme={theme} />
       <Header 
         onNavigate={onNavigate}
-        onOpenSettings={() => {}}
+        onOpenSettings={onOpenSettings}
         theme={theme}
+        user={user}
+        notifications={notifications}
+        onMarkNotificationAsRead={onMarkNotificationAsRead}
+        onMarkAllNotificationsAsRead={onMarkAllNotificationsAsRead}
+        onRemoveNotification={onRemoveNotification}
+        onClearAllNotifications={onClearAllNotifications}
       />
       
       <div className="container mx-auto px-4 py-8 max-w-md pb-32">
