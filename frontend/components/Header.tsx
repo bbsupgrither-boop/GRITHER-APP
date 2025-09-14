@@ -52,7 +52,7 @@ export const Header: React.FC<HeaderProps> = ({
     <div 
       className="w-full px-4 py-4 relative"
       style={{
-        backgroundColor: '#2B82FF',
+        backgroundColor: theme === 'dark' ? 'rgba(0, 0, 0, 0.2)' : 'rgba(255, 255, 255, 0.2)',
         zIndex: 50,
         pointerEvents: 'auto'
       }}
@@ -99,17 +99,16 @@ export const Header: React.FC<HeaderProps> = ({
                   width: '40px',
                   height: '40px',
                   borderRadius: '50%',
-                  backgroundColor: profilePhoto ? 'transparent' : '#FFFFFF',
+                  backgroundColor: profilePhoto ? 'transparent' : '#2B82FF',
                   display: 'flex',
                   alignItems: 'center',
                   justifyContent: 'center',
                   fontSize: '16px',
                   fontWeight: 'bold',
-                  color: '#2B82FF',
+                  color: 'white',
                   backgroundImage: profilePhoto ? `url(${profilePhoto})` : 'none',
                   backgroundSize: 'cover',
-                  backgroundPosition: 'center',
-                  border: '1px solid rgba(255, 255, 255, 0.3)'
+                  backgroundPosition: 'center'
                 }}
               >
                 {!profilePhoto && user.name.charAt(0).toUpperCase()}
@@ -125,7 +124,7 @@ export const Header: React.FC<HeaderProps> = ({
                   height: '12px',
                   borderRadius: '50%',
                   backgroundColor: user.online ? '#10b981' : '#6b7280',
-                  border: '2px solid #2B82FF',
+                  border: `2px solid ${theme === 'dark' ? '#161A22' : '#FFFFFF'}`,
                   zIndex: 1
                 }}
               />
@@ -135,19 +134,19 @@ export const Header: React.FC<HeaderProps> = ({
             <div style={{ textAlign: 'left' }}>
               <div 
                 style={{
-                  fontSize: '14px',
-                  fontWeight: '500',
-                  color: 'rgba(255, 255, 255, 0.7)',
+                  fontSize: '16px',
+                  fontWeight: 'bold',
+                  color: theme === 'dark' ? '#E8ECF2' : '#0F172A',
                   lineHeight: '1.2'
                 }}
               >
-                Вы
+                {user.name}
               </div>
               <div 
                 style={{
                   fontSize: '12px',
-                  color: 'rgba(255, 255, 255, 0.5)',
-                  fontWeight: '400',
+                  color: getRoleColor(user.level),
+                  fontWeight: '600',
                   lineHeight: '1.2'
                 }}
               >
@@ -170,24 +169,15 @@ export const Header: React.FC<HeaderProps> = ({
               e.preventDefault();
               e.stopPropagation();
             }}
+            className={`apple-button w-7 h-7 flex items-center justify-center relative ${theme === 'dark' ? 'white-button' : ''}`}
             style={{
-              width: '32px',
-              height: '32px',
-              backgroundColor: '#FFFFFF',
-              border: 'none',
-              borderRadius: '12px',
-              display: 'flex',
-              alignItems: 'center',
-              justifyContent: 'center',
-              cursor: 'pointer',
-              position: 'relative',
               pointerEvents: 'auto',
               userSelect: 'none',
               WebkitUserSelect: 'none',
               WebkitTouchCallout: 'none'
             }}
           >
-            <Bell className="w-4 h-4" style={{ color: '#6B7280' }} />
+            <Bell className="w-4 h-4" />
             
             {/* Бейдж с количеством непрочитанных */}
             {unreadNotificationsCount > 0 && (
@@ -225,23 +215,15 @@ export const Header: React.FC<HeaderProps> = ({
               e.preventDefault();
               e.stopPropagation();
             }}
+            className={`apple-button w-7 h-7 flex items-center justify-center ${theme === 'dark' ? 'white-button' : ''}`}
             style={{
-              width: '32px',
-              height: '32px',
-              backgroundColor: '#FFFFFF',
-              border: 'none',
-              borderRadius: '12px',
-              display: 'flex',
-              alignItems: 'center',
-              justifyContent: 'center',
-              cursor: 'pointer',
               pointerEvents: 'auto',
               userSelect: 'none',
               WebkitUserSelect: 'none',
               WebkitTouchCallout: 'none'
             }}
           >
-            <Settings className="w-4 h-4" style={{ color: '#6B7280' }} />
+            <Settings className="w-4 h-4" />
           </button>
         </div>
       </div>

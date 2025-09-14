@@ -124,6 +124,12 @@ export const HomePage: React.FC<HomePageProps> = ({
         hideUserIcon={false}
         onOpenSettings={onOpenSettings}
         theme={theme}
+        user={currentUser}
+        notifications={notifications}
+        onMarkNotificationAsRead={onMarkNotificationAsRead}
+        onMarkAllNotificationsAsRead={onMarkAllNotificationsAsRead}
+        onRemoveNotification={onRemoveNotification}
+        onClearAllNotifications={onClearAllNotifications}
       />
 
       {/* Hero Zone */}
