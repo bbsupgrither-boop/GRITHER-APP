@@ -8,6 +8,7 @@ interface LayoutProps {
   theme: 'light' | 'dark';
   currentUser: any;
   notifications: any[];
+  onNavigate: (page: string) => void;
   onOpenSettings: () => void;
   onMarkNotificationAsRead: (id: string) => void;
   onMarkAllNotificationsAsRead: () => void;
@@ -19,6 +20,7 @@ export const Layout: React.FC<LayoutProps> = ({
   theme,
   currentUser,
   notifications,
+  onNavigate,
   onOpenSettings,
   onMarkNotificationAsRead,
   onMarkAllNotificationsAsRead,
@@ -31,6 +33,7 @@ export const Layout: React.FC<LayoutProps> = ({
         theme={theme}
         currentUser={currentUser}
         notifications={notifications}
+        onNavigate={onNavigate}
         onOpenSettings={onOpenSettings}
         onMarkNotificationAsRead={onMarkNotificationAsRead}
         onMarkAllNotificationsAsRead={onMarkAllNotificationsAsRead}

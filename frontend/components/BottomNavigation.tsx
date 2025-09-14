@@ -1,6 +1,6 @@
 ﻿import React, { useState, useEffect } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
-import { Home, Trophy, CheckSquare, ShoppingCart, User, Zap } from 'lucide-react';
+import { Home, Trophy, CheckSquare, ShoppingCart } from 'lucide-react';
 
 interface BottomNavigationProps {
   theme: 'light' | 'dark';
@@ -56,8 +56,6 @@ export const BottomNavigation: React.FC<BottomNavigationProps> = ({
     { icon: Trophy, page: '/achievements', label: 'Достижения' },
     { icon: CheckSquare, page: '/tasks', label: 'Задачи' },
     { icon: ShoppingCart, page: '/shop', label: 'Магазин' },
-    { icon: User, page: '/profile', label: 'Профиль' },
-    { icon: Zap, page: '/battles', label: 'Баттлы' },
   ];
 
   const currentPage = location.pathname;

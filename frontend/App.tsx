@@ -10,7 +10,6 @@ const AchievementsPage = React.lazy(() => import('./src/pages/Achievements'));
 const TasksPage = React.lazy(() => import('./src/pages/Tasks'));
 const ShopPage = React.lazy(() => import('./src/pages/Shop'));
 const ProfilePage = React.lazy(() => import('./src/pages/Profile'));
-const BattlesPage = React.lazy(() => import('./src/pages/Battles'));
 
 // Modals
 import { SettingsModal } from './components/SettingsModalFixed';
@@ -190,6 +189,7 @@ export default function App() {
               theme={theme}
               currentUser={mockCurrentUser}
               notifications={notifications}
+              onNavigate={handleNavigate}
               onOpenSettings={handleOpenSettings}
               onMarkNotificationAsRead={handleMarkNotificationAsRead}
               onMarkAllNotificationsAsRead={handleMarkAllNotificationsAsRead}
@@ -282,18 +282,6 @@ export default function App() {
                     setUser={setMockCurrentUser}
                     battles={[]}
                     leaderboard={[]}
-                  />
-                </ErrorBoundary>
-              </React.Suspense>
-            } />
-            <Route path="battles" element={
-              <React.Suspense fallback={<div style={{padding: 16}}>Загрузка…</div>}>
-                <ErrorBoundary>
-                  <BattlesPage
-                    theme={theme}
-                    currentUser={mockCurrentUser}
-                    notifications={notifications}
-                    onOpenSettings={handleOpenSettings}
                   />
                 </ErrorBoundary>
               </React.Suspense>
