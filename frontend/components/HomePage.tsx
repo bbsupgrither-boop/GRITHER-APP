@@ -93,7 +93,7 @@ export const HomePage: React.FC<HomePageProps> = ({
     <div 
       style={{ 
         minHeight: '100vh',
-        backgroundColor: theme === 'dark' ? '#12151B' : 'transparent',
+        backgroundColor: theme === 'dark' ? '#12151B' : '#F5F7FA',
         position: 'relative'
       }}
     >
@@ -134,8 +134,7 @@ export const HomePage: React.FC<HomePageProps> = ({
             className="glass-card p-4"
             style={{
               backgroundColor: theme === 'dark' ? '#161A22' : '#FFFFFF',
-              borderColor: theme === 'dark' ? 'rgba(255, 255, 255, 0.06)' : '#FBBF24',
-              borderWidth: theme === 'dark' ? '1px' : '2px'
+              borderColor: theme === 'dark' ? 'rgba(255, 255, 255, 0.06)' : '#E6E9EF'
             }}
           >
             <div className="flex items-center justify-between mb-4">
@@ -171,8 +170,7 @@ export const HomePage: React.FC<HomePageProps> = ({
             className="glass-card p-4"
             style={{
               backgroundColor: theme === 'dark' ? '#161A22' : '#FFFFFF',
-              borderColor: theme === 'dark' ? 'rgba(255, 255, 255, 0.06)' : '#FBBF24',
-              borderWidth: theme === 'dark' ? '1px' : '2px'
+              borderColor: theme === 'dark' ? 'rgba(255, 255, 255, 0.06)' : '#E6E9EF'
             }}
           >
             <div className="flex items-center justify-between mb-3">
@@ -228,8 +226,7 @@ export const HomePage: React.FC<HomePageProps> = ({
               className="glass-card p-4"
               style={{
                 backgroundColor: theme === 'dark' ? '#161A22' : '#FFFFFF',
-                borderColor: theme === 'dark' ? 'rgba(255, 255, 255, 0.06)' : '#FBBF24',
-                borderWidth: theme === 'dark' ? '1px' : '2px'
+                borderColor: theme === 'dark' ? 'rgba(255, 255, 255, 0.06)' : '#E6E9EF'
               }}
             >
               <div className="flex items-center justify-between mb-4">
@@ -347,8 +344,7 @@ export const HomePage: React.FC<HomePageProps> = ({
               className="glass-card p-4"
               style={{
                 backgroundColor: theme === 'dark' ? '#161A22' : '#FFFFFF',
-                borderColor: theme === 'dark' ? 'rgba(255, 255, 255, 0.06)' : '#FBBF24',
-                borderWidth: theme === 'dark' ? '1px' : '2px'
+                borderColor: theme === 'dark' ? 'rgba(255, 255, 255, 0.06)' : '#E6E9EF'
               }}
             >
               <div className="flex items-center justify-between mb-4">
@@ -430,8 +426,7 @@ export const HomePage: React.FC<HomePageProps> = ({
             className="glass-card p-4"
             style={{
               backgroundColor: theme === 'dark' ? '#161A22' : '#FFFFFF',
-              borderColor: theme === 'dark' ? 'rgba(255, 255, 255, 0.06)' : '#FBBF24',
-              borderWidth: theme === 'dark' ? '1px' : '2px'
+              borderColor: theme === 'dark' ? 'rgba(255, 255, 255, 0.06)' : '#E6E9EF'
             }}
           >
             <div className="flex items-center justify-between mb-4">
