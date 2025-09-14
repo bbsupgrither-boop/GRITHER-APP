@@ -176,6 +176,150 @@ export default function App() {
                 </div>
               </div>
 
+              {/* Status Bar */}
+              <div style={{
+                background: theme === 'dark' ? '#161A22' : '#fff',
+                borderRadius: '16px',
+                padding: '16px',
+                marginBottom: '16px',
+                boxShadow: '0 6px 24px rgba(0,0,0,0.1)'
+              }}>
+                <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '8px' }}>
+                  <span style={{ color: theme === 'dark' ? '#fff' : '#000' }}>Статус: Новичок</span>
+                  <span style={{ color: '#5AA7FF' }}>XP: 0</span>
+                  <span style={{ color: theme === 'dark' ? '#fff' : '#000' }}>lvl 1</span>
+                </div>
+                <div style={{
+                  width: '100%',
+                  height: '8px',
+                  background: '#e0e0e0',
+                  borderRadius: '4px',
+                  overflow: 'hidden'
+                }}>
+                  <div style={{
+                    width: '0%',
+                    height: '100%',
+                    background: '#5AA7FF',
+                    transition: 'width 0.3s ease'
+                  }}></div>
+                </div>
+              </div>
+
+              {/* Battles and Rating Row */}
+              <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '12px', marginBottom: '16px' }}>
+                {/* Battles Card */}
+                <div style={{
+                  background: theme === 'dark' ? '#161A22' : '#fff',
+                  borderRadius: '16px',
+                  padding: '16px',
+                  boxShadow: '0 6px 24px rgba(0,0,0,0.1)'
+                }}>
+                  <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '16px' }}>
+                    <h3 style={{ color: theme === 'dark' ? '#fff' : '#000' }}>Баттлы</h3>
+                    <button style={{
+                      width: '32px',
+                      height: '32px',
+                      borderRadius: '50%',
+                      border: 'none',
+                      background: '#f0f0f0',
+                      display: 'flex',
+                      alignItems: 'center',
+                      justifyContent: 'center',
+                      cursor: 'pointer'
+                    }}>
+                      ➕
+                    </button>
+                  </div>
+
+                  <div style={{ marginBottom: '12px' }}>
+                    <div style={{ fontSize: '12px', color: '#666', marginBottom: '8px' }}>Активные баттлы</div>
+                    <div style={{
+                      background: '#f0f0f0',
+                      borderRadius: '8px',
+                      padding: '12px',
+                      fontSize: '14px',
+                      color: theme === 'dark' ? '#fff' : '#000'
+                    }}>
+                      Елена Морозова vs Вы
+                    </div>
+                  </div>
+
+                  <div style={{ marginBottom: '12px' }}>
+                    <div style={{ fontSize: '12px', color: '#666', marginBottom: '8px' }}>Приглашения</div>
+                    <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '8px' }}>
+                      <span style={{ color: theme === 'dark' ? '#fff' : '#000' }}>Мария Сидорова</span>
+                      <button style={{
+                        background: '#FF6B35',
+                        color: 'white',
+                        border: 'none',
+                        borderRadius: '6px',
+                        padding: '4px 8px',
+                        fontSize: '12px',
+                        cursor: 'pointer'
+                      }}>
+                        вызывает
+                      </button>
+                    </div>
+                    <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+                      <span style={{ color: theme === 'dark' ? '#fff' : '#000' }}>Анна Иванова</span>
+                      <button style={{
+                        background: '#FF6B35',
+                        color: 'white',
+                        border: 'none',
+                        borderRadius: '6px',
+                        padding: '4px 8px',
+                        fontSize: '12px',
+                        cursor: 'pointer'
+                      }}>
+                        вызывает
+                      </button>
+                    </div>
+                  </div>
+
+                  <div style={{ fontSize: '12px', color: '#666' }}>Всего: 3 баттлов</div>
+                </div>
+
+                {/* Rating Card */}
+                <div style={{
+                  background: theme === 'dark' ? '#161A22' : '#fff',
+                  borderRadius: '16px',
+                  padding: '16px',
+                  boxShadow: '0 6px 24px rgba(0,0,0,0.1)'
+                }}>
+                  <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '16px' }}>
+                    <h3 style={{ color: theme === 'dark' ? '#fff' : '#000' }}>Рейтинг</h3>
+                    <button style={{
+                      width: '32px',
+                      height: '32px',
+                      borderRadius: '50%',
+                      border: 'none',
+                      background: '#f0f0f0',
+                      display: 'flex',
+                      alignItems: 'center',
+                      justifyContent: 'center',
+                      cursor: 'pointer'
+                    }}>
+                      ☰
+                    </button>
+                  </div>
+
+                  <div style={{ fontSize: '12px', color: '#666', marginBottom: '12px' }}>По уровню</div>
+
+                  <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '8px' }}>
+                    <span style={{ color: theme === 'dark' ? '#fff' : '#000' }}>1. Петр Петров</span>
+                    <span style={{ color: '#666', fontSize: '12px' }}>Ур.18</span>
+                  </div>
+                  <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '8px' }}>
+                    <span style={{ color: theme === 'dark' ? '#fff' : '#000' }}>2. Елена Морозова</span>
+                    <span style={{ color: '#666', fontSize: '12px' }}>Ур.16</span>
+                  </div>
+                  <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+                    <span style={{ color: theme === 'dark' ? '#fff' : '#000' }}>3. Анна Иванова</span>
+                    <span style={{ color: '#666', fontSize: '12px' }}>Ур.15</span>
+                  </div>
+                </div>
+              </div>
+
               {/* Bottom Navigation */}
               <div style={{
                 position: 'fixed',
