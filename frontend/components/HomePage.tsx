@@ -92,6 +92,9 @@ export const HomePage: React.FC<HomePageProps> = ({
   // Sorting state for leaderboard
   const [leaderboardSort, setLeaderboardSort] = useState<'level' | 'achievements' | 'balance'>('level');
   
+  // Achievements modal state
+  const [isAchievementsModalOpen, setIsAchievementsModalOpen] = useState(false);
+  
   const getSortLabel = (sort: string) => {
     switch (sort) {
       case 'level': return 'По уровню';
@@ -174,7 +177,7 @@ export const HomePage: React.FC<HomePageProps> = ({
               </h3>
               
               <button
-                onClick={() => onNavigate('achievements')}
+                onClick={() => setIsAchievementsModalOpen(true)}
                 className={`apple-button w-7 h-7 flex items-center justify-center ${theme === 'dark' ? 'white-button' : ''}`}
               >
                 <Eye className="w-4 h-4" />
@@ -600,6 +603,96 @@ export const HomePage: React.FC<HomePageProps> = ({
 
         </div>
       </div>
+
+      {/* Achievements Modal */}
+      <Modal
+        isOpen={isAchievementsModalOpen}
+        onClose={() => setIsAchievementsModalOpen(false)}
+        title="Ближайшие достижения"
+        theme={theme}
+      >
+        <div className="space-y-4">
+          {/* Top 6 closest achievements or all available if less than 6 */}
+          {[
+            { name: 'Первый шаг', progress: 75, rarity: 'common', description: 'Выполните первую задачу' },
+            { name: 'Активный участник', progress: 45, rarity: 'rare', description: 'Выполните 5 задач' },
+            { name: 'Мастер баттлов', progress: 90, rarity: 'epic', description: 'Выиграйте 3 баттла' },
+            { name: 'Покупатель', progress: 30, rarity: 'common', description: 'Совершите 3 покупки' },
+            { name: 'Воин', progress: 60, rarity: 'rare', description: 'Выиграйте 2 баттла' },
+            { name: 'Трудолюбивый', progress: 20, rarity: 'epic', description: 'Выполните 15 задач' }
+          ].slice(0, 6).map((achievement, index) => (
+            <div key={index} className="flex items-center gap-4 p-3 rounded-lg" style={{
+              backgroundColor: theme === 'dark' ? 'rgba(255, 255, 255, 0.05)' : 'rgba(0, 0, 0, 0.02)'
+            }}>
+              {/* Achievement icon */}
+              <div 
+                className="w-10 h-10 rounded-full flex items-center justify-center text-white text-sm font-bold"
+                style={{
+                  backgroundColor: achievement.rarity === 'common' ? '#6b7280' : 
+                                 achievement.rarity === 'rare' ? '#3b82f6' :
+                                 achievement.rarity === 'epic' ? '#a855f7' : '#fbbf24'
+                }}
+              >
+                🏆
+              </div>
+              
+              {/* Achievement info */}
+              <div className="flex-1">
+                <div 
+                  style={{
+                    fontSize: '16px',
+                    fontWeight: '600',
+                    color: theme === 'dark' ? '#E8ECF2' : '#0F172A',
+                    marginBottom: '4px'
+                  }}
+                >
+                  {achievement.name}
+                </div>
+                <div 
+                  style={{
+                    fontSize: '12px',
+                    color: theme === 'dark' ? '#A7B0BD' : '#6B7280',
+                    marginBottom: '6px'
+                  }}
+                >
+                  {achievement.description}
+                </div>
+                
+                {/* Progress bar */}
+                <div 
+                  style={{
+                    width: '100%',
+                    height: '8px',
+                    backgroundColor: theme === 'dark' ? '#2A2F36' : '#E6E9EF',
+                    borderRadius: '4px',
+                    overflow: 'hidden'
+                  }}
+                >
+                  <div 
+                    style={{
+                      width: `${achievement.progress}%`,
+                      height: '100%',
+                      backgroundColor: theme === 'dark' ? '#2B82FF' : '#2B82FF',
+                      borderRadius: '4px',
+                      transition: 'width 0.3s ease'
+                    }}
+                  />
+                </div>
+                
+                <div 
+                  style={{
+                    fontSize: '12px',
+                    color: theme === 'dark' ? '#A7B0BD' : '#6B7280',
+                    marginTop: '4px'
+                  }}
+                >
+                  {achievement.progress}%
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
+      </Modal>
 
       {/* Bottom Navigation */}
       <BottomNavigation 
