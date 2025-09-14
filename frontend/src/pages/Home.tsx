@@ -1,20 +1,35 @@
 // src/pages/Home.tsx
-import React, { useState } from "react";
-import AppShell from "../layout/AppShell";
-import { Modal } from "../components/Modal";
+import React from "react";
+import { HomePage } from "../../components/HomePage";
+import { BackgroundFX } from "../../components/BackgroundFX";
+import { useTheme } from "../../hooks/useTheme";
 
 export default function Home() {
-  const [open, setOpen] = useState(false);
+  const { theme } = useTheme();
+  
   return (
-    <AppShell>
-      <section className="card" style={{ marginTop: 16 }}>
-        <h2 style={{ margin: 0 }}>Достижения</h2>
-        <p>Длинный текст для проверки переноса. {Array.from({ length: 50 }).map((_, i) => "текст ").join("")}</p>
-        <button onClick={() => setOpen(true)}>Открыть модалку</button>
-      </section>
-      <Modal open={open} onClose={() => setOpen(false)} title="Модалка">
-        Контент модалки. Прокрутка внутри не влияет на страницу.
-      </Modal>
-    </AppShell>
+    <>
+      <BackgroundFX theme={theme} />
+      <HomePage 
+        onNavigate={() => {}}
+        currentPage="home"
+        onOpenSettings={() => {}}
+        achievements={[]}
+        theme={theme}
+        notifications={[]}
+        onMarkNotificationAsRead={() => {}}
+        onMarkAllNotificationsAsRead={() => {}}
+        onRemoveNotification={() => {}}
+        onClearAllNotifications={() => {}}
+        battles={[]}
+        battleInvitations={[]}
+        users={[]}
+        leaderboard={[]}
+        currentUser={undefined}
+        onCreateBattle={() => {}}
+        onAcceptBattleInvitation={() => {}}
+        onDeclineBattleInvitation={() => {}}
+      />
+    </>
   );
 }

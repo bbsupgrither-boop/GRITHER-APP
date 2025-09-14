@@ -2,24 +2,31 @@
 import React, { PropsWithChildren, useEffect } from "react";
 import { initViewport } from "./viewport";
 
-export default function AppShell({ children }: PropsWithChildren) {
+interface AppShellProps extends PropsWithChildren {
+  header?: React.ReactNode;
+  footer?: React.ReactNode;
+}
+
+export default function AppShell({ children, header, footer }: AppShellProps) {
   useEffect(() => initViewport(), []);
 
   return (
     <div className="app">
-      <header className="container" style={{ paddingTop: "12px" }}>
-        <div className="card">Иван Иванов · WORKER</div>
-      </header>
+      {header && (
+        <header className="container" style={{ paddingTop: "12px" }}>
+          {header}
+        </header>
+      )}
 
       <main className="container" style={{ width: "min(100%, var(--container-max))" }}>
         {children}
       </main>
 
-      <footer className="bottom-nav">
-        <nav style={{ display: "flex", gap: 14, justifyContent: "space-between" }}>
-          <button>Дом</button><button>Кейсы</button><button>Чат</button><button>Задачи</button><button>Магазин</button>
-        </nav>
-      </footer>
+      {footer && (
+        <footer className="bottom-nav">
+          {footer}
+        </footer>
+      )}
     </div>
   );
 }

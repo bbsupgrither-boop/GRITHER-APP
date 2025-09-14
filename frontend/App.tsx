@@ -214,8 +214,29 @@ export default function App() {
     console.log('🔥 App.tsx: renderCurrentPage called, currentPage:', currentPage);
     switch (currentPage) {
       case 'home':
-        console.log('🔥 App.tsx: Rendering new Home architecture');
-        return <Home />;
+        console.log('🔥 App.tsx: Rendering HomePage case');
+        return (
+          <HomePage
+            onNavigate={handleNavigate} 
+            currentPage={currentPage} 
+            onOpenSettings={handleOpenSettings}
+            achievements={achievements}
+            theme={theme}
+            notifications={notifications}
+            onMarkNotificationAsRead={handleMarkNotificationAsRead}
+            onMarkAllNotificationsAsRead={handleMarkAllNotificationsAsRead}
+            onRemoveNotification={handleRemoveNotification}
+            onClearAllNotifications={handleClearAllNotifications}
+            battles={battles}
+            battleInvitations={battleInvitations}
+            users={users}
+            leaderboard={leaderboard}
+            currentUser={currentUser || undefined}
+            onCreateBattle={() => handleNavigate('battles')}
+            onAcceptBattleInvitation={handleAcceptBattleInvitation}
+            onDeclineBattleInvitation={handleDeclineBattleInvitation}
+          />
+        );
       case 'achievements':
         return (
           <AchievementsPageFixed
