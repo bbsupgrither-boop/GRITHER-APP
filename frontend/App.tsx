@@ -200,6 +200,7 @@ export default function App() {
     setHasSecretAccess(true); // Устанавливаем секретный доступ
     setShowAdminPanel(true);
     setShowSecretAdminAccess(false);
+    setShowSettings(false); // Закрываем настройки, чтобы админ-панель была видна
   };
 
   const handleOpenProblemReport = () => {
@@ -271,6 +272,7 @@ export default function App() {
             currentUser={mockCurrentUser}
             notifications={notifications}
             onOpenSettings={handleOpenSettings}
+            onNavigate={handleNavigate}
           />
         );
       case 'battles':
@@ -289,6 +291,7 @@ export default function App() {
             currentUser={mockCurrentUser}
             notifications={notifications}
             onOpenSettings={handleOpenSettings}
+            onNavigate={handleNavigate}
           />
         );
     }
@@ -313,35 +316,35 @@ export default function App() {
         />
       )}
       
-      {showAdminPanel && userWithRole && (
+      {showAdminPanel && (userWithRole || hasSecretAccess) && (
         <>
-          {userRole === 'team_lead' && (
+          {(userRole === 'team_lead' || adminRole === 'Тимлид') && (
             <AdminPanelTeamLead
               onClose={() => setShowAdminPanel(false)}
               theme={theme}
               teamMembers={teamMembers}
-              teamLead={userWithRole}
+              teamLead={userWithRole || mockCurrentUser}
             />
           )}
-          {userRole === 'junior_admin' && (
+          {(userRole === 'junior_admin' || adminRole === 'Младший Админ') && (
             <AdminPanelJunior
               onClose={() => setShowAdminPanel(false)}
               theme={theme}
-              adminName={userWithRole.name}
+              adminName={userWithRole?.name || 'Секретный Админ'}
             />
           )}
-          {userRole === 'senior_admin' && (
+          {(userRole === 'senior_admin' || adminRole === 'Старший Админ') && (
             <AdminPanelSenior
               onClose={() => setShowAdminPanel(false)}
               theme={theme}
-              adminName={userWithRole.name}
+              adminName={userWithRole?.name || 'Секретный Админ'}
             />
           )}
-          {userRole === 'main_admin' && (
+          {(userRole === 'main_admin' || adminRole === 'Главный Админ') && (
             <AdminPanelMain
               onClose={() => setShowAdminPanel(false)}
               theme={theme}
-              adminName={userWithRole.name}
+              adminName={userWithRole?.name || 'Секретный Админ'}
             />
           )}
         </>
