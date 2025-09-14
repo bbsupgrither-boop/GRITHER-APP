@@ -5,7 +5,7 @@ import { HashRouter, Routes, Route, Navigate, useNavigate, useLocation } from 'r
 import { HomePage } from './components/HomePage';
 import { AchievementsPageFixed } from './components/AchievementsPageFixed';
 import { TasksPage } from './components/TasksPage';
-import { CasesShopPage } from './components/CasesShopPage';
+import { ShopPage } from './components/ShopPage';
 import ProfilePage from './src/pages/Profile';
 import { Header } from './components/Header';
 import { BottomNavigation } from './components/BottomNavigation';
@@ -354,9 +354,8 @@ export default function App() {
                   hideUserIcon={false}
                 />
                 <main className="container" style={{ paddingBottom: '80px' }}>
-                  <CasesShopPage
+                  <ShopPage
                     theme={theme}
-                    shopItems={mockShopItems}
                     currentPage="/shop"
                     onNavigate={handleNavigate}
                   />
