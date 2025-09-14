@@ -31,33 +31,51 @@ const mockAchievements: Achievement[] = [
     title: 'Новичок',
     description: 'Создайте свой первый аккаунт',
     icon: '🛡️',
-    progress: 100,
-    maxProgress: 100,
-    completed: true,
+    category: 'general',
     rarity: 'common',
-    reward: 100
+    requirements: {
+      type: 'account_creation',
+      target: 1,
+      current: 1
+    },
+    reward: {
+      type: 'coins',
+      amount: 100
+    }
   },
   {
     id: '2',
     title: 'Трудолюбивый',
     description: 'Выполните 10 задач',
     icon: '⚡',
-    progress: 7,
-    maxProgress: 10,
-    completed: false,
+    category: 'tasks',
     rarity: 'rare',
-    reward: 500
+    requirements: {
+      type: 'tasks_completed',
+      target: 10,
+      current: 7
+    },
+    reward: {
+      type: 'coins',
+      amount: 500
+    }
   },
   {
     id: '3',
     title: 'Коллекционер',
     description: 'Откройте 5 кейсов',
     icon: '🎁',
-    progress: 2,
-    maxProgress: 5,
-    completed: false,
+    category: 'shop',
     rarity: 'epic',
-    reward: 1000
+    requirements: {
+      type: 'cases_opened',
+      target: 5,
+      current: 2
+    },
+    reward: {
+      type: 'coins',
+      amount: 1000
+    }
   }
 ];
 
@@ -145,6 +163,10 @@ export default function App() {
       // Update CSS custom property for viewport height
       document.documentElement.style.setProperty('--tg-viewport-height', `${height}px`);
     });
+
+    // Принудительный сброс счетчика переключений темы для тестирования
+    console.log('🔄 Resetting theme toggle count for testing');
+    resetThemeToggleCount();
 
     return cleanupViewport;
   }, []);

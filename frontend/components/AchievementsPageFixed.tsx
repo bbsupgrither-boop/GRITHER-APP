@@ -50,6 +50,7 @@ export const AchievementsPageFixed: React.FC<AchievementsPageFixedProps> = ({
   };
 
   const getProgressPercentage = (achievement: Achievement) => {
+    if (!achievement.requirements) return 0;
     const { current, target } = achievement.requirements;
     return Math.round((current / target) * 100);
   };

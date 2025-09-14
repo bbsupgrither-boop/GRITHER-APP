@@ -13,7 +13,12 @@ export const useThemeToggle = (): UseThemeToggleReturn => {
   useEffect(() => {
     const savedCount = localStorage.getItem('themeToggleCount');
     if (savedCount) {
-      setThemeToggleCount(parseInt(savedCount, 10));
+      const count = parseInt(savedCount, 10);
+      console.log(`📊 Loaded theme toggle count from localStorage: ${count}`);
+      setThemeToggleCount(count);
+    } else {
+      console.log('📊 No saved theme toggle count, starting from 0');
+      setThemeToggleCount(0);
     }
   }, []);
 
