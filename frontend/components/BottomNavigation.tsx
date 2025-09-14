@@ -6,12 +6,14 @@ interface BottomNavigationProps {
   currentPage: string;
   onNavigate: (page: string) => void;
   theme: 'light' | 'dark';
+  hidden?: boolean;
 }
 
 export const BottomNavigation: React.FC<BottomNavigationProps> = ({
   currentPage,
   onNavigate,
   theme,
+  hidden = false,
 }) => {
   const [mounted, setMounted] = useState(false);
 
@@ -107,5 +109,5 @@ export const BottomNavigation: React.FC<BottomNavigationProps> = ({
   );
 
   // Рендерим через портал для избежания влияния родительских контекстов
-  return mounted ? createPortal(navigationContent, document.body) : null;
+  return mounted && !hidden ? createPortal(navigationContent, document.body) : null;
 };

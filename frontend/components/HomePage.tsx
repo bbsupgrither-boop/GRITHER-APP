@@ -2,8 +2,8 @@
 import { Header } from './Header';
 import { BottomNavigation } from './BottomNavigation';
 import { BackgroundFX } from './BackgroundFX';
-<<<<<<< HEAD
 import { Logo } from './Logo';
+import { ExperienceModal } from './ExperienceModal';
 import { 
   Trophy, 
   Eye, 
@@ -23,19 +23,11 @@ import {
   Shield,
   Bell
 } from 'lucide-react';
-=======
-import { Hero } from './Hero';
-import { AchievementBlock } from './AchievementBlock';
-import { ProgressBar } from './ProgressBar';
-import { BattleCard } from './BattleCard';
-import { BattleLeaderboard } from './BattleLeaderboard';
-import { AchievementRewards } from './AchievementRewards';
-import { ModalXP } from './ModalXP';
->>>>>>> e85154d23eaa2a469f3f7bfedb36f39213584def
 import { Achievement } from '../types/achievements';
 import { Battle, BattleInvitation, User as UserType } from '../types/battles';
 import { Notification } from '../types/notifications';
 import { LeaderboardEntry } from '../types/global';
+import { getCurrentLevelProgress } from '../data/levels';
 
 interface HomePageProps {
   onNavigate: (page: string) => void;
@@ -82,7 +74,7 @@ export const HomePage: React.FC<HomePageProps> = ({
   const [isCreateBattleModalOpen, setIsCreateBattleModalOpen] = useState(false);
   const [isAchievementModalOpen, setIsAchievementModalOpen] = useState(false);
   const [isNotificationsModalOpen, setIsNotificationsModalOpen] = useState(false);
-  const [isXPModalOpen, setIsXPModalOpen] = useState(false);
+  const [isExperienceModalOpen, setIsExperienceModalOpen] = useState(false);
 
   // Mock data for battles
   const activeBattles = [
@@ -100,6 +92,14 @@ export const HomePage: React.FC<HomePageProps> = ({
     { id: '3', name: 'Анна Иванова', level: 15 }
   ];
 
+  // Проверяем, открыта ли какая-либо модалка
+  const isAnyModalOpen = isAllBattlesModalOpen || isCreateBattleModalOpen || 
+                        isAchievementModalOpen || isNotificationsModalOpen || isExperienceModalOpen;
+
+  // Получаем данные о текущем уровне
+  const currentExperience = currentUser?.experience || 0;
+  const levelData = getCurrentLevelProgress(currentExperience);
+
   return (
     <div 
       style={{ 
@@ -108,25 +108,6 @@ export const HomePage: React.FC<HomePageProps> = ({
         position: 'relative'
       }}
     >
-<<<<<<< HEAD
-=======
-      {/* Отладочный блок */}
-      <div style={{
-        position: 'fixed',
-        top: '10px',
-        left: '10px',
-        right: '10px',
-        backgroundColor: 'green',
-        color: 'white',
-        padding: '10px',
-        zIndex: 9999,
-        fontSize: '12px',
-        borderRadius: '8px'
-      }}>
-        🚀 Умный автодеплой работает! Theme: {theme}, Achievements: {achievements?.length || 0}
-      </div>
-      
->>>>>>> e85154d23eaa2a469f3f7bfedb36f39213584def
       <BackgroundFX theme={theme} />
 
       {/* Header */}
@@ -158,7 +139,6 @@ export const HomePage: React.FC<HomePageProps> = ({
         }}
       >
         <div style={{ display: 'flex', flexDirection: 'column', gap: '12px' }}>
-<<<<<<< HEAD
           
           {/* Ваши достижения */}
           <div 
@@ -186,23 +166,6 @@ export const HomePage: React.FC<HomePageProps> = ({
                 <Eye className="w-4 h-4" />
               </button>
             </div>
-=======
-          {/* Achievement Block */}
-          <AchievementBlock 
-            achievements={achievements}
-            theme={theme}
-            onViewAll={() => setIsAchievementsModalOpen(true)}
-          />
-
-          {/* Progress Bar */}
-          <ProgressBar 
-            level={userDisplayData.level}
-            experience={userDisplayData.experience}
-            maxExperience={userDisplayData.maxExperience}
-            theme={theme}
-            onExperienceClick={() => setIsXPModalOpen(true)}
-          />
->>>>>>> e85154d23eaa2a469f3f7bfedb36f39213584def
 
             <div 
               style={{
@@ -216,7 +179,8 @@ export const HomePage: React.FC<HomePageProps> = ({
 
           {/* Статус/XP/Уровень */}
           <div 
-            className="glass-card p-4"
+            className="glass-card p-4 cursor-pointer"
+            onClick={() => setIsExperienceModalOpen(true)}
             style={{
               backgroundColor: theme === 'dark' ? '#161A22' : '#FFFFFF',
               borderColor: theme === 'dark' ? 'rgba(255, 255, 255, 0.06)' : '#E6E9EF'
@@ -231,7 +195,7 @@ export const HomePage: React.FC<HomePageProps> = ({
                       color: theme === 'dark' ? '#A7B0BD' : '#6B7280'
                     }}
                   >
-                    Статус: —
+                    Статус: {levelData?.level.status || '—'}
                   </span>
                 </div>
                 <div>
@@ -241,7 +205,7 @@ export const HomePage: React.FC<HomePageProps> = ({
                       color: theme === 'dark' ? '#A7B0BD' : '#6B7280'
                     }}
                   >
-                    XP: —
+                    XP: {currentExperience}
                   </span>
                 </div>
                 <div>
@@ -251,7 +215,7 @@ export const HomePage: React.FC<HomePageProps> = ({
                       color: theme === 'dark' ? '#A7B0BD' : '#6B7280'
                     }}
                   >
-                    Lvl —
+                    Lvl {levelData?.level.level || '—'}
                   </span>
                 </div>
               </div>
@@ -262,9 +226,20 @@ export const HomePage: React.FC<HomePageProps> = ({
                 width: '100%',
                 height: '8px',
                 backgroundColor: theme === 'dark' ? 'rgba(255, 255, 255, 0.1)' : 'rgba(0, 0, 0, 0.1)',
-                borderRadius: '4px'
+                borderRadius: '4px',
+                overflow: 'hidden'
               }}
-            />
+            >
+              <div 
+                style={{
+                  width: `${levelData?.progress || 0}%`,
+                  height: '100%',
+                  background: 'linear-gradient(90deg, #2B82FF 0%, #40A0FF 100%)',
+                  borderRadius: '4px',
+                  transition: 'width 0.3s ease'
+                }}
+              />
+            </div>
           </div>
 
           {/* Баттлы и Рейтинг */}
@@ -529,20 +504,16 @@ export const HomePage: React.FC<HomePageProps> = ({
         currentPage={currentPage}
         onNavigate={onNavigate}
         theme={theme}
+        hidden={isAnyModalOpen}
       />
-<<<<<<< HEAD
-=======
 
-      {/* XP Modal */}
-      <ModalXP 
-        isOpen={isXPModalOpen}
-        onClose={() => setIsXPModalOpen(false)}
-        level={userDisplayData.level}
-        experience={userDisplayData.experience}
-        maxExperience={userDisplayData.maxExperience}
+      {/* Experience Modal */}
+      <ExperienceModal
+        isOpen={isExperienceModalOpen}
+        onClose={() => setIsExperienceModalOpen(false)}
+        currentExperience={currentExperience}
         theme={theme}
       />
->>>>>>> e85154d23eaa2a469f3f7bfedb36f39213584def
     </div>
   );
 };
