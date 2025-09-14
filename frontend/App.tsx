@@ -1,21 +1,20 @@
 import React, { useState, useEffect } from 'react';
 import { HashRouter, Routes, Route, Navigate } from 'react-router-dom';
-import { Layout } from './src/layout/Layout';
-import { ErrorBoundary } from './src/shared/ErrorBoundary';
-import { initTelegramWebApp, onViewportChange } from './src/shared/telegram';
 
-// Lazy loaded pages
-const HomePage = React.lazy(() => import('./src/pages/Home'));
-const AchievementsPage = React.lazy(() => import('./src/pages/Achievements'));
-const TasksPage = React.lazy(() => import('./src/pages/Tasks'));
-const ShopPage = React.lazy(() => import('./src/pages/Shop'));
-const ProfilePage = React.lazy(() => import('./src/pages/Profile'));
-
-// Modals
+// Components
+import { Header } from './components/Header';
+import { BottomNavigation } from './components/BottomNavigation';
 import { SettingsModal } from './components/SettingsModalFixed';
 import { SecretAdminAccess } from './components/SecretAdminAccess';
 import { ProblemReportModal } from './components/ProblemReportModal';
 import { AdminPanelMain } from './components/AdminPanelMain';
+
+// Pages
+import { HomePage } from './components/HomePage';
+import { AchievementsPageFixed } from './components/AchievementsPageFixed';
+import { TasksPage } from './components/TasksPage';
+import { CasesShopPage } from './components/CasesShopPage';
+import ProfilePage from './src/pages/Profile';
 
 // Hooks
 import { useTheme } from './hooks/useTheme';
@@ -57,236 +56,364 @@ const mockAchievements: Achievement[] = [
     requirements: {
       type: 'tasks_completed',
       target: 10,
-      current: 7
+      current: 3
     },
     reward: {
       type: 'coins',
       amount: 500
     }
+  },
+  {
+    id: '3',
+    title: 'Коллекционер',
+    description: 'Откройте 5 кейсов',
+    icon: '📦',
+    category: 'cases',
+    rarity: 'epic',
+    requirements: {
+      type: 'cases_opened',
+      target: 5,
+      current: 1
+    },
+    reward: {
+      type: 'coins',
+      amount: 1000
+    }
   }
 ];
 
-const mockNotifications: Notification[] = [
+const mockTasks: Task[] = [
   {
     id: '1',
-    type: 'achievement',
-    title: 'Получено достижение',
-    message: 'Вы получили достижение "Новичок"',
-    timestamp: new Date(Date.now() - 3600000).toISOString(),
-    read: false
+    title: 'Изучить React',
+    description: 'Изучить основы React и компоненты',
+    status: 'in_progress',
+    priority: 'high',
+    deadline: '2024-12-25',
+    reward: 100,
+    category: 'learning'
+  },
+  {
+    id: '2',
+    title: 'Создать API для пользователей',
+    description: 'Разработать REST API для управления пользователями',
+    status: 'pending',
+    priority: 'medium',
+    deadline: '2024-12-20',
+    reward: 200,
+    category: 'development'
+  },
+  {
+    id: '3',
+    title: 'Написать тесты для компонентов',
+    description: 'Создать unit тесты для всех компонентов',
+    status: 'completed',
+    priority: 'low',
+    deadline: '2024-12-15',
+    reward: 150,
+    category: 'testing'
   }
 ];
 
-const mockShopItems: ShopItem[] = [];
-const mockOrders: Order[] = [];
-const mockTasks: Task[] = [];
-const mockCases: UserCase[] = [];
+const mockShopItems: ShopItem[] = [
+  {
+    id: '1',
+    name: 'Обычный кейс',
+    description: 'Содержит случайные предметы',
+    price: 100,
+    type: 'case',
+    rarity: 'common',
+    image: '📦'
+  },
+  {
+    id: '2',
+    name: 'Редкий кейс',
+    description: 'Содержит редкие предметы',
+    price: 500,
+    type: 'case',
+    rarity: 'rare',
+    image: '💎'
+  },
+  {
+    id: '3',
+    name: 'Эпический кейс',
+    description: 'Содержит эпические предметы',
+    price: 1000,
+    type: 'case',
+    rarity: 'epic',
+    image: '👑'
+  }
+];
+
+const mockOrders: Order[] = [
+  {
+    id: '1',
+    itemId: '1',
+    userId: 'current-user',
+    status: 'completed',
+    createdAt: '2024-12-01',
+    items: []
+  }
+];
+
+const mockUserCases: UserCase[] = [
+  {
+    id: '1',
+    userId: 'current-user',
+    caseType: 'common' as CaseType,
+    openedAt: '2024-12-01',
+    items: []
+  }
+];
 
 const initialMockCurrentUser = {
-  id: '1',
-  name: 'Пользователь',
+  id: 'current-user',
+  name: 'Вы',
   level: 1,
   experience: 0,
   gCoins: 1000,
-  achievements: mockAchievements,
-  notifications: mockNotifications
+  achievements: mockAchievements.slice(0, 1),
+  avatar: '',
+  team: 'Team 1'
 };
 
 export default function App() {
-  const { theme, toggleTheme, themeToggleCount, resetThemeToggleCount } = useTheme();
-  const [mockCurrentUser, setMockCurrentUser] = useState(initialMockCurrentUser);
+  const { theme, toggleTheme } = useTheme();
+  const { userWithRole, hasSecretAccess } = useUserRole();
   
-  // Получаем роль пользователя по его ID
-  const { user: userWithRole, userRole, teamMembers } = useUserRole(mockCurrentUser.id);
-
-  // Modal states
+  // State
   const [showSettings, setShowSettings] = useState(false);
-  const [showAdminPanel, setShowAdminPanel] = useState(false);
   const [showSecretAdminAccess, setShowSecretAdminAccess] = useState(false);
   const [showProblemReport, setShowProblemReport] = useState(false);
-  const [adminRole, setAdminRole] = useState<string | null>(null);
-  const [hasSecretAccess, setHasSecretAccess] = useState(false);
-
-  // Data states
+  const [showAdminPanel, setShowAdminPanel] = useState(false);
+  const [mockCurrentUser, setMockCurrentUser] = useState(initialMockCurrentUser);
   const [achievements, setAchievements] = useState<Achievement[]>(mockAchievements);
+  const [tasks, setTasks] = useState<Task[]>(mockTasks);
   const [shopItems, setShopItems] = useState<ShopItem[]>(mockShopItems);
   const [orders, setOrders] = useState<Order[]>(mockOrders);
-  const [tasks, setTasks] = useState<Task[]>(mockTasks);
-  const [userCases, setUserCases] = useState<UserCase[]>(mockCases);
-  const [notifications, setNotifications] = useState<Notification[]>(mockNotifications);
+  const [userCases, setUserCases] = useState<UserCase[]>(mockUserCases);
+  const [notifications, setNotifications] = useState<Notification[]>([]);
+  const [currentPage, setCurrentPage] = useState('home');
 
-  // Initialize Telegram WebApp and handle viewport changes
-  useEffect(() => {
-    initTelegramWebApp();
-
-    const cleanupViewport = onViewportChange((height) => {
-      document.documentElement.style.setProperty('--vh', `${height}px`);
-    });
-
-    // Принудительный сброс счетчика переключений темы для тестирования
-    console.log('🔄 Resetting theme toggle count for testing');
-    resetThemeToggleCount();
-
-    return cleanupViewport;
-  }, []);
-
-  // Отслеживание переключений темы для секретного доступа
-  useEffect(() => {
-    console.log(`🔍 Theme toggle count changed: ${themeToggleCount}`);
-    if (themeToggleCount >= 8) {
-      console.log('🚀 ACTIVATING SECRET ADMIN ACCESS!');
-      setShowSecretAdminAccess(true);
-      resetThemeToggleCount();
-    }
-  }, [themeToggleCount]);
-
-  // Event handlers
+  // Handlers
   const handleOpenSettings = () => setShowSettings(true);
   const handleCloseSettings = () => setShowSettings(false);
-  
-  const handleOpenAdminPanel = () => setShowAdminPanel(true);
-  const handleCloseAdminPanel = () => setShowAdminPanel(false);
-  
   const handleOpenSecretAdminAccess = () => setShowSecretAdminAccess(true);
   const handleCloseSecretAdminAccess = () => setShowSecretAdminAccess(false);
-  
   const handleOpenProblemReport = () => setShowProblemReport(true);
   const handleCloseProblemReport = () => setShowProblemReport(false);
+  const handleOpenAdminPanel = () => setShowAdminPanel(true);
+  const handleCloseAdminPanel = () => setShowAdminPanel(false);
 
   const handleAdminAccessGranted = (role: string) => {
-    setAdminRole(role);
-    setHasSecretAccess(true);
-    setShowAdminPanel(true);
-    setShowSecretAdminAccess(false);
+    console.log('Admin access granted with role:', role);
     setShowSettings(false);
+    setShowSecretAdminAccess(false);
+    setShowAdminPanel(true);
   };
 
-  // Notification handlers
+  const handleNavigate = (page: string) => {
+    setCurrentPage(page);
+    window.location.hash = `#/${page}`;
+  };
+
   const handleMarkNotificationAsRead = (id: string) => {
-    setNotifications(notifications.map(n => 
-      n.id === id ? { ...n, read: true } : n
-    ));
+    setNotifications(prev => 
+      prev.map(n => n.id === id ? { ...n, read: true } : n)
+    );
   };
 
   const handleMarkAllNotificationsAsRead = () => {
-    setNotifications(notifications.map(n => ({ ...n, read: true })));
+    setNotifications(prev => 
+      prev.map(n => ({ ...n, read: true }))
+    );
   };
 
   const handleRemoveNotification = (id: string) => {
-    setNotifications(notifications.filter(n => n.id !== id));
+    setNotifications(prev => prev.filter(n => n.id !== id));
   };
 
   const handleClearAllNotifications = () => {
     setNotifications([]);
   };
 
+  // Props for pages
+  const pageProps = {
+    theme,
+    currentUser: mockCurrentUser,
+    notifications,
+    achievements,
+    setAchievements,
+    tasks,
+    setTasks,
+    shopItems,
+    setShopItems,
+    orders,
+    setOrders,
+    userCases,
+    setUserCases,
+    onOpenSettings: handleOpenSettings,
+    onMarkNotificationAsRead: handleMarkNotificationAsRead,
+    onMarkAllNotificationsAsRead: handleMarkAllNotificationsAsRead,
+    onRemoveNotification: handleRemoveNotification,
+    onClearAllNotifications: handleClearAllNotifications,
+  };
+
   return (
     <HashRouter>
       <div className={`min-h-screen ${theme === 'dark' ? 'bg-black text-white' : 'bg-white text-black'}`}>
         <Routes>
-          <Route path="/" element={
-            <Layout
-              theme={theme}
-              currentUser={mockCurrentUser}
-              notifications={notifications}
-              onNavigate={handleNavigate}
-              onOpenSettings={handleOpenSettings}
-              onMarkNotificationAsRead={handleMarkNotificationAsRead}
-              onMarkAllNotificationsAsRead={handleMarkAllNotificationsAsRead}
-              onRemoveNotification={handleRemoveNotification}
-              onClearAllNotifications={handleClearAllNotifications}
-            />
-          }>
-            <Route index element={<Navigate to="/home" replace />} />
-            <Route path="home" element={
-              <React.Suspense fallback={<div style={{padding: 16}}>Загрузка…</div>}>
-                <ErrorBoundary>
-                  <HomePage
-                    theme={theme}
-                    currentUser={mockCurrentUser}
-                    notifications={notifications}
-                    achievements={achievements}
-                    onOpenSettings={handleOpenSettings}
-                  />
-                </ErrorBoundary>
-              </React.Suspense>
-            } />
-            <Route path="achievements" element={
-              <React.Suspense fallback={<div style={{padding: 16}}>Загрузка…</div>}>
-                <ErrorBoundary>
-                  <AchievementsPage
-                    achievements={achievements}
-                    setAchievements={setAchievements}
-                    theme={theme}
-                    user={mockCurrentUser}
-                    notifications={notifications}
-                    onMarkNotificationAsRead={handleMarkNotificationAsRead}
-                    onMarkAllNotificationsAsRead={handleMarkAllNotificationsAsRead}
-                    onRemoveNotification={handleRemoveNotification}
-                    onClearAllNotifications={handleClearAllNotifications}
-                    onOpenSettings={handleOpenSettings}
-                  />
-                </ErrorBoundary>
-              </React.Suspense>
-            } />
-            <Route path="tasks" element={
-              <React.Suspense fallback={<div style={{padding: 16}}>Загрузка…</div>}>
-                <ErrorBoundary>
-                  <TasksPage
-                    tasks={tasks}
-                    setTasks={setTasks}
-                    theme={theme}
-                    user={mockCurrentUser}
-                    notifications={notifications}
-                    onMarkNotificationAsRead={handleMarkNotificationAsRead}
-                    onMarkAllNotificationsAsRead={handleMarkAllNotificationsAsRead}
-                    onRemoveNotification={handleRemoveNotification}
-                    onClearAllNotifications={handleClearAllNotifications}
-                    onOpenSettings={handleOpenSettings}
-                  />
-                </ErrorBoundary>
-              </React.Suspense>
-            } />
-            <Route path="shop" element={
-              <React.Suspense fallback={<div style={{padding: 16}}>Загрузка…</div>}>
-                <ErrorBoundary>
-                  <ShopPage
-                    cases={userCases}
-                    setCases={setUserCases}
-                    userCases={userCases}
-                    setUserCases={setUserCases}
-                    shopItems={shopItems}
-                    setShopItems={setShopItems}
-                    userCoins={mockCurrentUser.gCoins}
-                    setUserCoins={(coins) => {
-                      setMockCurrentUser({ ...mockCurrentUser, gCoins: coins });
-                    }}
-                    theme={theme}
-                    user={mockCurrentUser}
-                    notifications={notifications}
-                    onMarkNotificationAsRead={handleMarkNotificationAsRead}
-                    onMarkAllNotificationsAsRead={handleMarkAllNotificationsAsRead}
-                    onRemoveNotification={handleRemoveNotification}
-                    onClearAllNotifications={handleClearAllNotifications}
-                    onOpenSettings={handleOpenSettings}
-                  />
-                </ErrorBoundary>
-              </React.Suspense>
-            } />
-            <Route path="profile" element={
-              <React.Suspense fallback={<div style={{padding: 16}}>Загрузка…</div>}>
-                <ErrorBoundary>
-                  <ProfilePage
-                    theme={theme}
-                    user={mockCurrentUser}
-                    setUser={setMockCurrentUser}
-                    battles={[]}
-                    leaderboard={[]}
-                  />
-                </ErrorBoundary>
-              </React.Suspense>
-            } />
-          </Route>
+          <Route path="/" element={<Navigate to="/home" replace />} />
+          <Route path="/home" element={
+            <div className="app">
+              <Header
+                theme={theme}
+                currentUser={mockCurrentUser}
+                notifications={notifications}
+                onNavigate={handleNavigate}
+                onOpenSettings={handleOpenSettings}
+                onMarkNotificationAsRead={handleMarkNotificationAsRead}
+                onMarkAllNotificationsAsRead={handleMarkAllNotificationsAsRead}
+                onRemoveNotification={handleRemoveNotification}
+                onClearAllNotifications={handleClearAllNotifications}
+              />
+              <main className="container">
+                <HomePage
+                  theme={theme}
+                  currentUser={mockCurrentUser}
+                  notifications={notifications}
+                  achievements={achievements}
+                  onOpenSettings={handleOpenSettings}
+                  onNavigate={handleNavigate}
+                  currentPage="home"
+                  battles={[]}
+                  battleInvitations={[]}
+                  users={[]}
+                  leaderboard={[]}
+                />
+              </main>
+              <BottomNavigation theme={theme} />
+            </div>
+          } />
+          <Route path="/achievements" element={
+            <div className="app">
+              <Header
+                theme={theme}
+                currentUser={mockCurrentUser}
+                notifications={notifications}
+                onNavigate={handleNavigate}
+                onOpenSettings={handleOpenSettings}
+                onMarkNotificationAsRead={handleMarkNotificationAsRead}
+                onMarkAllNotificationsAsRead={handleMarkAllNotificationsAsRead}
+                onRemoveNotification={handleRemoveNotification}
+                onClearAllNotifications={handleClearAllNotifications}
+              />
+              <main className="container">
+                <AchievementsPageFixed
+                  achievements={achievements}
+                  setAchievements={setAchievements}
+                  theme={theme}
+                  user={mockCurrentUser}
+                  notifications={notifications}
+                  onMarkNotificationAsRead={handleMarkNotificationAsRead}
+                  onMarkAllNotificationsAsRead={handleMarkAllNotificationsAsRead}
+                  onRemoveNotification={handleRemoveNotification}
+                  onClearAllNotifications={handleClearAllNotifications}
+                  onOpenSettings={handleOpenSettings}
+                />
+              </main>
+              <BottomNavigation theme={theme} />
+            </div>
+          } />
+          <Route path="/tasks" element={
+            <div className="app">
+              <Header
+                theme={theme}
+                currentUser={mockCurrentUser}
+                notifications={notifications}
+                onNavigate={handleNavigate}
+                onOpenSettings={handleOpenSettings}
+                onMarkNotificationAsRead={handleMarkNotificationAsRead}
+                onMarkAllNotificationsAsRead={handleMarkAllNotificationsAsRead}
+                onRemoveNotification={handleRemoveNotification}
+                onClearAllNotifications={handleClearAllNotifications}
+              />
+              <main className="container">
+                <TasksPage
+                  tasks={tasks}
+                  setTasks={setTasks}
+                  theme={theme}
+                  user={mockCurrentUser}
+                  notifications={notifications}
+                  onMarkNotificationAsRead={handleMarkNotificationAsRead}
+                  onMarkAllNotificationsAsRead={handleMarkAllNotificationsAsRead}
+                  onRemoveNotification={handleRemoveNotification}
+                  onClearAllNotifications={handleClearAllNotifications}
+                  onOpenSettings={handleOpenSettings}
+                />
+              </main>
+              <BottomNavigation theme={theme} />
+            </div>
+          } />
+          <Route path="/shop" element={
+            <div className="app">
+              <Header
+                theme={theme}
+                currentUser={mockCurrentUser}
+                notifications={notifications}
+                onNavigate={handleNavigate}
+                onOpenSettings={handleOpenSettings}
+                onMarkNotificationAsRead={handleMarkNotificationAsRead}
+                onMarkAllNotificationsAsRead={handleMarkAllNotificationsAsRead}
+                onRemoveNotification={handleRemoveNotification}
+                onClearAllNotifications={handleClearAllNotifications}
+              />
+              <main className="container">
+                <CasesShopPage
+                  shopItems={shopItems}
+                  setShopItems={setShopItems}
+                  orders={orders}
+                  setOrders={setOrders}
+                  userCases={userCases}
+                  setUserCases={setUserCases}
+                  theme={theme}
+                  user={mockCurrentUser}
+                  notifications={notifications}
+                  onMarkNotificationAsRead={handleMarkNotificationAsRead}
+                  onMarkAllNotificationsAsRead={handleMarkAllNotificationsAsRead}
+                  onRemoveNotification={handleRemoveNotification}
+                  onClearAllNotifications={handleClearAllNotifications}
+                  onOpenSettings={handleOpenSettings}
+                />
+              </main>
+              <BottomNavigation theme={theme} />
+            </div>
+          } />
+          <Route path="/profile" element={
+            <div className="app">
+              <Header
+                theme={theme}
+                currentUser={mockCurrentUser}
+                notifications={notifications}
+                onNavigate={handleNavigate}
+                onOpenSettings={handleOpenSettings}
+                onMarkNotificationAsRead={handleMarkNotificationAsRead}
+                onMarkAllNotificationsAsRead={handleMarkAllNotificationsAsRead}
+                onRemoveNotification={handleRemoveNotification}
+                onClearAllNotifications={handleClearAllNotifications}
+              />
+              <main className="container">
+                <ProfilePage
+                  theme={theme}
+                  user={mockCurrentUser}
+                  setUser={setMockCurrentUser}
+                  battles={[]}
+                  leaderboard={[]}
+                />
+              </main>
+              <BottomNavigation theme={theme} />
+            </div>
+          } />
         </Routes>
 
         {/* Modals */}
