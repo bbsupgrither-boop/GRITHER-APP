@@ -158,7 +158,7 @@ export const HomePage: React.FC<HomePageProps> = ({
       >
         <div style={{ display: 'flex', flexDirection: 'column', gap: '12px' }}>
           
-          {/* Ваши достижения */}
+          {/* Заголовок "Ваши достижения" */}
           <div 
             className="glass-card p-4"
             style={{
@@ -166,7 +166,7 @@ export const HomePage: React.FC<HomePageProps> = ({
               borderColor: theme === 'dark' ? 'rgba(255, 255, 255, 0.06)' : '#E6E9EF'
             }}
           >
-            <div className="flex items-center justify-between mb-4">
+            <div className="flex items-center justify-center relative">
               <h3 
                 style={{ 
                   fontSize: '16px', 
@@ -179,67 +179,74 @@ export const HomePage: React.FC<HomePageProps> = ({
               
               <button
                 onClick={() => setIsAchievementsModalOpen(true)}
-                className={`apple-button w-7 h-7 flex items-center justify-center ${theme === 'dark' ? 'white-button' : ''}`}
+                className={`apple-button w-7 h-7 flex items-center justify-center absolute right-0 ${theme === 'dark' ? 'white-button' : ''}`}
               >
                 <Eye className="w-4 h-4" />
               </button>
             </div>
+          </div>
 
-            {/* Mock achievements in progress */}
-            <div className="space-y-3">
-              {[
-                { name: 'Новичок', progress: 50, description: 'Достигните 2 уровня', rarity: 'common' },
-                { name: 'Трудолюбивый', progress: 30, description: 'Выполните 10 задач', rarity: 'rare' },
-                { name: 'Коллекционер', progress: 20, description: 'Откройте 5 кейсов', rarity: 'epic' }
-              ].map((achievement, index) => (
-                <div key={index} className="flex items-center gap-3">
-                  {/* Achievement icon */}
-                  <div 
-                    className="w-8 h-8 rounded-full flex items-center justify-center text-white text-xs font-bold"
-                    style={{
-                      backgroundColor: '#3B82F6'
-                    }}
-                  >
-                    🛡️
-                  </div>
-                  
-                  {/* Achievement info */}
-                  <div className="flex-1">
-                    <div 
-                      style={{
-                        fontSize: '14px',
-                        fontWeight: '600',
-                        color: theme === 'dark' ? '#E8ECF2' : '#0F172A',
-                        marginBottom: '2px'
-                      }}
-                    >
-                      {achievement.name}
-                    </div>
-                    <div 
-                      style={{
-                        fontSize: '12px',
-                        color: theme === 'dark' ? '#A7B0BD' : '#6B7280',
-                        marginBottom: '4px'
-                      }}
-                    >
-                      {achievement.description}
-                    </div>
-                  </div>
-                  
-                  {/* Progress percentage */}
+          {/* Отдельные панельки для каждого достижения */}
+          {[
+            { name: 'Новичок', progress: 50, description: 'Достигните 2 уровня', rarity: 'common' },
+            { name: 'Трудолюбивый', progress: 30, description: 'Выполните 10 задач', rarity: 'rare' },
+            { name: 'Коллекционер', progress: 20, description: 'Откройте 5 кейсов', rarity: 'epic' }
+          ].map((achievement, index) => (
+            <div 
+              key={index}
+              className="glass-card p-4"
+              style={{
+                backgroundColor: theme === 'dark' ? '#161A22' : '#FFFFFF',
+                borderColor: theme === 'dark' ? 'rgba(255, 255, 255, 0.06)' : '#E6E9EF'
+              }}
+            >
+              <div className="flex items-center gap-3">
+                {/* Achievement icon */}
+                <div 
+                  className="w-8 h-8 rounded-full flex items-center justify-center text-white text-xs font-bold"
+                  style={{
+                    backgroundColor: '#3B82F6'
+                  }}
+                >
+                  🛡️
+                </div>
+                
+                {/* Achievement info */}
+                <div className="flex-1">
                   <div 
                     style={{
                       fontSize: '14px',
                       fontWeight: '600',
-                      color: '#3B82F6'
+                      color: theme === 'dark' ? '#E8ECF2' : '#0F172A',
+                      marginBottom: '2px'
                     }}
                   >
-                    {achievement.progress}%
+                    {achievement.name}
+                  </div>
+                  <div 
+                    style={{
+                      fontSize: '12px',
+                      color: theme === 'dark' ? '#A7B0BD' : '#6B7280',
+                      marginBottom: '4px'
+                    }}
+                  >
+                    {achievement.description}
                   </div>
                 </div>
-              ))}
+                
+                {/* Progress percentage */}
+                <div 
+                  style={{
+                    fontSize: '14px',
+                    fontWeight: '600',
+                    color: '#3B82F6'
+                  }}
+                >
+                  {achievement.progress}%
+                </div>
+              </div>
             </div>
-          </div>
+          ))}
 
           {/* Статус/XP/Уровень */}
           <div 
