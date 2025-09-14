@@ -1,435 +1,290 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { HashRouter, Routes, Route, Navigate } from 'react-router-dom';
 
-// Components
-import { Header } from './components/Header';
-import { BottomNavigation } from './components/BottomNavigation';
-import { SettingsModal } from './components/SettingsModalFixed';
-import { SecretAdminAccess } from './components/SecretAdminAccess';
-import { ProblemReportModal } from './components/ProblemReportModal';
-import { AdminPanelMain } from './components/AdminPanelMain';
-
-// Pages
-import { HomePage } from './components/HomePage';
-import { AchievementsPageFixed } from './components/AchievementsPageFixed';
-import { TasksPage } from './components/TasksPage';
-import { CasesShopPage } from './components/CasesShopPage';
-import ProfilePage from './src/pages/Profile';
-
-// Hooks
-import { useTheme } from './hooks/useTheme';
-import { useUserRole } from './hooks/useUserRole';
-
-// Types
-import { Achievement } from './types/achievements';
-import { ShopItem, Order } from './types/shop';
-import { Task } from './types/tasks';
-import { CaseType, UserCase } from './types/cases';
-import { Notification } from './types/notifications';
-
-// Mock data
-const mockAchievements: Achievement[] = [
-  {
-    id: '1',
-    title: 'Новичок',
-    description: 'Создайте свой первый аккаунт',
-    icon: '🛡️',
-    category: 'general',
-    rarity: 'common',
-    requirements: {
-      type: 'account_creation',
-      target: 1,
-      current: 1
-    },
-    reward: {
-      type: 'coins',
-      amount: 100
-    }
-  },
-  {
-    id: '2',
-    title: 'Трудолюбивый',
-    description: 'Выполните 10 задач',
-    icon: '⚡',
-    category: 'tasks',
-    rarity: 'rare',
-    requirements: {
-      type: 'tasks_completed',
-      target: 10,
-      current: 3
-    },
-    reward: {
-      type: 'coins',
-      amount: 500
-    }
-  },
-  {
-    id: '3',
-    title: 'Коллекционер',
-    description: 'Откройте 5 кейсов',
-    icon: '📦',
-    category: 'cases',
-    rarity: 'epic',
-    requirements: {
-      type: 'cases_opened',
-      target: 5,
-      current: 1
-    },
-    reward: {
-      type: 'coins',
-      amount: 1000
-    }
-  }
-];
-
-const mockTasks: Task[] = [
-  {
-    id: '1',
-    title: 'Изучить React',
-    description: 'Изучить основы React и компоненты',
-    status: 'in_progress',
-    priority: 'high',
-    deadline: '2024-12-25',
-    reward: 100,
-    category: 'learning'
-  },
-  {
-    id: '2',
-    title: 'Создать API для пользователей',
-    description: 'Разработать REST API для управления пользователями',
-    status: 'pending',
-    priority: 'medium',
-    deadline: '2024-12-20',
-    reward: 200,
-    category: 'development'
-  },
-  {
-    id: '3',
-    title: 'Написать тесты для компонентов',
-    description: 'Создать unit тесты для всех компонентов',
-    status: 'completed',
-    priority: 'low',
-    deadline: '2024-12-15',
-    reward: 150,
-    category: 'testing'
-  }
-];
-
-const mockShopItems: ShopItem[] = [
-  {
-    id: '1',
-    name: 'Обычный кейс',
-    description: 'Содержит случайные предметы',
-    price: 100,
-    type: 'case',
-    rarity: 'common',
-    image: '📦'
-  },
-  {
-    id: '2',
-    name: 'Редкий кейс',
-    description: 'Содержит редкие предметы',
-    price: 500,
-    type: 'case',
-    rarity: 'rare',
-    image: '💎'
-  },
-  {
-    id: '3',
-    name: 'Эпический кейс',
-    description: 'Содержит эпические предметы',
-    price: 1000,
-    type: 'case',
-    rarity: 'epic',
-    image: '👑'
-  }
-];
-
-const mockOrders: Order[] = [
-  {
-    id: '1',
-    itemId: '1',
-    userId: 'current-user',
-    status: 'completed',
-    createdAt: '2024-12-01',
-    items: []
-  }
-];
-
-const mockUserCases: UserCase[] = [
-  {
-    id: '1',
-    userId: 'current-user',
-    caseType: 'common' as CaseType,
-    openedAt: '2024-12-01',
-    items: []
-  }
-];
-
-const initialMockCurrentUser = {
-  id: 'current-user',
-  name: 'Вы',
-  level: 1,
-  experience: 0,
-  gCoins: 1000,
-  achievements: mockAchievements.slice(0, 1),
-  avatar: '',
-  team: 'Team 1'
-};
-
 export default function App() {
-  const { theme, toggleTheme } = useTheme();
-  const { userWithRole, hasSecretAccess } = useUserRole();
-  
-  // State
-  const [showSettings, setShowSettings] = useState(false);
-  const [showSecretAdminAccess, setShowSecretAdminAccess] = useState(false);
-  const [showProblemReport, setShowProblemReport] = useState(false);
-  const [showAdminPanel, setShowAdminPanel] = useState(false);
-  const [mockCurrentUser, setMockCurrentUser] = useState(initialMockCurrentUser);
-  const [achievements, setAchievements] = useState<Achievement[]>(mockAchievements);
-  const [tasks, setTasks] = useState<Task[]>(mockTasks);
-  const [shopItems, setShopItems] = useState<ShopItem[]>(mockShopItems);
-  const [orders, setOrders] = useState<Order[]>(mockOrders);
-  const [userCases, setUserCases] = useState<UserCase[]>(mockUserCases);
-  const [notifications, setNotifications] = useState<Notification[]>([]);
-  const [currentPage, setCurrentPage] = useState('home');
+  const [theme, setTheme] = useState<'light' | 'dark'>('light');
 
-  // Handlers
-  const handleOpenSettings = () => setShowSettings(true);
-  const handleCloseSettings = () => setShowSettings(false);
-  const handleOpenSecretAdminAccess = () => setShowSecretAdminAccess(true);
-  const handleCloseSecretAdminAccess = () => setShowSecretAdminAccess(false);
-  const handleOpenProblemReport = () => setShowProblemReport(true);
-  const handleCloseProblemReport = () => setShowProblemReport(false);
-  const handleOpenAdminPanel = () => setShowAdminPanel(true);
-  const handleCloseAdminPanel = () => setShowAdminPanel(false);
-
-  const handleAdminAccessGranted = (role: string) => {
-    console.log('Admin access granted with role:', role);
-    setShowSettings(false);
-    setShowSecretAdminAccess(false);
-    setShowAdminPanel(true);
-  };
-
-  const handleNavigate = (page: string) => {
-    setCurrentPage(page);
-    window.location.hash = `#/${page}`;
-  };
-
-  const handleMarkNotificationAsRead = (id: string) => {
-    setNotifications(prev => 
-      prev.map(n => n.id === id ? { ...n, read: true } : n)
-    );
-  };
-
-  const handleMarkAllNotificationsAsRead = () => {
-    setNotifications(prev => 
-      prev.map(n => ({ ...n, read: true }))
-    );
-  };
-
-  const handleRemoveNotification = (id: string) => {
-    setNotifications(prev => prev.filter(n => n.id !== id));
-  };
-
-  const handleClearAllNotifications = () => {
-    setNotifications([]);
+  const toggleTheme = () => {
+    setTheme(prev => prev === 'light' ? 'dark' : 'light');
   };
 
   return (
     <HashRouter>
-      <div className={`min-h-screen ${theme === 'dark' ? 'bg-black text-white' : 'bg-white text-black'}`}>
+      <div style={{ minHeight: '100vh', backgroundColor: theme === 'dark' ? '#12151B' : '#F5F7FA' }}>
         <Routes>
           <Route path="/" element={<Navigate to="/home" replace />} />
           <Route path="/home" element={
-            <div className="app">
-              <Header
-                theme={theme}
-                currentUser={mockCurrentUser}
-                notifications={notifications}
-                onNavigate={handleNavigate}
-                onOpenSettings={handleOpenSettings}
-                onMarkNotificationAsRead={handleMarkNotificationAsRead}
-                onMarkAllNotificationsAsRead={handleMarkAllNotificationsAsRead}
-                onRemoveNotification={handleRemoveNotification}
-                onClearAllNotifications={handleClearAllNotifications}
-              />
-              <main className="container">
-                <HomePage
-                  theme={theme}
-                  currentUser={mockCurrentUser}
-                  notifications={notifications}
-                  achievements={achievements}
-                  onOpenSettings={handleOpenSettings}
-                  onNavigate={handleNavigate}
-                  currentPage="home"
-                  battles={[]}
-                  battleInvitations={[]}
-                  users={[]}
-                  leaderboard={[]}
-                />
-              </main>
-              <BottomNavigation theme={theme} />
+            <div style={{ 
+              padding: '20px', 
+              backgroundColor: theme === 'dark' ? '#12151B' : '#F5F7FA',
+              minHeight: '100vh'
+            }}>
+              {/* Header */}
+              <div style={{
+                display: 'flex',
+                justifyContent: 'space-between',
+                alignItems: 'center',
+                padding: '16px 0',
+                borderBottom: `1px solid ${theme === 'dark' ? '#333' : '#e0e0e0'}`
+              }}>
+                <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
+                  <div style={{
+                    width: '40px',
+                    height: '40px',
+                    borderRadius: '50%',
+                    background: 'linear-gradient(135deg, #5AA7FF, #A7D0FF)',
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    color: 'white',
+                    fontWeight: 'bold'
+                  }}>
+                    И
+                  </div>
+                  <div>
+                    <div style={{ fontWeight: 'bold', color: theme === 'dark' ? '#fff' : '#000' }}>Иван Иванов</div>
+                    <div style={{ fontSize: '12px', color: '#666' }}>WORKER</div>
+                  </div>
+                </div>
+                <div style={{ display: 'flex', gap: '8px' }}>
+                  <button style={{
+                    width: '40px',
+                    height: '40px',
+                    borderRadius: '50%',
+                    border: 'none',
+                    background: '#f0f0f0',
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    cursor: 'pointer'
+                  }}>
+                    🔔
+                  </button>
+                  <button style={{
+                    width: '40px',
+                    height: '40px',
+                    borderRadius: '50%',
+                    border: 'none',
+                    background: '#f0f0f0',
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    cursor: 'pointer'
+                  }}>
+                    ⚙️
+                  </button>
+                </div>
+              </div>
+
+              {/* Logo */}
+              <div style={{
+                textAlign: 'center',
+                padding: '40px 0',
+                fontSize: '2rem',
+                fontWeight: 'bold',
+                color: theme === 'dark' ? '#fff' : '#000'
+              }}>
+                GRITHER
+              </div>
+
+              {/* Achievements Card */}
+              <div style={{
+                background: theme === 'dark' ? '#161A22' : '#fff',
+                borderRadius: '16px',
+                padding: '16px',
+                marginBottom: '16px',
+                boxShadow: '0 6px 24px rgba(0,0,0,0.1)'
+              }}>
+                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '16px' }}>
+                  <h3 style={{ color: theme === 'dark' ? '#fff' : '#000' }}>Ваши достижения</h3>
+                  <button style={{
+                    width: '32px',
+                    height: '32px',
+                    borderRadius: '50%',
+                    border: 'none',
+                    background: '#f0f0f0',
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    cursor: 'pointer'
+                  }}>
+                    👁️
+                  </button>
+                </div>
+                
+                <div style={{ display: 'flex', gap: '12px', marginBottom: '12px' }}>
+                  <div style={{
+                    width: '48px',
+                    height: '48px',
+                    borderRadius: '50%',
+                    background: 'linear-gradient(135deg, #5AA7FF, #A7D0FF)',
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    color: 'white',
+                    fontSize: '20px'
+                  }}>
+                    🛡️
+                  </div>
+                  <div style={{ flex: 1 }}>
+                    <div style={{ fontWeight: 'bold', color: theme === 'dark' ? '#fff' : '#000' }}>Новичок</div>
+                    <div style={{ fontSize: '12px', color: '#666', marginBottom: '4px' }}>Достигните 2 уровня</div>
+                    <div style={{ color: '#5AA7FF', fontSize: '12px' }}>50%</div>
+                  </div>
+                </div>
+
+                <div style={{ display: 'flex', gap: '12px', marginBottom: '12px' }}>
+                  <div style={{
+                    width: '48px',
+                    height: '48px',
+                    borderRadius: '50%',
+                    background: 'linear-gradient(135deg, #A855F7, #C084FC)',
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    color: 'white',
+                    fontSize: '20px'
+                  }}>
+                    ⚡
+                  </div>
+                  <div style={{ flex: 1 }}>
+                    <div style={{ fontWeight: 'bold', color: theme === 'dark' ? '#fff' : '#000' }}>Трудолюбивый</div>
+                    <div style={{ fontSize: '12px', color: '#666', marginBottom: '4px' }}>Выполните 10 задач</div>
+                    <div style={{ color: '#A855F7', fontSize: '12px' }}>30%</div>
+                  </div>
+                </div>
+
+                <div style={{ display: 'flex', gap: '12px' }}>
+                  <div style={{
+                    width: '48px',
+                    height: '48px',
+                    borderRadius: '50%',
+                    background: 'linear-gradient(135deg, #3B82F6, #60A5FA)',
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    color: 'white',
+                    fontSize: '20px'
+                  }}>
+                    📦
+                  </div>
+                  <div style={{ flex: 1 }}>
+                    <div style={{ fontWeight: 'bold', color: theme === 'dark' ? '#fff' : '#000' }}>Коллекционер</div>
+                    <div style={{ fontSize: '12px', color: '#666', marginBottom: '4px' }}>Откройте 5 кейсов</div>
+                    <div style={{ color: '#3B82F6', fontSize: '12px' }}>20%</div>
+                  </div>
+                </div>
+              </div>
+
+              {/* Bottom Navigation */}
+              <div style={{
+                position: 'fixed',
+                bottom: 0,
+                left: 0,
+                right: 0,
+                background: theme === 'dark' ? '#161A22' : '#fff',
+                borderTop: `1px solid ${theme === 'dark' ? '#333' : '#e0e0e0'}`,
+                display: 'flex',
+                justifyContent: 'space-around',
+                padding: '12px 0',
+                boxShadow: '0 -2px 10px rgba(0,0,0,0.1)'
+              }}>
+                <button style={{
+                  display: 'flex',
+                  flexDirection: 'column',
+                  alignItems: 'center',
+                  gap: '4px',
+                  border: 'none',
+                  background: 'none',
+                  cursor: 'pointer',
+                  color: '#5AA7FF'
+                }}>
+                  <div style={{ fontSize: '20px' }}>🏠</div>
+                  <div style={{ fontSize: '10px' }}>Главная</div>
+                </button>
+                <button style={{
+                  display: 'flex',
+                  flexDirection: 'column',
+                  alignItems: 'center',
+                  gap: '4px',
+                  border: 'none',
+                  background: 'none',
+                  cursor: 'pointer',
+                  color: theme === 'dark' ? '#666' : '#999'
+                }}>
+                  <div style={{ fontSize: '20px' }}>🏆</div>
+                  <div style={{ fontSize: '10px' }}>Достижения</div>
+                </button>
+                <button style={{
+                  display: 'flex',
+                  flexDirection: 'column',
+                  alignItems: 'center',
+                  gap: '4px',
+                  border: 'none',
+                  background: 'none',
+                  cursor: 'pointer',
+                  color: theme === 'dark' ? '#666' : '#999'
+                }}>
+                  <div style={{ fontSize: '20px' }}>✅</div>
+                  <div style={{ fontSize: '10px' }}>Задачи</div>
+                </button>
+                <button style={{
+                  display: 'flex',
+                  flexDirection: 'column',
+                  alignItems: 'center',
+                  gap: '4px',
+                  border: 'none',
+                  background: 'none',
+                  cursor: 'pointer',
+                  color: theme === 'dark' ? '#666' : '#999'
+                }}>
+                  <div style={{ fontSize: '20px' }}>🛒</div>
+                  <div style={{ fontSize: '10px' }}>Магазин</div>
+                </button>
+              </div>
             </div>
           } />
           <Route path="/achievements" element={
-            <div className="app">
-              <Header
-                theme={theme}
-                currentUser={mockCurrentUser}
-                notifications={notifications}
-                onNavigate={handleNavigate}
-                onOpenSettings={handleOpenSettings}
-                onMarkNotificationAsRead={handleMarkNotificationAsRead}
-                onMarkAllNotificationsAsRead={handleMarkAllNotificationsAsRead}
-                onRemoveNotification={handleRemoveNotification}
-                onClearAllNotifications={handleClearAllNotifications}
-              />
-              <main className="container">
-                <AchievementsPageFixed
-                  achievements={achievements}
-                  setAchievements={setAchievements}
-                  theme={theme}
-                  user={mockCurrentUser}
-                  notifications={notifications}
-                  onMarkNotificationAsRead={handleMarkNotificationAsRead}
-                  onMarkAllNotificationsAsRead={handleMarkAllNotificationsAsRead}
-                  onRemoveNotification={handleRemoveNotification}
-                  onClearAllNotifications={handleClearAllNotifications}
-                  onOpenSettings={handleOpenSettings}
-                />
-              </main>
-              <BottomNavigation theme={theme} />
+            <div style={{ 
+              padding: '20px', 
+              backgroundColor: theme === 'dark' ? '#12151B' : '#F5F7FA',
+              minHeight: '100vh'
+            }}>
+              <h1 style={{ color: theme === 'dark' ? '#fff' : '#000' }}>Достижения</h1>
+              <p style={{ color: theme === 'dark' ? '#ccc' : '#666' }}>Страница достижений работает!</p>
             </div>
           } />
           <Route path="/tasks" element={
-            <div className="app">
-              <Header
-                theme={theme}
-                currentUser={mockCurrentUser}
-                notifications={notifications}
-                onNavigate={handleNavigate}
-                onOpenSettings={handleOpenSettings}
-                onMarkNotificationAsRead={handleMarkNotificationAsRead}
-                onMarkAllNotificationsAsRead={handleMarkAllNotificationsAsRead}
-                onRemoveNotification={handleRemoveNotification}
-                onClearAllNotifications={handleClearAllNotifications}
-              />
-              <main className="container">
-                <TasksPage
-                  tasks={tasks}
-                  setTasks={setTasks}
-                  theme={theme}
-                  user={mockCurrentUser}
-                  notifications={notifications}
-                  onMarkNotificationAsRead={handleMarkNotificationAsRead}
-                  onMarkAllNotificationsAsRead={handleMarkAllNotificationsAsRead}
-                  onRemoveNotification={handleRemoveNotification}
-                  onClearAllNotifications={handleClearAllNotifications}
-                  onOpenSettings={handleOpenSettings}
-                />
-              </main>
-              <BottomNavigation theme={theme} />
+            <div style={{ 
+              padding: '20px', 
+              backgroundColor: theme === 'dark' ? '#12151B' : '#F5F7FA',
+              minHeight: '100vh'
+            }}>
+              <h1 style={{ color: theme === 'dark' ? '#fff' : '#000' }}>Задачи</h1>
+              <p style={{ color: theme === 'dark' ? '#ccc' : '#666' }}>Страница задач работает!</p>
             </div>
           } />
           <Route path="/shop" element={
-            <div className="app">
-              <Header
-                theme={theme}
-                currentUser={mockCurrentUser}
-                notifications={notifications}
-                onNavigate={handleNavigate}
-                onOpenSettings={handleOpenSettings}
-                onMarkNotificationAsRead={handleMarkNotificationAsRead}
-                onMarkAllNotificationsAsRead={handleMarkAllNotificationsAsRead}
-                onRemoveNotification={handleRemoveNotification}
-                onClearAllNotifications={handleClearAllNotifications}
-              />
-              <main className="container">
-                <CasesShopPage
-                  shopItems={shopItems}
-                  setShopItems={setShopItems}
-                  orders={orders}
-                  setOrders={setOrders}
-                  userCases={userCases}
-                  setUserCases={setUserCases}
-                  theme={theme}
-                  user={mockCurrentUser}
-                  notifications={notifications}
-                  onMarkNotificationAsRead={handleMarkNotificationAsRead}
-                  onMarkAllNotificationsAsRead={handleMarkAllNotificationsAsRead}
-                  onRemoveNotification={handleRemoveNotification}
-                  onClearAllNotifications={handleClearAllNotifications}
-                  onOpenSettings={handleOpenSettings}
-                />
-              </main>
-              <BottomNavigation theme={theme} />
+            <div style={{ 
+              padding: '20px', 
+              backgroundColor: theme === 'dark' ? '#12151B' : '#F5F7FA',
+              minHeight: '100vh'
+            }}>
+              <h1 style={{ color: theme === 'dark' ? '#fff' : '#000' }}>Магазин</h1>
+              <p style={{ color: theme === 'dark' ? '#ccc' : '#666' }}>Страница магазина работает!</p>
             </div>
           } />
           <Route path="/profile" element={
-            <div className="app">
-              <Header
-                theme={theme}
-                currentUser={mockCurrentUser}
-                notifications={notifications}
-                onNavigate={handleNavigate}
-                onOpenSettings={handleOpenSettings}
-                onMarkNotificationAsRead={handleMarkNotificationAsRead}
-                onMarkAllNotificationsAsRead={handleMarkAllNotificationsAsRead}
-                onRemoveNotification={handleRemoveNotification}
-                onClearAllNotifications={handleClearAllNotifications}
-              />
-              <main className="container">
-                <ProfilePage
-                  theme={theme}
-                  user={mockCurrentUser}
-                  setUser={setMockCurrentUser}
-                  battles={[]}
-                  leaderboard={[]}
-                />
-              </main>
-              <BottomNavigation theme={theme} />
+            <div style={{ 
+              padding: '20px', 
+              backgroundColor: theme === 'dark' ? '#12151B' : '#F5F7FA',
+              minHeight: '100vh'
+            }}>
+              <h1 style={{ color: theme === 'dark' ? '#fff' : '#000' }}>Профиль</h1>
+              <p style={{ color: theme === 'dark' ? '#ccc' : '#666' }}>Страница профиля работает!</p>
             </div>
           } />
         </Routes>
-
-        {/* Modals */}
-        {showSettings && (
-          <SettingsModal
-            isOpen={showSettings}
-            onClose={handleCloseSettings}
-            theme={theme}
-            onToggleTheme={toggleTheme}
-            onOpenAdminPanel={handleOpenAdminPanel}
-            onOpenProblemReport={handleOpenProblemReport}
-          />
-        )}
-
-        {showSecretAdminAccess && (
-          <SecretAdminAccess
-            isOpen={showSecretAdminAccess}
-            onClose={handleCloseSecretAdminAccess}
-            theme={theme}
-            onAccessGranted={handleAdminAccessGranted}
-          />
-        )}
-
-        {showProblemReport && (
-          <ProblemReportModal
-            isOpen={showProblemReport}
-            onClose={handleCloseProblemReport}
-            theme={theme}
-          />
-        )}
-
-        {showAdminPanel && (userWithRole || hasSecretAccess) && (
-          <AdminPanelMain
-            onClose={handleCloseAdminPanel}
-            theme={theme}
-            adminName={userWithRole?.name || 'Секретный Админ'}
-          />
-        )}
       </div>
     </HashRouter>
   );
