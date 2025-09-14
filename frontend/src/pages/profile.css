@@ -1,0 +1,22 @@
+/* Profile page specific styles */
+.placeholder-text {
+  color: #6B7280;
+  opacity: 0.5;
+  font-style: italic;
+  transition: all 0.3s ease;
+}
+
+.loaded-data {
+  opacity: 1;
+  font-style: normal;
+  animation: fadeInData 0.5s ease;
+}
+
+@keyframes fadeInData {
+  from {
+    opacity: 0.2;
+  }
+  to {
+    opacity: 1;
+  }
+}

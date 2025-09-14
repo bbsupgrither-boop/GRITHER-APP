@@ -1,62 +1,48 @@
 import React, { useState } from 'react';
-import { User as UserIcon, Edit3, Trophy, Calendar, Zap, Coins, Eye } from 'lucide-react';
+import { User, Edit3, Eye, UserIcon } from 'lucide-react';
 import { safeString, safeNumber } from '../shared/utils';
+import './profile.css';
 
-interface ProfilePageProps {
-  theme: 'light' | 'dark';
-  user: any;
-  setUser: (user: any) => void;
-  battles: any[];
-  leaderboard: any[];
-}
-
-export default function ProfilePage({
-  theme,
-  user,
-  setUser,
-  battles,
-  leaderboard,
-}: ProfilePageProps) {
+// AUTOGEN START profile
+export default function Profile({ theme, user, setUser, battles = [], leaderboard = [] }: any) {
   const [showBattlesModal, setShowBattlesModal] = useState(false);
-  
+
   // Mock data for battles
   const mockBattles = [
     {
       id: '1',
       opponentName: 'Анна Иванова',
       opponentTeam: 'Team 1',
-      date: '12.09.2025',
       status: 'defeat',
-      stake: 150,
-      statusText: 'Поражение'
+      statusText: 'Поражение',
+      stake: '150',
+      date: '25.12.2024'
     },
     {
       id: '2',
       opponentName: 'Мария Сидорова',
       opponentTeam: 'Team 1',
-      date: '09.09.2025',
       status: 'win',
-      stake: 200,
-      statusText: 'Победа'
+      statusText: 'Победа',
+      stake: '200',
+      date: '20.12.2024'
     },
     {
       id: '3',
       opponentName: 'Елена Морозова',
       opponentTeam: 'Team 1',
-      date: '14.09.2025',
       status: 'active',
-      stake: 250,
-      statusText: 'В процессе'
+      statusText: 'В процессе',
+      stake: '250',
+      date: '15.12.2024'
     }
   ];
 
-  // AUTOGEN START profile-content
   const userName = safeString(user?.name, 'Вы');
   const userLevel = safeNumber(user?.level, 1);
   const userCoins = safeString(user?.gCoins, '1000');
   const userExperience = safeNumber(user?.experience, 0);
-  
-  // Calculate user status based on level
+
   const getUserStatus = (level: number) => {
     if (level >= 20) return 'Мастер';
     if (level >= 15) return 'Эксперт';
@@ -67,7 +53,7 @@ export default function ProfilePage({
 
   const userStatus = getUserStatus(userLevel);
   const wins = mockBattles.filter(b => b.status === 'win').length;
-  const achievements = safeNumber(user?.achievements?.length, 0);
+  const achievementsCount = safeNumber(user?.achievements?.length, 0);
 
   return (
     <div className="py-4">
@@ -84,7 +70,7 @@ export default function ProfilePage({
             </button>
             <p className="text-xs text-muted-foreground text-center mt-2">@user</p>
           </div>
-          
+
           {/* Info Card */}
           <div className="flex-1">
             <div className="space-y-2 text-sm">
@@ -129,7 +115,7 @@ export default function ProfilePage({
       <div className="glass-card p-4 mb-4">
         <div className="flex items-center justify-between mb-3">
           <h2 className="unified-heading">Мои баттлы</h2>
-          <button 
+          <button
             onClick={() => setShowBattlesModal(true)}
             className="p-2 hover:bg-white/10 rounded-lg transition-colors"
             aria-label="Показать все баттлы"
@@ -137,10 +123,10 @@ export default function ProfilePage({
             <Eye className="w-5 h-5" />
           </button>
         </div>
-        
+
         <div className="space-y-3">
           {mockBattles.map((battle) => (
-            <div 
+            <div
               key={battle.id}
               className="flex items-center justify-between p-3 hover:bg-white/5 rounded-lg transition-colors cursor-pointer"
             >
@@ -153,7 +139,7 @@ export default function ProfilePage({
                   <p className="unified-text text-sm text-muted-foreground">{battle.opponentTeam}</p>
                 </div>
               </div>
-              
+
               <div className="text-right">
                 <div className="flex items-center gap-2 mb-1">
                   {battle.status === 'defeat' && <span className="text-red-500">🔴</span>}
@@ -215,7 +201,7 @@ export default function ProfilePage({
             <div className="glass-card p-6">
               <div className="flex items-center justify-between mb-4">
                 <h2 className="unified-heading">Все мои баттлы</h2>
-                <button 
+                <button
                   onClick={() => setShowBattlesModal(false)}
                   className="p-2 hover:bg-white/10 rounded-lg transition-colors"
                   aria-label="Закрыть"
@@ -223,7 +209,7 @@ export default function ProfilePage({
                   ✕
                 </button>
               </div>
-              
+
               <div className="space-y-3 max-h-96 overflow-y-auto">
                 {mockBattles.map((battle) => (
                   <div key={battle.id} className="flex items-center justify-between p-3 bg-white/5 rounded-lg">
@@ -237,7 +223,7 @@ export default function ProfilePage({
                         <p className="unified-text text-xs text-muted-foreground">{battle.date}</p>
                       </div>
                     </div>
-                    
+
                     <div className="text-right">
                       <div className="flex items-center gap-2 mb-1">
                         {battle.status === 'defeat' && <span className="text-red-500">🔴</span>}
@@ -265,5 +251,5 @@ export default function ProfilePage({
       )}
     </div>
   );
-  // AUTOGEN END profile-content
 }
+// AUTOGEN END profile
