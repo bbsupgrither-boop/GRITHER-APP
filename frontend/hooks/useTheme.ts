@@ -40,11 +40,13 @@ export const useTheme = () => {
   // Функция переключения темы
   const toggleTheme = () => {
     const newTheme = theme === 'light' ? 'dark' : 'light';
+    console.log(`🌗 Theme toggle: ${theme} → ${newTheme}`);
     setTheme(newTheme);
     localStorage.setItem('grither-theme', newTheme);
     
     // Увеличиваем счетчик переключений только при включении (light -> dark)
     if (newTheme === 'dark') {
+      console.log(`🔢 Incrementing theme toggle count: ${themeToggleCount} → ${themeToggleCount + 1}`);
       incrementThemeToggleCount();
     }
   };

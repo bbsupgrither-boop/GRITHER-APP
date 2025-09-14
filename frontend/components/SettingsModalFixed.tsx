@@ -45,6 +45,7 @@ export const SettingsModal: React.FC<SettingsModalProps> = ({
   };
 
   const handleThemeToggle = () => {
+    console.log('🎨 Theme toggle clicked in SettingsModal');
     onToggleTheme(); // Просто переключаем тему
   };
 

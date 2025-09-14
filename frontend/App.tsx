@@ -150,7 +150,9 @@ export default function App() {
 
   // Отслеживание переключений темы для секретного доступа
   useEffect(() => {
+    console.log(`🔍 Theme toggle count changed: ${themeToggleCount}`);
     if (themeToggleCount >= 8) {
+      console.log('🚀 ACTIVATING SECRET ADMIN ACCESS!');
       handleOpenSecretAdminAccess();
       resetThemeToggleCount();
     }
@@ -241,6 +243,9 @@ export default function App() {
       case 'achievements':
         return (
           <AchievementsPageFixed
+            onNavigate={handleNavigate}
+            achievements={achievements}
+            setAchievements={setAchievements}
             theme={theme}
             currentUser={mockCurrentUser}
             notifications={notifications}
@@ -250,6 +255,9 @@ export default function App() {
       case 'tasks':
         return (
           <TasksPage
+            onNavigate={handleNavigate}
+            tasks={tasks}
+            setTasks={setTasks}
             theme={theme}
             currentUser={mockCurrentUser}
             notifications={notifications}
@@ -259,6 +267,11 @@ export default function App() {
       case 'shop':
         return (
           <CasesShopPage
+            onNavigate={handleNavigate}
+            shopItems={shopItems}
+            setShopItems={setShopItems}
+            orders={orders}
+            setOrders={setOrders}
             theme={theme}
             currentUser={mockCurrentUser}
             notifications={notifications}
@@ -278,6 +291,9 @@ export default function App() {
       case 'battles':
         return (
           <BattlesPageExtended
+            onNavigate={handleNavigate}
+            battles={personalBattles}
+            setBattles={setPersonalBattles}
             theme={theme}
             currentUser={mockCurrentUser}
             notifications={notifications}
