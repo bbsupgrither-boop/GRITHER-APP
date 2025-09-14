@@ -1,5 +1,6 @@
 ﻿import React, { useState, useEffect } from 'react';
 import { X, Bell, Palette, MessageCircle, Shield, Eye, EyeOff, Paperclip, ChevronRight } from 'lucide-react';
+import { useUserRole } from '../hooks/useUserRole';
 
 interface SettingsModalProps {
   isOpen: boolean;
@@ -9,6 +10,7 @@ interface SettingsModalProps {
   onNavigate?: (page: string) => void;
   onOpenAdminPanel?: () => void;
   onOpenProblemReport?: () => void;
+  userId?: string;
 }
 
 // База данных администраторов
@@ -47,13 +49,17 @@ export const SettingsModal: React.FC<SettingsModalProps> = ({
   onToggleTheme,
   onNavigate,
   onOpenAdminPanel,
-  onOpenProblemReport
+  onOpenProblemReport,
+  userId
 }) => {
   const [notifications, setNotifications] = useState(true);
   const [themeToggleCount, setThemeToggleCount] = useState(0);
   const [adminAuthorized, setAdminAuthorized] = useState(false);
   const [reportModalOpen, setReportModalOpen] = useState(false);
   const [secretCodeModalOpen, setSecretCodeModalOpen] = useState(false);
+  
+  // Используем хук для проверки роли пользователя
+  const { user, canAccessAdminPanel, userRole } = useUserRole(userId || '');
   const [reportText, setReportText] = useState('');
   const [selectedFile, setSelectedFile] = useState<File | null>(null);
   const [telegramId, setTelegramId] = useState('');
@@ -391,8 +397,8 @@ export const SettingsModal: React.FC<SettingsModalProps> = ({
               </div>
             </button>
 
-            {/* 4. КНОПКА АДМИН ПАНЕЛИ (ПОЯВЛЯЕТСЯ ПОСЛЕ АВТОРИЗАЦИИ) */}
-            {adminAuthorized && (
+            {/* 4. КНОПКА АДМИН ПАНЕЛИ (ПОЯВЛЯЕТСЯ ТОЛЬКО ДЛЯ АДМИНОВ/ТИМЛИДОВ) */}
+            {canAccessAdminPanel && (
               <button 
                 onClick={handleAdminPanelClick}
                   style={{ 
@@ -423,7 +429,11 @@ export const SettingsModal: React.FC<SettingsModalProps> = ({
                     Админ панель
                   </div>
                   <div style={{ fontSize: '14px', color: theme === 'dark' ? '#A7B0BD' : '#6B7280' }}>
-                    Панель управления системой
+                    {userRole === 'team_lead' ? 'Управление командой' : 
+                     userRole === 'junior_admin' ? 'Модерация и статистика' :
+                     userRole === 'senior_admin' ? 'Управление пользователями и контентом' :
+                     userRole === 'main_admin' ? 'Полное управление системой' :
+                     'Административные функции'}
               </div>
             </div>
                 

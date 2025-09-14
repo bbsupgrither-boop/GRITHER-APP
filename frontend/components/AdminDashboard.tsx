@@ -1,309 +1,439 @@
-﻿import { useState } from 'react';
-import { CheckCircle, Info, CheckSquare, Trophy, Shield, X, Home, Users, Zap, ShoppingBag, Gamepad2, Box, ArrowLeft, Clock, Bell } from './Icons';
-import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription } from './ui/dialog';
-import { NotificationsModal } from './NotificationsModal';
+﻿import React, { useState, useEffect } from 'react';
+import { 
+  Users, 
+  DollarSign, 
+  CheckSquare, 
+  Trophy, 
+  Swords, 
+  ShoppingBag,
+  Bell,
+  AlertTriangle,
+  TrendingUp,
+  Activity,
+  Clock,
+  Star,
+  Zap,
+  Download,
+  RefreshCw
+} from 'lucide-react';
+import { databaseService } from '../services/database';
+import { useAdminDatabase } from '../hooks/useAdminDatabase';
 
 interface AdminDashboardProps {
-  onClose?: () => void;
-  onToggleDarkMode?: () => void;
-  onNavigateToWorkers?: () => void;
-  onNavigateToAchievementsModeration?: () => void;
-  onNavigateToGames?: () => void;
-  onNavigateToCases?: () => void;
-  onNavigateToBattles?: () => void;
+  theme: 'light' | 'dark';
+  onNavigate: (section: string) => void;
 }
 
-interface Complaint {
+interface DashboardStats {
+  activeUsers: number;
+  newRegistrations: number;
+  totalRevenue: number;
+  dailyTransactions: number;
+  completedTasks: number;
+  failedTasks: number;
+  popularAchievements: number;
+  recentAchievements: number;
+  activeBattles: number;
+  totalBets: number;
+  shopSales: number;
+  popularItems: number;
+}
+
+interface QuickAction {
   id: string;
-  user: string;
+  title: string;
   description: string;
-  file?: string;
-  timestamp: string;
-  status: 'active' | 'resolved';
+  icon: React.ReactNode;
+  color: string;
+  action: () => void;
 }
 
-export function AdminDashboard({ onClose, onToggleDarkMode, onNavigateToWorkers, onNavigateToAchievementsModeration, onNavigateToGames, onNavigateToCases, onNavigateToBattles }: AdminDashboardProps) {
-  const [showComplaints, setShowComplaints] = useState(false);
-  const [complaintsTab, setComplaintsTab] = useState<'active' | 'resolved'>('active');
-  const [showHistory, setShowHistory] = useState(false);
-  const [showNotifications, setShowNotifications] = useState(false);
+interface SystemNotification {
+  id: string;
+  type: 'error' | 'warning' | 'info' | 'success';
+  title: string;
+  message: string;
+  timestamp: string;
+  urgent: boolean;
+}
 
-  // РњРѕРєРѕРІС‹Рµ РґР°РЅРЅС‹Рµ Р¶Р°Р»РѕР±
-  const complaints: Complaint[] = [];
+export const AdminDashboard: React.FC<AdminDashboardProps> = ({ theme, onNavigate }) => {
+  const { database, updateDatabase } = useAdminDatabase();
+  
+  const [stats, setStats] = useState<DashboardStats>({
+    activeUsers: 0,
+    newRegistrations: 0,
+    totalRevenue: 0,
+    dailyTransactions: 0,
+    completedTasks: 0,
+    failedTasks: 0,
+    popularAchievements: 0,
+    recentAchievements: 0,
+    activeBattles: 0,
+    totalBets: 0,
+    shopSales: 0,
+    popularItems: 0
+  });
 
-  const activeComplaints = complaints.filter(c => c.status === 'active');
-  const resolvedComplaints = complaints.filter(c => c.status === 'resolved');
-
-  const stats = [
+  const [notifications, setNotifications] = useState<SystemNotification[]>([
     {
-      title: 'РЈРІРµРґРѕРјР»РµРЅРёСЏ',
-      value: '0',
-      icon: Bell,
-      hasAction: true,
-      action: () => setShowNotifications(true)
+      id: '1',
+      type: 'info',
+      title: 'Система обновлена',
+      message: 'Версия 1.2.0 успешно развернута',
+      timestamp: new Date().toISOString(),
+      urgent: false
     },
     {
-      title: 'РЎРѕРѕР±С‰РµРЅРёСЏ Рѕ РїСЂРѕР±Р»РµРјР°С…',
-      value: '0',
-      icon: Info,
-      hasAction: true,
-      action: () => setShowComplaints(true)
+      id: '2',
+      type: 'warning',
+      title: 'Высокая нагрузка',
+      message: 'Количество активных пользователей превышает обычные значения',
+      timestamp: new Date(Date.now() - 3600000).toISOString(),
+      urgent: true
+    }
+  ]);
+
+  // Загрузка статистики
+  useEffect(() => {
+    loadDashboardStats();
+  }, [database]);
+
+  const loadDashboardStats = async () => {
+    // Загрузка реальных данных из базы данных
+    const users = database.users || [];
+    const tasks = database.tasks || [];
+    const achievements = database.achievements || [];
+    const battles = database.battles || [];
+    const shopItems = database.shopItems || [];
+    const notifications = database.notifications || [];
+
+    // Подсчет статистики
+    const activeUsers = users.filter(user => user.lastActive && 
+      new Date(user.lastActive).getTime() > Date.now() - 24 * 60 * 60 * 1000).length;
+    
+    const newRegistrations = users.filter(user => user.createdAt && 
+      new Date(user.createdAt).getTime() > Date.now() - 24 * 60 * 60 * 1000).length;
+    
+    const completedTasks = tasks.filter(task => task.status === 'completed').length;
+    const failedTasks = tasks.filter(task => task.status === 'failed').length;
+    
+    const activeBattles = battles.filter(battle => battle.status === 'active').length;
+    
+    const totalRevenue = users.reduce((sum, user) => sum + (user.gCoins || 0), 0);
+    const dailyTransactions = notifications.filter(notif => 
+      notif.type === 'transaction' && notif.createdAt &&
+      new Date(notif.createdAt).getTime() > Date.now() - 24 * 60 * 60 * 1000
+    ).length;
+
+    const realStats: DashboardStats = {
+      activeUsers,
+      newRegistrations,
+      totalRevenue,
+      dailyTransactions,
+      completedTasks,
+      failedTasks,
+      popularAchievements: achievements.length,
+      recentAchievements: achievements.filter(ach => 
+        ach.createdAt && new Date(ach.createdAt).getTime() > Date.now() - 7 * 24 * 60 * 60 * 1000
+      ).length,
+      activeBattles,
+      totalBets: battles.reduce((sum, battle) => sum + (battle.totalBets || 0), 0),
+      shopSales: shopItems.length,
+      popularItems: shopItems.filter(item => item.isPopular).length
+    };
+    
+    setStats(realStats);
+  };
+
+  // Быстрые действия
+  const quickActions: QuickAction[] = [
+    {
+      id: 'emergency_notification',
+      title: 'Экстренное уведомление',
+      description: 'Отправить всем пользователям',
+      icon: <Bell className="w-5 h-5" />,
+      color: 'bg-red-500',
+      action: () => {
+        // Открыть модал экстренного уведомления
+        console.log('Emergency notification');
+      }
     },
     {
-      title: 'РљРѕР»-РІРѕ РІС‹РїРѕР»РЅРµРЅРЅС‹С… Р·Р°РґР°С‡',
-      value: '0',
-      icon: CheckSquare
+      id: 'system_restart',
+      title: 'Перезапуск системы',
+      description: 'Техническое обслуживание',
+      icon: <RefreshCw className="w-5 h-5" />,
+      color: 'bg-orange-500',
+      action: () => {
+        // Подтверждение перезапуска
+        console.log('System restart');
+      }
     },
     {
-      title: 'Р”РѕСЃС‚РёР¶РµРЅРёР№ РїРѕР»СѓС‡РµРЅРѕ',
-      value: '0',
-      icon: Trophy
+      id: 'export_data',
+      title: 'Экспорт данных',
+      description: 'Выгрузка статистики',
+      icon: <Download className="w-5 h-5" />,
+      color: 'bg-blue-500',
+      action: () => {
+        // Экспорт данных
+        console.log('Export data');
+      }
     }
   ];
 
-  const recentActivity: any[] = [];
+  const handleQuickAction = (action: QuickAction) => {
+    action.action();
+  };
 
-  const navigationItems = [
-    { icon: Home, label: 'Р“Р»Р°РІРЅР°СЏ', action: null },
-    { icon: Users, label: 'РЎРѕС‚СЂСѓРґРЅРёРєРё', action: onNavigateToWorkers },
-    { icon: Zap, label: 'Р‘Р°С‚С‚Р»С‹', action: onNavigateToBattles },
-    { icon: Trophy, label: 'Р”РѕСЃС‚РёР¶РµРЅРёСЏ', action: null },
-    { icon: CheckSquare, label: 'Р—Р°РґР°С‡Рё', action: null },
-    { icon: ShoppingBag, label: 'РўРѕРІР°СЂС‹', action: null },
-    { icon: Gamepad2, label: 'РРіСЂС‹', action: onNavigateToGames },
-    { icon: Box, label: 'РљРµР№СЃС‹', action: onNavigateToCases }
-  ];
+  const dismissNotification = (id: string) => {
+    setNotifications(prev => prev.filter(n => n.id !== id));
+  };
 
   return (
-    <div className="min-h-screen bg-background">
-
-      {/* РЎРѕРґРµСЂР¶РёРјРѕРµ */}
-      <div className="p-6 space-y-6 pb-60">
-        {/* Р—Р°РіРѕР»РѕРІРѕРє Р“Р»Р°РІРЅР°СЏ */}
-        <h2 className="text-lg font-medium text-foreground text-center">Р“Р»Р°РІРЅР°СЏ</h2>
-        
-        {/* РЎС‚Р°С‚РёСЃС‚РёРєР° */}
-        <div className="grid grid-cols-2 gap-4">
-          {stats.map((stat, index) => {
-            const Icon = stat.icon;
-            return (
-              <div 
-                key={index} 
-                className="glass-card p-4 rounded-2xl apple-shadow cursor-pointer"
-                onClick={stat.hasAction ? stat.action : undefined}
-              >
-                <div className="flex flex-col items-center text-center space-y-2">
-                  <div className="flex items-center gap-2">
-                    <Icon className="w-5 h-5 text-primary flex-shrink-0" />
-                    <div className="text-sm text-muted-foreground">
-                      {stat.title}
-                    </div>
-                  </div>
-                  <div className="text-2xl font-medium text-foreground">
-                    {stat.value}
-                  </div>
-                </div>
-              </div>
-            );
-          })}
-        </div>
-
-        {/* Р‘С‹СЃС‚СЂС‹Рµ РґРµР№СЃС‚РІРёСЏ 
-            TODO: Р’ Р±СѓРґСѓС‰РµРј РґРѕР±Р°РІРёС‚СЊ РґРёРЅР°РјРёС‡РµСЃРєРёРµ РїСѓРЅРєС‚С‹ РІ Р·Р°РІРёСЃРёРјРѕСЃС‚Рё РѕС‚ СЂРѕР»Рё Р°РґРјРёРЅР°/С‚РёРјР»РёРґР°:
-            - РўРёРјР»РёРґ: РјРѕРґРµСЂР°С†РёСЏ Р·Р°РґР°С‡ СЃРІРѕРёС… РІРѕСЂРєРµСЂРѕРІ, СЃС‚Р°С‚РёСЃС‚РёРєР° РєРѕРјР°РЅРґС‹
-            - РјР». РђРґРјРёРЅ: СЃРѕР·РґР°РЅРёРµ Р·Р°РґР°С‡ РґР»СЏ РІСЃРµС…, РјРѕРґРµСЂР°С†РёСЏ РґРѕСЃС‚РёР¶РµРЅРёР№, Р·Р°РіСЂСѓР·РєР° РєР°СЂС‚РёРЅРѕРє, РїСЂРѕРІРµСЂРєР° Р±Р°С‚С‚Р»РѕРІ  
-            - СЃС‚. РђРґРјРёРЅ: РІСЃРµ РІРѕР·РјРѕР¶РЅРѕСЃС‚Рё РјР». РђРґРјРёРЅР° + СѓРїСЂР°РІР»РµРЅРёРµ РјР°РіР°Р·РёРЅРѕРј Рё Р±Р°Р»Р°РЅСЃРѕРј РїРѕР»СЊР·РѕРІР°С‚РµР»РµР№
-            - РіР». РђРґРјРёРЅ: РІСЃРµ РІРѕР·РјРѕР¶РЅРѕСЃС‚Рё + СѓРїСЂР°РІР»РµРЅРёРµ РЅР°СЃС‚СЂРѕР№РєР°РјРё СЃРёСЃС‚РµРјС‹ Рё СЂРѕР»СЏРјРё РїРѕР»СЊР·РѕРІР°С‚РµР»РµР№
-        */}
+    <div className="p-6 space-y-6">
+      {/* Заголовок */}
+      <div className="flex items-center justify-between">
         <div>
-          <div className="mb-4">
-            <h3 className="text-lg font-medium text-foreground text-center">Р‘С‹СЃС‚СЂС‹Рµ РґРµР№СЃС‚РІРёСЏ</h3>
-          </div>
-          <div className="glass-card rounded-2xl overflow-hidden apple-shadow">
-            <div className="p-4 text-center text-muted-foreground text-sm">
-              РќРµС‚ СѓРІРµРґРѕРјР»РµРЅРёР№ РґР»СЏ РїСЂРѕРІРµСЂРєРё
+          <h1 className="text-2xl font-bold" style={{ color: theme === 'dark' ? '#E8ECF2' : '#0F172A' }}>
+            Панель управления
+          </h1>
+          <p className="text-sm opacity-70" style={{ color: theme === 'dark' ? '#A7B0BD' : '#6B7280' }}>
+            Обзор системы и быстрые действия
+          </p>
+        </div>
+        <button
+          onClick={() => loadDashboardStats()}
+          className="p-2 rounded-lg hover:bg-opacity-10"
+          style={{ 
+            backgroundColor: theme === 'dark' ? 'rgba(255,255,255,0.1)' : 'rgba(0,0,0,0.1)' 
+          }}
+        >
+          <RefreshCw className="w-5 h-5" />
+        </button>
+      </div>
+
+      {/* Аналитические блоки */}
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+        {/* Активные пользователи */}
+        <div 
+          className="p-6 rounded-xl"
+          style={{
+            backgroundColor: theme === 'dark' ? '#1C2029' : '#FFFFFF',
+            border: theme === 'dark' ? '1px solid rgba(255,255,255,0.1)' : '1px solid #E6E9EF'
+          }}
+        >
+          <div className="flex items-center justify-between mb-4">
+            <div className="p-3 rounded-lg bg-blue-500 bg-opacity-20">
+              <Users className="w-6 h-6 text-blue-500" />
             </div>
+            <span className="text-xs px-2 py-1 rounded-full bg-green-500 bg-opacity-20 text-green-500">
+              +{stats.newRegistrations} новых
+            </span>
+          </div>
+          <div>
+            <h3 className="text-sm opacity-70 mb-1">Активные пользователи</h3>
+            <p className="text-2xl font-bold">{stats.activeUsers.toLocaleString()}</p>
           </div>
         </div>
 
-        {/* РџРѕСЃР»РµРґРЅСЏСЏ Р°РєС‚РёРІРЅРѕСЃС‚СЊ */}
-        <div>
-          <div className="mb-4">
-            <h3 className="text-lg font-medium text-foreground text-center">РџРѕСЃР»РµРґРЅСЏСЏ Р°РєС‚РёРІРЅРѕСЃС‚СЊ</h3>
+        {/* Финансовая статистика */}
+        <div 
+          className="p-6 rounded-xl"
+          style={{
+            backgroundColor: theme === 'dark' ? '#1C2029' : '#FFFFFF',
+            border: theme === 'dark' ? '1px solid rgba(255,255,255,0.1)' : '1px solid #E6E9EF'
+          }}
+        >
+          <div className="flex items-center justify-between mb-4">
+            <div className="p-3 rounded-lg bg-green-500 bg-opacity-20">
+              <DollarSign className="w-6 h-6 text-green-500" />
+            </div>
+            <span className="text-xs px-2 py-1 rounded-full bg-green-500 bg-opacity-20 text-green-500">
+              +{stats.dailyTransactions} за день
+            </span>
           </div>
-          <div className="glass-card rounded-2xl overflow-hidden apple-shadow relative">
-            {recentActivity.length === 0 ? (
-              <div className="p-8 text-center text-muted-foreground relative">
-                РђРєС‚РёРІРЅС‹С… РїРѕР»СЊР·РѕРІР°С‚РµР»РµР№ РЅРµС‚
-                <button 
-                  onClick={() => setShowHistory(true)}
-                  className="absolute top-4 right-4 p-2 hover:bg-black/5 dark:hover:bg-white/5 rounded-lg transition-colors"
-                  title="РСЃС‚РѕСЂРёСЏ Р°РєС‚РёРІРЅРѕСЃС‚Рё"
-                >
-                  <Clock className="w-5 h-5 text-muted-foreground" />
-                </button>
-              </div>
-            ) : (
-              recentActivity.map((activity, index) => (
-                <div key={index} className={`p-4 flex items-center justify-between ${index !== recentActivity.length - 1 ? 'border-b border-border/20' : ''}`}>
-                  <div className="flex-1">
-                    <div className="text-sm font-medium text-foreground">{activity.user}</div>
-                    <div className="text-sm text-muted-foreground mt-1">{activity.action}</div>
-                  </div>
-                  <div className="text-xs text-muted-foreground ml-4">{activity.time}</div>
-                </div>
-              ))
-            )}
+          <div>
+            <h3 className="text-sm opacity-70 mb-1">Общий оборот</h3>
+            <p className="text-2xl font-bold">{stats.totalRevenue.toLocaleString()} ₽</p>
+          </div>
+        </div>
+
+        {/* Статистика заданий */}
+        <div 
+          className="p-6 rounded-xl"
+          style={{
+            backgroundColor: theme === 'dark' ? '#1C2029' : '#FFFFFF',
+            border: theme === 'dark' ? '1px solid rgba(255,255,255,0.1)' : '1px solid #E6E9EF'
+          }}
+        >
+          <div className="flex items-center justify-between mb-4">
+            <div className="p-3 rounded-lg bg-purple-500 bg-opacity-20">
+              <CheckSquare className="w-6 h-6 text-purple-500" />
+            </div>
+            <span className="text-xs px-2 py-1 rounded-full bg-red-500 bg-opacity-20 text-red-500">
+              {stats.failedTasks} провальных
+            </span>
+          </div>
+          <div>
+            <h3 className="text-sm opacity-70 mb-1">Выполненные задачи</h3>
+            <p className="text-2xl font-bold">{stats.completedTasks}</p>
+          </div>
+        </div>
+
+        {/* Достижения */}
+        <div 
+          className="p-6 rounded-xl"
+          style={{
+            backgroundColor: theme === 'dark' ? '#1C2029' : '#FFFFFF',
+            border: theme === 'dark' ? '1px solid rgba(255,255,255,0.1)' : '1px solid #E6E9EF'
+          }}
+        >
+          <div className="flex items-center justify-between mb-4">
+            <div className="p-3 rounded-lg bg-yellow-500 bg-opacity-20">
+              <Trophy className="w-6 h-6 text-yellow-500" />
+            </div>
+            <span className="text-xs px-2 py-1 rounded-full bg-blue-500 bg-opacity-20 text-blue-500">
+              +{stats.recentAchievements} новых
+            </span>
+          </div>
+          <div>
+            <h3 className="text-sm opacity-70 mb-1">Популярные достижения</h3>
+            <p className="text-2xl font-bold">{stats.popularAchievements}</p>
+          </div>
+        </div>
+
+        {/* Баттлы */}
+        <div 
+          className="p-6 rounded-xl"
+          style={{
+            backgroundColor: theme === 'dark' ? '#1C2029' : '#FFFFFF',
+            border: theme === 'dark' ? '1px solid rgba(255,255,255,0.1)' : '1px solid #E6E9EF'
+          }}
+        >
+          <div className="flex items-center justify-between mb-4">
+            <div className="p-3 rounded-lg bg-red-500 bg-opacity-20">
+              <Swords className="w-6 h-6 text-red-500" />
+            </div>
+            <span className="text-xs px-2 py-1 rounded-full bg-orange-500 bg-opacity-20 text-orange-500">
+              {stats.totalBets.toLocaleString()} ₽ ставок
+            </span>
+          </div>
+          <div>
+            <h3 className="text-sm opacity-70 mb-1">Активные баттлы</h3>
+            <p className="text-2xl font-bold">{stats.activeBattles}</p>
+          </div>
+        </div>
+
+        {/* Магазин */}
+        <div 
+          className="p-6 rounded-xl"
+          style={{
+            backgroundColor: theme === 'dark' ? '#1C2029' : '#FFFFFF',
+            border: theme === 'dark' ? '1px solid rgba(255,255,255,0.1)' : '1px solid #E6E9EF'
+          }}
+        >
+          <div className="flex items-center justify-between mb-4">
+            <div className="p-3 rounded-lg bg-indigo-500 bg-opacity-20">
+              <ShoppingBag className="w-6 h-6 text-indigo-500" />
+            </div>
+            <span className="text-xs px-2 py-1 rounded-full bg-indigo-500 bg-opacity-20 text-indigo-500">
+              {stats.popularItems} популярных
+            </span>
+          </div>
+          <div>
+            <h3 className="text-sm opacity-70 mb-1">Продажи</h3>
+            <p className="text-2xl font-bold">{stats.shopSales}</p>
           </div>
         </div>
       </div>
 
-      {/* Р‘С‹СЃС‚СЂР°СЏ РЅР°РІРёРіР°С†РёСЏ */}
-      <div className="fixed bottom-0 left-0 right-0 bg-background border-t border-border/20">
-        <div className="p-6">
-          <div className="grid grid-cols-4 gap-4 mb-4">
-            {navigationItems.slice(0, 4).map((item, index) => {
-              const Icon = item.icon;
-              const isActive = item.label === 'Р“Р»Р°РІРЅР°СЏ';
-              return (
-                <button 
-                  key={index} 
-                  className="flex flex-col items-center text-center"
-                  onClick={item.action || undefined}
-                >
-                  <div className={`w-12 h-12 rounded-xl flex items-center justify-center mb-2 apple-shadow ${
-                    isActive ? 'bg-primary' : 'glass-card'
-                  }`}>
-                    <Icon className={`w-6 h-6 ${
-                      isActive ? 'text-white' : 'text-foreground/70'
-                    }`} />
-                  </div>
-                  <span className={`text-xs ${
-                    isActive ? 'text-primary font-medium' : 'text-muted-foreground'
-                  }`}>{item.label}</span>
-                </button>
-              );
-            })}
-          </div>
-          <div className="grid grid-cols-4 gap-4">
-            {navigationItems.slice(4, 8).map((item, index) => {
-              const Icon = item.icon;
-              return (
-                <button 
-                  key={index} 
-                  className="flex flex-col items-center text-center"
-                  onClick={item.action || undefined}
-                >
-                  <div className="w-12 h-12 glass-card rounded-xl flex items-center justify-center mb-2 apple-shadow">
-                    <Icon className="w-6 h-6 text-foreground/70" />
-                  </div>
-                  <span className="text-xs text-muted-foreground">{item.label}</span>
-                </button>
-              );
-            })}
-          </div>
+      {/* Быстрые действия */}
+      <div>
+        <h2 className="text-xl font-semibold mb-4" style={{ color: theme === 'dark' ? '#E8ECF2' : '#0F172A' }}>
+          Быстрые действия
+        </h2>
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+          {quickActions.map((action) => (
+            <button
+              key={action.id}
+              onClick={() => handleQuickAction(action)}
+              className="p-4 rounded-xl text-left transition-all hover:scale-105"
+              style={{
+                backgroundColor: theme === 'dark' ? '#1C2029' : '#FFFFFF',
+                border: theme === 'dark' ? '1px solid rgba(255,255,255,0.1)' : '1px solid #E6E9EF'
+              }}
+            >
+              <div className="flex items-center mb-3">
+                <div className={`p-2 rounded-lg ${action.color} bg-opacity-20 mr-3`}>
+                  {action.icon}
+                </div>
+                <h3 className="font-medium" style={{ color: theme === 'dark' ? '#E8ECF2' : '#0F172A' }}>
+                  {action.title}
+                </h3>
+              </div>
+              <p className="text-sm opacity-70" style={{ color: theme === 'dark' ? '#A7B0BD' : '#6B7280' }}>
+                {action.description}
+              </p>
+            </button>
+          ))}
         </div>
       </div>
 
-      {/* РњРѕРґР°Р»СЊРЅРѕРµ РѕРєРЅРѕ Р¶Р°Р»РѕР± */}
-      {showComplaints && (
-        <div className="fixed inset-0 bg-black/70 flex items-center justify-center z-50 p-4">
-          <div className="bg-background rounded-3xl w-full max-w-sm max-h-[80vh] overflow-hidden apple-shadow border border-border/20">
-            {/* Р—Р°РіРѕР»РѕРІРѕРє РјРѕРґР°Р»СЊРЅРѕРіРѕ РѕРєРЅР° */}
-            <div className="flex items-center justify-between p-6 border-b border-border/20">
-              <h2 className="text-lg font-medium text-foreground text-center flex-1">РЎРѕРѕР±С‰РµРЅРёСЏ Рѕ РїСЂРѕР±Р»РµРјР°С…</h2>
-              <button
-                onClick={() => setShowComplaints(false)}
-                className="p-2 hover:bg-black/5 rounded-lg transition-colors"
-              >
-                <X className="w-5 h-5 text-foreground/70" />
-              </button>
-            </div>
-
-            {/* Р’РєР»Р°РґРєРё */}
-            <div className="flex border-b border-border/20">
-              <button
-                onClick={() => setComplaintsTab('active')}
-                className={`flex-1 py-3 px-4 text-sm font-medium transition-colors text-center ${
-                  complaintsTab === 'active'
-                    ? 'text-primary border-b-2 border-primary'
-                    : 'text-muted-foreground hover:text-foreground'
-                }`}
-              >
-                РђРєС‚РёРІРЅС‹Рµ ({activeComplaints.length})
-              </button>
-              <button
-                onClick={() => setComplaintsTab('resolved')}
-                className={`flex-1 py-3 px-4 text-sm font-medium transition-colors text-center ${
-                  complaintsTab === 'resolved'
-                    ? 'text-primary border-b-2 border-primary'
-                    : 'text-muted-foreground hover:text-foreground'
-                }`}
-              >
-                Р РµС€РµРЅС‹ ({resolvedComplaints.length})
-              </button>
-            </div>
-
-            {/* РЎРїРёСЃРѕРє Р¶Р°Р»РѕР± */}
-            <div className="overflow-y-auto max-h-96 p-6">
-              {(complaintsTab === 'active' ? activeComplaints : resolvedComplaints).map((complaint) => (
-                <div key={complaint.id} className="mb-4 p-4 bg-secondary rounded-2xl apple-shadow">
-                  <div className="flex items-start justify-between mb-2">
-                    <span className="text-sm font-medium text-foreground">{complaint.user}</span>
-                    <span className="text-xs text-muted-foreground">{complaint.timestamp}</span>
-                  </div>
-                  <p className="text-sm text-muted-foreground mb-2">{complaint.description}</p>
-                  {complaint.file && (
-                    <div className="text-xs text-primary">рџ“Ћ {complaint.file}</div>
-                  )}
-                  {complaintsTab === 'active' && (
-                    <button className="mt-3 px-3 py-1 bg-primary text-white text-xs rounded-lg hover:bg-primary/90 transition-colors">
-                      Р РµС€РёС‚СЊ
-                    </button>
-                  )}
-                </div>
-              ))}
-              {(complaintsTab === 'active' ? activeComplaints : resolvedComplaints).length === 0 && (
-                <div className="text-center text-muted-foreground py-8">
-                  {complaintsTab === 'active' ? 'РђРєС‚РёРІРЅС‹С… РѕР±СЂР°С‰РµРЅРёР№ РЅРµС‚' : 'Р РµС€РµРЅРЅС‹С… РѕР±СЂР°С‰РµРЅРёР№ РЅРµС‚'}
-                </div>
-              )}
-            </div>
-          </div>
-        </div>
-      )}
-
-      {/* РњРѕРґР°Р»СЊРЅРѕРµ РѕРєРЅРѕ РёСЃС‚РѕСЂРёРё Р°РєС‚РёРІРЅРѕСЃС‚Рё */}
-      <Dialog open={showHistory} onOpenChange={setShowHistory}>
-        <DialogContent className="glass-card border-none max-w-sm p-0 [&>button]:hidden">
-          <div className="p-6">
-            <DialogHeader>
-              <div className="flex items-center gap-3 mb-4">
-                <button
-                  onClick={() => setShowHistory(false)}
-                  className="p-2 hover:bg-black/5 rounded-lg transition-colors"
+      {/* Системные уведомления */}
+      <div>
+        <h2 className="text-xl font-semibold mb-4" style={{ color: theme === 'dark' ? '#E8ECF2' : '#0F172A' }}>
+          Системные уведомления
+        </h2>
+        <div className="space-y-3">
+          {notifications.map((notification) => (
+            <div
+              key={notification.id}
+              className="p-4 rounded-xl flex items-center justify-between"
+              style={{
+                backgroundColor: theme === 'dark' ? '#1C2029' : '#FFFFFF',
+                border: theme === 'dark' ? '1px solid rgba(255,255,255,0.1)' : '1px solid #E6E9EF',
+                borderLeft: notification.urgent ? '4px solid #FF3B30' : undefined
+              }}
+            >
+              <div className="flex items-center">
+                <div className="p-2 rounded-lg mr-3"
+                  style={{
+                    backgroundColor: notification.type === 'error' ? 'rgba(255, 59, 48, 0.2)' :
+                                   notification.type === 'warning' ? 'rgba(255, 149, 0, 0.2)' :
+                                   notification.type === 'success' ? 'rgba(52, 199, 89, 0.2)' :
+                                   'rgba(0, 122, 255, 0.2)'
+                  }}
                 >
-                  <ArrowLeft className="w-5 h-5 text-foreground/70" />
-                </button>
-                <DialogTitle className="text-lg font-medium text-foreground text-center flex-1">РСЃС‚РѕСЂРёСЏ РґРµР№СЃС‚РІРёР№</DialogTitle>
+                  {notification.type === 'error' && <AlertTriangle className="w-5 h-5 text-red-500" />}
+                  {notification.type === 'warning' && <AlertTriangle className="w-5 h-5 text-orange-500" />}
+                  {notification.type === 'success' && <CheckSquare className="w-5 h-5 text-green-500" />}
+                  {notification.type === 'info' && <Bell className="w-5 h-5 text-blue-500" />}
+                </div>
+                <div>
+                  <h4 className="font-medium" style={{ color: theme === 'dark' ? '#E8ECF2' : '#0F172A' }}>
+                    {notification.title}
+                  </h4>
+                  <p className="text-sm opacity-70" style={{ color: theme === 'dark' ? '#A7B0BD' : '#6B7280' }}>
+                    {notification.message}
+                  </p>
+                  <p className="text-xs opacity-50 mt-1">
+                    {new Date(notification.timestamp).toLocaleString()}
+                  </p>
+                </div>
               </div>
-              <DialogDescription className="sr-only">
-                РСЃС‚РѕСЂРёСЏ РґРµР№СЃС‚РІРёР№ РїРѕР»СЊР·РѕРІР°С‚РµР»РµР№
-              </DialogDescription>
-            </DialogHeader>
-
-            <div className="text-center text-muted-foreground py-8">
-              РСЃС‚РѕСЂРёСЏ Р°РєС‚РёРІРЅРѕСЃС‚Рё РѕС‚СЃСѓС‚СЃС‚РІСѓРµС‚
+              <button
+                onClick={() => dismissNotification(notification.id)}
+                className="p-1 rounded-lg hover:bg-opacity-10"
+                style={{ backgroundColor: theme === 'dark' ? 'rgba(255,255,255,0.1)' : 'rgba(0,0,0,0.1)' }}
+              >
+                ×
+              </button>
             </div>
-          </div>
-        </DialogContent>
-      </Dialog>
-
-      {/* РњРѕРґР°Р»СЊРЅРѕРµ РѕРєРЅРѕ СѓРІРµРґРѕРјР»РµРЅРёР№ */}
-      <NotificationsModal 
-        isOpen={showNotifications}
-        onClose={() => setShowNotifications(false)}
-      />
+          ))}
+        </div>
+      </div>
     </div>
   );
-}
+};
