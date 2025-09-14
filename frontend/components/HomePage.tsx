@@ -152,7 +152,6 @@ export const HomePage: React.FC<HomePageProps> = ({
         style={{
           maxWidth: '448px',
           margin: '0 auto',
-          padding: '0 16px',
           paddingBottom: '128px'
         }}
       >

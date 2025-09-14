@@ -362,7 +362,9 @@ export default function App() {
   return (
     <div className={`min-h-screen ${theme === 'dark' ? 'bg-black text-white' : 'bg-white text-black'}`}>
       <BackgroundFX theme={theme} />
+      <div className="app-container">
         {renderCurrentPage()}
+      </div>
       
       {showSettings && (
         <SettingsModal 

@@ -50,14 +50,15 @@ export const Header: React.FC<HeaderProps> = ({
 
   return (
     <div 
-      className="w-full px-4 py-4 relative"
+      className="w-full py-4 relative"
       style={{
         backgroundColor: theme === 'dark' ? 'rgba(0, 0, 0, 0.2)' : 'rgba(255, 255, 255, 0.2)',
         zIndex: 50,
         pointerEvents: 'auto'
       }}
     >
-      <div className="flex items-center justify-between w-full">
+      <div className="app-container">
+        <div className="flex items-center justify-between w-full px-4">
         {/* Левая часть - Аватар пользователя + имя + роль */}
         {!hideUserIcon && user && (
           <button 
@@ -225,6 +226,7 @@ export const Header: React.FC<HeaderProps> = ({
           >
             <Settings className="w-4 h-4" />
           </button>
+        </div>
         </div>
       </div>
     </div>

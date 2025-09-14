@@ -517,6 +517,51 @@
 
 html {
   font-size: var(--font-size);
+  height: 100%;
+  overflow-x: hidden;
+}
+
+body {
+  height: 100%;
+  overflow-x: hidden;
+  margin: 0;
+  padding: 0;
+}
+
+#root {
+  min-height: 100vh;
+  min-height: 100dvh;
+  min-height: 100svh;
+  width: 100%;
+  overflow-x: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Telegram WebApp viewport handling */
+.app-container {
+  width: 100%;
+  max-width: 720px;
+  margin: 0 auto;
+  padding: 0 16px;
+  box-sizing: border-box;
+  min-height: 100vh;
+  min-height: 100dvh;
+  min-height: 100svh;
+  display: flex;
+  flex-direction: column;
+}
+
+@media (max-width: 480px) {
+  .app-container {
+    padding: 0 12px;
+  }
+}
+
+@media (max-width: 360px) {
+  .app-container {
+    padding: 0 8px;
+  }
 }
 
 /* Адаптивные стили для очень узких экранов */
