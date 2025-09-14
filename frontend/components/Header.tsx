@@ -57,7 +57,7 @@ export const Header: React.FC<HeaderProps> = ({
         pointerEvents: 'auto'
       }}
     >
-      <div className="flex items-center justify-between max-w-md mx-auto">
+      <div className="flex items-center justify-between w-full">
         {/* Левая часть - Аватар пользователя + имя + роль */}
         {!hideUserIcon && user && (
           <button 
