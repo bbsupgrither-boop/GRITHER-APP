@@ -11,6 +11,8 @@ import { BattlesPageExtended } from './components/BattlesPageExtended';
 import { BackgroundFX } from './components/BackgroundFX';
 import { SettingsModal } from './components/SettingsModal';
 import { AdminPanel } from './components/AdminPanel';
+import { SecretAdminAccess } from './components/SecretAdminAccess';
+import { ProblemReportModal } from './components/ProblemReportModal';
 import { Achievement } from './types/achievements';
 import { ShopItem, Order } from './types/shop';
 import { Task } from './types/tasks';
@@ -50,7 +52,7 @@ const cleanupLocalStorage = () => {
 
 export default function App() {
   const { user, webApp } = useTelegram();
-  const { theme, toggleTheme, setTheme } = useTheme();
+  const { theme, toggleTheme, setTheme, themeToggleCount, resetThemeToggleCount } = useTheme();
   const [currentPage, setCurrentPage] = useState('home');
 
   // Initialize Telegram WebApp and handle viewport changes
@@ -64,9 +66,20 @@ export default function App() {
 
     return cleanupViewport;
   }, []);
+
+  // Отслеживание переключений темы для секретного доступа
+  useEffect(() => {
+    if (themeToggleCount >= 8) {
+      handleOpenSecretAdminAccess();
+      resetThemeToggleCount();
+    }
+  }, [themeToggleCount]);
   
   const [showSettings, setShowSettings] = useState(false);
   const [showAdminPanel, setShowAdminPanel] = useState(false);
+  const [showSecretAdminAccess, setShowSecretAdminAccess] = useState(false);
+  const [showProblemReport, setShowProblemReport] = useState(false);
+  const [adminRole, setAdminRole] = useState<string | null>(null);
   const [profilePhoto, setProfilePhoto] = useState<string | null>(null);
   const [personalBattles, setPersonalBattles] = useState<any[]>([]);
   const [notifications, setNotifications] = useState<Notification[]>(mockNotifications);
@@ -128,6 +141,49 @@ export default function App() {
 
   const handleOpenAdminPanel = () => {
     setCurrentPage('admin');
+  };
+
+  const handleOpenSecretAdminAccess = () => {
+    setShowSecretAdminAccess(true);
+  };
+
+  const handleCloseSecretAdminAccess = () => {
+    setShowSecretAdminAccess(false);
+  };
+
+  const handleAdminAccessGranted = (role: string) => {
+    setAdminRole(role);
+    setShowAdminPanel(true);
+    setShowSecretAdminAccess(false);
+  };
+
+  const handleOpenProblemReport = () => {
+    setShowProblemReport(true);
+    setShowSettings(false);
+  };
+
+  const handleCloseProblemReport = () => {
+    setShowProblemReport(false);
+  };
+
+  const handleProblemReportSubmit = async (data: { description: string; file?: File }) => {
+    // Здесь можно добавить логику отправки отчета о проблеме
+    console.log('Problem report submitted:', data);
+    
+    // Симуляция отправки
+    await new Promise(resolve => setTimeout(resolve, 1000));
+    
+    // Показываем уведомление об успешной отправке
+    const newNotification: Notification = {
+      id: Date.now().toString(),
+      type: 'system',
+      title: 'Отчет отправлен',
+      message: 'Ваш отчет о проблеме успешно отправлен. Спасибо за обратную связь!',
+      timestamp: new Date().toISOString(),
+      read: false
+    };
+    
+    setNotifications(prev => [newNotification, ...prev]);
   };
 
   const handleCloseAdminPanel = () => {
@@ -372,6 +428,7 @@ export default function App() {
           onToggleTheme={toggleTheme}
           onNavigate={handleNavigate}
           onOpenAdminPanel={handleOpenAdminPanel}
+          onOpenProblemReport={handleOpenProblemReport}
         />
       )}
       
@@ -381,6 +438,22 @@ export default function App() {
           theme={theme}
         />
       )}
+
+      {/* Секретный доступ к админ панели */}
+      <SecretAdminAccess
+        isOpen={showSecretAdminAccess}
+        onClose={handleCloseSecretAdminAccess}
+        onAccessGranted={handleAdminAccessGranted}
+        theme={theme}
+      />
+
+      {/* Модальное окно для сообщения о проблемах */}
+      <ProblemReportModal
+        isOpen={showProblemReport}
+        onClose={handleCloseProblemReport}
+        onSubmit={handleProblemReportSubmit}
+        theme={theme}
+      />
     </div>
   );
 }

@@ -8,6 +8,7 @@ interface SettingsModalProps {
   onToggleTheme: () => void;
   onNavigate?: (page: string) => void;
   onOpenAdminPanel?: () => void;
+  onOpenProblemReport?: () => void;
 }
 
 // База данных администраторов
@@ -45,7 +46,8 @@ export const SettingsModal: React.FC<SettingsModalProps> = ({
   theme,
   onToggleTheme,
   onNavigate,
-  onOpenAdminPanel
+  onOpenAdminPanel,
+  onOpenProblemReport
 }) => {
   const [notifications, setNotifications] = useState(true);
   const [themeToggleCount, setThemeToggleCount] = useState(0);
@@ -352,7 +354,10 @@ export const SettingsModal: React.FC<SettingsModalProps> = ({
 
             {/* 3. СООБЩИТЬ О ПРОБЛЕМЕ */}
             <button 
-              onClick={() => setReportModalOpen(true)}
+              onClick={() => {
+                onOpenProblemReport?.();
+                onClose();
+              }}
               style={{
                 height: '64px',
                 padding: '0 16px',

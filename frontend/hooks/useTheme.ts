@@ -1,9 +1,11 @@
 import { useState, useEffect } from 'react';
+import { useThemeToggle } from './useThemeToggle';
 
 export type Theme = 'light' | 'dark';
 
 export const useTheme = () => {
   const [theme, setTheme] = useState<Theme>('dark'); // По умолчанию темная тема
+  const { themeToggleCount, incrementThemeToggleCount, resetThemeToggleCount } = useThemeToggle();
 
   // Применение темы к DOM
   useEffect(() => {
@@ -40,6 +42,11 @@ export const useTheme = () => {
     const newTheme = theme === 'light' ? 'dark' : 'light';
     setTheme(newTheme);
     localStorage.setItem('grither-theme', newTheme);
+    
+    // Увеличиваем счетчик переключений только при включении (light -> dark)
+    if (newTheme === 'dark') {
+      incrementThemeToggleCount();
+    }
   };
 
   // Функция установки конкретной темы
@@ -53,6 +60,8 @@ export const useTheme = () => {
     toggleTheme,
     setTheme: setThemeMode,
     isDark: theme === 'dark',
-    isLight: theme === 'light'
+    isLight: theme === 'light',
+    themeToggleCount,
+    resetThemeToggleCount
   };
 };
