@@ -26,10 +26,7 @@ export const SettingsModal: React.FC<SettingsModalProps> = ({
   hasSecretAccess = false // По умолчанию false
 }) => {
   const [notifications, setNotifications] = useState(true);
-  const [themeToggleCount, setThemeToggleCount] = useState(0);
-  const [adminAuthorized, setAdminAuthorized] = useState(false);
   const [reportModalOpen, setReportModalOpen] = useState(false);
-  const [secretCodeModalOpen, setSecretCodeModalOpen] = useState(false);
   
   // Используем хук для проверки роли пользователя
   const { user, canAccessAdminPanel, userRole } = useUserRole(userId || '');
@@ -60,22 +57,7 @@ export const SettingsModal: React.FC<SettingsModalProps> = ({
   };
 
   const handleThemeToggle = () => {
-    // ⚠️ ВАЖНО: Считаем только ВКЛЮЧЕНИЯ темной темы (не выключения)
-    if (theme === 'light') { // Если текущая тема светлая и переключаем на темную
-      const newCount = themeToggleCount + 1;
-      setThemeToggleCount(newCount);
-      
-      console.log(`🔢 Счетчик включений темной темы: ${newCount}/8`);
-      
-      // 🔐 СЕКРЕТНАЯ АКТИВАЦИЯ НА 8-М ВКЛЮЧЕНИИ
-      if (newCount === 8) {
-        console.log('🚀 СЕКРЕТНЫЙ КОД АКТИВИРОВАН!');
-        setSecretCodeModalOpen(true);
-        setThemeToggleCount(0); // Сбрасываем счетчик
-      }
-    }
-    
-    onToggleTheme(); // Выполняем обычное переключение темы
+    onToggleTheme(); // Просто переключаем тему
   };
 
   const handleAdminPanelClick = () => {
