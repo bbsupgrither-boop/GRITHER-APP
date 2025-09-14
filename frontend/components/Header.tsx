@@ -1,7 +1,8 @@
 ﻿import React from 'react';
-import { Settings, Bell } from 'lucide-react';
+import { Settings } from 'lucide-react';
 import { User as UserType } from '../types/global';
 import { Notification } from '../types/notifications';
+import { NotificationsButton } from './NotificationsButton';
 
 interface HeaderProps {
   onNavigate: (page: string) => void;
@@ -160,50 +161,15 @@ export const Header: React.FC<HeaderProps> = ({
         {/* Правая часть - Кнопки уведомлений и настроек */}
         <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
           {/* Кнопка уведомлений */}
-          <button
-            onClick={(e) => {
-              e.preventDefault();
-              e.stopPropagation();
-              // TODO: Открыть модальное окно уведомлений
-            }}
-            onTouchStart={(e) => {
-              e.preventDefault();
-              e.stopPropagation();
-            }}
-            className={`apple-button w-7 h-7 flex items-center justify-center relative ${theme === 'dark' ? 'white-button' : ''}`}
-            style={{
-              pointerEvents: 'auto',
-              userSelect: 'none',
-              WebkitUserSelect: 'none',
-              WebkitTouchCallout: 'none'
-            }}
-          >
-            <Bell className="w-4 h-4" />
-            
-            {/* Бейдж с количеством непрочитанных */}
-            {unreadNotificationsCount > 0 && (
-              <div 
-                style={{
-                  position: 'absolute',
-                  top: '-4px',
-                  right: '-4px',
-                  minWidth: '18px',
-                  height: '18px',
-                  borderRadius: '50%',
-                  backgroundColor: '#ff3b30',
-                  color: 'white',
-                  fontSize: '10px',
-                  fontWeight: 'bold',
-                  display: 'flex',
-                  alignItems: 'center',
-                  justifyContent: 'center',
-                  padding: '0 4px'
-                }}
-              >
-                {unreadNotificationsCount > 99 ? '99+' : unreadNotificationsCount}
-              </div>
-            )}
-          </button>
+          <NotificationsButton
+            notifications={notifications}
+            unreadCount={unreadNotificationsCount}
+            onMarkAsRead={onMarkNotificationAsRead || (() => {})}
+            onMarkAllAsRead={onMarkAllNotificationsAsRead || (() => {})}
+            onRemoveNotification={onRemoveNotification || (() => {})}
+            onClearAll={onClearAllNotifications || (() => {})}
+            theme={theme}
+          />
 
           {/* Кнопка настроек */}
           <button
