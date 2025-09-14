@@ -3,6 +3,7 @@ import { Header } from './Header';
 import { BottomNavigation } from './BottomNavigation';
 import { BackgroundFX } from './BackgroundFX';
 import { Logo } from './Logo';
+import { Modal } from './Modal';
 import { 
   Trophy, 
   Eye, 
