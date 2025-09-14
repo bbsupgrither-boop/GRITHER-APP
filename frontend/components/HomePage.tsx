@@ -3,7 +3,6 @@ import { Header } from './Header';
 import { BottomNavigation } from './BottomNavigation';
 import { BackgroundFX } from './BackgroundFX';
 import { Logo } from './Logo';
-import { ExperienceModal } from './ExperienceModal';
 import { 
   Trophy, 
   Eye, 
@@ -27,7 +26,7 @@ import { Achievement } from '../types/achievements';
 import { Battle, BattleInvitation, User as UserType } from '../types/battles';
 import { Notification } from '../types/notifications';
 import { LeaderboardEntry } from '../types/global';
-import { getCurrentLevelProgress } from '../data/levels';
+import { getCurrentLevelData } from '../data/levels';
 
 interface HomePageProps {
   onNavigate: (page: string) => void;
@@ -70,12 +69,6 @@ export const HomePage: React.FC<HomePageProps> = ({
   onCreateBattle,
   currentUser
 }) => {
-  const [isAllBattlesModalOpen, setIsAllBattlesModalOpen] = useState(false);
-  const [isCreateBattleModalOpen, setIsCreateBattleModalOpen] = useState(false);
-  const [isAchievementModalOpen, setIsAchievementModalOpen] = useState(false);
-  const [isNotificationsModalOpen, setIsNotificationsModalOpen] = useState(false);
-  const [isExperienceModalOpen, setIsExperienceModalOpen] = useState(false);
-
   // Mock data for battles
   const activeBattles = [
     { id: '1', opponent: 'Елена Морозова', status: 'active' }
@@ -92,23 +85,19 @@ export const HomePage: React.FC<HomePageProps> = ({
     { id: '3', name: 'Анна Иванова', level: 15 }
   ];
 
-  // Проверяем, открыта ли какая-либо модалка
-  const isAnyModalOpen = isAllBattlesModalOpen || isCreateBattleModalOpen || 
-                        isAchievementModalOpen || isNotificationsModalOpen || isExperienceModalOpen;
-
-  // Получаем данные о текущем уровне
-  const currentExperience = currentUser?.experience || 0;
-  const levelData = getCurrentLevelProgress(currentExperience);
+  // Get current level data for display
+  const userExperience = currentUser?.experience || 0;
+  const currentLevelData = getCurrentLevelData(userExperience);
 
   return (
     <div 
       style={{ 
         minHeight: '100vh',
-        backgroundColor: theme === 'dark' ? '#12151B' : '#F5F7FA',
+        backgroundColor: theme === 'dark' ? '#12151B' : 'transparent',
         position: 'relative'
       }}
     >
-      <BackgroundFX theme={theme} />
+      <BackgroundFX theme={theme} isHomePage={true} />
 
       {/* Header */}
       <Header 
@@ -145,7 +134,8 @@ export const HomePage: React.FC<HomePageProps> = ({
             className="glass-card p-4"
             style={{
               backgroundColor: theme === 'dark' ? '#161A22' : '#FFFFFF',
-              borderColor: theme === 'dark' ? 'rgba(255, 255, 255, 0.06)' : '#E6E9EF'
+              borderColor: theme === 'dark' ? 'rgba(255, 255, 255, 0.06)' : '#FBBF24',
+              borderWidth: theme === 'dark' ? '1px' : '2px'
             }}
           >
             <div className="flex items-center justify-between mb-4">
@@ -160,7 +150,6 @@ export const HomePage: React.FC<HomePageProps> = ({
               </h3>
               
               <button
-                onClick={() => setIsAchievementModalOpen(true)}
                 className={`apple-button w-7 h-7 flex items-center justify-center ${theme === 'dark' ? 'white-button' : ''}`}
               >
                 <Eye className="w-4 h-4" />
@@ -179,11 +168,11 @@ export const HomePage: React.FC<HomePageProps> = ({
 
           {/* Статус/XP/Уровень */}
           <div 
-            className="glass-card p-4 cursor-pointer"
-            onClick={() => setIsExperienceModalOpen(true)}
+            className="glass-card p-4"
             style={{
               backgroundColor: theme === 'dark' ? '#161A22' : '#FFFFFF',
-              borderColor: theme === 'dark' ? 'rgba(255, 255, 255, 0.06)' : '#E6E9EF'
+              borderColor: theme === 'dark' ? 'rgba(255, 255, 255, 0.06)' : '#FBBF24',
+              borderWidth: theme === 'dark' ? '1px' : '2px'
             }}
           >
             <div className="flex items-center justify-between mb-3">
@@ -195,7 +184,7 @@ export const HomePage: React.FC<HomePageProps> = ({
                       color: theme === 'dark' ? '#A7B0BD' : '#6B7280'
                     }}
                   >
-                    Статус: {levelData?.level.status || '—'}
+                    Статус: {currentLevelData.status}
                   </span>
                 </div>
                 <div>
@@ -205,7 +194,7 @@ export const HomePage: React.FC<HomePageProps> = ({
                       color: theme === 'dark' ? '#A7B0BD' : '#6B7280'
                     }}
                   >
-                    XP: {currentExperience}
+                    XP: {userExperience}
                   </span>
                 </div>
                 <div>
@@ -215,7 +204,7 @@ export const HomePage: React.FC<HomePageProps> = ({
                       color: theme === 'dark' ? '#A7B0BD' : '#6B7280'
                     }}
                   >
-                    Lvl {levelData?.level.level || '—'}
+                    Lvl {currentLevelData.level}
                   </span>
                 </div>
               </div>
@@ -226,20 +215,9 @@ export const HomePage: React.FC<HomePageProps> = ({
                 width: '100%',
                 height: '8px',
                 backgroundColor: theme === 'dark' ? 'rgba(255, 255, 255, 0.1)' : 'rgba(0, 0, 0, 0.1)',
-                borderRadius: '4px',
-                overflow: 'hidden'
+                borderRadius: '4px'
               }}
-            >
-              <div 
-                style={{
-                  width: `${levelData?.progress || 0}%`,
-                  height: '100%',
-                  background: 'linear-gradient(90deg, #2B82FF 0%, #40A0FF 100%)',
-                  borderRadius: '4px',
-                  transition: 'width 0.3s ease'
-                }}
-              />
-            </div>
+            />
           </div>
 
           {/* Баттлы и Рейтинг */}
@@ -250,7 +228,8 @@ export const HomePage: React.FC<HomePageProps> = ({
               className="glass-card p-4"
               style={{
                 backgroundColor: theme === 'dark' ? '#161A22' : '#FFFFFF',
-                borderColor: theme === 'dark' ? 'rgba(255, 255, 255, 0.06)' : '#E6E9EF'
+                borderColor: theme === 'dark' ? 'rgba(255, 255, 255, 0.06)' : '#FBBF24',
+                borderWidth: theme === 'dark' ? '1px' : '2px'
               }}
             >
               <div className="flex items-center justify-between mb-4">
@@ -265,7 +244,6 @@ export const HomePage: React.FC<HomePageProps> = ({
                 </h3>
                 
                 <button
-                  onClick={() => setIsCreateBattleModalOpen(true)}
                   className={`apple-button w-7 h-7 flex items-center justify-center ${theme === 'dark' ? 'white-button' : ''}`}
                 >
                   <Plus className="w-4 h-4" />
@@ -369,7 +347,8 @@ export const HomePage: React.FC<HomePageProps> = ({
               className="glass-card p-4"
               style={{
                 backgroundColor: theme === 'dark' ? '#161A22' : '#FFFFFF',
-                borderColor: theme === 'dark' ? 'rgba(255, 255, 255, 0.06)' : '#E6E9EF'
+                borderColor: theme === 'dark' ? 'rgba(255, 255, 255, 0.06)' : '#FBBF24',
+                borderWidth: theme === 'dark' ? '1px' : '2px'
               }}
             >
               <div className="flex items-center justify-between mb-4">
@@ -451,7 +430,8 @@ export const HomePage: React.FC<HomePageProps> = ({
             className="glass-card p-4"
             style={{
               backgroundColor: theme === 'dark' ? '#161A22' : '#FFFFFF',
-              borderColor: theme === 'dark' ? 'rgba(255, 255, 255, 0.06)' : '#E6E9EF'
+              borderColor: theme === 'dark' ? 'rgba(255, 255, 255, 0.06)' : '#FBBF24',
+              borderWidth: theme === 'dark' ? '1px' : '2px'
             }}
           >
             <div className="flex items-center justify-between mb-4">
@@ -466,7 +446,6 @@ export const HomePage: React.FC<HomePageProps> = ({
               </h3>
               
               <button
-                onClick={() => setIsAchievementModalOpen(true)}
                 className={`apple-button w-7 h-7 flex items-center justify-center ${theme === 'dark' ? 'white-button' : ''}`}
               >
                 <Eye className="w-4 h-4" />
@@ -504,15 +483,7 @@ export const HomePage: React.FC<HomePageProps> = ({
         currentPage={currentPage}
         onNavigate={onNavigate}
         theme={theme}
-        hidden={isAnyModalOpen}
-      />
-
-      {/* Experience Modal */}
-      <ExperienceModal
-        isOpen={isExperienceModalOpen}
-        onClose={() => setIsExperienceModalOpen(false)}
-        currentExperience={currentExperience}
-        theme={theme}
+        hideWhenModalOpen={true}
       />
     </div>
   );

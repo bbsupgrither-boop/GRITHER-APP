@@ -25,16 +25,22 @@ export function Modal({ isOpen, onClose, title, children, actions, theme = 'ligh
     // РџСЂРµРґРѕС‚РІСЂР°С‰Р°РµРј СЃРєСЂРѕР»Р» С„РѕРЅР°
     document.body.style.overflow = 'hidden';
     
+    // Dispatch modal opened event
+    document.dispatchEvent(new CustomEvent('modal-opened'));
+    
     return () => {
       document.removeEventListener('keydown', handleEscape);
       document.body.style.overflow = 'unset';
+      
+      // Dispatch modal closed event
+      document.dispatchEvent(new CustomEvent('modal-closed'));
     };
   }, [isOpen, onClose]);
   
   if (!isOpen) return null;
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center">
+    <div className="fixed inset-0 z-50 flex items-center justify-center" data-modal="true">
       {/* Overlay */}
       <div 
         className="absolute inset-0"

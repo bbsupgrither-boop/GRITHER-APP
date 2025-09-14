@@ -1,5 +1,6 @@
 ﻿import { Star } from './Icons';
 import coinImage from 'figma:asset/acaa4cccbfaf8eeee6ecbbe8f29c92d03b701371.png';
+import { getCurrentLevelData, getNextLevelData, getProgressToNextLevel } from '../data/levels';
 
 interface ModalXPProps {
   isOpen: boolean;
@@ -20,12 +21,14 @@ export function ModalXP({
 }: ModalXPProps) {
   if (!isOpen) return null;
 
-  const isPlaceholder = level === 0 && experience === 0 && maxExperience === 100;
-  const currentXp = isPlaceholder ? 60 : experience;
-  const currentLevel = isPlaceholder ? 5 : level;
-  const xpNeededForNextLevel = isPlaceholder ? 100 : maxExperience;
-  const nextLevelReward = 50; // G-coins за переход на следующий уровень
-  const progressPercentage = isPlaceholder ? 60 : (maxExperience > 0 ? (experience / maxExperience) * 100 : 0);
+  // Use the new level system
+  const currentLevelData = getCurrentLevelData(experience);
+  const nextLevelData = getNextLevelData(experience);
+  const progressData = getProgressToNextLevel(experience);
+  
+  // For display purposes, use the provided level if it's higher than calculated
+  const displayLevel = level > currentLevelData.level ? level : currentLevelData.level;
+  const displayExperience = experience;
 
   const handleBackdropClick = (e: React.MouseEvent) => {
     if (e.target === e.currentTarget) {
@@ -35,7 +38,8 @@ export function ModalXP({
 
   return (
     <div 
-      className="fixed inset-0 z-50 flex items-center justify-center"
+      className="fixed inset-0 z-50 flex items-center justify-center" 
+      data-modal="true"
       style={{
         background: theme === 'dark' 
           ? 'rgba(0, 0, 0, 0.45)' 
@@ -125,7 +129,7 @@ export function ModalXP({
                     color: '#FFFFFF'
                   }}
                 >
-                  {currentLevel}
+                  {displayLevel}
                 </span>
               </div>
             </div>
@@ -145,7 +149,7 @@ export function ModalXP({
               <div 
                 className="transition-all duration-500"
                 style={{ 
-                  width: `${progressPercentage}%`,
+                  width: `${progressData.percentage}%`,
                   height: '16px',
                   background: theme === 'dark' 
                     ? '#2B82FF'
@@ -173,55 +177,105 @@ export function ModalXP({
                   whiteSpace: 'nowrap'
                 }}
               >
-                {currentXp.toLocaleString()}/{xpNeededForNextLevel.toLocaleString()}
+                {progressData.current.toLocaleString()}/{progressData.needed.toLocaleString()}
               </span>
             </div>
           </div>
 
-          {/* Объединенная награда за уровень */}
-          <div className="flex justify-center">
-            <div 
-              className="flex items-center"
-              style={{
-                height: '40px',
-                borderRadius: '999px',
-                padding: '0 16px',
-                gap: '8px',
-                backgroundColor: theme === 'dark' ? '#1C2029' : '#F3F5F8',
-                border: `1px solid ${theme === 'dark' ? 'rgba(255, 255, 255, 0.06)' : '#E6E9EF'}`
-              }}
-            >
-              <span 
-                className="font-semibold"
-                style={{ 
-                  fontSize: '14px',
-                  color: theme === 'dark' ? '#E8ECF2' : '#0F172A',
-                  whiteSpace: 'nowrap'
-                }}
-              >
-                Награда за уровень:
-              </span>
+          {/* Next Level Status and Reward */}
+          {nextLevelData && (
+            <div className="space-y-3">
+              <div className="text-center">
+                <div 
+                  style={{ 
+                    fontSize: '16px',
+                    fontWeight: '600',
+                    color: theme === 'dark' ? '#E8ECF2' : '#0F172A',
+                    marginBottom: '4px'
+                  }}
+                >
+                  На следующем уровне:
+                </div>
+                <div 
+                  style={{ 
+                    fontSize: '14px',
+                    color: theme === 'dark' ? '#A7B0BD' : '#6B7280'
+                  }}
+                >
+                  Статус: {nextLevelData.status}
+                </div>
+              </div>
 
-              <span 
-                className="font-semibold"
+              {/* Reward Section */}
+              <div className="flex justify-center">
+                <div 
+                  className="flex items-center"
+                  style={{
+                    height: '40px',
+                    borderRadius: '999px',
+                    padding: '0 16px',
+                    gap: '8px',
+                    backgroundColor: theme === 'dark' ? '#1C2029' : '#F3F5F8',
+                    border: `1px solid ${theme === 'dark' ? 'rgba(255, 255, 255, 0.06)' : '#E6E9EF'}`
+                  }}
+                >
+                  <span 
+                    className="font-semibold"
+                    style={{ 
+                      fontSize: '14px',
+                      color: theme === 'dark' ? '#E8ECF2' : '#0F172A',
+                      whiteSpace: 'nowrap'
+                    }}
+                  >
+                    Награда:
+                  </span>
+
+                  <span 
+                    className="font-semibold"
+                    style={{ 
+                      fontSize: '14px',
+                      color: theme === 'dark' ? '#E8ECF2' : '#0F172A',
+                      whiteSpace: 'nowrap',
+                      display: 'flex',
+                      alignItems: 'center',
+                      gap: '4px'
+                    }}
+                  >
+                    {nextLevelData.reward}
+                    <img 
+                      src={coinImage} 
+                      alt="G-coin" 
+                      style={{ width: '14px', height: '14px' }}
+                    />
+                  </span>
+                </div>
+              </div>
+            </div>
+          )}
+
+          {/* Max Level Message */}
+          {!nextLevelData && (
+            <div className="text-center">
+              <div 
                 style={{ 
-                  fontSize: '14px',
+                  fontSize: '16px',
+                  fontWeight: '600',
                   color: theme === 'dark' ? '#E8ECF2' : '#0F172A',
-                  whiteSpace: 'nowrap',
-                  display: 'flex',
-                  alignItems: 'center',
-                  gap: '4px'
+                  marginBottom: '4px'
                 }}
               >
-                {nextLevelReward}
-                <img 
-                  src={coinImage} 
-                  alt="G-coin" 
-                  style={{ width: '14px', height: '14px' }}
-                />
-              </span>
+                Поздравляем!
+              </div>
+              <div 
+                style={{ 
+                  fontSize: '14px',
+                  color: theme === 'dark' ? '#A7B0BD' : '#6B7280'
+                }}
+              >
+                Вы достигли максимального уровня
+              </div>
             </div>
-          </div>
+          )}
         </div>
       </div>
     </div>

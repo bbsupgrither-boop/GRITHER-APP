@@ -6,19 +6,51 @@ interface BottomNavigationProps {
   currentPage: string;
   onNavigate: (page: string) => void;
   theme: 'light' | 'dark';
-  hidden?: boolean;
+  hideWhenModalOpen?: boolean;
 }
 
 export const BottomNavigation: React.FC<BottomNavigationProps> = ({
   currentPage,
   onNavigate,
   theme,
-  hidden = false,
+  hideWhenModalOpen = false,
 }) => {
   const [mounted, setMounted] = useState(false);
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
   useEffect(() => {
     setMounted(true);
+  }, []);
+
+  // Listen for modal open/close events
+  useEffect(() => {
+    const handleModalOpen = () => setIsModalOpen(true);
+    const handleModalClose = () => setIsModalOpen(false);
+
+    // Listen for custom events that indicate modal state
+    document.addEventListener('modal-opened', handleModalOpen);
+    document.addEventListener('modal-closed', handleModalClose);
+
+    // Also check for modal elements in the DOM
+    const checkForModals = () => {
+      const modals = document.querySelectorAll('[data-modal="true"]');
+      const hasOpenModal = Array.from(modals).some(modal => {
+        const style = window.getComputedStyle(modal);
+        return style.display !== 'none' && style.visibility !== 'hidden';
+      });
+      setIsModalOpen(hasOpenModal);
+    };
+
+    // Check initially and set up mutation observer
+    checkForModals();
+    const observer = new MutationObserver(checkForModals);
+    observer.observe(document.body, { childList: true, subtree: true });
+
+    return () => {
+      document.removeEventListener('modal-opened', handleModalOpen);
+      document.removeEventListener('modal-closed', handleModalClose);
+      observer.disconnect();
+    };
   }, []);
 
   const navItems = [
@@ -27,6 +59,11 @@ export const BottomNavigation: React.FC<BottomNavigationProps> = ({
     { icon: CheckSquare, page: 'tasks' },   // ✅ Задачи
     { icon: ShoppingCart, page: 'shop' },   // 🛒 Магазин
   ];
+
+  // Don't render if modal is open and hideWhenModalOpen is true
+  if (hideWhenModalOpen && isModalOpen) {
+    return null;
+  }
 
   const navigationContent = (
     <div 
@@ -109,5 +146,5 @@ export const BottomNavigation: React.FC<BottomNavigationProps> = ({
   );
 
   // Рендерим через портал для избежания влияния родительских контекстов
-  return mounted && !hidden ? createPortal(navigationContent, document.body) : null;
+  return mounted ? createPortal(navigationContent, document.body) : null;
 };

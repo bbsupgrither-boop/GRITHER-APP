@@ -1,96 +1,98 @@
+// Level system data structure
 export interface LevelData {
   level: number;
-  experienceRequired: number;
-  totalExperience: number;
   status: string;
-  reward: number;
+  experienceRequired: number; // Total experience needed for this level
+  experienceToNext: number; // Experience needed from previous level to this level
+  reward: number; // G-coins reward for reaching this level
 }
 
-export const LEVEL_SYSTEM: LevelData[] = [
-  { level: 1, experienceRequired: 0, totalExperience: 0, status: "Новичок", reward: 0 },
-  { level: 2, experienceRequired: 100, totalExperience: 100, status: "Салага", reward: 50 },
-  { level: 3, experienceRequired: 150, totalExperience: 250, status: "Стажер", reward: 75 },
-  { level: 4, experienceRequired: 250, totalExperience: 500, status: "Практик", reward: 125 },
-  { level: 5, experienceRequired: 400, totalExperience: 900, status: "Обменщик", reward: 200 },
-  { level: 6, experienceRequired: 600, totalExperience: 1500, status: "Хомяк", reward: 300 },
-  { level: 7, experienceRequired: 850, totalExperience: 2350, status: "Чекер", reward: 425 },
-  { level: 8, experienceRequired: 1150, totalExperience: 3500, status: "Фармер", reward: 575 },
-  { level: 9, experienceRequired: 1500, totalExperience: 5000, status: "Лудоман", reward: 750 },
-  { level: 10, experienceRequired: 1900, totalExperience: 6900, status: "Лидер", reward: 950 },
-  { level: 11, experienceRequired: 2350, totalExperience: 9250, status: "Приколист", reward: 1200 },
-  { level: 12, experienceRequired: 2850, totalExperience: 12100, status: "Суетолог", reward: 1500 },
-  { level: 13, experienceRequired: 3400, totalExperience: 15500, status: "Богомол", reward: 1800 },
-  { level: 14, experienceRequired: 4000, totalExperience: 19500, status: "Чепух", reward: 2200 },
-  { level: 15, experienceRequired: 4650, totalExperience: 24150, status: "KYC агент", reward: 2600 },
-  { level: 16, experienceRequired: 5350, totalExperience: 29500, status: "Пуджик", reward: 3100 },
-  { level: 17, experienceRequired: 6100, totalExperience: 35600, status: "Кнопкодав", reward: 3600 },
-  { level: 18, experienceRequired: 6900, totalExperience: 42500, status: "Доллароид", reward: 4200 },
-  { level: 19, experienceRequired: 7750, totalExperience: 50250, status: "Диван ходлер", reward: 4800 },
-  { level: 20, experienceRequired: 8650, totalExperience: 58900, status: "Эксперт", reward: 5500 },
-  { level: 21, experienceRequired: 9600, totalExperience: 68500, status: "Аналитик", reward: 6300 },
-  { level: 22, experienceRequired: 10600, totalExperience: 79100, status: "Инвестор", reward: 7100 },
-  { level: 23, experienceRequired: 11650, totalExperience: 90750, status: "Крутило", reward: 8000 },
-  { level: 24, experienceRequired: 12750, totalExperience: 103500, status: "Спекулянт", reward: 9000 },
-  { level: 25, experienceRequired: 13900, totalExperience: 117400, status: "Трейдер", reward: 10000 },
-  { level: 26, experienceRequired: 15100, totalExperience: 132500, status: "Гуру", reward: 11200 },
-  { level: 27, experienceRequired: 16350, totalExperience: 148850, status: "Криптан", reward: 12500 },
-  { level: 28, experienceRequired: 17650, totalExperience: 166500, status: "Хакер", reward: 13900 },
-  { level: 29, experienceRequired: 19000, totalExperience: 185500, status: "Технарь", reward: 15400 },
-  { level: 30, experienceRequired: 20400, totalExperience: 205900, status: "Мастер", reward: 17000 },
-  { level: 31, experienceRequired: 21850, totalExperience: 227750, status: "Профи", reward: 18700 },
-  { level: 32, experienceRequired: 23350, totalExperience: 251100, status: "Магистер", reward: 20500 },
-  { level: 33, experienceRequired: 24900, totalExperience: 276000, status: "Фиатник", reward: 22400 },
-  { level: 34, experienceRequired: 26500, totalExperience: 302500, status: "Новатор", reward: 24400 },
-  { level: 35, experienceRequired: 28150, totalExperience: 330650, status: "Арбитражник", reward: 26500 },
-  { level: 36, experienceRequired: 29850, totalExperience: 360500, status: "Инфлюенсер", reward: 28700 },
-  { level: 37, experienceRequired: 31600, totalExperience: 392100, status: "Рублефил", reward: 31000 },
-  { level: 38, experienceRequired: 33400, totalExperience: 425500, status: "Визионер", reward: 33400 },
-  { level: 39, experienceRequired: 35250, totalExperience: 460750, status: "Патриот", reward: 35900 },
-  { level: 40, experienceRequired: 37150, totalExperience: 497900, status: "Икона", reward: 38500 },
-  { level: 41, experienceRequired: 39100, totalExperience: 537000, status: "Стратег", reward: 41200 },
-  { level: 42, experienceRequired: 41100, totalExperience: 578100, status: "Генерал", reward: 44000 },
-  { level: 43, experienceRequired: 43150, totalExperience: 621250, status: "Лудик", reward: 46900 },
-  { level: 44, experienceRequired: 45250, totalExperience: 666500, status: "Леброн", reward: 49900 },
-  { level: 45, experienceRequired: 47400, totalExperience: 713900, status: "Маркетмейкер", reward: 53000 },
-  { level: 46, experienceRequired: 49600, totalExperience: 763500, status: "Монетчик", reward: 56200 },
-  { level: 47, experienceRequired: 51850, totalExperience: 815350, status: "Ренегат", reward: 59500 },
-  { level: 48, experienceRequired: 54150, totalExperience: 869500, status: "Босс KFC", reward: 62900 },
-  { level: 49, experienceRequired: 56500, totalExperience: 926000, status: "Мастодонт", reward: 66400 },
-  { level: 50, experienceRequired: 58900, totalExperience: 984900, status: "Легенда", reward: 70000 }
+export const LEVELS_DATA: LevelData[] = [
+  { level: 1, status: 'Новичок', experienceRequired: 0, experienceToNext: 100, reward: 0 },
+  { level: 2, status: 'Салага', experienceRequired: 100, experienceToNext: 150, reward: 50 },
+  { level: 3, status: 'Стажер', experienceRequired: 250, experienceToNext: 250, reward: 75 },
+  { level: 4, status: 'Практик', experienceRequired: 500, experienceToNext: 400, reward: 125 },
+  { level: 5, status: 'Обменщик', experienceRequired: 900, experienceToNext: 600, reward: 200 },
+  { level: 6, status: 'Хомяк', experienceRequired: 1500, experienceToNext: 850, reward: 300 },
+  { level: 7, status: 'Чекер', experienceRequired: 2350, experienceToNext: 1150, reward: 425 },
+  { level: 8, status: 'Фармер', experienceRequired: 3500, experienceToNext: 1500, reward: 575 },
+  { level: 9, status: 'Лудоман', experienceRequired: 5000, experienceToNext: 1900, reward: 750 },
+  { level: 10, status: 'Лидер', experienceRequired: 6900, experienceToNext: 2350, reward: 950 },
+  { level: 11, status: 'Приколист', experienceRequired: 9250, experienceToNext: 2850, reward: 1200 },
+  { level: 12, status: 'Суетолог', experienceRequired: 12100, experienceToNext: 3400, reward: 1500 },
+  { level: 13, status: 'Богомол', experienceRequired: 15500, experienceToNext: 4000, reward: 1800 },
+  { level: 14, status: 'Чепух', experienceRequired: 19500, experienceToNext: 4650, reward: 2200 },
+  { level: 15, status: 'KYC агент', experienceRequired: 24150, experienceToNext: 5350, reward: 2600 },
+  { level: 16, status: 'Пуджик', experienceRequired: 29500, experienceToNext: 6100, reward: 3100 },
+  { level: 17, status: 'Кнопкодав', experienceRequired: 35600, experienceToNext: 6900, reward: 3600 },
+  { level: 18, status: 'Доллароид', experienceRequired: 42500, experienceToNext: 7750, reward: 4200 },
+  { level: 19, status: 'Диван ходлер', experienceRequired: 50250, experienceToNext: 8650, reward: 4800 },
+  { level: 20, status: 'Эксперт', experienceRequired: 58900, experienceToNext: 9600, reward: 5500 },
+  { level: 21, status: 'Аналитик', experienceRequired: 68500, experienceToNext: 10600, reward: 6300 },
+  { level: 22, status: 'Инвестор', experienceRequired: 79100, experienceToNext: 11650, reward: 7100 },
+  { level: 23, status: 'Крутило', experienceRequired: 90750, experienceToNext: 12750, reward: 8000 },
+  { level: 24, status: 'Спекулянт', experienceRequired: 103500, experienceToNext: 13900, reward: 9000 },
+  { level: 25, status: 'Трейдер', experienceRequired: 117400, experienceToNext: 15100, reward: 10000 },
+  { level: 26, status: 'Гуру', experienceRequired: 132500, experienceToNext: 16350, reward: 11200 },
+  { level: 27, status: 'Криптан', experienceRequired: 148850, experienceToNext: 17650, reward: 12500 },
+  { level: 28, status: 'Хакер', experienceRequired: 166500, experienceToNext: 19000, reward: 13900 },
+  { level: 29, status: 'Технарь', experienceRequired: 185500, experienceToNext: 20400, reward: 15400 },
+  { level: 30, status: 'Мастер', experienceRequired: 205900, experienceToNext: 21850, reward: 17000 },
+  { level: 31, status: 'Профи', experienceRequired: 227750, experienceToNext: 23350, reward: 18700 },
+  { level: 32, status: 'Магистер', experienceRequired: 251100, experienceToNext: 24900, reward: 20500 },
+  { level: 33, status: 'Фиатник', experienceRequired: 276000, experienceToNext: 26500, reward: 22400 },
+  { level: 34, status: 'Новатор', experienceRequired: 302500, experienceToNext: 28150, reward: 24400 },
+  { level: 35, status: 'Арбитражник', experienceRequired: 330650, experienceToNext: 29850, reward: 26500 },
+  { level: 36, status: 'Инфлюенсер', experienceRequired: 360500, experienceToNext: 31600, reward: 28700 },
+  { level: 37, status: 'Рублефил', experienceRequired: 392100, experienceToNext: 33400, reward: 31000 },
+  { level: 38, status: 'Визионер', experienceRequired: 425500, experienceToNext: 35250, reward: 33400 },
+  { level: 39, status: 'Патриот', experienceRequired: 460750, experienceToNext: 37150, reward: 35900 },
+  { level: 40, status: 'Икона', experienceRequired: 497900, experienceToNext: 39100, reward: 38500 },
+  { level: 41, status: 'Стратег', experienceRequired: 537000, experienceToNext: 41100, reward: 41200 },
+  { level: 42, status: 'Генерал', experienceRequired: 578100, experienceToNext: 43150, reward: 44000 },
+  { level: 43, status: 'Лудик', experienceRequired: 621250, experienceToNext: 45250, reward: 46900 },
+  { level: 44, status: 'Леброн', experienceRequired: 666500, experienceToNext: 47400, reward: 49900 },
+  { level: 45, status: 'Маркетмейкер', experienceRequired: 713900, experienceToNext: 49600, reward: 53000 },
+  { level: 46, status: 'Монетчик', experienceRequired: 763500, experienceToNext: 51850, reward: 56200 },
+  { level: 47, status: 'Ренегат', experienceRequired: 815350, experienceToNext: 54150, reward: 59500 },
+  { level: 48, status: 'Босс KFC', experienceRequired: 869500, experienceToNext: 56500, reward: 62900 },
+  { level: 49, status: 'Мастодонт', experienceRequired: 926000, experienceToNext: 58900, reward: 66400 },
+  { level: 50, status: 'Легенда', experienceRequired: 984900, experienceToNext: 0, reward: 70000 }
 ];
 
+// Helper functions
 export const getLevelData = (level: number): LevelData | undefined => {
-  return LEVEL_SYSTEM.find(l => l.level === level);
+  return LEVELS_DATA.find(l => l.level === level);
 };
 
-export const getNextLevelData = (currentLevel: number): LevelData | undefined => {
-  return LEVEL_SYSTEM.find(l => l.level === currentLevel + 1);
-};
-
-export const getCurrentLevelProgress = (currentExperience: number): { level: LevelData; progress: number; nextLevel?: LevelData } => {
-  // Найти текущий уровень на основе опыта
-  let currentLevelData = LEVEL_SYSTEM[0]; // По умолчанию 1 уровень
-  
-  for (let i = LEVEL_SYSTEM.length - 1; i >= 0; i--) {
-    if (currentExperience >= LEVEL_SYSTEM[i].totalExperience) {
-      currentLevelData = LEVEL_SYSTEM[i];
-      break;
+export const getCurrentLevelData = (experience: number): LevelData => {
+  // Find the highest level the user has reached
+  for (let i = LEVELS_DATA.length - 1; i >= 0; i--) {
+    if (experience >= LEVELS_DATA[i].experienceRequired) {
+      return LEVELS_DATA[i];
     }
   }
+  return LEVELS_DATA[0]; // Return level 1 if no match
+};
+
+export const getNextLevelData = (experience: number): LevelData | undefined => {
+  const currentLevelData = getCurrentLevelData(experience);
+  const nextLevel = currentLevelData.level + 1;
+  return getLevelData(nextLevel);
+};
+
+export const getProgressToNextLevel = (experience: number): { current: number; needed: number; percentage: number } => {
+  const currentLevelData = getCurrentLevelData(experience);
+  const nextLevelData = getNextLevelData(experience);
   
-  const nextLevelData = getNextLevelData(currentLevelData.level);
-  
-  if (nextLevelData) {
-    const progress = ((currentExperience - currentLevelData.totalExperience) / nextLevelData.experienceRequired) * 100;
-    return {
-      level: currentLevelData,
-      progress: Math.min(progress, 100),
-      nextLevel: nextLevelData
-    };
+  if (!nextLevelData) {
+    // User is at max level
+    return { current: 0, needed: 0, percentage: 100 };
   }
   
-  return {
-    level: currentLevelData,
-    progress: 100
-  };
+  const current = experience - currentLevelData.experienceRequired;
+  const needed = nextLevelData.experienceToNext;
+  const percentage = (current / needed) * 100;
+  
+  return { current, needed, percentage };
 };

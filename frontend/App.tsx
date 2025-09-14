@@ -18,6 +18,7 @@ import { Notification } from './types/notifications';
 import { Battle, BattleInvitation, User } from './types/battles';
 import { mockShopItems, mockOrders, mockAchievements, mockTasks, mockCaseTypes, mockUserCases, mockNotifications, mockLeaderboard, mockBattles } from './data/mockData';
 import { LeaderboardEntry } from './types/global';
+import { getCurrentLevelData } from './data/levels';
 
 // Utility function for monitoring localStorage
 const getLocalStorageSize = () => {
@@ -70,7 +71,7 @@ export default function App() {
     id: 'user1', 
     name: 'Иван Иванов', 
     username: '@iivanov', 
-    level: 5, 
+    level: 1, 
     experience: 0,
     maxExperience: 100,
     balance: 1000, 
