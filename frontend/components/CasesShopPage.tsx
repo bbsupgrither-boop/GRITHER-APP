@@ -209,7 +209,7 @@ export const CasesShopPage: React.FC<CasesShopPageProps> = ({
         onClearAllNotifications={onClearAllNotifications}
       />
       
-      <div className="container mx-auto px-4 py-8 max-w-md pb-32">
+      <div className="min-h-screen px-4 py-8 pb-32">
         {/* Coins Display */}
         <div className="glass-card p-4 mb-6">
           <div className="flex items-center justify-between">

@@ -119,7 +119,7 @@ export const AchievementsPageFixed: React.FC<AchievementsPageFixedProps> = ({
         onClearAllNotifications={onClearAllNotifications}
       />
       
-      <div className="container mx-auto px-4 py-8 max-w-md pb-32">
+      <div className="min-h-screen px-4 py-8 pb-32">
         <div className="glass-card p-6">
           <div className="flex items-center justify-between mb-6">
             <h1 className="text-xl font-semibold">Доступные достижения</h1>

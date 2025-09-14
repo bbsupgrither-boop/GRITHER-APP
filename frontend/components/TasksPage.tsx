@@ -186,7 +186,7 @@ export const TasksPage: React.FC<TasksPageProps> = ({
         onClearAllNotifications={onClearAllNotifications}
       />
       
-      <div className="container mx-auto px-4 py-8 max-w-md pb-32">
+      <div className="min-h-screen px-4 py-8 pb-32">
         <div className="glass-card p-6">
           {/* Header with filter and add button */}
           <div className="flex items-center justify-between mb-6">

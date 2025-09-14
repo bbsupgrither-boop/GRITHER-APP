@@ -37,18 +37,6 @@ export const SettingsModal: React.FC<SettingsModalProps> = ({
     if (savedNotifications !== null) {
       setNotifications(JSON.parse(savedNotifications));
     }
-
-    // Проверяем авторизацию админа
-    const adminData = localStorage.getItem('adminLoginData');
-    if (adminData) {
-      try {
-        const parsedData = JSON.parse(adminData);
-        setAdminAuthorized(true);
-        setThemeToggleCount(parsedData.themeToggleCount || 0);
-      } catch (error) {
-        console.error('Ошибка при загрузке данных админа:', error);
-      }
-    }
   }, []);
 
   const handleNotificationsChange = (checked: boolean) => {

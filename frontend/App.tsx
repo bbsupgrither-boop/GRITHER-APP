@@ -317,37 +317,11 @@ export default function App() {
       )}
       
       {showAdminPanel && (userWithRole || hasSecretAccess) && (
-        <>
-          {(userRole === 'team_lead' || adminRole === 'Тимлид') && (
-            <AdminPanelTeamLead
-              onClose={() => setShowAdminPanel(false)}
-              theme={theme}
-              teamMembers={teamMembers}
-              teamLead={userWithRole || mockCurrentUser}
-            />
-          )}
-          {(userRole === 'junior_admin' || adminRole === 'Младший Админ') && (
-            <AdminPanelJunior
-              onClose={() => setShowAdminPanel(false)}
-              theme={theme}
-              adminName={userWithRole?.name || 'Секретный Админ'}
-            />
-          )}
-          {(userRole === 'senior_admin' || adminRole === 'Старший Админ') && (
-            <AdminPanelSenior
-              onClose={() => setShowAdminPanel(false)}
-              theme={theme}
-              adminName={userWithRole?.name || 'Секретный Админ'}
-            />
-          )}
-          {(userRole === 'main_admin' || adminRole === 'Главный Админ') && (
-            <AdminPanelMain
-              onClose={() => setShowAdminPanel(false)}
-              theme={theme}
-              adminName={userWithRole?.name || 'Секретный Админ'}
-            />
-          )}
-        </>
+        <AdminPanelMain
+          onClose={() => setShowAdminPanel(false)}
+          theme={theme}
+          adminName={userWithRole?.name || 'Секретный Админ'}
+        />
       )}
 
       {/* Секретный доступ к админ панели */}
