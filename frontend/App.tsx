@@ -2,6 +2,7 @@
 import { HomePage } from './components/HomePage';
 import { useTelegram } from './utils/telegram';
 import { useTheme } from './hooks/useTheme';
+import { initTelegramWebApp, onViewportChange } from './utils/telegram-webapp';
 import { AchievementsPageFixed } from './components/AchievementsPageFixed';
 import { TasksPage } from './components/TasksPage';
 import { CasesShopPage } from './components/CasesShopPage';
@@ -51,6 +52,18 @@ export default function App() {
   const { user, webApp } = useTelegram();
   const { theme, toggleTheme, setTheme } = useTheme();
   const [currentPage, setCurrentPage] = useState('home');
+
+  // Initialize Telegram WebApp and handle viewport changes
+  useEffect(() => {
+    initTelegramWebApp();
+    
+    const cleanupViewport = onViewportChange((height) => {
+      // Update CSS custom property for viewport height
+      document.documentElement.style.setProperty('--tg-viewport-height', `${height}px`);
+    });
+
+    return cleanupViewport;
+  }, []);
   
   const [showSettings, setShowSettings] = useState(false);
   const [showAdminPanel, setShowAdminPanel] = useState(false);

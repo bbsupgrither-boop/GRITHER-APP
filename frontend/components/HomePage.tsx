@@ -3,7 +3,7 @@ import { Header } from './Header';
 import { BottomNavigation } from './BottomNavigation';
 import { BackgroundFX } from './BackgroundFX';
 import { Logo } from './Logo';
-import { Modal } from './Modal';
+import { ProductionModal } from './ProductionModal';
 import { 
   Trophy, 
   Eye, 
@@ -188,21 +188,19 @@ export const HomePage: React.FC<HomePageProps> = ({
             {/* Mock achievements in progress */}
             <div className="space-y-3">
               {[
-                { name: 'Первый шаг', progress: 75, rarity: 'common' },
-                { name: 'Активный участник', progress: 45, rarity: 'rare' },
-                { name: 'Мастер баттлов', progress: 90, rarity: 'epic' }
+                { name: 'Новичок', progress: 50, description: 'Достигните 2 уровня', rarity: 'common' },
+                { name: 'Трудолюбивый', progress: 30, description: 'Выполните 10 задач', rarity: 'rare' },
+                { name: 'Коллекционер', progress: 20, description: 'Откройте 5 кейсов', rarity: 'epic' }
               ].map((achievement, index) => (
                 <div key={index} className="flex items-center gap-3">
                   {/* Achievement icon */}
                   <div 
                     className="w-8 h-8 rounded-full flex items-center justify-center text-white text-xs font-bold"
                     style={{
-                      backgroundColor: achievement.rarity === 'common' ? '#6b7280' : 
-                                     achievement.rarity === 'rare' ? '#3b82f6' :
-                                     achievement.rarity === 'epic' ? '#a855f7' : '#fbbf24'
+                      backgroundColor: '#3B82F6'
                     }}
                   >
-                    🏆
+                    🛡️
                   </div>
                   
                   {/* Achievement info */}
@@ -217,37 +215,26 @@ export const HomePage: React.FC<HomePageProps> = ({
                     >
                       {achievement.name}
                     </div>
-                    
-                    {/* Progress bar */}
-                    <div 
-                      style={{
-                        width: '100%',
-                        height: '6px',
-                        backgroundColor: theme === 'dark' ? '#2A2F36' : '#E6E9EF',
-                        borderRadius: '3px',
-                        overflow: 'hidden'
-                      }}
-                    >
-                      <div 
-                        style={{
-                          width: `${achievement.progress}%`,
-                          height: '100%',
-                          backgroundColor: theme === 'dark' ? '#2B82FF' : '#2B82FF',
-                          borderRadius: '3px',
-                          transition: 'width 0.3s ease'
-                        }}
-                      />
-                    </div>
-                    
                     <div 
                       style={{
                         fontSize: '12px',
                         color: theme === 'dark' ? '#A7B0BD' : '#6B7280',
-                        marginTop: '2px'
+                        marginBottom: '4px'
                       }}
                     >
-                      {achievement.progress}%
+                      {achievement.description}
                     </div>
+                  </div>
+                  
+                  {/* Progress percentage */}
+                  <div 
+                    style={{
+                      fontSize: '14px',
+                      fontWeight: '600',
+                      color: '#3B82F6'
+                    }}
+                  >
+                    {achievement.progress}%
                   </div>
                 </div>
               ))}
@@ -606,11 +593,11 @@ export const HomePage: React.FC<HomePageProps> = ({
       </div>
 
       {/* Achievements Modal */}
-      <Modal
+      <ProductionModal
         isOpen={isAchievementsModalOpen}
         onClose={() => setIsAchievementsModalOpen(false)}
         title="Ближайшие достижения"
-        theme={theme}
+        modalId="achievements-modal"
       >
         <div className="space-y-4">
           {/* Top 6 closest achievements or all available if less than 6 */}
@@ -693,7 +680,7 @@ export const HomePage: React.FC<HomePageProps> = ({
             </div>
           ))}
         </div>
-      </Modal>
+        </ProductionModal>
 
       {/* Bottom Navigation */}
       <BottomNavigation 
