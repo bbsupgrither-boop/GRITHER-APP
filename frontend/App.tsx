@@ -11,6 +11,7 @@ import { BattlesPageExtended } from './components/BattlesPageExtended';
 import { BackgroundFX } from './components/BackgroundFX';
 import { SettingsModal } from './components/SettingsModal';
 import { AdminPanel } from './components/AdminPanel';
+import Home from './src/pages/Home';
 import { Achievement } from './types/achievements';
 import { ShopItem, Order } from './types/shop';
 import { Task } from './types/tasks';
@@ -213,29 +214,8 @@ export default function App() {
     console.log('🔥 App.tsx: renderCurrentPage called, currentPage:', currentPage);
     switch (currentPage) {
       case 'home':
-        console.log('🔥 App.tsx: Rendering HomePage case');
-        return (
-          <HomePage
-            onNavigate={handleNavigate} 
-            currentPage={currentPage} 
-            onOpenSettings={handleOpenSettings}
-            achievements={achievements}
-            theme={theme}
-            notifications={notifications}
-            onMarkNotificationAsRead={handleMarkNotificationAsRead}
-            onMarkAllNotificationsAsRead={handleMarkAllNotificationsAsRead}
-            onRemoveNotification={handleRemoveNotification}
-            onClearAllNotifications={handleClearAllNotifications}
-            battles={battles}
-            battleInvitations={battleInvitations}
-            users={users}
-            leaderboard={leaderboard}
-            currentUser={currentUser || undefined}
-            onCreateBattle={() => handleNavigate('battles')}
-            onAcceptBattleInvitation={handleAcceptBattleInvitation}
-            onDeclineBattleInvitation={handleDeclineBattleInvitation}
-          />
-        );
+        console.log('🔥 App.tsx: Rendering new Home architecture');
+        return <Home />;
       case 'achievements':
         return (
           <AchievementsPageFixed

@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom/client'
 import App from './App.tsx'
 import './index.css'
 import './styles/production.css'
+import './src/theme/tokens.css'
 
 // Function to hide preloader
 const hideLoader = () => {
