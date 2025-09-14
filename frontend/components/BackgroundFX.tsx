@@ -7,7 +7,7 @@ interface BackgroundFXProps {
 
 export const BackgroundFX: React.FC<BackgroundFXProps> = ({ theme, isHomePage = false }) => {
   if (isHomePage && theme === 'light') {
-    // Красивый градиентный фон для главной страницы
+    // Красивый градиентный фон для главной страницы с эффектом неба
     return (
       <div className="fixed inset-0 background-fx">
         {/* Основной градиентный слой */}
@@ -15,12 +15,29 @@ export const BackgroundFX: React.FC<BackgroundFXProps> = ({ theme, isHomePage = 
           className="absolute inset-0"
           style={{
             background: `linear-gradient(180deg, 
-              rgba(0, 132, 255, 0.1) 0%, 
-              rgba(255, 255, 255, 0.8) 30%, 
-              rgba(248, 250, 252, 0.9) 70%, 
+              rgba(59, 130, 246, 0.8) 0%, 
+              rgba(59, 130, 246, 0.4) 30%, 
+              rgba(255, 255, 255, 0.9) 70%, 
               #F8FAFC 100%
             )`,
             zIndex: 1,
+            pointerEvents: 'none'
+          }}
+        />
+        
+        {/* Декоративный синий эффект неба */}
+        <div 
+          className="absolute"
+          style={{
+            top: '-10%',
+            right: '-5%',
+            width: '50%',
+            height: '70%',
+            background: `linear-gradient(180deg, rgba(59, 130, 246, 0.8) 0%, rgba(59, 130, 246, 0) 100%)`,
+            opacity: 0.2,
+            filter: 'blur(48px)',
+            borderRadius: '50%',
+            zIndex: 2,
             pointerEvents: 'none'
           }}
         />
@@ -30,10 +47,10 @@ export const BackgroundFX: React.FC<BackgroundFXProps> = ({ theme, isHomePage = 
           className="absolute inset-0"
           style={{
             background: `radial-gradient(ellipse at center top, 
-              rgba(0, 132, 255, 0.05) 0%, 
+              rgba(59, 130, 246, 0.1) 0%, 
               transparent 60%
             )`,
-            zIndex: 2,
+            zIndex: 3,
             pointerEvents: 'none'
           }}
         />
@@ -65,11 +82,29 @@ export const BackgroundFX: React.FC<BackgroundFXProps> = ({ theme, isHomePage = 
   if (theme === 'light') {
     return (
       <div className="fixed inset-0 background-fx">
+        {/* Основной фон */}
         <div 
           className="absolute inset-0"
           style={{
             background: '#F8FAFC',
             zIndex: 1,
+            pointerEvents: 'none'
+          }}
+        />
+        
+        {/* Декоративный синий эффект неба */}
+        <div 
+          className="absolute"
+          style={{
+            top: '-10%',
+            right: '-5%',
+            width: '50%',
+            height: '70%',
+            background: `linear-gradient(180deg, rgba(59, 130, 246, 0.8) 0%, rgba(59, 130, 246, 0) 100%)`,
+            opacity: 0.15,
+            filter: 'blur(48px)',
+            borderRadius: '50%',
+            zIndex: 2,
             pointerEvents: 'none'
           }}
         />
