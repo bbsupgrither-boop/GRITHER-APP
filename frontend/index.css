@@ -2,6 +2,7 @@
 
 /* Import GRITHER Theme System */
 @import './styles/theme.css';
+@import './src/styles/tokens.css';
 
 /* Prevent text selection on clicks */
 * {

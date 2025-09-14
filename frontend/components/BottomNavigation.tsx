@@ -1,20 +1,18 @@
 ﻿import React, { useState, useEffect } from 'react';
-import { createPortal } from 'react-dom';
-import { Home, Trophy, CheckSquare, ShoppingCart } from 'lucide-react';
+import { useNavigate, useLocation } from 'react-router-dom';
+import { Home, Trophy, CheckSquare, ShoppingCart, User, Zap } from 'lucide-react';
 
 interface BottomNavigationProps {
-  currentPage: string;
-  onNavigate: (page: string) => void;
   theme: 'light' | 'dark';
   hideWhenModalOpen?: boolean;
 }
 
 export const BottomNavigation: React.FC<BottomNavigationProps> = ({
-  currentPage,
-  onNavigate,
   theme,
   hideWhenModalOpen = false,
 }) => {
+  const navigate = useNavigate();
+  const location = useLocation();
   const [mounted, setMounted] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
 
@@ -54,11 +52,15 @@ export const BottomNavigation: React.FC<BottomNavigationProps> = ({
   }, []);
 
   const navItems = [
-    { icon: Home, page: 'home' },           // 🏠 Главная
-    { icon: Trophy, page: 'achievements' }, // 🏆 Достижения  
-    { icon: CheckSquare, page: 'tasks' },   // ✅ Задачи
-    { icon: ShoppingCart, page: 'shop' },   // 🛒 Магазин
+    { icon: Home, page: '/home', label: 'Главная' },
+    { icon: Trophy, page: '/achievements', label: 'Достижения' },
+    { icon: CheckSquare, page: '/tasks', label: 'Задачи' },
+    { icon: ShoppingCart, page: '/shop', label: 'Магазин' },
+    { icon: User, page: '/profile', label: 'Профиль' },
+    { icon: Zap, page: '/battles', label: 'Баттлы' },
   ];
+
+  const currentPage = location.pathname;
 
   // Don't render if modal is open and hideWhenModalOpen is true
   if (hideWhenModalOpen && isModalOpen) {
@@ -99,7 +101,7 @@ export const BottomNavigation: React.FC<BottomNavigationProps> = ({
           return (
             <button
               key={item.page}
-              onClick={() => onNavigate(item.page)}
+              onClick={() => navigate(item.page)}
               className="relative flex items-center justify-center transition-all duration-200"
               style={{ 
                 width: '44px',      // Фиксированная ширина
@@ -145,6 +147,6 @@ export const BottomNavigation: React.FC<BottomNavigationProps> = ({
     </div>
   );
 
-  // Рендерим через портал для избежания влияния родительских контекстов
-  return mounted ? createPortal(navigationContent, document.body) : null;
+  // Рендерим навигацию
+  return navigationContent;
 };

@@ -1,22 +1,22 @@
 import React, { useState, useEffect } from 'react';
 import { HashRouter, Routes, Route, Navigate } from 'react-router-dom';
-import { Layout } from './src/layout/Layout';
-import { ErrorBoundary } from './src/shared/ErrorBoundary';
-import { initTelegramWebApp, onViewportChange } from './src/shared/telegram';
+import { Layout } from './layout/Layout';
+import { ErrorBoundary } from './shared/ErrorBoundary';
+import { initTelegramWebApp, onViewportChange } from './shared/telegram';
 
 // Lazy loaded pages
-const HomePage = React.lazy(() => import('./src/pages/Home'));
-const AchievementsPage = React.lazy(() => import('./src/pages/Achievements'));
-const TasksPage = React.lazy(() => import('./src/pages/Tasks'));
-const ShopPage = React.lazy(() => import('./src/pages/Shop'));
-const ProfilePage = React.lazy(() => import('./src/pages/Profile'));
-const BattlesPage = React.lazy(() => import('./src/pages/Battles'));
+const HomePage = React.lazy(() => import('./pages/Home'));
+const AchievementsPage = React.lazy(() => import('./pages/Achievements'));
+const TasksPage = React.lazy(() => import('./pages/Tasks'));
+const ShopPage = React.lazy(() => import('./pages/Shop'));
+const ProfilePage = React.lazy(() => import('./pages/Profile'));
+const BattlesPage = React.lazy(() => import('./pages/Battles'));
 
 // Modals
-import { SettingsModal } from './components/SettingsModalFixed';
+import { SettingsModal } from './components/SettingsModal';
 import { SecretAdminAccess } from './components/SecretAdminAccess';
 import { ProblemReportModal } from './components/ProblemReportModal';
-import { AdminPanelMain } from './components/AdminPanelMain';
+import { AdminPanel } from './components/AdminPanel';
 
 // Hooks
 import { useTheme } from './hooks/useTheme';
@@ -331,7 +331,7 @@ export default function App() {
         )}
 
         {showAdminPanel && (userWithRole || hasSecretAccess) && (
-          <AdminPanelMain
+          <AdminPanel
             onClose={handleCloseAdminPanel}
             theme={theme}
             adminName={userWithRole?.name || 'Секретный Админ'}

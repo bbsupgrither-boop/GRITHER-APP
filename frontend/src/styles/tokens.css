@@ -1,0 +1,117 @@
+/* Единые токены и запрет 100vh */
+
+:root {
+  --vh: 100dvh;
+  --kb-offset: 0px;
+  --safe-bottom: env(safe-area-inset-bottom, 0px);
+  --container-max: 720px;
+}
+
+html, body, #root {
+  height: 100%;
+}
+
+html, body {
+  margin: 0;
+  overflow-x: hidden;
+}
+
+.app {
+  min-height: var(--vh);
+  display: grid;
+  grid-template-rows: auto 1fr auto;
+  padding-bottom: calc(var(--safe-bottom) + var(--kb-offset));
+}
+
+.container {
+  width: min(100%, var(--container-max));
+  margin: 0 auto;
+  padding: 0 16px;
+}
+
+/* Безопасные модалки */
+.modal-backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.35);
+  display: none;
+  z-index: 50;
+}
+
+.modal-backdrop.open {
+  display: block;
+}
+
+.modal {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 51;
+  max-width: 90vw;
+  max-height: 90vh;
+  overflow: auto;
+}
+
+/* GRITHER UI Components */
+.glass-card {
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 20px;
+  padding: 1rem;
+}
+
+.dark .glass-card {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.apple-button {
+  background: linear-gradient(135deg, #007aff, #5856d6);
+  color: white;
+  border: none;
+  border-radius: 12px;
+  padding: 12px 24px;
+  font-weight: 600;
+  transition: all 0.2s ease;
+  cursor: pointer;
+}
+
+.apple-button:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(0, 122, 255, 0.3);
+}
+
+.apple-button:active {
+  transform: translateY(0);
+}
+
+.apple-button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  transform: none;
+}
+
+.unified-heading {
+  font-size: 18px !important;
+  font-weight: 600 !important;
+  line-height: 1.2 !important;
+  margin: 0 !important;
+}
+
+.unified-text {
+  font-size: 12px !important;
+  font-weight: 400 !important;
+  line-height: 1.4 !important;
+  margin: 0 !important;
+}
+
+.unified-button {
+  font-size: 14px !important;
+  font-weight: 500 !important;
+}
+
+.text-muted-foreground {
+  opacity: 0.7;
+}
