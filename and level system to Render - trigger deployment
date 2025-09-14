@@ -1,0 +1,11 @@
+[33mcommit ed91959522bf9a12f6e1e57edf2403fbd84ecb84[m
+Author: bbsupgrither-boop <bbsupgrither@gmail.com>
+Date:   Sun Sep 14 11:11:04 2025 +0300
+
+    Fix modal visibility and experience system: hide navigation on modals, create level system with 50 levels, statuses and rewards, fix experience modal design
+
+frontend/components/BottomNavigation.tsx
+frontend/components/CoinIcon.tsx
+frontend/components/ExperienceModal.tsx
+frontend/components/HomePage.tsx
+frontend/data/levels.ts

@@ -1,0 +1,7 @@
+# New deployment with modal fixes and level system - 2025-09-14
+# This file triggers Render deployment with latest changes:
+# - Modal navigation hiding fix
+# - Experience modal redesign
+# - Level system with 50 levels
+# - Coin icon for rewards
+# - Status progression system
