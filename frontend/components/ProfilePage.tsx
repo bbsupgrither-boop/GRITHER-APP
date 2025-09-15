@@ -67,8 +67,8 @@ export const ProfilePage: React.FC<ProfilePageProps> = ({
             marginBottom: '24px'
           }}>
             <h1 style={{
-              fontSize: '24px',
-              fontWeight: '700',
+              fontSize: '18px',
+              fontWeight: '500',
               color: theme === 'dark' ? '#E8ECF2' : '#0F172A',
               margin: 0
             }}>
