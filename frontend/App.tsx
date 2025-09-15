@@ -1,8 +1,21 @@
-import React from 'react';
-import { TestComponent } from './components/TestComponent';
+import React, { useState, useEffect } from 'react';
+import { HashRouter, Routes, Route, Navigate, useNavigate, useLocation } from 'react-router-dom';
 
 // Log build version
 console.info("build", import.meta.env.VITE_APP_BUILD);
+
+// Import components
+import { HomePage } from './components/HomePage';
+import { AchievementsPage } from './components/AchievementsPage';
+import { TasksPage } from './components/TasksPage';
+import { ShopPage } from './components/ShopPage';
+import { ProfilePage } from './components/ProfilePage';
+import { Header } from './components/Header';
+import { BottomNavigation } from './components/BottomNavigation';
+import { SettingsModal } from './components/SettingsModal';
+import { SecretAdminAccess } from './components/SecretAdminAccess';
+import { ProblemReportModal } from './components/ProblemReportModal';
+import { AdminPanelMain } from './components/AdminPanelMain';
 
 // Types
 interface User {

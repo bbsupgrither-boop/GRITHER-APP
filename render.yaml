@@ -1,6 +1,6 @@
 services:
   - type: web
-    name: grither-backend
+    name: grither-app-backend
     env: node
     plan: free
     buildCommand: cd backend && npm install
@@ -22,7 +22,7 @@ services:
         generateValue: true
 
   - type: web
-    name: grither-frontend
+    name: grither-app-frontend
     env: static
     plan: free
     buildCommand: cd frontend && npm ci && npm run build

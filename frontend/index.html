@@ -13,6 +13,12 @@
   </head>
   <body>
     <div id="root"></div>
+    <script>
+      // SPA fallback for routing
+      if (window.location.pathname !== '/' && !window.location.pathname.includes('#')) {
+        window.location.href = '/#' + window.location.pathname;
+      }
+    </script>
     <script type="module" src="/main.tsx"></script>
   </body>
 </html>
