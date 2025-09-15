@@ -7,17 +7,9 @@ import {
   Clock, 
   Play, 
   Pause, 
-  Square, 
   FileText, 
-  Upload, 
-  X, 
-  CheckCircle, 
-  AlertCircle,
-  Calendar,
-  Timer,
-  Paperclip,
-  Edit3,
-  Trash2
+  X,
+  Calendar
 } from 'lucide-react';
 import { Task } from '../types/tasks';
 import { User } from '../types/global';
@@ -71,12 +63,12 @@ export const TasksPage: React.FC<TasksPageProps> = ({
   onClearAllNotifications,
   onOpenSettings = () => {},
 }) => {
-  // Локальное состояние задач
-  const [tasks, setTasksLocal] = useState<Task[]>(toTasks(globalTasks));
+  // Локальное состояние задач с защитой от ошибок
+  const [tasks, setTasksLocal] = useState<Task[]>(toTasks(globalTasks ?? []));
   
   // Обновляем локальное состояние при изменении глобальных задач
   useEffect(() => {
-    setTasksLocal(toTasks(globalTasks));
+    setTasksLocal(toTasks(globalTasks ?? []));
   }, [globalTasks]);
 
   const [isCreateModalOpen, setIsCreateModalOpen] = useState(false);
@@ -85,7 +77,6 @@ export const TasksPage: React.FC<TasksPageProps> = ({
   const [filter, setFilter] = useState<FilterType>('all');
   const [activeTimer, setActiveTimer] = useState<string | null>(null);
   const [timerSeconds, setTimerSeconds] = useState<{ [key: string]: number }>({});
-  const [isFileUploadOpen, setIsFileUploadOpen] = useState(false);
   
   const intervalRef = useRef<NodeJS.Timeout | null>(null);
 
@@ -122,29 +113,12 @@ export const TasksPage: React.FC<TasksPageProps> = ({
     const now = new Date();
     const deadline = new Date(task.deadline);
     
-    if (task.completed) return 'completed';
+    if (task.completedAt) return 'completed';
     if (now > deadline) return 'overdue';
-    if (task.status === 'in_progress') return 'in_progress';
+    if (task.status === 'active') return 'in_progress';
     return 'not_started';
   };
 
-  const getStatusColor = (status: TaskStatus) => {
-    switch (status) {
-      case 'completed': return 'text-green-500';
-      case 'in_progress': return 'text-blue-500';
-      case 'overdue': return 'text-red-500';
-      default: return 'text-gray-400';
-    }
-  };
-
-  const getStatusIcon = (status: TaskStatus) => {
-    switch (status) {
-      case 'completed': return <CheckCircle className="w-5 h-5" />;
-      case 'in_progress': return <Clock className="w-5 h-5" />;
-      case 'overdue': return <AlertCircle className="w-5 h-5" />;
-      default: return <Clock className="w-5 h-5" />;
-    }
-  };
 
   const filteredTasks = tasks.filter(task => {
     if (filter === 'all') return true;
@@ -171,34 +145,9 @@ export const TasksPage: React.FC<TasksPageProps> = ({
   const handleCompleteTask = (taskId: string) => {
     setTasks(tasks.map(task => 
         task.id === taskId
-        ? { ...task, completed: true, status: 'completed' }
+        ? { ...task, completedAt: new Date().toISOString(), status: 'completed' }
           : task
     ));
-  };
-
-  const handleFileUpload = (event: React.ChangeEvent<HTMLInputElement>, taskId: string) => {
-    const file = event.target.files?.[0];
-    if (file) {
-      setTasks(tasks.map(task => 
-        task.id === taskId
-          ? { ...task, attachedFiles: [...(task.attachedFiles || []), file.name] }
-          : task
-      ));
-    }
-    setIsFileUploadOpen(false);
-  };
-
-  const handleCreateTask = (newTask: Omit<Task, 'id'>) => {
-    const task: Task = {
-      ...newTask,
-      id: Date.now().toString(),
-      createdAt: new Date().toISOString(),
-      status: 'not_started',
-      completed: false,
-      timeSpent: 0
-    };
-    setTasks([...tasks, task]);
-    setIsCreateModalOpen(false);
   };
 
   return (
@@ -467,7 +416,7 @@ export const TasksPage: React.FC<TasksPageProps> = ({
                           </div>
                         </div>
                         
-                        {/* Priority indicator */}
+                        {/* Category indicator */}
                         <div 
                           style={{
                             display: 'inline-block',
@@ -477,14 +426,14 @@ export const TasksPage: React.FC<TasksPageProps> = ({
                             fontWeight: 'bold',
                             textTransform: 'uppercase',
                             letterSpacing: '0.5px',
-                            background: task.priority === 'high' ? '#EF444420' :
-                                       task.priority === 'medium' ? '#FF9F0A20' : '#22C55E20',
-                            color: task.priority === 'high' ? '#EF4444' :
-                                   task.priority === 'medium' ? '#FF9F0A' : '#22C55E'
+                            background: task.category === 'team' ? '#EF444420' :
+                                       task.category === 'individual' ? '#FF9F0A20' : '#22C55E20',
+                            color: task.category === 'team' ? '#EF4444' :
+                                   task.category === 'individual' ? '#FF9F0A' : '#22C55E'
                           }}
                         >
-                          {task.priority === 'high' ? 'Высокий' :
-                           task.priority === 'medium' ? 'Средний' : 'Низкий'}
+                          {task.category === 'team' ? 'Команда' :
+                           task.category === 'individual' ? 'Индивидуальная' : 'Общая'}
                         </div>
                       </div>
                       
@@ -625,8 +574,6 @@ export const TasksPage: React.FC<TasksPageProps> = ({
       </div>
 
       <BottomNavigation 
-        currentPage="tasks"
-        onNavigate={onNavigate}
         theme={theme}
       />
 
@@ -794,7 +741,7 @@ export const TasksPage: React.FC<TasksPageProps> = ({
               >
                 Закрыть
               </button>
-              {!selectedTask.completed && (
+              {!selectedTask.completedAt && (
                 <button
                   onClick={() => {
                     handleCompleteTask(selectedTask.id);

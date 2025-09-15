@@ -4,7 +4,7 @@
   "private": true,
   "type": "module",
   "engines": {
-    "node": "20.x",
+    "node": ">=18.0.0",
     "npm": ">=8.0.0"
   },
   "dependencies": {
@@ -68,6 +68,8 @@
   },
   "scripts": {
     "dev": "vite",
-    "build": "vite build"
+    "build": "build.bat",
+    "build:local": "cross-env VITE_APP_BUILD=local-build vite build",
+    "build:unix": "cross-env VITE_APP_BUILD=$(git rev-parse --short HEAD) vite build"
   }
 }

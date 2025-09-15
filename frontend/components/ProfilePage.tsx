@@ -64,7 +64,8 @@ export const ProfilePage: React.FC<ProfilePageProps> = ({
             display: 'flex',
             alignItems: 'center',
             justifyContent: 'space-between',
-            marginBottom: '24px'
+            marginBottom: '24px',
+            paddingTop: '20px'
           }}>
             <h1 style={{
               fontSize: '18px',

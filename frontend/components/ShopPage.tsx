@@ -528,89 +528,171 @@ export const ShopPage: React.FC<ShopPageProps> = ({ theme, currentPage, onNaviga
           </div>
         )}
 
-      {activeTab === 'shop' && (
-        <div>
-          {/* Premium Cases */}
-          <div style={{ marginBottom: '32px' }}>
-            <h3 style={{ 
-              color: theme === 'dark' ? '#E8ECF2' : '#0F172A',
-              marginBottom: '16px'
-            }}>
-              ПРЕМИУМ КЕЙСЫ
-            </h3>
-            <div style={{
-              display: 'grid',
-              gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))',
-              gap: '16px'
-            }}>
-              {mockCaseShopItems.map((caseItem) => (
-                <div
-                  key={caseItem.id}
-                  style={{
-                    background: theme === 'dark' ? '#161A22' : '#FFFFFF',
-                    borderRadius: '16px',
-                    overflow: 'hidden',
-                    border: `2px solid ${caseItem.color}`,
-                    boxShadow: `0 0 20px ${caseItem.color}40`,
-                    transition: 'transform 0.2s ease',
-                    cursor: 'pointer'
-                  }}
-                  onMouseEnter={(e) => e.currentTarget.style.transform = 'scale(1.02)'}
-                  onMouseLeave={(e) => e.currentTarget.style.transform = 'scale(1)'}
-                >
-                  <div style={{
-                    height: '112px',
-                    background: `${caseItem.color}15`,
-                    display: 'flex',
-                    alignItems: 'center',
-                    justifyContent: 'center',
-                    position: 'relative'
-                  }}>
-                    <Package size={48} color={caseItem.color} />
+        {activeTab === 'shop' && (
+          <div>
+            {/* Premium Cases */}
+            <div style={{ marginBottom: '32px' }}>
+              <h3 style={{ 
+                color: theme === 'dark' ? '#E8ECF2' : '#0F172A',
+                marginBottom: '16px'
+              }}>
+                ПРЕМИУМ КЕЙСЫ
+              </h3>
+              <div style={{
+                display: 'grid',
+                gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))',
+                gap: '16px'
+              }}>
+                {mockCaseShopItems.map((caseItem) => (
+                  <div
+                    key={caseItem.id}
+                    style={{
+                      background: theme === 'dark' ? '#161A22' : '#FFFFFF',
+                      borderRadius: '16px',
+                      overflow: 'hidden',
+                      border: `2px solid ${caseItem.color}`,
+                      boxShadow: `0 0 20px ${caseItem.color}40`,
+                      transition: 'transform 0.2s ease',
+                      cursor: 'pointer'
+                    }}
+                    onMouseEnter={(e) => e.currentTarget.style.transform = 'scale(1.02)'}
+                    onMouseLeave={(e) => e.currentTarget.style.transform = 'scale(1)'}
+                  >
                     <div style={{
-                      position: 'absolute',
-                      bottom: '8px',
-                      left: '8px',
-                      background: 'rgba(0,0,0,0.7)',
-                      color: 'white',
-                      padding: '2px 8px',
-                      borderRadius: '4px',
-                      fontSize: '10px',
-                      fontWeight: 'bold'
+                      height: '112px',
+                      background: `${caseItem.color}15`,
+                      display: 'flex',
+                      alignItems: 'center',
+                      justifyContent: 'center',
+                      position: 'relative'
                     }}>
-                      GRITHER
+                      <Package size={48} color={caseItem.color} />
+                      <div style={{
+                        position: 'absolute',
+                        bottom: '8px',
+                        left: '8px',
+                        background: 'rgba(0,0,0,0.7)',
+                        color: 'white',
+                        padding: '2px 8px',
+                        borderRadius: '4px',
+                        fontSize: '10px',
+                        fontWeight: 'bold'
+                      }}>
+                        GRITHER
+                      </div>
+                    </div>
+                    <div style={{ padding: '16px' }}>
+                      <h4 style={{
+                        color: theme === 'dark' ? '#E8ECF2' : '#0F172A',
+                        marginBottom: '8px',
+                        textShadow: `0 0 10px ${caseItem.color}80`
+                      }}>
+                        {caseItem.name}
+                      </h4>
+                      <div style={{
+                        display: 'flex',
+                        alignItems: 'center',
+                        gap: '8px',
+                        marginBottom: '12px'
+                      }}>
+                        <Coins size={16} color="#FFD700" />
+                        <span style={{ 
+                          fontWeight: 'bold',
+                          color: theme === 'dark' ? '#E8ECF2' : '#0F172A'
+                        }}>
+                          {caseItem.price.toLocaleString()}
+                        </span>
+                      </div>
+                      <button
+                        onClick={() => addToCart(caseItem)}
+                        style={{
+                          width: '100%',
+                          background: theme === 'dark' 
+                            ? 'linear-gradient(135deg, #ffffff, #f0f0f0)'
+                            : 'linear-gradient(135deg, #5AA7FF, #A7D0FF)',
+                          color: theme === 'dark' ? '#0F172A' : '#FFFFFF',
+                          border: 'none',
+                          borderRadius: '8px',
+                          padding: '12px',
+                          fontSize: '14px',
+                          fontWeight: 'bold',
+                          cursor: 'pointer'
+                        }}
+                      >
+                        КУПИТЬ
+                      </button>
                     </div>
                   </div>
-                  <div style={{ padding: '16px' }}>
+                ))}
+              </div>
+            </div>
+
+            {/* Shop Items */}
+            <div>
+              <h3 style={{ 
+                color: theme === 'dark' ? '#E8ECF2' : '#0F172A',
+                marginBottom: '16px'
+              }}>
+                ТОВАРЫ МАГАЗИНА
+              </h3>
+              <div style={{
+                display: 'grid',
+                gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))',
+                gap: '16px'
+              }}>
+                {localShopItems.map((item) => (
+                  <div
+                    key={item.id}
+                    style={{
+                      background: theme === 'dark' ? '#161A22' : '#FFFFFF',
+                      borderRadius: '16px',
+                      padding: '24px',
+                      textAlign: 'center',
+                      border: '2px solid #3B82F6',
+                      boxShadow: '0 0 20px #3B82F640',
+                      transition: 'transform 0.2s ease',
+                      cursor: 'pointer'
+                    }}
+                    onMouseEnter={(e) => e.currentTarget.style.transform = 'scale(1.02)'}
+                    onMouseLeave={(e) => e.currentTarget.style.transform = 'scale(1)'}
+                  >
+                    <div style={{ fontSize: '48px', marginBottom: '16px' }}>
+                      {item.emoji}
+                    </div>
                     <h4 style={{
                       color: theme === 'dark' ? '#E8ECF2' : '#0F172A',
-                      marginBottom: '8px',
-                      textShadow: `0 0 10px ${caseItem.color}80`
+                      marginBottom: '8px'
                     }}>
-                      {caseItem.name}
+                      {item.name}
                     </h4>
+                    <p style={{
+                      color: theme === 'dark' ? '#A7B0BD' : '#6B7280',
+                      fontSize: '12px',
+                      marginBottom: '16px'
+                    }}>
+                      {item.description}
+                    </p>
                     <div style={{
                       display: 'flex',
                       alignItems: 'center',
+                      justifyContent: 'center',
                       gap: '8px',
-                      marginBottom: '12px'
+                      marginBottom: '16px'
                     }}>
                       <Coins size={16} color="#FFD700" />
                       <span style={{ 
                         fontWeight: 'bold',
                         color: theme === 'dark' ? '#E8ECF2' : '#0F172A'
                       }}>
-                        {caseItem.price.toLocaleString()}
+                        {item.price.toLocaleString()}
                       </span>
                     </div>
                     <button
-                      onClick={() => addToCart(caseItem)}
+                      onClick={() => addToCart(item)}
                       style={{
                         width: '100%',
-                        background: theme === 'dark' 
-                          ? 'linear-gradient(135deg, #ffffff, #f0f0f0)'
-                          : 'linear-gradient(135deg, #5AA7FF, #A7D0FF)',
-                        color: theme === 'dark' ? '#0F172A' : '#FFFFFF',
+                        background: '#3B82F6',
+                        color: 'white',
                         border: 'none',
                         borderRadius: '8px',
                         padding: '12px',
@@ -619,96 +701,14 @@ export const ShopPage: React.FC<ShopPageProps> = ({ theme, currentPage, onNaviga
                         cursor: 'pointer'
                       }}
                     >
-                      КУПИТЬ
+                      В КОРЗИНУ
                     </button>
                   </div>
-                </div>
-              ))}
+                ))}
+              </div>
             </div>
           </div>
-
-          {/* Shop Items */}
-          <div>
-            <h3 style={{ 
-              color: theme === 'dark' ? '#E8ECF2' : '#0F172A',
-              marginBottom: '16px'
-            }}>
-              ТОВАРЫ МАГАЗИНА
-            </h3>
-            <div style={{
-              display: 'grid',
-              gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))',
-              gap: '16px'
-            }}>
-              {localShopItems.map((item) => (
-                <div
-                  key={item.id}
-                  style={{
-                    background: theme === 'dark' ? '#161A22' : '#FFFFFF',
-                    borderRadius: '16px',
-                    padding: '24px',
-                    textAlign: 'center',
-                    border: '2px solid #3B82F6',
-                    boxShadow: '0 0 20px #3B82F640',
-                    transition: 'transform 0.2s ease',
-                    cursor: 'pointer'
-                  }}
-                  onMouseEnter={(e) => e.currentTarget.style.transform = 'scale(1.02)'}
-                  onMouseLeave={(e) => e.currentTarget.style.transform = 'scale(1)'}
-                >
-                  <div style={{ fontSize: '48px', marginBottom: '16px' }}>
-                    {item.emoji}
-                  </div>
-                  <h4 style={{
-                    color: theme === 'dark' ? '#E8ECF2' : '#0F172A',
-                    marginBottom: '8px'
-                  }}>
-                    {item.name}
-                  </h4>
-                  <p style={{
-                    color: theme === 'dark' ? '#A7B0BD' : '#6B7280',
-                    fontSize: '12px',
-                    marginBottom: '16px'
-                  }}>
-                    {item.description}
-                  </p>
-                  <div style={{
-                    display: 'flex',
-                    alignItems: 'center',
-                    justifyContent: 'center',
-                    gap: '8px',
-                    marginBottom: '16px'
-                  }}>
-                    <Coins size={16} color="#FFD700" />
-                    <span style={{ 
-                      fontWeight: 'bold',
-                      color: theme === 'dark' ? '#E8ECF2' : '#0F172A'
-                    }}>
-                      {item.price.toLocaleString()}
-                    </span>
-                  </div>
-                  <button
-                    onClick={() => addToCart(item)}
-                    style={{
-                      width: '100%',
-                      background: '#3B82F6',
-                      color: 'white',
-                      border: 'none',
-                      borderRadius: '8px',
-                      padding: '12px',
-                      fontSize: '14px',
-                      fontWeight: 'bold',
-                      cursor: 'pointer'
-                    }}
-                  >
-                    В КОРЗИНУ
-                  </button>
-                </div>
-              ))}
-            </div>
-          </div>
-        </div>
-      )}
+        )}
 
       {activeTab === 'my' && (
         <div>

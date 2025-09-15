@@ -42,7 +42,7 @@ export function AchievementsPage({ onNavigate, currentPage, onOpenSettings, achi
       case 'progress_desc':
         const percentDescA = (a.requirements.current / a.requirements.target) * 100;
         const percentDescB = (b.requirements.current / b.requirements.target) * 100;
-        // РЎРЅР°С‡Р°Р»Р° РґРѕСЃС‚РёР¶РµРЅРёСЏ СЃ РїСЂРѕРіСЂРµСЃСЃРѕРј, РїРѕС‚РѕРј Р±РµР· РїСЂРѕРіСЂРµСЃСЃР°
+        // Сначала достижения с прогрессом, потом без прогресса
         if (percentDescA > 0 && percentDescB === 0) return -1;
         if (percentDescA === 0 && percentDescB > 0) return 1;
         return percentDescB - percentDescA;
@@ -579,176 +579,225 @@ export function AchievementsPage({ onNavigate, currentPage, onOpenSettings, achi
         </div>
       </Modal>
 
-      {/* Р”РµС‚Р°Р»Рё РґРѕСЃС‚РёР¶РµРЅРёСЏ */}
-      <Dialog open={isDetailOpen} onOpenChange={setIsDetailOpen}>
-        <DialogContent 
-          className="glass-card rounded-3xl border-2 border-border apple-shadow w-[calc(100vw-16px)] max-w-md p-0 max-h-[85vh] flex flex-col [&>button]:hidden"
-          aria-describedby="achievement-detail-description"
+      {/* Achievement Details Modal */}
+      {isDetailOpen && selectedAchievement && (
+        <div
+          style={{
+            position: 'fixed',
+            top: 0,
+            left: 0,
+            right: 0,
+            bottom: 0,
+            background: 'rgba(0, 0, 0, 0.5)',
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            zIndex: 1000
+          }}
+          onClick={() => setIsDetailOpen(false)}
         >
-          <div className="p-4 sm:p-6 flex-1 flex flex-col">
-            {/* Р—Р°РіРѕР»РѕРІРѕРє */}
-            <div className="flex items-center justify-between mb-4 sm:mb-6">
-              <div className="w-6 sm:w-8"></div>
-              
-              <DialogTitle className="text-sm sm:text-lg font-medium text-foreground text-center flex-1 px-2">
-                РЈСЃР»РѕРІРёСЏ РІС‹РїРѕР»РЅРµРЅРёСЏ РґРѕСЃС‚РёР¶РµРЅРёСЏ
-              </DialogTitle>
-              
+          <div
+            style={{
+              background: theme === 'dark' ? '#161A22' : '#FFFFFF',
+              borderRadius: '16px',
+              padding: '24px',
+              width: '90vw',
+              maxWidth: '400px',
+              maxHeight: '80vh',
+              overflow: 'auto'
+            }}
+            onClick={(e) => e.stopPropagation()}
+          >
+            <div style={{
+              display: 'flex',
+              justifyContent: 'space-between',
+              alignItems: 'center',
+              marginBottom: '24px'
+            }}>
+              <h2 style={{ color: theme === 'dark' ? '#E8ECF2' : '#0F172A' }}>
+                Детали достижения
+              </h2>
               <button
                 onClick={() => setIsDetailOpen(false)}
-                className="p-1 sm:p-2 hover:bg-black/5 rounded-lg transition-colors flex-shrink-0"
+                style={{
+                  background: 'none',
+                  border: 'none',
+                  fontSize: '24px',
+                  cursor: 'pointer',
+                  color: theme === 'dark' ? '#A7B0BD' : '#6B7280'
+                }}
               >
-                <X className="w-3 h-3 sm:w-4 sm:h-4 text-foreground/70" />
+                <X size={24} />
               </button>
             </div>
             
-            <DialogDescription id="achievement-detail-description" className="sr-only">
-              Р”РµС‚Р°Р»СЊРЅР°СЏ РёРЅС„РѕСЂРјР°С†РёСЏ Рѕ РґРѕСЃС‚РёР¶РµРЅРёРё
-            </DialogDescription>
-
-            {selectedAchievement && (
-              <div className="flex-1 overflow-y-auto space-y-4">
-                {/* РРєРѕРЅРєР° Рё РЅР°Р·РІР°РЅРёРµ */}
-                <div className="flex items-center gap-4 mb-4">
-                  <div className="w-16 h-16 bg-muted/30 rounded-2xl flex items-center justify-center">
-                    <Trophy className="w-8 h-8 text-muted-foreground" />
-                  </div>
-                  
-                  <div className="flex-1">
-                    <div className="text-sm font-medium text-foreground mb-1">
-                      {selectedAchievement.title}
-                    </div>
-                    <div className="text-xs text-muted-foreground">
-                      {selectedAchievement.description}
-                    </div>
-                  </div>
-                </div>
-
-                {/* РЈСЃР»РѕРІРёСЏ РІС‹РїРѕР»РЅРµРЅРёСЏ */}
-                <div className="glass-card rounded-2xl p-4">
-                  <div className="text-sm font-medium text-foreground mb-3">
-                    РљСЂР°С‚РєРѕРµ РѕРїРёСЃР°РЅРёРµ РґРѕСЃС‚РёР¶РµРЅРёСЏ
-                  </div>
-                  <div className="space-y-2">
-                    {selectedAchievement.conditions?.length ? (
-                      selectedAchievement.conditions.map((condition, index) => (
-                        <div key={index} className="flex items-center justify-between">
-                          <div className="flex items-center gap-2">
-                            <div className="w-1 h-1 bg-muted-foreground rounded-full"></div>
-                            <span className="text-sm text-foreground">{condition}</span>
-                          </div>
-                          <button
-                            onClick={() => setFileUploadOpen(true)}
-                            className={`p-2 rounded-lg transition-colors ${
-                              selectedAchievement.userFile
-                                ? 'bg-muted text-muted-foreground'
-                                : 'hover:bg-black/5 text-muted-foreground'
-                            }`}
-                          >
-                            <Paperclip className="w-4 h-4" />
-                          </button>
-                        </div>
-                      ))
-                    ) : (
-                      <div className="flex items-center gap-2">
-                        <div className="w-1 h-1 bg-muted-foreground rounded-full"></div>
-                        <span className="text-sm text-foreground">
-                          {selectedAchievement.requirements.type}: {selectedAchievement.requirements.current}/{selectedAchievement.requirements.target}
-                        </span>
-                      </div>
-                    )}
-                  </div>
-                </div>
-
-                {/* РљРѕРјРјРµРЅС‚Р°СЂРёР№ РѕС‚ Р°РґРјРёРЅР° */}
-                <div className={`glass-card rounded-2xl p-4 ${
-                  !selectedAchievement.adminComment ? 'opacity-50' : ''
-                }`}>
-                  <div className="flex items-center justify-between mb-3">
-                    <div className="text-sm font-medium text-foreground">
-                      РљРѕРјРјРµРЅС‚Р°СЂРёР№ РѕС‚ РђРґРјРёРЅР°
-                    </div>
-                    {selectedAchievement.adminFile && (
-                      <button
-                        className="p-2 rounded-lg hover:bg-black/5 transition-colors text-muted-foreground"
-                      >
-                        <Paperclip className="w-4 h-4" />
-                      </button>
-                    )}
-                  </div>
-                  <div className="text-sm text-muted-foreground">
-                    {selectedAchievement.adminComment || 'РљРѕРјРјРµРЅС‚Р°СЂРёР№ РЅРµ РґРѕР±Р°РІР»РµРЅ'}
-                  </div>
-                </div>
-
-                {/* РљРЅРѕРїРєРё */}
-                <div className="flex flex-col sm:flex-row gap-2 sm:gap-3 pt-3 sm:pt-4">
-                  <button
-                    onClick={() => setIsDetailOpen(false)}
-                    className="w-full sm:flex-1 glass-card rounded-2xl p-2 sm:p-3 text-xs sm:text-sm font-medium text-foreground hover:scale-[0.98] transition-transform text-center"
-                  >
-                    РћС‚РјРµРЅРёС‚СЊ
-                  </button>
-                  <button
-                    className="w-full sm:flex-1 bg-primary text-primary-foreground rounded-2xl p-2 sm:p-3 text-xs sm:text-sm font-medium hover:scale-[0.98] transition-transform text-center"
-                  >
-                    РџСЂРёРјРµРЅРёС‚СЊ
-                  </button>
-                </div>
+            <div style={{ marginBottom: '16px' }}>
+              <h3 style={{ 
+                fontSize: '18px',
+                fontWeight: '600',
+                color: theme === 'dark' ? '#E8ECF2' : '#0F172A',
+                marginBottom: '8px'
+              }}>
+                {selectedAchievement.title}
+              </h3>
+              <p style={{ 
+                fontSize: '14px',
+                color: theme === 'dark' ? '#A7B0BD' : '#6B7280',
+                marginBottom: '12px'
+              }}>
+                {selectedAchievement.description}
+              </p>
+              <div style={{
+                display: 'flex',
+                justifyContent: 'space-between',
+                alignItems: 'center',
+                padding: '12px',
+                background: theme === 'dark' ? 'rgba(255, 255, 255, 0.05)' : 'rgba(0, 0, 0, 0.05)',
+                borderRadius: '8px'
+              }}>
+                <span style={{ fontSize: '14px', color: theme === 'dark' ? '#A7B0BD' : '#6B7280' }}>
+                  Прогресс: {selectedAchievement.requirements.current}/{selectedAchievement.requirements.target}
+                </span>
+                <span style={{ 
+                  fontSize: '14px',
+                  fontWeight: '600',
+                  color: theme === 'dark' ? '#E8ECF2' : '#0F172A'
+                }}>
+                  {getProgressPercentage(selectedAchievement.requirements.current, selectedAchievement.requirements.target)}%
+                </span>
               </div>
-            )}
+            </div>
+            
+            <div style={{ display: 'flex', gap: '12px' }}>
+              <button
+                onClick={() => setIsDetailOpen(false)}
+                style={{
+                  flex: 1,
+                  padding: '12px',
+                  background: 'transparent',
+                  color: theme === 'dark' ? '#E8ECF2' : '#0F172A',
+                  border: `1px solid ${theme === 'dark' ? '#A7B0BD' : '#6B7280'}`,
+                  borderRadius: '8px',
+                  fontSize: '14px',
+                  fontWeight: '500',
+                  cursor: 'pointer'
+                }}
+              >
+                Закрыть
+              </button>
+              <button
+                onClick={() => setFileUploadOpen(true)}
+                style={{
+                  flex: 1,
+                  padding: '12px',
+                  background: '#2B82FF',
+                  color: 'white',
+                  border: 'none',
+                  borderRadius: '8px',
+                  fontSize: '14px',
+                  fontWeight: '500',
+                  cursor: 'pointer'
+                }}
+              >
+                Прикрепить файл
+              </button>
+            </div>
           </div>
-        </DialogContent>
-      </Dialog>
+        </div>
+      )}
 
-      {/* РњРѕРґР°Р»СЊРЅРѕРµ РѕРєРЅРѕ Р·Р°РіСЂСѓР·РєРё С„Р°Р№Р»Р° */}
-      <Dialog open={fileUploadOpen} onOpenChange={setFileUploadOpen}>
-        <DialogContent 
-          className="glass-card rounded-3xl border-2 border-border apple-shadow w-[calc(100vw-16px)] max-w-sm p-4 sm:p-6 [&>button]:hidden"
-          aria-describedby="file-upload-description"
+      {/* File Upload Modal */}
+      {fileUploadOpen && (
+        <div
+          style={{
+            position: 'fixed',
+            top: 0,
+            left: 0,
+            right: 0,
+            bottom: 0,
+            background: 'rgba(0, 0, 0, 0.5)',
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            zIndex: 1000
+          }}
+          onClick={() => setFileUploadOpen(false)}
         >
-          <DialogTitle className="text-lg font-medium text-foreground text-center mb-6">
-            РџСЂРёРєСЂРµРїРёС‚СЊ С„Р°Р№Р»
-          </DialogTitle>
-          
-          <DialogDescription id="file-upload-description" className="sr-only">
-            Р’С‹Р±РµСЂРёС‚Рµ С„Р°Р№Р» РґР»СЏ РїСЂРёРєСЂРµРїР»РµРЅРёСЏ Рє РґРѕСЃС‚РёР¶РµРЅРёСЋ
-          </DialogDescription>
-
-          <div className="space-y-4">
-            <div className="glass-card rounded-2xl p-6 text-center">
-              <div className="w-12 h-12 mx-auto mb-4 bg-primary/20 rounded-xl flex items-center justify-center">
-                <Paperclip className="w-6 h-6 text-primary" />
+          <div
+            style={{
+              background: theme === 'dark' ? '#161A22' : '#FFFFFF',
+              borderRadius: '16px',
+              padding: '24px',
+              width: '90vw',
+              maxWidth: '400px'
+            }}
+            onClick={(e) => e.stopPropagation()}
+          >
+            <div style={{
+              display: 'flex',
+              justifyContent: 'space-between',
+              alignItems: 'center',
+              marginBottom: '24px'
+            }}>
+              <h2 style={{ color: theme === 'dark' ? '#E8ECF2' : '#0F172A' }}>
+                Прикрепить файл
+              </h2>
+              <button
+                onClick={() => setFileUploadOpen(false)}
+                style={{
+                  background: 'none',
+                  border: 'none',
+                  fontSize: '24px',
+                  cursor: 'pointer',
+                  color: theme === 'dark' ? '#A7B0BD' : '#6B7280'
+                }}
+              >
+                <X size={24} />
+              </button>
+            </div>
+            
+            <div style={{ textAlign: 'center', padding: '20px' }}>
+              <div style={{
+                width: '64px',
+                height: '64px',
+                borderRadius: '50%',
+                background: theme === 'dark' ? 'rgba(255, 255, 255, 0.1)' : 'rgba(0, 0, 0, 0.05)',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                margin: '0 auto 16px'
+              }}>
+                <Paperclip size={32} color={theme === 'dark' ? '#A7B0BD' : '#6B7280'} />
               </div>
-              <p className="text-sm text-muted-foreground mb-4">
-                Р’С‹Р±РµСЂРёС‚Рµ С„Р°Р№Р» РґР»СЏ Р·Р°РіСЂСѓР·РєРё
+              <p style={{ color: theme === 'dark' ? '#A7B0BD' : '#6B7280', marginBottom: '16px' }}>
+                Выберите файл для загрузки
               </p>
               <input
                 type="file"
                 id="file-upload"
-                className="hidden"
+                style={{ display: 'none' }}
                 onChange={handleFileSelected}
                 accept="image/*,video/*,.pdf,.doc,.docx"
               />
               <label
                 htmlFor="file-upload"
-                className="w-full glass-card rounded-2xl p-3 text-sm font-medium text-foreground hover:scale-[0.98] transition-transform cursor-pointer inline-block"
+                style={{
+                  display: 'inline-block',
+                  padding: '12px 24px',
+                  background: '#2B82FF',
+                  color: 'white',
+                  borderRadius: '8px',
+                  fontSize: '14px',
+                  fontWeight: '500',
+                  cursor: 'pointer'
+                }}
               >
-                Р’С‹Р±СЂР°С‚СЊ С„Р°Р№Р»
+                Выбрать файл
               </label>
             </div>
-
-            <div className="flex gap-3">
-              <button
-                onClick={() => setFileUploadOpen(false)}
-                className="flex-1 glass-card rounded-2xl p-3 text-sm font-medium text-foreground hover:scale-[0.98] transition-transform text-center"
-              >
-                РћС‚РјРµРЅРёС‚СЊ
-              </button>
-            </div>
           </div>
-        </DialogContent>
-      </Dialog>
+        </div>
+      )}
     </>
   );
 }
