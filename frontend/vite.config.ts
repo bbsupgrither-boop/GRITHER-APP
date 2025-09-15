@@ -7,7 +7,7 @@ export default defineConfig({
     react(),
   ],
   css: {
-    postcss: false,
+    postcss: {},
   },
   define: {
     __TELEGRAM_WEBAPP__: JSON.stringify(true),

@@ -26,7 +26,8 @@ export interface CaseShopItem {
 export interface Prize {
   id: string;
   name: string;
-  type: 'coins' | 'experience' | 'item';
+  type: 'coins' | 'experience' | 'item' | 'avatar';
   amount: number;
   probability: number;
+  rarity?: 'common' | 'rare' | 'epic' | 'legendary';
 }

@@ -13,21 +13,21 @@ const ProfilePage = React.lazy(() => import('./pages/Profile'));
 const BattlesPage = React.lazy(() => import('./pages/Battles'));
 
 // Modals
-import { SettingsModal } from './components/SettingsModal';
-import { SecretAdminAccess } from './components/SecretAdminAccess';
-import { ProblemReportModal } from './components/ProblemReportModal';
-import { AdminPanel } from './components/AdminPanel';
+import { SettingsModal } from '../components/SettingsModal';
+import { SecretAdminAccess } from '../components/SecretAdminAccess';
+import { ProblemReportModal } from '../components/ProblemReportModal';
+import { AdminPanel } from '../components/AdminPanel';
 
 // Hooks
-import { useTheme } from './hooks/useTheme';
-import { useUserRole } from './hooks/useUserRole';
+import { useTheme } from '../hooks/useTheme';
+import { useUserRole } from '../hooks/useUserRole';
 
 // Types
-import { Achievement } from './types/achievements';
-import { ShopItem, Order } from './types/shop';
-import { Task } from './types/tasks';
-import { CaseType, UserCase } from './types/cases';
-import { Notification } from './types/notifications';
+import { Achievement } from '../types/achievements';
+import { ShopItem, Order } from '../types/shop';
+import { Task } from '../types/tasks';
+import { CaseType, UserCase } from '../types/cases';
+import { Notification } from '../types/notifications';
 
 // Mock data
 const mockAchievements: Achievement[] = [

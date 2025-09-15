@@ -381,7 +381,8 @@ export function ShopPageCasesStyle({
             </div>
           );
         })}
-      </div>
+        </div>
+      )}
     </div>
   );
 

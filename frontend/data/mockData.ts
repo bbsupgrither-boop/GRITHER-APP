@@ -125,8 +125,7 @@ export const mockTasks: Task[] = [
     title: 'Изучить React',
     description: 'Освоить основы React и создать первый компонент',
     deadline: '2024-12-25T18:00:00.000Z',
-    priority: 'high',
-    status: 'not_started',
+    status: 'active',
     completed: false,
     createdAt: '2024-12-01T10:00:00.000Z',
     timeSpent: 0
@@ -136,8 +135,7 @@ export const mockTasks: Task[] = [
     title: 'Создать API для пользователей',
     description: 'Разработать REST API для управления пользователями',
     deadline: '2024-12-20T17:00:00.000Z',
-    priority: 'medium',
-    status: 'in_progress',
+    status: 'active',
     completed: false,
     createdAt: '2024-12-02T09:00:00.000Z',
     timeSpent: 7200, // 2 hours
@@ -148,9 +146,8 @@ export const mockTasks: Task[] = [
     title: 'Написать тесты для компонентов',
     description: 'Покрыть тестами все основные компоненты приложения',
     deadline: '2024-12-15T16:00:00.000Z',
-    priority: 'low',
     status: 'completed',
-    completed: true,
+    completedAt: '2024-12-15T16:00:00.000Z',
     createdAt: '2024-11-28T14:00:00.000Z',
     timeSpent: 14400 // 4 hours
   },
@@ -159,8 +156,7 @@ export const mockTasks: Task[] = [
     title: 'Оптимизировать производительность',
     description: 'Улучшить скорость загрузки и отзывчивость интерфейса',
     deadline: '2024-12-10T15:00:00.000Z',
-    priority: 'high',
-    status: 'not_started',
+    status: 'active',
     completed: false,
     createdAt: '2024-12-03T11:00:00.000Z',
     timeSpent: 0
@@ -170,8 +166,7 @@ export const mockTasks: Task[] = [
     title: 'Документация проекта',
     description: 'Создать подробную документацию для разработчиков',
     deadline: '2024-12-18T12:00:00.000Z',
-    priority: 'medium',
-    status: 'in_progress',
+    status: 'active',
     completed: false,
     createdAt: '2024-12-01T16:00:00.000Z',
     timeSpent: 3600, // 1 hour
@@ -188,9 +183,9 @@ export const mockCaseTypes: CaseType[] = [
     price: 100,
     rarity: 'common',
     prizes: [
-      { id: 'p1', name: '10 монет', type: 'coins', amount: 10, rarity: 'common' },
-      { id: 'p2', name: '20 монет', type: 'coins', amount: 20, rarity: 'common' },
-      { id: 'p3', name: '50 монет', type: 'coins', amount: 50, rarity: 'common' }
+      { id: 'p1', name: '10 монет', type: 'coins', amount: 10, rarity: 'common', probability: 0.4 },
+      { id: 'p2', name: '20 монет', type: 'coins', amount: 20, rarity: 'common', probability: 0.3 },
+      { id: 'p3', name: '50 монет', type: 'coins', amount: 50, rarity: 'common', probability: 0.3 }
     ]
   },
   {
@@ -200,9 +195,9 @@ export const mockCaseTypes: CaseType[] = [
     price: 500,
     rarity: 'rare',
     prizes: [
-      { id: 'p4', name: '100 монет', type: 'coins', amount: 100, rarity: 'rare' },
-      { id: 'p5', name: '200 монет', type: 'coins', amount: 200, rarity: 'rare' },
-      { id: 'p6', name: 'Редкий аватар', type: 'avatar', rarity: 'rare' }
+      { id: 'p4', name: '100 монет', type: 'coins', amount: 100, rarity: 'rare', probability: 0.4 },
+      { id: 'p5', name: '200 монет', type: 'coins', amount: 200, rarity: 'rare', probability: 0.3 },
+      { id: 'p6', name: 'Редкий аватар', type: 'avatar', amount: 1, rarity: 'rare', probability: 0.3 }
     ]
   },
   {
@@ -212,9 +207,9 @@ export const mockCaseTypes: CaseType[] = [
     price: 1000,
     rarity: 'epic',
     prizes: [
-      { id: 'p7', name: '500 монет', type: 'coins', amount: 500, rarity: 'epic' },
-      { id: 'p8', name: '1000 монет', type: 'coins', amount: 1000, rarity: 'epic' },
-      { id: 'p9', name: 'Эпический аватар', type: 'avatar', rarity: 'epic' }
+      { id: 'p7', name: '500 монет', type: 'coins', amount: 500, rarity: 'epic', probability: 0.4 },
+      { id: 'p8', name: '1000 монет', type: 'coins', amount: 1000, rarity: 'epic', probability: 0.3 },
+      { id: 'p9', name: 'Эпический аватар', type: 'avatar', amount: 1, rarity: 'epic', probability: 0.3 }
     ]
   },
   {
@@ -224,9 +219,9 @@ export const mockCaseTypes: CaseType[] = [
     price: 2500,
     rarity: 'legendary',
     prizes: [
-      { id: 'p10', name: '2000 монет', type: 'coins', amount: 2000, rarity: 'legendary' },
-      { id: 'p11', name: '5000 монет', type: 'coins', amount: 5000, rarity: 'legendary' },
-      { id: 'p12', name: 'Легендарный аватар', type: 'avatar', rarity: 'legendary' }
+      { id: 'p10', name: '2000 монет', type: 'coins', amount: 2000, rarity: 'legendary', probability: 0.4 },
+      { id: 'p11', name: '5000 монет', type: 'coins', amount: 5000, rarity: 'legendary', probability: 0.3 },
+      { id: 'p12', name: 'Легендарный аватар', type: 'avatar', amount: 1, rarity: 'legendary', probability: 0.3 }
     ]
   }
 ];
@@ -241,9 +236,9 @@ export const mockNotifications: Notification[] = [
     type: 'system',
     title: 'Добро пожаловать!',
     message: 'Добро пожаловать в GRITHER!',
-    timestamp: new Date(),
+    timestamp: new Date().toISOString(),
     read: false,
-    priority: 'medium'
+    priority: 'normal'
   }
 ];
 
