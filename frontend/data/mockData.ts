@@ -229,6 +229,9 @@ export const mockCaseTypes: CaseType[] = [
 // РњРѕРє-РґР°РЅРЅС‹Рµ РґР»СЏ РїРѕР»СЊР·РѕРІР°С‚РµР»СЊСЃРєРёС… РєРµР№СЃРѕРІ
 export const mockUserCases: UserCase[] = [];
 
+// Мок-данные для кейсов пользователя (алиас для mockUserCases)
+export const mockCases: UserCase[] = mockUserCases;
+
 // РњРѕРє-РґР°РЅРЅС‹Рµ РґР»СЏ СѓРІРµРґРѕРјР»РµРЅРёР№
 export const mockNotifications: Notification[] = [
   {
