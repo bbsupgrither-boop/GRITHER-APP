@@ -52,127 +52,289 @@ export const ProfilePage: React.FC<ProfilePageProps> = ({
         position: 'relative'
       }}>
         {/* AUTOGEN START profile-content */}
-        <h2 style={{ fontSize: '20px', fontWeight: 'bold', marginBottom: '16px' }}>Профиль пользователя</h2>
-        
-        {/* Фото и основная информация */}
-        <div style={{ display: 'flex', alignItems: 'center', gap: '16px', marginBottom: '20px' }}>
+        <div style={{
+          maxWidth: '448px',
+          margin: '0 auto',
+          paddingLeft: '16px',
+          paddingRight: '16px',
+          paddingBottom: 'calc(96px + env(safe-area-inset-bottom))'
+        }}>
+          {/* Header */}
           <div style={{
-            width: '80px',
-            height: '80px',
-            borderRadius: '50%',
-            backgroundColor: '#3B82F6',
             display: 'flex',
             alignItems: 'center',
-            justifyContent: 'center',
-            cursor: 'pointer'
+            justifyContent: 'space-between',
+            marginBottom: '24px'
           }}>
-            <UserIcon size={40} color="white" />
+            <h1 style={{
+              fontSize: '24px',
+              fontWeight: '700',
+              color: theme === 'dark' ? '#E8ECF2' : '#0F172A',
+              margin: 0
+            }}>
+              Профиль
+            </h1>
+            <button
+              style={{
+                background: 'none',
+                border: 'none',
+                cursor: 'pointer',
+                padding: '8px',
+                borderRadius: '8px',
+                transition: 'background-color 0.2s ease'
+              }}
+              onMouseEnter={(e) => e.target.style.backgroundColor = theme === 'dark' ? 'rgba(255, 255, 255, 0.1)' : 'rgba(0, 0, 0, 0.05)'}
+              onMouseLeave={(e) => e.target.style.backgroundColor = 'transparent'}
+              aria-label="Настройки профиля"
+            >
+              <Edit3 size={20} color={theme === 'dark' ? '#E8ECF2' : '#0F172A'} />
+            </button>
           </div>
-          <div>
-            <p style={{ fontSize: '18px', fontWeight: 'bold' }}>{user?.name || 'Пользователь'}</p>
-            <p style={{ fontSize: '14px', color: theme === 'dark' ? '#A7B0BD' : '#6B7280' }}>Уровень: {user?.level || 1}</p>
-            <p style={{ fontSize: '14px', color: theme === 'dark' ? '#A7B0BD' : '#6B7280' }}>Команда: {user?.team || 'Не указана'}</p>
-          </div>
-        </div>
 
-        {/* Мои баттлы */}
-        <div style={{ marginBottom: '20px' }}>
-          <h3 style={{ fontSize: '16px', fontWeight: 'bold', marginBottom: '12px', display: 'flex', alignItems: 'center', gap: '8px' }}>
-            <Trophy size={16} color="#3B82F6" />
-            Мои баттлы
-          </h3>
+          {/* Profile Card */}
           <div style={{
-            backgroundColor: theme === 'dark' ? 'rgba(255, 255, 255, 0.05)' : 'rgba(0, 0, 0, 0.05)',
-            borderRadius: '12px',
-            padding: '12px',
-            minHeight: '60px',
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'center'
+            backgroundColor: theme === 'dark' ? '#161A22' : '#FFFFFF',
+            borderRadius: '16px',
+            padding: '20px',
+            marginBottom: '20px',
+            boxShadow: theme === 'dark' ? '0 4px 15px rgba(0, 0, 0, 0.4)' : '0 2px 8px rgba(0, 0, 0, 0.08)'
           }}>
-            <p style={{ color: theme === 'dark' ? '#A7B0BD' : '#6B7280', fontSize: '14px' }}>
-              {battles?.length > 0 ? `Участвовал в ${battles.length} баттлах` : 'Пока нет баттлов'}
-            </p>
-          </div>
-        </div>
+            <div style={{ display: 'flex', alignItems: 'center', gap: '16px', marginBottom: '16px' }}>
+              <div
+                style={{
+                  width: '80px',
+                  height: '80px',
+                  borderRadius: '50%',
+                  backgroundColor: '#2B82FF',
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  cursor: 'pointer',
+                  transition: 'transform 0.2s ease'
+                }}
+                onMouseEnter={(e) => e.target.style.transform = 'scale(1.05)'}
+                onMouseLeave={(e) => e.target.style.transform = 'scale(1)'}
+                onClick={() => {
+                  const input = document.createElement('input');
+                  input.type = 'file';
+                  input.accept = 'image/*';
+                  input.onchange = (e) => {
+                    const file = e.target.files[0];
+                    if (file) {
+                      // Handle file upload logic here
+                      console.log('Avatar file selected:', file);
+                    }
+                  };
+                  input.click();
+                }}
+              >
+                <UserIcon size={40} color="white" />
+              </div>
+              <div style={{ flex: 1 }}>
+                <h2 style={{
+                  fontSize: '20px',
+                  fontWeight: '700',
+                  color: theme === 'dark' ? '#E8ECF2' : '#0F172A',
+                  margin: '0 0 4px 0'
+                }}>
+                  {user?.name || 'Пользователь'}
+                </h2>
+                <p style={{
+                  fontSize: '14px',
+                  color: theme === 'dark' ? '#A7B0BD' : '#6B7280',
+                  margin: '0 0 4px 0'
+                }}>
+                  Уровень {user?.level || 1}
+                </p>
+                <p style={{
+                  fontSize: '14px',
+                  color: theme === 'dark' ? '#A7B0BD' : '#6B7280',
+                  margin: 0
+                }}>
+                  {user?.team || 'Команда не указана'}
+                </p>
+              </div>
+            </div>
 
-        {/* Прогресс уровня */}
-        <div style={{ marginBottom: '20px' }}>
-          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '8px' }}>
-            <span style={{ fontSize: '14px', fontWeight: 'bold' }}>Уровень {user?.level || 1}</span>
-            <span style={{ fontSize: '12px', color: theme === 'dark' ? '#A7B0BD' : '#6B7280' }}>
-              {user?.experience || 0}/{user?.maxExperience || 100} XP
-            </span>
-          </div>
-          <div style={{
-            width: '100%',
-            height: '8px',
-            backgroundColor: theme === 'dark' ? 'rgba(255, 255, 255, 0.1)' : 'rgba(0, 0, 0, 0.1)',
-            borderRadius: '4px',
-            overflow: 'hidden'
-          }}>
-            <div style={{
-              width: `${((user?.experience || 0) / (user?.maxExperience || 100)) * 100}%`,
-              height: '100%',
-              backgroundColor: '#3B82F6',
-              borderRadius: '4px',
-              transition: 'width 0.3s ease'
-            }} />
-          </div>
-        </div>
+            {/* Level Progress */}
+            <div style={{ marginBottom: '16px' }}>
+              <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '8px' }}>
+                <span style={{
+                  fontSize: '14px',
+                  fontWeight: '500',
+                  color: theme === 'dark' ? '#E8ECF2' : '#0F172A'
+                }}>
+                  Прогресс уровня
+                </span>
+                <span style={{
+                  fontSize: '14px',
+                  color: theme === 'dark' ? '#A7B0BD' : '#6B7280'
+                }}>
+                  {user?.experience || 0} / {user?.maxExperience || 100} XP
+                </span>
+              </div>
+              <div style={{
+                width: '100%',
+                height: '8px',
+                backgroundColor: theme === 'dark' ? 'rgba(255, 255, 255, 0.1)' : 'rgba(0, 0, 0, 0.1)',
+                borderRadius: '4px',
+                overflow: 'hidden'
+              }}>
+                <div style={{
+                  width: `${Math.min(((user?.experience || 0) / (user?.maxExperience || 100)) * 100, 100)}%`,
+                  height: '100%',
+                  backgroundColor: '#2B82FF',
+                  transition: 'width 0.3s ease'
+                }} />
+              </div>
+            </div>
 
-        {/* Статистика */}
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '12px', marginBottom: '20px' }}>
-          <div style={{
-            backgroundColor: theme === 'dark' ? 'rgba(255, 255, 255, 0.05)' : 'rgba(0, 0, 0, 0.05)',
-            borderRadius: '12px',
-            padding: '12px',
-            textAlign: 'center'
-          }}>
-            <div style={{ fontSize: '12px', color: theme === 'dark' ? 'rgba(255, 255, 255, 0.7)' : 'rgba(0, 0, 0, 0.7)', marginBottom: '4px' }}>Побед</div>
-            <div style={{ fontSize: '16px', fontWeight: 'bold' }}>{battles?.filter(b => b.winnerId === user?.id).length || 0}</div>
-          </div>
-          <div style={{
-            backgroundColor: theme === 'dark' ? 'rgba(255, 255, 255, 0.05)' : 'rgba(0, 0, 0, 0.05)',
-            borderRadius: '12px',
-            padding: '12px',
-            textAlign: 'center'
-          }}>
-            <div style={{ fontSize: '12px', color: theme === 'dark' ? 'rgba(255, 255, 255, 0.7)' : 'rgba(0, 0, 0, 0.7)', marginBottom: '4px' }}>Баланс</div>
-            <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '4px', fontSize: '16px', fontWeight: 'bold' }}>
-              {user?.balance || 0} <Coins size={16} color="#FFD700" />
+            {/* Stats */}
+            <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr 1fr', gap: '16px' }}>
+              <div style={{ textAlign: 'center' }}>
+                <div style={{
+                  fontSize: '20px',
+                  fontWeight: '700',
+                  color: '#2B82FF',
+                  marginBottom: '4px'
+                }}>
+                  {battles?.filter(b => b.winnerId === user?.id).length || 0}
+                </div>
+                <div style={{
+                  fontSize: '12px',
+                  color: theme === 'dark' ? '#A7B0BD' : '#6B7280'
+                }}>
+                  Побед
+                </div>
+              </div>
+              <div style={{ textAlign: 'center' }}>
+                <div style={{
+                  fontSize: '20px',
+                  fontWeight: '700',
+                  color: '#2B82FF',
+                  marginBottom: '4px',
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  gap: '4px'
+                }}>
+                  {user?.balance || 0}
+                  <Coins size={16} color="#FFD700" />
+                </div>
+                <div style={{
+                  fontSize: '12px',
+                  color: theme === 'dark' ? '#A7B0BD' : '#6B7280'
+                }}>
+                  Баланс
+                </div>
+              </div>
+              <div style={{ textAlign: 'center' }}>
+                <div style={{
+                  fontSize: '20px',
+                  fontWeight: '700',
+                  color: '#2B82FF',
+                  marginBottom: '4px'
+                }}>
+                  0
+                </div>
+                <div style={{
+                  fontSize: '12px',
+                  color: theme === 'dark' ? '#A7B0BD' : '#6B7280'
+                }}>
+                  Ачивки
+                </div>
+              </div>
             </div>
           </div>
+
+          {/* My Battles */}
           <div style={{
-            backgroundColor: theme === 'dark' ? 'rgba(255, 255, 255, 0.05)' : 'rgba(0, 0, 0, 0.05)',
-            borderRadius: '12px',
-            padding: '12px',
-            textAlign: 'center'
+            backgroundColor: theme === 'dark' ? '#161A22' : '#FFFFFF',
+            borderRadius: '16px',
+            padding: '20px',
+            marginBottom: '20px',
+            boxShadow: theme === 'dark' ? '0 4px 15px rgba(0, 0, 0, 0.4)' : '0 2px 8px rgba(0, 0, 0, 0.08)'
           }}>
-            <div style={{ fontSize: '12px', color: theme === 'dark' ? 'rgba(255, 255, 255, 0.7)' : 'rgba(0, 0, 0, 0.7)', marginBottom: '4px' }}>Ачивки</div>
-            <div style={{ fontSize: '16px', fontWeight: 'bold' }}>0</div>
+            <h3 style={{
+              fontSize: '18px',
+              fontWeight: '700',
+              color: theme === 'dark' ? '#E8ECF2' : '#0F172A',
+              margin: '0 0 16px 0',
+              display: 'flex',
+              alignItems: 'center',
+              gap: '8px'
+            }}>
+              <Trophy size={20} color="#2B82FF" />
+              Мои баттлы
+            </h3>
+            {battles?.length > 0 ? (
+              <div style={{ display: 'flex', flexDirection: 'column', gap: '12px' }}>
+                {battles.slice(0, 3).map((battle, index) => (
+                  <div key={index} style={{
+                    padding: '12px',
+                    backgroundColor: theme === 'dark' ? 'rgba(255, 255, 255, 0.05)' : 'rgba(0, 0, 0, 0.05)',
+                    borderRadius: '8px',
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'space-between'
+                  }}>
+                    <div>
+                      <div style={{
+                        fontSize: '14px',
+                        fontWeight: '500',
+                        color: theme === 'dark' ? '#E8ECF2' : '#0F172A',
+                        marginBottom: '4px'
+                      }}>
+                        {battle.title || `Баттл #${index + 1}`}
+                      </div>
+                      <div style={{
+                        fontSize: '12px',
+                        color: theme === 'dark' ? '#A7B0BD' : '#6B7280'
+                      }}>
+                        {battle.status || 'Завершен'}
+                      </div>
+                    </div>
+                    <div style={{
+                      fontSize: '16px',
+                      fontWeight: '700',
+                      color: '#2B82FF'
+                    }}>
+                      {battle.score || 0}
+                    </div>
+                  </div>
+                ))}
+                {battles.length > 3 && (
+                  <button
+                    style={{
+                      background: 'none',
+                      border: 'none',
+                      color: '#2B82FF',
+                      fontSize: '14px',
+                      fontWeight: '500',
+                      cursor: 'pointer',
+                      padding: '8px',
+                      borderRadius: '8px',
+                      transition: 'background-color 0.2s ease'
+                    }}
+                    onMouseEnter={(e) => e.target.style.backgroundColor = theme === 'dark' ? 'rgba(43, 130, 255, 0.1)' : 'rgba(43, 130, 255, 0.05)'}
+                    onMouseLeave={(e) => e.target.style.backgroundColor = 'transparent'}
+                  >
+                    Показать все ({battles.length})
+                  </button>
+                )}
+              </div>
+            ) : (
+              <div style={{
+                textAlign: 'center',
+                padding: '20px',
+                color: theme === 'dark' ? '#A7B0BD' : '#6B7280'
+              }}>
+                <Trophy size={32} color={theme === 'dark' ? '#A7B0BD' : '#6B7280'} style={{ marginBottom: '8px' }} />
+                <p style={{ margin: 0, fontSize: '14px' }}>Пока нет баттлов</p>
+              </div>
+            )}
           </div>
         </div>
-
-        <button
-          onClick={() => onNavigate('home')}
-          style={{
-            width: '100%',
-            padding: '12px',
-            backgroundColor: '#0084FF',
-            color: 'white',
-            borderRadius: '8px',
-            border: 'none',
-            cursor: 'pointer',
-            fontSize: '16px',
-            fontWeight: 'bold',
-            transition: 'background-color 0.2s ease'
-          }}
-          onMouseEnter={(e) => e.currentTarget.style.backgroundColor = '#006DD9'}
-          onMouseLeave={(e) => e.currentTarget.style.backgroundColor = '#0084FF'}
-        >
-          Вернуться на главную
-        </button>
         {/* AUTOGEN END profile-content */}
       </div>
 

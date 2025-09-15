@@ -188,64 +188,411 @@ export const TasksPage: React.FC<TasksPageProps> = ({
       
       <div className="min-h-screen px-4 py-8 pb-32">
         {/* AUTOGEN START tasks-content */}
-        <div className="glass-card p-6">
-          {/* Header with filter and add button */}
-          <div className="flex items-center justify-between mb-6">
-            <h1 className="text-xl font-semibold">Задачи</h1>
-            <button 
-              onClick={() => setIsCreateModalOpen(true)}
-              className={`p-2 rounded-xl transition-all hover:scale-105 ${
-                theme === 'dark' 
-                  ? 'bg-white/10 hover:bg-white/20' 
-                  : 'bg-gray-100 hover:bg-gray-200'
-              }`}
+        <div
+          style={{
+            maxWidth: '448px',
+            margin: '0 auto',
+            paddingLeft: '16px',
+            paddingRight: '16px',
+            paddingBottom: 'calc(96px + env(safe-area-inset-bottom))'
+          }}
+        >
+          {/* Header with title and add button */}
+          <div 
+            style={{
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'space-between',
+              marginBottom: '16px',
+              paddingTop: '20px'
+            }}
+          >
+            <h1 
+              style={{
+                fontSize: '18px',
+                fontWeight: '500',
+                color: theme === 'dark' ? '#E8ECF2' : '#0F172A',
+                margin: 0
+              }}
             >
-              <Plus className="w-5 h-5" />
+              Задачи
+            </h1>
+            
+            <button
+              onClick={() => setIsCreateModalOpen(true)}
+              aria-label="Создать новую задачу"
+              style={{
+                width: '40px',
+                height: '40px',
+                borderRadius: '50%',
+                border: 'none',
+                background: '#2B82FF',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                cursor: 'pointer',
+                transition: 'all 200ms ease',
+                boxShadow: '0 4px 12px rgba(43, 130, 255, 0.3)'
+              }}
+              onMouseEnter={(e) => {
+                e.currentTarget.style.transform = 'translateY(-1px)';
+                e.currentTarget.style.background = '#2066C8';
+                e.currentTarget.style.boxShadow = '0 6px 16px rgba(43, 130, 255, 0.4)';
+              }}
+              onMouseLeave={(e) => {
+                e.currentTarget.style.transform = 'translateY(0)';
+                e.currentTarget.style.background = '#2B82FF';
+                e.currentTarget.style.boxShadow = '0 4px 12px rgba(43, 130, 255, 0.3)';
+              }}
+              onMouseDown={(e) => {
+                e.currentTarget.style.transform = 'translateY(0)';
+              }}
+            >
+              <Plus style={{ width: '20px', height: '20px', color: 'white' }} />
             </button>
           </div>
 
-          {/* Filter buttons */}
-          <div className="flex gap-2 mb-6 overflow-x-auto">
-            {[
-              { key: 'all', label: 'Все' },
-              { key: 'not_started', label: 'Не начато' },
-              { key: 'in_progress', label: 'В работе' },
-              { key: 'completed', label: 'Выполнено' },
-              { key: 'overdue', label: 'Просрочено' }
-            ].map(({ key, label }) => (
-              <button
-                key={key}
-                onClick={() => setFilter(key as FilterType)}
-                className={`px-3 py-1 rounded-full text-sm whitespace-nowrap transition-all ${
-                  filter === key
-                    ? 'bg-blue-500 text-white'
-                    : theme === 'dark'
-                    ? 'bg-white/10 text-gray-300 hover:bg-white/20'
-                    : 'bg-gray-100 text-gray-600 hover:bg-gray-200'
-                }`}
-              >
-                {label}
-              </button>
-            ))}
-          </div>
-          
-          {/* Tasks list */}
-          <div className="space-y-4">
-            {filteredTasks.length === 0 ? (
-              <div className="text-center py-8">
-                <div className="text-gray-400 mb-2">Нет задач</div>
-              <button
-                  onClick={() => setIsCreateModalOpen(true)}
-                  className="text-blue-500 text-sm"
+          {/* Filter tabs */}
+          <div 
+            style={{
+              display: 'flex',
+              gap: '8px',
+              marginBottom: '16px',
+              overflowX: 'auto',
+              paddingBottom: '4px'
+            }}
+          >
+            {(['all', 'not_started', 'in_progress', 'completed', 'overdue'] as FilterType[]).map((filterType) => {
+              const isActive = filter === filterType;
+              const getStatusColor = (status: FilterType) => {
+                switch (status) {
+                  case 'completed': return '#22C55E';
+                  case 'in_progress': return '#2B82FF';
+                  case 'overdue': return '#EF4444';
+                  case 'not_started': return '#6B7280';
+                  default: return '#2B82FF';
+                }
+              };
+              
+              return (
+                <button
+                  key={filterType}
+                  onClick={() => setFilter(filterType)}
+                  aria-label={`Фильтр: ${filterType === 'all' ? 'Все задачи' :
+                    filterType === 'not_started' ? 'Не начатые' :
+                    filterType === 'in_progress' ? 'В процессе' :
+                    filterType === 'completed' ? 'Завершенные' : 'Просроченные'}`}
+                  style={{
+                    padding: '8px 16px',
+                    borderRadius: '20px',
+                    border: 'none',
+                    background: isActive 
+                      ? `${getStatusColor(filterType)}20`
+                      : theme === 'dark' ? 'rgba(255, 255, 255, 0.1)' : 'rgba(0, 0, 0, 0.05)',
+                    color: isActive 
+                      ? getStatusColor(filterType)
+                      : theme === 'dark' ? '#A7B0BD' : '#6B7280',
+                    fontSize: '12px',
+                    fontWeight: '500',
+                    cursor: 'pointer',
+                    transition: 'all 200ms ease',
+                    whiteSpace: 'nowrap',
+                    border: isActive 
+                      ? `1px solid ${getStatusColor(filterType)}40`
+                      : theme === 'dark' ? '1px solid rgba(255, 255, 255, 0.1)' : '1px solid rgba(0, 0, 0, 0.1)'
+                  }}
+                  onMouseEnter={(e) => {
+                    if (!isActive) {
+                      e.currentTarget.style.background = theme === 'dark' ? 'rgba(255, 255, 255, 0.15)' : 'rgba(0, 0, 0, 0.08)';
+                    }
+                  }}
+                  onMouseLeave={(e) => {
+                    if (!isActive) {
+                      e.currentTarget.style.background = theme === 'dark' ? 'rgba(255, 255, 255, 0.1)' : 'rgba(0, 0, 0, 0.05)';
+                    }
+                  }}
+                  onMouseDown={(e) => {
+                    e.currentTarget.style.transform = 'scale(0.95)';
+                  }}
+                  onMouseUp={(e) => {
+                    e.currentTarget.style.transform = 'scale(1)';
+                  }}
                 >
-                  Создать первую задачу
-              </button>
-              </div>
-            ) : (
+                  {filterType === 'all' ? 'Все' :
+                   filterType === 'not_started' ? 'Не начаты' :
+                   filterType === 'in_progress' ? 'В процессе' :
+                   filterType === 'completed' ? 'Завершены' : 'Просрочены'}
+                </button>
+              );
+            })}
+          </div>
+
+          {/* Tasks list */}
+          <div style={{ display: 'flex', flexDirection: 'column', gap: '12px' }}>
+            {filteredTasks.length > 0 ? (
               filteredTasks.map((task) => {
-                const status = getTaskStatus(task);
-                const isTimerActive = activeTimer === task.id;
-                const timeSpent = timerSeconds[task.id] || 0;
+                const taskStatus = getTaskStatus(task);
+                const statusColor = taskStatus === 'completed' ? '#22C55E' :
+                                  taskStatus === 'in_progress' ? '#2B82FF' :
+                                  taskStatus === 'overdue' ? '#EF4444' : '#6B7280';
+                
+                return (
+                  <div
+                    key={task.id}
+                    onClick={() => handleTaskClick(task)}
+                    style={{
+                      backgroundColor: theme === 'dark' ? '#161A22' : '#FFFFFF',
+                      borderRadius: '16px',
+                      padding: '16px',
+                      border: theme === 'dark' ? '1px solid rgba(255, 255, 255, 0.06)' : '1px solid #E6E9EF',
+                      boxShadow: theme === 'dark' ? '0 8px 24px rgba(0, 0, 0, 0.6)' : '0 8px 24px rgba(0, 0, 0, 0.10)',
+                      cursor: 'pointer',
+                      transition: 'all 200ms ease',
+                      position: 'relative',
+                      overflow: 'hidden'
+                    }}
+                    onMouseEnter={(e) => {
+                      e.currentTarget.style.transform = 'scale(0.98)';
+                      e.currentTarget.style.boxShadow = theme === 'dark' 
+                        ? '0 12px 32px rgba(0, 0, 0, 0.8)' 
+                        : '0 12px 32px rgba(0, 0, 0, 0.15)';
+                    }}
+                    onMouseLeave={(e) => {
+                      e.currentTarget.style.transform = 'scale(1)';
+                      e.currentTarget.style.boxShadow = theme === 'dark' 
+                        ? '0 8px 24px rgba(0, 0, 0, 0.6)' 
+                        : '0 8px 24px rgba(0, 0, 0, 0.10)';
+                    }}
+                    onMouseDown={(e) => {
+                      e.currentTarget.style.transform = 'scale(0.96)';
+                    }}
+                    onMouseUp={(e) => {
+                      e.currentTarget.style.transform = 'scale(0.98)';
+                    }}
+                  >
+                    {/* Status indicator */}
+                    <div
+                      style={{
+                        position: 'absolute',
+                        top: 0,
+                        left: 0,
+                        right: 0,
+                        height: '3px',
+                        background: `linear-gradient(90deg, ${statusColor}40, ${statusColor}80, ${statusColor}40)`,
+                        borderRadius: '16px 16px 0 0'
+                      }}
+                    />
+                    
+                    <div style={{ display: 'flex', alignItems: 'flex-start', justifyContent: 'space-between', marginTop: '8px' }}>
+                      {/* Task info */}
+                      <div style={{ flex: 1, minWidth: 0 }}>
+                        <div 
+                          style={{
+                            fontSize: '14px',
+                            fontWeight: '500',
+                            color: theme === 'dark' ? '#E8ECF2' : '#0F172A',
+                            marginBottom: '4px',
+                            lineHeight: '1.4'
+                          }}
+                        >
+                          {task.title}
+                        </div>
+                        <div 
+                          style={{
+                            fontSize: '12px',
+                            color: theme === 'dark' ? '#A7B0BD' : '#6B7280',
+                            marginBottom: '8px',
+                            lineHeight: '1.4',
+                            display: '-webkit-box',
+                            WebkitLineClamp: 2,
+                            WebkitBoxOrient: 'vertical',
+                            overflow: 'hidden'
+                          }}
+                        >
+                          {task.description}
+                        </div>
+                        
+                        {/* Task metadata */}
+                        <div style={{ display: 'flex', alignItems: 'center', gap: '12px', marginBottom: '8px' }}>
+                          <div style={{ display: 'flex', alignItems: 'center', gap: '4px' }}>
+                            <Calendar style={{ width: '12px', height: '12px', color: theme === 'dark' ? '#A7B0BD' : '#6B7280' }} />
+                            <span 
+                              style={{
+                                fontSize: '10px',
+                                color: theme === 'dark' ? '#A7B0BD' : '#6B7280'
+                              }}
+                            >
+                              {new Date(task.deadline).toLocaleDateString('ru-RU')}
+                            </span>
+                          </div>
+                          <div style={{ display: 'flex', alignItems: 'center', gap: '4px' }}>
+                            <Clock style={{ width: '12px', height: '12px', color: theme === 'dark' ? '#A7B0BD' : '#6B7280' }} />
+                            <span 
+                              style={{
+                                fontSize: '10px',
+                                color: theme === 'dark' ? '#A7B0BD' : '#6B7280'
+                              }}
+                            >
+                              {task.reward} {task.rewardType === 'coins' ? 'монет' : 'опыта'}
+                            </span>
+                          </div>
+                        </div>
+                        
+                        {/* Priority indicator */}
+                        <div 
+                          style={{
+                            display: 'inline-block',
+                            padding: '2px 8px',
+                            borderRadius: '12px',
+                            fontSize: '8px',
+                            fontWeight: 'bold',
+                            textTransform: 'uppercase',
+                            letterSpacing: '0.5px',
+                            background: task.priority === 'high' ? '#EF444420' :
+                                       task.priority === 'medium' ? '#FF9F0A20' : '#22C55E20',
+                            color: task.priority === 'high' ? '#EF4444' :
+                                   task.priority === 'medium' ? '#FF9F0A' : '#22C55E'
+                          }}
+                        >
+                          {task.priority === 'high' ? 'Высокий' :
+                           task.priority === 'medium' ? 'Средний' : 'Низкий'}
+                        </div>
+                      </div>
+                      
+                      {/* Status and timer */}
+                      <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-end', gap: '8px' }}>
+                        {/* Status badge */}
+                        <div
+                          style={{
+                            padding: '4px 8px',
+                            borderRadius: '12px',
+                            fontSize: '10px',
+                            fontWeight: 'bold',
+                            textTransform: 'uppercase',
+                            letterSpacing: '0.5px',
+                            background: `${statusColor}20`,
+                            color: statusColor,
+                            border: `1px solid ${statusColor}40`
+                          }}
+                        >
+                          {taskStatus === 'completed' ? 'Завершена' :
+                           taskStatus === 'in_progress' ? 'В процессе' :
+                           taskStatus === 'overdue' ? 'Просрочена' : 'Не начата'}
+                        </div>
+                        
+                        {/* Timer controls */}
+                        {taskStatus === 'in_progress' && (
+                          <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+                            <button
+                              onClick={(e) => {
+                                e.stopPropagation();
+                                handleTimerToggle(task.id);
+                              }}
+                              aria-label={activeTimer === task.id ? 'Остановить таймер' : 'Запустить таймер'}
+                              style={{
+                                width: '32px',
+                                height: '32px',
+                                borderRadius: '50%',
+                                border: 'none',
+                                background: activeTimer === task.id ? '#EF4444' : '#22C55E',
+                                display: 'flex',
+                                alignItems: 'center',
+                                justifyContent: 'center',
+                                cursor: 'pointer',
+                                transition: 'all 200ms ease',
+                                boxShadow: activeTimer === task.id 
+                                  ? '0 4px 12px rgba(239, 68, 68, 0.3)' 
+                                  : '0 4px 12px rgba(34, 197, 94, 0.3)'
+                              }}
+                              onMouseEnter={(e) => {
+                                e.currentTarget.style.transform = 'scale(1.1)';
+                              }}
+                              onMouseLeave={(e) => {
+                                e.currentTarget.style.transform = 'scale(1)';
+                              }}
+                              onMouseDown={(e) => {
+                                e.currentTarget.style.transform = 'scale(0.95)';
+                              }}
+                              onMouseUp={(e) => {
+                                e.currentTarget.style.transform = 'scale(1.1)';
+                              }}
+                            >
+                              {activeTimer === task.id ? (
+                                <Pause style={{ width: '14px', height: '14px', color: 'white' }} />
+                              ) : (
+                                <Play style={{ width: '14px', height: '14px', color: 'white' }} />
+                              )}
+                            </button>
+                            <span 
+                              style={{
+                                fontSize: '12px',
+                                fontFamily: 'monospace',
+                                color: theme === 'dark' ? '#A7B0BD' : '#6B7280',
+                                minWidth: '60px',
+                                textAlign: 'right'
+                              }}
+                            >
+                              {formatTime(timerSeconds[task.id] || 0)}
+                            </span>
+                          </div>
+                        )}
+                      </div>
+                    </div>
+                  </div>
+                );
+              })
+            ) : (
+              <div
+                style={{
+                  backgroundColor: theme === 'dark' ? '#161A22' : '#FFFFFF',
+                  borderRadius: '16px',
+                  padding: '48px 16px',
+                  textAlign: 'center',
+                  border: theme === 'dark' ? '1px solid rgba(255, 255, 255, 0.06)' : '1px solid #E6E9EF',
+                  boxShadow: theme === 'dark' ? '0 8px 24px rgba(0, 0, 0, 0.6)' : '0 8px 24px rgba(0, 0, 0, 0.10)'
+                }}
+              >
+                <div
+                  style={{
+                    width: '64px',
+                    height: '64px',
+                    borderRadius: '50%',
+                    background: theme === 'dark' ? 'rgba(255, 255, 255, 0.1)' : 'rgba(0, 0, 0, 0.05)',
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    margin: '0 auto 16px'
+                  }}
+                >
+                  <FileText style={{ width: '32px', height: '32px', color: theme === 'dark' ? '#A7B0BD' : '#6B7280' }} />
+                </div>
+                <h3 
+                  style={{
+                    fontSize: '16px',
+                    fontWeight: '500',
+                    color: theme === 'dark' ? '#E8ECF2' : '#0F172A',
+                    marginBottom: '8px'
+                  }}
+                >
+                  Нет задач
+                </h3>
+                <p 
+                  style={{
+                    fontSize: '12px',
+                    color: theme === 'dark' ? '#A7B0BD' : '#6B7280',
+                    lineHeight: '1.4'
+                  }}
+                >
+                  {filter === 'all' ? 'Создайте первую задачу' :
+                   filter === 'not_started' ? 'Нет не начатых задач' :
+                   filter === 'in_progress' ? 'Нет задач в процессе' :
+                   filter === 'completed' ? 'Нет завершенных задач' : 'Нет просроченных задач'}
+                </p>
+              </div>
+            )}
+          </div>
+        </div>
+        {/* AUTOGEN END tasks-content */}
                 
                 return (
                   <div

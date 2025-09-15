@@ -198,259 +198,335 @@ export const ShopPage: React.FC<ShopPageProps> = ({ theme, currentPage, onNaviga
       paddingBottom: '100px'
     }}>
       {/* AUTOGEN START shop-content */}
-      {/* Custom Header */}
-      <div style={{
-        display: 'flex',
-        justifyContent: 'space-between',
-        alignItems: 'center',
-        marginBottom: '24px'
-      }}>
-        <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
-          <div style={{
-            width: '40px',
-            height: '40px',
-            borderRadius: '50%',
-            background: 'linear-gradient(135deg, #5AA7FF, #A7D0FF)',
+      <div
+        style={{
+          maxWidth: '448px',
+          margin: '0 auto',
+          paddingLeft: '16px',
+          paddingRight: '16px',
+          paddingBottom: 'calc(96px + env(safe-area-inset-bottom))'
+        }}
+      >
+        {/* Header with user info and cart */}
+        <div 
+          style={{
             display: 'flex',
+            justifyContent: 'space-between',
             alignItems: 'center',
-            justifyContent: 'center',
-            color: 'white',
-            fontWeight: 'bold'
-          }}>
-            И
-          </div>
-          <div>
-            <div style={{ fontWeight: 'bold', color: theme === 'dark' ? '#E8ECF2' : '#0F172A' }}>
-              {mockUser.name}
-            </div>
-            <div style={{ fontSize: '12px', color: '#6B7280' }}>WORKER</div>
-          </div>
-        </div>
-
-        <div style={{ display: 'flex', alignItems: 'center', gap: '16px' }}>
-          {/* Balance */}
-          <div style={{
-            display: 'flex',
-            alignItems: 'center',
-            gap: '8px',
-            padding: '8px 16px',
-            borderRadius: '20px',
-            background: theme === 'dark' ? 'rgba(255,255,255,0.1)' : 'rgba(0,0,0,0.05)'
-          }}>
-            <Coins size={20} color="#FFD700" />
-            <span style={{ 
-              fontWeight: 'bold', 
-              color: theme === 'dark' ? '#E8ECF2' : '#0F172A' 
-            }}>
-              {mockUser.balance.toLocaleString()}
-            </span>
-          </div>
-
-          {/* Cart Button */}
-          <button
-            onClick={() => setCartModalOpen(true)}
-            style={{
-              position: 'relative',
+            marginBottom: '24px',
+            paddingTop: '20px'
+          }}
+        >
+          <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
+            <div style={{
               width: '48px',
               height: '48px',
               borderRadius: '50%',
-              border: 'none',
-              background: theme === 'dark' 
-                ? 'linear-gradient(135deg, #ffffff, #f0f0f0)'
-                : 'linear-gradient(135deg, #5AA7FF, #A7D0FF)',
+              background: 'linear-gradient(135deg, #2B82FF, #5AA7FF)',
               display: 'flex',
               alignItems: 'center',
               justifyContent: 'center',
-              cursor: 'pointer',
-              transition: 'transform 0.2s ease'
-            }}
-            onMouseEnter={(e) => e.currentTarget.style.transform = 'scale(1.05)'}
-            onMouseLeave={(e) => e.currentTarget.style.transform = 'scale(1)'}
-          >
-            <ShoppingCart 
-              size={20} 
-              color={theme === 'dark' ? '#0F172A' : '#FFFFFF'} 
-            />
-            {cart.length > 0 && (
-              <div style={{
-                position: 'absolute',
-                top: '-4px',
-                right: '-4px',
-                width: '20px',
-                height: '20px',
+              color: 'white',
+              fontWeight: 'bold',
+              fontSize: '18px',
+              boxShadow: '0 4px 12px rgba(43, 130, 255, 0.3)'
+            }}>
+              {mockUser.name.charAt(0)}
+            </div>
+            <div>
+              <div 
+                style={{ 
+                  fontWeight: '500', 
+                  fontSize: '16px',
+                  color: theme === 'dark' ? '#E8ECF2' : '#0F172A' 
+                }}
+              >
+                {mockUser.name}
+              </div>
+              <div 
+                style={{ 
+                  fontSize: '12px', 
+                  color: theme === 'dark' ? '#A7B0BD' : '#6B7280' 
+                }}
+              >
+                WORKER
+              </div>
+            </div>
+          </div>
+
+          <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
+            {/* Balance */}
+            <div style={{
+              display: 'flex',
+              alignItems: 'center',
+              gap: '6px',
+              padding: '8px 12px',
+              borderRadius: '20px',
+              background: theme === 'dark' ? 'rgba(255,255,255,0.1)' : 'rgba(0,0,0,0.05)',
+              border: theme === 'dark' ? '1px solid rgba(255, 255, 255, 0.1)' : '1px solid rgba(0, 0, 0, 0.1)'
+            }}>
+              <Coins size={16} color="#FFD700" />
+              <span style={{ 
+                fontWeight: '500', 
+                fontSize: '14px',
+                color: theme === 'dark' ? '#E8ECF2' : '#0F172A' 
+              }}>
+                {mockUser.balance.toLocaleString()}
+              </span>
+            </div>
+
+            {/* Cart Button */}
+            <button
+              onClick={() => setCartModalOpen(true)}
+              aria-label="Открыть корзину"
+              style={{
+                position: 'relative',
+                width: '44px',
+                height: '44px',
                 borderRadius: '50%',
-                background: '#EF4444',
-                color: 'white',
-                fontSize: '12px',
+                border: 'none',
+                background: '#2B82FF',
                 display: 'flex',
                 alignItems: 'center',
                 justifyContent: 'center',
-                fontWeight: 'bold'
-              }}>
-                {cart.reduce((sum, item) => sum + item.quantity, 0)}
-              </div>
-            )}
-          </button>
-        </div>
-      </div>
-
-      {/* Tabs */}
-      <div style={{
-        display: 'flex',
-        background: theme === 'dark' 
-          ? 'rgba(255,255,255,0.1)' 
-          : 'rgba(255,255,255,0.8)',
-        borderRadius: '16px',
-        padding: '4px',
-        marginBottom: '24px',
-        backdropFilter: 'blur(10px)',
-        boxShadow: '0 8px 32px rgba(0,0,0,0.1)'
-      }}>
-        {[
-          { id: 'free', label: 'БЕСПЛАТНЫЙ' },
-          { id: 'shop', label: 'МАГАЗИН' },
-          { id: 'my', label: 'МОИ КЕЙСЫ' }
-        ].map((tab) => (
-          <button
-            key={tab.id}
-            onClick={() => setActiveTab(tab.id as any)}
-            style={{
-              flex: 1,
-              padding: '12px 16px',
-              borderRadius: '12px',
-              border: 'none',
-              background: activeTab === tab.id 
-                ? (theme === 'dark' 
-                    ? 'linear-gradient(135deg, #ffffff, #f0f0f0)'
-                    : 'linear-gradient(135deg, #5AA7FF, #A7D0FF)')
-                : 'transparent',
-              color: activeTab === tab.id 
-                ? (theme === 'dark' ? '#0F172A' : '#FFFFFF')
-                : (theme === 'dark' ? '#A7B0BD' : '#6B7280'),
-              fontWeight: 'bold',
-              fontSize: '14px',
-              cursor: 'pointer',
-              transition: 'all 0.3s ease'
-            }}
-          >
-            {tab.label}
-          </button>
-        ))}
-      </div>
-
-      {/* Tab Content */}
-      {activeTab === 'free' && (
-        <div>
-          <div style={{ textAlign: 'center', marginBottom: '24px' }}>
-            <h2 style={{ 
-              color: theme === 'dark' ? '#E8ECF2' : '#0F172A',
-              marginBottom: '8px'
-            }}>
-              БЕСПЛАТНЫЙ КЕЙС
-            </h2>
-            <div style={{
-              width: '100px',
-              height: '2px',
-              background: 'linear-gradient(90deg, transparent, #22C55E, transparent)',
-              margin: '0 auto'
-            }}></div>
-          </div>
-
-          <div style={{
-            background: theme === 'dark' ? '#161A22' : '#FFFFFF',
-            borderRadius: '24px',
-            padding: '32px',
-            textAlign: 'center',
-            border: '2px solid rgba(34, 197, 94, 0.4)',
-            boxShadow: '0 8px 32px rgba(0,0,0,0.1), inset 0 1px 0 rgba(255,255,255,0.1)'
-          }}>
-            <div style={{
-              width: '128px',
-              height: '128px',
-              borderRadius: '50%',
-              background: 'linear-gradient(135deg, #22C55E, #16A34A)',
-              display: 'flex',
-              alignItems: 'center',
-              justifyContent: 'center',
-              margin: '0 auto 24px',
-              boxShadow: '0 0 30px rgba(34, 197, 94, 0.5)'
-            }}>
-              <Gift size={64} color="#FFFFFF" />
-            </div>
-
-            <h3 style={{ 
-              color: theme === 'dark' ? '#E8ECF2' : '#0F172A',
-              marginBottom: '8px',
-              textShadow: '0 0 10px rgba(34, 197, 94, 0.5)'
-            }}>
-              БЕСПЛАТНЫЙ КЕЙС GRITHER
-            </h3>
-            <p style={{ 
-              color: theme === 'dark' ? '#A7B0BD' : '#6B7280',
-              marginBottom: '24px'
-            }}>
-              Получите случайный кейс совершенно бесплатно каждые 24 часа!
-            </p>
-
-            {isFreeAvailable ? (
-              <button
-                style={{
-                  background: 'linear-gradient(145deg, #22C55E, #16A34A)',
-                  color: 'white',
-                  border: 'none',
-                  borderRadius: '16px',
-                  padding: '16px 32px',
-                  fontSize: '16px',
-                  fontWeight: 'bold',
-                  cursor: 'pointer',
-                  boxShadow: '0 8px 24px rgba(34, 197, 94, 0.4)',
-                  transition: 'all 0.3s ease'
-                }}
-                onMouseEnter={(e) => {
-                  e.currentTarget.style.transform = 'scale(1.05)';
-                  e.currentTarget.style.boxShadow = '0 12px 32px rgba(34, 197, 94, 0.6)';
-                }}
-                onMouseLeave={(e) => {
-                  e.currentTarget.style.transform = 'scale(1)';
-                  e.currentTarget.style.boxShadow = '0 8px 24px rgba(34, 197, 94, 0.4)';
-                }}
-              >
-                ОТКРЫТЬ БЕСПЛАТНЫЙ КЕЙС
-              </button>
-            ) : (
-              <div>
+                cursor: 'pointer',
+                transition: 'all 200ms ease',
+                boxShadow: '0 4px 12px rgba(43, 130, 255, 0.3)'
+              }}
+              onMouseEnter={(e) => {
+                e.currentTarget.style.transform = 'scale(1.05)';
+                e.currentTarget.style.background = '#2066C8';
+                e.currentTarget.style.boxShadow = '0 6px 16px rgba(43, 130, 255, 0.4)';
+              }}
+              onMouseLeave={(e) => {
+                e.currentTarget.style.transform = 'scale(1)';
+                e.currentTarget.style.background = '#2B82FF';
+                e.currentTarget.style.boxShadow = '0 4px 12px rgba(43, 130, 255, 0.3)';
+              }}
+              onMouseDown={(e) => {
+                e.currentTarget.style.transform = 'scale(0.95)';
+              }}
+            >
+              <ShoppingCart 
+                size={18} 
+                color="#FFFFFF" 
+              />
+              {cart.length > 0 && (
                 <div style={{
+                  position: 'absolute',
+                  top: '-6px',
+                  right: '-6px',
+                  width: '20px',
+                  height: '20px',
+                  borderRadius: '50%',
+                  background: '#EF4444',
+                  color: 'white',
+                  fontSize: '10px',
                   display: 'flex',
                   alignItems: 'center',
                   justifyContent: 'center',
-                  gap: '8px',
-                  marginBottom: '16px',
-                  color: '#6B7280'
+                  fontWeight: 'bold',
+                  border: '2px solid white',
+                  boxShadow: '0 2px 8px rgba(239, 68, 68, 0.3)'
                 }}>
-                  <Clock size={20} />
-                  <span>Следующий кейс через: {timeLeft}</span>
+                  {cart.reduce((sum, item) => sum + item.quantity, 0)}
                 </div>
+              )}
+            </button>
+          </div>
+        </div>
+
+        {/* Tabs */}
+        <div style={{
+          display: 'flex',
+          background: theme === 'dark' 
+            ? 'rgba(255,255,255,0.1)' 
+            : 'rgba(255,255,255,0.8)',
+          borderRadius: '16px',
+          padding: '4px',
+          marginBottom: '24px',
+          backdropFilter: 'blur(10px)',
+          boxShadow: '0 8px 32px rgba(0,0,0,0.1)'
+        }}>
+          {[
+            { id: 'free', label: 'БЕСПЛАТНЫЙ' },
+            { id: 'shop', label: 'МАГАЗИН' },
+            { id: 'my', label: 'МОИ КЕЙСЫ' }
+          ].map((tab) => (
+            <button
+              key={tab.id}
+              onClick={() => setActiveTab(tab.id as any)}
+              aria-label={`Переключить на вкладку ${tab.label}`}
+              style={{
+                flex: 1,
+                padding: '12px 16px',
+                borderRadius: '12px',
+                border: 'none',
+                background: activeTab === tab.id 
+                  ? (theme === 'dark' 
+                      ? 'linear-gradient(135deg, #ffffff, #f0f0f0)'
+                      : 'linear-gradient(135deg, #2B82FF, #5AA7FF)')
+                  : 'transparent',
+                color: activeTab === tab.id 
+                  ? (theme === 'dark' ? '#0F172A' : '#FFFFFF')
+                  : (theme === 'dark' ? '#A7B0BD' : '#6B7280'),
+                fontWeight: 'bold',
+                fontSize: '14px',
+                cursor: 'pointer',
+                transition: 'all 0.3s ease'
+              }}
+              onMouseEnter={(e) => {
+                if (activeTab !== tab.id) {
+                  e.currentTarget.style.background = theme === 'dark' 
+                    ? 'rgba(255,255,255,0.15)' 
+                    : 'rgba(43, 130, 255, 0.1)';
+                }
+              }}
+              onMouseLeave={(e) => {
+                if (activeTab !== tab.id) {
+                  e.currentTarget.style.background = 'transparent';
+                }
+              }}
+              onMouseDown={(e) => {
+                e.currentTarget.style.transform = 'scale(0.95)';
+              }}
+              onMouseUp={(e) => {
+                e.currentTarget.style.transform = 'scale(1)';
+              }}
+            >
+              {tab.label}
+            </button>
+          ))}
+        </div>
+
+        {/* Tab Content */}
+        {activeTab === 'free' && (
+          <div>
+            <div style={{ textAlign: 'center', marginBottom: '24px' }}>
+              <h2 style={{ 
+                color: theme === 'dark' ? '#E8ECF2' : '#0F172A',
+                marginBottom: '8px',
+                fontSize: '18px',
+                fontWeight: '500'
+              }}>
+                БЕСПЛАТНЫЙ КЕЙС
+              </h2>
+              <div style={{
+                width: '100px',
+                height: '2px',
+                background: 'linear-gradient(90deg, transparent, #22C55E, transparent)',
+                margin: '0 auto'
+              }}></div>
+            </div>
+
+            <div style={{
+              background: theme === 'dark' ? '#161A22' : '#FFFFFF',
+              borderRadius: '24px',
+              padding: '32px',
+              textAlign: 'center',
+              border: '2px solid rgba(34, 197, 94, 0.4)',
+              boxShadow: '0 8px 32px rgba(0,0,0,0.1), inset 0 1px 0 rgba(255,255,255,0.1)'
+            }}>
+              <div style={{
+                width: '128px',
+                height: '128px',
+                borderRadius: '50%',
+                background: 'linear-gradient(135deg, #22C55E, #16A34A)',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                margin: '0 auto 24px',
+                boxShadow: '0 0 30px rgba(34, 197, 94, 0.5)'
+              }}>
+                <Gift size={64} color="#FFFFFF" />
+              </div>
+
+              <h3 style={{ 
+                color: theme === 'dark' ? '#E8ECF2' : '#0F172A',
+                marginBottom: '8px',
+                fontSize: '16px',
+                fontWeight: '500',
+                textShadow: '0 0 10px rgba(34, 197, 94, 0.5)'
+              }}>
+                БЕСПЛАТНЫЙ КЕЙС GRITHER
+              </h3>
+              <p style={{ 
+                color: theme === 'dark' ? '#A7B0BD' : '#6B7280',
+                marginBottom: '24px',
+                fontSize: '12px',
+                lineHeight: '1.4'
+              }}>
+                Получите случайный кейс совершенно бесплатно каждые 24 часа!
+              </p>
+
+              {isFreeAvailable ? (
                 <button
-                  disabled
+                  aria-label="Открыть бесплатный кейс"
                   style={{
-                    background: 'linear-gradient(145deg, #6B7280, #4B5563)',
-                    color: '#9CA3AF',
+                    background: 'linear-gradient(145deg, #22C55E, #16A34A)',
+                    color: 'white',
                     border: 'none',
                     borderRadius: '16px',
                     padding: '16px 32px',
-                    fontSize: '16px',
+                    fontSize: '14px',
                     fontWeight: 'bold',
-                    cursor: 'not-allowed',
-                    opacity: 0.5
+                    cursor: 'pointer',
+                    boxShadow: '0 8px 24px rgba(34, 197, 94, 0.4)',
+                    transition: 'all 0.3s ease'
+                  }}
+                  onMouseEnter={(e) => {
+                    e.currentTarget.style.transform = 'scale(1.05)';
+                    e.currentTarget.style.boxShadow = '0 12px 32px rgba(34, 197, 94, 0.6)';
+                  }}
+                  onMouseLeave={(e) => {
+                    e.currentTarget.style.transform = 'scale(1)';
+                    e.currentTarget.style.boxShadow = '0 8px 24px rgba(34, 197, 94, 0.4)';
+                  }}
+                  onMouseDown={(e) => {
+                    e.currentTarget.style.transform = 'scale(0.95)';
+                  }}
+                  onMouseUp={(e) => {
+                    e.currentTarget.style.transform = 'scale(1.05)';
                   }}
                 >
-                  ОЖИДАНИЕ...
+                  ОТКРЫТЬ БЕСПЛАТНЫЙ КЕЙС
                 </button>
-              </div>
-            )}
+              ) : (
+                <div>
+                  <div style={{
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    gap: '8px',
+                    marginBottom: '16px',
+                    color: theme === 'dark' ? '#A7B0BD' : '#6B7280',
+                    fontSize: '12px'
+                  }}>
+                    <Clock size={16} />
+                    <span>Следующий кейс через: {timeLeft}</span>
+                  </div>
+                  <button
+                    disabled
+                    aria-label="Ожидание следующего бесплатного кейса"
+                    style={{
+                      background: 'linear-gradient(145deg, #6B7280, #4B5563)',
+                      color: '#9CA3AF',
+                      border: 'none',
+                      borderRadius: '16px',
+                      padding: '16px 32px',
+                      fontSize: '14px',
+                      fontWeight: 'bold',
+                      cursor: 'not-allowed',
+                      opacity: 0.5
+                    }}
+                  >
+                    ОЖИДАНИЕ...
+                  </button>
+                </div>
+              )}
+            </div>
           </div>
-        </div>
-      )}
+        )}
 
       {activeTab === 'shop' && (
         <div>
