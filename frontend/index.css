@@ -5,8 +5,8 @@
 @tailwind utilities;
 
 /* Import GRITHER Theme System */
-/* @import './styles/theme.css'; */
-/* @import './src/styles/tokens.css'; */
+@import './styles/theme-clean.css';
+@import './src/styles/tokens.css';
 
 /* Prevent text selection on clicks */
 * {
@@ -14,6 +14,18 @@
   -moz-user-select: none;
   -ms-user-select: none;
   user-select: none;
+}
+
+/* App base styles */
+.app {
+  min-height: 100vh;
+  background: var(--background);
+  color: var(--text);
+  font-family: var(--font-family);
+}
+
+.app.dark {
+  background: linear-gradient(135deg, #0B0D10 0%, #12151B 100%);
 }
 
 /* Allow text selection only for input fields and text areas */

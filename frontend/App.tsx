@@ -5,7 +5,7 @@ import { HashRouter, Routes, Route, Navigate, useNavigate, useLocation } from 'r
 console.info("build", import.meta.env.VITE_APP_BUILD);
 
 // Import components
-import { HomePage } from './components/HomePage';
+import { HomePageSimple as HomePage } from './components/HomePage.simple';
 import { AchievementsPage } from './components/AchievementsPage';
 import { TasksPage } from './components/TasksPage';
 import { ShopPage } from './components/ShopPage';
