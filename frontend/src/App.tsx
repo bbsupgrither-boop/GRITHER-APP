@@ -33,9 +33,9 @@ import { Notification } from '../types/notifications';
 const mockAchievements: Achievement[] = [
   {
     id: '1',
-    title: 'Новичок',
-    description: 'Создайте свой первый аккаунт',
-    icon: '🛡️',
+    title: 'РќРѕРІРёС‡РѕРє',
+    description: 'РЎРѕР·РґР°Р№С‚Рµ СЃРІРѕР№ РїРµСЂРІС‹Р№ Р°РєРєР°СѓРЅС‚',
+    icon: 'рџ›ЎпёЏ',
     category: 'general',
     rarity: 'common',
     requirements: {
@@ -50,9 +50,9 @@ const mockAchievements: Achievement[] = [
   },
   {
     id: '2',
-    title: 'Трудолюбивый',
-    description: 'Выполните 10 задач',
-    icon: '⚡',
+    title: 'РўСЂСѓРґРѕР»СЋР±РёРІС‹Р№',
+    description: 'Р’С‹РїРѕР»РЅРёС‚Рµ 10 Р·Р°РґР°С‡',
+    icon: 'вљЎ',
     category: 'tasks',
     rarity: 'rare',
     requirements: {
@@ -71,8 +71,8 @@ const mockNotifications: Notification[] = [
   {
     id: '1',
     type: 'achievement',
-    title: 'Получено достижение',
-    message: 'Вы получили достижение "Новичок"',
+    title: 'РџРѕР»СѓС‡РµРЅРѕ РґРѕСЃС‚РёР¶РµРЅРёРµ',
+    message: 'Р’С‹ РїРѕР»СѓС‡РёР»Рё РґРѕСЃС‚РёР¶РµРЅРёРµ "РќРѕРІРёС‡РѕРє"',
     timestamp: new Date(Date.now() - 3600000).toISOString(),
     read: false
   }
@@ -85,7 +85,7 @@ const mockCases: UserCase[] = [];
 
 const initialMockCurrentUser = {
   id: '1',
-  name: 'Пользователь',
+  name: 'РџРѕР»СЊР·РѕРІР°С‚РµР»СЊ',
   level: 1,
   experience: 0,
   gCoins: 1000,
@@ -97,7 +97,7 @@ export default function App() {
   const { theme, toggleTheme, themeToggleCount, resetThemeToggleCount } = useTheme();
   const [mockCurrentUser, setMockCurrentUser] = useState(initialMockCurrentUser);
   
-  // Получаем роль пользователя по его ID
+  // РџРѕР»СѓС‡Р°РµРј СЂРѕР»СЊ РїРѕР»СЊР·РѕРІР°С‚РµР»СЏ РїРѕ РµРіРѕ ID
   const { user: userWithRole, userRole, teamMembers } = useUserRole(mockCurrentUser.id);
 
   // Modal states
@@ -124,18 +124,18 @@ export default function App() {
       document.documentElement.style.setProperty('--vh', `${height}px`);
     });
 
-    // Принудительный сброс счетчика переключений темы для тестирования
-    console.log('🔄 Resetting theme toggle count for testing');
+    // РџСЂРёРЅСѓРґРёС‚РµР»СЊРЅС‹Р№ СЃР±СЂРѕСЃ СЃС‡РµС‚С‡РёРєР° РїРµСЂРµРєР»СЋС‡РµРЅРёР№ С‚РµРјС‹ РґР»СЏ С‚РµСЃС‚РёСЂРѕРІР°РЅРёСЏ
+    console.log('рџ”„ Resetting theme toggle count for testing');
     resetThemeToggleCount();
 
     return cleanupViewport;
   }, []);
 
-  // Отслеживание переключений темы для секретного доступа
+  // РћС‚СЃР»РµР¶РёРІР°РЅРёРµ РїРµСЂРµРєР»СЋС‡РµРЅРёР№ С‚РµРјС‹ РґР»СЏ СЃРµРєСЂРµС‚РЅРѕРіРѕ РґРѕСЃС‚СѓРїР°
   useEffect(() => {
-    console.log(`🔍 Theme toggle count changed: ${themeToggleCount}`);
+    console.log(`рџ”Ќ Theme toggle count changed: ${themeToggleCount}`);
     if (themeToggleCount >= 8) {
-      console.log('🚀 ACTIVATING SECRET ADMIN ACCESS!');
+      console.log('рџљЂ ACTIVATING SECRET ADMIN ACCESS!');
       setShowSecretAdminAccess(true);
       resetThemeToggleCount();
     }
@@ -199,7 +199,7 @@ export default function App() {
           }>
             <Route index element={<Navigate to="/home" replace />} />
             <Route path="home" element={
-              <React.Suspense fallback={<div style={{padding: 16}}>Загрузка…</div>}>
+              <React.Suspense fallback={<div style={{padding: 16}}>Р—Р°РіСЂСѓР·РєР°вЂ¦</div>}>
                 <ErrorBoundary>
                   <HomePage
                     theme={theme}
@@ -212,7 +212,7 @@ export default function App() {
               </React.Suspense>
             } />
             <Route path="achievements" element={
-              <React.Suspense fallback={<div style={{padding: 16}}>Загрузка…</div>}>
+              <React.Suspense fallback={<div style={{padding: 16}}>Р—Р°РіСЂСѓР·РєР°вЂ¦</div>}>
                 <ErrorBoundary>
                   <AchievementsPage
                     achievements={achievements}
@@ -230,7 +230,7 @@ export default function App() {
               </React.Suspense>
             } />
             <Route path="tasks" element={
-              <React.Suspense fallback={<div style={{padding: 16}}>Загрузка…</div>}>
+              <React.Suspense fallback={<div style={{padding: 16}}>Р—Р°РіСЂСѓР·РєР°вЂ¦</div>}>
                 <ErrorBoundary>
                   <TasksPage
                     tasks={tasks}
@@ -248,7 +248,7 @@ export default function App() {
               </React.Suspense>
             } />
             <Route path="shop" element={
-              <React.Suspense fallback={<div style={{padding: 16}}>Загрузка…</div>}>
+              <React.Suspense fallback={<div style={{padding: 16}}>Р—Р°РіСЂСѓР·РєР°вЂ¦</div>}>
                 <ErrorBoundary>
                   <ShopPage
                     cases={userCases}
@@ -274,7 +274,7 @@ export default function App() {
               </React.Suspense>
             } />
             <Route path="profile" element={
-              <React.Suspense fallback={<div style={{padding: 16}}>Загрузка…</div>}>
+              <React.Suspense fallback={<div style={{padding: 16}}>Р—Р°РіСЂСѓР·РєР°вЂ¦</div>}>
                 <ErrorBoundary>
                   <ProfilePage
                     theme={theme}
@@ -287,7 +287,7 @@ export default function App() {
               </React.Suspense>
             } />
             <Route path="battles" element={
-              <React.Suspense fallback={<div style={{padding: 16}}>Загрузка…</div>}>
+              <React.Suspense fallback={<div style={{padding: 16}}>Р—Р°РіСЂСѓР·РєР°вЂ¦</div>}>
                 <ErrorBoundary>
                   <BattlesPage
                     theme={theme}
@@ -334,7 +334,7 @@ export default function App() {
           <AdminPanel
             onClose={handleCloseAdminPanel}
             theme={theme}
-            adminName={userWithRole?.name || 'Секретный Админ'}
+            adminName={userWithRole?.name || 'РЎРµРєСЂРµС‚РЅС‹Р№ РђРґРјРёРЅ'}
           />
         )}
       </div>

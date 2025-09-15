@@ -1,4 +1,4 @@
-﻿import React from 'react';
+п»їimport React from 'react';
 import { Clock, User, FileText } from './Icons';
 import { ModalOpaque } from './ModalOpaque';
 
@@ -25,26 +25,26 @@ export function NotificationsModal({ isOpen, onClose, theme = 'light' }: Notific
       type: 'battle_evidence',
       title: 'РќРѕРІС‹Рµ РґРѕРєР°Р·Р°С‚РµР»СЊСЃС‚РІР° Р±Р°С‚С‚Р»Р°',
       message: 'РђР»РµРєСЃРµР№ РџРµС‚СЂРѕРІ РѕС‚РїСЂР°РІРёР» РґРѕРєР°Р·Р°С‚РµР»СЊСЃС‚РІР° РІС‹РїРѕР»РЅРµРЅРёСЏ Р±Р°С‚С‚Р»Р°',
-      time: '2 РјРёРЅ РЅР°Р·Р°Рґ',
-      from: 'РђР»РµРєСЃРµР№ РџРµС‚СЂРѕРІ',
+      time: '2 Р СР С‘Р Р… Р Р…Р В°Р В·Р В°Р Т‘',
+      from: 'Р С’Р В»Р ВµР С”РЎРѓР ВµР в„– Р СџР ВµРЎвЂљРЎР‚Р С•Р Р†',
       isNew: true
     },
     {
       id: '2', 
       type: 'task_submission',
-      title: 'Р—Р°РґР°С‡Р° РІС‹РїРѕР»РЅРµРЅР°',
-      message: 'РњР°СЂРёСЏ РРІР°РЅРѕРІР° РѕС‚РјРµС‚РёР»Р° Р·Р°РґР°С‡Сѓ РєР°Рє РІС‹РїРѕР»РЅРµРЅРЅСѓСЋ',
-      time: '15 РјРёРЅ РЅР°Р·Р°Рґ',
-      from: 'РњР°СЂРёСЏ РРІР°РЅРѕРІР°',
+      title: 'Р вЂ”Р В°Р Т‘Р В°РЎвЂЎР В° Р Р†РЎвЂ№Р С—Р С•Р В»Р Р…Р ВµР Р…Р В°',
+      message: 'Р СљР В°РЎР‚Р С‘РЎРЏ Р ВР Р†Р В°Р Р…Р С•Р Р†Р В° Р С•РЎвЂљР СР ВµРЎвЂљР С‘Р В»Р В° Р В·Р В°Р Т‘Р В°РЎвЂЎРЎС“ Р С”Р В°Р С” Р Р†РЎвЂ№Р С—Р С•Р В»Р Р…Р ВµР Р…Р Р…РЎС“РЎР‹',
+      time: '15 Р СР С‘Р Р… Р Р…Р В°Р В·Р В°Р Т‘',
+      from: 'Р СљР В°РЎР‚Р С‘РЎРЏ Р ВР Р†Р В°Р Р…Р С•Р Р†Р В°',
       isNew: true
     },
     {
       id: '3',
       type: 'user_report',
-      title: 'РЎРѕРѕР±С‰РµРЅРёРµ Рѕ РїСЂРѕР±Р»РµРјРµ',
-      message: 'РЎРµСЂРіРµР№ РЎРёРґРѕСЂРѕРІ СЃРѕРѕР±С‰РёР» Рѕ С‚РµС…РЅРёС‡РµСЃРєРѕР№ РїСЂРѕР±Р»РµРјРµ',
-      time: '1 С‡Р°СЃ РЅР°Р·Р°Рґ',
-      from: 'РЎРµСЂРіРµР№ РЎРёРґРѕСЂРѕРІ',
+      title: 'Р РЋР С•Р С•Р В±РЎвЂ°Р ВµР Р…Р С‘Р Вµ Р С• Р С—РЎР‚Р С•Р В±Р В»Р ВµР СР Вµ',
+      message: 'Р РЋР ВµРЎР‚Р С–Р ВµР в„– Р РЋР С‘Р Т‘Р С•РЎР‚Р С•Р Р† РЎРѓР С•Р С•Р В±РЎвЂ°Р С‘Р В» Р С• РЎвЂљР ВµРЎвЂ¦Р Р…Р С‘РЎвЂЎР ВµРЎРѓР С”Р С•Р в„– Р С—РЎР‚Р С•Р В±Р В»Р ВµР СР Вµ',
+      time: '1 РЎвЂЎР В°РЎРѓ Р Р…Р В°Р В·Р В°Р Т‘',
+      from: 'Р РЋР ВµРЎР‚Р С–Р ВµР в„– Р РЋР С‘Р Т‘Р С•РЎР‚Р С•Р Р†',
       isNew: false
     }
   ]);
@@ -74,7 +74,7 @@ export function NotificationsModal({ isOpen, onClose, theme = 'light' }: Notific
     <ModalOpaque
       isOpen={isOpen}
       onClose={onClose}
-      title="РЈРІРµРґРѕРјР»РµРЅРёСЏ"
+      title="Р Р€Р Р†Р ВµР Т‘Р С•Р СР В»Р ВµР Р…Р С‘РЎРЏ"
       theme={theme}
       actions={
         notifications.length > 0 ? (
@@ -90,7 +90,7 @@ export function NotificationsModal({ isOpen, onClose, theme = 'light' }: Notific
               fontSize: '14px'
             }}
           >
-            РћС‚РјРµС‚РёС‚СЊ РІСЃРµ РєР°Рє РїСЂРѕС‡РёС‚Р°РЅРЅС‹Рµ
+            Р С›РЎвЂљР СР ВµРЎвЂљР С‘РЎвЂљРЎРЉ Р Р†РЎРѓР Вµ Р С”Р В°Р С” Р С—РЎР‚Р С•РЎвЂЎР С‘РЎвЂљР В°Р Р…Р Р…РЎвЂ№Р Вµ
           </button>
         ) : undefined
       }
@@ -157,7 +157,7 @@ export function NotificationsModal({ isOpen, onClose, theme = 'light' }: Notific
                           color: theme === 'dark' ? '#A7B0BD' : '#6B7280'
                         }}
                       >
-                        РћС‚: {notification.from}
+                        Р С›РЎвЂљ: {notification.from}
                       </span>
                       <span 
                         style={{ 
@@ -186,7 +186,7 @@ export function NotificationsModal({ isOpen, onClose, theme = 'light' }: Notific
                 color: theme === 'dark' ? '#A7B0BD' : '#6B7280',
                 fontSize: '14px'
               }}>
-                РќРµС‚ РЅРѕРІС‹С… СѓРІРµРґРѕРјР»РµРЅРёР№
+                Р СњР ВµРЎвЂљ Р Р…Р С•Р Р†РЎвЂ№РЎвЂ¦ РЎС“Р Р†Р ВµР Т‘Р С•Р СР В»Р ВµР Р…Р С‘Р в„–
               </p>
             </div>
           </div>

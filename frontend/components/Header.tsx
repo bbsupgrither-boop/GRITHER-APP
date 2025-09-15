@@ -1,4 +1,4 @@
-﻿import React from 'react';
+import React from 'react';
 import { Settings } from 'lucide-react';
 import { User as UserType } from '../types/global';
 import { Notification } from '../types/notifications';
@@ -40,11 +40,11 @@ export const Header: React.FC<HeaderProps> = ({
   };
 
   const getRoleColor = (level: number) => {
-    if (level >= 20) return '#fbbf24'; // Золотой для GRITHER
-    if (level >= 15) return '#a855f7'; // Фиолетовый для GLEB
-    if (level >= 10) return '#3b82f6'; // Синий для SUPPORT
-    if (level >= 5) return '#10b981'; // Зеленый для TEAMLEAD
-    return '#6b7280'; // Серый для WORKER
+    if (level >= 20) return '#fbbf24'; // Р—РѕР»РѕС‚РѕР№ РґР»СЏ GRITHER
+    if (level >= 15) return '#a855f7'; // Р¤РёРѕР»РµС‚РѕРІС‹Р№ РґР»СЏ GLEB
+    if (level >= 10) return '#3b82f6'; // РЎРёРЅРёР№ РґР»СЏ SUPPORT
+    if (level >= 5) return '#10b981'; // Р—РµР»РµРЅС‹Р№ РґР»СЏ TEAMLEAD
+    return '#6b7280'; // РЎРµСЂС‹Р№ РґР»СЏ WORKER
   };
 
   const unreadNotificationsCount = notifications.filter(n => !n.read).length;
@@ -60,7 +60,7 @@ export const Header: React.FC<HeaderProps> = ({
     >
       <div className="app-container">
         <div className="flex items-center justify-between w-full px-4">
-        {/* Левая часть - Аватар пользователя + имя + роль */}
+        {/* Р›РµРІР°СЏ С‡Р°СЃС‚СЊ - РђРІР°С‚Р°СЂ РїРѕР»СЊР·РѕРІР°С‚РµР»СЏ + РёРјСЏ + СЂРѕР»СЊ */}
         {!hideUserIcon && user && (
           <button 
             onClick={(e) => {
@@ -94,7 +94,7 @@ export const Header: React.FC<HeaderProps> = ({
               e.currentTarget.style.backgroundColor = 'transparent';
             }}
           >
-            {/* Аватар пользователя */}
+            {/* РђРІР°С‚Р°СЂ РїРѕР»СЊР·РѕРІР°С‚РµР»СЏ */}
             <div style={{ position: 'relative' }}>
               <div 
                 style={{
@@ -116,7 +116,7 @@ export const Header: React.FC<HeaderProps> = ({
                 {!profilePhoto && user.name.charAt(0).toUpperCase()}
               </div>
               
-              {/* Online статус */}
+              {/* Online СЃС‚Р°С‚СѓСЃ */}
               <div 
                 style={{
                   position: 'absolute',
@@ -132,7 +132,7 @@ export const Header: React.FC<HeaderProps> = ({
               />
             </div>
 
-            {/* Имя и роль */}
+            {/* РРјСЏ Рё СЂРѕР»СЊ */}
             <div style={{ textAlign: 'left' }}>
               <div 
                 style={{
@@ -158,9 +158,9 @@ export const Header: React.FC<HeaderProps> = ({
           </button>
         )}
 
-        {/* Правая часть - Кнопки уведомлений и настроек */}
+        {/* РџСЂР°РІР°СЏ С‡Р°СЃС‚СЊ - РљРЅРѕРїРєРё СѓРІРµРґРѕРјР»РµРЅРёР№ Рё РЅР°СЃС‚СЂРѕРµРє */}
         <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-          {/* Кнопка уведомлений */}
+          {/* РљРЅРѕРїРєР° СѓРІРµРґРѕРјР»РµРЅРёР№ */}
           <NotificationsButton
             notifications={notifications}
             unreadCount={unreadNotificationsCount}
@@ -171,7 +171,7 @@ export const Header: React.FC<HeaderProps> = ({
             theme={theme}
           />
 
-          {/* Кнопка настроек */}
+          {/* РљРЅРѕРїРєР° РЅР°СЃС‚СЂРѕРµРє */}
           <button
             onClick={(e) => {
               e.preventDefault();

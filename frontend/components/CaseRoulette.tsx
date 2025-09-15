@@ -1,4 +1,4 @@
-﻿import { useState, useEffect } from 'react';
+п»їimport { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { CaseType, RouletteResult } from '../types/cases';
 import { ImageWithFallback } from './figma/ImageWithFallback';
@@ -15,16 +15,16 @@ export function CaseRoulette({ cases, onResult, isSpinning, onSpinComplete, hasS
   const [spinOffset, setSpinOffset] = useState(0);
   const [selectedCase, setSelectedCase] = useState<CaseType | null>(null);
 
-  // Р•СЃР»Рё РЅРµС‚ РєРµР№СЃРѕРІ, РЅРµ СЂРµРЅРґРµСЂРёРј РєРѕРјРїРѕРЅРµРЅС‚
+  // Р вЂўРЎРѓР В»Р С‘ Р Р…Р ВµРЎвЂљ Р С”Р ВµР в„–РЎРѓР С•Р Р†, Р Р…Р Вµ РЎР‚Р ВµР Р…Р Т‘Р ВµРЎР‚Р С‘Р С Р С”Р С•Р СР С—Р С•Р Р…Р ВµР Р…РЎвЂљ
   if (!cases || cases.length === 0) {
     return (
       <div className="relative w-full h-48 overflow-hidden rounded-xl bg-surface border border-border flex items-center justify-center">
-        <div className="text-muted-foreground">Р—Р°РіСЂСѓР·РєР° РєРµР№СЃРѕРІ...</div>
+        <div className="text-muted-foreground">Р вЂ”Р В°Р С–РЎР‚РЎС“Р В·Р С”Р В° Р С”Р ВµР в„–РЎРѓР С•Р Р†...</div>
       </div>
     );
   }
 
-  // Р¤СѓРЅРєС†РёСЏ РґР»СЏ РїСЂРѕРІРµСЂРєРё, СЏРІР»СЏРµС‚СЃСЏ Р»Рё СЃС‚СЂРѕРєР° URL РёР»Рё base64
+  // Р В¤РЎС“Р Р…Р С”РЎвЂ Р С‘РЎРЏ Р Т‘Р В»РЎРЏ Р С—РЎР‚Р С•Р Р†Р ВµРЎР‚Р С”Р С‘, РЎРЏР Р†Р В»РЎРЏР ВµРЎвЂљРЎРѓРЎРЏ Р В»Р С‘ РЎРѓРЎвЂљРЎР‚Р С•Р С”Р В° URL Р С‘Р В»Р С‘ base64
   const isImageUrl = (str: string) => {
     try {
       new URL(str);
@@ -34,7 +34,7 @@ export function CaseRoulette({ cases, onResult, isSpinning, onSpinComplete, hasS
     }
   };
 
-  // РљРѕРјРїРѕРЅРµРЅС‚ РґР»СЏ РѕС‚РѕР±СЂР°Р¶РµРЅРёСЏ РёР·РѕР±СЂР°Р¶РµРЅРёСЏ РёР»Рё СЌРјРѕРґР·Рё
+  // Р С™Р С•Р СР С—Р С•Р Р…Р ВµР Р…РЎвЂљ Р Т‘Р В»РЎРЏ Р С•РЎвЂљР С•Р В±РЎР‚Р В°Р В¶Р ВµР Р…Р С‘РЎРЏ Р С‘Р В·Р С•Р В±РЎР‚Р В°Р В¶Р ВµР Р…Р С‘РЎРЏ Р С‘Р В»Р С‘ РЎРЊР СР С•Р Т‘Р В·Р С‘
   const ImageOrEmoji = ({ src, className = '', style = {} }: { src: string; className?: string; style?: React.CSSProperties }) => {
     if (isImageUrl(src)) {
       return (
@@ -53,39 +53,39 @@ export function CaseRoulette({ cases, onResult, isSpinning, onSpinComplete, hasS
     );
   };
 
-  // РЎРѕР·РґР°РµРј Р·Р°С†РёРєР»РµРЅРЅС‹Р№ РјР°СЃСЃРёРІ РєРµР№СЃРѕРІ РґР»СЏ Р±РµСЃС€РѕРІРЅРѕР№ РїСЂРѕРєСЂСѓС‚РєРё
-  const repeatCount = 12; // РљРѕР»РёС‡РµСЃС‚РІРѕ РїРѕРІС‚РѕСЂРѕРІ РґР»СЏ РіР»Р°РґРєРѕР№ РїСЂРѕРєСЂСѓС‚РєРё
+  // Р РЋР С•Р В·Р Т‘Р В°Р ВµР С Р В·Р В°РЎвЂ Р С‘Р С”Р В»Р ВµР Р…Р Р…РЎвЂ№Р в„– Р СР В°РЎРѓРЎРѓР С‘Р Р† Р С”Р ВµР в„–РЎРѓР С•Р Р† Р Т‘Р В»РЎРЏ Р В±Р ВµРЎРѓРЎв‚¬Р С•Р Р†Р Р…Р С•Р в„– Р С—РЎР‚Р С•Р С”РЎР‚РЎС“РЎвЂљР С”Р С‘
+  const repeatCount = 12; // Р С™Р С•Р В»Р С‘РЎвЂЎР ВµРЎРѓРЎвЂљР Р†Р С• Р С—Р С•Р Р†РЎвЂљР С•РЎР‚Р С•Р Р† Р Т‘Р В»РЎРЏ Р С–Р В»Р В°Р Т‘Р С”Р С•Р в„– Р С—РЎР‚Р С•Р С”РЎР‚РЎС“РЎвЂљР С”Р С‘
   const repeatedCases = [];
   for (let i = 0; i < repeatCount; i++) {
     repeatedCases.push(...cases);
   }
   
-  const itemWidth = 100; // РЁРёСЂРёРЅР° РѕРґРЅРѕРіРѕ РєРµР№СЃР°
-  const containerWidth = 300; // РЁРёСЂРёРЅР° РІРёРґРёРјРѕРіРѕ РєРѕРЅС‚РµР№РЅРµСЂР°
-  const centerPosition = containerWidth / 2; // Р¦РµРЅС‚СЂ РєРѕРЅС‚РµР№РЅРµСЂР°
+  const itemWidth = 100; // Р РЃР С‘РЎР‚Р С‘Р Р…Р В° Р С•Р Т‘Р Р…Р С•Р С–Р С• Р С”Р ВµР в„–РЎРѓР В°
+  const containerWidth = 300; // Р РЃР С‘РЎР‚Р С‘Р Р…Р В° Р Р†Р С‘Р Т‘Р С‘Р СР С•Р С–Р С• Р С”Р С•Р Р…РЎвЂљР ВµР в„–Р Р…Р ВµРЎР‚Р В°
+  const centerPosition = containerWidth / 2; // Р В¦Р ВµР Р…РЎвЂљРЎР‚ Р С”Р С•Р Р…РЎвЂљР ВµР в„–Р Р…Р ВµРЎР‚Р В°
 
   useEffect(() => {
     if (isSpinning && cases.length > 0) {
-      // Р’С‹Р±РёСЂР°РµРј СЃР»СѓС‡Р°Р№РЅС‹Р№ РєРµР№СЃ
+      // Р вЂ™РЎвЂ№Р В±Р С‘РЎР‚Р В°Р ВµР С РЎРѓР В»РЎС“РЎвЂЎР В°Р в„–Р Р…РЎвЂ№Р в„– Р С”Р ВµР в„–РЎРѓ
       const randomIndex = Math.floor(Math.random() * cases.length);
       const randomCase = cases[randomIndex];
       setSelectedCase(randomCase);
       
-      // РќР°С…РѕРґРёРј РїРѕР·РёС†РёСЋ СЃР»СѓС‡Р°Р№РЅРѕРіРѕ РєРµР№СЃР° РІ СЃСЂРµРґРЅРµР№ С‡Р°СЃС‚Рё РїРѕРІС‚РѕСЂСЏСЋС‰РµРіРѕСЃСЏ РјР°СЃСЃРёРІР°
+      // Р СњР В°РЎвЂ¦Р С•Р Т‘Р С‘Р С Р С—Р С•Р В·Р С‘РЎвЂ Р С‘РЎР‹ РЎРѓР В»РЎС“РЎвЂЎР В°Р в„–Р Р…Р С•Р С–Р С• Р С”Р ВµР в„–РЎРѓР В° Р Р† РЎРѓРЎР‚Р ВµР Т‘Р Р…Р ВµР в„– РЎвЂЎР В°РЎРѓРЎвЂљР С‘ Р С—Р С•Р Р†РЎвЂљР С•РЎР‚РЎРЏРЎР‹РЎвЂ°Р ВµР С–Р С•РЎРѓРЎРЏ Р СР В°РЎРѓРЎРѓР С‘Р Р†Р В°
       const middleRepeatIndex = Math.floor(repeatCount / 2);
       const targetIndex = middleRepeatIndex * cases.length + randomIndex;
       const targetPosition = targetIndex * itemWidth;
       
-      // Р Р°СЃСЃС‡РёС‚С‹РІР°РµРј С„РёРЅР°Р»СЊРЅС‹Р№ offset С‡С‚РѕР±С‹ РІС‹Р±СЂР°РЅРЅС‹Р№ РєРµР№СЃ РѕРєР°Р·Р°Р»СЃСЏ РІ С†РµРЅС‚СЂРµ
+      // Р В Р В°РЎРѓРЎРѓРЎвЂЎР С‘РЎвЂљРЎвЂ№Р Р†Р В°Р ВµР С РЎвЂћР С‘Р Р…Р В°Р В»РЎРЉР Р…РЎвЂ№Р в„– offset РЎвЂЎРЎвЂљР С•Р В±РЎвЂ№ Р Р†РЎвЂ№Р В±РЎР‚Р В°Р Р…Р Р…РЎвЂ№Р в„– Р С”Р ВµР в„–РЎРѓ Р С•Р С”Р В°Р В·Р В°Р В»РЎРѓРЎРЏ Р Р† РЎвЂ Р ВµР Р…РЎвЂљРЎР‚Р Вµ
       const finalOffset = -(targetPosition - centerPosition + itemWidth / 2);
       
-      // Р”РѕР±Р°РІР»СЏРµРј РґРѕРїРѕР»РЅРёС‚РµР»СЊРЅС‹Рµ РѕР±РѕСЂРѕС‚С‹ РґР»СЏ СЌС„С„РµРєС‚Р°
+      // Р вЂќР С•Р В±Р В°Р Р†Р В»РЎРЏР ВµР С Р Т‘Р С•Р С—Р С•Р В»Р Р…Р С‘РЎвЂљР ВµР В»РЎРЉР Р…РЎвЂ№Р Вµ Р С•Р В±Р С•РЎР‚Р С•РЎвЂљРЎвЂ№ Р Т‘Р В»РЎРЏ РЎРЊРЎвЂћРЎвЂћР ВµР С”РЎвЂљР В°
       const extraSpins = 3;
       const totalOffset = finalOffset - (cases.length * itemWidth * extraSpins);
       
       setSpinOffset(totalOffset);
 
-      // Р§РµСЂРµР· 5 СЃРµРєСѓРЅРґ Р·Р°РІРµСЂС€Р°РµРј СЃРїРёРЅ
+      // Р В§Р ВµРЎР‚Р ВµР В· 5 РЎРѓР ВµР С”РЎС“Р Р…Р Т‘ Р В·Р В°Р Р†Р ВµРЎР‚РЎв‚¬Р В°Р ВµР С РЎРѓР С—Р С‘Р Р…
       setTimeout(() => {
         onResult({
           selectedCase: randomCase,
@@ -98,9 +98,9 @@ export function CaseRoulette({ cases, onResult, isSpinning, onSpinComplete, hasS
 
   return (
     <div className="relative w-full h-48 overflow-hidden rounded-xl bg-surface border border-border">
-      {/* Р¦РµРЅС‚СЂР°Р»СЊРЅР°СЏ Р»РёРЅРёСЏ-СѓРєР°Р·Р°С‚РµР»СЊ */}
+      {/* Р В¦Р ВµР Р…РЎвЂљРЎР‚Р В°Р В»РЎРЉР Р…Р В°РЎРЏ Р В»Р С‘Р Р…Р С‘РЎРЏ-РЎС“Р С”Р В°Р В·Р В°РЎвЂљР ВµР В»РЎРЉ */}
       <div className="absolute top-0 left-1/2 transform -translate-x-1/2 w-0.5 h-full bg-primary z-20">
-        {/* РўСЂРµСѓРіРѕР»СЊРЅРёРє СЃРІРµСЂС…Сѓ */}
+        {/* Р СћРЎР‚Р ВµРЎС“Р С–Р С•Р В»РЎРЉР Р…Р С‘Р С” РЎРѓР Р†Р ВµРЎР‚РЎвЂ¦РЎС“ */}
         <div 
           className="absolute -top-2 left-1/2 transform -translate-x-1/2"
         >
@@ -111,7 +111,7 @@ export function CaseRoulette({ cases, onResult, isSpinning, onSpinComplete, hasS
             }}
           />
         </div>
-        {/* РўСЂРµСѓРіРѕР»СЊРЅРёРє СЃРЅРёР·Сѓ */}
+        {/* Р СћРЎР‚Р ВµРЎС“Р С–Р С•Р В»РЎРЉР Р…Р С‘Р С” РЎРѓР Р…Р С‘Р В·РЎС“ */}
         <div 
           className="absolute -bottom-2 left-1/2 transform -translate-x-1/2"
         >
@@ -124,7 +124,7 @@ export function CaseRoulette({ cases, onResult, isSpinning, onSpinComplete, hasS
         </div>
       </div>
 
-      {/* Р СѓР»РµС‚РєР° */}
+      {/* Р В РЎС“Р В»Р ВµРЎвЂљР С”Р В° */}
       <div className="absolute inset-0 flex items-center overflow-hidden">
         <motion.div
           className="flex items-start h-full"
@@ -148,7 +148,7 @@ export function CaseRoulette({ cases, onResult, isSpinning, onSpinComplete, hasS
               className="flex-shrink-0 flex flex-col items-center"
               style={{ 
                 width: itemWidth,
-                height: '160px' // Р¤РёРєСЃРёСЂРѕРІР°РЅРЅР°СЏ РІС‹СЃРѕС‚Р°
+                height: '160px' // Р В¤Р С‘Р С”РЎРѓР С‘РЎР‚Р С•Р Р†Р В°Р Р…Р Р…Р В°РЎРЏ Р Р†РЎвЂ№РЎРѓР С•РЎвЂљР В°
               }}
             >
               <div 
@@ -167,7 +167,7 @@ export function CaseRoulette({ cases, onResult, isSpinning, onSpinComplete, hasS
               <div 
                 className="text-xs text-center font-medium text-foreground px-1 mt-2"
                 style={{
-                  height: '32px', // Р¤РёРєСЃРёСЂРѕРІР°РЅРЅР°СЏ РІС‹СЃРѕС‚Р° РґР»СЏ С‚РµРєСЃС‚Р°
+                  height: '32px', // Р В¤Р С‘Р С”РЎРѓР С‘РЎР‚Р С•Р Р†Р В°Р Р…Р Р…Р В°РЎРЏ Р Р†РЎвЂ№РЎРѓР С•РЎвЂљР В° Р Т‘Р В»РЎРЏ РЎвЂљР ВµР С”РЎРѓРЎвЂљР В°
                   display: 'flex',
                   alignItems: 'center',
                   justifyContent: 'center',
@@ -181,7 +181,7 @@ export function CaseRoulette({ cases, onResult, isSpinning, onSpinComplete, hasS
         </motion.div>
       </div>
 
-      {/* Р“СЂР°РґРёРµРЅС‚РЅС‹Рµ РєСЂР°СЏ РґР»СЏ СЌС„С„РµРєС‚Р° Р·Р°С‚СѓС…Р°РЅРёСЏ */}
+      {/* Р вЂњРЎР‚Р В°Р Т‘Р С‘Р ВµР Р…РЎвЂљР Р…РЎвЂ№Р Вµ Р С”РЎР‚Р В°РЎРЏ Р Т‘Р В»РЎРЏ РЎРЊРЎвЂћРЎвЂћР ВµР С”РЎвЂљР В° Р В·Р В°РЎвЂљРЎС“РЎвЂ¦Р В°Р Р…Р С‘РЎРЏ */}
       <div className="absolute inset-y-0 left-0 w-16 bg-gradient-to-r from-surface via-surface/80 to-transparent pointer-events-none z-10" />
       <div className="absolute inset-y-0 right-0 w-16 bg-gradient-to-l from-surface via-surface/80 to-transparent pointer-events-none z-10" />
     </div>

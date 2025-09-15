@@ -31,7 +31,7 @@ interface UseAdminDatabaseReturn {
   isLoading: boolean;
   error: string | null;
   
-  // Методы для работы с данными
+  // РњРµС‚РѕРґС‹ РґР»СЏ СЂР°Р±РѕС‚С‹ СЃ РґР°РЅРЅС‹РјРё
   addUser: (user: UserData) => boolean;
   updateUser: (userId: string, updates: Partial<UserData>) => boolean;
   deleteUser: (userId: string) => boolean;
@@ -69,13 +69,13 @@ export const useAdminDatabase = (): UseAdminDatabaseReturn => {
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
 
-  // Загрузка всех данных из localStorage
+  // Р—Р°РіСЂСѓР·РєР° РІСЃРµС… РґР°РЅРЅС‹С… РёР· localStorage
   const loadDatabase = useCallback(() => {
     try {
       setIsLoading(true);
       setError(null);
 
-      // Получаем все данные из localStorage
+      // РџРѕР»СѓС‡Р°РµРј РІСЃРµ РґР°РЅРЅС‹Рµ РёР· localStorage
       const users: UserData[] = [];
       const achievements: AchievementData[] = [];
       const tasks: TaskData[] = [];
@@ -83,7 +83,7 @@ export const useAdminDatabase = (): UseAdminDatabaseReturn => {
       const shopItems: ShopItemData[] = [];
       const notifications: NotificationData[] = [];
 
-      // Получаем пользователей
+      // РџРѕР»СѓС‡Р°РµРј РїРѕР»СЊР·РѕРІР°С‚РµР»РµР№
       for (let i = 0; i < localStorage.length; i++) {
         const key = localStorage.key(i);
         if (key?.startsWith('grither_db_user_')) {
@@ -94,7 +94,7 @@ export const useAdminDatabase = (): UseAdminDatabaseReturn => {
         }
       }
 
-      // Получаем достижения
+      // РџРѕР»СѓС‡Р°РµРј РґРѕСЃС‚РёР¶РµРЅРёСЏ
       for (let i = 0; i < localStorage.length; i++) {
         const key = localStorage.key(i);
         if (key?.startsWith('grither_db_achievement_')) {
@@ -105,7 +105,7 @@ export const useAdminDatabase = (): UseAdminDatabaseReturn => {
         }
       }
 
-      // Получаем задачи
+      // РџРѕР»СѓС‡Р°РµРј Р·Р°РґР°С‡Рё
       for (let i = 0; i < localStorage.length; i++) {
         const key = localStorage.key(i);
         if (key?.startsWith('grither_db_task_')) {
@@ -116,7 +116,7 @@ export const useAdminDatabase = (): UseAdminDatabaseReturn => {
         }
       }
 
-      // Получаем баттлы
+      // РџРѕР»СѓС‡Р°РµРј Р±Р°С‚С‚Р»С‹
       for (let i = 0; i < localStorage.length; i++) {
         const key = localStorage.key(i);
         if (key?.startsWith('grither_db_battle_')) {
@@ -127,7 +127,7 @@ export const useAdminDatabase = (): UseAdminDatabaseReturn => {
         }
       }
 
-      // Получаем товары магазина
+      // РџРѕР»СѓС‡Р°РµРј С‚РѕРІР°СЂС‹ РјР°РіР°Р·РёРЅР°
       for (let i = 0; i < localStorage.length; i++) {
         const key = localStorage.key(i);
         if (key?.startsWith('grither_db_shop_')) {
@@ -138,7 +138,7 @@ export const useAdminDatabase = (): UseAdminDatabaseReturn => {
         }
       }
 
-      // Получаем уведомления
+      // РџРѕР»СѓС‡Р°РµРј СѓРІРµРґРѕРјР»РµРЅРёСЏ
       for (let i = 0; i < localStorage.length; i++) {
         const key = localStorage.key(i);
         if (key?.startsWith('grither_db_notification_')) {
@@ -159,24 +159,24 @@ export const useAdminDatabase = (): UseAdminDatabaseReturn => {
       });
 
     } catch (err) {
-      console.error('Ошибка загрузки базы данных:', err);
-      setError('Ошибка загрузки базы данных');
+      console.error('РћС€РёР±РєР° Р·Р°РіСЂСѓР·РєРё Р±Р°Р·С‹ РґР°РЅРЅС‹С…:', err);
+      setError('РћС€РёР±РєР° Р·Р°РіСЂСѓР·РєРё Р±Р°Р·С‹ РґР°РЅРЅС‹С…');
     } finally {
       setIsLoading(false);
     }
   }, []);
 
-  // Автоматическая загрузка при монтировании
+  // РђРІС‚РѕРјР°С‚РёС‡РµСЃРєР°СЏ Р·Р°РіСЂСѓР·РєР° РїСЂРё РјРѕРЅС‚РёСЂРѕРІР°РЅРёРё
   useEffect(() => {
     loadDatabase();
   }, [loadDatabase]);
 
-  // Обновление базы данных
+  // РћР±РЅРѕРІР»РµРЅРёРµ Р±Р°Р·С‹ РґР°РЅРЅС‹С…
   const updateDatabase = useCallback((updates: Partial<AppDatabase>) => {
     setDatabase(prev => ({ ...prev, ...updates }));
   }, []);
 
-  // Методы для работы с пользователями
+  // РњРµС‚РѕРґС‹ РґР»СЏ СЂР°Р±РѕС‚С‹ СЃ РїРѕР»СЊР·РѕРІР°С‚РµР»СЏРјРё
   const addUser = useCallback((user: UserData): boolean => {
     try {
       const success = databaseService.saveUser(user);
@@ -185,7 +185,7 @@ export const useAdminDatabase = (): UseAdminDatabaseReturn => {
       }
       return success;
     } catch (err) {
-      console.error('Ошибка добавления пользователя:', err);
+      console.error('РћС€РёР±РєР° РґРѕР±Р°РІР»РµРЅРёСЏ РїРѕР»СЊР·РѕРІР°С‚РµР»СЏ:', err);
       return false;
     }
   }, [loadDatabase]);
@@ -202,7 +202,7 @@ export const useAdminDatabase = (): UseAdminDatabaseReturn => {
       }
       return success;
     } catch (err) {
-      console.error('Ошибка обновления пользователя:', err);
+      console.error('РћС€РёР±РєР° РѕР±РЅРѕРІР»РµРЅРёСЏ РїРѕР»СЊР·РѕРІР°С‚РµР»СЏ:', err);
       return false;
     }
   }, [database.users, loadDatabase]);
@@ -213,12 +213,12 @@ export const useAdminDatabase = (): UseAdminDatabaseReturn => {
       loadDatabase();
       return true;
     } catch (err) {
-      console.error('Ошибка удаления пользователя:', err);
+      console.error('РћС€РёР±РєР° СѓРґР°Р»РµРЅРёСЏ РїРѕР»СЊР·РѕРІР°С‚РµР»СЏ:', err);
       return false;
     }
   }, [loadDatabase]);
 
-  // Методы для работы с достижениями
+  // РњРµС‚РѕРґС‹ РґР»СЏ СЂР°Р±РѕС‚С‹ СЃ РґРѕСЃС‚РёР¶РµРЅРёСЏРјРё
   const addAchievement = useCallback((achievement: AchievementData): boolean => {
     try {
       const success = databaseService.saveAchievement(achievement);
@@ -227,7 +227,7 @@ export const useAdminDatabase = (): UseAdminDatabaseReturn => {
       }
       return success;
     } catch (err) {
-      console.error('Ошибка добавления достижения:', err);
+      console.error('РћС€РёР±РєР° РґРѕР±Р°РІР»РµРЅРёСЏ РґРѕСЃС‚РёР¶РµРЅРёСЏ:', err);
       return false;
     }
   }, [loadDatabase]);
@@ -244,7 +244,7 @@ export const useAdminDatabase = (): UseAdminDatabaseReturn => {
       }
       return success;
     } catch (err) {
-      console.error('Ошибка обновления достижения:', err);
+      console.error('РћС€РёР±РєР° РѕР±РЅРѕРІР»РµРЅРёСЏ РґРѕСЃС‚РёР¶РµРЅРёСЏ:', err);
       return false;
     }
   }, [database.achievements, loadDatabase]);
@@ -255,12 +255,12 @@ export const useAdminDatabase = (): UseAdminDatabaseReturn => {
       loadDatabase();
       return true;
     } catch (err) {
-      console.error('Ошибка удаления достижения:', err);
+      console.error('РћС€РёР±РєР° СѓРґР°Р»РµРЅРёСЏ РґРѕСЃС‚РёР¶РµРЅРёСЏ:', err);
       return false;
     }
   }, [loadDatabase]);
 
-  // Методы для работы с задачами
+  // РњРµС‚РѕРґС‹ РґР»СЏ СЂР°Р±РѕС‚С‹ СЃ Р·Р°РґР°С‡Р°РјРё
   const addTask = useCallback((task: TaskData): boolean => {
     try {
       const success = databaseService.saveTask(task);
@@ -269,7 +269,7 @@ export const useAdminDatabase = (): UseAdminDatabaseReturn => {
       }
       return success;
     } catch (err) {
-      console.error('Ошибка добавления задачи:', err);
+      console.error('РћС€РёР±РєР° РґРѕР±Р°РІР»РµРЅРёСЏ Р·Р°РґР°С‡Рё:', err);
       return false;
     }
   }, [loadDatabase]);
@@ -286,7 +286,7 @@ export const useAdminDatabase = (): UseAdminDatabaseReturn => {
       }
       return success;
     } catch (err) {
-      console.error('Ошибка обновления задачи:', err);
+      console.error('РћС€РёР±РєР° РѕР±РЅРѕРІР»РµРЅРёСЏ Р·Р°РґР°С‡Рё:', err);
       return false;
     }
   }, [database.tasks, loadDatabase]);
@@ -297,19 +297,19 @@ export const useAdminDatabase = (): UseAdminDatabaseReturn => {
       loadDatabase();
       return true;
     } catch (err) {
-      console.error('Ошибка удаления задачи:', err);
+      console.error('РћС€РёР±РєР° СѓРґР°Р»РµРЅРёСЏ Р·Р°РґР°С‡Рё:', err);
       return false;
     }
   }, [loadDatabase]);
 
-  // Методы для работы с баттлами
+  // РњРµС‚РѕРґС‹ РґР»СЏ СЂР°Р±РѕС‚С‹ СЃ Р±Р°С‚С‚Р»Р°РјРё
   const addBattle = useCallback((battle: BattleData): boolean => {
     try {
       localStorage.setItem(`grither_db_battle_${battle.id}`, JSON.stringify(battle));
       loadDatabase();
       return true;
     } catch (err) {
-      console.error('Ошибка добавления баттла:', err);
+      console.error('РћС€РёР±РєР° РґРѕР±Р°РІР»РµРЅРёСЏ Р±Р°С‚С‚Р»Р°:', err);
       return false;
     }
   }, [loadDatabase]);
@@ -324,7 +324,7 @@ export const useAdminDatabase = (): UseAdminDatabaseReturn => {
       loadDatabase();
       return true;
     } catch (err) {
-      console.error('Ошибка обновления баттла:', err);
+      console.error('РћС€РёР±РєР° РѕР±РЅРѕРІР»РµРЅРёСЏ Р±Р°С‚С‚Р»Р°:', err);
       return false;
     }
   }, [database.battles, loadDatabase]);
@@ -335,19 +335,19 @@ export const useAdminDatabase = (): UseAdminDatabaseReturn => {
       loadDatabase();
       return true;
     } catch (err) {
-      console.error('Ошибка удаления баттла:', err);
+      console.error('РћС€РёР±РєР° СѓРґР°Р»РµРЅРёСЏ Р±Р°С‚С‚Р»Р°:', err);
       return false;
     }
   }, [loadDatabase]);
 
-  // Методы для работы с товарами магазина
+  // РњРµС‚РѕРґС‹ РґР»СЏ СЂР°Р±РѕС‚С‹ СЃ С‚РѕРІР°СЂР°РјРё РјР°РіР°Р·РёРЅР°
   const addShopItem = useCallback((item: ShopItemData): boolean => {
     try {
       localStorage.setItem(`grither_db_shop_${item.id}`, JSON.stringify(item));
       loadDatabase();
       return true;
     } catch (err) {
-      console.error('Ошибка добавления товара:', err);
+      console.error('РћС€РёР±РєР° РґРѕР±Р°РІР»РµРЅРёСЏ С‚РѕРІР°СЂР°:', err);
       return false;
     }
   }, [loadDatabase]);
@@ -362,7 +362,7 @@ export const useAdminDatabase = (): UseAdminDatabaseReturn => {
       loadDatabase();
       return true;
     } catch (err) {
-      console.error('Ошибка обновления товара:', err);
+      console.error('РћС€РёР±РєР° РѕР±РЅРѕРІР»РµРЅРёСЏ С‚РѕРІР°СЂР°:', err);
       return false;
     }
   }, [database.shopItems, loadDatabase]);
@@ -373,12 +373,12 @@ export const useAdminDatabase = (): UseAdminDatabaseReturn => {
       loadDatabase();
       return true;
     } catch (err) {
-      console.error('Ошибка удаления товара:', err);
+      console.error('РћС€РёР±РєР° СѓРґР°Р»РµРЅРёСЏ С‚РѕРІР°СЂР°:', err);
       return false;
     }
   }, [loadDatabase]);
 
-  // Методы для работы с уведомлениями
+  // РњРµС‚РѕРґС‹ РґР»СЏ СЂР°Р±РѕС‚С‹ СЃ СѓРІРµРґРѕРјР»РµРЅРёСЏРјРё
   const addNotification = useCallback((notification: NotificationData): boolean => {
     try {
       const success = databaseService.saveNotification(notification);
@@ -387,7 +387,7 @@ export const useAdminDatabase = (): UseAdminDatabaseReturn => {
       }
       return success;
     } catch (err) {
-      console.error('Ошибка добавления уведомления:', err);
+      console.error('РћС€РёР±РєР° РґРѕР±Р°РІР»РµРЅРёСЏ СѓРІРµРґРѕРјР»РµРЅРёСЏ:', err);
       return false;
     }
   }, [loadDatabase]);
@@ -404,7 +404,7 @@ export const useAdminDatabase = (): UseAdminDatabaseReturn => {
       }
       return success;
     } catch (err) {
-      console.error('Ошибка обновления уведомления:', err);
+      console.error('РћС€РёР±РєР° РѕР±РЅРѕРІР»РµРЅРёСЏ СѓРІРµРґРѕРјР»РµРЅРёСЏ:', err);
       return false;
     }
   }, [database.notifications, loadDatabase]);
@@ -415,7 +415,7 @@ export const useAdminDatabase = (): UseAdminDatabaseReturn => {
       loadDatabase();
       return true;
     } catch (err) {
-      console.error('Ошибка удаления уведомления:', err);
+      console.error('РћС€РёР±РєР° СѓРґР°Р»РµРЅРёСЏ СѓРІРµРґРѕРјР»РµРЅРёСЏ:', err);
       return false;
     }
   }, [loadDatabase]);

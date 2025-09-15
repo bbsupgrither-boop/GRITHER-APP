@@ -1,4 +1,4 @@
-﻿import React, { useEffect } from 'react';
+import React, { useEffect } from 'react';
 
 interface ModalProps {
   isOpen: boolean;
@@ -10,7 +10,7 @@ interface ModalProps {
 }
 
 export function Modal({ isOpen, onClose, title, children, actions, theme = 'light' }: ModalProps) {
-  // РћР±СЂР°Р±РѕС‚РєР° Escape
+  // Р С›Р В±РЎР‚Р В°Р В±Р С•РЎвЂљР С”Р В° Escape
   useEffect(() => {
     if (!isOpen) return;
     
@@ -22,7 +22,7 @@ export function Modal({ isOpen, onClose, title, children, actions, theme = 'ligh
     
     document.addEventListener('keydown', handleEscape);
     
-    // РџСЂРµРґРѕС‚РІСЂР°С‰Р°РµРј СЃРєСЂРѕР»Р» С„РѕРЅР°
+    // Р СџРЎР‚Р ВµР Т‘Р С•РЎвЂљР Р†РЎР‚Р В°РЎвЂ°Р В°Р ВµР С РЎРѓР С”РЎР‚Р С•Р В»Р В» РЎвЂћР С•Р Р…Р В°
     document.body.style.overflow = 'hidden';
     
     // Dispatch modal opened event
@@ -57,7 +57,7 @@ export function Modal({ isOpen, onClose, title, children, actions, theme = 'ligh
         className="relative w-full max-w-[90%] mx-4"
         style={{
           backgroundColor: theme === 'dark' ? '#161A22' : '#FFFFFF',
-          opacity: '1', // 100% РЅРµРїСЂРѕР·СЂР°С‡РЅРѕСЃС‚СЊ
+          opacity: '1', // 100% Р Р…Р ВµР С—РЎР‚Р С•Р В·РЎР‚Р В°РЎвЂЎР Р…Р С•РЎРѓРЎвЂљРЎРЉ
           borderRadius: '16px',
           border: theme === 'dark' 
             ? '1px solid rgba(255, 255, 255, 0.06)' 
@@ -69,7 +69,7 @@ export function Modal({ isOpen, onClose, title, children, actions, theme = 'ligh
           minWidth: '280px',
           maxHeight: '80vh',
           overflow: 'hidden',
-          // РЈР±РёСЂР°РµРј РІСЃРµ СЌС„С„РµРєС‚С‹ СЂР°Р·РјС‹С‚РёСЏ Рё РїСЂРѕР·СЂР°С‡РЅРѕСЃС‚Рё
+          // Р Р€Р В±Р С‘РЎР‚Р В°Р ВµР С Р Р†РЎРѓР Вµ РЎРЊРЎвЂћРЎвЂћР ВµР С”РЎвЂљРЎвЂ№ РЎР‚Р В°Р В·Р СРЎвЂ№РЎвЂљР С‘РЎРЏ Р С‘ Р С—РЎР‚Р С•Р В·РЎР‚Р В°РЎвЂЎР Р…Р С•РЎРѓРЎвЂљР С‘
           backdropFilter: 'none',
           WebkitBackdropFilter: 'none'
         }}

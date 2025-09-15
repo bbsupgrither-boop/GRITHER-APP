@@ -1,4 +1,4 @@
-﻿import { useState, useEffect } from 'react';
+п»їimport { useState, useEffect } from 'react';
 import { ArrowLeft, Plus, Edit, Trash2, X, Home, Users, Zap, Trophy, CheckSquare, ShoppingBag, Gamepad2, Box, Upload, ArrowUpDown, Package } from './Icons';
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription } from './ui/dialog';
 import { Button } from './ui/button';
@@ -14,7 +14,7 @@ interface AdminShopPageProps {
 }
 
 export function AdminShopPage({ onBack, onNavigateToSection, onNavigateToModeration, shopItems, setShopItems }: AdminShopPageProps) {
-  // РўРѕРІР°СЂС‹ С‚РµРїРµСЂСЊ СѓРїСЂР°РІР»СЏСЋС‚СЃСЏ С‡РµСЂРµР· РіР»РѕР±Р°Р»СЊРЅРѕРµ СЃРѕСЃС‚РѕСЏРЅРёРµ
+  // Р СћР С•Р Р†Р В°РЎР‚РЎвЂ№ РЎвЂљР ВµР С—Р ВµРЎР‚РЎРЉ РЎС“Р С—РЎР‚Р В°Р Р†Р В»РЎРЏРЎР‹РЎвЂљРЎРѓРЎРЏ РЎвЂЎР ВµРЎР‚Р ВµР В· Р С–Р В»Р С•Р В±Р В°Р В»РЎРЉР Р…Р С•Р Вµ РЎРѓР С•РЎРѓРЎвЂљР С•РЎРЏР Р…Р С‘Р Вµ
   const [showAddItem, setShowAddItem] = useState(false);
   const [showEditItem, setShowEditItem] = useState(false);
   const [selectedItem, setSelectedItem] = useState<ShopItem | null>(null);
@@ -22,21 +22,21 @@ export function AdminShopPage({ onBack, onNavigateToSection, onNavigateToModerat
   const [sortOrder, setSortOrder] = useState<'asc' | 'desc'>('asc');
 
   const navigationItems = [
-    { icon: Home, label: 'Р“Р»Р°РІРЅР°СЏ', section: 'dashboard' },
-    { icon: Users, label: 'Р’РѕСЂРєРµСЂС‹', section: 'workers' },
-    { icon: Zap, label: 'Р‘Р°С‚С‚Р»С‹', section: 'battles' },
-    { icon: Trophy, label: 'Р”РѕСЃС‚РёР¶РµРЅРёСЏ', section: 'achievements' },
-    { icon: CheckSquare, label: 'Р—Р°РґР°С‡Рё', section: 'tasks' },
-    { icon: ShoppingBag, label: 'РўРѕРІР°СЂС‹', section: 'shop' },
-    { icon: Gamepad2, label: 'РРіСЂС‹', section: 'games' },
-    { icon: Box, label: 'РљРµР№СЃС‹', section: 'cases' }
+    { icon: Home, label: 'Р вЂњР В»Р В°Р Р†Р Р…Р В°РЎРЏ', section: 'dashboard' },
+    { icon: Users, label: 'Р вЂ™Р С•РЎР‚Р С”Р ВµРЎР‚РЎвЂ№', section: 'workers' },
+    { icon: Zap, label: 'Р вЂР В°РЎвЂљРЎвЂљР В»РЎвЂ№', section: 'battles' },
+    { icon: Trophy, label: 'Р вЂќР С•РЎРѓРЎвЂљР С‘Р В¶Р ВµР Р…Р С‘РЎРЏ', section: 'achievements' },
+    { icon: CheckSquare, label: 'Р вЂ”Р В°Р Т‘Р В°РЎвЂЎР С‘', section: 'tasks' },
+    { icon: ShoppingBag, label: 'Р СћР С•Р Р†Р В°РЎР‚РЎвЂ№', section: 'shop' },
+    { icon: Gamepad2, label: 'Р ВР С–РЎР‚РЎвЂ№', section: 'games' },
+    { icon: Box, label: 'Р С™Р ВµР в„–РЎРѓРЎвЂ№', section: 'cases' }
   ];
 
   const categories = [
-    { value: 'bonus', label: 'Р‘РѕРЅСѓСЃ' },
-    { value: 'privilege', label: 'РџСЂРёРІРёР»РµРіРёСЏ' },
-    { value: 'cosmetic', label: 'РљРѕСЃРјРµС‚РёРєР°' },
-    { value: 'tool', label: 'РРЅСЃС‚СЂСѓРјРµРЅС‚' }
+    { value: 'bonus', label: 'Р вЂР С•Р Р…РЎС“РЎРѓ' },
+    { value: 'privilege', label: 'Р СџРЎР‚Р С‘Р Р†Р С‘Р В»Р ВµР С–Р С‘РЎРЏ' },
+    { value: 'cosmetic', label: 'Р С™Р С•РЎРѓР СР ВµРЎвЂљР С‘Р С”Р В°' },
+    { value: 'tool', label: 'Р ВР Р…РЎРѓРЎвЂљРЎР‚РЎС“Р СР ВµР Р…РЎвЂљ' }
   ];
 
   const sortedItems = [...shopItems].sort((a, b) => {
@@ -65,40 +65,40 @@ export function AdminShopPage({ onBack, onNavigateToSection, onNavigateToModerat
 
   return (
     <div className="min-h-screen bg-background">
-      {/* Р—Р°РіРѕР»РѕРІРѕРє СЃС‚СЂР°РЅРёС†С‹ */}
+      {/* Р вЂ”Р В°Р С–Р С•Р В»Р С•Р Р†Р С•Р С” РЎРѓРЎвЂљРЎР‚Р В°Р Р…Р С‘РЎвЂ РЎвЂ№ */}
       <div className="p-6">
-        <h1 className="text-lg font-medium text-foreground text-center mb-4">РџР°РЅРµР»СЊ СѓРїСЂР°РІР»РµРЅРёСЏ</h1>
+        <h1 className="text-lg font-medium text-foreground text-center mb-4">Р СџР В°Р Р…Р ВµР В»РЎРЉ РЎС“Р С—РЎР‚Р В°Р Р†Р В»Р ВµР Р…Р С‘РЎРЏ</h1>
         
-        {/* РЈРїСЂР°РІР»РµРЅРёРµ */}
+        {/* Р Р€Р С—РЎР‚Р В°Р Р†Р В»Р ВµР Р…Р С‘Р Вµ */}
         <div className="flex items-center justify-between mb-4">
           <button
             onClick={() => setShowAddItem(true)}
             className="px-4 py-2 glass-card rounded-lg hover:bg-black/5 dark:hover:bg-white/5 transition-colors text-foreground flex items-center gap-2"
           >
             <Plus className="w-4 h-4" />
-            Р”РѕР±. С‚РѕРІР°СЂ
+            Р вЂќР С•Р В±. РЎвЂљР С•Р Р†Р В°РЎР‚
           </button>
           
           <button
             onClick={() => onNavigateToModeration?.()}
             className="px-4 py-2 glass-card rounded-lg hover:bg-black/5 dark:hover:bg-white/5 transition-colors text-foreground"
           >
-            РћРґРѕР±СЂРёС‚СЊ
+            Р С›Р Т‘Р С•Р В±РЎР‚Р С‘РЎвЂљРЎРЉ
           </button>
         </div>
       </div>
 
-      {/* РЎРѕРґРµСЂР¶РёРјРѕРµ */}
+      {/* Р РЋР С•Р Т‘Р ВµРЎР‚Р В¶Р С‘Р СР С•Р Вµ */}
       <div className="px-6 space-y-6 pb-60">
-        {/* РЎРµРєС†РёСЏ С‚РѕРІР°СЂРѕРІ */}
+        {/* Р РЋР ВµР С”РЎвЂ Р С‘РЎРЏ РЎвЂљР С•Р Р†Р В°РЎР‚Р С•Р Р† */}
         <div className="glass-card rounded-2xl apple-shadow p-4">
-          {/* Р—Р°РіРѕР»РѕРІРѕРє СЃ РєРЅРѕРїРєРѕР№ СЃРѕСЂС‚РёСЂРѕРІРєРё */}
+          {/* Р вЂ”Р В°Р С–Р С•Р В»Р С•Р Р†Р С•Р С” РЎРѓ Р С”Р Р…Р С•Р С—Р С”Р С•Р в„– РЎРѓР С•РЎР‚РЎвЂљР С‘РЎР‚Р С•Р Р†Р С”Р С‘ */}
           <div className="flex items-center justify-between mb-4">
-            <h2 className="text-lg font-medium text-foreground">Р”РѕСЃС‚СѓРїРЅС‹Рµ С‚РѕРІР°СЂС‹</h2>
+            <h2 className="text-lg font-medium text-foreground">Р вЂќР С•РЎРѓРЎвЂљРЎС“Р С—Р Р…РЎвЂ№Р Вµ РЎвЂљР С•Р Р†Р В°РЎР‚РЎвЂ№</h2>
             <button
               onClick={toggleSortOrder}
               className="p-2 glass-card rounded-lg hover:bg-black/5 dark:hover:bg-white/5 transition-colors"
-              title={`РЎРѕСЂС‚РёСЂРѕРІР°С‚СЊ РїРѕ СЃС‚РѕРёРјРѕСЃС‚Рё ${sortOrder === 'asc' ? 'РїРѕ СѓР±С‹РІР°РЅРёСЋ' : 'РїРѕ РІРѕР·СЂР°СЃС‚Р°РЅРёСЋ'}`}
+              title={`Р РЋР С•РЎР‚РЎвЂљР С‘РЎР‚Р С•Р Р†Р В°РЎвЂљРЎРЉ Р С—Р С• РЎРѓРЎвЂљР С•Р С‘Р СР С•РЎРѓРЎвЂљР С‘ ${sortOrder === 'asc' ? 'Р С—Р С• РЎС“Р В±РЎвЂ№Р Р†Р В°Р Р…Р С‘РЎР‹' : 'Р С—Р С• Р Р†Р С•Р В·РЎР‚Р В°РЎРѓРЎвЂљР В°Р Р…Р С‘РЎР‹'}`}
             >
               <ArrowUpDown className="w-4 h-4 text-muted-foreground" />
             </button>
@@ -106,7 +106,7 @@ export function AdminShopPage({ onBack, onNavigateToSection, onNavigateToModerat
 
 
 
-          {/* РЎРїРёСЃРѕРє С‚РѕРІР°СЂРѕРІ */}
+          {/* Р РЋР С—Р С‘РЎРѓР С•Р С” РЎвЂљР С•Р Р†Р В°РЎР‚Р С•Р Р† */}
           <div className="space-y-3">
             {sortedItems.map((item) => (
               <div 
@@ -115,7 +115,7 @@ export function AdminShopPage({ onBack, onNavigateToSection, onNavigateToModerat
                 onClick={() => handleItemClick(item)}
               >
                 <div className="flex items-center gap-3">
-                  {/* РљР°СЂС‚РёРЅРєР° С‚РѕРІР°СЂР° */}
+                  {/* Р С™Р В°РЎР‚РЎвЂљР С‘Р Р…Р С”Р В° РЎвЂљР С•Р Р†Р В°РЎР‚Р В° */}
                   <div className="w-10 h-10 bg-secondary rounded-lg flex items-center justify-center overflow-hidden">
                     {item.image ? (
                       <ImageWithFallback 
@@ -130,47 +130,47 @@ export function AdminShopPage({ onBack, onNavigateToSection, onNavigateToModerat
                   <div>
                     <div className="text-sm font-medium text-foreground">{item.title}</div>
                     <div className="text-xs text-muted-foreground">
-                      РЎС‚РѕРёРјРѕСЃС‚СЊ: {item.price}g
+                      Р РЋРЎвЂљР С•Р С‘Р СР С•РЎРѓРЎвЂљРЎРЉ: {item.price}g
                     </div>
                   </div>
                 </div>
                 <button
                   onClick={(e) => {
                     e.stopPropagation();
-                    // Р›РѕРіРёРєР° РїРѕРєСѓРїРєРё Р±СѓРґРµС‚ РґРѕР±Р°РІР»РµРЅР° РїРѕР·Р¶Рµ
+                    // Р вЂєР С•Р С–Р С‘Р С”Р В° Р С—Р С•Р С”РЎС“Р С—Р С”Р С‘ Р В±РЎС“Р Т‘Р ВµРЎвЂљ Р Т‘Р С•Р В±Р В°Р Р†Р В»Р ВµР Р…Р В° Р С—Р С•Р В·Р В¶Р Вµ
                   }}
                   className="px-4 py-2 glass-card rounded-lg text-sm font-medium text-foreground hover:bg-black/5 dark:hover:bg-white/5 transition-colors"
                 >
-                  РљСѓРїРёС‚СЊ
+                  Р С™РЎС“Р С—Р С‘РЎвЂљРЎРЉ
                 </button>
               </div>
             ))}
             {sortedItems.length === 0 && (
               <div className="text-center text-muted-foreground py-8">
-                РќРµС‚ С‚РѕРІР°СЂРѕРІ РґР»СЏ РѕС‚РѕР±СЂР°Р¶РµРЅРёСЏ
+                Р СњР ВµРЎвЂљ РЎвЂљР С•Р Р†Р В°РЎР‚Р С•Р Р† Р Т‘Р В»РЎРЏ Р С•РЎвЂљР С•Р В±РЎР‚Р В°Р В¶Р ВµР Р…Р С‘РЎРЏ
               </div>
             )}
           </div>
         </div>
       </div>
 
-      {/* РњРѕРґР°Р»СЊРЅРѕРµ РѕРєРЅРѕ РґРѕР±Р°РІР»РµРЅРёСЏ С‚РѕРІР°СЂР° */}
+      {/* Р СљР С•Р Т‘Р В°Р В»РЎРЉР Р…Р С•Р Вµ Р С•Р С”Р Р…Р С• Р Т‘Р С•Р В±Р В°Р Р†Р В»Р ВµР Р…Р С‘РЎРЏ РЎвЂљР С•Р Р†Р В°РЎР‚Р В° */}
       {showAddItem && (
         <ShopItemModal
           isEdit={false}
           item={null}
           onClose={() => setShowAddItem(false)}
           onSave={(itemData) => {
-            console.log('РџРѕР»СѓС‡РµРЅС‹ РґР°РЅРЅС‹Рµ РґР»СЏ РґРѕР±Р°РІР»РµРЅРёСЏ С‚РѕРІР°СЂР°:', itemData);
+            console.log('Р СџР С•Р В»РЎС“РЎвЂЎР ВµР Р…РЎвЂ№ Р Т‘Р В°Р Р…Р Р…РЎвЂ№Р Вµ Р Т‘Р В»РЎРЏ Р Т‘Р С•Р В±Р В°Р Р†Р В»Р ВµР Р…Р С‘РЎРЏ РЎвЂљР С•Р Р†Р В°РЎР‚Р В°:', itemData);
             const newItem: ShopItem = {
               id: Date.now().toString(),
               ...itemData,
               isActive: true
             };
-            console.log('РќРѕРІС‹Р№ С‚РѕРІР°СЂ:', newItem);
+            console.log('Р СњР С•Р Р†РЎвЂ№Р в„– РЎвЂљР С•Р Р†Р В°РЎР‚:', newItem);
             setShopItems(prev => {
               const updated = [...prev, newItem];
-              console.log('РћР±РЅРѕРІР»РµРЅРЅС‹Р№ СЃРїРёСЃРѕРє С‚РѕРІР°СЂРѕРІ:', updated);
+              console.log('Р С›Р В±Р Р…Р С•Р Р†Р В»Р ВµР Р…Р Р…РЎвЂ№Р в„– РЎРѓР С—Р С‘РЎРѓР С•Р С” РЎвЂљР С•Р Р†Р В°РЎР‚Р С•Р Р†:', updated);
               return updated;
             });
             setShowAddItem(false);
@@ -179,7 +179,7 @@ export function AdminShopPage({ onBack, onNavigateToSection, onNavigateToModerat
         />
       )}
 
-      {/* РњРѕРґР°Р»СЊРЅРѕРµ РѕРєРЅРѕ СЂРµРґР°РєС‚РёСЂРѕРІР°РЅРёСЏ С‚РѕРІР°СЂР° */}
+      {/* Р СљР С•Р Т‘Р В°Р В»РЎРЉР Р…Р С•Р Вµ Р С•Р С”Р Р…Р С• РЎР‚Р ВµР Т‘Р В°Р С”РЎвЂљР С‘РЎР‚Р С•Р Р†Р В°Р Р…Р С‘РЎРЏ РЎвЂљР С•Р Р†Р В°РЎР‚Р В° */}
       {showEditItem && selectedItem && (
         <ShopItemModal
           isEdit={true}
@@ -189,15 +189,15 @@ export function AdminShopPage({ onBack, onNavigateToSection, onNavigateToModerat
             setSelectedItem(null);
           }}
           onSave={(itemData) => {
-            console.log('РџРѕР»СѓС‡РµРЅС‹ РґР°РЅРЅС‹Рµ РґР»СЏ СЂРµРґР°РєС‚РёСЂРѕРІР°РЅРёСЏ С‚РѕРІР°СЂР°:', itemData);
-            console.log('ID СЂРµРґР°РєС‚РёСЂСѓРµРјРѕРіРѕ С‚РѕРІР°СЂР°:', selectedItem.id);
+            console.log('Р СџР С•Р В»РЎС“РЎвЂЎР ВµР Р…РЎвЂ№ Р Т‘Р В°Р Р…Р Р…РЎвЂ№Р Вµ Р Т‘Р В»РЎРЏ РЎР‚Р ВµР Т‘Р В°Р С”РЎвЂљР С‘РЎР‚Р С•Р Р†Р В°Р Р…Р С‘РЎРЏ РЎвЂљР С•Р Р†Р В°РЎР‚Р В°:', itemData);
+            console.log('ID РЎР‚Р ВµР Т‘Р В°Р С”РЎвЂљР С‘РЎР‚РЎС“Р ВµР СР С•Р С–Р С• РЎвЂљР С•Р Р†Р В°РЎР‚Р В°:', selectedItem.id);
             setShopItems(prev => {
               const updated = prev.map(item => 
                 item.id === selectedItem.id 
                   ? { ...item, ...itemData }
                   : item
               );
-              console.log('РћР±РЅРѕРІР»РµРЅРЅС‹Р№ СЃРїРёСЃРѕРє С‚РѕРІР°СЂРѕРІ РїРѕСЃР»Рµ СЂРµРґР°РєС‚РёСЂРѕРІР°РЅРёСЏ:', updated);
+              console.log('Р С›Р В±Р Р…Р С•Р Р†Р В»Р ВµР Р…Р Р…РЎвЂ№Р в„– РЎРѓР С—Р С‘РЎРѓР С•Р С” РЎвЂљР С•Р Р†Р В°РЎР‚Р С•Р Р† Р С—Р С•РЎРѓР В»Р Вµ РЎР‚Р ВµР Т‘Р В°Р С”РЎвЂљР С‘РЎР‚Р С•Р Р†Р В°Р Р…Р С‘РЎРЏ:', updated);
               return updated;
             });
             setShowEditItem(false);
@@ -212,7 +212,7 @@ export function AdminShopPage({ onBack, onNavigateToSection, onNavigateToModerat
         />
       )}
 
-      {/* Р‘С‹СЃС‚СЂР°СЏ РЅР°РІРёРіР°С†РёСЏ */}
+      {/* Р вЂРЎвЂ№РЎРѓРЎвЂљРЎР‚Р В°РЎРЏ Р Р…Р В°Р Р†Р С‘Р С–Р В°РЎвЂ Р С‘РЎРЏ */}
       <div className="fixed bottom-0 left-0 right-0 bg-background border-t border-border/20">
         <div className="p-6">
           <div className="grid grid-cols-4 gap-4 mb-4">
@@ -281,17 +281,17 @@ interface ShopItemModalProps {
 function ShopItemModal({ isEdit, item, onClose, onSave, onDelete, categories }: ShopItemModalProps) {
   const [formData, setFormData] = useState({
     name: item?.name || '',
-    title: item?.name || '', // Р”СѓР±Р»РёСЂСѓРµРј РґР»СЏ СЃРѕРІРјРµСЃС‚РёРјРѕСЃС‚Рё
+    title: item?.name || '', // Р вЂќРЎС“Р В±Р В»Р С‘РЎР‚РЎС“Р ВµР С Р Т‘Р В»РЎРЏ РЎРѓР С•Р Р†Р СР ВµРЎРѓРЎвЂљР С‘Р СР С•РЎРѓРЎвЂљР С‘
     price: item?.price || 0,
     description: item?.description || '',
     category: item?.category || 'bonus' as const,
     image: item?.image || '',
     stock: item?.stock || 0,
-    emoji: item?.emoji || 'рџ“¦'
+    emoji: item?.emoji || 'СЂСџвЂњВ¦'
   });
   const [isEditingPrice, setIsEditingPrice] = useState(false);
 
-  // Р“Р»РѕР±Р°Р»СЊРЅС‹Р№ Р±Р»РѕРє HTML5 РІР°Р»РёРґР°С†РёРё РґР»СЏ СЌС‚РѕРіРѕ РјРѕРґР°Р»СЊРЅРѕРіРѕ РѕРєРЅР°
+  // Р вЂњР В»Р С•Р В±Р В°Р В»РЎРЉР Р…РЎвЂ№Р в„– Р В±Р В»Р С•Р С” HTML5 Р Р†Р В°Р В»Р С‘Р Т‘Р В°РЎвЂ Р С‘Р С‘ Р Т‘Р В»РЎРЏ РЎРЊРЎвЂљР С•Р С–Р С• Р СР С•Р Т‘Р В°Р В»РЎРЉР Р…Р С•Р С–Р С• Р С•Р С”Р Р…Р В°
   useEffect(() => {
     const handleInvalid = (e: Event) => {
       e.preventDefault();
@@ -306,7 +306,7 @@ function ShopItemModal({ isEdit, item, onClose, onSave, onDelete, categories }: 
     };
   }, []);
 
-  // РџСЂРѕСЃС‚Р°СЏ Р±Р»РѕРєРёСЂРѕРІРєР° РѕС‚РїСЂР°РІРєРё С„РѕСЂРјС‹ Р±РµР· РЅР°СЂСѓС€РµРЅРёСЏ РѕСЃС‚Р°Р»СЊРЅС‹С… СЃРѕР±С‹С‚РёР№
+  // Р СџРЎР‚Р С•РЎРѓРЎвЂљР В°РЎРЏ Р В±Р В»Р С•Р С”Р С‘РЎР‚Р С•Р Р†Р С”Р В° Р С•РЎвЂљР С—РЎР‚Р В°Р Р†Р С”Р С‘ РЎвЂћР С•РЎР‚Р СРЎвЂ№ Р В±Р ВµР В· Р Р…Р В°РЎР‚РЎС“РЎв‚¬Р ВµР Р…Р С‘РЎРЏ Р С•РЎРѓРЎвЂљР В°Р В»РЎРЉР Р…РЎвЂ№РЎвЂ¦ РЎРѓР С•Р В±РЎвЂ№РЎвЂљР С‘Р в„–
   const preventFormSubmit = (e: any) => {
     e.preventDefault();
   };
@@ -316,9 +316,9 @@ function ShopItemModal({ isEdit, item, onClose, onSave, onDelete, categories }: 
   };
 
   const handleSave = () => {
-    // Р‘РѕР»РµРµ РјСЏРіРєРёРµ РїСЂРѕРІРµСЂРєРё - СѓСЃС‚Р°РЅР°РІР»РёРІР°РµРј Р·РЅР°С‡РµРЅРёСЏ РїРѕ СѓРјРѕР»С‡Р°РЅРёСЋ РІРјРµСЃС‚Рѕ Р±Р»РѕРєРёСЂРѕРІРєРё
+    // Р вЂР С•Р В»Р ВµР Вµ Р СРЎРЏР С–Р С”Р С‘Р Вµ Р С—РЎР‚Р С•Р Р†Р ВµРЎР‚Р С”Р С‘ - РЎС“РЎРѓРЎвЂљР В°Р Р…Р В°Р Р†Р В»Р С‘Р Р†Р В°Р ВµР С Р В·Р Р…Р В°РЎвЂЎР ВµР Р…Р С‘РЎРЏ Р С—Р С• РЎС“Р СР С•Р В»РЎвЂЎР В°Р Р…Р С‘РЎР‹ Р Р†Р СР ВµРЎРѓРЎвЂљР С• Р В±Р В»Р С•Р С”Р С‘РЎР‚Р С•Р Р†Р С”Р С‘
     const finalData = {
-      name: formData.name.trim() || formData.title.trim() || 'РќРѕРІС‹Р№ С‚РѕРІР°СЂ',
+      name: formData.name.trim() || formData.title.trim() || 'Р СњР С•Р Р†РЎвЂ№Р в„– РЎвЂљР С•Р Р†Р В°РЎР‚',
       price: formData.price > 0 ? formData.price : 1,
       description: formData.description,
       category: formData.category,
@@ -327,12 +327,12 @@ function ShopItemModal({ isEdit, item, onClose, onSave, onDelete, categories }: 
       emoji: formData.emoji
     };
     
-    console.log('РЎРѕС…СЂР°РЅРµРЅРёРµ С‚РѕРІР°СЂР°:', finalData);
+    console.log('Р РЋР С•РЎвЂ¦РЎР‚Р В°Р Р…Р ВµР Р…Р С‘Р Вµ РЎвЂљР С•Р Р†Р В°РЎР‚Р В°:', finalData);
     onSave(finalData);
   };
 
   const handleDelete = () => {
-    // Р’СЂРµРјРµРЅРЅРѕ СѓР±РёСЂР°РµРј РїРѕРґС‚РІРµСЂР¶РґРµРЅРёРµ СѓРґР°Р»РµРЅРёСЏ
+    // Р вЂ™РЎР‚Р ВµР СР ВµР Р…Р Р…Р С• РЎС“Р В±Р С‘РЎР‚Р В°Р ВµР С Р С—Р С•Р Т‘РЎвЂљР Р†Р ВµРЎР‚Р В¶Р Т‘Р ВµР Р…Р С‘Р Вµ РЎС“Р Т‘Р В°Р В»Р ВµР Р…Р С‘РЎРЏ
     onDelete && onDelete();
   };
 
@@ -380,10 +380,10 @@ function ShopItemModal({ isEdit, item, onClose, onSave, onDelete, categories }: 
           }}
         >
         <DialogTitle className="sr-only">
-          {isEdit ? 'Р РµРґР°РєС‚РёСЂРѕРІР°РЅРёРµ С‚РѕРІР°СЂР°' : 'Р”РѕР±Р°РІР»РµпїЅпїЅРёРµ С‚РѕРІР°СЂР°'}
+          {isEdit ? 'Р В Р ВµР Т‘Р В°Р С”РЎвЂљР С‘РЎР‚Р С•Р Р†Р В°Р Р…Р С‘Р Вµ РЎвЂљР С•Р Р†Р В°РЎР‚Р В°' : 'Р вЂќР С•Р В±Р В°Р Р†Р В»Р ВµРїС—Р…РїС—Р…Р С‘Р Вµ РЎвЂљР С•Р Р†Р В°РЎР‚Р В°'}
         </DialogTitle>
         <DialogDescription className="sr-only">
-          РњРѕРґР°Р»СЊРЅРѕРµ РѕРєРЅРѕ РґР»СЏ {isEdit ? 'СЂРµРґР°РєС‚РёСЂРѕРІР°РЅРёСЏ СЃСѓС‰РµСЃС‚РІСѓСЋС‰РµРіРѕ' : 'РґРѕР±Р°РІР»РµРЅРёСЏ РЅРѕРІРѕРіРѕ'} С‚РѕРІР°СЂР° РІ РјР°РіР°Р·РёРЅ СЃ РІРѕР·РјРѕР¶РЅРѕСЃС‚СЊСЋ РЅР°СЃС‚СЂРѕР№РєРё РЅР°Р·РІР°РЅРёСЏ, С†РµРЅС‹, РєР°С‚РµРіРѕСЂРёРё Рё РёР·РѕР±СЂР°Р¶РµРЅРёСЏ
+          Р СљР С•Р Т‘Р В°Р В»РЎРЉР Р…Р С•Р Вµ Р С•Р С”Р Р…Р С• Р Т‘Р В»РЎРЏ {isEdit ? 'РЎР‚Р ВµР Т‘Р В°Р С”РЎвЂљР С‘РЎР‚Р С•Р Р†Р В°Р Р…Р С‘РЎРЏ РЎРѓРЎС“РЎвЂ°Р ВµРЎРѓРЎвЂљР Р†РЎС“РЎР‹РЎвЂ°Р ВµР С–Р С•' : 'Р Т‘Р С•Р В±Р В°Р Р†Р В»Р ВµР Р…Р С‘РЎРЏ Р Р…Р С•Р Р†Р С•Р С–Р С•'} РЎвЂљР С•Р Р†Р В°РЎР‚Р В° Р Р† Р СР В°Р С–Р В°Р В·Р С‘Р Р… РЎРѓ Р Р†Р С•Р В·Р СР С•Р В¶Р Р…Р С•РЎРѓРЎвЂљРЎРЉРЎР‹ Р Р…Р В°РЎРѓРЎвЂљРЎР‚Р С•Р в„–Р С”Р С‘ Р Р…Р В°Р В·Р Р†Р В°Р Р…Р С‘РЎРЏ, РЎвЂ Р ВµР Р…РЎвЂ№, Р С”Р В°РЎвЂљР ВµР С–Р С•РЎР‚Р С‘Р С‘ Р С‘ Р С‘Р В·Р С•Р В±РЎР‚Р В°Р В¶Р ВµР Р…Р С‘РЎРЏ
         </DialogDescription>
         <form 
           className="p-6"
@@ -395,7 +395,7 @@ function ShopItemModal({ isEdit, item, onClose, onSave, onDelete, categories }: 
         >
           <div className="flex items-center justify-between mb-4">
             <h2 className="text-lg font-medium text-foreground text-center flex-1">
-              {isEdit ? item?.name || 'РўРѕРІР°СЂ' : 'Р”РѕР±Р°РІР»РµРЅРёРµ С‚РѕРІР°СЂР°'}
+              {isEdit ? item?.name || 'Р СћР С•Р Р†Р В°РЎР‚' : 'Р вЂќР С•Р В±Р В°Р Р†Р В»Р ВµР Р…Р С‘Р Вµ РЎвЂљР С•Р Р†Р В°РЎР‚Р В°'}
             </h2>
             <button
               type="button"
@@ -408,9 +408,9 @@ function ShopItemModal({ isEdit, item, onClose, onSave, onDelete, categories }: 
           </div>
 
           <div className="overflow-y-auto max-h-[calc(80vh-200px)] space-y-4">
-            {/* РљР°СЂС‚РёРЅРєР° С‚РѕРІР°СЂР° Рё РѕРїРёСЃР°РЅРёРµ */}
+            {/* Р С™Р В°РЎР‚РЎвЂљР С‘Р Р…Р С”Р В° РЎвЂљР С•Р Р†Р В°РЎР‚Р В° Р С‘ Р С•Р С—Р С‘РЎРѓР В°Р Р…Р С‘Р Вµ */}
             <div className="flex gap-4">
-              {/* РљР°СЂС‚РёРЅРєР° */}
+              {/* Р С™Р В°РЎР‚РЎвЂљР С‘Р Р…Р С”Р В° */}
               <div className="relative">
                 <div 
                   className="w-20 h-20 bg-secondary rounded-2xl flex items-center justify-center overflow-hidden cursor-pointer hover:bg-secondary/80 transition-colors"
@@ -436,13 +436,13 @@ function ShopItemModal({ isEdit, item, onClose, onSave, onDelete, categories }: 
                 />
               </div>
               
-              {/* РћРїРёСЃР°РЅРёРµ */}
+              {/* Р С›Р С—Р С‘РЎРѓР В°Р Р…Р С‘Р Вµ */}
               <div className="flex-1 glass-card rounded-2xl p-3">
-                <div className="text-sm font-medium text-foreground mb-2">РћРїРёСЃР°РЅРёРµ С‚РѕРІР°СЂР°</div>
+                <div className="text-sm font-medium text-foreground mb-2">Р С›Р С—Р С‘РЎРѓР В°Р Р…Р С‘Р Вµ РЎвЂљР С•Р Р†Р В°РЎР‚Р В°</div>
                 <textarea
                   value={formData.description}
                   onChange={(e) => handleInputChange('description', e.target.value)}
-                  placeholder="вЂў РџРѕРґР·Р°РґР°С‡Р°"
+                  placeholder="РІР‚Сћ Р СџР С•Р Т‘Р В·Р В°Р Т‘Р В°РЎвЂЎР В°"
                   className="w-full bg-transparent text-sm text-muted-foreground resize-none border-none outline-none"
                   rows={3}
                   autoComplete="off"
@@ -451,7 +451,7 @@ function ShopItemModal({ isEdit, item, onClose, onSave, onDelete, categories }: 
                 />
               </div>
             </div>
-            {/* РР·РјРµРЅРµРЅРёРµ С†РµРЅС‹ (С‚РѕР»СЊРєРѕ РґР»СЏ СЂРµРґР°РєС‚РёСЂРѕРІР°РЅРёСЏ) */}
+            {/* Р ВР В·Р СР ВµР Р…Р ВµР Р…Р С‘Р Вµ РЎвЂ Р ВµР Р…РЎвЂ№ (РЎвЂљР С•Р В»РЎРЉР С”Р С• Р Т‘Р В»РЎРЏ РЎР‚Р ВµР Т‘Р В°Р С”РЎвЂљР С‘РЎР‚Р С•Р Р†Р В°Р Р…Р С‘РЎРЏ) */}
             {isEdit && (
               <div className="text-center">
                 {!isEditingPrice ? (
@@ -459,7 +459,7 @@ function ShopItemModal({ isEdit, item, onClose, onSave, onDelete, categories }: 
                     className="inline-block glass-card rounded-2xl px-4 py-2 cursor-pointer hover:bg-black/5 dark:hover:bg-white/5 transition-colors"
                     onClick={() => setIsEditingPrice(true)}
                   >
-                    <div className="text-sm text-muted-foreground mb-1">Р¦РµРЅР°:</div>
+                    <div className="text-sm text-muted-foreground mb-1">Р В¦Р ВµР Р…Р В°:</div>
                     <div className="font-medium text-foreground">
                       {formData.price}g
                     </div>
@@ -467,7 +467,7 @@ function ShopItemModal({ isEdit, item, onClose, onSave, onDelete, categories }: 
                 ) : (
                   <div className="glass-card rounded-2xl p-4">
                     <div className="text-sm font-medium text-foreground/80 mb-3 text-center">
-                      РР·РјРµРЅРёС‚СЊ СЃС‚РѕРёРјРѕСЃС‚СЊ С‚РѕРІР°СЂР°
+                      Р ВР В·Р СР ВµР Р…Р С‘РЎвЂљРЎРЉ РЎРѓРЎвЂљР С•Р С‘Р СР С•РЎРѓРЎвЂљРЎРЉ РЎвЂљР С•Р Р†Р В°РЎР‚Р В°
                     </div>
                     <div className="flex gap-3 mb-4">
                       <input
@@ -500,7 +500,7 @@ function ShopItemModal({ isEdit, item, onClose, onSave, onDelete, categories }: 
                         className="flex-1"
                         formNoValidate
                       >
-                        РћС‚РјРµРЅРёС‚СЊ
+                        Р С›РЎвЂљР СР ВµР Р…Р С‘РЎвЂљРЎРЉ
                       </Button>
                       <Button
                         type="button"
@@ -508,7 +508,7 @@ function ShopItemModal({ isEdit, item, onClose, onSave, onDelete, categories }: 
                         className="flex-1 bg-primary text-primary-foreground"
                         formNoValidate
                       >
-                        РџСЂРёРјРµРЅРёС‚СЊ
+                        Р СџРЎР‚Р С‘Р СР ВµР Р…Р С‘РЎвЂљРЎРЉ
                       </Button>
                     </div>
                   </div>
@@ -518,19 +518,19 @@ function ShopItemModal({ isEdit, item, onClose, onSave, onDelete, categories }: 
 
             {!isEdit && (
               <>
-                {/* РќР°Р·РІР°РЅРёРµ С‚РѕРІР°СЂР° */}
+                {/* Р СњР В°Р В·Р Р†Р В°Р Р…Р С‘Р Вµ РЎвЂљР С•Р Р†Р В°РЎР‚Р В° */}
                 <div>
                   <label className="block text-sm font-medium text-foreground/80 mb-2">
-                    РќР°Р·РІР°РЅРёРµ С‚РѕРІР°СЂР°
+                    Р СњР В°Р В·Р Р†Р В°Р Р…Р С‘Р Вµ РЎвЂљР С•Р Р†Р В°РЎР‚Р В°
                   </label>
                   <input
                     type="text"
                     value={formData.name}
                     onChange={(e) => {
                       handleInputChange('name', e.target.value);
-                      handleInputChange('title', e.target.value); // РЎРёРЅС…СЂРѕРЅРёР·РёСЂСѓРµРј РґР»СЏ СЃРѕРІРјРµСЃС‚РёРјРѕСЃС‚Рё
+                      handleInputChange('title', e.target.value); // Р РЋР С‘Р Р…РЎвЂ¦РЎР‚Р С•Р Р…Р С‘Р В·Р С‘РЎР‚РЎС“Р ВµР С Р Т‘Р В»РЎРЏ РЎРѓР С•Р Р†Р СР ВµРЎРѓРЎвЂљР С‘Р СР С•РЎРѓРЎвЂљР С‘
                     }}
-                    placeholder="Р’РІРµРґРёС‚Рµ РЅР°Р·РІР°РЅРёРµ С‚РѕРІР°СЂР°..."
+                    placeholder="Р вЂ™Р Р†Р ВµР Т‘Р С‘РЎвЂљР Вµ Р Р…Р В°Р В·Р Р†Р В°Р Р…Р С‘Р Вµ РЎвЂљР С•Р Р†Р В°РЎР‚Р В°..."
                     className="w-full p-3 bg-input-background border border-border rounded-2xl text-sm"
                     autoComplete="off"
                     data-lpignore="true"
@@ -543,10 +543,10 @@ function ShopItemModal({ isEdit, item, onClose, onSave, onDelete, categories }: 
                   />
                 </div>
 
-                {/* Р¦РµРЅР° */}
+                {/* Р В¦Р ВµР Р…Р В° */}
                 <div>
                   <label className="block text-sm font-medium text-foreground/80 mb-2">
-                    Р¦РµРЅР° (G-РјРѕРЅРµС‚С‹)
+                    Р В¦Р ВµР Р…Р В° (G-Р СР С•Р Р…Р ВµРЎвЂљРЎвЂ№)
                   </label>
                   <input
                     type="text"
@@ -568,10 +568,10 @@ function ShopItemModal({ isEdit, item, onClose, onSave, onDelete, categories }: 
                   />
                 </div>
 
-                {/* РќР°Р»РёС‡РёРµ С‚РѕРІР°СЂР° */}
+                {/* Р СњР В°Р В»Р С‘РЎвЂЎР С‘Р Вµ РЎвЂљР С•Р Р†Р В°РЎР‚Р В° */}
                 <div>
                   <label className="block text-sm font-medium text-foreground/80 mb-2">
-                    РљРѕР»РёС‡РµСЃС‚РІРѕ РІ РЅР°Р»РёС‡РёРё
+                    Р С™Р С•Р В»Р С‘РЎвЂЎР ВµРЎРѓРЎвЂљР Р†Р С• Р Р† Р Р…Р В°Р В»Р С‘РЎвЂЎР С‘Р С‘
                   </label>
                   <input
                     type="text"
@@ -593,16 +593,16 @@ function ShopItemModal({ isEdit, item, onClose, onSave, onDelete, categories }: 
                   />
                 </div>
 
-                {/* Р­РјРѕРґР·Рё С‚РѕРІР°СЂР° */}
+                {/* Р В­Р СР С•Р Т‘Р В·Р С‘ РЎвЂљР С•Р Р†Р В°РЎР‚Р В° */}
                 <div>
                   <label className="block text-sm font-medium text-foreground/80 mb-2">
-                    Р­РјРѕРґР·Рё С‚РѕРІР°СЂР°
+                    Р В­Р СР С•Р Т‘Р В·Р С‘ РЎвЂљР С•Р Р†Р В°РЎР‚Р В°
                   </label>
                   <input
                     type="text"
                     value={formData.emoji}
                     onChange={(e) => handleInputChange('emoji', e.target.value)}
-                    placeholder="рџ“¦"
+                    placeholder="СЂСџвЂњВ¦"
                     className="w-full p-3 bg-input-background border border-border rounded-2xl text-sm"
                     autoComplete="off"
                     data-lpignore="true"
@@ -615,10 +615,10 @@ function ShopItemModal({ isEdit, item, onClose, onSave, onDelete, categories }: 
                   />
                 </div>
 
-                {/* РљР°С‚РµРіРѕСЂРёСЏ */}
+                {/* Р С™Р В°РЎвЂљР ВµР С–Р С•РЎР‚Р С‘РЎРЏ */}
                 <div>
                   <label className="block text-sm font-medium text-foreground/80 mb-2">
-                    РљР°С‚РµРіРѕСЂРёСЏ
+                    Р С™Р В°РЎвЂљР ВµР С–Р С•РЎР‚Р С‘РЎРЏ
                   </label>
                   <select
                     value={formData.category}
@@ -639,7 +639,7 @@ function ShopItemModal({ isEdit, item, onClose, onSave, onDelete, categories }: 
             )}
           </div>
 
-          {/* РљРЅРѕРїРєРё */}
+          {/* Р С™Р Р…Р С•Р С—Р С”Р С‘ */}
           <div className={`${isEdit ? 'grid grid-cols-3 gap-3' : 'flex gap-3'} pt-4 border-t border-border/20 mt-4`}>
             <Button
               type="button"
@@ -648,7 +648,7 @@ function ShopItemModal({ isEdit, item, onClose, onSave, onDelete, categories }: 
               className={isEdit ? 'col-span-1' : 'flex-1'}
               formNoValidate
             >
-              РћС‚РјРµРЅРёС‚СЊ
+              Р С›РЎвЂљР СР ВµР Р…Р С‘РЎвЂљРЎРЉ
             </Button>
             {isEdit && (
               <Button
@@ -658,20 +658,20 @@ function ShopItemModal({ isEdit, item, onClose, onSave, onDelete, categories }: 
                 className="col-span-1 text-destructive border-destructive hover:bg-destructive hover:text-destructive-foreground"
                 formNoValidate
               >
-                РЈРґР°Р»РёС‚СЊ
+                Р Р€Р Т‘Р В°Р В»Р С‘РЎвЂљРЎРЉ
               </Button>
             )}
             <Button
               type="button"
               onClick={() => {
-                console.log('РљРЅРѕРїРєР° СЃРѕС…СЂР°РЅРµРЅРёСЏ РЅР°Р¶Р°С‚Р°, isEdit:', isEdit);
-                console.log('РўРµРєСѓС‰РёРµ РґР°РЅРЅС‹Рµ С„РѕСЂРјС‹:', formData);
+                console.log('Р С™Р Р…Р С•Р С—Р С”Р В° РЎРѓР С•РЎвЂ¦РЎР‚Р В°Р Р…Р ВµР Р…Р С‘РЎРЏ Р Р…Р В°Р В¶Р В°РЎвЂљР В°, isEdit:', isEdit);
+                console.log('Р СћР ВµР С”РЎС“РЎвЂ°Р С‘Р Вµ Р Т‘Р В°Р Р…Р Р…РЎвЂ№Р Вµ РЎвЂћР С•РЎР‚Р СРЎвЂ№:', formData);
                 handleSave();
               }}
               className={isEdit ? 'col-span-1 bg-primary text-primary-foreground' : 'flex-1 bg-primary text-primary-foreground'}
               formNoValidate
             >
-              {isEdit ? 'РџСЂРёРјРµРЅРёС‚СЊ' : 'Р”РѕР±Р°РІРёС‚СЊ'}
+              {isEdit ? 'Р СџРЎР‚Р С‘Р СР ВµР Р…Р С‘РЎвЂљРЎРЉ' : 'Р вЂќР С•Р В±Р В°Р Р†Р С‘РЎвЂљРЎРЉ'}
             </Button>
           </div>
         </form>

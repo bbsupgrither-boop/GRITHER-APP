@@ -1,4 +1,4 @@
-﻿import React, { useState } from 'react';
+п»їimport React, { useState } from 'react';
 import { Header } from './Header';
 import { Modal } from './Modal';
 import { Switch } from './Switch';
@@ -43,8 +43,8 @@ export function SettingsPage({
   };
 
   const handleReportSubmit = () => {
-    // Р›РѕРіРёРєР° РѕС‚РїСЂР°РІРєРё РѕС‚С‡РµС‚Р° Рѕ РїСЂРѕР±Р»РµРјРµ
-    console.log('РћС‚С‡РµС‚ РѕС‚РїСЂР°РІР»РµРЅ:', reportText);
+    // Р вЂєР С•Р С–Р С‘Р С”Р В° Р С•РЎвЂљР С—РЎР‚Р В°Р Р†Р С”Р С‘ Р С•РЎвЂљРЎвЂЎР ВµРЎвЂљР В° Р С• Р С—РЎР‚Р С•Р В±Р В»Р ВµР СР Вµ
+    console.log('Р С›РЎвЂљРЎвЂЎР ВµРЎвЂљ Р С•РЎвЂљР С—РЎР‚Р В°Р Р†Р В»Р ВµР Р…:', reportText);
     setReportText('');
     setIsReportModalOpen(false);
   };
@@ -52,8 +52,8 @@ export function SettingsPage({
   const settingsItems = [
     {
       icon: Bell,
-      title: 'РЈРІРµРґРѕРјР»РµРЅРёСЏ',
-      subtitle: 'РЈРїСЂР°РІР»РµРЅРёРµ РІСЃРµРјРё СѓРІРµРґРѕРјР»РµРЅРёСЏРјРё',
+      title: 'Р Р€Р Р†Р ВµР Т‘Р С•Р СР В»Р ВµР Р…Р С‘РЎРЏ',
+      subtitle: 'Р Р€Р С—РЎР‚Р В°Р Р†Р В»Р ВµР Р…Р С‘Р Вµ Р Р†РЎРѓР ВµР СР С‘ РЎС“Р Р†Р ВµР Т‘Р С•Р СР В»Р ВµР Р…Р С‘РЎРЏР СР С‘',
       control: (
         <Switch
           checked={settings.notifications}
@@ -64,8 +64,8 @@ export function SettingsPage({
     },
     {
       icon: Palette,
-      title: 'РўРµРјР°',
-      subtitle: isDarkMode ? 'РўРµРјРЅР°СЏ С‚РµРјР° РІРєР»СЋС‡РµРЅР°' : 'РЎРІРµС‚Р»Р°СЏ С‚РµРјР° РІРєР»СЋС‡РµРЅР°',
+      title: 'Р СћР ВµР СР В°',
+      subtitle: isDarkMode ? 'Р СћР ВµР СР Р…Р В°РЎРЏ РЎвЂљР ВµР СР В° Р Р†Р С”Р В»РЎР‹РЎвЂЎР ВµР Р…Р В°' : 'Р РЋР Р†Р ВµРЎвЂљР В»Р В°РЎРЏ РЎвЂљР ВµР СР В° Р Р†Р С”Р В»РЎР‹РЎвЂЎР ВµР Р…Р В°',
       control: (
         <Switch
           checked={isDarkMode}
@@ -76,8 +76,8 @@ export function SettingsPage({
     },
     {
       icon: MessageCircle,
-      title: 'РЎРѕРѕР±С‰РёС‚СЊ Рѕ РїСЂРѕР±Р»РµРјРµ',
-      subtitle: 'РћС‚РїСЂР°РІРёС‚СЊ РѕС‚С‡РµС‚ СЂР°Р·СЂР°Р±РѕС‚С‡РёРєР°Рј',
+      title: 'Р РЋР С•Р С•Р В±РЎвЂ°Р С‘РЎвЂљРЎРЉ Р С• Р С—РЎР‚Р С•Р В±Р В»Р ВµР СР Вµ',
+      subtitle: 'Р С›РЎвЂљР С—РЎР‚Р В°Р Р†Р С‘РЎвЂљРЎРЉ Р С•РЎвЂљРЎвЂЎР ВµРЎвЂљ РЎР‚Р В°Р В·РЎР‚Р В°Р В±Р С•РЎвЂљРЎвЂЎР С‘Р С”Р В°Р С',
       control: null,
       onClick: () => setIsReportModalOpen(true)
     }
@@ -99,7 +99,7 @@ export function SettingsPage({
         currentPage={currentPage} 
         onOpenSettings={onOpenSettings}
         profilePhoto={profilePhoto}
-        title="РќР°СЃС‚СЂРѕР№РєРё"
+        title="Р СњР В°РЎРѓРЎвЂљРЎР‚Р С•Р в„–Р С”Р С‘"
         theme={theme}
       />
       
@@ -204,7 +204,7 @@ export function SettingsPage({
       <Modal
         isOpen={isReportModalOpen}
         onClose={() => setIsReportModalOpen(false)}
-        title="РЎРѕРѕР±С‰РёС‚СЊ Рѕ РїСЂРѕР±Р»РµРјРµ"
+        title="Р РЋР С•Р С•Р В±РЎвЂ°Р С‘РЎвЂљРЎРЉ Р С• Р С—РЎР‚Р С•Р В±Р В»Р ВµР СР Вµ"
         theme={theme}
         actions={
           <>
@@ -221,7 +221,7 @@ export function SettingsPage({
                 color: theme === 'dark' ? '#E8ECF2' : '#0F172A'
               }}
             >
-              РћС‚РјРµРЅР°
+              Р С›РЎвЂљР СР ВµР Р…Р В°
             </button>
             <button
               onClick={handleReportSubmit}
@@ -235,7 +235,7 @@ export function SettingsPage({
                 border: 'none'
               }}
             >
-              РћС‚РїСЂР°РІРёС‚СЊ
+              Р С›РЎвЂљР С—РЎР‚Р В°Р Р†Р С‘РЎвЂљРЎРЉ
             </button>
           </>
         }
@@ -249,12 +249,12 @@ export function SettingsPage({
                 fontSize: '14px'
               }}
             >
-              РћРїРёС€РёС‚Рµ РїСЂРѕР±Р»РµРјСѓ
+              Р С›Р С—Р С‘РЎв‚¬Р С‘РЎвЂљР Вµ Р С—РЎР‚Р С•Р В±Р В»Р ВµР СРЎС“
             </label>
             <textarea
               value={reportText}
               onChange={(e) => setReportText(e.target.value)}
-              placeholder="Р Р°СЃСЃРєР°Р¶РёС‚Рµ, СЃ РєР°РєРѕР№ РїСЂРѕР±Р»РµРјРѕР№ РІС‹ СЃС‚РѕР»РєРЅСѓР»РёСЃСЊ..."
+              placeholder="Р В Р В°РЎРѓРЎРѓР С”Р В°Р В¶Р С‘РЎвЂљР Вµ, РЎРѓ Р С”Р В°Р С”Р С•Р в„– Р С—РЎР‚Р С•Р В±Р В»Р ВµР СР С•Р в„– Р Р†РЎвЂ№ РЎРѓРЎвЂљР С•Р В»Р С”Р Р…РЎС“Р В»Р С‘РЎРѓРЎРЉ..."
               rows={4}
               className="w-full transition-colors resize-none"
               style={{
@@ -296,7 +296,7 @@ export function SettingsPage({
                   fontSize: '12px'
                 }}
               >
-                Р’Р°Р¶РЅРѕ
+                Р вЂ™Р В°Р В¶Р Р…Р С•
               </div>
               <div 
                 style={{ 
@@ -305,7 +305,7 @@ export function SettingsPage({
                   lineHeight: '16px'
                 }}
               >
-                РќРµ СѓРєР°Р·С‹РІР°Р№С‚Рµ Р»РёС‡РЅСѓСЋ РёРЅС„РѕСЂРјР°С†РёСЋ РІ РѕС‚С‡РµС‚Рµ
+                Р СњР Вµ РЎС“Р С”Р В°Р В·РЎвЂ№Р Р†Р В°Р в„–РЎвЂљР Вµ Р В»Р С‘РЎвЂЎР Р…РЎС“РЎР‹ Р С‘Р Р…РЎвЂћР С•РЎР‚Р СР В°РЎвЂ Р С‘РЎР‹ Р Р† Р С•РЎвЂљРЎвЂЎР ВµРЎвЂљР Вµ
               </div>
             </div>
           </div>

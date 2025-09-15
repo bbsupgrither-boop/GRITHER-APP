@@ -64,7 +64,7 @@ export const ExperienceModal: React.FC<ExperienceModalProps> = ({
               margin: 0
             }}
           >
-            Текущий уровень
+            РўРµРєСѓС‰РёР№ СѓСЂРѕРІРµРЅСЊ
           </h2>
           <button
             onClick={onClose}
@@ -149,7 +149,7 @@ export const ExperienceModal: React.FC<ExperienceModalProps> = ({
                   textAlign: 'center'
                 }}
               >
-                {nextLevel ? `${currentExperience - level.totalExperience}/${nextLevel.experienceRequired} XP` : 'Максимальный уровень'}
+                {nextLevel ? `${currentExperience - level.totalExperience}/${nextLevel.experienceRequired} XP` : 'РњР°РєСЃРёРјР°Р»СЊРЅС‹Р№ СѓСЂРѕРІРµРЅСЊ'}
               </div>
             </div>
           </div>
@@ -166,7 +166,7 @@ export const ExperienceModal: React.FC<ExperienceModalProps> = ({
                 marginBottom: '12px'
               }}
             >
-              На следующем уровне:
+              РќР° СЃР»РµРґСѓСЋС‰РµРј СѓСЂРѕРІРЅРµ:
             </h3>
             
             <div style={{ marginBottom: '8px' }}>
@@ -176,7 +176,7 @@ export const ExperienceModal: React.FC<ExperienceModalProps> = ({
                   color: theme === 'dark' ? '#A7B0BD' : '#6B7280'
                 }}
               >
-                Статус: 
+                РЎС‚Р°С‚СѓСЃ: 
               </span>
               <span
                 style={{
@@ -197,7 +197,7 @@ export const ExperienceModal: React.FC<ExperienceModalProps> = ({
                   color: theme === 'dark' ? '#A7B0BD' : '#6B7280'
                 }}
               >
-                Награда: 
+                РќР°РіСЂР°РґР°: 
               </span>
               <CoinIcon size={16} />
               <span
@@ -231,7 +231,7 @@ export const ExperienceModal: React.FC<ExperienceModalProps> = ({
               lineHeight: '1.4'
             }}
           >
-            Получайте опыт за выполнение задач, участие в баттлах и достижение целей!
+            РџРѕР»СѓС‡Р°Р№С‚Рµ РѕРїС‹С‚ Р·Р° РІС‹РїРѕР»РЅРµРЅРёРµ Р·Р°РґР°С‡, СѓС‡Р°СЃС‚РёРµ РІ Р±Р°С‚С‚Р»Р°С… Рё РґРѕСЃС‚РёР¶РµРЅРёРµ С†РµР»РµР№!
           </p>
         </div>
       </div>

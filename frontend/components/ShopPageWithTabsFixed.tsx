@@ -1,4 +1,4 @@
-﻿import { useState } from 'react';
+п»їimport { useState } from 'react';
 import { ShoppingCart, Package, Gamepad2, Gift, Star, Clock, Users, Play, DollarSign, CircleDot, Scissors, Plus, Minus, X, CheckCircle } from './Icons';
 import { Header } from './Header';
 import { BottomNavigation } from './BottomNavigation';
@@ -15,35 +15,35 @@ interface ShopPageWithTabsFixedProps {
   setOrders: (orders: Order[]) => void;
 }
 
-// РњРѕРєРё РґР°РЅРЅС‹С… РґР»СЏ РёРіСЂ Рё РєРµР№СЃРѕРІ
+// Р СљР С•Р С”Р С‘ Р Т‘Р В°Р Р…Р Р…РЎвЂ№РЎвЂ¦ Р Т‘Р В»РЎРЏ Р С‘Р С–РЎР‚ Р С‘ Р С”Р ВµР в„–РЎРѓР С•Р Р†
 const gamesData = [
   {
     id: '1',
-    name: 'РљРѕР»РµСЃРѕ СѓРґР°С‡Рё',
-    description: 'РљСЂСѓС‚РёС‚Рµ РєРѕР»РµСЃРѕ Рё РїРѕР»СѓС‡Р°Р№С‚Рµ СЃР»СѓС‡Р°Р№РЅС‹Рµ РЅР°РіСЂР°РґС‹ РєР°Р¶РґС‹Рµ 5 РјРёРЅСѓС‚',
+    name: 'Р С™Р С•Р В»Р ВµРЎРѓР С• РЎС“Р Т‘Р В°РЎвЂЎР С‘',
+    description: 'Р С™РЎР‚РЎС“РЎвЂљР С‘РЎвЂљР Вµ Р С”Р С•Р В»Р ВµРЎРѓР С• Р С‘ Р С—Р С•Р В»РЎС“РЎвЂЎР В°Р в„–РЎвЂљР Вµ РЎРѓР В»РЎС“РЎвЂЎР В°Р в„–Р Р…РЎвЂ№Р Вµ Р Р…Р В°Р С–РЎР‚Р В°Р Т‘РЎвЂ№ Р С”Р В°Р В¶Р Т‘РЎвЂ№Р Вµ 5 Р СР С‘Р Р…РЎС“РЎвЂљ',
     type: 'wheel',
-    icon: 'рџЋ°',
-    cooldown: '5Рј',
+    icon: 'СЂСџР‹В°',
+    cooldown: '5Р С',
     stats: { plays: 1254, rewards: 45680, players: 387 },
     status: 'available'
   },
   {
     id: '2',
-    name: 'Р‘РёС‚РІР° РІС‹Р±РѕСЂР°',
-    description: 'РљР»Р°СЃСЃРёС‡РµСЃРєР°СЏ РёРіСЂР° РєР°РјРµРЅСЊ-РЅРѕР¶РЅРёС†С‹-Р±СѓРјР°РіР° РїСЂРѕС‚РёРІ СѓРјРЅРѕРіРѕ Р±РѕС‚Р°',
+    name: 'Р вЂР С‘РЎвЂљР Р†Р В° Р Р†РЎвЂ№Р В±Р С•РЎР‚Р В°',
+    description: 'Р С™Р В»Р В°РЎРѓРЎРѓР С‘РЎвЂЎР ВµРЎРѓР С”Р В°РЎРЏ Р С‘Р С–РЎР‚Р В° Р С”Р В°Р СР ВµР Р…РЎРЉ-Р Р…Р С•Р В¶Р Р…Р С‘РЎвЂ РЎвЂ№-Р В±РЎС“Р СР В°Р С–Р В° Р С—РЎР‚Р С•РЎвЂљР С‘Р Р† РЎС“Р СР Р…Р С•Р С–Р С• Р В±Р С•РЎвЂљР В°',
     type: 'rps',
-    icon: 'вњ‚пёЏ',
-    cooldown: '3Рј',
+    icon: 'РІСљвЂљРїС‘РЏ',
+    cooldown: '3Р С',
     stats: { plays: 892, rewards: 15430, players: 234 },
     status: 'available'
   },
   {
     id: '3',
-    name: 'Р—РѕР»РѕС‚С‹Рµ СЃР»РѕС‚С‹',
-    description: 'РђРІС‚РѕРјР°С‚ СЃ С‚СЂРµРјСЏ Р±Р°СЂР°Р±Р°РЅР°РјРё Рё С€Р°РЅСЃРѕРј РЅР° РґР¶РµРєРїРѕС‚',
+    name: 'Р вЂ”Р С•Р В»Р С•РЎвЂљРЎвЂ№Р Вµ РЎРѓР В»Р С•РЎвЂљРЎвЂ№',
+    description: 'Р С’Р Р†РЎвЂљР С•Р СР В°РЎвЂљ РЎРѓ РЎвЂљРЎР‚Р ВµР СРЎРЏ Р В±Р В°РЎР‚Р В°Р В±Р В°Р Р…Р В°Р СР С‘ Р С‘ РЎв‚¬Р В°Р Р…РЎРѓР С•Р С Р Р…Р В° Р Т‘Р В¶Р ВµР С”Р С—Р С•РЎвЂљ',
     type: 'slots',
-    icon: 'рџЋ°',
-    cooldown: '10Рј',
+    icon: 'СЂСџР‹В°',
+    cooldown: '10Р С',
     stats: { plays: 1567, rewards: 78900, players: 456 },
     status: 'available'
   }
@@ -52,52 +52,52 @@ const gamesData = [
 const casesData = [
   {
     id: '1',
-    name: 'РЎС‚Р°СЂС‚РѕРІС‹Р№ РєРµР№СЃ',
-    description: 'Р‘Р°Р·РѕРІС‹Рµ РЅР°РіСЂР°РґС‹ РґР»СЏ РЅРѕРІРёС‡РєРѕРІ',
+    name: 'Р РЋРЎвЂљР В°РЎР‚РЎвЂљР С•Р Р†РЎвЂ№Р в„– Р С”Р ВµР в„–РЎРѓ',
+    description: 'Р вЂР В°Р В·Р С•Р Р†РЎвЂ№Р Вµ Р Р…Р В°Р С–РЎР‚Р В°Р Т‘РЎвЂ№ Р Т‘Р В»РЎРЏ Р Р…Р С•Р Р†Р С‘РЎвЂЎР С”Р С•Р Р†',
     price: 100,
     currency: 'coins',
     rarity: 'common',
-    icon: 'рџ“¦',
-    rewards: ['10-50 РјРѕРЅРµС‚', '5-20 XP', 'Р‘Р°Р·РѕРІС‹Рµ РїСЂРµРґРјРµС‚С‹'],
+    icon: 'СЂСџвЂњВ¦',
+    rewards: ['10-50 Р СР С•Р Р…Р ВµРЎвЂљ', '5-20 XP', 'Р вЂР В°Р В·Р С•Р Р†РЎвЂ№Р Вµ Р С—РЎР‚Р ВµР Т‘Р СР ВµРЎвЂљРЎвЂ№'],
     dropRate: '100%'
   },
   {
     id: '2',
-    name: 'Р—РѕР»РѕС‚РѕР№ РєРµР№СЃ',
-    description: 'Р¦РµРЅРЅС‹Рµ РЅР°РіСЂР°РґС‹ Рё СЂРµРґРєРёРµ РїСЂРµРґРјРµС‚С‹',
+    name: 'Р вЂ”Р С•Р В»Р С•РЎвЂљР С•Р в„– Р С”Р ВµР в„–РЎРѓ',
+    description: 'Р В¦Р ВµР Р…Р Р…РЎвЂ№Р Вµ Р Р…Р В°Р С–РЎР‚Р В°Р Т‘РЎвЂ№ Р С‘ РЎР‚Р ВµР Т‘Р С”Р С‘Р Вµ Р С—РЎР‚Р ВµР Т‘Р СР ВµРЎвЂљРЎвЂ№',
     price: 500,
     currency: 'coins',
     rarity: 'rare',
-    icon: 'рџЏ†',
-    rewards: ['100-500 РјРѕРЅРµС‚', '50-200 XP', 'Р РµРґРєРёРµ РїСЂРµРґРјРµС‚С‹', 'РџСЂРµРјРёСѓРј Р±РѕРЅСѓСЃС‹'],
+    icon: 'СЂСџРЏвЂ ',
+    rewards: ['100-500 Р СР С•Р Р…Р ВµРЎвЂљ', '50-200 XP', 'Р В Р ВµР Т‘Р С”Р С‘Р Вµ Р С—РЎР‚Р ВµР Т‘Р СР ВµРЎвЂљРЎвЂ№', 'Р СџРЎР‚Р ВµР СР С‘РЎС“Р С Р В±Р С•Р Р…РЎС“РЎРѓРЎвЂ№'],
     dropRate: '25%'
   },
   {
     id: '3',
-    name: 'Р›РµРіРµРЅРґР°СЂРЅС‹Р№ РєРµР№СЃ',
-    description: 'Р­РєСЃРєР»СЋР·РёРІРЅС‹Рµ РЅР°РіСЂР°РґС‹ РІС‹СЃС€РµРіРѕ СѓСЂРѕРІРЅСЏ',
+    name: 'Р вЂєР ВµР С–Р ВµР Р…Р Т‘Р В°РЎР‚Р Р…РЎвЂ№Р в„– Р С”Р ВµР в„–РЎРѓ',
+    description: 'Р В­Р С”РЎРѓР С”Р В»РЎР‹Р В·Р С‘Р Р†Р Р…РЎвЂ№Р Вµ Р Р…Р В°Р С–РЎР‚Р В°Р Т‘РЎвЂ№ Р Р†РЎвЂ№РЎРѓРЎв‚¬Р ВµР С–Р С• РЎС“РЎР‚Р С•Р Р†Р Р…РЎРЏ',
     price: 1500,
     currency: 'coins',
     rarity: 'legendary',
-    icon: 'рџ’Ћ',
-    rewards: ['500-2000 РјРѕРЅРµС‚', '200-1000 XP', 'Р›РµРіРµРЅРґР°СЂРЅС‹Рµ РїСЂРµРґРјРµС‚С‹', 'VIP СЃС‚Р°С‚СѓСЃ'],
+    icon: 'СЂСџвЂ™Р‹',
+    rewards: ['500-2000 Р СР С•Р Р…Р ВµРЎвЂљ', '200-1000 XP', 'Р вЂєР ВµР С–Р ВµР Р…Р Т‘Р В°РЎР‚Р Р…РЎвЂ№Р Вµ Р С—РЎР‚Р ВµР Т‘Р СР ВµРЎвЂљРЎвЂ№', 'VIP РЎРѓРЎвЂљР В°РЎвЂљРЎС“РЎРѓ'],
     dropRate: '5%'
   },
   {
     id: '4',
-    name: 'РџСЂР°Р·РґРЅРёС‡РЅС‹Р№ РєРµР№СЃ',
-    description: 'РћРіСЂР°РЅРёС‡РµРЅРЅР°СЏ СЃРµСЂРёСЏ СЃ СЌРєСЃРєР»СЋР·РёРІРЅС‹РјРё РЅР°РіСЂР°РґР°РјРё',
+    name: 'Р СџРЎР‚Р В°Р В·Р Т‘Р Р…Р С‘РЎвЂЎР Р…РЎвЂ№Р в„– Р С”Р ВµР в„–РЎРѓ',
+    description: 'Р С›Р С–РЎР‚Р В°Р Р…Р С‘РЎвЂЎР ВµР Р…Р Р…Р В°РЎРЏ РЎРѓР ВµРЎР‚Р С‘РЎРЏ РЎРѓ РЎРЊР С”РЎРѓР С”Р В»РЎР‹Р В·Р С‘Р Р†Р Р…РЎвЂ№Р СР С‘ Р Р…Р В°Р С–РЎР‚Р В°Р Т‘Р В°Р СР С‘',
     price: 300,
     currency: 'coins',
     rarity: 'epic',
-    icon: 'рџЋЃ',
-    rewards: ['150-800 РјРѕРЅРµС‚', '30-150 XP', 'РџСЂР°Р·РґРЅРёС‡РЅС‹Рµ РїСЂРµРґРјРµС‚С‹', 'Р’СЂРµРјРµРЅРЅС‹Рµ Р±РѕРЅСѓСЃС‹'],
+    icon: 'СЂСџР‹Рѓ',
+    rewards: ['150-800 Р СР С•Р Р…Р ВµРЎвЂљ', '30-150 XP', 'Р СџРЎР‚Р В°Р В·Р Т‘Р Р…Р С‘РЎвЂЎР Р…РЎвЂ№Р Вµ Р С—РЎР‚Р ВµР Т‘Р СР ВµРЎвЂљРЎвЂ№', 'Р вЂ™РЎР‚Р ВµР СР ВµР Р…Р Р…РЎвЂ№Р Вµ Р В±Р С•Р Р…РЎС“РЎРѓРЎвЂ№'],
     dropRate: '15%',
     limited: true
   }
 ];
 
-// РўРёРї РґР»СЏ С‚РѕРІР°СЂР° РІ РєРѕСЂР·РёРЅРµ
+// Р СћР С‘Р С— Р Т‘Р В»РЎРЏ РЎвЂљР С•Р Р†Р В°РЎР‚Р В° Р Р† Р С”Р С•РЎР‚Р В·Р С‘Р Р…Р Вµ
 interface CartItem {
   id: string;
   name: string;
@@ -117,16 +117,16 @@ export function ShopPageWithTabsFixed({
   setOrders 
 }: ShopPageWithTabsFixedProps) {
   const [activeTab, setActiveTab] = useState<'items' | 'games' | 'cases'>('items');
-  const [userBalance] = useState(1500); // РњРѕРє Р±Р°Р»Р°РЅСЃР° РїРѕР»СЊР·РѕРІР°С‚РµР»СЏ
+  const [userBalance] = useState(1500); // Р СљР С•Р С” Р В±Р В°Р В»Р В°Р Р…РЎРѓР В° Р С—Р С•Р В»РЎРЉР В·Р С•Р Р†Р В°РЎвЂљР ВµР В»РЎРЏ
   const [userCooldowns, setUserCooldowns] = useState<Record<string, number>>({});
   const [cart, setCart] = useState<CartItem[]>([]);
   const [isCartOpen, setIsCartOpen] = useState(false);
   const [cartTab, setCartTab] = useState<'cart' | 'active' | 'completed'>('cart');
 
   const tabs = [
-    { id: 'items' as const, label: 'РўРѕРІР°СЂС‹', icon: Package },
-    { id: 'games' as const, label: 'РРіСЂС‹', icon: Gamepad2 },
-    { id: 'cases' as const, label: 'РљРµР№СЃС‹', icon: Gift }
+    { id: 'items' as const, label: 'Р СћР С•Р Р†Р В°РЎР‚РЎвЂ№', icon: Package },
+    { id: 'games' as const, label: 'Р ВР С–РЎР‚РЎвЂ№', icon: Gamepad2 },
+    { id: 'cases' as const, label: 'Р С™Р ВµР в„–РЎРѓРЎвЂ№', icon: Gift }
   ];
 
   const gameTypeIcons = {
@@ -161,32 +161,32 @@ export function ShopPageWithTabsFixed({
   };
 
   const formatCooldown = (seconds: number) => {
-    if (seconds < 60) return `${seconds}СЃ`;
-    if (seconds < 3600) return `${Math.floor(seconds / 60)}Рј`;
-    return `${Math.floor(seconds / 3600)}С‡`;
+    if (seconds < 60) return `${seconds}РЎРѓ`;
+    if (seconds < 3600) return `${Math.floor(seconds / 60)}Р С`;
+    return `${Math.floor(seconds / 3600)}РЎвЂЎ`;
   };
 
   const playGame = (game: any) => {
-    // РЎРёРјСѓР»СЏС†РёСЏ РєСѓР»РґР°СѓРЅР° (РїСЂРµРѕР±СЂР°Р·СѓРµРј С‚РµРєСЃС‚РѕРІС‹Р№ РєСѓР»РґР°СѓРЅ РІ СЃРµРєСѓРЅРґС‹)
-    const cooldownInSeconds = game.cooldown === '5Рј' ? 300 : game.cooldown === '3Рј' ? 180 : 600;
+    // Р РЋР С‘Р СРЎС“Р В»РЎРЏРЎвЂ Р С‘РЎРЏ Р С”РЎС“Р В»Р Т‘Р В°РЎС“Р Р…Р В° (Р С—РЎР‚Р ВµР С•Р В±РЎР‚Р В°Р В·РЎС“Р ВµР С РЎвЂљР ВµР С”РЎРѓРЎвЂљР С•Р Р†РЎвЂ№Р в„– Р С”РЎС“Р В»Р Т‘Р В°РЎС“Р Р… Р Р† РЎРѓР ВµР С”РЎС“Р Р…Р Т‘РЎвЂ№)
+    const cooldownInSeconds = game.cooldown === '5Р С' ? 300 : game.cooldown === '3Р С' ? 180 : 600;
     const cooldownEndTime = Date.now() + (cooldownInSeconds * 1000);
     setUserCooldowns(prev => ({
       ...prev,
       [game.id]: cooldownEndTime
     }));
     
-    // Р—РґРµСЃСЊ Р±СѓРґРµС‚ Р»РѕРіРёРєР° Р·Р°РїСѓСЃРєР° РёРіСЂС‹
-    console.log(`Р—Р°РїСѓСЃРє РёРіСЂС‹: ${game.name}`);
+    // Р вЂ”Р Т‘Р ВµРЎРѓРЎРЉ Р В±РЎС“Р Т‘Р ВµРЎвЂљ Р В»Р С•Р С–Р С‘Р С”Р В° Р В·Р В°Р С—РЎС“РЎРѓР С”Р В° Р С‘Р С–РЎР‚РЎвЂ№
+    console.log(`Р вЂ”Р В°Р С—РЎС“РЎРѓР С” Р С‘Р С–РЎР‚РЎвЂ№: ${game.name}`);
   };
 
   const openCase = (caseItem: any) => {
     if (userBalance >= caseItem.price) {
-      // Р—РґРµСЃСЊ Р±СѓРґРµС‚ Р»РѕРіРёРєР° РѕС‚РєСЂС‹С‚РёСЏ РєРµР№СЃР°
-      console.log(`РћС‚РєСЂС‹С‚РёРµ РєРµР№СЃР°: ${caseItem.name}`);
+      // Р вЂ”Р Т‘Р ВµРЎРѓРЎРЉ Р В±РЎС“Р Т‘Р ВµРЎвЂљ Р В»Р С•Р С–Р С‘Р С”Р В° Р С•РЎвЂљР С”РЎР‚РЎвЂ№РЎвЂљР С‘РЎРЏ Р С”Р ВµР в„–РЎРѓР В°
+      console.log(`Р С›РЎвЂљР С”РЎР‚РЎвЂ№РЎвЂљР С‘Р Вµ Р С”Р ВµР в„–РЎРѓР В°: ${caseItem.name}`);
     }
   };
 
-  // Р¤СѓРЅРєС†РёРё РґР»СЏ СЂР°Р±РѕС‚С‹ СЃ РєРѕСЂР·РёРЅРѕР№
+  // Р В¤РЎС“Р Р…Р С”РЎвЂ Р С‘Р С‘ Р Т‘Р В»РЎРЏ РЎР‚Р В°Р В±Р С•РЎвЂљРЎвЂ№ РЎРѓ Р С”Р С•РЎР‚Р В·Р С‘Р Р…Р С•Р в„–
   const addToCart = (item: ShopItem) => {
     setCart(prevCart => {
       const existingItem = prevCart.find(cartItem => cartItem.id === item.id);
@@ -239,7 +239,7 @@ export function ShopPageWithTabsFixed({
   const checkout = () => {
     const totalPrice = getTotalCartPrice();
     if (userBalance >= totalPrice && cart.length > 0) {
-      // РЎРѕР·РґР°РµРј РЅРѕРІС‹Р№ Р·Р°РєР°Р·
+      // Р РЋР С•Р В·Р Т‘Р В°Р ВµР С Р Р…Р С•Р Р†РЎвЂ№Р в„– Р В·Р В°Р С”Р В°Р В·
       const newOrder: Order = {
         id: Date.now().toString(),
         items: cart.map(cartItem => ({
@@ -252,17 +252,17 @@ export function ShopPageWithTabsFixed({
         total: totalPrice,
         status: 'active',
         createdAt: new Date().toISOString(),
-        userId: 'current-user' // Р’ СЂРµР°Р»СЊРЅРѕРј РїСЂРёР»РѕР¶РµРЅРёРё Р±СѓРґРµС‚ ID С‚РµРєСѓС‰РµРіРѕ РїРѕР»СЊР·РѕРІР°С‚РµР»СЏ
+        userId: 'current-user' // Р вЂ™ РЎР‚Р ВµР В°Р В»РЎРЉР Р…Р С•Р С Р С—РЎР‚Р С‘Р В»Р С•Р В¶Р ВµР Р…Р С‘Р С‘ Р В±РЎС“Р Т‘Р ВµРЎвЂљ ID РЎвЂљР ВµР С”РЎС“РЎвЂ°Р ВµР С–Р С• Р С—Р С•Р В»РЎРЉР В·Р С•Р Р†Р В°РЎвЂљР ВµР В»РЎРЏ
       };
       
-      // Р”РѕР±Р°РІР»СЏРµРј Р·Р°РєР°Р· РІ СЃРїРёСЃРѕРє Р·Р°РєР°Р·РѕРІ
+      // Р вЂќР С•Р В±Р В°Р Р†Р В»РЎРЏР ВµР С Р В·Р В°Р С”Р В°Р В· Р Р† РЎРѓР С—Р С‘РЎРѓР С•Р С” Р В·Р В°Р С”Р В°Р В·Р С•Р Р†
       setOrders(prevOrders => [...prevOrders, newOrder]);
       
-      // РћС‡РёС‰Р°РµРј РєРѕСЂР·РёРЅСѓ Рё РїпїЅпїЅСЂРµРєР»СЋС‡Р°РµРјСЃСЏ РЅР° С‚Р°Р± Р°РєС‚РёРІРЅС‹С… Р·Р°РєР°Р·РѕРІ
+      // Р С›РЎвЂЎР С‘РЎвЂ°Р В°Р ВµР С Р С”Р С•РЎР‚Р В·Р С‘Р Р…РЎС“ Р С‘ Р С—РїС—Р…РїС—Р…РЎР‚Р ВµР С”Р В»РЎР‹РЎвЂЎР В°Р ВµР СРЎРѓРЎРЏ Р Р…Р В° РЎвЂљР В°Р В± Р В°Р С”РЎвЂљР С‘Р Р†Р Р…РЎвЂ№РЎвЂ¦ Р В·Р В°Р С”Р В°Р В·Р С•Р Р†
       clearCart();
       setCartTab('active');
       
-      console.log('Р—Р°РєР°Р· РѕС„РѕСЂРјР»РµРЅ:', newOrder);
+      console.log('Р вЂ”Р В°Р С”Р В°Р В· Р С•РЎвЂћР С•РЎР‚Р СР В»Р ВµР Р…:', newOrder);
     }
   };
 
@@ -283,7 +283,7 @@ export function ShopPageWithTabsFixed({
                   </div>
                   <div className="text-right">
                     <div className="font-medium text-foreground">{item.price} G-coin</div>
-                    <div className="text-xs text-muted-foreground">Р’ РЅР°Р»РёС‡РёРё: {item.stock}</div>
+                    <div className="text-xs text-muted-foreground">Р вЂ™ Р Р…Р В°Р В»Р С‘РЎвЂЎР С‘Р С‘: {item.stock}</div>
                   </div>
                 </div>
                 <button 
@@ -291,7 +291,7 @@ export function ShopPageWithTabsFixed({
                   className="w-full bg-primary text-primary-foreground py-2 rounded-xl hover:scale-[0.98] transition-transform disabled:bg-secondary disabled:text-muted-foreground"
                   disabled={item.stock === 0}
                 >
-                  {item.stock === 0 ? 'РќРµС‚ РІ РЅР°Р»РёС‡РёРё' : 'Р”РѕР±Р°РІРёС‚СЊ РІ РєРѕСЂР·РёРЅСѓ'}
+                  {item.stock === 0 ? 'Р СњР ВµРЎвЂљ Р Р† Р Р…Р В°Р В»Р С‘РЎвЂЎР С‘Р С‘' : 'Р вЂќР С•Р В±Р В°Р Р†Р С‘РЎвЂљРЎРЉ Р Р† Р С”Р С•РЎР‚Р В·Р С‘Р Р…РЎС“'}
                 </button>
               </div>
             </div>
@@ -300,9 +300,9 @@ export function ShopPageWithTabsFixed({
       ) : (
         <div className="glass-card rounded-2xl p-8 text-center apple-shadow">
           <Package className="w-12 h-12 text-muted-foreground mx-auto mb-4" />
-          <h3 className="text-lg font-medium text-foreground mb-2">РўРѕРІР°СЂС‹ СЃРєРѕСЂРѕ РїРѕСЏРІСЏС‚СЃСЏ</h3>
+          <h3 className="text-lg font-medium text-foreground mb-2">Р СћР С•Р Р†Р В°РЎР‚РЎвЂ№ РЎРѓР С”Р С•РЎР‚Р С• Р С—Р С•РЎРЏР Р†РЎРЏРЎвЂљРЎРѓРЎРЏ</h3>
           <p className="text-sm text-muted-foreground">
-            РђРґРјРёРЅРёСЃС‚СЂР°С‚РѕСЂС‹ СЂР°Р±РѕС‚Р°СЋС‚ РЅР°Рґ РїРѕРїРѕР»РЅРµРЅРёРµРј Р°СЃСЃРѕСЂС‚РёРјРµРЅС‚Р°
+            Р С’Р Т‘Р СР С‘Р Р…Р С‘РЎРѓРЎвЂљРЎР‚Р В°РЎвЂљР С•РЎР‚РЎвЂ№ РЎР‚Р В°Р В±Р С•РЎвЂљР В°РЎР‹РЎвЂљ Р Р…Р В°Р Т‘ Р С—Р С•Р С—Р С•Р В»Р Р…Р ВµР Р…Р С‘Р ВµР С Р В°РЎРѓРЎРѓР С•РЎР‚РЎвЂљР С‘Р СР ВµР Р…РЎвЂљР В°
           </p>
         </div>
       )}
@@ -342,26 +342,26 @@ export function ShopPageWithTabsFixed({
                 <div className="grid grid-cols-3 gap-4 text-xs mb-4">
                   <div className="text-center">
                     <div className="text-foreground font-medium">{formatStats(game.stats.plays)}</div>
-                    <div className="text-muted-foreground">РРіСЂ</div>
+                    <div className="text-muted-foreground">Р ВР С–РЎР‚</div>
                   </div>
                   <div className="text-center">
                     <div className="text-foreground font-medium">{formatStats(game.stats.rewards)}</div>
-                    <div className="text-muted-foreground">РќР°РіСЂР°Рґ</div>
+                    <div className="text-muted-foreground">Р СњР В°Р С–РЎР‚Р В°Р Т‘</div>
                   </div>
                   <div className="text-center">
                     <div className="text-foreground font-medium">{formatStats(game.stats.players)}</div>
-                    <div className="text-muted-foreground">РРіСЂРѕРєРѕРІ</div>
+                    <div className="text-muted-foreground">Р ВР С–РЎР‚Р С•Р С”Р С•Р Р†</div>
                   </div>
                 </div>
                 
                 <div className="flex items-center justify-between text-xs text-muted-foreground mb-4">
                   <div className="flex items-center gap-1">
                     <Clock className="w-3 h-3" />
-                    РљСѓР»РґР°СѓРЅ: {game.cooldown}
+                    Р С™РЎС“Р В»Р Т‘Р В°РЎС“Р Р…: {game.cooldown}
                   </div>
                   <div className="flex items-center gap-1">
                     <Users className="w-3 h-3" />
-                    РџСѓР±Р»РёС‡РЅР°СЏ РёРіСЂР°
+                    Р СџРЎС“Р В±Р В»Р С‘РЎвЂЎР Р…Р В°РЎРЏ Р С‘Р С–РЎР‚Р В°
                   </div>
                 </div>
                 
@@ -376,7 +376,7 @@ export function ShopPageWithTabsFixed({
                 >
                   <div className="flex items-center justify-center gap-2">
                     <Play className="w-4 h-4" />
-                    {canPlay ? 'РРіСЂР°С‚СЊ' : `Р–РґРёС‚Рµ ${formatCooldown(remainingCooldown)}`}
+                    {canPlay ? 'Р ВР С–РЎР‚Р В°РЎвЂљРЎРЉ' : `Р вЂ“Р Т‘Р С‘РЎвЂљР Вµ ${formatCooldown(remainingCooldown)}`}
                   </div>
                 </button>
               </div>
@@ -412,7 +412,7 @@ export function ShopPageWithTabsFixed({
                   </div>
                   <p className="text-sm text-muted-foreground mb-2">{caseItem.description}</p>
                   <div className="text-xs text-muted-foreground">
-                    РЁР°РЅСЃ СЂРµРґРєРѕР№ РЅР°РіСЂР°РґС‹: {caseItem.dropRate}
+                    Р РЃР В°Р Р…РЎРѓ РЎР‚Р ВµР Т‘Р С”Р С•Р в„– Р Р…Р В°Р С–РЎР‚Р В°Р Т‘РЎвЂ№: {caseItem.dropRate}
                   </div>
                 </div>
                 <div className="text-right">
@@ -421,7 +421,7 @@ export function ShopPageWithTabsFixed({
               </div>
               
               <div className="mb-4">
-                <div className="text-xs font-medium text-foreground mb-2">Р’РѕР·РјРѕР¶РЅС‹Рµ РЅР°РіСЂР°РґС‹:</div>
+                <div className="text-xs font-medium text-foreground mb-2">Р вЂ™Р С•Р В·Р СР С•Р В¶Р Р…РЎвЂ№Р Вµ Р Р…Р В°Р С–РЎР‚Р В°Р Т‘РЎвЂ№:</div>
                 <div className="flex flex-wrap gap-1">
                   {caseItem.rewards.map((reward, index) => (
                     <span key={index} className="text-xs bg-secondary px-2 py-1 rounded-full text-muted-foreground">
@@ -438,7 +438,7 @@ export function ShopPageWithTabsFixed({
               >
                 <div className="flex items-center justify-center gap-2">
                   <Gift className="w-4 h-4" />
-                  {userBalance < caseItem.price ? 'РќРµРґРѕСЃС‚Р°С‚РѕС‡РЅРѕ СЃСЂРµРґСЃС‚РІ' : `РћС‚РєСЂС‹С‚СЊ Р·Р° ${caseItem.price} G-coin`}
+                  {userBalance < caseItem.price ? 'Р СњР ВµР Т‘Р С•РЎРѓРЎвЂљР В°РЎвЂљР С•РЎвЂЎР Р…Р С• РЎРѓРЎР‚Р ВµР Т‘РЎРѓРЎвЂљР Р†' : `Р С›РЎвЂљР С”РЎР‚РЎвЂ№РЎвЂљРЎРЉ Р В·Р В° ${caseItem.price} G-coin`}
                 </div>
               </button>
             </div>
@@ -455,15 +455,15 @@ export function ShopPageWithTabsFixed({
         currentPage={currentPage}
         onOpenSettings={onOpenSettings} 
         profilePhoto={profilePhoto}
-        user={{ name: 'РџРѕР»СЊР·РѕРІР°С‚РµР»СЊ', username: '@user', isOnline: true }}
+        user={{ name: 'Р СџР С•Р В»РЎРЉР В·Р С•Р Р†Р В°РЎвЂљР ВµР В»РЎРЉ', username: '@user', isOnline: true }}
       />
       
       <div className="max-w-md mx-auto pt-20 px-4 pb-24 space-y-6">
-        {/* Р‘Р°Р»Р°РЅСЃ РїРѕР»СЊР·РѕРІР°С‚РµР»СЏ */}
+        {/* Р вЂР В°Р В»Р В°Р Р…РЎРѓ Р С—Р С•Р В»РЎРЉР В·Р С•Р Р†Р В°РЎвЂљР ВµР В»РЎРЏ */}
         <div className="glass-card rounded-2xl p-4 mb-6 apple-shadow">
           <div className="flex items-center justify-between">
             <div>
-              <div className="text-sm text-muted-foreground">Р’Р°С€ Р±Р°Р»Р°РЅСЃ</div>
+              <div className="text-sm text-muted-foreground">Р вЂ™Р В°РЎв‚¬ Р В±Р В°Р В»Р В°Р Р…РЎРѓ</div>
               <div className="text-2xl font-medium text-foreground">{userBalance} G-coin</div>
             </div>
             <div className="flex items-center gap-3">
@@ -485,7 +485,7 @@ export function ShopPageWithTabsFixed({
           </div>
         </div>
 
-        {/* РўР°Р±С‹ */}
+        {/* Р СћР В°Р В±РЎвЂ№ */}
         <div className="flex gap-2 mb-6">
           {tabs.map((tab) => {
             const Icon = tab.icon;
@@ -507,19 +507,19 @@ export function ShopPageWithTabsFixed({
           })}
         </div>
 
-        {/* РљРѕРЅС‚РµРЅС‚ С‚Р°Р±РѕРІ */}
+        {/* Р С™Р С•Р Р…РЎвЂљР ВµР Р…РЎвЂљ РЎвЂљР В°Р В±Р С•Р Р† */}
         {activeTab === 'items' && renderItemsTab()}
         {activeTab === 'games' && renderGamesTab()}
         {activeTab === 'cases' && renderCasesTab()}
       </div>
 
-      {/* РњРѕРґР°Р»СЊРЅРѕРµ РѕРєРЅРѕ РєРѕСЂР·РёРЅС‹ */}
+      {/* Р СљР С•Р Т‘Р В°Р В»РЎРЉР Р…Р С•Р Вµ Р С•Р С”Р Р…Р С• Р С”Р С•РЎР‚Р В·Р С‘Р Р…РЎвЂ№ */}
       {isCartOpen && (
         <div className="fixed inset-0 z-50 flex items-end justify-center bg-black/50 backdrop-blur-sm">
           <div className="w-full max-w-md bg-background rounded-t-2xl max-h-[75vh] flex flex-col">
-            {/* Р—Р°РіРѕР»РѕРІРѕРє РєРѕСЂР·РёРЅС‹ - С„РёРєСЃРёСЂРѕРІР°РЅРЅС‹Р№ */}
+            {/* Р вЂ”Р В°Р С–Р С•Р В»Р С•Р Р†Р С•Р С” Р С”Р С•РЎР‚Р В·Р С‘Р Р…РЎвЂ№ - РЎвЂћР С‘Р С”РЎРѓР С‘РЎР‚Р С•Р Р†Р В°Р Р…Р Р…РЎвЂ№Р в„– */}
             <div className="flex items-center justify-between p-6 pb-4 border-b border-border shrink-0">
-              <h2 className="text-xl font-medium text-foreground">РљРѕСЂР·РёРЅР°</h2>
+              <h2 className="text-xl font-medium text-foreground">Р С™Р С•РЎР‚Р В·Р С‘Р Р…Р В°</h2>
               <button
                 onClick={() => setIsCartOpen(false)}
                 className="w-8 h-8 rounded-full glass-card flex items-center justify-center"
@@ -528,7 +528,7 @@ export function ShopPageWithTabsFixed({
               </button>
             </div>
 
-            {/* РўР°Р±С‹ РєРѕСЂР·РёРЅС‹ - С„РёРєСЃРёСЂРѕРІР°РЅРЅС‹Рµ */}
+            {/* Р СћР В°Р В±РЎвЂ№ Р С”Р С•РЎР‚Р В·Р С‘Р Р…РЎвЂ№ - РЎвЂћР С‘Р С”РЎРѓР С‘РЎР‚Р С•Р Р†Р В°Р Р…Р Р…РЎвЂ№Р Вµ */}
             <div className="flex gap-2 p-6 py-4 shrink-0">
               <button
                 onClick={() => setCartTab('cart')}
@@ -538,7 +538,7 @@ export function ShopPageWithTabsFixed({
                     : 'glass-card text-foreground hover:scale-[0.98]'
                 }`}
               >
-                РљРѕСЂР·РёРЅР°
+                Р С™Р С•РЎР‚Р В·Р С‘Р Р…Р В°
               </button>
               <button
                 onClick={() => setCartTab('active')}
@@ -548,7 +548,7 @@ export function ShopPageWithTabsFixed({
                     : 'glass-card text-foreground hover:scale-[0.98]'
                 }`}
               >
-                РђРєС‚РёРІРЅС‹Рµ
+                Р С’Р С”РЎвЂљР С‘Р Р†Р Р…РЎвЂ№Р Вµ
               </button>
               <button
                 onClick={() => setCartTab('completed')}
@@ -558,18 +558,18 @@ export function ShopPageWithTabsFixed({
                     : 'glass-card text-foreground hover:scale-[0.98]'
                 }`}
               >
-                Р—Р°РІРµСЂС€РµРЅРЅС‹Рµ
+                Р вЂ”Р В°Р Р†Р ВµРЎР‚РЎв‚¬Р ВµР Р…Р Р…РЎвЂ№Р Вµ
               </button>
             </div>
 
-            {/* РџСЂРѕРєСЂСѓС‡РёРІР°РµРјРѕРµ СЃРѕРґРµСЂР¶РёРјРѕРµ РєРѕСЂР·РёРЅС‹ */}
+            {/* Р СџРЎР‚Р С•Р С”РЎР‚РЎС“РЎвЂЎР С‘Р Р†Р В°Р ВµР СР С•Р Вµ РЎРѓР С•Р Т‘Р ВµРЎР‚Р В¶Р С‘Р СР С•Р Вµ Р С”Р С•РЎР‚Р В·Р С‘Р Р…РЎвЂ№ */}
             <div className="flex-1 overflow-y-auto px-6 min-h-0">
               {cartTab === 'cart' && (
                 <>
                   {cart.length === 0 ? (
                     <div className="text-center py-8">
                       <ShoppingCart className="w-12 h-12 text-muted-foreground mx-auto mb-4" />
-                      <p className="text-muted-foreground">РљРѕСЂР·РёРЅР° РїСѓСЃС‚Р°</p>
+                      <p className="text-muted-foreground">Р С™Р С•РЎР‚Р В·Р С‘Р Р…Р В° Р С—РЎС“РЎРѓРЎвЂљР В°</p>
                     </div>
                   ) : (
                     <div className="space-y-4 pb-4">
@@ -580,7 +580,7 @@ export function ShopPageWithTabsFixed({
                           </div>
                           <div className="flex-1">
                             <div className="font-medium text-foreground">{item.name}</div>
-                            <div className="text-sm text-muted-foreground">{item.price} G-coin Р·Р° С€С‚.</div>
+                            <div className="text-sm text-muted-foreground">{item.price} G-coin Р В·Р В° РЎв‚¬РЎвЂљ.</div>
                           </div>
                           <div className="flex items-center gap-2">
                             <button
@@ -610,21 +610,21 @@ export function ShopPageWithTabsFixed({
                 </>
               )}
 
-              {/* РђРєС‚РёРІРЅС‹Рµ Р·Р°РєР°Р·С‹ */}
+              {/* Р С’Р С”РЎвЂљР С‘Р Р†Р Р…РЎвЂ№Р Вµ Р В·Р В°Р С”Р В°Р В·РЎвЂ№ */}
               {cartTab === 'active' && (
                 <div className="space-y-4 pb-4">
                   {orders.filter(order => order.status === 'active').length === 0 ? (
                     <div className="text-center py-8">
                       <Clock className="w-12 h-12 text-muted-foreground mx-auto mb-4" />
-                      <p className="text-muted-foreground">РќРµС‚ Р°РєС‚РёРІРЅС‹С… Р·Р°РєР°Р·РѕРІ</p>
+                      <p className="text-muted-foreground">Р СњР ВµРЎвЂљ Р В°Р С”РЎвЂљР С‘Р Р†Р Р…РЎвЂ№РЎвЂ¦ Р В·Р В°Р С”Р В°Р В·Р С•Р Р†</p>
                     </div>
                   ) : (
                     orders.filter(order => order.status === 'active').map((order) => (
                       <div key={order.id} className="glass-card p-4 rounded-xl">
                         <div className="flex items-center justify-between mb-2">
-                          <span className="font-medium">Р—Р°РєР°Р· #{order.id}</span>
+                          <span className="font-medium">Р вЂ”Р В°Р С”Р В°Р В· #{order.id}</span>
                           <span className="text-xs bg-yellow-100 text-yellow-800 px-2 py-1 rounded-full">
-                            Р’ РѕР±СЂР°Р±РѕС‚РєРµ
+                            Р вЂ™ Р С•Р В±РЎР‚Р В°Р В±Р С•РЎвЂљР С”Р Вµ
                           </span>
                         </div>
                         <div className="text-sm text-muted-foreground mb-2">
@@ -640,7 +640,7 @@ export function ShopPageWithTabsFixed({
                         </div>
                         <div className="border-t border-border pt-2 mt-2">
                           <div className="flex justify-between font-medium">
-                            <span>РС‚РѕРіРѕ:</span>
+                            <span>Р ВРЎвЂљР С•Р С–Р С•:</span>
                             <span>{order.total} G-coin</span>
                           </div>
                         </div>
@@ -650,21 +650,21 @@ export function ShopPageWithTabsFixed({
                 </div>
               )}
 
-              {/* Р—Р°РІРµСЂС€РµРЅРЅС‹Рµ Р·Р°РєР°Р·С‹ */}
+              {/* Р вЂ”Р В°Р Р†Р ВµРЎР‚РЎв‚¬Р ВµР Р…Р Р…РЎвЂ№Р Вµ Р В·Р В°Р С”Р В°Р В·РЎвЂ№ */}
               {cartTab === 'completed' && (
                 <div className="space-y-4 pb-4">
                   {orders.filter(order => order.status === 'completed').length === 0 ? (
                     <div className="text-center py-8">
                       <CheckCircle className="w-12 h-12 text-muted-foreground mx-auto mb-4" />
-                      <p className="text-muted-foreground">РќРµС‚ Р·Р°РІРµСЂС€РµРЅРЅС‹С… Р·Р°РєР°Р·РѕРІ</p>
+                      <p className="text-muted-foreground">Р СњР ВµРЎвЂљ Р В·Р В°Р Р†Р ВµРЎР‚РЎв‚¬Р ВµР Р…Р Р…РЎвЂ№РЎвЂ¦ Р В·Р В°Р С”Р В°Р В·Р С•Р Р†</p>
                     </div>
                   ) : (
                     orders.filter(order => order.status === 'completed').map((order) => (
                       <div key={order.id} className="glass-card p-4 rounded-xl">
                         <div className="flex items-center justify-between mb-2">
-                          <span className="font-medium">Р—Р°РєР°Р· #{order.id}</span>
+                          <span className="font-medium">Р вЂ”Р В°Р С”Р В°Р В· #{order.id}</span>
                           <span className="text-xs bg-green-100 text-green-800 px-2 py-1 rounded-full">
-                            Р—Р°РІРµСЂС€РµРЅ
+                            Р вЂ”Р В°Р Р†Р ВµРЎР‚РЎв‚¬Р ВµР Р…
                           </span>
                         </div>
                         <div className="text-sm text-muted-foreground mb-2">
@@ -680,7 +680,7 @@ export function ShopPageWithTabsFixed({
                         </div>
                         <div className="border-t border-border pt-2 mt-2">
                           <div className="flex justify-between font-medium">
-                            <span>РС‚РѕРіРѕ:</span>
+                            <span>Р ВРЎвЂљР С•Р С–Р С•:</span>
                             <span>{order.total} G-coin</span>
                           </div>
                         </div>
@@ -691,11 +691,11 @@ export function ShopPageWithTabsFixed({
               )}
             </div>
 
-            {/* РС‚РѕРіРѕ Рё РєпїЅпїЅРѕРїРєРё - С„РёРєСЃРёСЂРѕРІР°РЅРЅС‹Рµ РІРЅРёР·Сѓ */}
+            {/* Р ВРЎвЂљР С•Р С–Р С• Р С‘ Р С”РїС—Р…РїС—Р…Р С•Р С—Р С”Р С‘ - РЎвЂћР С‘Р С”РЎРѓР С‘РЎР‚Р С•Р Р†Р В°Р Р…Р Р…РЎвЂ№Р Вµ Р Р†Р Р…Р С‘Р В·РЎС“ */}
             {cartTab === 'cart' && cart.length > 0 && (
               <div className="border-t border-border p-6 pt-4 shrink-0 bg-background">
                 <div className="flex items-center justify-between text-lg font-medium mb-4">
-                  <span>РС‚РѕРіРѕ:</span>
+                  <span>Р ВРЎвЂљР С•Р С–Р С•:</span>
                   <span>{getTotalCartPrice()} G-coin</span>
                 </div>
                 <div className="flex gap-3">
@@ -703,14 +703,14 @@ export function ShopPageWithTabsFixed({
                     onClick={clearCart}
                     className="flex-1 py-3 rounded-xl glass-card text-muted-foreground hover:scale-[0.98] transition-transform"
                   >
-                    РћС‡РёСЃС‚РёС‚СЊ
+                    Р С›РЎвЂЎР С‘РЎРѓРЎвЂљР С‘РЎвЂљРЎРЉ
                   </button>
                   <button
                     onClick={checkout}
                     className="flex-1 py-3 rounded-xl bg-primary text-primary-foreground hover:scale-[0.98] transition-transform disabled:bg-secondary disabled:text-muted-foreground"
                     disabled={userBalance < getTotalCartPrice()}
                   >
-                    {userBalance < getTotalCartPrice() ? 'РќРµРґРѕСЃС‚Р°С‚РѕС‡РЅРѕ СЃСЂРµРґСЃС‚РІ' : 'РљСѓРїРёС‚СЊ'}
+                    {userBalance < getTotalCartPrice() ? 'Р СњР ВµР Т‘Р С•РЎРѓРЎвЂљР В°РЎвЂљР С•РЎвЂЎР Р…Р С• РЎРѓРЎР‚Р ВµР Т‘РЎРѓРЎвЂљР Р†' : 'Р С™РЎС“Р С—Р С‘РЎвЂљРЎРЉ'}
                   </button>
                 </div>
               </div>
@@ -719,7 +719,7 @@ export function ShopPageWithTabsFixed({
         </div>
       )}
 
-      {/* BottomNavigation СЃРєСЂС‹С‚Р° РєРѕРіРґР° РѕС‚РєСЂС‹С‚Р° РєРѕСЂР·РёРЅР° */}
+      {/* BottomNavigation РЎРѓР С”РЎР‚РЎвЂ№РЎвЂљР В° Р С”Р С•Р С–Р Т‘Р В° Р С•РЎвЂљР С”РЎР‚РЎвЂ№РЎвЂљР В° Р С”Р С•РЎР‚Р В·Р С‘Р Р…Р В° */}
       {!isCartOpen && (
         <BottomNavigation onNavigate={onNavigate} currentPage={currentPage} />
       )}

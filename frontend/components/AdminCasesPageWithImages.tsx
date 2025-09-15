@@ -1,4 +1,4 @@
-﻿import { useState } from 'react';
+п»їimport { useState } from 'react';
 import { motion } from 'framer-motion';
 import { CaseType, Prize } from '../types/cases';
 import { mockCaseTypes, mockPrizes } from '../data/mockData';
@@ -20,10 +20,10 @@ export function AdminCasesPageWithImages({ theme, cases, setCases }: AdminCasesP
   const [expandedCase, setExpandedCase] = useState<string | null>(null);
   const [prizes, setPrizes] = useState<Prize[]>(mockPrizes);
 
-  // РЎРѕСЃС‚РѕСЏРЅРёРµ С„РѕСЂРјС‹ РєРµР№СЃР°
+  // Р РЋР С•РЎРѓРЎвЂљР С•РЎРЏР Р…Р С‘Р Вµ РЎвЂћР С•РЎР‚Р СРЎвЂ№ Р С”Р ВµР в„–РЎРѓР В°
   const [caseForm, setCaseForm] = useState({
     name: '',
-    image: 'рџ“¦',
+    image: 'СЂСџвЂњВ¦',
     rarity: 'common' as const,
     color: '#94A3B8',
     description: '',
@@ -31,10 +31,10 @@ export function AdminCasesPageWithImages({ theme, cases, setCases }: AdminCasesP
     selectedPrizes: [] as string[]
   });
 
-  // РЎРѕСЃС‚РѕСЏРЅРёРµ С„РѕСЂРјС‹ РїСЂРёР·Р°
+  // Р РЋР С•РЎРѓРЎвЂљР С•РЎРЏР Р…Р С‘Р Вµ РЎвЂћР С•РЎР‚Р СРЎвЂ№ Р С—РЎР‚Р С‘Р В·Р В°
   const [prizeForm, setPrizeForm] = useState({
     name: '',
-    image: 'рџЋЃ',
+    image: 'СЂСџР‹Рѓ',
     rarity: 'common' as const,
     color: '#94A3B8',
     value: 0,
@@ -42,7 +42,7 @@ export function AdminCasesPageWithImages({ theme, cases, setCases }: AdminCasesP
     description: ''
   });
 
-  // Р¤СѓРЅРєС†РёСЏ РґР»СЏ РїСЂРѕРІРµСЂРєРё, СЏРІР»СЏРµС‚СЃСЏ Р»Рё СЃС‚СЂРѕРєР° URL
+  // Р В¤РЎС“Р Р…Р С”РЎвЂ Р С‘РЎРЏ Р Т‘Р В»РЎРЏ Р С—РЎР‚Р С•Р Р†Р ВµРЎР‚Р С”Р С‘, РЎРЏР Р†Р В»РЎРЏР ВµРЎвЂљРЎРѓРЎРЏ Р В»Р С‘ РЎРѓРЎвЂљРЎР‚Р С•Р С”Р В° URL
   const isImageUrl = (str: string) => {
     try {
       new URL(str);
@@ -52,7 +52,7 @@ export function AdminCasesPageWithImages({ theme, cases, setCases }: AdminCasesP
     }
   };
 
-  // РљРѕРјРїРѕРЅРµРЅС‚ РґР»СЏ РѕС‚РѕР±СЂР°Р¶РµРЅРёСЏ РёР·РѕР±СЂР°Р¶РµРЅРёСЏ РёР»Рё СЌРјРѕРґР·Рё
+  // Р С™Р С•Р СР С—Р С•Р Р…Р ВµР Р…РЎвЂљ Р Т‘Р В»РЎРЏ Р С•РЎвЂљР С•Р В±РЎР‚Р В°Р В¶Р ВµР Р…Р С‘РЎРЏ Р С‘Р В·Р С•Р В±РЎР‚Р В°Р В¶Р ВµР Р…Р С‘РЎРЏ Р С‘Р В»Р С‘ РЎРЊР СР С•Р Т‘Р В·Р С‘
   const ImageOrEmoji = ({ src, className = '', style = {} }: { src: string; className?: string; style?: React.CSSProperties }) => {
     if (isImageUrl(src)) {
       return (
@@ -83,7 +83,7 @@ export function AdminCasesPageWithImages({ theme, cases, setCases }: AdminCasesP
     setEditingCase(null);
     setCaseForm({
       name: '',
-      image: 'рџ“¦',
+      image: 'СЂСџвЂњВ¦',
       rarity: 'common',
       color: '#94A3B8',
       description: '',
@@ -111,7 +111,7 @@ export function AdminCasesPageWithImages({ theme, cases, setCases }: AdminCasesP
     setEditingPrize(null);
     setPrizeForm({
       name: '',
-      image: 'рџЋЃ',
+      image: 'СЂСџР‹Рѓ',
       rarity: 'common',
       color: '#94A3B8',
       value: 0,
@@ -174,7 +174,7 @@ export function AdminCasesPageWithImages({ theme, cases, setCases }: AdminCasesP
 
     if (editingPrize) {
       setPrizes(prizes.map(p => p.id === editingPrize.id ? newPrize : p));
-      // РћР±РЅРѕРІР»СЏРµРј РєРµР№СЃС‹, РєРѕС‚РѕСЂС‹Рµ СЃРѕРґРµСЂР¶Р°С‚ СЌС‚РѕС‚ РїСЂРёР·
+      // Р С›Р В±Р Р…Р С•Р Р†Р В»РЎРЏР ВµР С Р С”Р ВµР в„–РЎРѓРЎвЂ№, Р С”Р С•РЎвЂљР С•РЎР‚РЎвЂ№Р Вµ РЎРѓР С•Р Т‘Р ВµРЎР‚Р В¶Р В°РЎвЂљ РЎРЊРЎвЂљР С•РЎвЂљ Р С—РЎР‚Р С‘Р В·
       setCases(cases.map(c => ({
         ...c,
         prizes: c.prizes.map(p => p.id === newPrize.id ? newPrize : p)
@@ -193,7 +193,7 @@ export function AdminCasesPageWithImages({ theme, cases, setCases }: AdminCasesP
 
   const handleDeletePrize = (prizeId: string) => {
     setPrizes(prizes.filter(p => p.id !== prizeId));
-    // РЈРґР°Р»СЏРµРј РїСЂРёР· РёР· РІСЃРµС… РєРµР№СЃРѕРІ
+    // Р Р€Р Т‘Р В°Р В»РЎРЏР ВµР С Р С—РЎР‚Р С‘Р В· Р С‘Р В· Р Р†РЎРѓР ВµРЎвЂ¦ Р С”Р ВµР в„–РЎРѓР С•Р Р†
     setCases(cases.map(c => ({
       ...c,
       prizes: c.prizes.filter(p => p.id !== prizeId)
@@ -209,13 +209,13 @@ export function AdminCasesPageWithImages({ theme, cases, setCases }: AdminCasesP
   const renderCasesTab = () => (
     <div className="space-y-4">
       <div className="flex justify-between items-center">
-        <h3 className="text-lg font-semibold">РЈРїСЂР°РІР»РµРЅРёРµ РєРµР№СЃР°РјРё</h3>
+        <h3 className="text-lg font-semibold">Р Р€Р С—РЎР‚Р В°Р Р†Р В»Р ВµР Р…Р С‘Р Вµ Р С”Р ВµР в„–РЎРѓР В°Р СР С‘</h3>
         <button
           onClick={handleCreateCase}
           className="flex items-center gap-2 px-4 py-2 bg-primary text-primary-foreground rounded-lg hover:bg-primary-pressed transition-colors"
         >
           <Plus className="w-4 h-4" />
-          РЎРѕР·РґР°С‚СЊ РєРµР№СЃ
+          Р РЋР С•Р В·Р Т‘Р В°РЎвЂљРЎРЉ Р С”Р ВµР в„–РЎРѓ
         </button>
       </div>
 
@@ -251,7 +251,7 @@ export function AdminCasesPageWithImages({ theme, cases, setCases }: AdminCasesP
                     </span>
                     {!caseItem.isActive && (
                       <span className="text-xs px-2 py-1 rounded bg-muted text-muted-foreground">
-                        РќРµР°РєС‚РёРІРµРЅ
+                        Р СњР ВµР В°Р С”РЎвЂљР С‘Р Р†Р ВµР Р…
                       </span>
                     )}
                   </div>
@@ -259,7 +259,7 @@ export function AdminCasesPageWithImages({ theme, cases, setCases }: AdminCasesP
                     {caseItem.description}
                   </p>
                   <p className="text-xs text-muted-foreground">
-                    РџСЂРёР·РѕРІ: {caseItem.prizes.length}
+                    Р СџРЎР‚Р С‘Р В·Р С•Р Р†: {caseItem.prizes.length}
                   </p>
                 </div>
 
@@ -307,7 +307,7 @@ export function AdminCasesPageWithImages({ theme, cases, setCases }: AdminCasesP
                 exit={{ opacity: 0, height: 0 }}
                 className="mt-4 pt-4 border-t border-border"
               >
-                <h5 className="font-medium mb-3">РџСЂРёР·С‹ РІ РєРµР№СЃРµ:</h5>
+                <h5 className="font-medium mb-3">Р СџРЎР‚Р С‘Р В·РЎвЂ№ Р Р† Р С”Р ВµР в„–РЎРѓР Вµ:</h5>
                 <div className="grid grid-cols-1 gap-2">
                   {caseItem.prizes.map((prize) => (
                     <div key={prize.id} className="flex items-center gap-3 p-2 bg-surface-2 rounded-lg">
@@ -326,7 +326,7 @@ export function AdminCasesPageWithImages({ theme, cases, setCases }: AdminCasesP
                       <div className="flex-1">
                         <div className="font-medium text-sm">{prize.name}</div>
                         <div className="text-xs text-muted-foreground">
-                          РЁР°РЅСЃ: {prize.dropChance}% вЂў Р¦РµРЅРЅРѕСЃС‚СЊ: {prize.value}
+                          Р РЃР В°Р Р…РЎРѓ: {prize.dropChance}% РІР‚Сћ Р В¦Р ВµР Р…Р Р…Р С•РЎРѓРЎвЂљРЎРЉ: {prize.value}
                         </div>
                       </div>
                       <span 
@@ -352,13 +352,13 @@ export function AdminCasesPageWithImages({ theme, cases, setCases }: AdminCasesP
   const renderPrizesTab = () => (
     <div className="space-y-4">
       <div className="flex justify-between items-center">
-        <h3 className="text-lg font-semibold">РЈРїСЂР°РІР»РµРЅРёРµ РїСЂРёР·Р°РјРё</h3>
+        <h3 className="text-lg font-semibold">Р Р€Р С—РЎР‚Р В°Р Р†Р В»Р ВµР Р…Р С‘Р Вµ Р С—РЎР‚Р С‘Р В·Р В°Р СР С‘</h3>
         <button
           onClick={handleCreatePrize}
           className="flex items-center gap-2 px-4 py-2 bg-primary text-primary-foreground rounded-lg hover:bg-primary-pressed transition-colors"
         >
           <Plus className="w-4 h-4" />
-          РЎРѕР·РґР°С‚СЊ РїСЂРёР·
+          Р РЋР С•Р В·Р Т‘Р В°РЎвЂљРЎРЉ Р С—РЎР‚Р С‘Р В·
         </button>
       </div>
 
@@ -396,8 +396,8 @@ export function AdminCasesPageWithImages({ theme, cases, setCases }: AdminCasesP
                   {prize.description}
                 </p>
                 <div className="flex items-center gap-4 text-xs text-muted-foreground">
-                  <span>Р¦РµРЅРЅРѕСЃС‚СЊ: {prize.value}</span>
-                  <span>РЁР°РЅСЃ: {prize.dropChance}%</span>
+                  <span>Р В¦Р ВµР Р…Р Р…Р С•РЎРѓРЎвЂљРЎРЉ: {prize.value}</span>
+                  <span>Р РЃР В°Р Р…РЎРѓ: {prize.dropChance}%</span>
                 </div>
               </div>
 
@@ -426,38 +426,38 @@ export function AdminCasesPageWithImages({ theme, cases, setCases }: AdminCasesP
     <Modal
       isOpen={isModalOpen && (editingCase !== null || (!editingCase && !editingPrize))}
       onClose={() => setIsModalOpen(false)}
-      title={editingCase ? 'Р РµРґР°РєС‚РёСЂРѕРІР°С‚СЊ РєРµР№СЃ' : 'РЎРѕР·РґР°С‚СЊ РєРµР№СЃ'}
+      title={editingCase ? 'Р В Р ВµР Т‘Р В°Р С”РЎвЂљР С‘РЎР‚Р С•Р Р†Р В°РЎвЂљРЎРЉ Р С”Р ВµР в„–РЎРѓ' : 'Р РЋР С•Р В·Р Т‘Р В°РЎвЂљРЎРЉ Р С”Р ВµР в„–РЎРѓ'}
       theme={theme}
     >
       <div className="space-y-4">
         <div>
-          <label className="block text-sm font-medium mb-2">РќР°Р·РІР°РЅРёРµ</label>
+          <label className="block text-sm font-medium mb-2">Р СњР В°Р В·Р Р†Р В°Р Р…Р С‘Р Вµ</label>
           <input
             type="text"
             value={caseForm.name}
             onChange={(e) => setCaseForm(prev => ({ ...prev, name: e.target.value }))}
             className="w-full px-3 py-2 bg-input-background border border-border rounded-lg"
-            placeholder="Р’РІРµРґРёС‚Рµ РЅР°Р·РІР°РЅРёРµ РєРµР№СЃР°"
+            placeholder="Р вЂ™Р Р†Р ВµР Т‘Р С‘РЎвЂљР Вµ Р Р…Р В°Р В·Р Р†Р В°Р Р…Р С‘Р Вµ Р С”Р ВµР в„–РЎРѓР В°"
           />
         </div>
 
         <div>
-          <label className="block text-sm font-medium mb-2">РР·РѕР±СЂР°Р¶РµРЅРёРµ</label>
+          <label className="block text-sm font-medium mb-2">Р ВР В·Р С•Р В±РЎР‚Р В°Р В¶Р ВµР Р…Р С‘Р Вµ</label>
           <div className="space-y-2">
             <input
               type="text"
               value={caseForm.image}
               onChange={(e) => setCaseForm(prev => ({ ...prev, image: e.target.value }))}
               className="w-full px-3 py-2 bg-input-background border border-border rounded-lg"
-              placeholder="рџ“¦ РёР»Рё URL РёР·РѕР±СЂР°Р¶РµРЅРёСЏ (https://...)"
+              placeholder="СЂСџвЂњВ¦ Р С‘Р В»Р С‘ URL Р С‘Р В·Р С•Р В±РЎР‚Р В°Р В¶Р ВµР Р…Р С‘РЎРЏ (https://...)"
             />
             <div className="text-xs text-muted-foreground">
-              РњРѕР¶РЅРѕ РёСЃРїРѕР»СЊР·РѕРІР°С‚СЊ СЌРјРѕРґР·Рё РёР»Рё URL РёР·РѕР±СЂР°Р¶РµРЅРёСЏ
+              Р СљР С•Р В¶Р Р…Р С• Р С‘РЎРѓР С—Р С•Р В»РЎРЉР В·Р С•Р Р†Р В°РЎвЂљРЎРЉ РЎРЊР СР С•Р Т‘Р В·Р С‘ Р С‘Р В»Р С‘ URL Р С‘Р В·Р С•Р В±РЎР‚Р В°Р В¶Р ВµР Р…Р С‘РЎРЏ
             </div>
-            {/* РџСЂРµРґРІР°СЂРёС‚РµР»СЊРЅС‹Р№ РїСЂРѕСЃРјРѕС‚СЂ */}
+            {/* Р СџРЎР‚Р ВµР Т‘Р Р†Р В°РЎР‚Р С‘РЎвЂљР ВµР В»РЎРЉР Р…РЎвЂ№Р в„– Р С—РЎР‚Р С•РЎРѓР СР С•РЎвЂљРЎР‚ */}
             {caseForm.image && (
               <div className="flex items-center gap-2">
-                <span className="text-xs text-muted-foreground">РџСЂРµРґРїСЂРѕСЃРјРѕС‚СЂ:</span>
+                <span className="text-xs text-muted-foreground">Р СџРЎР‚Р ВµР Т‘Р С—РЎР‚Р С•РЎРѓР СР С•РЎвЂљРЎР‚:</span>
                 <div 
                   className="w-8 h-8 rounded border overflow-hidden"
                   style={{ 
@@ -476,7 +476,7 @@ export function AdminCasesPageWithImages({ theme, cases, setCases }: AdminCasesP
         </div>
 
         <div>
-          <label className="block text-sm font-medium mb-2">Р РµРґРєРѕСЃС‚СЊ</label>
+          <label className="block text-sm font-medium mb-2">Р В Р ВµР Т‘Р С”Р С•РЎРѓРЎвЂљРЎРЉ</label>
           <select
             value={caseForm.rarity}
             onChange={(e) => {
@@ -498,18 +498,18 @@ export function AdminCasesPageWithImages({ theme, cases, setCases }: AdminCasesP
         </div>
 
         <div>
-          <label className="block text-sm font-medium mb-2">РћРїРёСЃР°РЅРёРµ</label>
+          <label className="block text-sm font-medium mb-2">Р С›Р С—Р С‘РЎРѓР В°Р Р…Р С‘Р Вµ</label>
           <textarea
             value={caseForm.description}
             onChange={(e) => setCaseForm(prev => ({ ...prev, description: e.target.value }))}
             className="w-full px-3 py-2 bg-input-background border border-border rounded-lg resize-none"
             rows={3}
-            placeholder="РћРїРёСЃР°РЅРёРµ РєРµР№СЃР°"
+            placeholder="Р С›Р С—Р С‘РЎРѓР В°Р Р…Р С‘Р Вµ Р С”Р ВµР в„–РЎРѓР В°"
           />
         </div>
 
         <div>
-          <label className="block text-sm font-medium mb-2">РџСЂРёР·С‹ РІ РєРµР№СЃРµ</label>
+          <label className="block text-sm font-medium mb-2">Р СџРЎР‚Р С‘Р В·РЎвЂ№ Р Р† Р С”Р ВµР в„–РЎРѓР Вµ</label>
           <div className="max-h-40 overflow-y-auto space-y-2 border border-border rounded-lg p-2">
             {prizes.map((prize) => (
               <label key={prize.id} className="flex items-center gap-3 p-2 hover:bg-surface-2 rounded cursor-pointer">
@@ -558,7 +558,7 @@ export function AdminCasesPageWithImages({ theme, cases, setCases }: AdminCasesP
             onChange={(e) => setCaseForm(prev => ({ ...prev, isActive: e.target.checked }))}
             className="rounded"
           />
-          <label htmlFor="isActive" className="text-sm">РђРєС‚РёРІРµРЅ</label>
+          <label htmlFor="isActive" className="text-sm">Р С’Р С”РЎвЂљР С‘Р Р†Р ВµР Р…</label>
         </div>
 
         <div className="flex gap-3 pt-4">
@@ -566,13 +566,13 @@ export function AdminCasesPageWithImages({ theme, cases, setCases }: AdminCasesP
             onClick={() => setIsModalOpen(false)}
             className="flex-1 px-4 py-2 bg-surface-2 text-foreground rounded-lg hover:bg-surface-3 transition-colors"
           >
-            РћС‚РјРµРЅР°
+            Р С›РЎвЂљР СР ВµР Р…Р В°
           </button>
           <button
             onClick={handleSaveCase}
             className="flex-1 px-4 py-2 bg-primary text-primary-foreground rounded-lg hover:bg-primary-pressed transition-colors"
           >
-            {editingCase ? 'РћР±РЅРѕРІРёС‚СЊ' : 'РЎРѕР·РґР°С‚СЊ'}
+            {editingCase ? 'Р С›Р В±Р Р…Р С•Р Р†Р С‘РЎвЂљРЎРЉ' : 'Р РЋР С•Р В·Р Т‘Р В°РЎвЂљРЎРЉ'}
           </button>
         </div>
       </div>
@@ -583,38 +583,38 @@ export function AdminCasesPageWithImages({ theme, cases, setCases }: AdminCasesP
     <Modal
       isOpen={isModalOpen && editingPrize !== null}
       onClose={() => setIsModalOpen(false)}
-      title={editingPrize ? 'Р РµРґР°РєС‚РёСЂРѕРІР°С‚СЊ РїСЂРёР·' : 'РЎРѕР·РґР°С‚СЊ РїСЂРёР·'}
+      title={editingPrize ? 'Р В Р ВµР Т‘Р В°Р С”РЎвЂљР С‘РЎР‚Р С•Р Р†Р В°РЎвЂљРЎРЉ Р С—РЎР‚Р С‘Р В·' : 'Р РЋР С•Р В·Р Т‘Р В°РЎвЂљРЎРЉ Р С—РЎР‚Р С‘Р В·'}
       theme={theme}
     >
       <div className="space-y-4">
         <div>
-          <label className="block text-sm font-medium mb-2">РќР°Р·РІР°РЅРёРµ</label>
+          <label className="block text-sm font-medium mb-2">Р СњР В°Р В·Р Р†Р В°Р Р…Р С‘Р Вµ</label>
           <input
             type="text"
             value={prizeForm.name}
             onChange={(e) => setPrizeForm(prev => ({ ...prev, name: e.target.value }))}
             className="w-full px-3 py-2 bg-input-background border border-border rounded-lg"
-            placeholder="Р’РІРµРґРёС‚Рµ РЅР°Р·РІР°РЅРёРµ РїСЂРёР·Р°"
+            placeholder="Р вЂ™Р Р†Р ВµР Т‘Р С‘РЎвЂљР Вµ Р Р…Р В°Р В·Р Р†Р В°Р Р…Р С‘Р Вµ Р С—РЎР‚Р С‘Р В·Р В°"
           />
         </div>
 
         <div>
-          <label className="block text-sm font-medium mb-2">РР·РѕР±СЂР°Р¶РµРЅРёРµ</label>
+          <label className="block text-sm font-medium mb-2">Р ВР В·Р С•Р В±РЎР‚Р В°Р В¶Р ВµР Р…Р С‘Р Вµ</label>
           <div className="space-y-2">
             <input
               type="text"
               value={prizeForm.image}
               onChange={(e) => setPrizeForm(prev => ({ ...prev, image: e.target.value }))}
               className="w-full px-3 py-2 bg-input-background border border-border rounded-lg"
-              placeholder="рџЋЃ РёР»Рё URL РёР·РѕР±СЂР°Р¶РµРЅРёСЏ (https://...)"
+              placeholder="СЂСџР‹Рѓ Р С‘Р В»Р С‘ URL Р С‘Р В·Р С•Р В±РЎР‚Р В°Р В¶Р ВµР Р…Р С‘РЎРЏ (https://...)"
             />
             <div className="text-xs text-muted-foreground">
-              РњРѕР¶РЅРѕ РёСЃРїРѕР»СЊР·РѕРІР°С‚СЊ СЌРјРѕРґР·Рё РёР»Рё URL РёР·РѕР±СЂР°Р¶РµРЅРёСЏ
+              Р СљР С•Р В¶Р Р…Р С• Р С‘РЎРѓР С—Р С•Р В»РЎРЉР В·Р С•Р Р†Р В°РЎвЂљРЎРЉ РЎРЊР СР С•Р Т‘Р В·Р С‘ Р С‘Р В»Р С‘ URL Р С‘Р В·Р С•Р В±РЎР‚Р В°Р В¶Р ВµР Р…Р С‘РЎРЏ
             </div>
-            {/* РџСЂРµРґРІР°СЂРёС‚РµР»СЊРЅС‹Р№ РїСЂРѕСЃРјРѕС‚СЂ */}
+            {/* Р СџРЎР‚Р ВµР Т‘Р Р†Р В°РЎР‚Р С‘РЎвЂљР ВµР В»РЎРЉР Р…РЎвЂ№Р в„– Р С—РЎР‚Р С•РЎРѓР СР С•РЎвЂљРЎР‚ */}
             {prizeForm.image && (
               <div className="flex items-center gap-2">
-                <span className="text-xs text-muted-foreground">РџСЂРµРґРїСЂРѕСЃРјРѕС‚СЂ:</span>
+                <span className="text-xs text-muted-foreground">Р СџРЎР‚Р ВµР Т‘Р С—РЎР‚Р С•РЎРѓР СР С•РЎвЂљРЎР‚:</span>
                 <div 
                   className="w-8 h-8 rounded border overflow-hidden"
                   style={{ 
@@ -633,7 +633,7 @@ export function AdminCasesPageWithImages({ theme, cases, setCases }: AdminCasesP
         </div>
 
         <div>
-          <label className="block text-sm font-medium mb-2">Р РµРґРєРѕСЃС‚СЊ</label>
+          <label className="block text-sm font-medium mb-2">Р В Р ВµР Т‘Р С”Р С•РЎРѓРЎвЂљРЎРЉ</label>
           <select
             value={prizeForm.rarity}
             onChange={(e) => {
@@ -656,7 +656,7 @@ export function AdminCasesPageWithImages({ theme, cases, setCases }: AdminCasesP
 
         <div className="grid grid-cols-2 gap-4">
           <div>
-            <label className="block text-sm font-medium mb-2">Р¦РµРЅРЅРѕСЃС‚СЊ</label>
+            <label className="block text-sm font-medium mb-2">Р В¦Р ВµР Р…Р Р…Р С•РЎРѓРЎвЂљРЎРЉ</label>
             <input
               type="number"
               value={prizeForm.value}
@@ -667,7 +667,7 @@ export function AdminCasesPageWithImages({ theme, cases, setCases }: AdminCasesP
           </div>
           
           <div>
-            <label className="block text-sm font-medium mb-2">РЁР°РЅСЃ РІС‹РїР°РґРµРЅРёСЏ (%)</label>
+            <label className="block text-sm font-medium mb-2">Р РЃР В°Р Р…РЎРѓ Р Р†РЎвЂ№Р С—Р В°Р Т‘Р ВµР Р…Р С‘РЎРЏ (%)</label>
             <input
               type="number"
               value={prizeForm.dropChance}
@@ -681,13 +681,13 @@ export function AdminCasesPageWithImages({ theme, cases, setCases }: AdminCasesP
         </div>
 
         <div>
-          <label className="block text-sm font-medium mb-2">РћРїРёСЃР°РЅРёРµ</label>
+          <label className="block text-sm font-medium mb-2">Р С›Р С—Р С‘РЎРѓР В°Р Р…Р С‘Р Вµ</label>
           <textarea
             value={prizeForm.description}
             onChange={(e) => setPrizeForm(prev => ({ ...prev, description: e.target.value }))}
             className="w-full px-3 py-2 bg-input-background border border-border rounded-lg resize-none"
             rows={3}
-            placeholder="РћРїРёСЃР°РЅРёРµ РїСЂРёР·Р°"
+            placeholder="Р С›Р С—Р С‘РЎРѓР В°Р Р…Р С‘Р Вµ Р С—РЎР‚Р С‘Р В·Р В°"
           />
         </div>
 
@@ -696,13 +696,13 @@ export function AdminCasesPageWithImages({ theme, cases, setCases }: AdminCasesP
             onClick={() => setIsModalOpen(false)}
             className="flex-1 px-4 py-2 bg-surface-2 text-foreground rounded-lg hover:bg-surface-3 transition-colors"
           >
-            РћС‚РјРµРЅР°
+            Р С›РЎвЂљР СР ВµР Р…Р В°
           </button>
           <button
             onClick={handleSavePrize}
             className="flex-1 px-4 py-2 bg-primary text-primary-foreground rounded-lg hover:bg-primary-pressed transition-colors"
           >
-            {editingPrize ? 'РћР±РЅРѕРІРёС‚СЊ' : 'РЎРѕР·РґР°С‚СЊ'}
+            {editingPrize ? 'Р С›Р В±Р Р…Р С•Р Р†Р С‘РЎвЂљРЎРЉ' : 'Р РЋР С•Р В·Р Т‘Р В°РЎвЂљРЎРЉ'}
           </button>
         </div>
       </div>
@@ -712,13 +712,13 @@ export function AdminCasesPageWithImages({ theme, cases, setCases }: AdminCasesP
   return (
     <div className="space-y-6">
       <div className="text-center">
-        <h2 className="text-2xl font-semibold mb-2">РЈРїСЂР°РІР»РµРЅРёРµ РєРµР№СЃР°РјРё</h2>
+        <h2 className="text-2xl font-semibold mb-2">Р Р€Р С—РЎР‚Р В°Р Р†Р В»Р ВµР Р…Р С‘Р Вµ Р С”Р ВµР в„–РЎРѓР В°Р СР С‘</h2>
         <p className="text-muted-foreground">
-          РЎРѕР·РґР°РІР°Р№С‚Рµ Рё РЅР°СЃС‚СЂР°РёРІР°Р№С‚Рµ РєРµР№СЃС‹ Рё РїСЂРёР·С‹ СЃ РёР·РѕР±СЂР°Р¶РµРЅРёСЏРјРё
+          Р РЋР С•Р В·Р Т‘Р В°Р Р†Р В°Р в„–РЎвЂљР Вµ Р С‘ Р Р…Р В°РЎРѓРЎвЂљРЎР‚Р В°Р С‘Р Р†Р В°Р в„–РЎвЂљР Вµ Р С”Р ВµР в„–РЎРѓРЎвЂ№ Р С‘ Р С—РЎР‚Р С‘Р В·РЎвЂ№ РЎРѓ Р С‘Р В·Р С•Р В±РЎР‚Р В°Р В¶Р ВµР Р…Р С‘РЎРЏР СР С‘
         </p>
       </div>
 
-      {/* РўР°Р±С‹ */}
+      {/* Р СћР В°Р В±РЎвЂ№ */}
       <div className="flex rounded-xl bg-surface-2 p-1">
         <button
           onClick={() => setActiveTab('cases')}
@@ -729,7 +729,7 @@ export function AdminCasesPageWithImages({ theme, cases, setCases }: AdminCasesP
           }`}
         >
           <Package className="w-4 h-4" />
-          РљРµР№СЃС‹
+          Р С™Р ВµР в„–РЎРѓРЎвЂ№
         </button>
         <button
           onClick={() => setActiveTab('prizes')}
@@ -740,11 +740,11 @@ export function AdminCasesPageWithImages({ theme, cases, setCases }: AdminCasesP
           }`}
         >
           <Gift className="w-4 h-4" />
-          РџСЂРёР·С‹
+          Р СџРЎР‚Р С‘Р В·РЎвЂ№
         </button>
       </div>
 
-      {/* РљРѕРЅС‚РµРЅС‚ С‚Р°Р±РѕРІ */}
+      {/* Р С™Р С•Р Р…РЎвЂљР ВµР Р…РЎвЂљ РЎвЂљР В°Р В±Р С•Р Р† */}
       <motion.div
         key={activeTab}
         initial={{ opacity: 0, y: 10 }}
@@ -755,7 +755,7 @@ export function AdminCasesPageWithImages({ theme, cases, setCases }: AdminCasesP
         {activeTab === 'prizes' && renderPrizesTab()}
       </motion.div>
 
-      {/* РњРѕРґР°Р»СЊРЅС‹Рµ РѕРєРЅР° */}
+      {/* Р СљР С•Р Т‘Р В°Р В»РЎРЉР Р…РЎвЂ№Р Вµ Р С•Р С”Р Р…Р В° */}
       {renderCaseModal()}
       {renderPrizeModal()}
     </div>

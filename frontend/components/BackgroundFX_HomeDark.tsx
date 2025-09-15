@@ -1,4 +1,4 @@
-﻿import { useEffect, useState } from 'react';
+п»їimport { useEffect, useState } from 'react';
 
 interface BackgroundFX_HomeDarkProps {
   mode?: 'subtle' | 'debug';
@@ -20,23 +20,23 @@ export function BackgroundFX_HomeDark({ mode = 'subtle' }: BackgroundFX_HomeDark
     return () => window.removeEventListener('resize', updateDimensions);
   }, []);
 
-  // Р’С‹С‡РёСЃР»СЏРµРј СЂР°Р·РјРµСЂС‹ СЌР»Р»РёРїСЃРѕРІ РѕС‚РЅРѕСЃРёС‚РµР»СЊРЅРѕ СЌРєСЂР°РЅР°
-  const mainEllipseWidth = dimensions.width * 1.85; // ~185% С€РёСЂРёРЅС‹ СЌРєСЂР°РЅР°
-  const mainEllipseHeight = dimensions.height * 0.95; // ~95% РІС‹СЃРѕС‚С‹ СЌРєСЂР°РЅР°
+  // Р вЂ™РЎвЂ№РЎвЂЎР С‘РЎРѓР В»РЎРЏР ВµР С РЎР‚Р В°Р В·Р СР ВµРЎР‚РЎвЂ№ РЎРЊР В»Р В»Р С‘Р С—РЎРѓР С•Р Р† Р С•РЎвЂљР Р…Р С•РЎРѓР С‘РЎвЂљР ВµР В»РЎРЉР Р…Р С• РЎРЊР С”РЎР‚Р В°Р Р…Р В°
+  const mainEllipseWidth = dimensions.width * 1.85; // ~185% РЎв‚¬Р С‘РЎР‚Р С‘Р Р…РЎвЂ№ РЎРЊР С”РЎР‚Р В°Р Р…Р В°
+  const mainEllipseHeight = dimensions.height * 0.95; // ~95% Р Р†РЎвЂ№РЎРѓР С•РЎвЂљРЎвЂ№ РЎРЊР С”РЎР‚Р В°Р Р…Р В°
   
-  const sideEllipseWidth = dimensions.width * 0.97; // ~380px РїСЂРё 393px С€РёСЂРёРЅРµ
-  const sideEllipseHeight = dimensions.height * 0.31; // ~260px РїСЂРё 852px РІС‹СЃРѕС‚Рµ
+  const sideEllipseWidth = dimensions.width * 0.97; // ~380px Р С—РЎР‚Р С‘ 393px РЎв‚¬Р С‘РЎР‚Р С‘Р Р…Р Вµ
+  const sideEllipseHeight = dimensions.height * 0.31; // ~260px Р С—РЎР‚Р С‘ 852px Р Р†РЎвЂ№РЎРѓР С•РЎвЂљР Вµ
 
-  // Р¦РµРЅС‚СЂ Р»РѕРіРѕС‚РёРїР° РїСЂРёРјРµСЂРЅРѕ РЅР° ~150px РѕС‚ РІРµСЂС…Р°
+  // Р В¦Р ВµР Р…РЎвЂљРЎР‚ Р В»Р С•Р С–Р С•РЎвЂљР С‘Р С—Р В° Р С—РЎР‚Р С‘Р СР ВµРЎР‚Р Р…Р С• Р Р…Р В° ~150px Р С•РЎвЂљ Р Р†Р ВµРЎР‚РЎвЂ¦Р В°
   const logoCenter = 150;
   
-  // РЎРјРµС‰РµРЅРёСЏ РѕС‚РЅРѕСЃРёС‚РµР»СЊРЅРѕ С†РµРЅС‚СЂР° Р»РѕРіРѕС‚РёРїР°
-  const mainEllipseTop = logoCenter - 24; // РІРІРµСЂС… РЅР° 24px
-  const sideEllipseTop = logoCenter + 12; // РІРІРµСЂС… РЅР° 12px
-  const leftEllipseLeft = (dimensions.width / 2) - 120; // РІР»РµРІРѕ РЅР° 120px
-  const rightEllipseLeft = (dimensions.width / 2) + 120; // РІРїСЂР°РІРѕ РЅР° 120px
+  // Р РЋР СР ВµРЎвЂ°Р ВµР Р…Р С‘РЎРЏ Р С•РЎвЂљР Р…Р С•РЎРѓР С‘РЎвЂљР ВµР В»РЎРЉР Р…Р С• РЎвЂ Р ВµР Р…РЎвЂљРЎР‚Р В° Р В»Р С•Р С–Р С•РЎвЂљР С‘Р С—Р В°
+  const mainEllipseTop = logoCenter - 24; // Р Р†Р Р†Р ВµРЎР‚РЎвЂ¦ Р Р…Р В° 24px
+  const sideEllipseTop = logoCenter + 12; // Р Р†Р Р†Р ВµРЎР‚РЎвЂ¦ Р Р…Р В° 12px
+  const leftEllipseLeft = (dimensions.width / 2) - 120; // Р Р†Р В»Р ВµР Р†Р С• Р Р…Р В° 120px
+  const rightEllipseLeft = (dimensions.width / 2) + 120; // Р Р†Р С—РЎР‚Р В°Р Р†Р С• Р Р…Р В° 120px
 
-  // Р—РЅР°С‡РµРЅРёСЏ opacity РІ Р·Р°РІРёСЃРёРјРѕСЃС‚Рё РѕС‚ СЂРµР¶РёРјР°
+  // Р вЂ”Р Р…Р В°РЎвЂЎР ВµР Р…Р С‘РЎРЏ opacity Р Р† Р В·Р В°Р Р†Р С‘РЎРѓР С‘Р СР С•РЎРѓРЎвЂљР С‘ Р С•РЎвЂљ РЎР‚Р ВµР В¶Р С‘Р СР В°
   const opacities = mode === 'debug' 
     ? { main: 0.28, sides: 0.16, vertical: 0.24 }
     : { main: 0.18, sides: 0.10, vertical: 0.18 };
@@ -45,7 +45,7 @@ export function BackgroundFX_HomeDark({ mode = 'subtle' }: BackgroundFX_HomeDark
     <div 
       className="fixed inset-0 pointer-events-none"
       style={{ 
-        zIndex: 5, // Р’С‹С€Рµ BackgroundFX РЅРѕ РЅРёР¶Рµ РєРѕРЅС‚РµРЅС‚Р°
+        zIndex: 5, // Р вЂ™РЎвЂ№РЎв‚¬Р Вµ BackgroundFX Р Р…Р С• Р Р…Р С‘Р В¶Р Вµ Р С”Р С•Р Р…РЎвЂљР ВµР Р…РЎвЂљР В°
         overflow: 'hidden'
       }}
     >

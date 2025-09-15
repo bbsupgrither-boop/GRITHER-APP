@@ -1,4 +1,4 @@
-﻿import { useState } from 'react';
+п»їimport { useState } from 'react';
 import { X, Search } from 'lucide-react';
 import { Dialog, DialogContent, DialogTitle, DialogDescription } from './ui/dialog';
 import { User, BattleInvitation } from '../types/battles';
@@ -24,7 +24,7 @@ export function CreateBattleModal({
   const [stake, setStake] = useState('');
   const [searchQuery, setSearchQuery] = useState('');
 
-  // Р¤РёР»СЊС‚СЂСѓРµРј РїРѕР»СЊР·РѕРІР°С‚РµР»РµР№ (РёСЃРєР»СЋС‡Р°РµРј С‚РµРєСѓС‰РµРіРѕ РїРѕР»СЊР·РѕРІР°С‚РµР»СЏ)
+  // Р В¤Р С‘Р В»РЎРЉРЎвЂљРЎР‚РЎС“Р ВµР С Р С—Р С•Р В»РЎРЉР В·Р С•Р Р†Р В°РЎвЂљР ВµР В»Р ВµР в„– (Р С‘РЎРѓР С”Р В»РЎР‹РЎвЂЎР В°Р ВµР С РЎвЂљР ВµР С”РЎС“РЎвЂ°Р ВµР С–Р С• Р С—Р С•Р В»РЎРЉР В·Р С•Р Р†Р В°РЎвЂљР ВµР В»РЎРЏ)
   const availableUsers = users.filter(user => 
     user.id !== currentUserId && 
     user.name.toLowerCase().includes(searchQuery.toLowerCase())
@@ -36,9 +36,9 @@ export function CreateBattleModal({
     const stakeAmount = parseInt(stake);
     if (isNaN(stakeAmount) || stakeAmount <= 0) return;
 
-    // РќР°С…РѕРґРёРј РёРјСЏ С‚РµРєСѓС‰РµРіРѕ РїРѕР»СЊР·РѕРІР°С‚РµР»СЏ
+    // Р СњР В°РЎвЂ¦Р С•Р Т‘Р С‘Р С Р С‘Р СРЎРЏ РЎвЂљР ВµР С”РЎС“РЎвЂ°Р ВµР С–Р С• Р С—Р С•Р В»РЎРЉР В·Р С•Р Р†Р В°РЎвЂљР ВµР В»РЎРЏ
     const currentUser = users.find(u => u.id === currentUserId);
-    const currentUserName = currentUser?.name || 'РќРµРёР·РІРµСЃС‚РЅС‹Р№ РїРѕР»СЊР·РѕРІР°С‚РµР»СЊ';
+    const currentUserName = currentUser?.name || 'Р СњР ВµР С‘Р В·Р Р†Р ВµРЎРѓРЎвЂљР Р…РЎвЂ№Р в„– Р С—Р С•Р В»РЎРЉР В·Р С•Р Р†Р В°РЎвЂљР ВµР В»РЎРЉ';
 
     onCreateInvitation({
       challengerId: currentUserId,
@@ -46,10 +46,10 @@ export function CreateBattleModal({
       opponentId: selectedUser.id,
       opponentName: selectedUser.name,
       stake: stakeAmount,
-      message: `${currentUserName} РІС‹Р·С‹РІР°РµС‚ РІР°СЃ РЅР° Р±Р°С‚С‚Р» РЅР° ${stakeAmount} РєРѕРёРЅРѕРІ!`
+      message: `${currentUserName} Р Р†РЎвЂ№Р В·РЎвЂ№Р Р†Р В°Р ВµРЎвЂљ Р Р†Р В°РЎРѓ Р Р…Р В° Р В±Р В°РЎвЂљРЎвЂљР В» Р Р…Р В° ${stakeAmount} Р С”Р С•Р С‘Р Р…Р С•Р Р†!`
     });
 
-    // РЎР±СЂР°СЃС‹РІР°РµРј С„РѕСЂРјСѓ Рё Р·Р°РєСЂС‹РІР°РµРј РјРѕРґР°Р»РєСѓ
+    // Р РЋР В±РЎР‚Р В°РЎРѓРЎвЂ№Р Р†Р В°Р ВµР С РЎвЂћР С•РЎР‚Р СРЎС“ Р С‘ Р В·Р В°Р С”РЎР‚РЎвЂ№Р Р†Р В°Р ВµР С Р СР С•Р Т‘Р В°Р В»Р С”РЎС“
     setSelectedUser(null);
     setStake('');
     setSearchQuery('');
@@ -76,12 +76,12 @@ export function CreateBattleModal({
       >
         {/* Accessibility elements */}
         <DialogTitle className="sr-only">
-          РЎРѕР·РґР°С‚СЊ РІС‹Р·РѕРІ РЅР° Р±Р°С‚С‚Р»
+          Р РЋР С•Р В·Р Т‘Р В°РЎвЂљРЎРЉ Р Р†РЎвЂ№Р В·Р С•Р Р† Р Р…Р В° Р В±Р В°РЎвЂљРЎвЂљР В»
         </DialogTitle>
         <DialogDescription className="sr-only">
-          Р’С‹Р±РµСЂРёС‚Рµ СЃРѕРїРµСЂРЅРёРєР° РґР»СЏ Р±Р°С‚С‚Р»Р°, СѓСЃС‚Р°РЅРѕРІРёС‚Рµ СЃС‚Р°РІРєСѓ Рё РѕС‚РїСЂР°РІСЊС‚Рµ РїСЂРёРіР»Р°С€РµРЅРёРµ РЅР° СЃРѕСЂРµРІРЅРѕРІР°РЅРёРµ
+          Р вЂ™РЎвЂ№Р В±Р ВµРЎР‚Р С‘РЎвЂљР Вµ РЎРѓР С•Р С—Р ВµРЎР‚Р Р…Р С‘Р С”Р В° Р Т‘Р В»РЎРЏ Р В±Р В°РЎвЂљРЎвЂљР В»Р В°, РЎС“РЎРѓРЎвЂљР В°Р Р…Р С•Р Р†Р С‘РЎвЂљР Вµ РЎРѓРЎвЂљР В°Р Р†Р С”РЎС“ Р С‘ Р С•РЎвЂљР С—РЎР‚Р В°Р Р†РЎРЉРЎвЂљР Вµ Р С—РЎР‚Р С‘Р С–Р В»Р В°РЎв‚¬Р ВµР Р…Р С‘Р Вµ Р Р…Р В° РЎРѓР С•РЎР‚Р ВµР Р†Р Р…Р С•Р Р†Р В°Р Р…Р С‘Р Вµ
         </DialogDescription>
-        {/* Р—Р°РіРѕР»РѕРІРѕРє */}
+        {/* Р вЂ”Р В°Р С–Р С•Р В»Р С•Р Р†Р С•Р С” */}
         <div 
           className="flex items-center justify-between p-6 border-b"
           style={{
@@ -96,7 +96,7 @@ export function CreateBattleModal({
               color: theme === 'dark' ? '#E8ECF2' : '#0F172A'
             }}
           >
-            РЎРѕР·РґР°С‚СЊ РІС‹Р·РѕРІ
+            Р РЋР С•Р В·Р Т‘Р В°РЎвЂљРЎРЉ Р Р†РЎвЂ№Р В·Р С•Р Р†
           </h2>
           
           <button
@@ -124,9 +124,9 @@ export function CreateBattleModal({
           </button>
         </div>
 
-        {/* РљРѕРЅС‚РµРЅС‚ */}
+        {/* Р С™Р С•Р Р…РЎвЂљР ВµР Р…РЎвЂљ */}
         <div className="flex-1 overflow-y-auto p-6 space-y-4">
-          {/* РџРѕРёСЃРє РїРѕР»СЊР·РѕРІР°С‚РµР»РµР№ */}
+          {/* Р СџР С•Р С‘РЎРѓР С” Р С—Р С•Р В»РЎРЉР В·Р С•Р Р†Р В°РЎвЂљР ВµР В»Р ВµР в„– */}
           <div className="space-y-2">
             <label 
               className="text-sm font-medium"
@@ -134,7 +134,7 @@ export function CreateBattleModal({
                 color: theme === 'dark' ? '#E8ECF2' : '#0F172A'
               }}
             >
-              Р’С‹Р±РµСЂРёС‚Рµ СЃРѕРїРµСЂРЅРёРєР°
+              Р вЂ™РЎвЂ№Р В±Р ВµРЎР‚Р С‘РЎвЂљР Вµ РЎРѓР С•Р С—Р ВµРЎР‚Р Р…Р С‘Р С”Р В°
             </label>
             
             <div className="relative">
@@ -146,7 +146,7 @@ export function CreateBattleModal({
               />
               <input
                 type="text"
-                placeholder="РџРѕРёСЃРє РїРѕ РёРјРµРЅРё..."
+                placeholder="Р СџР С•Р С‘РЎРѓР С” Р С—Р С• Р С‘Р СР ВµР Р…Р С‘..."
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
                 className="w-full pl-10 pr-4 py-3 rounded-2xl border text-sm"
@@ -163,7 +163,7 @@ export function CreateBattleModal({
             </div>
           </div>
 
-          {/* РЎРїРёСЃРѕРє РїРѕР»СЊР·РѕРІР°С‚РµР»РµР№ */}
+          {/* Р РЋР С—Р С‘РЎРѓР С•Р С” Р С—Р С•Р В»РЎРЉР В·Р С•Р Р†Р В°РЎвЂљР ВµР В»Р ВµР в„– */}
           <div className="space-y-2 max-h-48 overflow-y-auto">
             {availableUsers.map((user) => (
               <button
@@ -215,7 +215,7 @@ export function CreateBattleModal({
                           color: theme === 'dark' ? '#A7B0BD' : '#6B7280'
                         }}
                       >
-                        РЈСЂРѕРІРµРЅСЊ {user.level} вЂў Р РµР№С‚РёРЅРі {user.rating}
+                        Р Р€РЎР‚Р С•Р Р†Р ВµР Р…РЎРЉ {user.level} РІР‚Сћ Р В Р ВµР в„–РЎвЂљР С‘Р Р…Р С– {user.rating}
                       </div>
                     </div>
                   </div>
@@ -237,12 +237,12 @@ export function CreateBattleModal({
                   color: theme === 'dark' ? '#A7B0BD' : '#6B7280'
                 }}
               >
-                {searchQuery ? 'РџРѕР»СЊР·РѕРІР°С‚РµР»Рё РЅРµ РЅР°Р№РґРµРЅС‹' : 'РќРµС‚ РґРѕСЃС‚СѓРїРЅС‹С… РїРѕР»СЊР·РѕРІР°С‚РµР»РµР№'}
+                {searchQuery ? 'Р СџР С•Р В»РЎРЉР В·Р С•Р Р†Р В°РЎвЂљР ВµР В»Р С‘ Р Р…Р Вµ Р Р…Р В°Р в„–Р Т‘Р ВµР Р…РЎвЂ№' : 'Р СњР ВµРЎвЂљ Р Т‘Р С•РЎРѓРЎвЂљРЎС“Р С—Р Р…РЎвЂ№РЎвЂ¦ Р С—Р С•Р В»РЎРЉР В·Р С•Р Р†Р В°РЎвЂљР ВµР В»Р ВµР в„–'}
               </div>
             )}
           </div>
 
-          {/* РЎС‚Р°РІРєР° */}
+          {/* Р РЋРЎвЂљР В°Р Р†Р С”Р В° */}
           <div className="space-y-2">
             <label 
               className="text-sm font-medium"
@@ -250,7 +250,7 @@ export function CreateBattleModal({
                 color: theme === 'dark' ? '#E8ECF2' : '#0F172A'
               }}
             >
-              РЎС‚Р°РІРєР° (РєРѕРёРЅС‹)
+              Р РЋРЎвЂљР В°Р Р†Р С”Р В° (Р С”Р С•Р С‘Р Р…РЎвЂ№)
             </label>
             
             <input
@@ -272,7 +272,7 @@ export function CreateBattleModal({
             />
           </div>
 
-          {/* РљРЅРѕРїРєРё */}
+          {/* Р С™Р Р…Р С•Р С—Р С”Р С‘ */}
           <div className="flex gap-3 pt-4">
             <button
               onClick={onClose}
@@ -284,7 +284,7 @@ export function CreateBattleModal({
                 color: theme === 'dark' ? '#E8ECF2' : '#0F172A'
               }}
             >
-              РћС‚РјРµРЅРёС‚СЊ
+              Р С›РЎвЂљР СР ВµР Р…Р С‘РЎвЂљРЎРЉ
             </button>
             
             <button
@@ -297,7 +297,7 @@ export function CreateBattleModal({
                   : '#9CA3AF'
               }}
             >
-              Р’С‹Р·РІР°С‚СЊ РЅР° Р±Р°С‚С‚Р»
+              Р вЂ™РЎвЂ№Р В·Р Р†Р В°РЎвЂљРЎРЉ Р Р…Р В° Р В±Р В°РЎвЂљРЎвЂљР В»
             </button>
           </div>
         </div>

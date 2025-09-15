@@ -1,4 +1,4 @@
-﻿import { useState } from 'react';
+п»їimport { useState } from 'react';
 import { Plus, Trophy, X, Paperclip, ChevronDown, Menu, Home, Users, Zap, CheckSquare, ShoppingBag, Gamepad2, Box, Edit, History } from './Icons';
 import { Button } from './ui/button';
 import { Input } from './ui/input';
@@ -40,24 +40,24 @@ export function AdminAchievements({ achievements, setAchievements, currentAdminP
     rewardAmount: 100
   });
 
-  // РќР°РІРёРіР°С†РёРѕРЅРЅС‹Рµ СЌР»РµРјРµРЅС‚С‹ РїР°РЅРµР»Рё Р°РґРјРёРЅРёСЃС‚СЂР°С‚РѕСЂР°
+  // Р СњР В°Р Р†Р С‘Р С–Р В°РЎвЂ Р С‘Р С•Р Р…Р Р…РЎвЂ№Р Вµ РЎРЊР В»Р ВµР СР ВµР Р…РЎвЂљРЎвЂ№ Р С—Р В°Р Р…Р ВµР В»Р С‘ Р В°Р Т‘Р СР С‘Р Р…Р С‘РЎРѓРЎвЂљРЎР‚Р В°РЎвЂљР С•РЎР‚Р В°
   const navigationItems = [
-    { icon: Home, label: 'Р“Р»Р°РІРЅР°СЏ', section: 'dashboard' },
-    { icon: Users, label: 'Р’РѕСЂРєРµСЂС‹', section: 'workers' },
-    { icon: Zap, label: 'Р‘Р°С‚С‚Р»С‹', section: 'battles' },
-    { icon: Trophy, label: 'Р”РѕСЃС‚РёР¶РµРЅРёСЏ', section: 'achievements' },
-    { icon: CheckSquare, label: 'Р—Р°РґР°С‡Рё', section: 'tasks' },
-    { icon: ShoppingBag, label: 'РўРѕРІР°СЂС‹', section: 'shop' },
-    { icon: Gamepad2, label: 'РРіСЂС‹', section: 'games' },
-    { icon: Box, label: 'РљРµР№СЃС‹', section: 'cases' }
+    { icon: Home, label: 'Р вЂњР В»Р В°Р Р†Р Р…Р В°РЎРЏ', section: 'dashboard' },
+    { icon: Users, label: 'Р вЂ™Р С•РЎР‚Р С”Р ВµРЎР‚РЎвЂ№', section: 'workers' },
+    { icon: Zap, label: 'Р вЂР В°РЎвЂљРЎвЂљР В»РЎвЂ№', section: 'battles' },
+    { icon: Trophy, label: 'Р вЂќР С•РЎРѓРЎвЂљР С‘Р В¶Р ВµР Р…Р С‘РЎРЏ', section: 'achievements' },
+    { icon: CheckSquare, label: 'Р вЂ”Р В°Р Т‘Р В°РЎвЂЎР С‘', section: 'tasks' },
+    { icon: ShoppingBag, label: 'Р СћР С•Р Р†Р В°РЎР‚РЎвЂ№', section: 'shop' },
+    { icon: Gamepad2, label: 'Р ВР С–РЎР‚РЎвЂ№', section: 'games' },
+    { icon: Box, label: 'Р С™Р ВµР в„–РЎРѓРЎвЂ№', section: 'cases' }
   ];
 
-  // Placeholder РґР°РЅРЅС‹Рµ РґР»СЏ РѕС‚РѕР±СЂР°Р¶РµРЅРёСЏ
+  // Placeholder Р Т‘Р В°Р Р…Р Р…РЎвЂ№Р Вµ Р Т‘Р В»РЎРЏ Р С•РЎвЂљР С•Р В±РЎР‚Р В°Р В¶Р ВµР Р…Р С‘РЎРЏ
   const placeholderAchievements = achievements.length > 0 ? achievements : [
     { 
       id: '1', 
-      title: 'РџРµСЂРІС‹Рµ С€Р°РіРё', 
-      description: 'Р’С‹РїРѕР»РЅРёС‚Рµ РїРµСЂРІСѓСЋ Р·Р°РґР°С‡Сѓ РІ СЃРёСЃС‚РµРјРµ',
+      title: 'Р СџР ВµРЎР‚Р Р†РЎвЂ№Р Вµ РЎв‚¬Р В°Р С–Р С‘', 
+      description: 'Р вЂ™РЎвЂ№Р С—Р С•Р В»Р Р…Р С‘РЎвЂљР Вµ Р С—Р ВµРЎР‚Р Р†РЎС“РЎР‹ Р В·Р В°Р Т‘Р В°РЎвЂЎРЎС“ Р Р† РЎРѓР С‘РЎРѓРЎвЂљР ВµР СР Вµ',
       type: 'bronze',
       points: 100,
       unlocked: false,
@@ -65,8 +65,8 @@ export function AdminAchievements({ achievements, setAchievements, currentAdminP
     },
     { 
       id: '2', 
-      title: 'РљРѕРјР°РЅРґРЅС‹Р№ РёРіСЂРѕРє', 
-      description: 'Р’С‹РїРѕР»РЅРёС‚Рµ 5 Р·Р°РґР°С‡ РІ РєРѕРјР°РЅРґРµ',
+      title: 'Р С™Р С•Р СР В°Р Р…Р Т‘Р Р…РЎвЂ№Р в„– Р С‘Р С–РЎР‚Р С•Р С”', 
+      description: 'Р вЂ™РЎвЂ№Р С—Р С•Р В»Р Р…Р С‘РЎвЂљР Вµ 5 Р В·Р В°Р Т‘Р В°РЎвЂЎ Р Р† Р С”Р С•Р СР В°Р Р…Р Т‘Р Вµ',
       type: 'silver',
       points: 200,
       unlocked: false,
@@ -74,8 +74,8 @@ export function AdminAchievements({ achievements, setAchievements, currentAdminP
     },
     { 
       id: '3', 
-      title: 'Р­РєСЃРїРµСЂС‚ Р±Р°С‚С‚Р»РѕРІ', 
-      description: 'Р’С‹РёРіСЂР°Р№С‚Рµ 10 Р±Р°С‚С‚Р»РѕРІ РїРѕРґСЂСЏРґ',
+      title: 'Р В­Р С”РЎРѓР С—Р ВµРЎР‚РЎвЂљ Р В±Р В°РЎвЂљРЎвЂљР В»Р С•Р Р†', 
+      description: 'Р вЂ™РЎвЂ№Р С‘Р С–РЎР‚Р В°Р в„–РЎвЂљР Вµ 10 Р В±Р В°РЎвЂљРЎвЂљР В»Р С•Р Р† Р С—Р С•Р Т‘РЎР‚РЎРЏР Т‘',
       type: 'gold',
       points: 300,
       unlocked: false,
@@ -83,8 +83,8 @@ export function AdminAchievements({ achievements, setAchievements, currentAdminP
     },
     { 
       id: '4', 
-      title: 'Р›РµРіРµРЅРґР° GRITHER', 
-      description: 'Р”РѕСЃС‚РёРіРЅРёС‚Рµ РјР°РєСЃРёРјР°Р»СЊРЅРѕРіРѕ СѓСЂРѕРІРЅСЏ',
+      title: 'Р вЂєР ВµР С–Р ВµР Р…Р Т‘Р В° GRITHER', 
+      description: 'Р вЂќР С•РЎРѓРЎвЂљР С‘Р С–Р Р…Р С‘РЎвЂљР Вµ Р СР В°Р С”РЎРѓР С‘Р СР В°Р В»РЎРЉР Р…Р С•Р С–Р С• РЎС“РЎР‚Р С•Р Р†Р Р…РЎРЏ',
       type: 'platinum',
       points: 500,
       unlocked: false,
@@ -92,29 +92,29 @@ export function AdminAchievements({ achievements, setAchievements, currentAdminP
     }
   ];
 
-  // Placeholder РґР°РЅРЅС‹Рµ РґР»СЏ РјРѕРґРµСЂР°С†РёРё
+  // Placeholder Р Т‘Р В°Р Р…Р Р…РЎвЂ№Р Вµ Р Т‘Р В»РЎРЏ Р СР С•Р Т‘Р ВµРЎР‚Р В°РЎвЂ Р С‘Р С‘
   const moderationItems = [
     {
       id: '1',
-      achievementTitle: 'РџРµСЂРІС‹Рµ С€Р°РіРё',
-      status: 'РЅР° РїСЂРѕРІРµСЂРєРµ',
-      employee: 'РђР»РµРєСЃРµР№ РРІР°РЅРѕРІ, РљРѕРјР°РЅРґР° Рђ',
+      achievementTitle: 'Р СџР ВµРЎР‚Р Р†РЎвЂ№Р Вµ РЎв‚¬Р В°Р С–Р С‘',
+      status: 'Р Р…Р В° Р С—РЎР‚Р С•Р Р†Р ВµРЎР‚Р С”Р Вµ',
+      employee: 'Р С’Р В»Р ВµР С”РЎРѓР ВµР в„– Р ВР Р†Р В°Р Р…Р С•Р Р†, Р С™Р С•Р СР В°Р Р…Р Т‘Р В° Р С’',
       progress: 100.0,
       dateSubmitted: '2024-01-15'
     },
     {
       id: '2', 
-      achievementTitle: 'РљРѕРјР°РЅРґРЅС‹Р№ РёРіСЂРѕРє',
-      status: 'РЅР° РїСЂРѕРІРµСЂРєРµ',
-      employee: 'РњР°СЂРёСЏ РџРµС‚СЂРѕРІР°, РљРѕРјР°РЅРґР° Р‘',
+      achievementTitle: 'Р С™Р С•Р СР В°Р Р…Р Т‘Р Р…РЎвЂ№Р в„– Р С‘Р С–РЎР‚Р С•Р С”',
+      status: 'Р Р…Р В° Р С—РЎР‚Р С•Р Р†Р ВµРЎР‚Р С”Р Вµ',
+      employee: 'Р СљР В°РЎР‚Р С‘РЎРЏ Р СџР ВµРЎвЂљРЎР‚Р С•Р Р†Р В°, Р С™Р С•Р СР В°Р Р…Р Т‘Р В° Р вЂ',
       progress: 100.0,
       dateSubmitted: '2024-01-14'
     },
     {
       id: '3',
-      achievementTitle: 'Р­РєСЃРїРµСЂС‚ Р±Р°С‚С‚Р»РѕРІ', 
-      status: 'РЅР° РїСЂРѕРІРµСЂРєРµ',
-      employee: 'Р”РјРёС‚СЂРёР№ РЎРёРґРѕСЂРѕРІ, РљРѕРјР°РЅРґР° Р’',
+      achievementTitle: 'Р В­Р С”РЎРѓР С—Р ВµРЎР‚РЎвЂљ Р В±Р В°РЎвЂљРЎвЂљР В»Р С•Р Р†', 
+      status: 'Р Р…Р В° Р С—РЎР‚Р С•Р Р†Р ВµРЎР‚Р С”Р Вµ',
+      employee: 'Р вЂќР СР С‘РЎвЂљРЎР‚Р С‘Р в„– Р РЋР С‘Р Т‘Р С•РЎР‚Р С•Р Р†, Р С™Р С•Р СР В°Р Р…Р Т‘Р В° Р вЂ™',
       progress: 100.0,
       dateSubmitted: '2024-01-13'
     }
@@ -123,7 +123,7 @@ export function AdminAchievements({ achievements, setAchievements, currentAdminP
   const handleCreate = () => {
     const newAchievement: Achievement = {
       id: Date.now().toString(),
-      title: formData.title || 'РќРѕРІРѕРµ РґРѕСЃС‚РёР¶РµРЅРёРµ',
+      title: formData.title || 'Р СњР С•Р Р†Р С•Р Вµ Р Т‘Р С•РЎРѓРЎвЂљР С‘Р В¶Р ВµР Р…Р С‘Р Вµ',
       description: formData.description,
       type: 'bronze',
       points: formData.rewardAmount,
@@ -192,7 +192,7 @@ export function AdminAchievements({ achievements, setAchievements, currentAdminP
     setFormData({
       title: achievement.title,
       description: achievement.description,
-      subtasks: ['РџРѕРґР·Р°РґР°С‡Р°'],
+      subtasks: ['Р СџР С•Р Т‘Р В·Р В°Р Т‘Р В°РЎвЂЎР В°'],
       image: null,
       rewardType: 'XP',
       rewardAmount: achievement.points
@@ -205,7 +205,7 @@ export function AdminAchievements({ achievements, setAchievements, currentAdminP
   };
 
   const handleApproveAchievement = (item: any) => {
-    // Р›РѕРіРёРєР° РѕРґРѕР±СЂРµРЅРёСЏ РґРѕСЃС‚РёР¶РµРЅРёСЏ
+    // Р вЂєР С•Р С–Р С‘Р С”Р В° Р С•Р Т‘Р С•Р В±РЎР‚Р ВµР Р…Р С‘РЎРЏ Р Т‘Р С•РЎРѓРЎвЂљР С‘Р В¶Р ВµР Р…Р С‘РЎРЏ
     console.log('Approved:', item);
   };
 
@@ -216,10 +216,10 @@ export function AdminAchievements({ achievements, setAchievements, currentAdminP
 
   const handleSubmitReject = () => {
     if (!rejectReason.trim()) {
-      alert('РЈРєР°Р¶РёС‚Рµ РїСЂРёС‡РёРЅСѓ РѕС‚РєР»РѕРЅРµРЅРёСЏ');
+      alert('Р Р€Р С”Р В°Р В¶Р С‘РЎвЂљР Вµ Р С—РЎР‚Р С‘РЎвЂЎР С‘Р Р…РЎС“ Р С•РЎвЂљР С”Р В»Р С•Р Р…Р ВµР Р…Р С‘РЎРЏ');
       return;
     }
-    // Р›РѕРіРёРєР° РѕС‚РєР»РѕРЅРµРЅРёСЏ РґРѕСЃС‚РёР¶РµРЅРёСЏ
+    // Р вЂєР С•Р С–Р С‘Р С”Р В° Р С•РЎвЂљР С”Р В»Р С•Р Р…Р ВµР Р…Р С‘РЎРЏ Р Т‘Р С•РЎРѓРЎвЂљР С‘Р В¶Р ВµР Р…Р С‘РЎРЏ
     console.log('Rejected:', selectedModerationItem, rejectReason, rejectComment, rejectFile);
     setRejectModalOpen(false);
     setRejectReason('');
@@ -281,38 +281,38 @@ export function AdminAchievements({ achievements, setAchievements, currentAdminP
     <>
       <div className="min-h-screen bg-background pb-40">
         <div className="p-6">
-          {/* Р—Р°РіРѕР»РѕРІРѕРє */}
+          {/* Р вЂ”Р В°Р С–Р С•Р В»Р С•Р Р†Р С•Р С” */}
           <div className="text-center mb-8">
-            <h2 className="text-xl font-medium text-foreground">РџР°РЅРµР»СЊ СѓРїСЂР°РІР»РµРЅРёСЏ</h2>
+            <h2 className="text-xl font-medium text-foreground">Р СџР В°Р Р…Р ВµР В»РЎРЉ РЎС“Р С—РЎР‚Р В°Р Р†Р В»Р ВµР Р…Р С‘РЎРЏ</h2>
           </div>
 
-          {/* РЈРїСЂР°РІР»РµРЅРёРµ */}
+          {/* Р Р€Р С—РЎР‚Р В°Р Р†Р В»Р ВµР Р…Р С‘Р Вµ */}
           <div className="px-6 pb-4">
             <div className="flex items-center justify-between">
               <button
                 onClick={() => setCreateModalOpen(true)}
                 className="px-4 py-2 glass-card rounded-lg hover:bg-black/5 dark:hover:bg-white/5 transition-colors text-foreground"
               >
-                Р”РѕР±Р°РІРёС‚СЊ
+                Р вЂќР С•Р В±Р В°Р Р†Р С‘РЎвЂљРЎРЉ
               </button>
               <button 
                 onClick={handleModerationClick}
                 className="px-4 py-2 glass-card rounded-lg hover:bg-black/5 dark:hover:bg-white/5 transition-colors text-foreground"
               >
-                РџСЂРѕРІРµСЂРєР°
+                Р СџРЎР‚Р С•Р Р†Р ВµРЎР‚Р С”Р В°
               </button>
             </div>
           </div>
 
-          {/* Card СЃ РґРѕСЃС‚РёР¶РµРЅРёСЏРјРё */}
+          {/* Card РЎРѓ Р Т‘Р С•РЎРѓРЎвЂљР С‘Р В¶Р ВµР Р…Р С‘РЎРЏР СР С‘ */}
           <div className="px-6">
             <div className="glass-card rounded-2xl apple-shadow p-4">
-              {/* Р—Р°РіРѕР»РѕРІРѕРє */}
+              {/* Р вЂ”Р В°Р С–Р С•Р В»Р С•Р Р†Р С•Р С” */}
               <div className="flex items-center justify-center mb-4">
-                <h2 className="text-lg font-medium text-foreground text-center">Р”РѕСЃС‚СѓРїРЅС‹Рµ РґРѕСЃС‚РёР¶РµРЅРёСЏ</h2>
+                <h2 className="text-lg font-medium text-foreground text-center">Р вЂќР С•РЎРѓРЎвЂљРЎС“Р С—Р Р…РЎвЂ№Р Вµ Р Т‘Р С•РЎРѓРЎвЂљР С‘Р В¶Р ВµР Р…Р С‘РЎРЏ</h2>
               </div>
 
-              {/* РЎРїРёСЃРѕРє РґРѕСЃС‚РёР¶РµРЅРёР№ */}
+              {/* Р РЋР С—Р С‘РЎРѓР С•Р С” Р Т‘Р С•РЎРѓРЎвЂљР С‘Р В¶Р ВµР Р…Р С‘Р в„– */}
               <div className="space-y-3">
                 {placeholderAchievements.map((achievement) => (
                   <div
@@ -338,14 +338,14 @@ export function AdminAchievements({ achievements, setAchievements, currentAdminP
                 ))}
                 {placeholderAchievements.length === 0 && (
                   <div className="text-center text-muted-foreground py-8">
-                    Р”РѕСЃС‚РёР¶РµРЅРёСЏ РЅРµ РЅР°Р№РґРµРЅС‹
+                    Р вЂќР С•РЎРѓРЎвЂљР С‘Р В¶Р ВµР Р…Р С‘РЎРЏ Р Р…Р Вµ Р Р…Р В°Р в„–Р Т‘Р ВµР Р…РЎвЂ№
                   </div>
                 )}
               </div>
             </div>
           </div>
           
-          {/* Р‘С‹СЃС‚СЂР°СЏ РЅР°РІРёРіР°С†РёСЏ */}
+          {/* Р вЂРЎвЂ№РЎРѓРЎвЂљРЎР‚Р В°РЎРЏ Р Р…Р В°Р Р†Р С‘Р С–Р В°РЎвЂ Р С‘РЎРЏ */}
           <div className="fixed bottom-0 left-0 right-0 bg-background border-t border-border/20">
             <div className="p-6">
               <div className="grid grid-cols-4 gap-4 mb-4">
@@ -400,48 +400,48 @@ export function AdminAchievements({ achievements, setAchievements, currentAdminP
           </div>
         </div>
 
-        {/* РњРѕРґР°Р»СЊРЅРѕРµ РѕРєРЅРѕ СЃРѕР·РґР°РЅРёСЏ РґРѕСЃС‚РёР¶РµРЅРёСЏ */}
+        {/* Р СљР С•Р Т‘Р В°Р В»РЎРЉР Р…Р С•Р Вµ Р С•Р С”Р Р…Р С• РЎРѓР С•Р В·Р Т‘Р В°Р Р…Р С‘РЎРЏ Р Т‘Р С•РЎРѓРЎвЂљР С‘Р В¶Р ВµР Р…Р С‘РЎРЏ */}
         <Dialog open={createModalOpen} onOpenChange={setCreateModalOpen}>
           <DialogContent className="bg-background border-none max-w-sm p-0 [&>button]:hidden max-h-[90vh] overflow-hidden rounded-3xl">
-            <DialogTitle className="text-lg font-medium text-foreground text-center">РЈСЃР»РѕРІРёСЏ РІС‹РїРѕР»РЅРµРЅРёСЏ РґРѕСЃС‚РёР¶РµРЅРёСЏ</DialogTitle>
+            <DialogTitle className="text-lg font-medium text-foreground text-center">Р Р€РЎРѓР В»Р С•Р Р†Р С‘РЎРЏ Р Р†РЎвЂ№Р С—Р С•Р В»Р Р…Р ВµР Р…Р С‘РЎРЏ Р Т‘Р С•РЎРѓРЎвЂљР С‘Р В¶Р ВµР Р…Р С‘РЎРЏ</DialogTitle>
             <DialogDescription className="sr-only">
-              РњРѕРґР°Р»СЊРЅРѕРµ РѕРєРЅРѕ РґР»СЏ СЃРѕР·РґР°РЅРёСЏ РЅРѕРІРѕРіРѕ РґРѕСЃС‚РёР¶РµРЅРёСЏ СЃ СѓРєР°Р·Р°РЅРёРµРј РЅР°Р·РІР°РЅРёСЏ, РѕРїРёСЃР°РЅРёСЏ, РїРѕРґР·Р°РґР°С‡ Рё РЅР°РіСЂР°РґС‹
+              Р СљР С•Р Т‘Р В°Р В»РЎРЉР Р…Р С•Р Вµ Р С•Р С”Р Р…Р С• Р Т‘Р В»РЎРЏ РЎРѓР С•Р В·Р Т‘Р В°Р Р…Р С‘РЎРЏ Р Р…Р С•Р Р†Р С•Р С–Р С• Р Т‘Р С•РЎРѓРЎвЂљР С‘Р В¶Р ВµР Р…Р С‘РЎРЏ РЎРѓ РЎС“Р С”Р В°Р В·Р В°Р Р…Р С‘Р ВµР С Р Р…Р В°Р В·Р Р†Р В°Р Р…Р С‘РЎРЏ, Р С•Р С—Р С‘РЎРѓР В°Р Р…Р С‘РЎРЏ, Р С—Р С•Р Т‘Р В·Р В°Р Т‘Р В°РЎвЂЎ Р С‘ Р Р…Р В°Р С–РЎР‚Р В°Р Т‘РЎвЂ№
             </DialogDescription>
             <div className="p-6 pt-2">
               <div className="space-y-6">
-                {/* РџРѕР»Рµ РЅР°Р·РІР°РЅРёСЏ РґРѕСЃС‚РёР¶РµРЅРёСЏ */}
+                {/* Р СџР С•Р В»Р Вµ Р Р…Р В°Р В·Р Р†Р В°Р Р…Р С‘РЎРЏ Р Т‘Р С•РЎРѓРЎвЂљР С‘Р В¶Р ВµР Р…Р С‘РЎРЏ */}
                 <div className="text-center">
                   <Input
-                    placeholder="РќР°Р·РІР°РЅРёРµ РґРѕСЃС‚РёР¶РµРЅРёСЏ"
+                    placeholder="Р СњР В°Р В·Р Р†Р В°Р Р…Р С‘Р Вµ Р Т‘Р С•РЎРѓРЎвЂљР С‘Р В¶Р ВµР Р…Р С‘РЎРЏ"
                     value={formData.title}
                     onChange={(e) => setFormData({ ...formData, title: e.target.value })}
                     className="bg-transparent border border-border rounded-lg text-center font-medium"
                   />
                 </div>
 
-                {/* РР·РѕР±СЂР°Р¶РµРЅРёРµ Рё РѕРїРёСЃР°РЅРёРµ */}
+                {/* Р ВР В·Р С•Р В±РЎР‚Р В°Р В¶Р ВµР Р…Р С‘Р Вµ Р С‘ Р С•Р С—Р С‘РЎРѓР В°Р Р…Р С‘Р Вµ */}
                 <div className="glass-card rounded-2xl p-4">
                   <div className="flex gap-4">
-                    {/* РћР±Р»Р°СЃС‚СЊ РґР»СЏ РёР·РѕР±СЂР°Р¶РµРЅРёСЏ */}
+                    {/* Р С›Р В±Р В»Р В°РЎРѓРЎвЂљРЎРЉ Р Т‘Р В»РЎРЏ Р С‘Р В·Р С•Р В±РЎР‚Р В°Р В¶Р ВµР Р…Р С‘РЎРЏ */}
                     <div className="w-20 h-20 bg-secondary rounded-2xl flex items-center justify-center">
                       <Trophy className="w-8 h-8 text-foreground/70" />
                     </div>
 
-                    {/* РџРѕР»Рµ РѕРїРёСЃР°РЅРёСЏ */}
+                    {/* Р СџР С•Р В»Р Вµ Р С•Р С—Р С‘РЎРѓР В°Р Р…Р С‘РЎРЏ */}
                     <div className="flex-1">
                       <Textarea
-                        placeholder="РљСЂР°С‚РєРѕРµ РѕРїРёСЃР°РЅРёРµ С‚РѕРіРѕ, С‡С‚Рѕ РЅСѓР¶РЅРѕ СЃРґРµР»Р°С‚СЊ РґР»СЏ РїРѕР»СѓС‡РµРЅРёСЏ СЌС‚РѕРіРѕ РґРѕСЃС‚РёР¶РµРЅРёСЏ"
+                        placeholder="Р С™РЎР‚Р В°РЎвЂљР С”Р С•Р Вµ Р С•Р С—Р С‘РЎРѓР В°Р Р…Р С‘Р Вµ РЎвЂљР С•Р С–Р С•, РЎвЂЎРЎвЂљР С• Р Р…РЎС“Р В¶Р Р…Р С• РЎРѓР Т‘Р ВµР В»Р В°РЎвЂљРЎРЉ Р Т‘Р В»РЎРЏ Р С—Р С•Р В»РЎС“РЎвЂЎР ВµР Р…Р С‘РЎРЏ РЎРЊРЎвЂљР С•Р С–Р С• Р Т‘Р С•РЎРѓРЎвЂљР С‘Р В¶Р ВµР Р…Р С‘РЎРЏ"
                         value={formData.description}
                         onChange={(e) => setFormData({ ...formData, description: e.target.value })}
                         className="bg-transparent border-none resize-none min-h-16 text-sm focus:outline-none p-0"
                       />
                       
-                      {/* РџРѕРґР·Р°РґР°С‡Рё */}
+                      {/* Р СџР С•Р Т‘Р В·Р В°Р Т‘Р В°РЎвЂЎР С‘ */}
                       <div className="mt-4 space-y-2">
                         {formData.subtasks.map((subtask, index) => (
                           <div key={index} className="flex items-center gap-2 pl-2 border-l-2 border-muted">
                             <Input
-                              placeholder="РџРѕРґР·Р°РґР°С‡Р°"
+                              placeholder="Р СџР С•Р Т‘Р В·Р В°Р Т‘Р В°РЎвЂЎР В°"
                               value={subtask}
                               onChange={(e) => updateSubtask(index, e.target.value)}
                               className="bg-transparent border-none text-sm p-0 h-6"
@@ -462,18 +462,18 @@ export function AdminAchievements({ achievements, setAchievements, currentAdminP
                           </div>
                         ))}
                         
-                        {/* РљРЅРѕРїРєР° РґРѕР±Р°РІР»РµРЅРёСЏ РїРѕРґР·Р°РґР°С‡Рё */}
+                        {/* Р С™Р Р…Р С•Р С—Р С”Р В° Р Т‘Р С•Р В±Р В°Р Р†Р В»Р ВµР Р…Р С‘РЎРЏ Р С—Р С•Р Т‘Р В·Р В°Р Т‘Р В°РЎвЂЎР С‘ */}
                         <button
                           onClick={addSubtask}
                           className="flex items-center gap-2 pl-2 py-1 text-sm text-primary hover:bg-black/5 dark:hover:bg-white/5 rounded transition-colors"
                         >
                           <Plus className="w-3 h-3" />
-                          <span>Р”РѕР±Р°РІРёС‚СЊ РїРѕРґР·Р°РґР°С‡Сѓ</span>
+                          <span>Р вЂќР С•Р В±Р В°Р Р†Р С‘РЎвЂљРЎРЉ Р С—Р С•Р Т‘Р В·Р В°Р Т‘Р В°РЎвЂЎРЎС“</span>
                         </button>
                       </div>
                     </div>
 
-                    {/* РљРЅРѕРїРєР° Р·Р°РіСЂСѓР·РєРё РёР·РѕР±СЂР°Р¶РµРЅРёСЏ */}
+                    {/* Р С™Р Р…Р С•Р С—Р С”Р В° Р В·Р В°Р С–РЎР‚РЎС“Р В·Р С”Р С‘ Р С‘Р В·Р С•Р В±РЎР‚Р В°Р В¶Р ВµР Р…Р С‘РЎРЏ */}
                     <div className="flex flex-col gap-1 pt-2">
                       <input
                         type="file"
@@ -492,14 +492,14 @@ export function AdminAchievements({ achievements, setAchievements, currentAdminP
                   </div>
                 </div>
 
-                {/* РќР°РіСЂР°РґР° */}
+                {/* Р СњР В°Р С–РЎР‚Р В°Р Т‘Р В° */}
                 <div className="text-center">
                   <div className="text-sm font-medium text-foreground">
-                    РќР°РіСЂР°РґР°: {formData.rewardAmount} {formData.rewardType}
+                    Р СњР В°Р С–РЎР‚Р В°Р Т‘Р В°: {formData.rewardAmount} {formData.rewardType}
                   </div>
                 </div>
 
-                {/* РљРЅРѕРїРєРё РґРµР№СЃС‚РІРёР№ */}
+                {/* Р С™Р Р…Р С•Р С—Р С”Р С‘ Р Т‘Р ВµР в„–РЎРѓРЎвЂљР Р†Р С‘Р в„– */}
                 <div className="flex gap-3 pt-4 mt-6">
                   <button
                     onClick={() => {
@@ -508,7 +508,7 @@ export function AdminAchievements({ achievements, setAchievements, currentAdminP
                     }}
                     className="flex-1 py-3 px-4 bg-secondary text-foreground rounded-full text-sm font-medium transition-colors hover:bg-accent"
                   >
-                    РћС‚РјРµРЅРёС‚СЊ
+                    Р С›РЎвЂљР СР ВµР Р…Р С‘РЎвЂљРЎРЉ
                   </button>
                   <button
                     onClick={() => {
@@ -517,7 +517,7 @@ export function AdminAchievements({ achievements, setAchievements, currentAdminP
                     }}
                     className="flex-1 py-3 px-4 bg-primary text-primary-foreground rounded-full text-sm font-medium transition-colors hover:bg-primary/90"
                   >
-                    РџСЂРёРјРµРЅРёС‚СЊ
+                    Р СџРЎР‚Р С‘Р СР ВµР Р…Р С‘РЎвЂљРЎРЉ
                   </button>
                 </div>
               </div>
@@ -525,17 +525,17 @@ export function AdminAchievements({ achievements, setAchievements, currentAdminP
           </DialogContent>
         </Dialog>
 
-        {/* РњРѕРґР°Р»СЊРЅРѕРµ РѕРєРЅРѕ РґРµС‚Р°Р»РµР№ РґРѕСЃС‚РёР¶РµРЅРёСЏ */}
+        {/* Р СљР С•Р Т‘Р В°Р В»РЎРЉР Р…Р С•Р Вµ Р С•Р С”Р Р…Р С• Р Т‘Р ВµРЎвЂљР В°Р В»Р ВµР в„– Р Т‘Р С•РЎРѓРЎвЂљР С‘Р В¶Р ВµР Р…Р С‘РЎРЏ */}
         <Dialog open={detailModalOpen} onOpenChange={setDetailModalOpen}>
           <DialogContent className="bg-background border-none max-w-sm p-0 [&>button]:hidden rounded-3xl">
-            <DialogTitle className="text-lg font-medium text-foreground text-center">РЈСЃР»РѕРІРёСЏ РІС‹РїРѕР»РЅРµРЅРёСЏ РґРѕСЃС‚РёР¶РµРЅРёСЏ</DialogTitle>
+            <DialogTitle className="text-lg font-medium text-foreground text-center">Р Р€РЎРѓР В»Р С•Р Р†Р С‘РЎРЏ Р Р†РЎвЂ№Р С—Р С•Р В»Р Р…Р ВµР Р…Р С‘РЎРЏ Р Т‘Р С•РЎРѓРЎвЂљР С‘Р В¶Р ВµР Р…Р С‘РЎРЏ</DialogTitle>
             <DialogDescription className="sr-only">
-              РњРѕРґР°Р»СЊРЅРѕРµ РѕРєРЅРѕ СЃ РїРѕРґСЂРѕР±РЅРѕР№ РёРЅС„РѕСЂРјР°С†РёРµР№ Рѕ РґРѕСЃС‚РёР¶РµРЅРёРё Рё РІРѕР·РјРѕР¶РЅРѕСЃС‚СЊСЋ СЂРµРґР°РєС‚РёСЂРѕРІР°РЅРёСЏ
+              Р СљР С•Р Т‘Р В°Р В»РЎРЉР Р…Р С•Р Вµ Р С•Р С”Р Р…Р С• РЎРѓ Р С—Р С•Р Т‘РЎР‚Р С•Р В±Р Р…Р С•Р в„– Р С‘Р Р…РЎвЂћР С•РЎР‚Р СР В°РЎвЂ Р С‘Р ВµР в„– Р С• Р Т‘Р С•РЎРѓРЎвЂљР С‘Р В¶Р ВµР Р…Р С‘Р С‘ Р С‘ Р Р†Р С•Р В·Р СР С•Р В¶Р Р…Р С•РЎРѓРЎвЂљРЎРЉРЎР‹ РЎР‚Р ВµР Т‘Р В°Р С”РЎвЂљР С‘РЎР‚Р С•Р Р†Р В°Р Р…Р С‘РЎРЏ
             </DialogDescription>
             <div className="p-6 pt-2">
               {selectedAchievement && (
                 <div className="space-y-6">
-                  {/* РџРѕР»Рµ Р·Р°РіРѕР»РѕРІРєР° */}
+                  {/* Р СџР С•Р В»Р Вµ Р В·Р В°Р С–Р С•Р В»Р С•Р Р†Р С”Р В° */}
                   <div className="text-center">
                     {isEditingTitle ? (
                       <Input
@@ -555,13 +555,13 @@ export function AdminAchievements({ achievements, setAchievements, currentAdminP
                     )}
                   </div>
 
-                  {/* РР·РѕР±СЂР°Р¶РµРЅРёРµ Рё РѕРїРёСЃР°РЅРёРµ */}
+                  {/* Р ВР В·Р С•Р В±РЎР‚Р В°Р В¶Р ВµР Р…Р С‘Р Вµ Р С‘ Р С•Р С—Р С‘РЎРѓР В°Р Р…Р С‘Р Вµ */}
                   <div className="glass-card rounded-2xl p-4">
                     <div className="flex gap-4">
-                      {/* РћР±Р»Р°СЃС‚СЊ РґР»СЏ РёР·РѕР±СЂР°Р¶РµРЅРёСЏ */}
+                      {/* Р С›Р В±Р В»Р В°РЎРѓРЎвЂљРЎРЉ Р Т‘Р В»РЎРЏ Р С‘Р В·Р С•Р В±РЎР‚Р В°Р В¶Р ВµР Р…Р С‘РЎРЏ */}
                       <div className="relative w-20 h-20 bg-secondary rounded-2xl flex items-center justify-center">
                         <Trophy className="w-8 h-8 text-foreground/70" />
-                        {/* РљРЅРѕРїРєР° СЂРµРґР°РєС‚РёСЂРѕРІР°РЅРёСЏ РёР·РѕР±СЂР°Р¶РµРЅРёСЏ */}
+                        {/* Р С™Р Р…Р С•Р С—Р С”Р В° РЎР‚Р ВµР Т‘Р В°Р С”РЎвЂљР С‘РЎР‚Р С•Р Р†Р В°Р Р…Р С‘РЎРЏ Р С‘Р В·Р С•Р В±РЎР‚Р В°Р В¶Р ВµР Р…Р С‘РЎРЏ */}
                         <div className="absolute -top-1 -right-1">
                           <input
                             type="file"
@@ -579,7 +579,7 @@ export function AdminAchievements({ achievements, setAchievements, currentAdminP
                         </div>
                       </div>
 
-                      {/* РџРѕР»Рµ РѕРїРёСЃР°РЅРёСЏ */}
+                      {/* Р СџР С•Р В»Р Вµ Р С•Р С—Р С‘РЎРѓР В°Р Р…Р С‘РЎРЏ */}
                       <div className="flex-1">
                         <div className="relative">
                           {isEditing ? (
@@ -595,13 +595,13 @@ export function AdminAchievements({ achievements, setAchievements, currentAdminP
                           )}
                         </div>
                         
-                        {/* РџРѕРґР·Р°РґР°С‡Р° */}
+                        {/* Р СџР С•Р Т‘Р В·Р В°Р Т‘Р В°РЎвЂЎР В° */}
                         <div className="mt-4 pl-2 border-l-2 border-muted">
-                          <div className="text-sm text-muted-foreground">РџРѕРґР·Р°РґР°С‡Р°</div>
+                          <div className="text-sm text-muted-foreground">Р СџР С•Р Т‘Р В·Р В°Р Т‘Р В°РЎвЂЎР В°</div>
                         </div>
                       </div>
 
-                      {/* РљРЅРѕРїРєРё СЂРµРґР°РєС‚РёСЂРѕРІР°РЅРёСЏ СЃРїСЂР°РІР° */}
+                      {/* Р С™Р Р…Р С•Р С—Р С”Р С‘ РЎР‚Р ВµР Т‘Р В°Р С”РЎвЂљР С‘РЎР‚Р С•Р Р†Р В°Р Р…Р С‘РЎРЏ РЎРѓР С—РЎР‚Р В°Р Р†Р В° */}
                       <div className="flex flex-col gap-1 pt-2">
                         <button 
                           onClick={() => setIsEditing(!isEditing)}
@@ -616,17 +616,17 @@ export function AdminAchievements({ achievements, setAchievements, currentAdminP
                     </div>
                   </div>
 
-                  {/* РќР°РіСЂР°РґР° - РєР»РёРєР°Р±РµР»СЊРЅР°СЏ */}
+                  {/* Р СњР В°Р С–РЎР‚Р В°Р Т‘Р В° - Р С”Р В»Р С‘Р С”Р В°Р В±Р ВµР В»РЎРЉР Р…Р В°РЎРЏ */}
                   <div className="text-center">
                     <button
                       onClick={handleRewardClick}
                       className="text-sm font-medium text-foreground hover:bg-black/5 dark:hover:bg-white/5 rounded px-2 py-1 transition-colors"
                     >
-                      РќР°РіСЂР°РґР°: {formData.rewardAmount} {formData.rewardType}
+                      Р СњР В°Р С–РЎР‚Р В°Р Т‘Р В°: {formData.rewardAmount} {formData.rewardType}
                     </button>
                   </div>
 
-                  {/* РљРЅРѕРїРєРё РґРµР№СЃС‚РІРёР№ */}
+                  {/* Р С™Р Р…Р С•Р С—Р С”Р С‘ Р Т‘Р ВµР в„–РЎРѓРЎвЂљР Р†Р С‘Р в„– */}
                   <div className="flex gap-3 pt-4 mt-6">
                     <button
                       onClick={() => {
@@ -635,7 +635,7 @@ export function AdminAchievements({ achievements, setAchievements, currentAdminP
                       }}
                       className="flex-1 py-3 px-4 bg-secondary text-foreground rounded-full text-sm font-medium transition-colors hover:bg-accent"
                     >
-                      РћС‚РјРµРЅРёС‚СЊ
+                      Р С›РЎвЂљР СР ВµР Р…Р С‘РЎвЂљРЎРЉ
                     </button>
                     <button
                       onClick={() => {
@@ -647,7 +647,7 @@ export function AdminAchievements({ achievements, setAchievements, currentAdminP
                       }}
                       className="flex-1 py-3 px-4 bg-primary text-primary-foreground rounded-full text-sm font-medium transition-colors hover:bg-primary/90"
                     >
-                      РџСЂРёРјРµРЅРёС‚СЊ
+                      Р СџРЎР‚Р С‘Р СР ВµР Р…Р С‘РЎвЂљРЎРЉ
                     </button>
                   </div>
                 </div>
@@ -656,15 +656,15 @@ export function AdminAchievements({ achievements, setAchievements, currentAdminP
           </DialogContent>
         </Dialog>
 
-        {/* РњРѕРґР°Р»СЊРЅРѕРµ РѕРєРЅРѕ РјРѕРґРµСЂР°С†РёРё РґРѕСЃС‚РёР¶РµРЅРёР№ */}
+        {/* Р СљР С•Р Т‘Р В°Р В»РЎРЉР Р…Р С•Р Вµ Р С•Р С”Р Р…Р С• Р СР С•Р Т‘Р ВµРЎР‚Р В°РЎвЂ Р С‘Р С‘ Р Т‘Р С•РЎРѓРЎвЂљР С‘Р В¶Р ВµР Р…Р С‘Р в„– */}
         <Dialog open={moderationModalOpen} onOpenChange={setModerationModalOpen}>
           <DialogContent className="bg-background border-none max-w-sm p-0 [&>button]:hidden max-h-[90vh] overflow-hidden rounded-3xl">
-            <DialogTitle className="text-lg font-medium text-foreground text-center">РњРѕРґРµСЂР°С†РёСЏ РґРѕСЃС‚РёР¶РµРЅРёР№</DialogTitle>
+            <DialogTitle className="text-lg font-medium text-foreground text-center">Р СљР С•Р Т‘Р ВµРЎР‚Р В°РЎвЂ Р С‘РЎРЏ Р Т‘Р С•РЎРѓРЎвЂљР С‘Р В¶Р ВµР Р…Р С‘Р в„–</DialogTitle>
             <DialogDescription className="sr-only">
-              РњРѕРґР°Р»СЊРЅРѕРµ РѕРєРЅРѕ РґР»СЏ РїСЂРѕРІРµСЂРєРё Рё РјРѕРґРµСЂР°С†РёРё РґРѕСЃС‚РёР¶РµРЅРёР№, РѕС‚РїСЂР°РІР»РµРЅРЅС‹С… РїРѕР»СЊР·РѕРІР°С‚РµР»СЏРјРё РЅР° РїСЂРѕРІРµСЂРєСѓ
+              Р СљР С•Р Т‘Р В°Р В»РЎРЉР Р…Р С•Р Вµ Р С•Р С”Р Р…Р С• Р Т‘Р В»РЎРЏ Р С—РЎР‚Р С•Р Р†Р ВµРЎР‚Р С”Р С‘ Р С‘ Р СР С•Р Т‘Р ВµРЎР‚Р В°РЎвЂ Р С‘Р С‘ Р Т‘Р С•РЎРѓРЎвЂљР С‘Р В¶Р ВµР Р…Р С‘Р в„–, Р С•РЎвЂљР С—РЎР‚Р В°Р Р†Р В»Р ВµР Р…Р Р…РЎвЂ№РЎвЂ¦ Р С—Р С•Р В»РЎРЉР В·Р С•Р Р†Р В°РЎвЂљР ВµР В»РЎРЏР СР С‘ Р Р…Р В° Р С—РЎР‚Р С•Р Р†Р ВµРЎР‚Р С”РЎС“
             </DialogDescription>
             <div className="p-6">
-              {/* РЎРїРёСЃРѕРє РґРѕСЃС‚РёР¶РµРЅРёР№ РЅР° РјРѕРґРµСЂР°С†РёРё */}
+              {/* Р РЋР С—Р С‘РЎРѓР С•Р С” Р Т‘Р С•РЎРѓРЎвЂљР С‘Р В¶Р ВµР Р…Р С‘Р в„– Р Р…Р В° Р СР С•Р Т‘Р ВµРЎР‚Р В°РЎвЂ Р С‘Р С‘ */}
               <div className="space-y-3">
                 {sortedModerationItems.map((item) => (
                   <div
@@ -692,13 +692,13 @@ export function AdminAchievements({ achievements, setAchievements, currentAdminP
                         onClick={() => handleApproveAchievement(item)}
                         className="flex-1 py-2 px-3 bg-green-500 text-white rounded-lg text-sm font-medium hover:bg-green-600 transition-colors"
                       >
-                        РћРґРѕР±СЂРёС‚СЊ
+                        Р С›Р Т‘Р С•Р В±РЎР‚Р С‘РЎвЂљРЎРЉ
                       </button>
                       <button
                         onClick={() => handleRejectAchievement(item)}
                         className="flex-1 py-2 px-3 bg-red-500 text-white rounded-lg text-sm font-medium hover:bg-red-600 transition-colors"
                       >
-                        РћС‚РєР»РѕРЅРёС‚СЊ
+                        Р С›РЎвЂљР С”Р В»Р С•Р Р…Р С‘РЎвЂљРЎРЉ
                       </button>
                     </div>
                   </div>
@@ -706,7 +706,7 @@ export function AdminAchievements({ achievements, setAchievements, currentAdminP
                 
                 {sortedModerationItems.length === 0 && (
                   <div className="text-center text-muted-foreground py-8">
-                    РќРµС‚ РґРѕСЃС‚РёР¶РµРЅРёР№ РЅР° РјРѕРґРµСЂР°С†РёРё
+                    Р СњР ВµРЎвЂљ Р Т‘Р С•РЎРѓРЎвЂљР С‘Р В¶Р ВµР Р…Р С‘Р в„– Р Р…Р В° Р СР С•Р Т‘Р ВµРЎР‚Р В°РЎвЂ Р С‘Р С‘
                   </div>
                 )}
               </div>
@@ -714,19 +714,19 @@ export function AdminAchievements({ achievements, setAchievements, currentAdminP
           </DialogContent>
         </Dialog>
 
-        {/* РњРѕРґР°Р»СЊРЅРѕРµ РѕРєРЅРѕ РЅР°РіСЂР°РґС‹ */}
+        {/* Р СљР С•Р Т‘Р В°Р В»РЎРЉР Р…Р С•Р Вµ Р С•Р С”Р Р…Р С• Р Р…Р В°Р С–РЎР‚Р В°Р Т‘РЎвЂ№ */}
         <Dialog open={rewardModalOpen} onOpenChange={setRewardModalOpen}>
           <DialogContent className="bg-background border-none max-w-sm p-0 [&>button]:hidden rounded-3xl">
-            <DialogTitle className="text-lg font-medium text-foreground text-center">РќР°СЃС‚СЂРѕР№РєР° РЅР°РіСЂР°РґС‹</DialogTitle>
+            <DialogTitle className="text-lg font-medium text-foreground text-center">Р СњР В°РЎРѓРЎвЂљРЎР‚Р С•Р в„–Р С”Р В° Р Р…Р В°Р С–РЎР‚Р В°Р Т‘РЎвЂ№</DialogTitle>
             <DialogDescription className="sr-only">
-              РњРѕРґР°Р»СЊРЅРѕРµ РѕРєРЅРѕ РґР»СЏ РЅР°СЃС‚СЂРѕР№РєРё С‚РёРїР° Рё СЂР°Р·РјРµСЂР° РЅР°РіСЂР°РґС‹ Р·Р° РґРѕСЃС‚РёР¶РµРЅРёРµ
+              Р СљР С•Р Т‘Р В°Р В»РЎРЉР Р…Р С•Р Вµ Р С•Р С”Р Р…Р С• Р Т‘Р В»РЎРЏ Р Р…Р В°РЎРѓРЎвЂљРЎР‚Р С•Р в„–Р С”Р С‘ РЎвЂљР С‘Р С—Р В° Р С‘ РЎР‚Р В°Р В·Р СР ВµРЎР‚Р В° Р Р…Р В°Р С–РЎР‚Р В°Р Т‘РЎвЂ№ Р В·Р В° Р Т‘Р С•РЎРѓРЎвЂљР С‘Р В¶Р ВµР Р…Р С‘Р Вµ
             </DialogDescription>
             <div className="p-6 pt-2">
               <div className="space-y-6">
-                {/* РўРёРї РЅР°РіСЂР°РґС‹ */}
+                {/* Р СћР С‘Р С— Р Р…Р В°Р С–РЎР‚Р В°Р Т‘РЎвЂ№ */}
                 <div className="space-y-3">
                   <div className="text-sm font-medium text-foreground text-center">
-                    РўРёРї РЅР°РіСЂР°РґС‹
+                    Р СћР С‘Р С— Р Р…Р В°Р С–РЎР‚Р В°Р Т‘РЎвЂ№
                   </div>
                   <div className="flex gap-2">
                     <button
@@ -752,10 +752,10 @@ export function AdminAchievements({ achievements, setAchievements, currentAdminP
                   </div>
                 </div>
 
-                {/* РљРѕР»РёС‡РµСЃС‚РІРѕ */}
+                {/* Р С™Р С•Р В»Р С‘РЎвЂЎР ВµРЎРѓРЎвЂљР Р†Р С• */}
                 <div className="space-y-3">
                   <div className="text-sm font-medium text-foreground text-center">
-                    РљРѕР»РёС‡РµСЃС‚РІРѕ
+                    Р С™Р С•Р В»Р С‘РЎвЂЎР ВµРЎРѓРЎвЂљР Р†Р С•
                   </div>
                   <div className="glass-card rounded-lg p-3">
                     {isEditingAmount ? (
@@ -778,19 +778,19 @@ export function AdminAchievements({ achievements, setAchievements, currentAdminP
                   </div>
                 </div>
 
-                {/* РљРЅРѕРїРєРё */}
+                {/* Р С™Р Р…Р С•Р С—Р С”Р С‘ */}
                 <div className="flex gap-3 pt-4">
                   <button
                     onClick={() => setRewardModalOpen(false)}
                     className="flex-1 py-3 px-4 bg-secondary text-foreground rounded-full text-sm font-medium transition-colors hover:bg-accent"
                   >
-                    РћС‚РјРµРЅРёС‚СЊ
+                    Р С›РЎвЂљР СР ВµР Р…Р С‘РЎвЂљРЎРЉ
                   </button>
                   <button
                     onClick={handleRewardSave}
                     className="flex-1 py-3 px-4 bg-primary text-primary-foreground rounded-full text-sm font-medium transition-colors hover:bg-primary/90"
                   >
-                    РЎРѕС…СЂР°РЅРёС‚СЊ
+                    Р РЋР С•РЎвЂ¦РЎР‚Р В°Р Р…Р С‘РЎвЂљРЎРЉ
                   </button>
                 </div>
               </div>
@@ -798,45 +798,45 @@ export function AdminAchievements({ achievements, setAchievements, currentAdminP
           </DialogContent>
         </Dialog>
 
-        {/* РњРѕРґР°Р»СЊРЅРѕРµ РѕРєРЅРѕ РѕС‚РєР»РѕРЅРµРЅРёСЏ */}
+        {/* Р СљР С•Р Т‘Р В°Р В»РЎРЉР Р…Р С•Р Вµ Р С•Р С”Р Р…Р С• Р С•РЎвЂљР С”Р В»Р С•Р Р…Р ВµР Р…Р С‘РЎРЏ */}
         <Dialog open={rejectModalOpen} onOpenChange={setRejectModalOpen}>
           <DialogContent className="bg-background border-none max-w-sm p-0 [&>button]:hidden rounded-3xl">
-            <DialogTitle className="text-lg font-medium text-foreground text-center">РћС‚РєР»РѕРЅРёС‚СЊ РґРѕСЃС‚РёР¶РµРЅРёРµ</DialogTitle>
+            <DialogTitle className="text-lg font-medium text-foreground text-center">Р С›РЎвЂљР С”Р В»Р С•Р Р…Р С‘РЎвЂљРЎРЉ Р Т‘Р С•РЎРѓРЎвЂљР С‘Р В¶Р ВµР Р…Р С‘Р Вµ</DialogTitle>
             <DialogDescription className="sr-only">
-              РњРѕРґР°Р»СЊРЅРѕРµ РѕРєРЅРѕ РґР»СЏ РѕС‚РєР»РѕРЅРµРЅРёСЏ РґРѕСЃС‚РёР¶РµРЅРёСЏ СЃ СѓРєР°Р·Р°РЅРёРµРј РїСЂРёС‡РёРЅС‹ Рё РєРѕРјРјРµРЅС‚Р°СЂРёСЏ
+              Р СљР С•Р Т‘Р В°Р В»РЎРЉР Р…Р С•Р Вµ Р С•Р С”Р Р…Р С• Р Т‘Р В»РЎРЏ Р С•РЎвЂљР С”Р В»Р С•Р Р…Р ВµР Р…Р С‘РЎРЏ Р Т‘Р С•РЎРѓРЎвЂљР С‘Р В¶Р ВµР Р…Р С‘РЎРЏ РЎРѓ РЎС“Р С”Р В°Р В·Р В°Р Р…Р С‘Р ВµР С Р С—РЎР‚Р С‘РЎвЂЎР С‘Р Р…РЎвЂ№ Р С‘ Р С”Р С•Р СР СР ВµР Р…РЎвЂљР В°РЎР‚Р С‘РЎРЏ
             </DialogDescription>
             <div className="p-6 pt-2">
               <div className="space-y-6">
-                {/* РџСЂРёС‡РёРЅР° РѕС‚РєР»РѕРЅРµРЅРёСЏ */}
+                {/* Р СџРЎР‚Р С‘РЎвЂЎР С‘Р Р…Р В° Р С•РЎвЂљР С”Р В»Р С•Р Р…Р ВµР Р…Р С‘РЎРЏ */}
                 <div className="space-y-3">
                   <div className="text-sm font-medium text-foreground">
-                    РџСЂРёС‡РёРЅР° РѕС‚РєР»РѕРЅРµРЅРёСЏ *
+                    Р СџРЎР‚Р С‘РЎвЂЎР С‘Р Р…Р В° Р С•РЎвЂљР С”Р В»Р С•Р Р…Р ВµР Р…Р С‘РЎРЏ *
                   </div>
                   <Input
-                    placeholder="РЈРєР°Р¶РёС‚Рµ РїСЂРёС‡РёРЅСѓ РѕС‚РєР»РѕРЅРµРЅРёСЏ"
+                    placeholder="Р Р€Р С”Р В°Р В¶Р С‘РЎвЂљР Вµ Р С—РЎР‚Р С‘РЎвЂЎР С‘Р Р…РЎС“ Р С•РЎвЂљР С”Р В»Р С•Р Р…Р ВµР Р…Р С‘РЎРЏ"
                     value={rejectReason}
                     onChange={(e) => setRejectReason(e.target.value)}
                     className="bg-transparent border border-border rounded-lg"
                   />
                 </div>
 
-                {/* РљРѕРјРјРµРЅС‚Р°СЂРёР№ */}
+                {/* Р С™Р С•Р СР СР ВµР Р…РЎвЂљР В°РЎР‚Р С‘Р в„– */}
                 <div className="space-y-3">
                   <div className="text-sm font-medium text-foreground">
-                    РљРѕРјРјРµРЅС‚Р°СЂРёР№ (РЅРµРѕР±СЏР·Р°С‚РµР»СЊРЅРѕ)
+                    Р С™Р С•Р СР СР ВµР Р…РЎвЂљР В°РЎР‚Р С‘Р в„– (Р Р…Р ВµР С•Р В±РЎРЏР В·Р В°РЎвЂљР ВµР В»РЎРЉР Р…Р С•)
                   </div>
                   <Textarea
-                    placeholder="Р”РѕРїРѕР»РЅРёС‚РµР»СЊРЅС‹Рµ РєРѕРјРјРµРЅС‚Р°СЂРёРё..."
+                    placeholder="Р вЂќР С•Р С—Р С•Р В»Р Р…Р С‘РЎвЂљР ВµР В»РЎРЉР Р…РЎвЂ№Р Вµ Р С”Р С•Р СР СР ВµР Р…РЎвЂљР В°РЎР‚Р С‘Р С‘..."
                     value={rejectComment}
                     onChange={(e) => setRejectComment(e.target.value)}
                     className="bg-transparent border border-border rounded-lg resize-none min-h-20"
                   />
                 </div>
 
-                {/* Р¤Р°Р№Р» */}
+                {/* Р В¤Р В°Р в„–Р В» */}
                 <div className="space-y-3">
                   <div className="text-sm font-medium text-foreground">
-                    РџСЂРёРєСЂРµРїРёС‚СЊ С„Р°Р№Р» (РЅРµРѕР±СЏР·Р°С‚РµР»СЊРЅРѕ)
+                    Р СџРЎР‚Р С‘Р С”РЎР‚Р ВµР С—Р С‘РЎвЂљРЎРЉ РЎвЂћР В°Р в„–Р В» (Р Р…Р ВµР С•Р В±РЎРЏР В·Р В°РЎвЂљР ВµР В»РЎРЉР Р…Р С•)
                   </div>
                   <div className="glass-card rounded-lg p-4 text-center">
                     <input
@@ -852,25 +852,25 @@ export function AdminAchievements({ achievements, setAchievements, currentAdminP
                     >
                       <Paperclip className="w-6 h-6 text-muted-foreground" />
                       <span className="text-sm text-muted-foreground">
-                        {rejectFile ? rejectFile.name : 'Р’С‹Р±СЂР°С‚СЊ С„Р°Р№Р»'}
+                        {rejectFile ? rejectFile.name : 'Р вЂ™РЎвЂ№Р В±РЎР‚Р В°РЎвЂљРЎРЉ РЎвЂћР В°Р в„–Р В»'}
                       </span>
                     </label>
                   </div>
                 </div>
 
-                {/* РљРЅРѕРїРєРё */}
+                {/* Р С™Р Р…Р С•Р С—Р С”Р С‘ */}
                 <div className="flex gap-3 pt-4">
                   <button
                     onClick={() => setRejectModalOpen(false)}
                     className="flex-1 py-3 px-4 bg-secondary text-foreground rounded-full text-sm font-medium transition-colors hover:bg-accent"
                   >
-                    РћС‚РјРµРЅРёС‚СЊ
+                    Р С›РЎвЂљР СР ВµР Р…Р С‘РЎвЂљРЎРЉ
                   </button>
                   <button
                     onClick={handleSubmitReject}
                     className="flex-1 py-3 px-4 bg-destructive text-destructive-foreground rounded-full text-sm font-medium transition-colors hover:bg-destructive/90"
                   >
-                    РћС‚РєР»РѕРЅРёС‚СЊ
+                    Р С›РЎвЂљР С”Р В»Р С•Р Р…Р С‘РЎвЂљРЎРЉ
                   </button>
                 </div>
               </div>

@@ -1,4 +1,4 @@
-﻿import React, { useState, useRef, useEffect } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import { Bell, BellRing, CheckCheck, X, Trophy, Target, ShoppingBag, Swords, Gift, AlertCircle } from 'lucide-react';
 import { Notification } from '../types/notifications';
 
@@ -24,7 +24,7 @@ export const NotificationsButton: React.FC<NotificationsButtonProps> = ({
   const [isOpen, setIsOpen] = useState(false);
   const panelRef = useRef<HTMLDivElement>(null);
 
-  // Закрытие по клику вне панели
+  // Р—Р°РєСЂС‹С‚РёРµ РїРѕ РєР»РёРєСѓ РІРЅРµ РїР°РЅРµР»Рё
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
       if (panelRef.current && !panelRef.current.contains(event.target as Node)) {
@@ -35,7 +35,7 @@ export const NotificationsButton: React.FC<NotificationsButtonProps> = ({
     return () => document.removeEventListener('mousedown', handleClickOutside);
   }, []);
 
-  // Получение иконки по типу уведомления
+  // РџРѕР»СѓС‡РµРЅРёРµ РёРєРѕРЅРєРё РїРѕ С‚РёРїСѓ СѓРІРµРґРѕРјР»РµРЅРёСЏ
   const getNotificationIcon = (type: Notification['type']) => {
     const iconProps = {
       width: '16px',
@@ -59,7 +59,7 @@ export const NotificationsButton: React.FC<NotificationsButtonProps> = ({
     }
   };
 
-  // Форматирование времени
+  // Р¤РѕСЂРјР°С‚РёСЂРѕРІР°РЅРёРµ РІСЂРµРјРµРЅРё
   const formatTimestamp = (timestamp: Date) => {
     const now = new Date();
     const diff = now.getTime() - timestamp.getTime();
@@ -67,14 +67,14 @@ export const NotificationsButton: React.FC<NotificationsButtonProps> = ({
     const hours = Math.floor(diff / 3600000);
     const days = Math.floor(diff / 86400000);
 
-    if (minutes < 1) return 'только что';
-    if (minutes < 60) return `${minutes} мин назад`;
-    if (hours < 24) return `${hours} ч назад`;
-    if (days < 7) return `${days} д назад`;
+    if (minutes < 1) return 'С‚РѕР»СЊРєРѕ С‡С‚Рѕ';
+    if (minutes < 60) return `${minutes} РјРёРЅ РЅР°Р·Р°Рґ`;
+    if (hours < 24) return `${hours} С‡ РЅР°Р·Р°Рґ`;
+    if (days < 7) return `${days} Рґ РЅР°Р·Р°Рґ`;
     return timestamp.toLocaleDateString('ru-RU');
   };
 
-  // Сортировка уведомлений (сначала непрочитанные)
+  // РЎРѕСЂС‚РёСЂРѕРІРєР° СѓРІРµРґРѕРјР»РµРЅРёР№ (СЃРЅР°С‡Р°Р»Р° РЅРµРїСЂРѕС‡РёС‚Р°РЅРЅС‹Рµ)
   const sortedNotifications = [...notifications].sort((a, b) => {
     if (a.read !== b.read) return a.read ? 1 : -1;
     return new Date(b.timestamp).getTime() - new Date(a.timestamp).getTime();
@@ -82,7 +82,7 @@ export const NotificationsButton: React.FC<NotificationsButtonProps> = ({
 
   return (
     <div className="relative" ref={panelRef}>
-      {/* Кнопка уведомлений */}
+      {/* РљРЅРѕРїРєР° СѓРІРµРґРѕРјР»РµРЅРёР№ */}
       <button
         onClick={() => setIsOpen(!isOpen)}
         className={`apple-button w-7 h-7 flex items-center justify-center relative transition-all hover:scale-105 ${theme === 'dark' ? 'white-button' : ''}`}
@@ -93,7 +93,7 @@ export const NotificationsButton: React.FC<NotificationsButtonProps> = ({
           WebkitTouchCallout: 'none'
         }}
       >
-        {/* Иконка колокольчика */}
+        {/* РРєРѕРЅРєР° РєРѕР»РѕРєРѕР»СЊС‡РёРєР° */}
         {unreadCount > 0 ? (
           <BellRing 
             style={{
@@ -112,7 +112,7 @@ export const NotificationsButton: React.FC<NotificationsButtonProps> = ({
           />
         )}
         
-        {/* Счетчик непрочитанных */}
+        {/* РЎС‡РµС‚С‡РёРє РЅРµРїСЂРѕС‡РёС‚Р°РЅРЅС‹С… */}
         {unreadCount > 0 && (
           <div 
             style={{
@@ -137,7 +137,7 @@ export const NotificationsButton: React.FC<NotificationsButtonProps> = ({
         )}
       </button>
 
-      {/* Панель уведомлений */}
+      {/* РџР°РЅРµР»СЊ СѓРІРµРґРѕРјР»РµРЅРёР№ */}
       {isOpen && (
         <div
           className="absolute top-10 right-0 w-80 max-h-96 z-50 rounded-lg overflow-hidden"
@@ -155,7 +155,7 @@ export const NotificationsButton: React.FC<NotificationsButtonProps> = ({
             WebkitBackdropFilter: 'blur(20px)'
           }}
         >
-          {/* Заголовок панели */}
+          {/* Р—Р°РіРѕР»РѕРІРѕРє РїР°РЅРµР»Рё */}
           <div 
             className="flex items-center justify-between p-4 border-b"
             style={{
@@ -170,7 +170,7 @@ export const NotificationsButton: React.FC<NotificationsButtonProps> = ({
                   color: theme === 'dark' ? '#E8ECF2' : '#0F172A'
                 }}
               >
-                Уведомления
+                РЈРІРµРґРѕРјР»РµРЅРёСЏ
               </h3>
               {unreadCount > 0 && (
                 <span 
@@ -180,7 +180,7 @@ export const NotificationsButton: React.FC<NotificationsButtonProps> = ({
                     fontWeight: '500'
                   }}
                 >
-                  {unreadCount} новых
+                  {unreadCount} РЅРѕРІС‹С…
                 </span>
               )}
             </div>
@@ -193,7 +193,7 @@ export const NotificationsButton: React.FC<NotificationsButtonProps> = ({
                   style={{
                     fontSize: '10px'
                   }}
-                  title="Отметить все как прочитанные"
+                  title="РћС‚РјРµС‚РёС‚СЊ РІСЃРµ РєР°Рє РїСЂРѕС‡РёС‚Р°РЅРЅС‹Рµ"
                 >
                   <CheckCheck style={{ width: '12px', height: '12px' }} />
                 </button>
@@ -211,7 +211,7 @@ export const NotificationsButton: React.FC<NotificationsButtonProps> = ({
             </div>
           </div>
 
-          {/* Список уведомлений */}
+          {/* РЎРїРёСЃРѕРє СѓРІРµРґРѕРјР»РµРЅРёР№ */}
           <div 
             className="max-h-80 overflow-y-auto"
             style={{
@@ -246,7 +246,7 @@ export const NotificationsButton: React.FC<NotificationsButtonProps> = ({
                     }}
                   >
                     <div className="flex items-start gap-3">
-                      {/* Иконка типа уведомления */}
+                      {/* РРєРѕРЅРєР° С‚РёРїР° СѓРІРµРґРѕРјР»РµРЅРёСЏ */}
                       <div 
                         className="w-8 h-8 rounded-full flex items-center justify-center"
                         style={{
@@ -256,7 +256,7 @@ export const NotificationsButton: React.FC<NotificationsButtonProps> = ({
                         {getNotificationIcon(notification.type)}
                       </div>
                       
-                      {/* Контент уведомления */}
+                      {/* РљРѕРЅС‚РµРЅС‚ СѓРІРµРґРѕРјР»РµРЅРёСЏ */}
                       <div className="flex-1 min-w-0">
                         <div 
                           style={{
@@ -288,7 +288,7 @@ export const NotificationsButton: React.FC<NotificationsButtonProps> = ({
                         </div>
                       </div>
                       
-                      {/* Индикатор непрочитанного */}
+                      {/* РРЅРґРёРєР°С‚РѕСЂ РЅРµРїСЂРѕС‡РёС‚Р°РЅРЅРѕРіРѕ */}
                       {!notification.read && (
                         <div 
                           style={{
@@ -301,7 +301,7 @@ export const NotificationsButton: React.FC<NotificationsButtonProps> = ({
                         />
                       )}
                       
-                      {/* Кнопка удаления (показывается при hover) */}
+                      {/* РљРЅРѕРїРєР° СѓРґР°Р»РµРЅРёСЏ (РїРѕРєР°Р·С‹РІР°РµС‚СЃСЏ РїСЂРё hover) */}
                       <button
                         onClick={(e) => {
                           e.stopPropagation();
@@ -319,7 +319,7 @@ export const NotificationsButton: React.FC<NotificationsButtonProps> = ({
                 ))}
               </div>
             ) : (
-              /* Пустое состояние */
+              /* РџСѓСЃС‚РѕРµ СЃРѕСЃС‚РѕСЏРЅРёРµ */
               <div 
                 className="flex flex-col items-center justify-center py-8 px-4"
                 style={{
@@ -327,12 +327,12 @@ export const NotificationsButton: React.FC<NotificationsButtonProps> = ({
                 }}
               >
                 <Bell style={{ width: '32px', height: '32px', marginBottom: '8px' }} />
-                <p style={{ fontSize: '12px', textAlign: 'center' }}>Уведомлений нет</p>
+                <p style={{ fontSize: '12px', textAlign: 'center' }}>РЈРІРµРґРѕРјР»РµРЅРёР№ РЅРµС‚</p>
               </div>
             )}
           </div>
 
-          {/* Футер с кнопкой очистки */}
+          {/* Р¤СѓС‚РµСЂ СЃ РєРЅРѕРїРєРѕР№ РѕС‡РёСЃС‚РєРё */}
           {notifications.length > 0 && (
             <div 
               className="p-4 border-t"
@@ -350,7 +350,7 @@ export const NotificationsButton: React.FC<NotificationsButtonProps> = ({
                   fontWeight: '500'
                 }}
               >
-                Очистить все
+                РћС‡РёСЃС‚РёС‚СЊ РІСЃРµ
               </button>
             </div>
           )}

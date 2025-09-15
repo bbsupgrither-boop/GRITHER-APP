@@ -1,4 +1,4 @@
-﻿// Telegram Web App Integration
+// Telegram Web App Integration
 
 interface TelegramWebApp {
   initData: string;

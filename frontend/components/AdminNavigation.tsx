@@ -1,4 +1,4 @@
-﻿import { Home, Trophy, CheckSquare, ShoppingCart, Users, Zap, Gamepad2, Box } from './Icons';
+п»їimport { Home, Trophy, CheckSquare, ShoppingCart, Users, Zap, Gamepad2, Box } from './Icons';
 
 interface AdminNavigationProps {
   currentAdminPage: string;
@@ -9,42 +9,42 @@ export function AdminNavigation({ currentAdminPage, onNavigate }: AdminNavigatio
   const adminPages = [
     {
       id: 'dashboard',
-      label: 'Р“Р»Р°РІРЅР°СЏ',
+      label: 'Р вЂњР В»Р В°Р Р†Р Р…Р В°РЎРЏ',
       icon: Home
     },
     {
       id: 'workers',
-      label: 'Р’РѕСЂРєРµСЂС‹',
+      label: 'Р вЂ™Р С•РЎР‚Р С”Р ВµРЎР‚РЎвЂ№',
       icon: Users
     },
     {
       id: 'battles',
-      label: 'Р‘Р°С‚С‚Р»С‹',
+      label: 'Р вЂР В°РЎвЂљРЎвЂљР В»РЎвЂ№',
       icon: Zap
     },
     {
       id: 'achievements',
-      label: 'Р”РѕСЃС‚РёР¶РµРЅРёСЏ', 
+      label: 'Р вЂќР С•РЎРѓРЎвЂљР С‘Р В¶Р ВµР Р…Р С‘РЎРЏ', 
       icon: Trophy
     },
     {
       id: 'tasks',
-      label: 'Р—Р°РґР°С‡Рё',
+      label: 'Р вЂ”Р В°Р Т‘Р В°РЎвЂЎР С‘',
       icon: CheckSquare
     },
     {
       id: 'shop',
-      label: 'РњР°РіР°Р·РёРЅ',
+      label: 'Р СљР В°Р С–Р В°Р В·Р С‘Р Р…',
       icon: ShoppingCart
     },
     {
       id: 'games',
-      label: 'РРіСЂС‹',
+      label: 'Р ВР С–РЎР‚РЎвЂ№',
       icon: Gamepad2
     },
     {
       id: 'cases',
-      label: 'РљРµР№СЃС‹',
+      label: 'Р С™Р ВµР в„–РЎРѓРЎвЂ№',
       icon: Box
     }
   ];

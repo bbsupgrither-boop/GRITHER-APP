@@ -18,7 +18,7 @@ export default function HomePage({
   onOpenSettings
 }: HomePageProps) {
   // AUTOGEN START home-content
-  const userName = safeString(currentUser?.name, 'Пользователь');
+  const userName = safeString(currentUser?.name, 'РџРѕР»СЊР·РѕРІР°С‚РµР»СЊ');
   const userLevel = safeNumber(currentUser?.level, 1);
   const userCoins = safeNumber(currentUser?.gCoins, 0);
   
@@ -32,13 +32,13 @@ export default function HomePage({
       
       {/* Hero Section */}
       <div className="glass-card p-6 mb-4">
-        <h1 className="unified-heading mb-2">Добро пожаловать, {userName}!</h1>
+        <h1 className="unified-heading mb-2">Р”РѕР±СЂРѕ РїРѕР¶Р°Р»РѕРІР°С‚СЊ, {userName}!</h1>
         <div className="flex items-center gap-4">
           <div className="flex items-center gap-2">
-            <span className="unified-text">Уровень {userLevel}</span>
+            <span className="unified-text">РЈСЂРѕРІРµРЅСЊ {userLevel}</span>
           </div>
           <div className="flex items-center gap-2">
-            <span className="unified-text">💰 {userCoins} G-монет</span>
+            <span className="unified-text">рџ’° {userCoins} G-РјРѕРЅРµС‚</span>
           </div>
         </div>
       </div>
@@ -46,7 +46,7 @@ export default function HomePage({
       {/* Achievements Preview */}
       {inProgressAchievements.length > 0 && (
         <div className="glass-card p-4 mb-4">
-          <h2 className="unified-heading mb-3">Ваши достижения</h2>
+          <h2 className="unified-heading mb-3">Р’Р°С€Рё РґРѕСЃС‚РёР¶РµРЅРёСЏ</h2>
           <div className="space-y-3">
             {inProgressAchievements.map((achievement) => {
               const progress = achievement.requirements?.current || 0;
@@ -75,28 +75,28 @@ export default function HomePage({
           
           <button 
             className="apple-button w-full mt-4"
-            aria-label="Просмотреть все достижения"
+            aria-label="РџСЂРѕСЃРјРѕС‚СЂРµС‚СЊ РІСЃРµ РґРѕСЃС‚РёР¶РµРЅРёСЏ"
           >
-            👁️ Просмотреть все
+            рџ‘ЃпёЏ РџСЂРѕСЃРјРѕС‚СЂРµС‚СЊ РІСЃРµ
           </button>
         </div>
       )}
 
       {/* Quick Actions */}
       <div className="glass-card p-4">
-        <h2 className="unified-heading mb-3">Быстрые действия</h2>
+        <h2 className="unified-heading mb-3">Р‘С‹СЃС‚СЂС‹Рµ РґРµР№СЃС‚РІРёСЏ</h2>
         <div className="grid grid-cols-2 gap-3">
-          <button className="apple-button p-4" aria-label="Открыть задачи">
-            📝 Задачи
+          <button className="apple-button p-4" aria-label="РћС‚РєСЂС‹С‚СЊ Р·Р°РґР°С‡Рё">
+            рџ“ќ Р—Р°РґР°С‡Рё
           </button>
-          <button className="apple-button p-4" aria-label="Открыть магазин">
-            🛒 Магазин
+          <button className="apple-button p-4" aria-label="РћС‚РєСЂС‹С‚СЊ РјР°РіР°Р·РёРЅ">
+            рџ›’ РњР°РіР°Р·РёРЅ
           </button>
-          <button className="apple-button p-4" aria-label="Открыть баттлы">
-            ⚔️ Баттлы
+          <button className="apple-button p-4" aria-label="РћС‚РєСЂС‹С‚СЊ Р±Р°С‚С‚Р»С‹">
+            вљ”пёЏ Р‘Р°С‚С‚Р»С‹
           </button>
-          <button className="apple-button p-4" aria-label="Открыть профиль">
-            👤 Профиль
+          <button className="apple-button p-4" aria-label="РћС‚РєСЂС‹С‚СЊ РїСЂРѕС„РёР»СЊ">
+            рџ‘¤ РџСЂРѕС„РёР»СЊ
           </button>
         </div>
       </div>

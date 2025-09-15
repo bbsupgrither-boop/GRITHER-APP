@@ -322,19 +322,19 @@ export interface ValidationRule {
 
 export function validateField(value: string, rules: ValidationRule): string | null {
   if (rules.required && (!value || value.trim().length === 0)) {
-    return 'Это поле обязательно для заполнения';
+    return 'Р­С‚Рѕ РїРѕР»Рµ РѕР±СЏР·Р°С‚РµР»СЊРЅРѕ РґР»СЏ Р·Р°РїРѕР»РЅРµРЅРёСЏ';
   }
   
   if (rules.minLength && value.length < rules.minLength) {
-    return `Минимум ${rules.minLength} символов`;
+    return `РњРёРЅРёРјСѓРј ${rules.minLength} СЃРёРјРІРѕР»РѕРІ`;
   }
   
   if (rules.maxLength && value.length > rules.maxLength) {
-    return `Максимум ${rules.maxLength} символов`;
+    return `РњР°РєСЃРёРјСѓРј ${rules.maxLength} СЃРёРјРІРѕР»РѕРІ`;
   }
   
   if (rules.pattern && !rules.pattern.test(value)) {
-    return 'Неверный формат';
+    return 'РќРµРІРµСЂРЅС‹Р№ С„РѕСЂРјР°С‚';
   }
   
   if (rules.custom) {

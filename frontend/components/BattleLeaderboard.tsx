@@ -1,4 +1,4 @@
-﻿import React, { useState } from 'react';
+п»їimport React, { useState } from 'react';
 import { Menu } from 'lucide-react';
 import { LeaderboardEntry } from '../types/global';
 
@@ -17,8 +17,8 @@ export const BattleLeaderboard: React.FC<BattleLeaderboardProps> = ({
 
   const getSortTypeLabel = (type: SortType) => {
     switch (type) {
-      case 'level': return 'Ур.';
-      case 'achievements': return '★';
+      case 'level': return 'РЈСЂ.';
+      case 'achievements': return 'в…';
       case 'balance': return 'g';
     }
   };
@@ -38,17 +38,17 @@ export const BattleLeaderboard: React.FC<BattleLeaderboardProps> = ({
     setSortType(types[nextIndex]);
   };
 
-  // Сортируем и берем ТОП-3
+  // РЎРѕСЂС‚РёСЂСѓРµРј Рё Р±РµСЂРµРј РўРћРџ-3
   const topPlayers = [...leaderboard]
     .sort((a, b) => getSortValue(b, sortType) - getSortValue(a, sortType))
     .slice(0, 3);
 
   const getRankEmoji = (rank: number) => {
     switch (rank) {
-      case 1: return '🥇';
-      case 2: return '🥈';
-      case 3: return '🥉';
-      default: return '🏅';
+      case 1: return 'рџҐ‡';
+      case 2: return 'рџҐ€';
+      case 3: return 'рџҐ‰';
+      default: return 'рџЏ…';
     }
   };
 
@@ -69,7 +69,7 @@ export const BattleLeaderboard: React.FC<BattleLeaderboardProps> = ({
               color: theme === 'dark' ? '#E8ECF2' : '#0F172A'
             }}
           >
-            Рейтинг
+            Р РµР№С‚РёРЅРі
           </h3>
           <div 
             style={{ 
@@ -77,7 +77,7 @@ export const BattleLeaderboard: React.FC<BattleLeaderboardProps> = ({
               color: theme === 'dark' ? '#A7B0BD' : '#6B7280'
             }}
           >
-            По {sortType === 'level' ? 'уровню' : sortType === 'achievements' ? 'ачивкам' : 'балансу'}
+            РџРѕ {sortType === 'level' ? 'СѓСЂРѕРІРЅСЋ' : sortType === 'achievements' ? 'Р°С‡РёРІРєР°Рј' : 'Р±Р°Р»Р°РЅСЃСѓ'}
           </div>
         </div>
         
@@ -103,12 +103,12 @@ export const BattleLeaderboard: React.FC<BattleLeaderboardProps> = ({
                 borderRadius: '8px'
               }}
             >
-              {/* Ранг */}
+              {/* Р Р°РЅРі */}
               <div style={{ fontSize: '16px' }}>
                 {getRankEmoji(index + 1)}
               </div>
 
-              {/* Аватар */}
+              {/* РђРІР°С‚Р°СЂ */}
               <div 
                 style={{
                   width: '24px',
@@ -127,7 +127,7 @@ export const BattleLeaderboard: React.FC<BattleLeaderboardProps> = ({
                 {player.name.charAt(0).toUpperCase()}
               </div>
 
-              {/* Имя */}
+              {/* РРјСЏ */}
               <div 
                 style={{
                   flex: 1,
@@ -142,7 +142,7 @@ export const BattleLeaderboard: React.FC<BattleLeaderboardProps> = ({
                 {player.name}
               </div>
 
-              {/* Значение сортировки */}
+              {/* Р—РЅР°С‡РµРЅРёРµ СЃРѕСЂС‚РёСЂРѕРІРєРё */}
               <div 
                 style={{
                   fontSize: '12px',
@@ -166,7 +166,7 @@ export const BattleLeaderboard: React.FC<BattleLeaderboardProps> = ({
             fontSize: '14px'
           }}
         >
-          Нет данных рейтинга
+          РќРµС‚ РґР°РЅРЅС‹С… СЂРµР№С‚РёРЅРіР°
         </div>
       )}
     </div>

@@ -1,4 +1,4 @@
-﻿import { useState } from 'react';
+п»їimport { useState } from 'react';
 import { Header } from './Header';
 import { BottomNavigation } from './BottomNavigation';
 import { Trophy } from './Icons';
@@ -26,7 +26,7 @@ export function BattlesPageTest({
     {
       id: 'test-battle-1',
       opponent: {
-        name: 'РўРµСЃС‚ РџРѕР»СЊР·РѕРІР°С‚РµР»СЊ',
+        name: 'Р СћР ВµРЎРѓРЎвЂљ Р СџР С•Р В»РЎРЉР В·Р С•Р Р†Р В°РЎвЂљР ВµР В»РЎРЉ',
         team: 2,
         level: 5
       },
@@ -38,18 +38,18 @@ export function BattlesPageTest({
 
   const currentUser = {
     id: 'user1',
-    name: 'РРІР°РЅ РРІР°РЅРѕРІ',
+    name: 'Р ВР Р†Р В°Р Р… Р ВР Р†Р В°Р Р…Р С•Р Р†',
     username: '@iivanov'
   };
 
   const handleVictoryClick = (battle: any) => {
     console.log('VICTORY CLICKED!', battle);
-    alert('РљРЅРѕРїРєР° "Р’С‹РёРіСЂР°Р»" СЂР°Р±РѕС‚Р°РµС‚!');
+    alert('Р С™Р Р…Р С•Р С—Р С”Р В° "Р вЂ™РЎвЂ№Р С‘Р С–РЎР‚Р В°Р В»" РЎР‚Р В°Р В±Р С•РЎвЂљР В°Р ВµРЎвЂљ!');
   };
 
   const handleCancelClick = (battle: any) => {
     console.log('CANCEL CLICKED!', battle);
-    alert('РљРЅРѕРїРєР° "РћС‚РјРµРЅРёС‚СЊ" СЂР°Р±РѕС‚Р°РµС‚!');
+    alert('Р С™Р Р…Р С•Р С—Р С”Р В° "Р С›РЎвЂљР СР ВµР Р…Р С‘РЎвЂљРЎРЉ" РЎР‚Р В°Р В±Р С•РЎвЂљР В°Р ВµРЎвЂљ!');
   };
 
   const createTestBattle = () => {
@@ -57,7 +57,7 @@ export function BattlesPageTest({
     const newBattle = {
       id: 'test-' + Date.now(),
       opponent: {
-        name: 'РќРѕРІС‹Р№ РўРµСЃС‚',
+        name: 'Р СњР С•Р Р†РЎвЂ№Р в„– Р СћР ВµРЎРѓРЎвЂљ',
         team: 3,
         level: 7
       },
@@ -103,7 +103,7 @@ export function BattlesPageTest({
               color: theme === 'dark' ? '#E8ECF2' : '#0F172A'
             }}
           >
-            РўРµСЃС‚ Р‘Р°С‚С‚Р»РѕРІ
+            Р СћР ВµРЎРѓРЎвЂљ Р вЂР В°РЎвЂљРЎвЂљР В»Р С•Р Р†
           </h2>
 
           <button
@@ -116,12 +116,12 @@ export function BattlesPageTest({
               cursor: 'pointer'
             }}
           >
-            РЎРѕР·РґР°С‚СЊ С‚РµСЃС‚РѕРІС‹Р№ Р±Р°С‚С‚Р»
+            Р РЋР С•Р В·Р Т‘Р В°РЎвЂљРЎРЉ РЎвЂљР ВµРЎРѓРЎвЂљР С•Р Р†РЎвЂ№Р в„– Р В±Р В°РЎвЂљРЎвЂљР В»
           </button>
 
           {(testBattles.length > 0 || personalBattles.length > 0) ? (
             <div className="space-y-4">
-              {/* РџРѕРєР°Р·С‹РІР°РµРј С‚РµСЃС‚РѕРІС‹Рµ Р±Р°С‚С‚Р»С‹ */}
+              {/* Р СџР С•Р С”Р В°Р В·РЎвЂ№Р Р†Р В°Р ВµР С РЎвЂљР ВµРЎРѓРЎвЂљР С•Р Р†РЎвЂ№Р Вµ Р В±Р В°РЎвЂљРЎвЂљР В»РЎвЂ№ */}
               {testBattles.map((battle, index) => (
                 <div
                   key={battle.id}
@@ -140,7 +140,7 @@ export function BattlesPageTest({
                         color: theme === 'dark' ? '#E8ECF2' : '#0F172A'
                       }}
                     >
-                      РўРµСЃС‚РѕРІС‹Р№ Р±Р°С‚С‚Р» {index + 1}: {battle.opponent.name}
+                      Р СћР ВµРЎРѓРЎвЂљР С•Р Р†РЎвЂ№Р в„– Р В±Р В°РЎвЂљРЎвЂљР В» {index + 1}: {battle.opponent.name}
                     </h3>
                     <p 
                       className="text-sm"
@@ -148,7 +148,7 @@ export function BattlesPageTest({
                         color: theme === 'dark' ? '#A7B0BD' : '#6B7280'
                       }}
                     >
-                      РљРѕРјР°РЅРґР° {battle.opponent.team} вЂў РЈСЂРѕРІРµРЅСЊ {battle.opponent.level} вЂў {battle.prize}g
+                      Р С™Р С•Р СР В°Р Р…Р Т‘Р В° {battle.opponent.team} РІР‚Сћ Р Р€РЎР‚Р С•Р Р†Р ВµР Р…РЎРЉ {battle.opponent.level} РІР‚Сћ {battle.prize}g
                     </p>
                   </div>
 
@@ -168,7 +168,7 @@ export function BattlesPageTest({
                         cursor: 'pointer'
                       }}
                     >
-                      Р’С‹РёРіСЂР°Р» Р±Р°С‚С‚Р»
+                      Р вЂ™РЎвЂ№Р С‘Р С–РЎР‚Р В°Р В» Р В±Р В°РЎвЂљРЎвЂљР В»
                     </button>
                     <button
                       onClick={(e) => {
@@ -185,13 +185,13 @@ export function BattlesPageTest({
                         cursor: 'pointer'
                       }}
                     >
-                      РћС‚РјРµРЅРёС‚СЊ
+                      Р С›РЎвЂљР СР ВµР Р…Р С‘РЎвЂљРЎРЉ
                     </button>
                   </div>
                 </div>
               ))}
 
-              {/* РџРѕРєР°Р·С‹РІР°РµРј personalBattles */}
+              {/* Р СџР С•Р С”Р В°Р В·РЎвЂ№Р Р†Р В°Р ВµР С personalBattles */}
               {personalBattles.map((battle, index) => (
                 <div
                   key={battle.id}
@@ -210,7 +210,7 @@ export function BattlesPageTest({
                         color: theme === 'dark' ? '#E8ECF2' : '#0F172A'
                       }}
                     >
-                      Р“Р»РѕР±Р°Р»СЊРЅС‹Р№ Р±Р°С‚С‚Р» {index + 1}: {battle.opponent?.name || 'РќРµРёР·РІРµСЃС‚РЅС‹Р№'}
+                      Р вЂњР В»Р С•Р В±Р В°Р В»РЎРЉР Р…РЎвЂ№Р в„– Р В±Р В°РЎвЂљРЎвЂљР В» {index + 1}: {battle.opponent?.name || 'Р СњР ВµР С‘Р В·Р Р†Р ВµРЎРѓРЎвЂљР Р…РЎвЂ№Р в„–'}
                     </h3>
                     <p 
                       className="text-sm"
@@ -218,7 +218,7 @@ export function BattlesPageTest({
                         color: theme === 'dark' ? '#A7B0BD' : '#6B7280'
                       }}
                     >
-                      РљРѕРјР°РЅРґР° {battle.opponent?.team} вЂў РЈСЂРѕРІРµРЅСЊ {battle.opponent?.level} вЂў {battle.prize}g
+                      Р С™Р С•Р СР В°Р Р…Р Т‘Р В° {battle.opponent?.team} РІР‚Сћ Р Р€РЎР‚Р С•Р Р†Р ВµР Р…РЎРЉ {battle.opponent?.level} РІР‚Сћ {battle.prize}g
                     </p>
                   </div>
 
@@ -238,7 +238,7 @@ export function BattlesPageTest({
                         cursor: 'pointer'
                       }}
                     >
-                      Р’С‹РёРіСЂР°Р» (РіР»РѕР±Р°Р»СЊРЅС‹Р№)
+                      Р вЂ™РЎвЂ№Р С‘Р С–РЎР‚Р В°Р В» (Р С–Р В»Р С•Р В±Р В°Р В»РЎРЉР Р…РЎвЂ№Р в„–)
                     </button>
                     <button
                       onClick={(e) => {
@@ -255,7 +255,7 @@ export function BattlesPageTest({
                         cursor: 'pointer'
                       }}
                     >
-                      РћС‚РјРµРЅРёС‚СЊ (РіР»РѕР±Р°Р»СЊРЅС‹Р№)
+                      Р С›РЎвЂљР СР ВµР Р…Р С‘РЎвЂљРЎРЉ (Р С–Р В»Р С•Р В±Р В°Р В»РЎРЉР Р…РЎвЂ№Р в„–)
                     </button>
                   </div>
                 </div>
@@ -271,7 +271,7 @@ export function BattlesPageTest({
                 className="text-sm"
                 style={{ color: theme === 'dark' ? '#A7B0BD' : '#6B7280' }}
               >
-                РќРµС‚ Р±Р°С‚С‚Р»РѕРІ РґР»СЏ С‚РµСЃС‚РёСЂРѕРІР°РЅРёСЏ
+                Р СњР ВµРЎвЂљ Р В±Р В°РЎвЂљРЎвЂљР В»Р С•Р Р† Р Т‘Р В»РЎРЏ РЎвЂљР ВµРЎРѓРЎвЂљР С‘РЎР‚Р С•Р Р†Р В°Р Р…Р С‘РЎРЏ
               </p>
             </div>
           )}

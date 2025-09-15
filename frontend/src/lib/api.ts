@@ -1,5 +1,5 @@
 const BASE = (import.meta.env.VITE_API_URL || "").replace(/\/$/, "");
-if (!BASE) console.error("VITE_API_URL не задан");
+if (!BASE) console.error("VITE_API_URL РЅРµ Р·Р°РґР°РЅ");
 
 export async function apiFetch(path: string, init?: RequestInit) {
   const res = await fetch(`${BASE}${path.startsWith("/") ? path : `/${path}`}`, {

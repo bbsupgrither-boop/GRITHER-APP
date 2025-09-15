@@ -163,7 +163,7 @@
   body {
     @apply text-foreground;
     color: #0F172A;
-    background: transparent; /* Фон управляется через BackgroundFX */
+    background: transparent; /* Р¤РѕРЅ СѓРїСЂР°РІР»СЏРµС‚СЃСЏ С‡РµСЂРµР· BackgroundFX */
     font-family: 
       -apple-system, /* macOS/iOS San Francisco */
       BlinkMacSystemFont, /* macOS Webkit */
@@ -175,7 +175,7 @@
     font-feature-settings: 'cv02', 'cv03', 'cv04', 'cv11';
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
-    font-size: 12px; /* Базовый размер для основного текста */
+    font-size: 12px; /* Р‘Р°Р·РѕРІС‹Р№ СЂР°Р·РјРµСЂ РґР»СЏ РѕСЃРЅРѕРІРЅРѕРіРѕ С‚РµРєСЃС‚Р° */
     font-weight: 400;
     line-height: 1.4;
   }
@@ -234,7 +234,7 @@
     box-shadow: 0 8px 24px rgba(0, 0, 0, 0.6);
   }
 
-  /* Modal backdrop styles - обеспечиваем закрытие по клику */
+  /* Modal backdrop styles - РѕР±РµСЃРїРµС‡РёРІР°РµРј Р·Р°РєСЂС‹С‚РёРµ РїРѕ РєР»РёРєСѓ */
   .modal-backdrop-light {
     background: rgba(0, 0, 0, 0.35);
     backdrop-filter: blur(12px);
@@ -261,15 +261,15 @@
     background: #1C2029 !important;
     border: 1px solid rgba(255, 255, 255, 0.06) !important;
     box-shadow: 0 16px 48px rgba(0, 0, 0, 0.6) !important;
-    cursor: default; /* Контент модала не должен закрывать модал */
+    cursor: default; /* РљРѕРЅС‚РµРЅС‚ РјРѕРґР°Р»Р° РЅРµ РґРѕР»Р¶РµРЅ Р·Р°РєСЂС‹РІР°С‚СЊ РјРѕРґР°Р» */
   }
 
-  /* Обеспечиваем, что контент модала не закрывает модал по клику */
+  /* РћР±РµСЃРїРµС‡РёРІР°РµРј, С‡С‚Рѕ РєРѕРЅС‚РµРЅС‚ РјРѕРґР°Р»Р° РЅРµ Р·Р°РєСЂС‹РІР°РµС‚ РјРѕРґР°Р» РїРѕ РєР»РёРєСѓ */
   [data-radix-dialog-content] {
     cursor: default;
   }
 
-  /* Стили для select и option элементов */
+  /* РЎС‚РёР»Рё РґР»СЏ select Рё option СЌР»РµРјРµРЅС‚РѕРІ */
   select {
     background-color: transparent;
     color: var(--foreground);
@@ -281,7 +281,7 @@
     border: 1px solid rgba(255, 255, 255, 0.06);
   }
 
-  /* Стили для option элементов в темной теме */
+  /* РЎС‚РёР»Рё РґР»СЏ option СЌР»РµРјРµРЅС‚РѕРІ РІ С‚РµРјРЅРѕР№ С‚РµРјРµ */
   .dark select option {
     background-color: #161A22 !important;
     color: #E8ECF2 !important;
@@ -294,7 +294,7 @@
     color: #FFFFFF !important;
   }
 
-  /* Стили для светлой темы */
+  /* РЎС‚РёР»Рё РґР»СЏ СЃРІРµС‚Р»РѕР№ С‚РµРјС‹ */
   select option {
     background-color: #FFFFFF;
     color: #0F172A;
@@ -317,20 +317,20 @@
     z-index: 20;
   }
 
-  /* Обеспечиваем правильную иерархию z-index */
+  /* РћР±РµСЃРїРµС‡РёРІР°РµРј РїСЂР°РІРёР»СЊРЅСѓСЋ РёРµСЂР°СЂС…РёСЋ z-index */
   
-  /* BackgroundFX и BaseBG - самые нижние слои */
+  /* BackgroundFX Рё BaseBG - СЃР°РјС‹Рµ РЅРёР¶РЅРёРµ СЃР»РѕРё */
   .background-fx {
     z-index: 1;
   }
   
-  /* Основной контент страниц */
+  /* РћСЃРЅРѕРІРЅРѕР№ РєРѕРЅС‚РµРЅС‚ СЃС‚СЂР°РЅРёС† */
   .page-content {
     position: relative;
     z-index: 10;
   }
   
-  /* Карточки и контентные блоки */
+  /* РљР°СЂС‚РѕС‡РєРё Рё РєРѕРЅС‚РµРЅС‚РЅС‹Рµ Р±Р»РѕРєРё */
   .content-card,
   .glass-card,
   .surface-card {
@@ -338,13 +338,13 @@
     z-index: 20;
   }
   
-  /* Hero зона с логотипом */
+  /* Hero Р·РѕРЅР° СЃ Р»РѕРіРѕС‚РёРїРѕРј */
   .hero-zone {
     position: relative;
     z-index: 15;
   }
   
-  /* Навигация и интерфейсные элементы */
+  /* РќР°РІРёРіР°С†РёСЏ Рё РёРЅС‚РµСЂС„РµР№СЃРЅС‹Рµ СЌР»РµРјРµРЅС‚С‹ */
   [class*="bottom-"], 
   [class*="navigation"], 
   [class*="header"] {
@@ -352,14 +352,14 @@
     z-index: 50;
   }
 
-  /* Модальные ок��а */
+  /* РњРѕРґР°Р»СЊРЅС‹Рµ РѕРєпїЅпїЅР° */
   [class*="modal"], 
   [data-radix-dialog-content],
   [data-radix-dialog-overlay] {
     z-index: 100;
   }
   
-  /* Принудительная активация интерактивных элементов в модальных окн��х */
+  /* РџСЂРёРЅСѓРґРёС‚РµР»СЊРЅР°СЏ Р°РєС‚РёРІР°С†РёСЏ РёРЅС‚РµСЂР°РєС‚РёРІРЅС‹С… СЌР»РµРјРµРЅС‚РѕРІ РІ РјРѕРґР°Р»СЊРЅС‹С… РѕРєРЅпїЅпїЅС… */
   [data-radix-dialog-content] button {
     pointer-events: auto !important;
     position: relative;
@@ -388,7 +388,7 @@
     box-shadow: 0 6px 20px rgba(255, 255, 255, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.4);
   }
 
-  /* Стили для вкладок в темной теме - белые кнопки как в изображении */
+  /* РЎС‚РёР»Рё РґР»СЏ РІРєР»Р°РґРѕРє РІ С‚РµРјРЅРѕР№ С‚РµРјРµ - Р±РµР»С‹Рµ РєРЅРѕРїРєРё РєР°Рє РІ РёР·РѕР±СЂР°Р¶РµРЅРёРё */
   .dark .tab-button {
     background: linear-gradient(145deg, #FFFFFF, #E0E0E0) !important;
     border: 1px solid rgba(255, 255, 255, 0.2) !important;
@@ -412,7 +412,7 @@
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12);
   }
 
-  /* Стили для контейнеров вкладок в темной теме */
+  /* РЎС‚РёР»Рё РґР»СЏ РєРѕРЅС‚РµР№РЅРµСЂРѕРІ РІРєР»Р°РґРѕРє РІ С‚РµРјРЅРѕР№ С‚РµРјРµ */
   .dark .tab-container {
     background: linear-gradient(145deg, rgba(8, 10, 14, 0.95) 0%, rgba(16, 20, 28, 0.95) 100%) !important;
     border: 1px solid rgba(255, 255, 255, 0.06) !important;
@@ -426,7 +426,7 @@
     backdrop-filter: blur(20px);
   }
 
-  /* Общий класс для всех белых кнопок в темной теме */
+  /* РћР±С‰РёР№ РєР»Р°СЃСЃ РґР»СЏ РІСЃРµС… Р±РµР»С‹С… РєРЅРѕРїРѕРє РІ С‚РµРјРЅРѕР№ С‚РµРјРµ */
   .dark .white-button {
     background: linear-gradient(145deg, #FFFFFF, #E0E0E0) !important;
     border: 1px solid rgba(255, 255, 255, 0.2) !important;
@@ -459,7 +459,7 @@
     color: #FFFFFF !important;
   }
 
-  /* Унифицированная типографическая система */
+  /* РЈРЅРёС„РёС†РёСЂРѕРІР°РЅРЅР°СЏ С‚РёРїРѕРіСЂР°С„РёС‡РµСЃРєР°СЏ СЃРёСЃС‚РµРјР° */
   .unified-heading {
     font-size: 18px;
     font-weight: 500;
@@ -478,7 +478,7 @@
     line-height: 1.4;
   }
 
-  /* Принудительное переопределение всех размеров шрифтов */
+  /* РџСЂРёРЅСѓРґРёС‚РµР»СЊРЅРѕРµ РїРµСЂРµРѕРїСЂРµРґРµР»РµРЅРёРµ РІСЃРµС… СЂР°Р·РјРµСЂРѕРІ С€СЂРёС„С‚РѕРІ */
   h1, h2, h3, h4, h5, h6 {
     font-size: 18px !important;
     font-weight: 500 !important;
@@ -503,7 +503,7 @@
     overflow: visible;
     height: clamp(136px, 150px, 168px);
     width: 100%;
-    background: transparent !important; /* Принудительно прозрачный фон */
+    background: transparent !important; /* РџСЂРёРЅСѓРґРёС‚РµР»СЊРЅРѕ РїСЂРѕР·СЂР°С‡РЅС‹Р№ С„РѕРЅ */
     z-index: 15;
   }
 }
@@ -612,7 +612,7 @@ body {
   }
 }
 
-/* Адаптивные стили для очень узких экранов */
+/* РђРґР°РїС‚РёРІРЅС‹Рµ СЃС‚РёР»Рё РґР»СЏ РѕС‡РµРЅСЊ СѓР·РєРёС… СЌРєСЂР°РЅРѕРІ */
 @media (max-width: 360px) {
   html {
     font-size: 12px;
@@ -622,7 +622,7 @@ body {
     padding: 12px !important;
   }
   
-  /* Уменьшаем отступы в модальных окнах */
+  /* РЈРјРµРЅСЊС€Р°РµРј РѕС‚СЃС‚СѓРїС‹ РІ РјРѕРґР°Р»СЊРЅС‹С… РѕРєРЅР°С… */
   [data-radix-dialog-content] {
     margin: 8px !important;
   }
@@ -637,20 +637,20 @@ body {
     padding: 8px !important;
   }
   
-  /* Еще меньше отступы для iPhone SE */
+  /* Р•С‰Рµ РјРµРЅСЊС€Рµ РѕС‚СЃС‚СѓРїС‹ РґР»СЏ iPhone SE */
   [data-radix-dialog-content] {
     margin: 4px !important;
   }
 }
 
-/* Защита от переполнения текста */
+/* Р—Р°С‰РёС‚Р° РѕС‚ РїРµСЂРµРїРѕР»РЅРµРЅРёСЏ С‚РµРєСЃС‚Р° */
 .text-overflow-protection {
   word-break: break-word;
   overflow-wrap: break-word;
   hyphens: auto;
 }
 
-/* Адаптивные формы */
+/* РђРґР°РїС‚РёРІРЅС‹Рµ С„РѕСЂРјС‹ */
 .responsive-form {
   width: 100%;
   max-width: 100%;
@@ -664,7 +664,7 @@ body {
   box-sizing: border-box;
 }
 
-/* Улучшенная адаптивность для flex контейнеров */
+/* РЈР»СѓС‡С€РµРЅРЅР°СЏ Р°РґР°РїС‚РёРІРЅРѕСЃС‚СЊ РґР»СЏ flex РєРѕРЅС‚РµР№РЅРµСЂРѕРІ */
 .flex-responsive {
   flex-wrap: wrap;
 }
@@ -680,12 +680,12 @@ body {
   }
 }
 
-/* Safe area для мобильных устройств */
+/* Safe area РґР»СЏ РјРѕР±РёР»СЊРЅС‹С… СѓСЃС‚СЂРѕР№СЃС‚РІ */
 .safe-area-bottom {
   padding-bottom: env(safe-area-inset-bottom);
 }
 
-/* Дополнительные адаптивные стили для улучшения отображения */
+/* Р”РѕРїРѕР»РЅРёС‚РµР»СЊРЅС‹Рµ Р°РґР°РїС‚РёРІРЅС‹Рµ СЃС‚РёР»Рё РґР»СЏ СѓР»СѓС‡С€РµРЅРёСЏ РѕС‚РѕР±СЂР°Р¶РµРЅРёСЏ */
 @media (max-width: 480px) {
   .hero-zone {
     height: clamp(120px, 140px, 160px) !important;
@@ -718,7 +718,7 @@ body {
   }
 }
 
-/* Анимации */
+/* РђРЅРёРјР°С†РёРё */
 @keyframes fadeIn {
   from {
     opacity: 0;

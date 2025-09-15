@@ -9,20 +9,20 @@ interface UseThemeToggleReturn {
 export const useThemeToggle = (): UseThemeToggleReturn => {
   const [themeToggleCount, setThemeToggleCount] = useState(0);
 
-  // Загружаем счетчик из localStorage при инициализации
+  // Р—Р°РіСЂСѓР¶Р°РµРј СЃС‡РµС‚С‡РёРє РёР· localStorage РїСЂРё РёРЅРёС†РёР°Р»РёР·Р°С†РёРё
   useEffect(() => {
     const savedCount = localStorage.getItem('themeToggleCount');
     if (savedCount) {
       const count = parseInt(savedCount, 10);
-      console.log(`📊 Loaded theme toggle count from localStorage: ${count}`);
+      console.log(`рџ“Љ Loaded theme toggle count from localStorage: ${count}`);
       setThemeToggleCount(count);
     } else {
-      console.log('📊 No saved theme toggle count, starting from 0');
+      console.log('рџ“Љ No saved theme toggle count, starting from 0');
       setThemeToggleCount(0);
     }
   }, []);
 
-  // Сохраняем счетчик в localStorage при изменении
+  // РЎРѕС…СЂР°РЅСЏРµРј СЃС‡РµС‚С‡РёРє РІ localStorage РїСЂРё РёР·РјРµРЅРµРЅРёРё
   useEffect(() => {
     localStorage.setItem('themeToggleCount', themeToggleCount.toString());
   }, [themeToggleCount]);

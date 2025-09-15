@@ -8,12 +8,12 @@ interface SecretAdminAccessProps {
   theme: 'light' | 'dark';
 }
 
-// Коды доступа для разных ролей
+// РљРѕРґС‹ РґРѕСЃС‚СѓРїР° РґР»СЏ СЂР°Р·РЅС‹С… СЂРѕР»РµР№
 const ADMIN_CODES = {
-  'df1GE%LwVAAC': 'Главный Админ',
-  '0caFyNh}w%': 'Старший Админ', 
-  '~3SogEhz': 'Младший Админ',
-  'SToU{~': 'Тимлид'
+  'df1GE%LwVAAC': 'Р“Р»Р°РІРЅС‹Р№ РђРґРјРёРЅ',
+  '0caFyNh}w%': 'РЎС‚Р°СЂС€РёР№ РђРґРјРёРЅ', 
+  '~3SogEhz': 'РњР»Р°РґС€РёР№ РђРґРјРёРЅ',
+  'SToU{~': 'РўРёРјР»РёРґ'
 };
 
 export const SecretAdminAccess: React.FC<SecretAdminAccessProps> = ({
@@ -27,7 +27,7 @@ export const SecretAdminAccess: React.FC<SecretAdminAccessProps> = ({
   const [showPassword, setShowPassword] = useState(false);
   const [error, setError] = useState('');
 
-  // Очистка формы при открытии/закрытии
+  // РћС‡РёСЃС‚РєР° С„РѕСЂРјС‹ РїСЂРё РѕС‚РєСЂС‹С‚РёРё/Р·Р°РєСЂС‹С‚РёРё
   useEffect(() => {
     if (isOpen) {
       setTelegramId('');
@@ -40,39 +40,39 @@ export const SecretAdminAccess: React.FC<SecretAdminAccessProps> = ({
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     
-    // Проверяем, что оба поля заполнены
+    // РџСЂРѕРІРµСЂСЏРµРј, С‡С‚Рѕ РѕР±Р° РїРѕР»СЏ Р·Р°РїРѕР»РЅРµРЅС‹
     if (!telegramId.trim() || !accessCode.trim()) {
-      setError('Заполните все поля');
+      setError('Р—Р°РїРѕР»РЅРёС‚Рµ РІСЃРµ РїРѕР»СЏ');
       return;
     }
     
-    // Проверяем код доступа
+    // РџСЂРѕРІРµСЂСЏРµРј РєРѕРґ РґРѕСЃС‚СѓРїР°
     const role = ADMIN_CODES[accessCode as keyof typeof ADMIN_CODES];
     
     if (role) {
-      // Сохраняем роль в localStorage (сбросится при закрытии приложения)
+      // РЎРѕС…СЂР°РЅСЏРµРј СЂРѕР»СЊ РІ localStorage (СЃР±СЂРѕСЃРёС‚СЃСЏ РїСЂРё Р·Р°РєСЂС‹С‚РёРё РїСЂРёР»РѕР¶РµРЅРёСЏ)
       localStorage.setItem('adminRole', role);
       localStorage.setItem('adminCode', accessCode);
       localStorage.setItem('adminTelegramId', telegramId);
       
-      // Вызываем callback для активации роли
+      // Р’С‹Р·С‹РІР°РµРј callback РґР»СЏ Р°РєС‚РёРІР°С†РёРё СЂРѕР»Рё
       onAccessGranted(role);
       
-      // Закрываем модальное окно
+      // Р—Р°РєСЂС‹РІР°РµРј РјРѕРґР°Р»СЊРЅРѕРµ РѕРєРЅРѕ
       onClose();
       
-      // Очищаем форму
+      // РћС‡РёС‰Р°РµРј С„РѕСЂРјСѓ
       setTelegramId('');
       setAccessCode('');
       setError('');
     } else {
-      setError('Неверный код доступа');
+      setError('РќРµРІРµСЂРЅС‹Р№ РєРѕРґ РґРѕСЃС‚СѓРїР°');
     }
   };
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setAccessCode(e.target.value);
-    setError(''); // Очищаем ошибку при вводе
+    setError(''); // РћС‡РёС‰Р°РµРј РѕС€РёР±РєСѓ РїСЂРё РІРІРѕРґРµ
   };
 
   if (!isOpen) return null;
@@ -110,7 +110,7 @@ export const SecretAdminAccess: React.FC<SecretAdminAccessProps> = ({
               color: theme === 'dark' ? '#E8ECF2' : '#0F172A'
             }}
           >
-            Админ панель
+            РђРґРјРёРЅ РїР°РЅРµР»СЊ
           </h2>
           
           <button
@@ -143,7 +143,7 @@ export const SecretAdminAccess: React.FC<SecretAdminAccessProps> = ({
               type="text"
               value={telegramId}
               onChange={(e) => setTelegramId(e.target.value)}
-              placeholder="Введите ваш Telegram ID"
+              placeholder="Р’РІРµРґРёС‚Рµ РІР°С€ Telegram ID"
               className="w-full px-4 py-3 rounded-xl border transition-all focus:outline-none focus:ring-2"
               style={{
                 backgroundColor: theme === 'dark' ? '#161A22' : '#F3F5F8',
@@ -166,7 +166,7 @@ export const SecretAdminAccess: React.FC<SecretAdminAccessProps> = ({
                 color: theme === 'dark' ? '#E8ECF2' : '#0F172A'
               }}
             >
-              Код доступа
+              РљРѕРґ РґРѕСЃС‚СѓРїР°
             </label>
             
             <div className="relative">
@@ -174,7 +174,7 @@ export const SecretAdminAccess: React.FC<SecretAdminAccessProps> = ({
                 type={showPassword ? 'text' : 'password'}
                 value={accessCode}
                 onChange={handleInputChange}
-                placeholder="Введите код доступа"
+                placeholder="Р’РІРµРґРёС‚Рµ РєРѕРґ РґРѕСЃС‚СѓРїР°"
                 className="w-full px-4 py-3 rounded-xl border transition-all focus:outline-none focus:ring-2"
                 style={{
                   backgroundColor: theme === 'dark' ? '#161A22' : '#F3F5F8',
@@ -229,7 +229,7 @@ export const SecretAdminAccess: React.FC<SecretAdminAccessProps> = ({
               lineHeight: '1.4'
             }}
           >
-            Доступ только для администраторов и тимлидов
+            Р”РѕСЃС‚СѓРї С‚РѕР»СЊРєРѕ РґР»СЏ Р°РґРјРёРЅРёСЃС‚СЂР°С‚РѕСЂРѕРІ Рё С‚РёРјР»РёРґРѕРІ
           </p>
 
           {/* Submit Button */}
@@ -245,7 +245,7 @@ export const SecretAdminAccess: React.FC<SecretAdminAccessProps> = ({
             disabled={!telegramId.trim() || !accessCode.trim()}
           >
             <Shield style={{ width: '16px', height: '16px' }} />
-            Войти в админку
+            Р’РѕР№С‚Рё РІ Р°РґРјРёРЅРєСѓ
           </button>
         </form>
       </div>

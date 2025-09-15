@@ -1,4 +1,4 @@
-﻿export type GameType = 'wheel' | 'rps' | 'slots';
+п»їexport type GameType = 'wheel' | 'rps' | 'slots';
 export type GameStatus = 'draft' | 'published' | 'archived';
 export type RewardType = 'xp' | 'currency' | 'loot' | 'none';
 export type RPSMode = 'pve' | 'pvp';
@@ -33,11 +33,11 @@ export interface SlotSymbol {
   id: string;
   label: string;
   icon: string;
-  rarity: number; // С‡РµРј Р±РѕР»СЊС€Рµ, С‚РµРј СЂРµР¶Рµ
+  rarity: number; // РЎвЂЎР ВµР С Р В±Р С•Р В»РЎРЉРЎв‚¬Р Вµ, РЎвЂљР ВµР С РЎР‚Р ВµР В¶Р Вµ
 }
 
 export interface SlotCombination {
-  pattern: string[]; // РјР°СЃСЃРёРІ ID СЃРёРјРІРѕР»РѕРІ
+  pattern: string[]; // Р СР В°РЎРѓРЎРѓР С‘Р Р† ID РЎРѓР С‘Р СР Р†Р С•Р В»Р С•Р Р†
   multiplier: number;
   description: string;
 }

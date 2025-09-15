@@ -1,4 +1,4 @@
-﻿import { useState, useEffect, useRef } from 'react';
+п»їimport { useState, useEffect, useRef } from 'react';
 import { Menu, User, ArrowLeft, Clock, Plus, Info, ArrowRight, Calendar, ChevronDown, X, Check, Paperclip, TrendingUp, TrendingDown, Minus } from './Icons';
 import { Dialog, DialogContent, DialogTitle, DialogDescription } from './ui/dialog';
 import { Avatar, AvatarImage, AvatarFallback } from './ui/avatar';
@@ -47,8 +47,8 @@ interface ActiveBattle {
 }
 
 interface WeeklyHistory {
-  weekStart: string; // Р”Р°С‚Р° РЅР°С‡Р°Р»Р° РЅРµРґРµР»Рё (РІРѕСЃРєСЂРµСЃРµРЅСЊРµ)
-  weekEnd: string;   // Р”Р°С‚Р° РєРѕРЅС†Р° РЅРµРґРµР»Рё (СЃСѓР±Р±РѕС‚Р°) 
+  weekStart: string; // Р вЂќР В°РЎвЂљР В° Р Р…Р В°РЎвЂЎР В°Р В»Р В° Р Р…Р ВµР Т‘Р ВµР В»Р С‘ (Р Р†Р С•РЎРѓР С”РЎР‚Р ВµРЎРѓР ВµР Р…РЎРЉР Вµ)
+  weekEnd: string;   // Р вЂќР В°РЎвЂљР В° Р С”Р С•Р Р…РЎвЂ Р В° Р Р…Р ВµР Т‘Р ВµР В»Р С‘ (РЎРѓРЎС“Р В±Р В±Р С•РЎвЂљР В°) 
   battles: BattleHistoryData[];
 }
 
@@ -97,10 +97,10 @@ export function BattleLeaderboard({ leaderboard = [], activeBattles = [], onNavi
   const [evidenceComment, setEvidenceComment] = useState('');
   const [attachedFile, setAttachedFile] = useState<File | null>(null);
   
-  // Ref РґР»СЏ РІС‹РїР°РґР°СЋС‰РµРіРѕ РјРµРЅСЋ РєРѕРјР°РЅРґ
+  // Ref Р Т‘Р В»РЎРЏ Р Р†РЎвЂ№Р С—Р В°Р Т‘Р В°РЎР‹РЎвЂ°Р ВµР С–Р С• Р СР ВµР Р…РЎР‹ Р С”Р С•Р СР В°Р Р…Р Т‘
   const teamFilterRef = useRef<HTMLDivElement>(null);
 
-  // РџСЂРµРѕР±СЂР°Р·СѓРµРј РґР°РЅРЅС‹Рµ Р»РёРґРµСЂР±РѕСЂРґР° РІ placeholder С„РѕСЂРјР°С‚ РёР»Рё РёСЃРїРѕР»СЊР·СѓРµРј С‚РµСЃС‚РѕРІС‹Рµ РґР°РЅРЅС‹Рµ
+  // Р СџРЎР‚Р ВµР С•Р В±РЎР‚Р В°Р В·РЎС“Р ВµР С Р Т‘Р В°Р Р…Р Р…РЎвЂ№Р Вµ Р В»Р С‘Р Т‘Р ВµРЎР‚Р В±Р С•РЎР‚Р Т‘Р В° Р Р† placeholder РЎвЂћР С•РЎР‚Р СР В°РЎвЂљ Р С‘Р В»Р С‘ Р С‘РЎРѓР С—Р С•Р В»РЎРЉР В·РЎС“Р ВµР С РЎвЂљР ВµРЎРѓРЎвЂљР С•Р Р†РЎвЂ№Р Вµ Р Т‘Р В°Р Р…Р Р…РЎвЂ№Р Вµ
   const users: UserData[] = leaderboard.length > 0 
     ? leaderboard.map((entry, index) => ({
         id: index + 1,
@@ -112,13 +112,13 @@ export function BattleLeaderboard({ leaderboard = [], activeBattles = [], onNavi
         avatar: entry.user.avatar || ''
       }))
     : [
-        // РўРµСЃС‚РѕРІС‹Рµ РґР°РЅРЅС‹Рµ РґР»СЏ РґРµРјРѕРЅСЃС‚СЂР°С†РёРё СЃРѕСЂС‚РёСЂРѕРІРєРё
-        { id: 1, name: 'РђРЅРЅР° РРІР°РЅРѕРІР°', team: 'Team 1', level: 15, balance: '5400g', achievements: 32, avatar: '' },
-        { id: 2, name: 'РџРµС‚СЂ РџРµС‚СЂРѕРІ', team: 'Team 2', level: 12, balance: '8200g', achievements: 28, avatar: '' },
-        { id: 3, name: 'РњР°СЂРёСЏ РЎРёРґРѕСЂРѕРІР°', team: 'Team 3', level: 18, balance: '3600g', achievements: 45, avatar: '' }
+        // Р СћР ВµРЎРѓРЎвЂљР С•Р Р†РЎвЂ№Р Вµ Р Т‘Р В°Р Р…Р Р…РЎвЂ№Р Вµ Р Т‘Р В»РЎРЏ Р Т‘Р ВµР СР С•Р Р…РЎРѓРЎвЂљРЎР‚Р В°РЎвЂ Р С‘Р С‘ РЎРѓР С•РЎР‚РЎвЂљР С‘РЎР‚Р С•Р Р†Р С”Р С‘
+        { id: 1, name: 'Р С’Р Р…Р Р…Р В° Р ВР Р†Р В°Р Р…Р С•Р Р†Р В°', team: 'Team 1', level: 15, balance: '5400g', achievements: 32, avatar: '' },
+        { id: 2, name: 'Р СџР ВµРЎвЂљРЎР‚ Р СџР ВµРЎвЂљРЎР‚Р С•Р Р†', team: 'Team 2', level: 12, balance: '8200g', achievements: 28, avatar: '' },
+        { id: 3, name: 'Р СљР В°РЎР‚Р С‘РЎРЏ Р РЋР С‘Р Т‘Р С•РЎР‚Р С•Р Р†Р В°', team: 'Team 3', level: 18, balance: '3600g', achievements: 45, avatar: '' }
       ];
 
-  // Р¤СѓРЅРєС†РёСЏ РґР»СЏ РїРѕР»СѓС‡РµРЅРёСЏ РґР°С‚С‹ РЅР°С‡Р°Р»Р° РЅРµРґРµР»Рё (РІРѕСЃРєСЂРµСЃРµРЅСЊРµ)
+  // Р В¤РЎС“Р Р…Р С”РЎвЂ Р С‘РЎРЏ Р Т‘Р В»РЎРЏ Р С—Р С•Р В»РЎС“РЎвЂЎР ВµР Р…Р С‘РЎРЏ Р Т‘Р В°РЎвЂљРЎвЂ№ Р Р…Р В°РЎвЂЎР В°Р В»Р В° Р Р…Р ВµР Т‘Р ВµР В»Р С‘ (Р Р†Р С•РЎРѓР С”РЎР‚Р ВµРЎРѓР ВµР Р…РЎРЉР Вµ)
   const getWeekStart = (date: Date = new Date()): Date => {
     const d = new Date(date);
     const day = d.getDay();
@@ -126,14 +126,14 @@ export function BattleLeaderboard({ leaderboard = [], activeBattles = [], onNavi
     return new Date(d.setDate(diff));
   };
 
-  // Р¤СѓРЅРєС†РёСЏ РґР»СЏ РїРѕР»СѓС‡РµРЅРёСЏ РґР°С‚С‹ РєРѕРЅС†Р° РЅРµРґРµР»Рё (СЃСѓР±Р±РѕС‚Р°)
+  // Р В¤РЎС“Р Р…Р С”РЎвЂ Р С‘РЎРЏ Р Т‘Р В»РЎРЏ Р С—Р С•Р В»РЎС“РЎвЂЎР ВµР Р…Р С‘РЎРЏ Р Т‘Р В°РЎвЂљРЎвЂ№ Р С”Р С•Р Р…РЎвЂ Р В° Р Р…Р ВµР Т‘Р ВµР В»Р С‘ (РЎРѓРЎС“Р В±Р В±Р С•РЎвЂљР В°)
   const getWeekEnd = (weekStart: Date): Date => {
     const weekEnd = new Date(weekStart);
     weekEnd.setDate(weekStart.getDate() + 6);
     return weekEnd;
   };
 
-  // Р¤СѓРЅРєС†РёСЏ РґР»СЏ С„РѕСЂРјР°С‚РёСЂРѕРІР°РЅРёСЏ РґР°С‚С‹
+  // Р В¤РЎС“Р Р…Р С”РЎвЂ Р С‘РЎРЏ Р Т‘Р В»РЎРЏ РЎвЂћР С•РЎР‚Р СР В°РЎвЂљР С‘РЎР‚Р С•Р Р†Р В°Р Р…Р С‘РЎРЏ Р Т‘Р В°РЎвЂљРЎвЂ№
   const formatDate = (date: Date): string => {
     return date.toLocaleDateString('ru-RU', { 
       day: '2-digit', 
@@ -142,39 +142,39 @@ export function BattleLeaderboard({ leaderboard = [], activeBattles = [], onNavi
     });
   };
 
-  // РџРѕР»СѓС‡Р°РµРј С‚РµРєСѓС‰СѓСЋ РЅРµРґРµР»СЋ
+  // Р СџР С•Р В»РЎС“РЎвЂЎР В°Р ВµР С РЎвЂљР ВµР С”РЎС“РЎвЂ°РЎС“РЎР‹ Р Р…Р ВµР Т‘Р ВµР В»РЎР‹
   const currentWeekStart = getWeekStart();
   const currentWeekEnd = getWeekEnd(currentWeekStart);
 
-  // Placeholder РґР°РЅРЅС‹Рµ РґР»СЏ РёСЃС‚РѕСЂРёРё Р±Р°С‚С‚Р»РѕРІ (РїРѕРєР° РїСѓСЃС‚С‹Рµ)
+  // Placeholder Р Т‘Р В°Р Р…Р Р…РЎвЂ№Р Вµ Р Т‘Р В»РЎРЏ Р С‘РЎРѓРЎвЂљР С•РЎР‚Р С‘Р С‘ Р В±Р В°РЎвЂљРЎвЂљР В»Р С•Р Р† (Р С—Р С•Р С”Р В° Р С—РЎС“РЎРѓРЎвЂљРЎвЂ№Р Вµ)
   const weeklyHistory: WeeklyHistory = {
     weekStart: formatDate(currentWeekStart),
     weekEnd: formatDate(currentWeekEnd),
     battles: []
   };
 
-  // Placeholder РґР°РЅРЅС‹Рµ РґР»СЏ РёСЃС‚РѕСЂРёРё Р·Р° РІСЃРµ РІСЂРµРјСЏ (РїРѕРєР° РїСѓСЃС‚С‹Рµ)
+  // Placeholder Р Т‘Р В°Р Р…Р Р…РЎвЂ№Р Вµ Р Т‘Р В»РЎРЏ Р С‘РЎРѓРЎвЂљР С•РЎР‚Р С‘Р С‘ Р В·Р В° Р Р†РЎРѓР Вµ Р Р†РЎР‚Р ВµР СРЎРЏ (Р С—Р С•Р С”Р В° Р С—РЎС“РЎРѓРЎвЂљРЎвЂ№Р Вµ)
   const allTimeHistory: AllTimeHistory = {
     battles: []
   };
 
-  // Mock РґР°РЅРЅС‹Рµ СЃРѕС‚СЂСѓРґРЅРёРєРѕРІ СЃ РєРѕРјР°РЅРґР°РјРё (С‚РѕР»СЊРєРѕ 1-6 РєРѕРјР°РЅРґС‹ РјРѕРіСѓС‚ Р±Р°С‚С‚Р»РёС‚СЊСЃСЏ)
+  // Mock Р Т‘Р В°Р Р…Р Р…РЎвЂ№Р Вµ РЎРѓР С•РЎвЂљРЎР‚РЎС“Р Т‘Р Р…Р С‘Р С”Р С•Р Р† РЎРѓ Р С”Р С•Р СР В°Р Р…Р Т‘Р В°Р СР С‘ (РЎвЂљР С•Р В»РЎРЉР С”Р С• 1-6 Р С”Р С•Р СР В°Р Р…Р Т‘РЎвЂ№ Р СР С•Р С–РЎС“РЎвЂљ Р В±Р В°РЎвЂљРЎвЂљР В»Р С‘РЎвЂљРЎРЉРЎРѓРЎРЏ)
   const allEmployees: Employee[] = [
-    { id: 1, name: 'РђРЅРЅР° РРІР°РЅРѕРІР°', team: 1, avatar: undefined },
-    { id: 2, name: 'РџРµС‚СЂ РџРµС‚СЂРѕРІ', team: 1, avatar: undefined },
-    { id: 3, name: 'РњР°СЂРёСЏ РЎРёРґРѕСЂРѕРІР°', team: 2, avatar: undefined },
-    { id: 4, name: 'РђР»РµРєСЃРµР№ РљРѕР·Р»РѕРІ', team: 2, avatar: undefined },
-    { id: 5, name: 'Р•Р»РµРЅР° РњРѕСЂРѕР·РѕРІР°', team: 3, avatar: undefined },
-    { id: 6, name: 'Р”РјРёС‚СЂРёР№ Р’РѕР»РєРѕРІ', team: 3, avatar: undefined },
-    { id: 7, name: 'РћР»СЊРіР° РЎРѕРєРѕР»РѕРІР°', team: 4, avatar: undefined },
-    { id: 8, name: 'РЎРµСЂРіРµР№ РћСЂР»РѕРІ', team: 4, avatar: undefined },
-    { id: 9, name: 'РњРёС…Р°РёР» Р С‹Р±Р°РєРѕРІ', team: 5, avatar: undefined },
-    { id: 10, name: 'РўР°С‚СЊСЏРЅР° Р‘РµР»РѕРІР°', team: 5, avatar: undefined },
-    { id: 11, name: 'Р’Р»Р°РґРёРјРёСЂ РќРѕРІРёРєРѕРІ', team: 6, avatar: undefined },
-    { id: 12, name: 'Р•РєР°С‚РµСЂРёРЅР° РџРѕРїРѕРІР°', team: 6, avatar: undefined },
+    { id: 1, name: 'Р С’Р Р…Р Р…Р В° Р ВР Р†Р В°Р Р…Р С•Р Р†Р В°', team: 1, avatar: undefined },
+    { id: 2, name: 'Р СџР ВµРЎвЂљРЎР‚ Р СџР ВµРЎвЂљРЎР‚Р С•Р Р†', team: 1, avatar: undefined },
+    { id: 3, name: 'Р СљР В°РЎР‚Р С‘РЎРЏ Р РЋР С‘Р Т‘Р С•РЎР‚Р С•Р Р†Р В°', team: 2, avatar: undefined },
+    { id: 4, name: 'Р С’Р В»Р ВµР С”РЎРѓР ВµР в„– Р С™Р С•Р В·Р В»Р С•Р Р†', team: 2, avatar: undefined },
+    { id: 5, name: 'Р вЂўР В»Р ВµР Р…Р В° Р СљР С•РЎР‚Р С•Р В·Р С•Р Р†Р В°', team: 3, avatar: undefined },
+    { id: 6, name: 'Р вЂќР СР С‘РЎвЂљРЎР‚Р С‘Р в„– Р вЂ™Р С•Р В»Р С”Р С•Р Р†', team: 3, avatar: undefined },
+    { id: 7, name: 'Р С›Р В»РЎРЉР С–Р В° Р РЋР С•Р С”Р С•Р В»Р С•Р Р†Р В°', team: 4, avatar: undefined },
+    { id: 8, name: 'Р РЋР ВµРЎР‚Р С–Р ВµР в„– Р С›РЎР‚Р В»Р С•Р Р†', team: 4, avatar: undefined },
+    { id: 9, name: 'Р СљР С‘РЎвЂ¦Р В°Р С‘Р В» Р В РЎвЂ№Р В±Р В°Р С”Р С•Р Р†', team: 5, avatar: undefined },
+    { id: 10, name: 'Р СћР В°РЎвЂљРЎРЉРЎРЏР Р…Р В° Р вЂР ВµР В»Р С•Р Р†Р В°', team: 5, avatar: undefined },
+    { id: 11, name: 'Р вЂ™Р В»Р В°Р Т‘Р С‘Р СР С‘РЎР‚ Р СњР С•Р Р†Р С‘Р С”Р С•Р Р†', team: 6, avatar: undefined },
+    { id: 12, name: 'Р вЂўР С”Р В°РЎвЂљР ВµРЎР‚Р С‘Р Р…Р В° Р СџР С•Р С—Р С•Р Р†Р В°', team: 6, avatar: undefined },
   ];
 
-  // Р¤РёР»СЊС‚СЂР°С†РёСЏ СЃРѕС‚СЂСѓРґРЅРёРєРѕРІ РїРѕ РєРѕРјР°РЅРґРµ (С‚РѕР»СЊРєРѕ РєРѕРјР°РЅРґС‹ 1-6)
+  // Р В¤Р С‘Р В»РЎРЉРЎвЂљРЎР‚Р В°РЎвЂ Р С‘РЎРЏ РЎРѓР С•РЎвЂљРЎР‚РЎС“Р Т‘Р Р…Р С‘Р С”Р С•Р Р† Р С—Р С• Р С”Р С•Р СР В°Р Р…Р Т‘Р Вµ (РЎвЂљР С•Р В»РЎРЉР С”Р С• Р С”Р С•Р СР В°Р Р…Р Т‘РЎвЂ№ 1-6)
   const filteredEmployees = selectedTeamFilter 
     ? allEmployees.filter(emp => emp.team === selectedTeamFilter)
     : allEmployees.filter(emp => emp.team >= 1 && emp.team <= 6);
@@ -182,23 +182,23 @@ export function BattleLeaderboard({ leaderboard = [], activeBattles = [], onNavi
   const [isButtonClicked, setIsButtonClicked] = useState(false);
 
   const handleSortClick = () => {
-    // Р’РёР·СѓР°Р»СЊРЅС‹Р№ СЌС„С„РµРєС‚ РЅР°Р¶Р°С‚РёСЏ
+    // Р вЂ™Р С‘Р В·РЎС“Р В°Р В»РЎРЉР Р…РЎвЂ№Р в„– РЎРЊРЎвЂћРЎвЂћР ВµР С”РЎвЂљ Р Р…Р В°Р В¶Р В°РЎвЂљР С‘РЎРЏ
     setIsButtonClicked(true);
     setTimeout(() => setIsButtonClicked(false), 200);
 
-    // РџРµСЂРµРєР»СЋС‡РµРЅРёРµ С‚РёРїР° СЃРѕСЂС‚РёСЂРѕРІРєРё РїРѕ РєСЂСѓРіСѓ
+    // Р СџР ВµРЎР‚Р ВµР С”Р В»РЎР‹РЎвЂЎР ВµР Р…Р С‘Р Вµ РЎвЂљР С‘Р С—Р В° РЎРѓР С•РЎР‚РЎвЂљР С‘РЎР‚Р С•Р Р†Р С”Р С‘ Р С—Р С• Р С”РЎР‚РЎС“Р С–РЎС“
     const sortTypes: SortType[] = ['level', 'achievements', 'balance'];
     const currentIndex = sortTypes.indexOf(sortType);
     const nextIndex = (currentIndex + 1) % sortTypes.length;
     const newSortType = sortTypes[nextIndex];
     setSortType(newSortType);
     
-    // РћС‚Р»Р°РґРєР° РґР»СЏ РїСЂРѕРІРµСЂРєРё СЂР°Р±РѕС‚С‹ РєРЅРѕРїРєРё
-    console.log(`РЎРѕСЂС‚РёСЂРѕРІРєР° РёР·РјРµРЅРµРЅР° СЃ "${getSortTypeText(sortType)}" РЅР° "${getSortTypeText(newSortType)}"`);
+    // Р С›РЎвЂљР В»Р В°Р Т‘Р С”Р В° Р Т‘Р В»РЎРЏ Р С—РЎР‚Р С•Р Р†Р ВµРЎР‚Р С”Р С‘ РЎР‚Р В°Р В±Р С•РЎвЂљРЎвЂ№ Р С”Р Р…Р С•Р С—Р С”Р С‘
+    console.log(`Р РЋР С•РЎР‚РЎвЂљР С‘РЎР‚Р С•Р Р†Р С”Р В° Р С‘Р В·Р СР ВµР Р…Р ВµР Р…Р В° РЎРѓ "${getSortTypeText(sortType)}" Р Р…Р В° "${getSortTypeText(newSortType)}"`);
   };
 
   const handleDialogSortClick = () => {
-    // РџРµСЂРµРєР»СЋС‡РµРЅРёРµ С‚РёРїР° СЃРѕСЂС‚РёСЂРѕРІРєРё РІ РґРёР°Р»РѕРіРµ
+    // Р СџР ВµРЎР‚Р ВµР С”Р В»РЎР‹РЎвЂЎР ВµР Р…Р С‘Р Вµ РЎвЂљР С‘Р С—Р В° РЎРѓР С•РЎР‚РЎвЂљР С‘РЎР‚Р С•Р Р†Р С”Р С‘ Р Р† Р Т‘Р С‘Р В°Р В»Р С•Р С–Р Вµ
     const sortTypes: SortType[] = ['level', 'achievements', 'balance'];
     const currentIndex = sortTypes.indexOf(dialogSortType);
     const nextIndex = (currentIndex + 1) % sortTypes.length;
@@ -210,8 +210,8 @@ export function BattleLeaderboard({ leaderboard = [], activeBattles = [], onNavi
   };
 
   const handleUserClick = (userId: number) => {
-    // Р’ Р±СѓРґСѓС‰РµРј Р·РґРµСЃСЊ Р±СѓРґРµС‚ РѕС‚РєСЂС‹С‚РёРµ РїСЂРѕС„РёР»СЏ РїРѕР»СЊР·РѕРІР°С‚РµР»СЏ
-    console.log(`РћС‚РєСЂС‹С‚СЊ РїСЂРѕС„РёР»СЊ РїРѕР»СЊР·РѕРІР°С‚РµР»СЏ ${userId}`);
+    // Р вЂ™ Р В±РЎС“Р Т‘РЎС“РЎвЂ°Р ВµР С Р В·Р Т‘Р ВµРЎРѓРЎРЉ Р В±РЎС“Р Т‘Р ВµРЎвЂљ Р С•РЎвЂљР С”РЎР‚РЎвЂ№РЎвЂљР С‘Р Вµ Р С—РЎР‚Р С•РЎвЂћР С‘Р В»РЎРЏ Р С—Р С•Р В»РЎРЉР В·Р С•Р Р†Р В°РЎвЂљР ВµР В»РЎРЏ
+    console.log(`Р С›РЎвЂљР С”РЎР‚РЎвЂ№РЎвЂљРЎРЉ Р С—РЎР‚Р С•РЎвЂћР С‘Р В»РЎРЉ Р С—Р С•Р В»РЎРЉР В·Р С•Р Р†Р В°РЎвЂљР ВµР В»РЎРЏ ${userId}`);
   };
 
   const handleBattleHistoryClick = () => {
@@ -232,7 +232,7 @@ export function BattleLeaderboard({ leaderboard = [], activeBattles = [], onNavi
   };
 
   const handleEmployeeChallengeClick = (employee: Employee) => {
-    if (personalBattles.length > 0) return; // Р‘Р»РѕРєРёСЂСѓРµРј РµСЃР»Рё СѓР¶Рµ РµСЃС‚СЊ Р°РєС‚РёРІРЅС‹Р№ Р±Р°С‚С‚Р»
+    if (personalBattles.length > 0) return; // Р вЂР В»Р С•Р С”Р С‘РЎР‚РЎС“Р ВµР С Р ВµРЎРѓР В»Р С‘ РЎС“Р В¶Р Вµ Р ВµРЎРѓРЎвЂљРЎРЉ Р В°Р С”РЎвЂљР С‘Р Р†Р Р…РЎвЂ№Р в„– Р В±Р В°РЎвЂљРЎвЂљР В»
     
     setSelectedEmployee(employee);
     setIsBattleConfirmOpen(true);
@@ -240,16 +240,16 @@ export function BattleLeaderboard({ leaderboard = [], activeBattles = [], onNavi
 
   const handleConfirmBattle = () => {
     if (selectedEmployee && battleStake.trim() && setPersonalBattles) {
-      // РЎРѕР·РґР°РµРј Р°РєС‚РёРІРЅС‹Р№ Р±Р°С‚С‚Р»
+      // Р РЋР С•Р В·Р Т‘Р В°Р ВµР С Р В°Р С”РЎвЂљР С‘Р Р†Р Р…РЎвЂ№Р в„– Р В±Р В°РЎвЂљРЎвЂљР В»
       const newBattle = {
         id: Date.now().toString(),
         challenger: {
           id: 'current-user',
-          name: 'Р’С‹',
+          name: 'Р вЂ™РЎвЂ№',
           team: 1,
           level: 5,
           avatar: null,
-          role: 'РЎРѕС‚СЂСѓРґРЅРёРє',
+          role: 'Р РЋР С•РЎвЂљРЎР‚РЎС“Р Т‘Р Р…Р С‘Р С”',
           achievements: 10,
           completedTasks: 25
         },
@@ -260,21 +260,21 @@ export function BattleLeaderboard({ leaderboard = [], activeBattles = [], onNavi
           level: Math.floor(Math.random() * 20) + 1,
           avatar: null,
           status: 'available' as const,
-          role: 'РЎРѕС‚СЂСѓРґРЅРёРє',
+          role: 'Р РЋР С•РЎвЂљРЎР‚РЎС“Р Т‘Р Р…Р С‘Р С”',
           achievements: Math.floor(Math.random() * 50) + 1,
           completedTasks: Math.floor(Math.random() * 100) + 1
         },
         status: 'active' as const,
         prize: parseInt(battleStake),
-        endDate: new Date(Date.now() + 7 * 24 * 60 * 60 * 1000), // +7 РґРЅРµР№
+        endDate: new Date(Date.now() + 7 * 24 * 60 * 60 * 1000), // +7 Р Т‘Р Р…Р ВµР в„–
         created: new Date()
       };
       
-      // Р”РѕР±Р°РІР»СЏРµРј Рє РіР»РѕР±Р°Р»СЊРЅРѕРјСѓ СЃРѕСЃС‚РѕСЏРЅРёСЋ
+      // Р вЂќР С•Р В±Р В°Р Р†Р В»РЎРЏР ВµР С Р С” Р С–Р В»Р С•Р В±Р В°Р В»РЎРЉР Р…Р С•Р СРЎС“ РЎРѓР С•РЎРѓРЎвЂљР С•РЎРЏР Р…Р С‘РЎР‹
       setPersonalBattles([...personalBattles, newBattle]);
-      console.log(`Р‘Р°С‚С‚Р» СЃРѕР·РґР°РЅ СЃ ${selectedEmployee.name} РЅР° СЃСѓРјРјСѓ ${battleStake} РєРѕРёРЅРѕРІ`);
+      console.log(`Р вЂР В°РЎвЂљРЎвЂљР В» РЎРѓР С•Р В·Р Т‘Р В°Р Р… РЎРѓ ${selectedEmployee.name} Р Р…Р В° РЎРѓРЎС“Р СР СРЎС“ ${battleStake} Р С”Р С•Р С‘Р Р…Р С•Р Р†`);
       
-      // РћС‡РёС‰Р°РµРј СЃРѕСЃС‚РѕСЏРЅРёРµ
+      // Р С›РЎвЂЎР С‘РЎвЂ°Р В°Р ВµР С РЎРѓР С•РЎРѓРЎвЂљР С•РЎРЏР Р…Р С‘Р Вµ
       setIsBattleConfirmOpen(false);
       setIsCreateBattleOpen(false);
       setSelectedEmployee(null);
@@ -296,13 +296,13 @@ export function BattleLeaderboard({ leaderboard = [], activeBattles = [], onNavi
   const getSortTypeText = (type: SortType) => {
     switch (type) {
       case 'level':
-        return 'РџРѕ СѓСЂРѕРІРЅСЋ';
+        return 'Р СџР С• РЎС“РЎР‚Р С•Р Р†Р Р…РЎР‹';
       case 'achievements':
-        return 'РџРѕ Р°С‡РёРІРєР°Рј';
+        return 'Р СџР С• Р В°РЎвЂЎР С‘Р Р†Р С”Р В°Р С';
       case 'balance':
-        return 'РџРѕ Р±Р°Р»Р°РЅСЃСѓ';
+        return 'Р СџР С• Р В±Р В°Р В»Р В°Р Р…РЎРѓРЎС“';
       default:
-        return 'РџРѕ СѓСЂРѕРІРЅСЋ';
+        return 'Р СџР С• РЎС“РЎР‚Р С•Р Р†Р Р…РЎР‹';
     }
   };
 
@@ -314,7 +314,7 @@ export function BattleLeaderboard({ leaderboard = [], activeBattles = [], onNavi
         case 'achievements':
           return b.achievements - a.achievements;
         case 'balance':
-          // РџР°СЂСЃРёРј С‡РёСЃР»РѕРІРѕРµ Р·РЅР°С‡РµРЅРёРµ РёР· СЃС‚СЂРѕРєРё Р±Р°Р»Р°РЅСЃР° РґР»СЏ РїСЂР°РІРёР»СЊРЅРѕР№ СЃРѕСЂС‚РёСЂРѕРІРєРё
+          // Р СџР В°РЎР‚РЎРѓР С‘Р С РЎвЂЎР С‘РЎРѓР В»Р С•Р Р†Р С•Р Вµ Р В·Р Р…Р В°РЎвЂЎР ВµР Р…Р С‘Р Вµ Р С‘Р В· РЎРѓРЎвЂљРЎР‚Р С•Р С”Р С‘ Р В±Р В°Р В»Р В°Р Р…РЎРѓР В° Р Т‘Р В»РЎРЏ Р С—РЎР‚Р В°Р Р†Р С‘Р В»РЎРЉР Р…Р С•Р в„– РЎРѓР С•РЎР‚РЎвЂљР С‘РЎР‚Р С•Р Р†Р С”Р С‘
           const balanceA = parseFloat(a.balance.replace(/[^\d.-]/g, '')) || 0;
           const balanceB = parseFloat(b.balance.replace(/[^\d.-]/g, '')) || 0;
           return balanceB - balanceA;
@@ -326,7 +326,7 @@ export function BattleLeaderboard({ leaderboard = [], activeBattles = [], onNavi
 
   const sortedUsers = sortUsers(users, dialogSortType);
 
-  // РћР±СЂР°Р±РѕС‚С‡РёРє РєР»РёРєР° РІРЅРµ РІС‹РїР°РґР°СЋС‰РµРіРѕ РјРµРЅСЋ
+  // Р С›Р В±РЎР‚Р В°Р В±Р С•РЎвЂљРЎвЂЎР С‘Р С” Р С”Р В»Р С‘Р С”Р В° Р Р†Р Р…Р Вµ Р Р†РЎвЂ№Р С—Р В°Р Т‘Р В°РЎР‹РЎвЂ°Р ВµР С–Р С• Р СР ВµР Р…РЎР‹
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
       if (teamFilterRef.current && !teamFilterRef.current.contains(event.target as Node)) {
@@ -346,7 +346,7 @@ export function BattleLeaderboard({ leaderboard = [], activeBattles = [], onNavi
   return (
     <>
       <div className="grid grid-cols-2 gap-3">
-        {/* Р‘Р°С‚С‚Р» СЃРµРєС†РёСЏ */}
+        {/* Р вЂР В°РЎвЂљРЎвЂљР В» РЎРѓР ВµР С”РЎвЂ Р С‘РЎРЏ */}
         <div 
           className={`${theme === 'dark' ? 'dark' : ''}`}
           style={{
@@ -381,7 +381,7 @@ export function BattleLeaderboard({ leaderboard = [], activeBattles = [], onNavi
                 zIndex: 60,
                 cursor: 'pointer'
               }}
-              title="РСЃС‚РѕСЂРёСЏ Р±Р°С‚С‚Р»РѕРІ"
+              title="Р ВРЎРѓРЎвЂљР С•РЎР‚Р С‘РЎРЏ Р В±Р В°РЎвЂљРЎвЂљР В»Р С•Р Р†"
             >
               <Clock className="w-4 h-4" />
             </button>
@@ -389,7 +389,7 @@ export function BattleLeaderboard({ leaderboard = [], activeBattles = [], onNavi
               className="font-medium text-center flex-1"
               style={{ color: theme === 'dark' ? '#E8ECF2' : '#0F172A' }}
             >
-              Р‘Р°С‚С‚Р»С‹
+              Р вЂР В°РЎвЂљРЎвЂљР В»РЎвЂ№
             </h3>
             <button 
               onClick={(e) => {
@@ -410,7 +410,7 @@ export function BattleLeaderboard({ leaderboard = [], activeBattles = [], onNavi
                 zIndex: 60,
                 cursor: 'pointer'
               }}
-              title="РЎРѕР·РґР°С‚СЊ Р±Р°С‚С‚Р»"
+              title="Р РЋР С•Р В·Р Т‘Р В°РЎвЂљРЎРЉ Р В±Р В°РЎвЂљРЎвЂљР В»"
             >
               <Plus className="w-4 h-4" />
             </button>
@@ -425,14 +425,14 @@ export function BattleLeaderboard({ leaderboard = [], activeBattles = [], onNavi
                     className="text-xs font-medium truncate"
                     style={{ color: theme === 'dark' ? '#E8ECF2' : '#0F172A' }}
                   >
-                    Р‘Р°С‚С‚Р» СЃ {personalBattles[0].opponent.name}
+                    Р вЂР В°РЎвЂљРЎвЂљР В» РЎРѓ {personalBattles[0].opponent.name}
                   </span>
                 </div>
                 <div 
                   className="text-xs text-center"
                   style={{ color: theme === 'dark' ? '#A7B0BD' : '#6B7280' }}
                 >
-                  РЎС‚Р°РІРєР°: {personalBattles[0].prize}g
+                  Р РЋРЎвЂљР В°Р Р†Р С”Р В°: {personalBattles[0].prize}g
                 </div>
                 <div className="flex gap-2">
                   <button 
@@ -441,11 +441,11 @@ export function BattleLeaderboard({ leaderboard = [], activeBattles = [], onNavi
                       e.stopPropagation();
                       console.log('VICTORY BUTTON CLICKED!', personalBattles[0]);
                       
-                      // Р›РѕРіРёРєР° РїРѕР±РµРґС‹ РІ Р±Р°С‚С‚Р»Рµ
+                      // Р вЂєР С•Р С–Р С‘Р С”Р В° Р С—Р С•Р В±Р ВµР Т‘РЎвЂ№ Р Р† Р В±Р В°РЎвЂљРЎвЂљР В»Р Вµ
                       if (setPersonalBattles) {
                         const updatedBattles = personalBattles.filter((_, index) => index !== 0);
                         setPersonalBattles(updatedBattles);
-                        console.log('Р‘Р°С‚С‚Р» Р·Р°РІРµСЂС€РµРЅ РїРѕР±РµРґРѕР№!');
+                        console.log('Р вЂР В°РЎвЂљРЎвЂљР В» Р В·Р В°Р Р†Р ВµРЎР‚РЎв‚¬Р ВµР Р… Р С—Р С•Р В±Р ВµР Т‘Р С•Р в„–!');
                       }
                     }}
                     className="flex-1 py-2 text-xs font-medium hover:scale-[0.98] transition-transform"
@@ -460,7 +460,7 @@ export function BattleLeaderboard({ leaderboard = [], activeBattles = [], onNavi
                       zIndex: 50
                     }}
                   >
-                    Р’С‹РёРіСЂР°Р»
+                    Р вЂ™РЎвЂ№Р С‘Р С–РЎР‚Р В°Р В»
                   </button>
                   <button 
                     onClick={(e) => {
@@ -468,11 +468,11 @@ export function BattleLeaderboard({ leaderboard = [], activeBattles = [], onNavi
                       e.stopPropagation();
                       console.log('CANCEL BUTTON CLICKED!', personalBattles[0]);
                       
-                      // Р›РѕРіРёРєР° РѕС‚РјРµРЅС‹ Р±Р°С‚С‚Р»Р°
+                      // Р вЂєР С•Р С–Р С‘Р С”Р В° Р С•РЎвЂљР СР ВµР Р…РЎвЂ№ Р В±Р В°РЎвЂљРЎвЂљР В»Р В°
                       if (setPersonalBattles) {
                         const updatedBattles = personalBattles.filter((_, index) => index !== 0);
                         setPersonalBattles(updatedBattles);
-                        console.log('Р‘Р°С‚С‚Р» РѕС‚РјРµРЅРµРЅ!');
+                        console.log('Р вЂР В°РЎвЂљРЎвЂљР В» Р С•РЎвЂљР СР ВµР Р…Р ВµР Р…!');
                       }
                     }}
                     className="py-2 px-3 text-xs font-medium hover:scale-[0.98] transition-transform"
@@ -487,7 +487,7 @@ export function BattleLeaderboard({ leaderboard = [], activeBattles = [], onNavi
                       zIndex: 50
                     }}
                   >
-                    РћС‚РјРµРЅРёС‚СЊ
+                    Р С›РЎвЂљР СР ВµР Р…Р С‘РЎвЂљРЎРЉ
                   </button>
                 </div>
               </div>
@@ -496,14 +496,14 @@ export function BattleLeaderboard({ leaderboard = [], activeBattles = [], onNavi
                 className="text-sm text-center opacity-70"
                 style={{ color: theme === 'dark' ? '#A7B0BD' : '#6B7280' }}
               >
-                РќРµС‚ Р°РєС‚РёРІРЅС‹С… Р±Р°С‚С‚Р»РѕРІ
+                Р СњР ВµРЎвЂљ Р В°Р С”РЎвЂљР С‘Р Р†Р Р…РЎвЂ№РЎвЂ¦ Р В±Р В°РЎвЂљРЎвЂљР В»Р С•Р Р†
               </p>
             )}
             </div>
           </div>
         </div>
 
-        {/* Р›РёРґРµСЂР±РѕСЂРґ СЃРµРєС†РёСЏ */}
+        {/* Р вЂєР С‘Р Т‘Р ВµРЎР‚Р В±Р С•РЎР‚Р Т‘ РЎРѓР ВµР С”РЎвЂ Р С‘РЎРЏ */}
         <div 
           className={`${theme === 'dark' ? 'dark' : ''}`}
           style={{
@@ -539,7 +539,7 @@ export function BattleLeaderboard({ leaderboard = [], activeBattles = [], onNavi
                 zIndex: 60,
                 cursor: 'pointer'
               }}
-              title={`РЎРѕСЂС‚РёСЂРѕРІРєР°: ${getSortTypeText(sortType)} (РЅР°Р¶РјРёС‚Рµ РґР»СЏ РёР·РјРµРЅРµРЅРёСЏ)`}
+              title={`Р РЋР С•РЎР‚РЎвЂљР С‘РЎР‚Р С•Р Р†Р С”Р В°: ${getSortTypeText(sortType)} (Р Р…Р В°Р В¶Р СР С‘РЎвЂљР Вµ Р Т‘Р В»РЎРЏ Р С‘Р В·Р СР ВµР Р…Р ВµР Р…Р С‘РЎРЏ)`}
             >
               <Menu className="w-4 h-4" />
             </button>
@@ -548,7 +548,7 @@ export function BattleLeaderboard({ leaderboard = [], activeBattles = [], onNavi
                 className="font-medium"
                 style={{ color: theme === 'dark' ? '#E8ECF2' : '#0F172A' }}
               >
-                Р›РёРґРµСЂР±РѕСЂРґ
+                Р вЂєР С‘Р Т‘Р ВµРЎР‚Р В±Р С•РЎР‚Р Т‘
               </h3>
               <p 
                 className="text-xs opacity-60 mt-1"
@@ -576,7 +576,7 @@ export function BattleLeaderboard({ leaderboard = [], activeBattles = [], onNavi
                 zIndex: 60,
                 cursor: 'pointer'
               }}
-              title="Р’СЃРµ РїРѕР»СЊР·РѕРІР°С‚РµР»Рё"
+              title="Р вЂ™РЎРѓР Вµ Р С—Р С•Р В»РЎРЉР В·Р С•Р Р†Р В°РЎвЂљР ВµР В»Р С‘"
             >
               <User className="w-4 h-4" />
             </button>
@@ -610,8 +610,8 @@ export function BattleLeaderboard({ leaderboard = [], activeBattles = [], onNavi
                       className="text-xs font-medium"
                       style={{ color: theme === 'dark' ? '#A7B0BD' : '#6B7280' }}
                     >
-                      {sortType === 'level' && `РЈСЂ.${user.level}`}
-                      {sortType === 'achievements' && `${user.achievements}в…`}
+                      {sortType === 'level' && `Р Р€РЎР‚.${user.level}`}
+                      {sortType === 'achievements' && `${user.achievements}РІВвЂ¦`}
                       {sortType === 'balance' && user.balance}
                     </span>
                   </div>
@@ -622,7 +622,7 @@ export function BattleLeaderboard({ leaderboard = [], activeBattles = [], onNavi
                 className="text-sm text-center opacity-70"
                 style={{ color: theme === 'dark' ? '#A7B0BD' : '#6B7280' }}
               >
-                РЎРїРёСЃРѕРє Р»РёРґРµСЂРѕРІ РѕС‚СЃСѓС‚СЃС‚РІСѓРµС‚
+                Р РЋР С—Р С‘РЎРѓР С•Р С” Р В»Р С‘Р Т‘Р ВµРЎР‚Р С•Р Р† Р С•РЎвЂљРЎРѓРЎС“РЎвЂљРЎРѓРЎвЂљР Р†РЎС“Р ВµРЎвЂљ
               </p>
             )}
             </div>
@@ -630,7 +630,7 @@ export function BattleLeaderboard({ leaderboard = [], activeBattles = [], onNavi
         </div>
       </div>
 
-      {/* РСЃС‚РѕСЂРёСЏ Р±Р°С‚С‚Р»РѕРІ */}
+      {/* Р ВРЎРѓРЎвЂљР С•РЎР‚Р С‘РЎРЏ Р В±Р В°РЎвЂљРЎвЂљР В»Р С•Р Р† */}
       <Dialog open={isBattleHistoryOpen} onOpenChange={setIsBattleHistoryOpen}>
         <DialogContent 
           className="sm:max-w-md mx-auto"
@@ -643,10 +643,10 @@ export function BattleLeaderboard({ leaderboard = [], activeBattles = [], onNavi
           }}
         >
           <DialogTitle style={{ color: theme === 'dark' ? '#E8ECF2' : '#0F172A' }}>
-            РСЃС‚РѕСЂРёСЏ Р±Р°С‚С‚Р»РѕРІ
+            Р ВРЎРѓРЎвЂљР С•РЎР‚Р С‘РЎРЏ Р В±Р В°РЎвЂљРЎвЂљР В»Р С•Р Р†
           </DialogTitle>
           <DialogDescription style={{ color: theme === 'dark' ? '#A7B0BD' : '#6B7280' }}>
-            Р’Р°С€Рё РїСЂРѕС€Р»С‹Рµ Р±Р°С‚С‚Р»С‹ Р·Р° СЌС‚Сѓ РЅРµРґРµР»СЋ ({weeklyHistory.weekStart} - {weeklyHistory.weekEnd})
+            Р вЂ™Р В°РЎв‚¬Р С‘ Р С—РЎР‚Р С•РЎв‚¬Р В»РЎвЂ№Р Вµ Р В±Р В°РЎвЂљРЎвЂљР В»РЎвЂ№ Р В·Р В° РЎРЊРЎвЂљРЎС“ Р Р…Р ВµР Т‘Р ВµР В»РЎР‹ ({weeklyHistory.weekStart} - {weeklyHistory.weekEnd})
           </DialogDescription>
           
           <div className="space-y-3">
@@ -674,13 +674,13 @@ export function BattleLeaderboard({ leaderboard = [], activeBattles = [], onNavi
             ) : (
               <div className="text-center py-8">
                 <p style={{ color: theme === 'dark' ? '#A7B0BD' : '#6B7280' }}>
-                  РќР° СЌС‚РѕР№ РЅРµРґРµР»Рµ Р±Р°С‚С‚Р»РѕРІ РЅРµ Р±С‹Р»Рѕ
+                  Р СњР В° РЎРЊРЎвЂљР С•Р в„– Р Р…Р ВµР Т‘Р ВµР В»Р Вµ Р В±Р В°РЎвЂљРЎвЂљР В»Р С•Р Р† Р Р…Р Вµ Р В±РЎвЂ№Р В»Р С•
                 </p>
                 <button 
                   onClick={handleAllTimeHistoryClick}
                   className="mt-2 text-blue-500 hover:text-blue-600"
                 >
-                  РџРѕСЃРјРѕС‚СЂРµС‚СЊ РёСЃС‚РѕСЂРёСЋ Р·Р° РІСЃРµ РІСЂРµРјСЏ
+                  Р СџР С•РЎРѓР СР С•РЎвЂљРЎР‚Р ВµРЎвЂљРЎРЉ Р С‘РЎРѓРЎвЂљР С•РЎР‚Р С‘РЎР‹ Р В·Р В° Р Р†РЎРѓР Вµ Р Р†РЎР‚Р ВµР СРЎРЏ
                 </button>
               </div>
             )}
@@ -688,7 +688,7 @@ export function BattleLeaderboard({ leaderboard = [], activeBattles = [], onNavi
         </DialogContent>
       </Dialog>
 
-      {/* РЎРѕР·РґР°РЅРёРµ Р±Р°С‚С‚Р»Р° */}
+      {/* Р РЋР С•Р В·Р Т‘Р В°Р Р…Р С‘Р Вµ Р В±Р В°РЎвЂљРЎвЂљР В»Р В° */}
       <Dialog open={isCreateBattleOpen} onOpenChange={setIsCreateBattleOpen}>
         <DialogContent 
           className="sm:max-w-lg mx-auto"
@@ -701,14 +701,14 @@ export function BattleLeaderboard({ leaderboard = [], activeBattles = [], onNavi
           }}
         >
           <DialogTitle style={{ color: theme === 'dark' ? '#E8ECF2' : '#0F172A' }}>
-            РЎРѕР·РґР°С‚СЊ Р±Р°С‚С‚Р»
+            Р РЋР С•Р В·Р Т‘Р В°РЎвЂљРЎРЉ Р В±Р В°РЎвЂљРЎвЂљР В»
           </DialogTitle>
           <DialogDescription style={{ color: theme === 'dark' ? '#A7B0BD' : '#6B7280' }}>
-            Р’С‹Р±РµСЂРёС‚Рµ СЃРѕРїРµСЂРЅРёРєР° РґР»СЏ Р±Р°С‚С‚Р»Р°
+            Р вЂ™РЎвЂ№Р В±Р ВµРЎР‚Р С‘РЎвЂљР Вµ РЎРѓР С•Р С—Р ВµРЎР‚Р Р…Р С‘Р С”Р В° Р Т‘Р В»РЎРЏ Р В±Р В°РЎвЂљРЎвЂљР В»Р В°
           </DialogDescription>
           
           <div className="space-y-4">
-            {/* Р¤РёР»СЊС‚СЂ РїРѕ РєРѕРјР°РЅРґР°Рј */}
+            {/* Р В¤Р С‘Р В»РЎРЉРЎвЂљРЎР‚ Р С—Р С• Р С”Р С•Р СР В°Р Р…Р Т‘Р В°Р С */}
             <div className="relative" ref={teamFilterRef}>
               <button
                 onClick={() => setIsTeamFilterOpen(!isTeamFilterOpen)}
@@ -719,7 +719,7 @@ export function BattleLeaderboard({ leaderboard = [], activeBattles = [], onNavi
                   color: theme === 'dark' ? '#E8ECF2' : '#0F172A'
                 }}
               >
-                {selectedTeamFilter ? `РљРѕРјР°РЅРґР° ${selectedTeamFilter}` : 'Р’СЃРµ РєРѕРјР°РЅРґС‹'}
+                {selectedTeamFilter ? `Р С™Р С•Р СР В°Р Р…Р Т‘Р В° ${selectedTeamFilter}` : 'Р вЂ™РЎРѓР Вµ Р С”Р С•Р СР В°Р Р…Р Т‘РЎвЂ№'}
                 <ChevronDown className="w-4 h-4" />
               </button>
               
@@ -740,7 +740,7 @@ export function BattleLeaderboard({ leaderboard = [], activeBattles = [], onNavi
                       backgroundColor: !selectedTeamFilter ? (theme === 'dark' ? 'rgba(255, 255, 255, 0.1)' : 'rgba(0, 0, 0, 0.05)') : 'transparent'
                     }}
                   >
-                    Р’СЃРµ РєРѕРјР°РЅРґС‹
+                    Р вЂ™РЎРѓР Вµ Р С”Р С•Р СР В°Р Р…Р Т‘РЎвЂ№
                   </button>
                   {[1, 2, 3, 4, 5, 6].map(teamId => (
                     <button
@@ -752,14 +752,14 @@ export function BattleLeaderboard({ leaderboard = [], activeBattles = [], onNavi
                         backgroundColor: selectedTeamFilter === teamId ? (theme === 'dark' ? 'rgba(255, 255, 255, 0.1)' : 'rgba(0, 0, 0, 0.05)') : 'transparent'
                       }}
                     >
-                      РљРѕРјР°РЅРґР° {teamId}
+                      Р С™Р С•Р СР В°Р Р…Р Т‘Р В° {teamId}
                     </button>
                   ))}
                 </div>
               )}
             </div>
 
-            {/* РЎРїРёСЃРѕРє СЃРѕС‚СЂСѓРґРЅРёРєРѕРІ */}
+            {/* Р РЋР С—Р С‘РЎРѓР С•Р С” РЎРѓР С•РЎвЂљРЎР‚РЎС“Р Т‘Р Р…Р С‘Р С”Р С•Р Р† */}
             <div className="space-y-2 max-h-64 overflow-y-auto">
               {filteredEmployees.map((employee) => (
                 <div
@@ -786,7 +786,7 @@ export function BattleLeaderboard({ leaderboard = [], activeBattles = [], onNavi
                         {employee.name}
                       </div>
                       <div style={{ color: theme === 'dark' ? '#A7B0BD' : '#6B7280' }} className="text-sm">
-                        РљРѕРјР°РЅРґР° {employee.team}
+                        Р С™Р С•Р СР В°Р Р…Р Т‘Р В° {employee.team}
                       </div>
                     </div>
                   </div>
@@ -798,7 +798,7 @@ export function BattleLeaderboard({ leaderboard = [], activeBattles = [], onNavi
                     }}
                     disabled={personalBattles.length > 0}
                   >
-                    {personalBattles.length > 0 ? 'Р‘Р»РѕРєРёСЂРѕРІР°РЅРѕ' : 'Р’С‹Р·РІР°С‚СЊ'}
+                    {personalBattles.length > 0 ? 'Р вЂР В»Р С•Р С”Р С‘РЎР‚Р С•Р Р†Р В°Р Р…Р С•' : 'Р вЂ™РЎвЂ№Р В·Р Р†Р В°РЎвЂљРЎРЉ'}
                   </button>
                 </div>
               ))}
@@ -807,7 +807,7 @@ export function BattleLeaderboard({ leaderboard = [], activeBattles = [], onNavi
         </DialogContent>
       </Dialog>
 
-      {/* РџРѕРґС‚РІРµСЂР¶РґРµРЅРёРµ СЃРѕР·РґР°РЅРёСЏ Р±Р°С‚С‚Р»Р° */}
+      {/* Р СџР С•Р Т‘РЎвЂљР Р†Р ВµРЎР‚Р В¶Р Т‘Р ВµР Р…Р С‘Р Вµ РЎРѓР С•Р В·Р Т‘Р В°Р Р…Р С‘РЎРЏ Р В±Р В°РЎвЂљРЎвЂљР В»Р В° */}
       <Dialog open={isBattleConfirmOpen} onOpenChange={setIsBattleConfirmOpen}>
         <DialogContent 
           className="sm:max-w-md mx-auto"
@@ -820,10 +820,10 @@ export function BattleLeaderboard({ leaderboard = [], activeBattles = [], onNavi
           }}
         >
           <DialogTitle style={{ color: theme === 'dark' ? '#E8ECF2' : '#0F172A' }}>
-            РџРѕРґС‚РІРµСЂР¶РґРµРЅРёРµ Р±Р°С‚С‚Р»Р°
+            Р СџР С•Р Т‘РЎвЂљР Р†Р ВµРЎР‚Р В¶Р Т‘Р ВµР Р…Р С‘Р Вµ Р В±Р В°РЎвЂљРЎвЂљР В»Р В°
           </DialogTitle>
           <DialogDescription style={{ color: theme === 'dark' ? '#A7B0BD' : '#6B7280' }}>
-            Р’С‹Р·РІР°С‚СЊ РЅР° Р±Р°С‚С‚Р» {selectedEmployee?.name}?
+            Р вЂ™РЎвЂ№Р В·Р Р†Р В°РЎвЂљРЎРЉ Р Р…Р В° Р В±Р В°РЎвЂљРЎвЂљР В» {selectedEmployee?.name}?
           </DialogDescription>
           
           <div className="space-y-4">
@@ -832,7 +832,7 @@ export function BattleLeaderboard({ leaderboard = [], activeBattles = [], onNavi
                 className="block text-sm font-medium mb-2"
                 style={{ color: theme === 'dark' ? '#E8ECF2' : '#0F172A' }}
               >
-                РЎС‚Р°РІРєР° (РєРѕРёРЅС‹)
+                Р РЋРЎвЂљР В°Р Р†Р С”Р В° (Р С”Р С•Р С‘Р Р…РЎвЂ№)
               </label>
               <input
                 type="number"
@@ -858,7 +858,7 @@ export function BattleLeaderboard({ leaderboard = [], activeBattles = [], onNavi
                   color: !battleStake.trim() ? (theme === 'dark' ? '#6B7280' : '#9CA3AF') : '#FFFFFF'
                 }}
               >
-                РџРѕРґС‚РІРµСЂРґРёС‚СЊ
+                Р СџР С•Р Т‘РЎвЂљР Р†Р ВµРЎР‚Р Т‘Р С‘РЎвЂљРЎРЉ
               </button>
               <button
                 onClick={handleCancelBattleConfirm}
@@ -868,14 +868,14 @@ export function BattleLeaderboard({ leaderboard = [], activeBattles = [], onNavi
                   color: theme === 'dark' ? '#E8ECF2' : '#0F172A'
                 }}
               >
-                РћС‚РјРµРЅР°
+                Р С›РЎвЂљР СР ВµР Р…Р В°
               </button>
             </div>
           </div>
         </DialogContent>
       </Dialog>
 
-      {/* Р’СЃРµ РїРѕР»СЊР·РѕРІР°С‚РµР»Рё */}
+      {/* Р вЂ™РЎРѓР Вµ Р С—Р С•Р В»РЎРЉР В·Р С•Р Р†Р В°РЎвЂљР ВµР В»Р С‘ */}
       <Dialog open={isUsersDialogOpen} onOpenChange={setIsUsersDialogOpen}>
         <DialogContent 
           className="sm:max-w-md mx-auto"
@@ -888,15 +888,15 @@ export function BattleLeaderboard({ leaderboard = [], activeBattles = [], onNavi
           }}
         >
           <DialogTitle style={{ color: theme === 'dark' ? '#E8ECF2' : '#0F172A' }}>
-            Р’СЃРµ РїРѕР»СЊР·РѕРІР°С‚РµР»Рё
+            Р вЂ™РЎРѓР Вµ Р С—Р С•Р В»РЎРЉР В·Р С•Р Р†Р В°РЎвЂљР ВµР В»Р С‘
           </DialogTitle>
           <DialogDescription style={{ color: theme === 'dark' ? '#A7B0BD' : '#6B7280' }}>
-            РџРѕР»РЅС‹Р№ СЃРїРёСЃРѕРє СѓС‡Р°СЃС‚РЅРёРєРѕРІ - {getSortTypeText(dialogSortType)}
+            Р СџР С•Р В»Р Р…РЎвЂ№Р в„– РЎРѓР С—Р С‘РЎРѓР С•Р С” РЎС“РЎвЂЎР В°РЎРѓРЎвЂљР Р…Р С‘Р С”Р С•Р Р† - {getSortTypeText(dialogSortType)}
           </DialogDescription>
           
           <div className="flex justify-between items-center mb-4">
             <span style={{ color: theme === 'dark' ? '#E8ECF2' : '#0F172A' }}>
-              РЎРѕСЂС‚РёСЂРѕРІРєР°: {getSortTypeText(dialogSortType)}
+              Р РЋР С•РЎР‚РЎвЂљР С‘РЎР‚Р С•Р Р†Р С”Р В°: {getSortTypeText(dialogSortType)}
             </span>
             <button
               onClick={handleDialogSortClick}
@@ -945,8 +945,8 @@ export function BattleLeaderboard({ leaderboard = [], activeBattles = [], onNavi
                   </div>
                 </div>
                 <div style={{ color: theme === 'dark' ? '#A7B0BD' : '#6B7280' }}>
-                  {dialogSortType === 'level' && `РЈСЂ.${user.level}`}
-                  {dialogSortType === 'achievements' && `${user.achievements}в…`}
+                  {dialogSortType === 'level' && `Р Р€РЎР‚.${user.level}`}
+                  {dialogSortType === 'achievements' && `${user.achievements}РІВвЂ¦`}
                   {dialogSortType === 'balance' && user.balance}
                 </div>
               </div>

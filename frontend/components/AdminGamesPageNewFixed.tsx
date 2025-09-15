@@ -1,4 +1,4 @@
-﻿import { useState } from 'react';
+п»їimport { useState } from 'react';
 import { Plus, Eye, Edit, Trash2, Play, Pause, Archive, Copy, Check, ChevronLeft, ChevronRight, Home, Users, Zap, Trophy, CheckSquare, ShoppingBag, Gamepad2, Box, CircleDot, Scissors, DollarSign, X, Settings } from './Icons';
 import { Dialog, DialogContent, DialogTitle, DialogDescription } from './ui/dialog';
 import { Button } from './ui/button';
@@ -32,27 +32,27 @@ interface Game {
 }
 
 export function AdminGamesPageNewFixed({ onBack, onNavigateToSection }: AdminGamesPageNewFixedProps) {
-  // РќР°РІРёРіР°С†РёРѕРЅРЅС‹Рµ СЌР»РµРјРµРЅС‚С‹ РїР°РЅРµР»Рё Р°РґРјРёРЅРёСЃС‚СЂР°С‚РѕСЂР°
+  // Р СњР В°Р Р†Р С‘Р С–Р В°РЎвЂ Р С‘Р С•Р Р…Р Р…РЎвЂ№Р Вµ РЎРЊР В»Р ВµР СР ВµР Р…РЎвЂљРЎвЂ№ Р С—Р В°Р Р…Р ВµР В»Р С‘ Р В°Р Т‘Р СР С‘Р Р…Р С‘РЎРѓРЎвЂљРЎР‚Р В°РЎвЂљР С•РЎР‚Р В°
   const navigationItems = [
-    { icon: Home, label: 'Р“Р»Р°РІРЅР°СЏ', section: 'dashboard' },
-    { icon: Users, label: 'Р’РѕСЂРєРµСЂС‹', section: 'workers' },
-    { icon: Zap, label: 'Р‘Р°С‚С‚Р»С‹', section: 'battles' },
-    { icon: Trophy, label: 'Р”РѕСЃС‚РёР¶РµРЅРёСЏ', section: 'achievements' },
-    { icon: CheckSquare, label: 'Р—Р°РґР°С‡Рё', section: 'tasks' },
-    { icon: ShoppingBag, label: 'РўРѕРІР°СЂС‹', section: 'shop' },
-    { icon: Gamepad2, label: 'РРіСЂС‹', section: 'games' },
-    { icon: Box, label: 'РљРµР№СЃС‹', section: 'cases' }
+    { icon: Home, label: 'Р вЂњР В»Р В°Р Р†Р Р…Р В°РЎРЏ', section: 'dashboard' },
+    { icon: Users, label: 'Р вЂ™Р С•РЎР‚Р С”Р ВµРЎР‚РЎвЂ№', section: 'workers' },
+    { icon: Zap, label: 'Р вЂР В°РЎвЂљРЎвЂљР В»РЎвЂ№', section: 'battles' },
+    { icon: Trophy, label: 'Р вЂќР С•РЎРѓРЎвЂљР С‘Р В¶Р ВµР Р…Р С‘РЎРЏ', section: 'achievements' },
+    { icon: CheckSquare, label: 'Р вЂ”Р В°Р Т‘Р В°РЎвЂЎР С‘', section: 'tasks' },
+    { icon: ShoppingBag, label: 'Р СћР С•Р Р†Р В°РЎР‚РЎвЂ№', section: 'shop' },
+    { icon: Gamepad2, label: 'Р ВР С–РЎР‚РЎвЂ№', section: 'games' },
+    { icon: Box, label: 'Р С™Р ВµР в„–РЎРѓРЎвЂ№', section: 'cases' }
   ];
 
-  // Р”РѕР±Р°РІР»СЏРµРј С‚РµСЃС‚РѕРІСѓСЋ РёРіСЂСѓ РґР»СЏ РґРµРјРѕРЅСЃС‚СЂР°С†РёРё  
+  // Р вЂќР С•Р В±Р В°Р Р†Р В»РЎРЏР ВµР С РЎвЂљР ВµРЎРѓРЎвЂљР С•Р Р†РЎС“РЎР‹ Р С‘Р С–РЎР‚РЎС“ Р Т‘Р В»РЎРЏ Р Т‘Р ВµР СР С•Р Р…РЎРѓРЎвЂљРЎР‚Р В°РЎвЂ Р С‘Р С‘  
   const [games, setGames] = useState<Game[]>([
     {
       id: '1',
-      name: 'РџРџРџ',
-      description: 'РљРѕР»РµСЃРѕ С„РѕСЂС‚СѓРЅС‹ вЂў РљСѓР»РґР°СѓРЅ 300СЃ',
+      name: 'Р СџР СџР Сџ',
+      description: 'Р С™Р С•Р В»Р ВµРЎРѓР С• РЎвЂћР С•РЎР‚РЎвЂљРЎС“Р Р…РЎвЂ№ РІР‚Сћ Р С™РЎС“Р В»Р Т‘Р В°РЎС“Р Р… 300РЎРѓ',
       type: 'wheel',
       status: 'draft',
-      icon: 'рџЋ®',
+      icon: 'СЂСџР‹В®',
       config: {
         sectors: [],
         spinAnimationMs: 3000
@@ -108,9 +108,9 @@ export function AdminGamesPageNewFixed({ onBack, onNavigateToSection }: AdminGam
 
   const getStatusLabel = (status: Game['status']) => {
     switch (status) {
-      case 'published': return 'РћРїСѓР±Р»РёРєРѕРІР°РЅРѕ';
-      case 'draft': return 'Р§РµСЂРЅРѕРІРёРє';
-      case 'archived': return 'РђСЂС…РёРІ';
+      case 'published': return 'Р С›Р С—РЎС“Р В±Р В»Р С‘Р С”Р С•Р Р†Р В°Р Р…Р С•';
+      case 'draft': return 'Р В§Р ВµРЎР‚Р Р…Р С•Р Р†Р С‘Р С”';
+      case 'archived': return 'Р С’РЎР‚РЎвЂ¦Р С‘Р Р†';
       default: return status;
     }
   };
@@ -126,19 +126,19 @@ export function AdminGamesPageNewFixed({ onBack, onNavigateToSection }: AdminGam
   return (
     <div className="min-h-screen bg-background pb-20">
       <div className="p-4 sm:p-6 space-y-6 max-w-full overflow-hidden">
-        {/* Р—Р°РіРѕР»РѕРІРѕРє */}
+        {/* Р вЂ”Р В°Р С–Р С•Р В»Р С•Р Р†Р С•Р С” */}
         <div className="flex items-center justify-between">
-          <h1 className="text-xl font-medium text-foreground">РЈРїСЂР°РІР»РµРЅРёРµ РёРіСЂР°РјРё</h1>
+          <h1 className="text-xl font-medium text-foreground">Р Р€Р С—РЎР‚Р В°Р Р†Р В»Р ВµР Р…Р С‘Р Вµ Р С‘Р С–РЎР‚Р В°Р СР С‘</h1>
           <button
             onClick={() => setIsWizardOpen(true)}
             className="flex items-center gap-2 bg-primary text-primary-foreground px-4 py-2 rounded-xl hover:scale-[0.98] transition-transform apple-shadow"
           >
             <Plus className="w-4 h-4" />
-            РЎРѕР·РґР°С‚СЊ РёРіСЂСѓ
+            Р РЋР С•Р В·Р Т‘Р В°РЎвЂљРЎРЉ Р С‘Р С–РЎР‚РЎС“
           </button>
         </div>
 
-        {/* РЎС‚Р°С‚РёСЃС‚РёРєР° */}
+        {/* Р РЋРЎвЂљР В°РЎвЂљР С‘РЎРѓРЎвЂљР С‘Р С”Р В° */}
         <div className="grid grid-cols-3 gap-4">
           <div className="glass-card p-4 rounded-2xl apple-shadow">
             <div className="text-center">
@@ -146,7 +146,7 @@ export function AdminGamesPageNewFixed({ onBack, onNavigateToSection }: AdminGam
                 {games.length}
               </div>
               <div className="text-sm text-muted-foreground">
-                Р’СЃРµРіРѕ РёРіСЂ
+                Р вЂ™РЎРѓР ВµР С–Р С• Р С‘Р С–РЎР‚
               </div>
             </div>
           </div>
@@ -156,7 +156,7 @@ export function AdminGamesPageNewFixed({ onBack, onNavigateToSection }: AdminGam
                 {games.filter(game => game.status === 'published').length}
               </div>
               <div className="text-sm text-muted-foreground">
-                РћРїСѓР±Р»РёРєРѕРІР°РЅРѕ
+                Р С›Р С—РЎС“Р В±Р В»Р С‘Р С”Р С•Р Р†Р В°Р Р…Р С•
               </div>
             </div>
           </div>
@@ -166,13 +166,13 @@ export function AdminGamesPageNewFixed({ onBack, onNavigateToSection }: AdminGam
                 {games.filter(game => game.status === 'archived').length}
               </div>
               <div className="text-sm text-muted-foreground">
-                Р’ Р°СЂС…РёРІРµ
+                Р вЂ™ Р В°РЎР‚РЎвЂ¦Р С‘Р Р†Р Вµ
               </div>
             </div>
           </div>
         </div>
 
-        {/* РЎРїРёСЃРѕРє РёРіСЂ */}
+        {/* Р РЋР С—Р С‘РЎРѓР С•Р С” Р С‘Р С–РЎР‚ */}
         <div className="space-y-4">
           {games.length > 0 ? (
             games.map((game) => (
@@ -205,13 +205,13 @@ export function AdminGamesPageNewFixed({ onBack, onNavigateToSection }: AdminGam
                     
                     <div className="grid grid-cols-2 gap-4 text-sm mb-3">
                       <div>
-                        <span className="text-muted-foreground">РРіСЂ: </span>
+                        <span className="text-muted-foreground">Р ВР С–РЎР‚: </span>
                         <span className="text-foreground">
                           {game.stats.totalPlays}
                         </span>
                       </div>
                       <div>
-                        <span className="text-muted-foreground">РќР°РіСЂР°Рґ: </span>
+                        <span className="text-muted-foreground">Р СњР В°Р С–РЎР‚Р В°Р Т‘: </span>
                         <span className="text-foreground">
                           {game.stats.totalRewards}
                         </span>
@@ -220,21 +220,21 @@ export function AdminGamesPageNewFixed({ onBack, onNavigateToSection }: AdminGam
                     
                     <div className="flex items-center justify-between text-sm gap-2 mb-3">
                       <div className="text-muted-foreground">
-                        РћР±РЅРѕРІР»РµРЅРѕ: {formatDate(game.updatedAt)} вЂў РћРїСѓР±Р»РёРєРѕРІР°РЅРѕ: {game.publishedAt ? formatDate(game.publishedAt) : 'РќРµ РѕРїСѓР±Р»РёРєРѕРІР°РЅРѕ'}
+                        Р С›Р В±Р Р…Р С•Р Р†Р В»Р ВµР Р…Р С•: {formatDate(game.updatedAt)} РІР‚Сћ Р С›Р С—РЎС“Р В±Р В»Р С‘Р С”Р С•Р Р†Р В°Р Р…Р С•: {game.publishedAt ? formatDate(game.publishedAt) : 'Р СњР Вµ Р С•Р С—РЎС“Р В±Р В»Р С‘Р С”Р С•Р Р†Р В°Р Р…Р С•'}
                       </div>
                     </div>
                     
                     <div className="flex items-center gap-3 flex-wrap">
                       <button className="flex items-center gap-2 px-4 py-2 glass-card rounded-xl text-sm hover:scale-[0.98] transition-transform shrink-0">
                         <Eye className="w-4 h-4" />
-                        РџСЂРµРґРїСЂРѕСЃРјРѕС‚СЂ
+                        Р СџРЎР‚Р ВµР Т‘Р С—РЎР‚Р С•РЎРѓР СР С•РЎвЂљРЎР‚
                       </button>
                       <button 
                         onClick={() => openEditModal(game)}
                         className="flex items-center gap-2 px-4 py-2 glass-card rounded-xl text-sm hover:scale-[0.98] transition-transform shrink-0"
                       >
                         <Edit className="w-4 h-4" />
-                        Р РµРґР°РєС‚РёСЂРѕРІР°С‚СЊ
+                        Р В Р ВµР Т‘Р В°Р С”РЎвЂљР С‘РЎР‚Р С•Р Р†Р В°РЎвЂљРЎРЉ
                       </button>
                       <button className="w-10 h-10 bg-primary rounded-xl flex items-center justify-center shrink-0 hover:scale-[0.98] transition-transform">
                         <div className="w-0 h-0 border-l-[6px] border-l-white border-t-[4px] border-t-transparent border-b-[4px] border-b-transparent ml-1"></div>
@@ -248,20 +248,20 @@ export function AdminGamesPageNewFixed({ onBack, onNavigateToSection }: AdminGam
             <div className="glass-card rounded-2xl p-8 text-center apple-shadow">
               <Gamepad2 className="w-12 h-12 text-muted-foreground mx-auto mb-4" />
               <p className="text-muted-foreground">
-                РРіСЂ РїРѕРєР° РЅРµС‚
+                Р ВР С–РЎР‚ Р С—Р С•Р С”Р В° Р Р…Р ВµРЎвЂљ
               </p>
             </div>
           )}
         </div>
       </div>
 
-      {/* РџСЂРѕСЃС‚РѕРµ РјРѕРґР°Р»СЊРЅРѕРµ РѕРєРЅРѕ СЃРѕР·РґР°РЅРёСЏ/СЂРµРґР°РєС‚РёСЂРѕРІР°РЅРёСЏ РёРіСЂС‹ */}
+      {/* Р СџРЎР‚Р С•РЎРѓРЎвЂљР С•Р Вµ Р СР С•Р Т‘Р В°Р В»РЎРЉР Р…Р С•Р Вµ Р С•Р С”Р Р…Р С• РЎРѓР С•Р В·Р Т‘Р В°Р Р…Р С‘РЎРЏ/РЎР‚Р ВµР Т‘Р В°Р С”РЎвЂљР С‘РЎР‚Р С•Р Р†Р В°Р Р…Р С‘РЎРЏ Р С‘Р С–РЎР‚РЎвЂ№ */}
       {isWizardOpen && (
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 backdrop-blur-sm p-4">
           <div className="w-full max-w-md bg-background rounded-2xl p-6 apple-shadow">
             <div className="flex items-center justify-between mb-6">
               <h2 className="text-lg font-medium text-foreground">
-                {selectedGame ? 'Р РµРґР°РєС‚РёСЂРѕРІР°С‚СЊ РёРіСЂСѓ' : 'РЎРѕР·РґР°С‚СЊ РёРіСЂСѓ'}
+                {selectedGame ? 'Р В Р ВµР Т‘Р В°Р С”РЎвЂљР С‘РЎР‚Р С•Р Р†Р В°РЎвЂљРЎРЉ Р С‘Р С–РЎР‚РЎС“' : 'Р РЋР С•Р В·Р Т‘Р В°РЎвЂљРЎРЉ Р С‘Р С–РЎР‚РЎС“'}
               </h2>
               <button
                 onClick={() => {
@@ -277,24 +277,24 @@ export function AdminGamesPageNewFixed({ onBack, onNavigateToSection }: AdminGam
             <div className="space-y-4">
               <div>
                 <label className="text-sm font-medium text-foreground mb-2 block">
-                  РќР°Р·РІР°РЅРёРµ РёРіСЂС‹
+                  Р СњР В°Р В·Р Р†Р В°Р Р…Р С‘Р Вµ Р С‘Р С–РЎР‚РЎвЂ№
                 </label>
                 <input
                   type="text"
                   defaultValue={selectedGame?.name || ''}
                   className="w-full px-4 py-3 glass-card rounded-xl text-foreground placeholder-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary"
-                  placeholder="Р’РІРµРґРёС‚Рµ РЅР°Р·РІР°РЅРёРµ РёРіСЂС‹"
+                  placeholder="Р вЂ™Р Р†Р ВµР Т‘Р С‘РЎвЂљР Вµ Р Р…Р В°Р В·Р Р†Р В°Р Р…Р С‘Р Вµ Р С‘Р С–РЎР‚РЎвЂ№"
                 />
               </div>
               
               <div>
                 <label className="text-sm font-medium text-foreground mb-2 block">
-                  РћРїРёСЃР°РЅРёРµ
+                  Р С›Р С—Р С‘РЎРѓР В°Р Р…Р С‘Р Вµ
                 </label>
                 <textarea
                   defaultValue={selectedGame?.description || ''}
                   className="w-full px-4 py-3 glass-card rounded-xl text-foreground placeholder-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary resize-none"
-                  placeholder="РћРїРёСЃР°РЅРёРµ РёРіСЂС‹"
+                  placeholder="Р С›Р С—Р С‘РЎРѓР В°Р Р…Р С‘Р Вµ Р С‘Р С–РЎР‚РЎвЂ№"
                   rows={3}
                 />
               </div>
@@ -307,7 +307,7 @@ export function AdminGamesPageNewFixed({ onBack, onNavigateToSection }: AdminGam
                   }}
                   className="flex-1 glass-card rounded-2xl p-3 text-sm font-medium text-foreground hover:scale-[0.98] transition-transform"
                 >
-                  РћС‚РјРµРЅРёС‚СЊ
+                  Р С›РЎвЂљР СР ВµР Р…Р С‘РЎвЂљРЎРЉ
                 </button>
                 <button
                   onClick={() => {
@@ -316,7 +316,7 @@ export function AdminGamesPageNewFixed({ onBack, onNavigateToSection }: AdminGam
                   }}
                   className="flex-1 bg-primary text-primary-foreground rounded-2xl p-3 text-sm font-medium hover:scale-[0.98] transition-transform"
                 >
-                  {selectedGame ? 'РЎРѕС…СЂР°РЅРёС‚СЊ' : 'РЎРѕР·РґР°С‚СЊ'}
+                  {selectedGame ? 'Р РЋР С•РЎвЂ¦РЎР‚Р В°Р Р…Р С‘РЎвЂљРЎРЉ' : 'Р РЋР С•Р В·Р Т‘Р В°РЎвЂљРЎРЉ'}
                 </button>
               </div>
             </div>
@@ -324,7 +324,7 @@ export function AdminGamesPageNewFixed({ onBack, onNavigateToSection }: AdminGam
         </div>
       )}
 
-      {/* Р‘С‹СЃС‚СЂР°СЏ РЅР°РІРёРіР°С†РёСЏ */}
+      {/* Р вЂРЎвЂ№РЎРѓРЎвЂљРЎР‚Р В°РЎРЏ Р Р…Р В°Р Р†Р С‘Р С–Р В°РЎвЂ Р С‘РЎРЏ */}
       <div className="fixed bottom-0 left-0 right-0 bg-background border-t border-border/20">
         <div className="p-6">
           <div className="grid grid-cols-4 gap-4 mb-4">

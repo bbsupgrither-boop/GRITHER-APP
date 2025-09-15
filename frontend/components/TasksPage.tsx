@@ -1,4 +1,4 @@
-﻿import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { Header } from './Header';
 import { BottomNavigation } from './BottomNavigation';
 import { BackgroundFX } from './BackgroundFX';
@@ -32,10 +32,10 @@ interface TasksPageProps {
 type TaskStatus = 'not_started' | 'in_progress' | 'completed' | 'overdue';
 type FilterType = 'all' | 'not_started' | 'in_progress' | 'completed' | 'overdue';
 
-// Безопасный конвертер задач
-const toTasks = (g: any): Task[] => Array.isArray(g) ? g.map((t, i) => ({
+// Р‘РµР·РѕРїР°СЃРЅС‹Р№ РєРѕРЅРІРµСЂС‚РµСЂ Р·Р°РґР°С‡
+const toTasks = (g: unknown): Task[] => Array.isArray(g) ? g.map((t: any, i: number) => ({
   id: String(t?.id ?? i + 1),
-  title: t?.title ?? "Без названия",
+  title: t?.title ?? "Р‘РµР· РЅР°Р·РІР°РЅРёСЏ",
   description: t?.description ?? "",
   reward: Number(t?.reward ?? 0),
   rewardType: t?.rewardType ?? 'coins',
@@ -63,10 +63,10 @@ export const TasksPage: React.FC<TasksPageProps> = ({
   onClearAllNotifications,
   onOpenSettings = () => {},
 }) => {
-  // Локальное состояние задач с защитой от ошибок
+  // Р›РѕРєР°Р»СЊРЅРѕРµ СЃРѕСЃС‚РѕСЏРЅРёРµ Р·Р°РґР°С‡ СЃ Р·Р°С‰РёС‚РѕР№ РѕС‚ РѕС€РёР±РѕРє
   const [tasks, setTasksLocal] = useState<Task[]>(toTasks(globalTasks ?? []));
   
-  // Обновляем локальное состояние при изменении глобальных задач
+  // РћР±РЅРѕРІР»СЏРµРј Р»РѕРєР°Р»СЊРЅРѕРµ СЃРѕСЃС‚РѕСЏРЅРёРµ РїСЂРё РёР·РјРµРЅРµРЅРёРё РіР»РѕР±Р°Р»СЊРЅС‹С… Р·Р°РґР°С‡
   useEffect(() => {
     setTasksLocal(toTasks(globalTasks ?? []));
   }, [globalTasks]);
@@ -194,12 +194,12 @@ export const TasksPage: React.FC<TasksPageProps> = ({
                 margin: 0
               }}
             >
-              Задачи
+              Р—Р°РґР°С‡Рё
             </h1>
             
             <button
               onClick={() => setIsCreateModalOpen(true)}
-              aria-label="Создать новую задачу"
+              aria-label="РЎРѕР·РґР°С‚СЊ РЅРѕРІСѓСЋ Р·Р°РґР°С‡Сѓ"
               style={{
                 width: '40px',
                 height: '40px',
@@ -257,10 +257,10 @@ export const TasksPage: React.FC<TasksPageProps> = ({
                 <button
                   key={filterType}
                   onClick={() => setFilter(filterType)}
-                  aria-label={`Фильтр: ${filterType === 'all' ? 'Все задачи' :
-                    filterType === 'not_started' ? 'Не начатые' :
-                    filterType === 'in_progress' ? 'В процессе' :
-                    filterType === 'completed' ? 'Завершенные' : 'Просроченные'}`}
+                  aria-label={`Р¤РёР»СЊС‚СЂ: ${filterType === 'all' ? 'Р’СЃРµ Р·Р°РґР°С‡Рё' :
+                    filterType === 'not_started' ? 'РќРµ РЅР°С‡Р°С‚С‹Рµ' :
+                    filterType === 'in_progress' ? 'Р’ РїСЂРѕС†РµСЃСЃРµ' :
+                    filterType === 'completed' ? 'Р—Р°РІРµСЂС€РµРЅРЅС‹Рµ' : 'РџСЂРѕСЃСЂРѕС‡РµРЅРЅС‹Рµ'}`}
                   style={{
                     padding: '8px 16px',
                     borderRadius: '20px',
@@ -296,10 +296,10 @@ export const TasksPage: React.FC<TasksPageProps> = ({
                     e.currentTarget.style.transform = 'scale(1)';
                   }}
                 >
-                  {filterType === 'all' ? 'Все' :
-                   filterType === 'not_started' ? 'Не начаты' :
-                   filterType === 'in_progress' ? 'В процессе' :
-                   filterType === 'completed' ? 'Завершены' : 'Просрочены'}
+                  {filterType === 'all' ? 'Р’СЃРµ' :
+                   filterType === 'not_started' ? 'РќРµ РЅР°С‡Р°С‚С‹' :
+                   filterType === 'in_progress' ? 'Р’ РїСЂРѕС†РµСЃСЃРµ' :
+                   filterType === 'completed' ? 'Р—Р°РІРµСЂС€РµРЅС‹' : 'РџСЂРѕСЃСЂРѕС‡РµРЅС‹'}
                 </button>
               );
             })}
@@ -411,7 +411,7 @@ export const TasksPage: React.FC<TasksPageProps> = ({
                                 color: theme === 'dark' ? '#A7B0BD' : '#6B7280'
                               }}
                             >
-                              {task.reward} {task.rewardType === 'coins' ? 'монет' : 'опыта'}
+                              {task.reward} {task.rewardType === 'coins' ? 'РјРѕРЅРµС‚' : 'РѕРїС‹С‚Р°'}
                             </span>
                           </div>
                         </div>
@@ -432,8 +432,8 @@ export const TasksPage: React.FC<TasksPageProps> = ({
                                    task.category === 'individual' ? '#FF9F0A' : '#22C55E'
                           }}
                         >
-                          {task.category === 'team' ? 'Команда' :
-                           task.category === 'individual' ? 'Индивидуальная' : 'Общая'}
+                          {task.category === 'team' ? 'РљРѕРјР°РЅРґР°' :
+                           task.category === 'individual' ? 'РРЅРґРёРІРёРґСѓР°Р»СЊРЅР°СЏ' : 'РћР±С‰Р°СЏ'}
                         </div>
                       </div>
                       
@@ -453,9 +453,9 @@ export const TasksPage: React.FC<TasksPageProps> = ({
                             border: `1px solid ${statusColor}40`
                           }}
                         >
-                          {taskStatus === 'completed' ? 'Завершена' :
-                           taskStatus === 'in_progress' ? 'В процессе' :
-                           taskStatus === 'overdue' ? 'Просрочена' : 'Не начата'}
+                          {taskStatus === 'completed' ? 'Р—Р°РІРµСЂС€РµРЅР°' :
+                           taskStatus === 'in_progress' ? 'Р’ РїСЂРѕС†РµСЃСЃРµ' :
+                           taskStatus === 'overdue' ? 'РџСЂРѕСЃСЂРѕС‡РµРЅР°' : 'РќРµ РЅР°С‡Р°С‚Р°'}
                         </div>
                         
                         {/* Timer controls */}
@@ -466,7 +466,7 @@ export const TasksPage: React.FC<TasksPageProps> = ({
                                 e.stopPropagation();
                                 handleTimerToggle(task.id);
                               }}
-                              aria-label={activeTimer === task.id ? 'Остановить таймер' : 'Запустить таймер'}
+                              aria-label={activeTimer === task.id ? 'РћСЃС‚Р°РЅРѕРІРёС‚СЊ С‚Р°Р№РјРµСЂ' : 'Р—Р°РїСѓСЃС‚РёС‚СЊ С‚Р°Р№РјРµСЂ'}
                               style={{
                                 width: '32px',
                                 height: '32px',
@@ -552,7 +552,7 @@ export const TasksPage: React.FC<TasksPageProps> = ({
                     marginBottom: '8px'
                   }}
                 >
-                  Нет задач
+                  РќРµС‚ Р·Р°РґР°С‡
                 </h3>
                 <p 
                   style={{
@@ -561,10 +561,10 @@ export const TasksPage: React.FC<TasksPageProps> = ({
                     lineHeight: '1.4'
                   }}
                 >
-                  {filter === 'all' ? 'Создайте первую задачу' :
-                   filter === 'not_started' ? 'Нет не начатых задач' :
-                   filter === 'in_progress' ? 'Нет задач в процессе' :
-                   filter === 'completed' ? 'Нет завершенных задач' : 'Нет просроченных задач'}
+                  {filter === 'all' ? 'РЎРѕР·РґР°Р№С‚Рµ РїРµСЂРІСѓСЋ Р·Р°РґР°С‡Сѓ' :
+                   filter === 'not_started' ? 'РќРµС‚ РЅРµ РЅР°С‡Р°С‚С‹С… Р·Р°РґР°С‡' :
+                   filter === 'in_progress' ? 'РќРµС‚ Р·Р°РґР°С‡ РІ РїСЂРѕС†РµСЃСЃРµ' :
+                   filter === 'completed' ? 'РќРµС‚ Р·Р°РІРµСЂС€РµРЅРЅС‹С… Р·Р°РґР°С‡' : 'РќРµС‚ РїСЂРѕСЃСЂРѕС‡РµРЅРЅС‹С… Р·Р°РґР°С‡'}
                 </p>
               </div>
             )}
@@ -613,7 +613,7 @@ export const TasksPage: React.FC<TasksPageProps> = ({
               marginBottom: '24px'
             }}>
               <h2 style={{ color: theme === 'dark' ? '#E8ECF2' : '#0F172A' }}>
-                Новая задача
+                РќРѕРІР°СЏ Р·Р°РґР°С‡Р°
               </h2>
               <button
                 onClick={() => setIsCreateModalOpen(false)}
@@ -630,7 +630,7 @@ export const TasksPage: React.FC<TasksPageProps> = ({
             </div>
             <div style={{ textAlign: 'center', padding: '20px' }}>
               <p style={{ color: theme === 'dark' ? '#A7B0BD' : '#6B7280' }}>
-                Функция создания задач в разработке
+                Р¤СѓРЅРєС†РёСЏ СЃРѕР·РґР°РЅРёСЏ Р·Р°РґР°С‡ РІ СЂР°Р·СЂР°Р±РѕС‚РєРµ
               </p>
             </div>
           </div>
@@ -673,7 +673,7 @@ export const TasksPage: React.FC<TasksPageProps> = ({
               marginBottom: '24px'
             }}>
               <h2 style={{ color: theme === 'dark' ? '#E8ECF2' : '#0F172A' }}>
-                Детали задачи
+                Р”РµС‚Р°Р»Рё Р·Р°РґР°С‡Рё
               </h2>
               <button
                 onClick={() => setIsDetailModalOpen(false)}
@@ -713,14 +713,14 @@ export const TasksPage: React.FC<TasksPageProps> = ({
                 borderRadius: '8px'
               }}>
                 <span style={{ fontSize: '14px', color: theme === 'dark' ? '#A7B0BD' : '#6B7280' }}>
-                  Дедлайн: {new Date(selectedTask.deadline).toLocaleDateString('ru-RU')}
+                  Р”РµРґР»Р°Р№РЅ: {new Date(selectedTask.deadline).toLocaleDateString('ru-RU')}
                 </span>
                 <span style={{ 
                   fontSize: '14px',
                   fontWeight: '600',
                   color: theme === 'dark' ? '#E8ECF2' : '#0F172A'
                 }}>
-                  {selectedTask.reward} {selectedTask.rewardType === 'coins' ? 'монет' : 'опыта'}
+                  {selectedTask.reward} {selectedTask.rewardType === 'coins' ? 'РјРѕРЅРµС‚' : 'РѕРїС‹С‚Р°'}
                 </span>
               </div>
             </div>
@@ -739,7 +739,7 @@ export const TasksPage: React.FC<TasksPageProps> = ({
                   cursor: 'pointer'
                 }}
               >
-                Закрыть
+                Р—Р°РєСЂС‹С‚СЊ
               </button>
               {!selectedTask.completedAt && (
                 <button
@@ -759,7 +759,7 @@ export const TasksPage: React.FC<TasksPageProps> = ({
                     cursor: 'pointer'
                   }}
                 >
-                  Выполнить
+                  Р’С‹РїРѕР»РЅРёС‚СЊ
                 </button>
               )}
             </div>

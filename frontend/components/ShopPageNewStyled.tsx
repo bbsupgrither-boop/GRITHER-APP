@@ -1,4 +1,4 @@
-﻿import { useState } from 'react';
+п»їimport { useState } from 'react';
 import { ShoppingCart, Package, Gamepad2, Gift, Star, Clock, Users, Play, DollarSign, CircleDot, Scissors, Plus, Minus, X, CheckCircle } from './Icons';
 import { BottomNavigation } from './BottomNavigation';
 import { ShopItem, Order } from '../types/shop';
@@ -14,35 +14,35 @@ interface ShopPageNewStyledProps {
   setOrders: (orders: Order[]) => void;
 }
 
-// РњРѕРєРё РґР°РЅРЅС‹С… РґР»СЏ РёРіСЂ Рё РєРµР№СЃРѕРІ
+// Р СљР С•Р С”Р С‘ Р Т‘Р В°Р Р…Р Р…РЎвЂ№РЎвЂ¦ Р Т‘Р В»РЎРЏ Р С‘Р С–РЎР‚ Р С‘ Р С”Р ВµР в„–РЎРѓР С•Р Р†
 const gamesData = [
   {
     id: '1',
-    name: 'РљРѕР»РµСЃРѕ СѓРґР°С‡Рё',
-    description: 'РљСЂСѓС‚РёС‚Рµ РєРѕР»РµСЃРѕ Рё РїРѕР»СѓС‡Р°Р№С‚Рµ СЃР»СѓС‡Р°Р№РЅС‹Рµ РЅР°РіСЂР°РґС‹ РєР°Р¶РґС‹Рµ 5 РјРёРЅСѓС‚',
+    name: 'Р С™Р С•Р В»Р ВµРЎРѓР С• РЎС“Р Т‘Р В°РЎвЂЎР С‘',
+    description: 'Р С™РЎР‚РЎС“РЎвЂљР С‘РЎвЂљР Вµ Р С”Р С•Р В»Р ВµРЎРѓР С• Р С‘ Р С—Р С•Р В»РЎС“РЎвЂЎР В°Р в„–РЎвЂљР Вµ РЎРѓР В»РЎС“РЎвЂЎР В°Р в„–Р Р…РЎвЂ№Р Вµ Р Р…Р В°Р С–РЎР‚Р В°Р Т‘РЎвЂ№ Р С”Р В°Р В¶Р Т‘РЎвЂ№Р Вµ 5 Р СР С‘Р Р…РЎС“РЎвЂљ',
     type: 'wheel',
-    icon: 'рџЋ°',
-    cooldown: '5Рј',
+    icon: 'СЂСџР‹В°',
+    cooldown: '5Р С',
     stats: { plays: 1254, rewards: 45680, players: 387 },
     status: 'available'
   },
   {
     id: '2',
-    name: 'Р‘РёС‚РІР° РІС‹Р±РѕСЂР°',
-    description: 'РљР»Р°СЃСЃРёС‡РµСЃРєР°СЏ РёРіСЂР° РєР°РјРµРЅСЊ-РЅРѕР¶РЅРёС†С‹-Р±СѓРјР°РіР° РїСЂРѕС‚РёРІ СѓРјРЅРѕРіРѕ Р±РѕС‚Р°',
+    name: 'Р вЂР С‘РЎвЂљР Р†Р В° Р Р†РЎвЂ№Р В±Р С•РЎР‚Р В°',
+    description: 'Р С™Р В»Р В°РЎРѓРЎРѓР С‘РЎвЂЎР ВµРЎРѓР С”Р В°РЎРЏ Р С‘Р С–РЎР‚Р В° Р С”Р В°Р СР ВµР Р…РЎРЉ-Р Р…Р С•Р В¶Р Р…Р С‘РЎвЂ РЎвЂ№-Р В±РЎС“Р СР В°Р С–Р В° Р С—РЎР‚Р С•РЎвЂљР С‘Р Р† РЎС“Р СР Р…Р С•Р С–Р С• Р В±Р С•РЎвЂљР В°',
     type: 'rps',
-    icon: 'вњ‚пёЏ',
-    cooldown: '3Рј',
+    icon: 'РІСљвЂљРїС‘РЏ',
+    cooldown: '3Р С',
     stats: { plays: 892, rewards: 15430, players: 234 },
     status: 'available'
   },
   {
     id: '3',
-    name: 'Р—РѕР»РѕС‚С‹Рµ СЃР»РѕС‚С‹',
-    description: 'РђРІС‚РѕРјР°С‚ СЃ С‚СЂРµРјСЏ Р±Р°СЂР°Р±Р°РЅР°РјРё Рё С€Р°РЅСЃРѕРј РЅР° РґР¶РµРєРїРѕС‚',
+    name: 'Р вЂ”Р С•Р В»Р С•РЎвЂљРЎвЂ№Р Вµ РЎРѓР В»Р С•РЎвЂљРЎвЂ№',
+    description: 'Р С’Р Р†РЎвЂљР С•Р СР В°РЎвЂљ РЎРѓ РЎвЂљРЎР‚Р ВµР СРЎРЏ Р В±Р В°РЎР‚Р В°Р В±Р В°Р Р…Р В°Р СР С‘ Р С‘ РЎв‚¬Р В°Р Р…РЎРѓР С•Р С Р Р…Р В° Р Т‘Р В¶Р ВµР С”Р С—Р С•РЎвЂљ',
     type: 'slots',
-    icon: 'рџЋ°',
-    cooldown: '10Рј',
+    icon: 'СЂСџР‹В°',
+    cooldown: '10Р С',
     stats: { plays: 1567, rewards: 78900, players: 456 },
     status: 'available'
   }
@@ -51,52 +51,52 @@ const gamesData = [
 const casesData = [
   {
     id: '1',
-    name: 'РЎС‚Р°СЂС‚РѕРІС‹Р№ РєРµР№СЃ',
-    description: 'Р‘Р°Р·РѕРІС‹Рµ РЅР°РіСЂР°РґС‹ РґР»СЏ РЅРѕРІРёС‡РєРѕРІ',
+    name: 'Р РЋРЎвЂљР В°РЎР‚РЎвЂљР С•Р Р†РЎвЂ№Р в„– Р С”Р ВµР в„–РЎРѓ',
+    description: 'Р вЂР В°Р В·Р С•Р Р†РЎвЂ№Р Вµ Р Р…Р В°Р С–РЎР‚Р В°Р Т‘РЎвЂ№ Р Т‘Р В»РЎРЏ Р Р…Р С•Р Р†Р С‘РЎвЂЎР С”Р С•Р Р†',
     price: 100,
     currency: 'coins',
     rarity: 'common',
-    icon: 'рџ“¦',
-    rewards: ['10-50 РјРѕРЅРµС‚', '5-20 XP', 'Р‘Р°Р·РѕРІС‹Рµ РїСЂРµРґРјРµС‚С‹'],
+    icon: 'СЂСџвЂњВ¦',
+    rewards: ['10-50 Р СР С•Р Р…Р ВµРЎвЂљ', '5-20 XP', 'Р вЂР В°Р В·Р С•Р Р†РЎвЂ№Р Вµ Р С—РЎР‚Р ВµР Т‘Р СР ВµРЎвЂљРЎвЂ№'],
     dropRate: '100%'
   },
   {
     id: '2',
-    name: 'Р—РѕР»РѕС‚РѕР№ РєРµР№СЃ',
-    description: 'Р¦РµРЅРЅС‹Рµ РЅР°РіСЂР°РґС‹ Рё СЂРµРґРєРёРµ РїСЂРµРґРјРµС‚С‹',
+    name: 'Р вЂ”Р С•Р В»Р С•РЎвЂљР С•Р в„– Р С”Р ВµР в„–РЎРѓ',
+    description: 'Р В¦Р ВµР Р…Р Р…РЎвЂ№Р Вµ Р Р…Р В°Р С–РЎР‚Р В°Р Т‘РЎвЂ№ Р С‘ РЎР‚Р ВµР Т‘Р С”Р С‘Р Вµ Р С—РЎР‚Р ВµР Т‘Р СР ВµРЎвЂљРЎвЂ№',
     price: 500,
     currency: 'coins',
     rarity: 'rare',
-    icon: 'рџЏ†',
-    rewards: ['100-500 РјРѕРЅРµС‚', '50-200 XP', 'Р РµРґРєРёРµ РїСЂРµРґРјРµС‚С‹', 'РџСЂРµРјРёСѓРј Р±РѕРЅСѓСЃС‹'],
+    icon: 'СЂСџРЏвЂ ',
+    rewards: ['100-500 Р СР С•Р Р…Р ВµРЎвЂљ', '50-200 XP', 'Р В Р ВµР Т‘Р С”Р С‘Р Вµ Р С—РЎР‚Р ВµР Т‘Р СР ВµРЎвЂљРЎвЂ№', 'Р СџРЎР‚Р ВµР СР С‘РЎС“Р С Р В±Р С•Р Р…РЎС“РЎРѓРЎвЂ№'],
     dropRate: '25%'
   },
   {
     id: '3',
-    name: 'Р›РµРіРµРЅРґР°СЂРЅС‹Р№ РєРµР№СЃ',
-    description: 'Р­РєСЃРєР»СЋР·РёРІРЅС‹Рµ РЅР°РіСЂР°РґС‹ РІС‹СЃС€РµРіРѕ СѓСЂРѕРІРЅСЏ',
+    name: 'Р вЂєР ВµР С–Р ВµР Р…Р Т‘Р В°РЎР‚Р Р…РЎвЂ№Р в„– Р С”Р ВµР в„–РЎРѓ',
+    description: 'Р В­Р С”РЎРѓР С”Р В»РЎР‹Р В·Р С‘Р Р†Р Р…РЎвЂ№Р Вµ Р Р…Р В°Р С–РЎР‚Р В°Р Т‘РЎвЂ№ Р Р†РЎвЂ№РЎРѓРЎв‚¬Р ВµР С–Р С• РЎС“РЎР‚Р С•Р Р†Р Р…РЎРЏ',
     price: 1500,
     currency: 'coins',
     rarity: 'legendary',
-    icon: 'рџ’Ћ',
-    rewards: ['500-2000 РјРѕРЅРµС‚', '200-1000 XP', 'Р›РµРіРµРЅРґР°СЂРЅС‹Рµ РїСЂРµРґРјРµС‚С‹', 'VIP СЃС‚Р°С‚СѓСЃ'],
+    icon: 'СЂСџвЂ™Р‹',
+    rewards: ['500-2000 Р СР С•Р Р…Р ВµРЎвЂљ', '200-1000 XP', 'Р вЂєР ВµР С–Р ВµР Р…Р Т‘Р В°РЎР‚Р Р…РЎвЂ№Р Вµ Р С—РЎР‚Р ВµР Т‘Р СР ВµРЎвЂљРЎвЂ№', 'VIP РЎРѓРЎвЂљР В°РЎвЂљРЎС“РЎРѓ'],
     dropRate: '5%'
   },
   {
     id: '4',
-    name: 'РџСЂР°Р·РґРЅРёС‡РЅС‹Р№ РєРµР№СЃ',
-    description: 'РћРіСЂР°РЅРёС‡РµРЅРЅР°СЏ СЃРµСЂРёСЏ СЃ СЌРєСЃРєР»СЋР·РёРІРЅС‹РјРё РЅР°РіСЂР°РґР°РјРё',
+    name: 'Р СџРЎР‚Р В°Р В·Р Т‘Р Р…Р С‘РЎвЂЎР Р…РЎвЂ№Р в„– Р С”Р ВµР в„–РЎРѓ',
+    description: 'Р С›Р С–РЎР‚Р В°Р Р…Р С‘РЎвЂЎР ВµР Р…Р Р…Р В°РЎРЏ РЎРѓР ВµРЎР‚Р С‘РЎРЏ РЎРѓ РЎРЊР С”РЎРѓР С”Р В»РЎР‹Р В·Р С‘Р Р†Р Р…РЎвЂ№Р СР С‘ Р Р…Р В°Р С–РЎР‚Р В°Р Т‘Р В°Р СР С‘',
     price: 300,
     currency: 'coins',
     rarity: 'epic',
-    icon: 'рџЋЃ',
-    rewards: ['150-800 РјРѕРЅРµС‚', '30-150 XP', 'РџСЂР°Р·РґРЅРёС‡РЅС‹Рµ РїСЂРµРґРјРµС‚С‹', 'Р’СЂРµРјРµРЅРЅС‹Рµ Р±РѕРЅСѓСЃС‹'],
+    icon: 'СЂСџР‹Рѓ',
+    rewards: ['150-800 Р СР С•Р Р…Р ВµРЎвЂљ', '30-150 XP', 'Р СџРЎР‚Р В°Р В·Р Т‘Р Р…Р С‘РЎвЂЎР Р…РЎвЂ№Р Вµ Р С—РЎР‚Р ВµР Т‘Р СР ВµРЎвЂљРЎвЂ№', 'Р вЂ™РЎР‚Р ВµР СР ВµР Р…Р Р…РЎвЂ№Р Вµ Р В±Р С•Р Р…РЎС“РЎРѓРЎвЂ№'],
     dropRate: '15%',
     limited: true
   }
 ];
 
-// РўРёРї РґР»СЏ С‚РѕРІР°СЂР° РІ РєРѕСЂР·РёРЅРµ
+// Р СћР С‘Р С— Р Т‘Р В»РЎРЏ РЎвЂљР С•Р Р†Р В°РЎР‚Р В° Р Р† Р С”Р С•РЎР‚Р В·Р С‘Р Р…Р Вµ
 interface CartItem {
   id: string;
   name: string;
@@ -116,16 +116,16 @@ export function ShopPageNewStyled({
   setOrders 
 }: ShopPageNewStyledProps) {
   const [activeTab, setActiveTab] = useState<'items' | 'games' | 'cases'>('items');
-  const [userBalance] = useState(13500); // РР· РёР·РѕР±СЂР°Р¶РµРЅРёСЏ
+  const [userBalance] = useState(13500); // Р ВР В· Р С‘Р В·Р С•Р В±РЎР‚Р В°Р В¶Р ВµР Р…Р С‘РЎРЏ
   const [userCooldowns, setUserCooldowns] = useState<Record<string, number>>({});
   const [cart, setCart] = useState<CartItem[]>([]);
   const [isCartOpen, setIsCartOpen] = useState(false);
   const [cartTab, setCartTab] = useState<'cart' | 'active' | 'completed'>('cart');
 
   const tabs = [
-    { id: 'items' as const, label: 'РўРѕРІР°СЂС‹' },
-    { id: 'games' as const, label: 'РњРёРЅРё-РёРіСЂС‹' },
-    { id: 'cases' as const, label: 'РљРµР№СЃС‹' }
+    { id: 'items' as const, label: 'Р СћР С•Р Р†Р В°РЎР‚РЎвЂ№' },
+    { id: 'games' as const, label: 'Р СљР С‘Р Р…Р С‘-Р С‘Р С–РЎР‚РЎвЂ№' },
+    { id: 'cases' as const, label: 'Р С™Р ВµР в„–РЎРѓРЎвЂ№' }
   ];
 
   const gameTypeIcons = {
@@ -160,29 +160,29 @@ export function ShopPageNewStyled({
   };
 
   const formatCooldown = (seconds: number) => {
-    if (seconds < 60) return `${seconds}СЃ`;
-    if (seconds < 3600) return `${Math.floor(seconds / 60)}Рј`;
-    return `${Math.floor(seconds / 3600)}С‡`;
+    if (seconds < 60) return `${seconds}РЎРѓ`;
+    if (seconds < 3600) return `${Math.floor(seconds / 60)}Р С`;
+    return `${Math.floor(seconds / 3600)}РЎвЂЎ`;
   };
 
   const playGame = (game: any) => {
-    const cooldownInSeconds = game.cooldown === '5Рј' ? 300 : game.cooldown === '3Рј' ? 180 : 600;
+    const cooldownInSeconds = game.cooldown === '5Р С' ? 300 : game.cooldown === '3Р С' ? 180 : 600;
     const cooldownEndTime = Date.now() + (cooldownInSeconds * 1000);
     setUserCooldowns(prev => ({
       ...prev,
       [game.id]: cooldownEndTime
     }));
     
-    console.log(`Р—Р°РїСѓСЃРє РёРіСЂС‹: ${game.name}`);
+    console.log(`Р вЂ”Р В°Р С—РЎС“РЎРѓР С” Р С‘Р С–РЎР‚РЎвЂ№: ${game.name}`);
   };
 
   const openCase = (caseItem: any) => {
     if (userBalance >= caseItem.price) {
-      console.log(`РћС‚РєСЂС‹С‚РёРµ РєРµР№СЃР°: ${caseItem.name}`);
+      console.log(`Р С›РЎвЂљР С”РЎР‚РЎвЂ№РЎвЂљР С‘Р Вµ Р С”Р ВµР в„–РЎРѓР В°: ${caseItem.name}`);
     }
   };
 
-  // Р¤СѓРЅРєС†РёРё РґР»СЏ СЂР°Р±РѕС‚С‹ СЃ РєРѕСЂР·РёРЅРѕР№
+  // Р В¤РЎС“Р Р…Р С”РЎвЂ Р С‘Р С‘ Р Т‘Р В»РЎРЏ РЎР‚Р В°Р В±Р С•РЎвЂљРЎвЂ№ РЎРѓ Р С”Р С•РЎР‚Р В·Р С‘Р Р…Р С•Р в„–
   const addToCart = (item: ShopItem) => {
     setCart(prevCart => {
       const existingItem = prevCart.find(cartItem => cartItem.id === item.id);
@@ -254,7 +254,7 @@ export function ShopPageNewStyled({
       clearCart();
       setCartTab('active');
       
-      console.log('Р—Р°РєР°Р· РѕС„РѕСЂРјР»РµРЅ:', newOrder);
+      console.log('Р вЂ”Р В°Р С”Р В°Р В· Р С•РЎвЂћР С•РЎР‚Р СР В»Р ВµР Р…:', newOrder);
     }
   };
 
@@ -264,18 +264,18 @@ export function ShopPageNewStyled({
         shopItems.map((item) => (
           <div key={item.id} className="bg-white rounded-2xl p-4 apple-shadow">
             <div className="flex items-center gap-3">
-              {/* РРєРѕРЅРєР° С‚РѕРІР°СЂР° */}
+              {/* Р ВР С”Р С•Р Р…Р С”Р В° РЎвЂљР С•Р Р†Р В°РЎР‚Р В° */}
               <div className="w-10 h-10 bg-gray-100 rounded-xl flex items-center justify-center flex-shrink-0">
                 <span className="text-lg">{item.emoji}</span>
               </div>
               
-              {/* РРЅС„РѕСЂРјР°С†РёСЏ Рѕ С‚РѕРІР°СЂРµ */}
+              {/* Р ВР Р…РЎвЂћР С•РЎР‚Р СР В°РЎвЂ Р С‘РЎРЏ Р С• РЎвЂљР С•Р Р†Р В°РЎР‚Р Вµ */}
               <div className="flex-1 min-w-0">
                 <h3 className="font-semibold text-base text-gray-900 truncate">{item.name}</h3>
                 <p className="text-xs text-gray-500">{item.price}g</p>
               </div>
               
-              {/* РљРЅРѕРїРєР° РљСѓРїРёС‚СЊ */}
+              {/* Р С™Р Р…Р С•Р С—Р С”Р В° Р С™РЎС“Р С—Р С‘РЎвЂљРЎРЉ */}
               <button 
                 onClick={() => addToCart(item)}
                 className={`px-3 py-2 rounded-xl border transition-all text-sm font-medium whitespace-nowrap ${
@@ -285,14 +285,14 @@ export function ShopPageNewStyled({
                 }`}
                 disabled={item.stock === 0}
               >
-                {item.stock === 0 ? 'РќРµС‚ РІ РЅР°Р»РёС‡РёРё' : 'РљСѓРїРёС‚СЊ'}
+                {item.stock === 0 ? 'Р СњР ВµРЎвЂљ Р Р† Р Р…Р В°Р В»Р С‘РЎвЂЎР С‘Р С‘' : 'Р С™РЎС“Р С—Р С‘РЎвЂљРЎРЉ'}
               </button>
             </div>
           </div>
         ))
       ) : (
         <div className="bg-white rounded-2xl p-8 text-center apple-shadow">
-          <p className="text-gray-500 text-sm">РџСѓСЃС‚Рѕ</p>
+          <p className="text-gray-500 text-sm">Р СџРЎС“РЎРѓРЎвЂљР С•</p>
         </div>
       )}
     </div>
@@ -307,18 +307,18 @@ export function ShopPageNewStyled({
         return (
           <div key={game.id} className="bg-white rounded-2xl p-4 apple-shadow">
             <div className="flex items-center gap-3">
-              {/* РРєРѕРЅРєР° РёРіСЂС‹ */}
+              {/* Р ВР С”Р С•Р Р…Р С”Р В° Р С‘Р С–РЎР‚РЎвЂ№ */}
               <div className="w-10 h-10 bg-gray-100 rounded-xl flex items-center justify-center flex-shrink-0">
                 <span className="text-lg">{game.icon}</span>
               </div>
               
-              {/* РРЅС„РѕСЂРјР°С†РёСЏ РѕР± РёРіСЂРµ */}
+              {/* Р ВР Р…РЎвЂћР С•РЎР‚Р СР В°РЎвЂ Р С‘РЎРЏ Р С•Р В± Р С‘Р С–РЎР‚Р Вµ */}
               <div className="flex-1 min-w-0">
                 <h3 className="font-semibold text-base text-gray-900 truncate">{game.name}</h3>
-                <p className="text-xs text-gray-500">Р‘РµСЃРїР»Р°С‚РЅРѕ</p>
+                <p className="text-xs text-gray-500">Р вЂР ВµРЎРѓР С—Р В»Р В°РЎвЂљР Р…Р С•</p>
               </div>
               
-              {/* РљРЅРѕРїРєР° РРіСЂР°С‚СЊ */}
+              {/* Р С™Р Р…Р С•Р С—Р С”Р В° Р ВР С–РЎР‚Р В°РЎвЂљРЎРЉ */}
               <button
                 onClick={() => playGame(game)}
                 disabled={!canPlay}
@@ -328,7 +328,7 @@ export function ShopPageNewStyled({
                     : 'bg-white border-gray-300 text-gray-400 cursor-not-allowed'
                 }`}
               >
-                {canPlay ? 'РРіСЂР°С‚СЊ' : `${formatCooldown(remainingCooldown)}`}
+                {canPlay ? 'Р ВР С–РЎР‚Р В°РЎвЂљРЎРЉ' : `${formatCooldown(remainingCooldown)}`}
               </button>
             </div>
           </div>
@@ -342,7 +342,7 @@ export function ShopPageNewStyled({
       {casesData.map((caseItem) => (
         <div key={caseItem.id} className="bg-white rounded-2xl p-4 apple-shadow">
           <div className="flex items-center gap-3">
-            {/* РРєРѕРЅРєР° РєРµР№СЃР° */}
+            {/* Р ВР С”Р С•Р Р…Р С”Р В° Р С”Р ВµР в„–РЎРѓР В° */}
             <div className="w-10 h-10 bg-gray-100 rounded-xl flex items-center justify-center flex-shrink-0 relative">
               <span className="text-lg">{caseItem.icon}</span>
               {caseItem.limited && (
@@ -352,13 +352,13 @@ export function ShopPageNewStyled({
               )}
             </div>
             
-            {/* РРЅС„РѕСЂРјР°С†РёСЏ Рѕ РєРµР№СЃРµ */}
+            {/* Р ВР Р…РЎвЂћР С•РЎР‚Р СР В°РЎвЂ Р С‘РЎРЏ Р С• Р С”Р ВµР в„–РЎРѓР Вµ */}
             <div className="flex-1 min-w-0">
               <h3 className="font-semibold text-base text-gray-900 truncate">{caseItem.name}</h3>
               <p className="text-xs text-gray-500">{caseItem.price}g</p>
             </div>
             
-            {/* РљРЅРѕРїРєР° РљСѓРїРёС‚СЊ */}
+            {/* Р С™Р Р…Р С•Р С—Р С”Р В° Р С™РЎС“Р С—Р С‘РЎвЂљРЎРЉ */}
             <button 
               onClick={() => openCase(caseItem)}
               className={`px-3 py-2 rounded-xl border transition-all text-sm font-medium whitespace-nowrap ${
@@ -368,7 +368,7 @@ export function ShopPageNewStyled({
               }`}
               disabled={userBalance < caseItem.price}
             >
-              {userBalance < caseItem.price ? 'РќРµС‚ СЃСЂРµРґСЃС‚РІ' : 'РљСѓРїРёС‚СЊ'}
+              {userBalance < caseItem.price ? 'Р СњР ВµРЎвЂљ РЎРѓРЎР‚Р ВµР Т‘РЎРѓРЎвЂљР Р†' : 'Р С™РЎС“Р С—Р С‘РЎвЂљРЎРЉ'}
             </button>
           </div>
         </div>
@@ -378,20 +378,20 @@ export function ShopPageNewStyled({
 
   return (
     <div className="min-h-screen bg-background">
-      {/* РЁР°РїРєР° */}
+      {/* Р РЃР В°Р С—Р С”Р В° */}
       <div className="fixed top-0 left-0 right-0 z-40 bg-white/80 backdrop-blur-sm border-b border-gray-200">
         <div className="max-w-md mx-auto px-4 py-4">
           <div className="flex items-center justify-between">
-            {/* Р‘Р°Р»Р°РЅСЃ СЃР»РµРІР° */}
+            {/* Р вЂР В°Р В»Р В°Р Р…РЎРѓ РЎРѓР В»Р ВµР Р†Р В° */}
             <div className="bg-gray-100 rounded-2xl px-3 py-2">
-              <div className="text-xs text-gray-600">Р‘Р°Р»Р°РЅСЃ</div>
+              <div className="text-xs text-gray-600">Р вЂР В°Р В»Р В°Р Р…РЎРѓ</div>
               <div className="text-sm font-medium text-gray-900">{userBalance}g</div>
             </div>
             
-            {/* Р—Р°РіРѕР»РѕРІРѕРє РїРѕ С†РµРЅС‚СЂСѓ */}
-            <h1 className="text-lg font-medium text-gray-900">РўРѕРІР°СЂС‹</h1>
+            {/* Р вЂ”Р В°Р С–Р С•Р В»Р С•Р Р†Р С•Р С” Р С—Р С• РЎвЂ Р ВµР Р…РЎвЂљРЎР‚РЎС“ */}
+            <h1 className="text-lg font-medium text-gray-900">Р СћР С•Р Р†Р В°РЎР‚РЎвЂ№</h1>
             
-            {/* РРєРѕРЅРєРё СЃРїСЂР°РІР° */}
+            {/* Р ВР С”Р С•Р Р…Р С”Р С‘ РЎРѓР С—РЎР‚Р В°Р Р†Р В° */}
             <div className="flex items-center gap-2">
               <button
                 onClick={() => setIsCartOpen(true)}
@@ -410,7 +410,7 @@ export function ShopPageNewStyled({
       </div>
       
       <div className="max-w-md mx-auto pt-20 px-4 pb-24 space-y-6">
-        {/* РџРµСЂРµРєР»СЋС‡Р°С‚РµР»СЊ СЂР°Р·РґРµР»РѕРІ */}
+        {/* Р СџР ВµРЎР‚Р ВµР С”Р В»РЎР‹РЎвЂЎР В°РЎвЂљР ВµР В»РЎРЉ РЎР‚Р В°Р В·Р Т‘Р ВµР В»Р С•Р Р† */}
         <div className="flex gap-2">
           {tabs.map((tab) => {
             const isActive = activeTab === tab.id;
@@ -430,19 +430,19 @@ export function ShopPageNewStyled({
           })}
         </div>
 
-        {/* РљРѕРЅС‚РµРЅС‚ С‚Р°Р±РѕРІ */}
+        {/* Р С™Р С•Р Р…РЎвЂљР ВµР Р…РЎвЂљ РЎвЂљР В°Р В±Р С•Р Р† */}
         {activeTab === 'items' && renderItemsTab()}
         {activeTab === 'games' && renderGamesTab()}
         {activeTab === 'cases' && renderCasesTab()}
       </div>
 
-      {/* РњРѕРґР°Р»СЊРЅРѕРµ РѕРєРЅРѕ РєРѕСЂР·РёРЅС‹ */}
+      {/* Р СљР С•Р Т‘Р В°Р В»РЎРЉР Р…Р С•Р Вµ Р С•Р С”Р Р…Р С• Р С”Р С•РЎР‚Р В·Р С‘Р Р…РЎвЂ№ */}
       {isCartOpen && (
         <div className="fixed inset-0 z-50 flex items-end justify-center bg-black/50 backdrop-blur-sm">
           <div className="w-full max-w-md bg-white rounded-t-2xl max-h-[75vh] flex flex-col">
-            {/* Р—Р°РіРѕР»РѕРІРѕРє РєРѕСЂР·РёРЅС‹ */}
+            {/* Р вЂ”Р В°Р С–Р С•Р В»Р С•Р Р†Р С•Р С” Р С”Р С•РЎР‚Р В·Р С‘Р Р…РЎвЂ№ */}
             <div className="flex items-center justify-between p-6 pb-4 border-b border-gray-200 shrink-0">
-              <h2 className="text-xl font-medium text-gray-900">РљРѕСЂР·РёРЅР°</h2>
+              <h2 className="text-xl font-medium text-gray-900">Р С™Р С•РЎР‚Р В·Р С‘Р Р…Р В°</h2>
               <button
                 onClick={() => setIsCartOpen(false)}
                 className="w-8 h-8 rounded-full bg-gray-100 flex items-center justify-center"
@@ -451,7 +451,7 @@ export function ShopPageNewStyled({
               </button>
             </div>
 
-            {/* РўР°Р±С‹ РєРѕСЂР·РёРЅС‹ */}
+            {/* Р СћР В°Р В±РЎвЂ№ Р С”Р С•РЎР‚Р В·Р С‘Р Р…РЎвЂ№ */}
             <div className="flex gap-2 p-6 py-4 shrink-0">
               <button
                 onClick={() => setCartTab('cart')}
@@ -461,7 +461,7 @@ export function ShopPageNewStyled({
                     : 'bg-white border border-gray-200 text-gray-900 hover:bg-gray-50'
                 }`}
               >
-                РљРѕСЂР·РёРЅР°
+                Р С™Р С•РЎР‚Р В·Р С‘Р Р…Р В°
               </button>
               <button
                 onClick={() => setCartTab('active')}
@@ -471,7 +471,7 @@ export function ShopPageNewStyled({
                     : 'bg-white border border-gray-200 text-gray-900 hover:bg-gray-50'
                 }`}
               >
-                РђРєС‚РёРІРЅС‹Рµ
+                Р С’Р С”РЎвЂљР С‘Р Р†Р Р…РЎвЂ№Р Вµ
               </button>
               <button
                 onClick={() => setCartTab('completed')}
@@ -481,17 +481,17 @@ export function ShopPageNewStyled({
                     : 'bg-white border border-gray-200 text-gray-900 hover:bg-gray-50'
                 }`}
               >
-                Р—Р°РІРµСЂС€РµРЅРЅС‹Рµ
+                Р вЂ”Р В°Р Р†Р ВµРЎР‚РЎв‚¬Р ВµР Р…Р Р…РЎвЂ№Р Вµ
               </button>
             </div>
 
-            {/* РЎРѕРґРµСЂР¶РёРјРѕРµ РєРѕСЂР·РёРЅС‹ */}
+            {/* Р РЋР С•Р Т‘Р ВµРЎР‚Р В¶Р С‘Р СР С•Р Вµ Р С”Р С•РЎР‚Р В·Р С‘Р Р…РЎвЂ№ */}
             <div className="flex-1 overflow-y-auto px-6 min-h-0">
               {cartTab === 'cart' && (
                 <>
                   {cart.length === 0 ? (
                     <div className="text-center py-8">
-                      <p className="text-gray-500 text-sm">РџСѓСЃС‚Рѕ</p>
+                      <p className="text-gray-500 text-sm">Р СџРЎС“РЎРѓРЎвЂљР С•</p>
                     </div>
                   ) : (
                     <div className="space-y-3 pb-4">
@@ -502,7 +502,7 @@ export function ShopPageNewStyled({
                           </div>
                           <div className="flex-1">
                             <div className="font-medium text-gray-900 text-sm">{item.name}</div>
-                            <div className="text-xs text-gray-500">{item.price}g Р·Р° С€С‚.</div>
+                            <div className="text-xs text-gray-500">{item.price}g Р В·Р В° РЎв‚¬РЎвЂљ.</div>
                           </div>
                           <div className="flex items-center gap-2">
                             <button
@@ -532,20 +532,20 @@ export function ShopPageNewStyled({
                 </>
               )}
 
-              {/* РђРєС‚РёРІРЅС‹Рµ Р·Р°РєР°Р·С‹ */}
+              {/* Р С’Р С”РЎвЂљР С‘Р Р†Р Р…РЎвЂ№Р Вµ Р В·Р В°Р С”Р В°Р В·РЎвЂ№ */}
               {cartTab === 'active' && (
                 <div className="space-y-3 pb-4">
                   {orders.filter(order => order.status === 'active').length === 0 ? (
                     <div className="text-center py-8">
-                      <p className="text-gray-500 text-sm">РџСѓСЃС‚Рѕ</p>
+                      <p className="text-gray-500 text-sm">Р СџРЎС“РЎРѓРЎвЂљР С•</p>
                     </div>
                   ) : (
                     orders.filter(order => order.status === 'active').map((order) => (
                       <div key={order.id} className="bg-white p-3 rounded-xl border border-gray-200">
                         <div className="flex items-center justify-between mb-2">
-                          <span className="font-medium text-sm">Р—Р°РєР°Р· #{order.id}</span>
+                          <span className="font-medium text-sm">Р вЂ”Р В°Р С”Р В°Р В· #{order.id}</span>
                           <span className="text-xs bg-yellow-100 text-yellow-800 px-2 py-1 rounded-full">
-                            Р’ РѕР±СЂР°Р±РѕС‚РєРµ
+                            Р вЂ™ Р С•Р В±РЎР‚Р В°Р В±Р С•РЎвЂљР С”Р Вµ
                           </span>
                         </div>
                         <div className="text-xs text-gray-500 mb-2">
@@ -561,7 +561,7 @@ export function ShopPageNewStyled({
                         </div>
                         <div className="border-t border-gray-200 pt-2 mt-2">
                           <div className="flex justify-between font-medium text-sm">
-                            <span>РС‚РѕРіРѕ:</span>
+                            <span>Р ВРЎвЂљР С•Р С–Р С•:</span>
                             <span>{order.total}g</span>
                           </div>
                         </div>
@@ -571,20 +571,20 @@ export function ShopPageNewStyled({
                 </div>
               )}
 
-              {/* Р—Р°РІРµСЂС€РµРЅРЅС‹Рµ Р·Р°РєР°Р·С‹ */}
+              {/* Р вЂ”Р В°Р Р†Р ВµРЎР‚РЎв‚¬Р ВµР Р…Р Р…РЎвЂ№Р Вµ Р В·Р В°Р С”Р В°Р В·РЎвЂ№ */}
               {cartTab === 'completed' && (
                 <div className="space-y-3 pb-4">
                   {orders.filter(order => order.status === 'completed').length === 0 ? (
                     <div className="text-center py-8">
-                      <p className="text-gray-500 text-sm">РџСѓСЃС‚Рѕ</p>
+                      <p className="text-gray-500 text-sm">Р СџРЎС“РЎРѓРЎвЂљР С•</p>
                     </div>
                   ) : (
                     orders.filter(order => order.status === 'completed').map((order) => (
                       <div key={order.id} className="bg-white p-3 rounded-xl border border-gray-200">
                         <div className="flex items-center justify-between mb-2">
-                          <span className="font-medium text-sm">Р—Р°РєР°Р· #{order.id}</span>
+                          <span className="font-medium text-sm">Р вЂ”Р В°Р С”Р В°Р В· #{order.id}</span>
                           <span className="text-xs bg-green-100 text-green-800 px-2 py-1 rounded-full">
-                            Р—Р°РІРµСЂС€РµРЅ
+                            Р вЂ”Р В°Р Р†Р ВµРЎР‚РЎв‚¬Р ВµР Р…
                           </span>
                         </div>
                         <div className="text-xs text-gray-500 mb-2">
@@ -600,7 +600,7 @@ export function ShopPageNewStyled({
                         </div>
                         <div className="border-t border-gray-200 pt-2 mt-2">
                           <div className="flex justify-between font-medium text-sm">
-                            <span>РС‚РѕРіРѕ:</span>
+                            <span>Р ВРЎвЂљР С•Р С–Р С•:</span>
                             <span>{order.total}g</span>
                           </div>
                         </div>
@@ -611,11 +611,11 @@ export function ShopPageNewStyled({
               )}
             </div>
 
-            {/* РљРЅРѕРїРєРё РґРµР№СЃС‚РІРёР№ РєРѕСЂР·РёРЅС‹ */}
+            {/* Р С™Р Р…Р С•Р С—Р С”Р С‘ Р Т‘Р ВµР в„–РЎРѓРЎвЂљР Р†Р С‘Р в„– Р С”Р С•РЎР‚Р В·Р С‘Р Р…РЎвЂ№ */}
             {cartTab === 'cart' && cart.length > 0 && (
               <div className="p-6 pt-4 border-t border-gray-200 shrink-0">
                 <div className="flex items-center justify-between mb-4">
-                  <span className="font-medium">РС‚РѕРіРѕ:</span>
+                  <span className="font-medium">Р ВРЎвЂљР С•Р С–Р С•:</span>
                   <span className="font-medium">{getTotalCartPrice()}g</span>
                 </div>
                 <div className="flex gap-3">
@@ -623,14 +623,14 @@ export function ShopPageNewStyled({
                     onClick={clearCart}
                     className="flex-1 py-3 rounded-xl border border-gray-300 text-gray-900 hover:bg-gray-50"
                   >
-                    РћС‡РёСЃС‚РёС‚СЊ
+                    Р С›РЎвЂЎР С‘РЎРѓРЎвЂљР С‘РЎвЂљРЎРЉ
                   </button>
                   <button
                     onClick={checkout}
                     className="flex-1 py-3 rounded-xl bg-black text-white hover:bg-gray-800"
                     disabled={userBalance < getTotalCartPrice()}
                   >
-                    Р—Р°РєР°Р·Р°С‚СЊ
+                    Р вЂ”Р В°Р С”Р В°Р В·Р В°РЎвЂљРЎРЉ
                   </button>
                 </div>
               </div>

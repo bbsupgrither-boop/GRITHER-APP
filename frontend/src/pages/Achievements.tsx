@@ -80,9 +80,9 @@ export default function AchievementsPage({
             <Trophy className="w-6 h-6 text-blue-500" />
           </div>
           <div>
-            <h1 className="unified-heading">Достижения</h1>
+            <h1 className="unified-heading">Р”РѕСЃС‚РёР¶РµРЅРёСЏ</h1>
             <p className="unified-text text-muted-foreground">
-              {achievements.length} достижений
+              {achievements.length} РґРѕСЃС‚РёР¶РµРЅРёР№
             </p>
           </div>
         </div>
@@ -90,7 +90,7 @@ export default function AchievementsPage({
         <button
           onClick={() => setSortMenuOpen(!sortMenuOpen)}
           className="apple-button p-3"
-          aria-label="Сортировка достижений"
+          aria-label="РЎРѕСЂС‚РёСЂРѕРІРєР° РґРѕСЃС‚РёР¶РµРЅРёР№"
         >
           <Menu className="w-5 h-5" />
         </button>
@@ -110,7 +110,7 @@ export default function AchievementsPage({
                   : 'bg-gray-100 hover:bg-gray-200'
               }`}
             >
-              По алфавиту
+              РџРѕ Р°Р»С„Р°РІРёС‚Сѓ
             </button>
             
             <button
@@ -123,7 +123,7 @@ export default function AchievementsPage({
                   : 'bg-gray-100 hover:bg-gray-200'
               }`}
             >
-              По проценту (от наименьшего)
+              РџРѕ РїСЂРѕС†РµРЅС‚Сѓ (РѕС‚ РЅР°РёРјРµРЅСЊС€РµРіРѕ)
             </button>
             
             <button
@@ -136,7 +136,7 @@ export default function AchievementsPage({
                   : 'bg-gray-100 hover:bg-gray-200'
               }`}
             >
-              По проценту (от наибольшего)
+              РџРѕ РїСЂРѕС†РµРЅС‚Сѓ (РѕС‚ РЅР°РёР±РѕР»СЊС€РµРіРѕ)
             </button>
           </div>
         </div>
@@ -164,7 +164,7 @@ export default function AchievementsPage({
                   <div className="flex items-center gap-2 mb-2">
                     <h3 className="unified-text font-medium">{achievement.title}</h3>
                     {isCompleted && (
-                      <span className="text-green-500 text-sm">✓</span>
+                      <span className="text-green-500 text-sm">вњ“</span>
                     )}
                   </div>
                   
@@ -189,7 +189,7 @@ export default function AchievementsPage({
                     
                     {achievement.reward && (
                       <span className="unified-text text-sm text-yellow-500">
-                        💰 {achievement.reward.amount} монет
+                        рџ’° {achievement.reward.amount} РјРѕРЅРµС‚
                       </span>
                     )}
                   </div>
@@ -203,9 +203,9 @@ export default function AchievementsPage({
       {achievements.length === 0 && (
         <div className="glass-card p-8 text-center">
           <Trophy className="w-16 h-16 text-muted-foreground mx-auto mb-4" />
-          <h3 className="unified-heading mb-2">Нет достижений</h3>
+          <h3 className="unified-heading mb-2">РќРµС‚ РґРѕСЃС‚РёР¶РµРЅРёР№</h3>
           <p className="unified-text text-muted-foreground">
-            Выполняйте задачи и участвуйте в баттлах, чтобы получить достижения
+            Р’С‹РїРѕР»РЅСЏР№С‚Рµ Р·Р°РґР°С‡Рё Рё СѓС‡Р°СЃС‚РІСѓР№С‚Рµ РІ Р±Р°С‚С‚Р»Р°С…, С‡С‚РѕР±С‹ РїРѕР»СѓС‡РёС‚СЊ РґРѕСЃС‚РёР¶РµРЅРёСЏ
           </p>
         </div>
       )}

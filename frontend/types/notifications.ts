@@ -1,4 +1,4 @@
-﻿export interface Notification {
+export interface Notification {
   id: string;
   type: 'system' | 'battle' | 'achievement' | 'task' | 'shop' | 'personal' | 'transaction';
   title: string;

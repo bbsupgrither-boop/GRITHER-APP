@@ -33,7 +33,7 @@ interface AdminNotificationSystemProps {
   theme: 'light' | 'dark';
 }
 
-// Используем Notification из типов
+// РСЃРїРѕР»СЊР·СѓРµРј Notification РёР· С‚РёРїРѕРІ
 
 interface NotificationTemplate {
   id: string;
@@ -45,33 +45,33 @@ interface NotificationTemplate {
 }
 
 const NOTIFICATION_TYPES = [
-  { value: 'achievement', label: 'Достижения', icon: '🏆', color: 'bg-yellow-500' },
-  { value: 'battle', label: 'Баттлы', icon: '⚔️', color: 'bg-red-500' },
-  { value: 'task', label: 'Задачи', icon: '📝', color: 'bg-green-500' },
-  { value: 'shop', label: 'Магазин', icon: '🛒', color: 'bg-purple-500' },
-  { value: 'system', label: 'Система', icon: '⚙️', color: 'bg-blue-500' },
-  { value: 'personal', label: 'Персональные', icon: '👤', color: 'bg-indigo-500' }
+  { value: 'achievement', label: 'Р”РѕСЃС‚РёР¶РµРЅРёСЏ', icon: 'рџЏ†', color: 'bg-yellow-500' },
+  { value: 'battle', label: 'Р‘Р°С‚С‚Р»С‹', icon: 'вљ”пёЏ', color: 'bg-red-500' },
+  { value: 'task', label: 'Р—Р°РґР°С‡Рё', icon: 'рџ“ќ', color: 'bg-green-500' },
+  { value: 'shop', label: 'РњР°РіР°Р·РёРЅ', icon: 'рџ›’', color: 'bg-purple-500' },
+  { value: 'system', label: 'РЎРёСЃС‚РµРјР°', icon: 'вљ™пёЏ', color: 'bg-blue-500' },
+  { value: 'personal', label: 'РџРµСЂСЃРѕРЅР°Р»СЊРЅС‹Рµ', icon: 'рџ‘¤', color: 'bg-indigo-500' }
 ];
 
 const PRIORITY_LEVELS = [
-  { value: 'low', label: 'Низкий', color: 'bg-gray-500' },
-  { value: 'medium', label: 'Средний', color: 'bg-blue-500' },
-  { value: 'high', label: 'Высокий', color: 'bg-orange-500' },
-  { value: 'urgent', label: 'Срочный', color: 'bg-red-500' }
+  { value: 'low', label: 'РќРёР·РєРёР№', color: 'bg-gray-500' },
+  { value: 'medium', label: 'РЎСЂРµРґРЅРёР№', color: 'bg-blue-500' },
+  { value: 'high', label: 'Р’С‹СЃРѕРєРёР№', color: 'bg-orange-500' },
+  { value: 'urgent', label: 'РЎСЂРѕС‡РЅС‹Р№', color: 'bg-red-500' }
 ];
 
 const TARGET_AUDIENCES = [
-  { value: 'all', label: 'Все пользователи', icon: '👥' },
-  { value: 'team', label: 'Команда', icon: '🏢' },
-  { value: 'role', label: 'По ролям', icon: '👑' },
-  { value: 'specific', label: 'Конкретные пользователи', icon: '👤' }
+  { value: 'all', label: 'Р’СЃРµ РїРѕР»СЊР·РѕРІР°С‚РµР»Рё', icon: 'рџ‘Ґ' },
+  { value: 'team', label: 'РљРѕРјР°РЅРґР°', icon: 'рџЏў' },
+  { value: 'role', label: 'РџРѕ СЂРѕР»СЏРј', icon: 'рџ‘‘' },
+  { value: 'specific', label: 'РљРѕРЅРєСЂРµС‚РЅС‹Рµ РїРѕР»СЊР·РѕРІР°С‚РµР»Рё', icon: 'рџ‘¤' }
 ];
 
 const STATUS_LABELS = {
-  draft: 'Черновик',
-  scheduled: 'Запланировано',
-  sent: 'Отправлено',
-  failed: 'Ошибка'
+  draft: 'Р§РµСЂРЅРѕРІРёРє',
+  scheduled: 'Р—Р°РїР»Р°РЅРёСЂРѕРІР°РЅРѕ',
+  sent: 'РћС‚РїСЂР°РІР»РµРЅРѕ',
+  failed: 'РћС€РёР±РєР°'
 };
 
 const STATUS_COLORS = {
@@ -95,23 +95,23 @@ export const AdminNotificationSystem: React.FC<AdminNotificationSystemProps> = (
   const [formData, setFormData] = useState<any>({});
   const [activeTab, setActiveTab] = useState<'notifications' | 'templates' | 'analytics'>('notifications');
 
-  // Загрузка данных
+  // Р—Р°РіСЂСѓР·РєР° РґР°РЅРЅС‹С…
   useEffect(() => {
     loadData();
   }, []);
 
-  // Фильтрация
+  // Р¤РёР»СЊС‚СЂР°С†РёСЏ
   useEffect(() => {
     filterNotifications();
   }, [notifications, searchQuery, filterType, filterStatus, filterPriority]);
 
   const loadData = async () => {
-    // Mock данные
+    // Mock РґР°РЅРЅС‹Рµ
     const mockNotifications: Notification[] = [
       {
         id: '1',
-        title: 'Новое достижение доступно!',
-        message: 'Проверьте список достижений - добавлено новое задание "Мастер баттлов"',
+        title: 'РќРѕРІРѕРµ РґРѕСЃС‚РёР¶РµРЅРёРµ РґРѕСЃС‚СѓРїРЅРѕ!',
+        message: 'РџСЂРѕРІРµСЂСЊС‚Рµ СЃРїРёСЃРѕРє РґРѕСЃС‚РёР¶РµРЅРёР№ - РґРѕР±Р°РІР»РµРЅРѕ РЅРѕРІРѕРµ Р·Р°РґР°РЅРёРµ "РњР°СЃС‚РµСЂ Р±Р°С‚С‚Р»РѕРІ"',
         type: 'achievement',
         priority: 'medium',
         targetAudience: 'all',
@@ -128,8 +128,8 @@ export const AdminNotificationSystem: React.FC<AdminNotificationSystemProps> = (
       },
       {
         id: '2',
-        title: 'Техническое обслуживание',
-        message: 'Система будет недоступна с 02:00 до 04:00 по МСК для проведения технических работ',
+        title: 'РўРµС…РЅРёС‡РµСЃРєРѕРµ РѕР±СЃР»СѓР¶РёРІР°РЅРёРµ',
+        message: 'РЎРёСЃС‚РµРјР° Р±СѓРґРµС‚ РЅРµРґРѕСЃС‚СѓРїРЅР° СЃ 02:00 РґРѕ 04:00 РїРѕ РњРЎРљ РґР»СЏ РїСЂРѕРІРµРґРµРЅРёСЏ С‚РµС…РЅРёС‡РµСЃРєРёС… СЂР°Р±РѕС‚',
         type: 'system',
         priority: 'high',
         targetAudience: 'all',
@@ -146,8 +146,8 @@ export const AdminNotificationSystem: React.FC<AdminNotificationSystemProps> = (
       },
       {
         id: '3',
-        title: 'Поздравляем с повышением!',
-        message: 'Вы достигли нового уровня! Получите награду в профиле.',
+        title: 'РџРѕР·РґСЂР°РІР»СЏРµРј СЃ РїРѕРІС‹С€РµРЅРёРµРј!',
+        message: 'Р’С‹ РґРѕСЃС‚РёРіР»Рё РЅРѕРІРѕРіРѕ СѓСЂРѕРІРЅСЏ! РџРѕР»СѓС‡РёС‚Рµ РЅР°РіСЂР°РґСѓ РІ РїСЂРѕС„РёР»Рµ.',
         type: 'personal',
         priority: 'low',
         targetAudience: 'specific',
@@ -168,25 +168,25 @@ export const AdminNotificationSystem: React.FC<AdminNotificationSystemProps> = (
     const mockTemplates: NotificationTemplate[] = [
       {
         id: '1',
-        name: 'Достижение получено',
-        title: 'Поздравляем с получением достижения!',
-        message: 'Вы успешно получили достижение "{achievement_name}". Продолжайте в том же духе!',
+        name: 'Р”РѕСЃС‚РёР¶РµРЅРёРµ РїРѕР»СѓС‡РµРЅРѕ',
+        title: 'РџРѕР·РґСЂР°РІР»СЏРµРј СЃ РїРѕР»СѓС‡РµРЅРёРµРј РґРѕСЃС‚РёР¶РµРЅРёСЏ!',
+        message: 'Р’С‹ СѓСЃРїРµС€РЅРѕ РїРѕР»СѓС‡РёР»Рё РґРѕСЃС‚РёР¶РµРЅРёРµ "{achievement_name}". РџСЂРѕРґРѕР»Р¶Р°Р№С‚Рµ РІ С‚РѕРј Р¶Рµ РґСѓС…Рµ!',
         type: 'achievement',
         isDefault: true
       },
       {
         id: '2',
-        name: 'Новая задача',
-        title: 'Вам назначена новая задача',
-        message: 'Тимлид назначил вам задачу "{task_title}". Дедлайн: {deadline}',
+        name: 'РќРѕРІР°СЏ Р·Р°РґР°С‡Р°',
+        title: 'Р’Р°Рј РЅР°Р·РЅР°С‡РµРЅР° РЅРѕРІР°СЏ Р·Р°РґР°С‡Р°',
+        message: 'РўРёРјР»РёРґ РЅР°Р·РЅР°С‡РёР» РІР°Рј Р·Р°РґР°С‡Сѓ "{task_title}". Р”РµРґР»Р°Р№РЅ: {deadline}',
         type: 'task',
         isDefault: true
       },
       {
         id: '3',
-        name: 'Баттл завершен',
-        title: 'Результат баттла',
-        message: 'Ваш баттл с {opponent_name} завершен. Результат: {result}',
+        name: 'Р‘Р°С‚С‚Р» Р·Р°РІРµСЂС€РµРЅ',
+        title: 'Р РµР·СѓР»СЊС‚Р°С‚ Р±Р°С‚С‚Р»Р°',
+        message: 'Р’Р°С€ Р±Р°С‚С‚Р» СЃ {opponent_name} Р·Р°РІРµСЂС€РµРЅ. Р РµР·СѓР»СЊС‚Р°С‚: {result}',
         type: 'battle',
         isDefault: false
       }
@@ -303,7 +303,7 @@ export const AdminNotificationSystem: React.FC<AdminNotificationSystemProps> = (
   };
 
   const handleDeleteNotification = async (id: string) => {
-    if (window.confirm('Вы уверены, что хотите удалить это уведомление?')) {
+    if (window.confirm('Р’С‹ СѓРІРµСЂРµРЅС‹, С‡С‚Рѕ С…РѕС‚РёС‚Рµ СѓРґР°Р»РёС‚СЊ СЌС‚Рѕ СѓРІРµРґРѕРјР»РµРЅРёРµ?')) {
       setNotifications(prev => prev.filter(n => n.id !== id));
     }
   };
@@ -339,13 +339,13 @@ export const AdminNotificationSystem: React.FC<AdminNotificationSystemProps> = (
 
   const renderNotificationsTab = () => (
     <div className="space-y-6">
-      {/* Фильтры */}
+      {/* Р¤РёР»СЊС‚СЂС‹ */}
       <div className="grid grid-cols-1 md:grid-cols-5 gap-4">
         <div className="relative">
           <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 w-4 h-4 opacity-50" />
           <input
             type="text"
-            placeholder="Поиск уведомлений..."
+            placeholder="РџРѕРёСЃРє СѓРІРµРґРѕРјР»РµРЅРёР№..."
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
             className="w-full pl-10 pr-4 py-2 rounded-lg border"
@@ -367,7 +367,7 @@ export const AdminNotificationSystem: React.FC<AdminNotificationSystemProps> = (
             color: theme === 'dark' ? '#E8ECF2' : '#0F172A'
           }}
         >
-          <option value="all">Все типы</option>
+          <option value="all">Р’СЃРµ С‚РёРїС‹</option>
           {NOTIFICATION_TYPES.map(type => (
             <option key={type.value} value={type.value}>
               {type.icon} {type.label}
@@ -385,7 +385,7 @@ export const AdminNotificationSystem: React.FC<AdminNotificationSystemProps> = (
             color: theme === 'dark' ? '#E8ECF2' : '#0F172A'
           }}
         >
-          <option value="all">Все статусы</option>
+          <option value="all">Р’СЃРµ СЃС‚Р°С‚СѓСЃС‹</option>
           {Object.entries(STATUS_LABELS).map(([value, label]) => (
             <option key={value} value={value}>{label}</option>
           ))}
@@ -401,7 +401,7 @@ export const AdminNotificationSystem: React.FC<AdminNotificationSystemProps> = (
             color: theme === 'dark' ? '#E8ECF2' : '#0F172A'
           }}
         >
-          <option value="all">Все приоритеты</option>
+          <option value="all">Р’СЃРµ РїСЂРёРѕСЂРёС‚РµС‚С‹</option>
           {PRIORITY_LEVELS.map(priority => (
             <option key={priority.value} value={priority.value}>
               {priority.label}
@@ -414,11 +414,11 @@ export const AdminNotificationSystem: React.FC<AdminNotificationSystemProps> = (
           className="flex items-center justify-center px-4 py-2 rounded-lg bg-blue-500 text-white hover:bg-blue-600 transition-colors"
         >
           <Plus className="w-4 h-4 mr-2" />
-          Создать
+          РЎРѕР·РґР°С‚СЊ
         </button>
       </div>
 
-      {/* Список уведомлений */}
+      {/* РЎРїРёСЃРѕРє СѓРІРµРґРѕРјР»РµРЅРёР№ */}
       <div className="space-y-4">
         {filteredNotifications.map((notification) => (
           <div
@@ -463,13 +463,13 @@ export const AdminNotificationSystem: React.FC<AdminNotificationSystemProps> = (
                     {notification.sentAt && (
                       <span className="flex items-center">
                         <Send className="w-3 h-3 mr-1" />
-                        Отправлено: {new Date(notification.sentAt).toLocaleString()}
+                        РћС‚РїСЂР°РІР»РµРЅРѕ: {new Date(notification.sentAt).toLocaleString()}
                       </span>
                     )}
                     {notification.deliveryStats.totalSent > 0 && (
                       <span className="flex items-center">
                         <TrendingUp className="w-3 h-3 mr-1" />
-                        {notification.deliveryStats.read}/{notification.deliveryStats.totalSent} прочитано
+                        {notification.deliveryStats.read}/{notification.deliveryStats.totalSent} РїСЂРѕС‡РёС‚Р°РЅРѕ
                       </span>
                     )}
                   </div>
@@ -483,7 +483,7 @@ export const AdminNotificationSystem: React.FC<AdminNotificationSystemProps> = (
                     className="flex items-center space-x-1 px-3 py-1 rounded-lg bg-green-500 bg-opacity-20 text-green-500 hover:bg-opacity-30 text-sm"
                   >
                     <Send className="w-4 h-4" />
-                    <span>Отправить</span>
+                    <span>РћС‚РїСЂР°РІРёС‚СЊ</span>
                   </button>
                 )}
                 
@@ -514,14 +514,14 @@ export const AdminNotificationSystem: React.FC<AdminNotificationSystemProps> = (
     <div className="space-y-6">
       <div className="flex items-center justify-between">
         <h2 className="text-xl font-semibold" style={{ color: theme === 'dark' ? '#E8ECF2' : '#0F172A' }}>
-          Шаблоны уведомлений
+          РЁР°Р±Р»РѕРЅС‹ СѓРІРµРґРѕРјР»РµРЅРёР№
         </h2>
         <button
           onClick={() => setShowCreateForm(true)}
           className="flex items-center px-4 py-2 rounded-lg bg-blue-500 text-white hover:bg-blue-600 transition-colors"
         >
           <Plus className="w-4 h-4 mr-2" />
-          Создать шаблон
+          РЎРѕР·РґР°С‚СЊ С€Р°Р±Р»РѕРЅ
         </button>
       </div>
 
@@ -541,7 +541,7 @@ export const AdminNotificationSystem: React.FC<AdminNotificationSystemProps> = (
               </h3>
               {template.isDefault && (
                 <span className="px-2 py-1 rounded-full text-xs bg-blue-500 bg-opacity-20 text-blue-500">
-                  По умолчанию
+                  РџРѕ СѓРјРѕР»С‡Р°РЅРёСЋ
                 </span>
               )}
             </div>
@@ -562,7 +562,7 @@ export const AdminNotificationSystem: React.FC<AdminNotificationSystemProps> = (
   const renderAnalyticsTab = () => (
     <div className="space-y-6">
       <h2 className="text-xl font-semibold" style={{ color: theme === 'dark' ? '#E8ECF2' : '#0F172A' }}>
-        Аналитика уведомлений
+        РђРЅР°Р»РёС‚РёРєР° СѓРІРµРґРѕРјР»РµРЅРёР№
       </h2>
       
       <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
@@ -576,7 +576,7 @@ export const AdminNotificationSystem: React.FC<AdminNotificationSystemProps> = (
           <div className="text-2xl font-bold text-blue-500">
             {notifications.reduce((sum, n) => sum + n.deliveryStats.totalSent, 0)}
           </div>
-          <div className="text-sm opacity-70">Всего отправлено</div>
+          <div className="text-sm opacity-70">Р’СЃРµРіРѕ РѕС‚РїСЂР°РІР»РµРЅРѕ</div>
         </div>
         <div 
           className="p-4 rounded-xl text-center"
@@ -589,7 +589,7 @@ export const AdminNotificationSystem: React.FC<AdminNotificationSystemProps> = (
             {Math.round(notifications.reduce((sum, n) => sum + n.deliveryStats.delivered, 0) / 
               Math.max(notifications.reduce((sum, n) => sum + n.deliveryStats.totalSent, 0), 1) * 100)}%
           </div>
-          <div className="text-sm opacity-70">Доставлено</div>
+          <div className="text-sm opacity-70">Р”РѕСЃС‚Р°РІР»РµРЅРѕ</div>
         </div>
         <div 
           className="p-4 rounded-xl text-center"
@@ -602,7 +602,7 @@ export const AdminNotificationSystem: React.FC<AdminNotificationSystemProps> = (
             {Math.round(notifications.reduce((sum, n) => sum + n.deliveryStats.read, 0) / 
               Math.max(notifications.reduce((sum, n) => sum + n.deliveryStats.totalSent, 0), 1) * 100)}%
           </div>
-          <div className="text-sm opacity-70">Прочитано</div>
+          <div className="text-sm opacity-70">РџСЂРѕС‡РёС‚Р°РЅРѕ</div>
         </div>
         <div 
           className="p-4 rounded-xl text-center"
@@ -615,7 +615,7 @@ export const AdminNotificationSystem: React.FC<AdminNotificationSystemProps> = (
             {Math.round(notifications.reduce((sum, n) => sum + n.deliveryStats.clicked, 0) / 
               Math.max(notifications.reduce((sum, n) => sum + n.deliveryStats.totalSent, 0), 1) * 100)}%
           </div>
-          <div className="text-sm opacity-70">Кликов</div>
+          <div className="text-sm opacity-70">РљР»РёРєРѕРІ</div>
         </div>
       </div>
     </div>
@@ -623,24 +623,24 @@ export const AdminNotificationSystem: React.FC<AdminNotificationSystemProps> = (
 
   return (
     <div className="p-6 space-y-6">
-      {/* Заголовок */}
+      {/* Р—Р°РіРѕР»РѕРІРѕРє */}
       <div className="flex items-center justify-between">
         <div>
           <h1 className="text-2xl font-bold" style={{ color: theme === 'dark' ? '#E8ECF2' : '#0F172A' }}>
-            Система уведомлений
+            РЎРёСЃС‚РµРјР° СѓРІРµРґРѕРјР»РµРЅРёР№
           </h1>
           <p className="text-sm opacity-70" style={{ color: theme === 'dark' ? '#A7B0BD' : '#6B7280' }}>
-            Управление уведомлениями и аналитика
+            РЈРїСЂР°РІР»РµРЅРёРµ СѓРІРµРґРѕРјР»РµРЅРёСЏРјРё Рё Р°РЅР°Р»РёС‚РёРєР°
           </p>
         </div>
       </div>
 
-      {/* Табы */}
+      {/* РўР°Р±С‹ */}
       <div className="flex space-x-2 border-b" style={{ borderColor: theme === 'dark' ? 'rgba(255,255,255,0.1)' : '#E6E9EF' }}>
         {[
-          { id: 'notifications', label: 'Уведомления', icon: Bell },
-          { id: 'templates', label: 'Шаблоны', icon: MessageSquare },
-          { id: 'analytics', label: 'Аналитика', icon: TrendingUp }
+          { id: 'notifications', label: 'РЈРІРµРґРѕРјР»РµРЅРёСЏ', icon: Bell },
+          { id: 'templates', label: 'РЁР°Р±Р»РѕРЅС‹', icon: MessageSquare },
+          { id: 'analytics', label: 'РђРЅР°Р»РёС‚РёРєР°', icon: TrendingUp }
         ].map((tab) => (
           <button
             key={tab.id}
@@ -660,12 +660,12 @@ export const AdminNotificationSystem: React.FC<AdminNotificationSystemProps> = (
         ))}
       </div>
 
-      {/* Контент */}
+      {/* РљРѕРЅС‚РµРЅС‚ */}
       {activeTab === 'notifications' && renderNotificationsTab()}
       {activeTab === 'templates' && renderTemplatesTab()}
       {activeTab === 'analytics' && renderAnalyticsTab()}
 
-      {/* Модал создания/редактирования */}
+      {/* РњРѕРґР°Р» СЃРѕР·РґР°РЅРёСЏ/СЂРµРґР°РєС‚РёСЂРѕРІР°РЅРёСЏ */}
       {showCreateForm && (
         <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center p-4 z-50">
           <div 
@@ -677,7 +677,7 @@ export const AdminNotificationSystem: React.FC<AdminNotificationSystemProps> = (
           >
             <div className="flex items-center justify-between mb-6">
               <h2 className="text-xl font-bold" style={{ color: theme === 'dark' ? '#E8ECF2' : '#0F172A' }}>
-                {editingNotification ? 'Редактировать уведомление' : 'Создать уведомление'}
+                {editingNotification ? 'Р РµРґР°РєС‚РёСЂРѕРІР°С‚СЊ СѓРІРµРґРѕРјР»РµРЅРёРµ' : 'РЎРѕР·РґР°С‚СЊ СѓРІРµРґРѕРјР»РµРЅРёРµ'}
               </h2>
               <button
                 onClick={() => {
@@ -695,7 +695,7 @@ export const AdminNotificationSystem: React.FC<AdminNotificationSystemProps> = (
             <div className="space-y-4">
               <div>
                 <label className="block text-sm font-medium mb-2" style={{ color: theme === 'dark' ? '#E8ECF2' : '#0F172A' }}>
-                  Заголовок *
+                  Р—Р°РіРѕР»РѕРІРѕРє *
                 </label>
                 <input
                   type="text"
@@ -707,13 +707,13 @@ export const AdminNotificationSystem: React.FC<AdminNotificationSystemProps> = (
                     borderColor: theme === 'dark' ? 'rgba(255,255,255,0.2)' : '#E6E9EF',
                     color: theme === 'dark' ? '#E8ECF2' : '#0F172A'
                   }}
-                  placeholder="Введите заголовок уведомления"
+                  placeholder="Р’РІРµРґРёС‚Рµ Р·Р°РіРѕР»РѕРІРѕРє СѓРІРµРґРѕРјР»РµРЅРёСЏ"
                 />
               </div>
 
               <div>
                 <label className="block text-sm font-medium mb-2" style={{ color: theme === 'dark' ? '#E8ECF2' : '#0F172A' }}>
-                  Сообщение *
+                  РЎРѕРѕР±С‰РµРЅРёРµ *
                 </label>
                 <textarea
                   value={formData.message}
@@ -725,14 +725,14 @@ export const AdminNotificationSystem: React.FC<AdminNotificationSystemProps> = (
                     borderColor: theme === 'dark' ? 'rgba(255,255,255,0.2)' : '#E6E9EF',
                     color: theme === 'dark' ? '#E8ECF2' : '#0F172A'
                   }}
-                  placeholder="Введите текст уведомления"
+                  placeholder="Р’РІРµРґРёС‚Рµ С‚РµРєСЃС‚ СѓРІРµРґРѕРјР»РµРЅРёСЏ"
                 />
               </div>
 
               <div className="grid grid-cols-2 gap-4">
                 <div>
                   <label className="block text-sm font-medium mb-2" style={{ color: theme === 'dark' ? '#E8ECF2' : '#0F172A' }}>
-                    Тип
+                    РўРёРї
                   </label>
                   <select
                     value={formData.type}
@@ -754,7 +754,7 @@ export const AdminNotificationSystem: React.FC<AdminNotificationSystemProps> = (
 
                 <div>
                   <label className="block text-sm font-medium mb-2" style={{ color: theme === 'dark' ? '#E8ECF2' : '#0F172A' }}>
-                    Приоритет
+                    РџСЂРёРѕСЂРёС‚РµС‚
                   </label>
                   <select
                     value={formData.priority}
@@ -777,7 +777,7 @@ export const AdminNotificationSystem: React.FC<AdminNotificationSystemProps> = (
 
               <div>
                 <label className="block text-sm font-medium mb-2" style={{ color: theme === 'dark' ? '#E8ECF2' : '#0F172A' }}>
-                  Целевая аудитория
+                  Р¦РµР»РµРІР°СЏ Р°СѓРґРёС‚РѕСЂРёСЏ
                 </label>
                 <select
                   value={formData.targetAudience}
@@ -806,14 +806,14 @@ export const AdminNotificationSystem: React.FC<AdminNotificationSystemProps> = (
                   className="w-4 h-4"
                 />
                 <label htmlFor="isScheduled" className="text-sm" style={{ color: theme === 'dark' ? '#E8ECF2' : '#0F172A' }}>
-                  Запланировать отправку
+                  Р—Р°РїР»Р°РЅРёСЂРѕРІР°С‚СЊ РѕС‚РїСЂР°РІРєСѓ
                 </label>
               </div>
 
               {formData.isScheduled && (
                 <div>
                   <label className="block text-sm font-medium mb-2" style={{ color: theme === 'dark' ? '#E8ECF2' : '#0F172A' }}>
-                    Время отправки
+                    Р’СЂРµРјСЏ РѕС‚РїСЂР°РІРєРё
                   </label>
                   <input
                     type="datetime-local"
@@ -844,13 +844,13 @@ export const AdminNotificationSystem: React.FC<AdminNotificationSystemProps> = (
                   color: theme === 'dark' ? '#E8ECF2' : '#0F172A'
                 }}
               >
-                Отмена
+                РћС‚РјРµРЅР°
               </button>
               <button
                 onClick={editingNotification ? handleUpdateNotification : handleCreateNotification}
                 className="px-4 py-2 rounded-lg bg-blue-500 text-white hover:bg-blue-600 transition-colors"
               >
-                {editingNotification ? 'Сохранить' : 'Создать'}
+                {editingNotification ? 'РЎРѕС…СЂР°РЅРёС‚СЊ' : 'РЎРѕР·РґР°С‚СЊ'}
               </button>
             </div>
           </div>

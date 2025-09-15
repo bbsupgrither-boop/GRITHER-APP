@@ -1,4 +1,4 @@
-﻿import { useState } from 'react';
+п»їimport { useState } from 'react';
 import { Header } from './Header';
 import { BottomNavigation } from './BottomNavigation';
 import { Trophy, Star, Clock, Target, CheckCircle, Award, Filter, Search } from './Icons';
@@ -27,17 +27,17 @@ export function AchievementsPageStyled({
   const [searchQuery, setSearchQuery] = useState('');
 
   const tabs = [
-    { id: 'all' as const, label: 'Р’СЃРµ', icon: Target },
-    { id: 'completed' as const, label: 'Р’С‹РїРѕР»РЅРµРЅРЅС‹Рµ', icon: CheckCircle },
-    { id: 'progress' as const, label: 'Р’ РїСЂРѕС†РµСЃСЃРµ', icon: Clock },
-    { id: 'locked' as const, label: 'Р—Р°Р±Р»РѕРєРёСЂРѕРІР°РЅРЅС‹Рµ', icon: Star }
+    { id: 'all' as const, label: 'Р вЂ™РЎРѓР Вµ', icon: Target },
+    { id: 'completed' as const, label: 'Р вЂ™РЎвЂ№Р С—Р С•Р В»Р Р…Р ВµР Р…Р Р…РЎвЂ№Р Вµ', icon: CheckCircle },
+    { id: 'progress' as const, label: 'Р вЂ™ Р С—РЎР‚Р С•РЎвЂ Р ВµРЎРѓРЎРѓР Вµ', icon: Clock },
+    { id: 'locked' as const, label: 'Р вЂ”Р В°Р В±Р В»Р С•Р С”Р С‘РЎР‚Р С•Р Р†Р В°Р Р…Р Р…РЎвЂ№Р Вµ', icon: Star }
   ];
 
-  // Р¤РёР»СЊС‚СЂР°С†РёСЏ РґРѕСЃС‚РёР¶РµРЅРёР№
+  // Р В¤Р С‘Р В»РЎРЉРЎвЂљРЎР‚Р В°РЎвЂ Р С‘РЎРЏ Р Т‘Р С•РЎРѓРЎвЂљР С‘Р В¶Р ВµР Р…Р С‘Р в„–
   const getFilteredAchievements = () => {
     let filtered = achievements;
 
-    // Р¤РёР»СЊС‚СЂ РїРѕ РїРѕРёСЃРєСѓ
+    // Р В¤Р С‘Р В»РЎРЉРЎвЂљРЎР‚ Р С—Р С• Р С—Р С•Р С‘РЎРѓР С”РЎС“
     if (searchQuery) {
       filtered = filtered.filter(achievement => 
         achievement.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
@@ -45,7 +45,7 @@ export function AchievementsPageStyled({
       );
     }
 
-    // Р¤РёР»СЊС‚СЂ РїРѕ С‚Р°Р±Р°Рј
+    // Р В¤Р С‘Р В»РЎРЉРЎвЂљРЎР‚ Р С—Р С• РЎвЂљР В°Р В±Р В°Р С
     switch (activeTab) {
       case 'completed':
         return filtered.filter(a => a.isCompleted);
@@ -77,7 +77,7 @@ export function AchievementsPageStyled({
             ? 'bg-gradient-to-br from-blue-400 to-blue-600'
             : 'bg-secondary'
         }`}>
-          <span className="text-xl">{achievement.icon || 'рџЏ†'}</span>
+          <span className="text-xl">{achievement.icon || 'СЂСџРЏвЂ '}</span>
         </div>
         
         <div className="flex-1">
@@ -90,13 +90,13 @@ export function AchievementsPageStyled({
               {achievement.isCompleted && (
                 <div className="flex items-center gap-1 bg-green-100 text-green-600 px-2 py-1 rounded-full text-xs">
                   <Award className="w-3 h-3" />
-                  Р’С‹РїРѕР»РЅРµРЅРѕ
+                  Р вЂ™РЎвЂ№Р С—Р С•Р В»Р Р…Р ВµР Р…Р С•
                 </div>
               )}
               {!achievement.isCompleted && achievement.progress > 0 && (
                 <div className="flex items-center gap-1 bg-blue-100 text-blue-600 px-2 py-1 rounded-full text-xs">
                   <Clock className="w-3 h-3" />
-                  Р’ РїСЂРѕС†РµСЃСЃРµ
+                  Р вЂ™ Р С—РЎР‚Р С•РЎвЂ Р ВµРЎРѓРЎРѓР Вµ
                 </div>
               )}
             </div>
@@ -105,7 +105,7 @@ export function AchievementsPageStyled({
           {!achievement.isCompleted && (
             <div className="mb-3">
               <div className="flex items-center justify-between text-sm mb-1">
-                <span className="text-muted-foreground">РџСЂРѕРіСЂРµСЃСЃ</span>
+                <span className="text-muted-foreground">Р СџРЎР‚Р С•Р С–РЎР‚Р ВµРЎРѓРЎРѓ</span>
                 <span className="text-foreground">{achievement.progress}/{achievement.maxProgress}</span>
               </div>
               <div className="w-full bg-secondary rounded-full h-2">
@@ -117,20 +117,20 @@ export function AchievementsPageStyled({
                 />
               </div>
               <div className="text-xs text-muted-foreground mt-1">
-                {getProgressPercentage(achievement.progress, achievement.maxProgress)}% РІС‹РїРѕР»РЅРµРЅРѕ
+                {getProgressPercentage(achievement.progress, achievement.maxProgress)}% Р Р†РЎвЂ№Р С—Р С•Р В»Р Р…Р ВµР Р…Р С•
               </div>
             </div>
           )}
           
           <div className="flex items-center justify-between">
             <div className="text-sm text-muted-foreground">
-              РќР°РіСЂР°РґР°: {achievement.reward.coins} РјРѕРЅРµС‚
-              {achievement.reward.experience && ` вЂў ${achievement.reward.experience} XP`}
+              Р СњР В°Р С–РЎР‚Р В°Р Т‘Р В°: {achievement.reward.coins} Р СР С•Р Р…Р ВµРЎвЂљ
+              {achievement.reward.experience && ` РІР‚Сћ ${achievement.reward.experience} XP`}
             </div>
             {achievement.isCompleted && (
               <div className="text-green-600 font-medium text-sm">
-                +{achievement.reward.coins} рџ’°
-                {achievement.reward.experience && ` +${achievement.reward.experience} в­ђ`}
+                +{achievement.reward.coins} СЂСџвЂ™В°
+                {achievement.reward.experience && ` +${achievement.reward.experience} РІВ­С’`}
               </div>
             )}
           </div>
@@ -142,21 +142,21 @@ export function AchievementsPageStyled({
   return (
     <div className="min-h-screen bg-background">
       <Header 
-        title="Р”РѕСЃС‚РёР¶РµРЅРёСЏ" 
+        title="Р вЂќР С•РЎРѓРЎвЂљР С‘Р В¶Р ВµР Р…Р С‘РЎРЏ" 
         onOpenSettings={onOpenSettings} 
         profilePhoto={profilePhoto}
         user={currentUser}
       />
       
       <div className="pt-20 pb-20 p-6">
-        {/* РЎС‚Р°С‚РёСЃС‚РёРєР° */}
+        {/* Р РЋРЎвЂљР В°РЎвЂљР С‘РЎРѓРЎвЂљР С‘Р С”Р В° */}
         <div className="grid grid-cols-3 gap-4 mb-6">
           <div className="glass-card p-4 rounded-2xl apple-shadow text-center">
             <div className="text-2xl font-medium text-green-600 mb-1">
               {completedCount}
             </div>
             <div className="text-sm text-muted-foreground">
-              Р’С‹РїРѕР»РЅРµРЅРѕ
+              Р вЂ™РЎвЂ№Р С—Р С•Р В»Р Р…Р ВµР Р…Р С•
             </div>
           </div>
           <div className="glass-card p-4 rounded-2xl apple-shadow text-center">
@@ -164,7 +164,7 @@ export function AchievementsPageStyled({
               {progressCount}
             </div>
             <div className="text-sm text-muted-foreground">
-              Р’ РїСЂРѕС†РµСЃСЃРµ
+              Р вЂ™ Р С—РЎР‚Р С•РЎвЂ Р ВµРЎРѓРЎРѓР Вµ
             </div>
           </div>
           <div className="glass-card p-4 rounded-2xl apple-shadow text-center">
@@ -172,18 +172,18 @@ export function AchievementsPageStyled({
               {lockedCount}
             </div>
             <div className="text-sm text-muted-foreground">
-              Р—Р°Р±Р»РѕРєРёСЂРѕРІР°РЅРѕ
+              Р вЂ”Р В°Р В±Р В»Р С•Р С”Р С‘РЎР‚Р С•Р Р†Р В°Р Р…Р С•
             </div>
           </div>
         </div>
 
-        {/* РџРѕРёСЃРє */}
+        {/* Р СџР С•Р С‘РЎРѓР С” */}
         <div className="glass-card rounded-2xl p-4 mb-6 apple-shadow">
           <div className="flex items-center gap-3">
             <Search className="w-5 h-5 text-muted-foreground" />
             <input
               type="text"
-              placeholder="РџРѕРёСЃРє РґРѕСЃС‚РёР¶РµРЅРёР№..."
+              placeholder="Р СџР С•Р С‘РЎРѓР С” Р Т‘Р С•РЎРѓРЎвЂљР С‘Р В¶Р ВµР Р…Р С‘Р в„–..."
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
               className="flex-1 bg-transparent text-foreground placeholder-muted-foreground focus:outline-none"
@@ -199,7 +199,7 @@ export function AchievementsPageStyled({
           </div>
         </div>
 
-        {/* РўР°Р±С‹ */}
+        {/* Р СћР В°Р В±РЎвЂ№ */}
         <div className="grid grid-cols-4 gap-2 mb-6">
           {tabs.map((tab) => {
             const Icon = tab.icon;
@@ -221,7 +221,7 @@ export function AchievementsPageStyled({
           })}
         </div>
 
-        {/* РЎРїРёСЃРѕРє РґРѕСЃС‚РёР¶РµРЅРёР№ */}
+        {/* Р РЋР С—Р С‘РЎРѓР С•Р С” Р Т‘Р С•РЎРѓРЎвЂљР С‘Р В¶Р ВµР Р…Р С‘Р в„– */}
         <div className="space-y-4">
           {filteredAchievements.length > 0 ? (
             filteredAchievements.map(renderAchievementCard)
@@ -229,18 +229,18 @@ export function AchievementsPageStyled({
             <div className="glass-card rounded-2xl p-8 text-center apple-shadow">
               <Trophy className="w-12 h-12 text-muted-foreground mx-auto mb-4" />
               <h3 className="text-lg font-medium text-foreground mb-2">
-                {searchQuery ? 'РќРёС‡РµРіРѕ РЅРµ РЅР°Р№РґРµРЅРѕ' : 'РќРµС‚ РґРѕСЃС‚РёР¶РµРЅРёР№'}
+                {searchQuery ? 'Р СњР С‘РЎвЂЎР ВµР С–Р С• Р Р…Р Вµ Р Р…Р В°Р в„–Р Т‘Р ВµР Р…Р С•' : 'Р СњР ВµРЎвЂљ Р Т‘Р С•РЎРѓРЎвЂљР С‘Р В¶Р ВµР Р…Р С‘Р в„–'}
               </h3>
               <p className="text-sm text-muted-foreground">
                 {searchQuery 
-                  ? 'РџРѕРїСЂРѕР±СѓР№С‚Рµ РёР·РјРµРЅРёС‚СЊ РїРѕРёСЃРєРѕРІС‹Р№ Р·Р°РїСЂРѕСЃ'
+                  ? 'Р СџР С•Р С—РЎР‚Р С•Р В±РЎС“Р в„–РЎвЂљР Вµ Р С‘Р В·Р СР ВµР Р…Р С‘РЎвЂљРЎРЉ Р С—Р С•Р С‘РЎРѓР С”Р С•Р Р†РЎвЂ№Р в„– Р В·Р В°Р С—РЎР‚Р С•РЎРѓ'
                   : activeTab === 'completed'
-                  ? 'РЈ РІР°СЃ РїРѕРєР° РЅРµС‚ РІС‹РїРѕР»РЅРµРЅРЅС‹С… РґРѕСЃС‚РёР¶РµРЅРёР№'
+                  ? 'Р Р€ Р Р†Р В°РЎРѓ Р С—Р С•Р С”Р В° Р Р…Р ВµРЎвЂљ Р Р†РЎвЂ№Р С—Р С•Р В»Р Р…Р ВµР Р…Р Р…РЎвЂ№РЎвЂ¦ Р Т‘Р С•РЎРѓРЎвЂљР С‘Р В¶Р ВµР Р…Р С‘Р в„–'
                   : activeTab === 'progress'
-                  ? 'РЈ РІР°СЃ РЅРµС‚ РґРѕСЃС‚РёР¶РµРЅРёР№ РІ РїСЂРѕС†РµСЃСЃРµ'
+                  ? 'Р Р€ Р Р†Р В°РЎРѓ Р Р…Р ВµРЎвЂљ Р Т‘Р С•РЎРѓРЎвЂљР С‘Р В¶Р ВµР Р…Р С‘Р в„– Р Р† Р С—РЎР‚Р С•РЎвЂ Р ВµРЎРѓРЎРѓР Вµ'
                   : activeTab === 'locked'
-                  ? 'Р’СЃРµ РґРѕСЃС‚РёР¶РµРЅРёСЏ СЂР°Р·Р±Р»РѕРєРёСЂРѕРІР°РЅС‹!'
-                  : 'РќР°С‡РЅРёС‚Рµ РІС‹РїРѕР»РЅСЏС‚СЊ Р·Р°РґР°С‡Рё РґР»СЏ РїРѕР»СѓС‡РµРЅРёСЏ РґРѕСЃС‚РёР¶РµРЅРёР№'
+                  ? 'Р вЂ™РЎРѓР Вµ Р Т‘Р С•РЎРѓРЎвЂљР С‘Р В¶Р ВµР Р…Р С‘РЎРЏ РЎР‚Р В°Р В·Р В±Р В»Р С•Р С”Р С‘РЎР‚Р С•Р Р†Р В°Р Р…РЎвЂ№!'
+                  : 'Р СњР В°РЎвЂЎР Р…Р С‘РЎвЂљР Вµ Р Р†РЎвЂ№Р С—Р С•Р В»Р Р…РЎРЏРЎвЂљРЎРЉ Р В·Р В°Р Т‘Р В°РЎвЂЎР С‘ Р Т‘Р В»РЎРЏ Р С—Р С•Р В»РЎС“РЎвЂЎР ВµР Р…Р С‘РЎРЏ Р Т‘Р С•РЎРѓРЎвЂљР С‘Р В¶Р ВµР Р…Р С‘Р в„–'
                 }
               </p>
               {searchQuery && (
@@ -248,14 +248,14 @@ export function AchievementsPageStyled({
                   onClick={() => setSearchQuery('')}
                   className="mt-4 bg-primary text-primary-foreground px-4 py-2 rounded-xl hover:scale-[0.98] transition-transform"
                 >
-                  РћС‡РёСЃС‚РёС‚СЊ РїРѕРёСЃРє
+                  Р С›РЎвЂЎР С‘РЎРѓРЎвЂљР С‘РЎвЂљРЎРЉ Р С—Р С•Р С‘РЎРѓР С”
                 </button>
               )}
             </div>
           )}
         </div>
 
-        {/* РЎРѕРІРµС‚ РґР»СЏ РїРѕР»СЊР·РѕРІР°С‚РµР»СЏ */}
+        {/* Р РЋР С•Р Р†Р ВµРЎвЂљ Р Т‘Р В»РЎРЏ Р С—Р С•Р В»РЎРЉР В·Р С•Р Р†Р В°РЎвЂљР ВµР В»РЎРЏ */}
         {achievements.length > 0 && !searchQuery && (
           <div className="glass-card rounded-2xl p-4 mt-6 apple-shadow">
             <div className="flex items-center gap-3">
@@ -263,9 +263,9 @@ export function AchievementsPageStyled({
                 <Star className="w-5 h-5 text-yellow-600" />
               </div>
               <div className="flex-1">
-                <div className="font-medium text-foreground text-sm">РЎРѕРІРµС‚</div>
+                <div className="font-medium text-foreground text-sm">Р РЋР С•Р Р†Р ВµРЎвЂљ</div>
                 <div className="text-sm text-muted-foreground">
-                  Р’С‹РїРѕР»РЅСЏР№С‚Рµ РµР¶РµРґРЅРµРІРЅС‹Рµ Р·Р°РґР°С‡Рё РґР»СЏ Р±С‹СЃС‚СЂРѕРіРѕ РїСЂРѕРіСЂРµСЃСЃР° РІ РґРѕСЃС‚РёР¶РµРЅРёСЏС…!
+                  Р вЂ™РЎвЂ№Р С—Р С•Р В»Р Р…РЎРЏР в„–РЎвЂљР Вµ Р ВµР В¶Р ВµР Т‘Р Р…Р ВµР Р†Р Р…РЎвЂ№Р Вµ Р В·Р В°Р Т‘Р В°РЎвЂЎР С‘ Р Т‘Р В»РЎРЏ Р В±РЎвЂ№РЎРѓРЎвЂљРЎР‚Р С•Р С–Р С• Р С—РЎР‚Р С•Р С–РЎР‚Р ВµРЎРѓРЎРѓР В° Р Р† Р Т‘Р С•РЎРѓРЎвЂљР С‘Р В¶Р ВµР Р…Р С‘РЎРЏРЎвЂ¦!
                 </div>
               </div>
             </div>

@@ -1,4 +1,4 @@
-﻿import logoDark from 'figma:asset/282ed224b8d6681278187a87d172cc01e9522cbc.png';
+import logoDark from 'figma:asset/282ed224b8d6681278187a87d172cc01e9522cbc.png';
 import logoLight from 'figma:asset/8913ba3c8424dada0cd9697071e01ea367a29a23.png';
 
 interface LogoProps {
@@ -15,7 +15,7 @@ export function Logo({ theme = 'light' }: LogoProps) {
         zIndex: 10
       }}
     >
-      {/* Glow effect - только для темной темы */}
+      {/* Glow effect - С‚РѕР»СЊРєРѕ РґР»СЏ С‚РµРјРЅРѕР№ С‚РµРјС‹ */}
       {theme === 'dark' && (
         <div 
           className="absolute"

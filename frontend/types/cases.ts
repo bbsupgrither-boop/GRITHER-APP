@@ -1,4 +1,4 @@
-﻿export interface CaseType {
+export interface CaseType {
   id: string;
   name: string;
   description: string;

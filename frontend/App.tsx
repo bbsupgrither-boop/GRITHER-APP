@@ -6,16 +6,17 @@ console.info("build", import.meta.env.VITE_APP_BUILD);
 
 // Import components
 import { HomePage } from './components/HomePage';
-import { AchievementsPageFixed } from './components/AchievementsPageFixed';
+import { AchievementsPage } from './components/AchievementsPage';
 import { TasksPage } from './components/TasksPage';
 import { ShopPage } from './components/ShopPage';
-import ProfilePage from './src/pages/Profile';
+import { ProfilePage } from './components/ProfilePage';
 import { Header } from './components/Header';
 import { BottomNavigation } from './components/BottomNavigation';
-import { SettingsModal } from './components/SettingsModalFixed';
+import { SettingsModal } from './components/SettingsModal';
 import { SecretAdminAccess } from './components/SecretAdminAccess';
 import { ProblemReportModal } from './components/ProblemReportModal';
 import { AdminPanelMain } from './components/AdminPanelMain';
+import { ErrorBoundary } from './src/shared/ErrorBoundary';
 
 // Types
 interface User {
@@ -119,7 +120,7 @@ export default function App() {
   // Mock data
   const mockCurrentUser: User = {
     id: 'current-user',
-    name: 'Иван Иванов',
+    name: 'РРІР°РЅ РРІР°РЅРѕРІ',
     avatar: undefined,
     level: 1,
     xp: 0,
@@ -130,35 +131,35 @@ export default function App() {
   const mockAchievements: Achievement[] = [
     {
       id: '1',
-      title: 'Новичок',
-      description: 'Достигните 2 уровня',
+      title: 'РќРѕРІРёС‡РѕРє',
+      description: 'Р”РѕСЃС‚РёРіРЅРёС‚Рµ 2 СѓСЂРѕРІРЅСЏ',
       progress: 50,
       maxProgress: 100,
       reward: { xp: 100, coins: 50 },
       requirements: { type: 'level', value: 2 },
-      icon: '🛡️',
+      icon: 'рџ›ЎпёЏ',
       isCompleted: false
     },
     {
       id: '2',
-      title: 'Трудолюбивый',
-      description: 'Выполните 10 задач',
+      title: 'РўСЂСѓРґРѕР»СЋР±РёРІС‹Р№',
+      description: 'Р’С‹РїРѕР»РЅРёС‚Рµ 10 Р·Р°РґР°С‡',
       progress: 30,
       maxProgress: 100,
       reward: { xp: 200, coins: 100 },
       requirements: { type: 'tasks', value: 10 },
-      icon: '⚡',
+      icon: 'вљЎ',
       isCompleted: false
     },
     {
       id: '3',
-      title: 'Коллекционер',
-      description: 'Откройте 5 кейсов',
+      title: 'РљРѕР»Р»РµРєС†РёРѕРЅРµСЂ',
+      description: 'РћС‚РєСЂРѕР№С‚Рµ 5 РєРµР№СЃРѕРІ',
       progress: 20,
       maxProgress: 100,
       reward: { xp: 150, coins: 75 },
       requirements: { type: 'cases', value: 5 },
-      icon: '📦',
+      icon: 'рџ“¦',
       isCompleted: false
     }
   ];
@@ -166,7 +167,7 @@ export default function App() {
   const mockBattles: Battle[] = [
     {
       id: '1',
-      opponentName: 'Елена Морозова',
+      opponentName: 'Р•Р»РµРЅР° РњРѕСЂРѕР·РѕРІР°',
       stake: 250,
       status: 'active'
     }
@@ -175,22 +176,22 @@ export default function App() {
   const mockBattleInvitations: Battle[] = [
     {
       id: '2',
-      opponentName: 'Мария Сидорова',
+      opponentName: 'РњР°СЂРёСЏ РЎРёРґРѕСЂРѕРІР°',
       stake: 200,
       status: 'pending'
     },
     {
       id: '3',
-      opponentName: 'Анна Иванова',
+      opponentName: 'РђРЅРЅР° РРІР°РЅРѕРІР°',
       stake: 150,
       status: 'pending'
     }
   ];
 
   const mockUsers = [
-    { id: '1', name: 'Петр Петров', level: 18 },
-    { id: '2', name: 'Елена Морозова', level: 16 },
-    { id: '3', name: 'Анна Иванова', level: 15 }
+    { id: '1', name: 'РџРµС‚СЂ РџРµС‚СЂРѕРІ', level: 18 },
+    { id: '2', name: 'Р•Р»РµРЅР° РњРѕСЂРѕР·РѕРІР°', level: 16 },
+    { id: '3', name: 'РђРЅРЅР° РРІР°РЅРѕРІР°', level: 15 }
   ];
 
   const mockLeaderboard = mockUsers.map((user, index) => ({
@@ -203,8 +204,8 @@ export default function App() {
   const mockTasks: Task[] = [
     {
       id: '1',
-      title: 'Выполнить задачу',
-      description: 'Описание задачи',
+      title: 'Р’С‹РїРѕР»РЅРёС‚СЊ Р·Р°РґР°С‡Сѓ',
+      description: 'РћРїРёСЃР°РЅРёРµ Р·Р°РґР°С‡Рё',
       reward: { xp: 50, coins: 25 },
       isCompleted: false
     }
@@ -213,18 +214,18 @@ export default function App() {
   const mockShopItems: ShopItem[] = [
     {
       id: '1',
-      name: 'Кейс',
+      name: 'РљРµР№СЃ',
       price: 100,
-      icon: '📦',
-      description: 'Случайный предмет'
+      icon: 'рџ“¦',
+      description: 'РЎР»СѓС‡Р°Р№РЅС‹Р№ РїСЂРµРґРјРµС‚'
     }
   ];
 
   const mockNotifications: Notification[] = [
     {
       id: '1',
-      title: 'Новое уведомление',
-      message: 'У вас новое сообщение',
+      title: 'РќРѕРІРѕРµ СѓРІРµРґРѕРјР»РµРЅРёРµ',
+      message: 'РЈ РІР°СЃ РЅРѕРІРѕРµ СЃРѕРѕР±С‰РµРЅРёРµ',
       type: 'info',
       timestamp: new Date().toISOString(),
       isRead: false
@@ -260,8 +261,9 @@ export default function App() {
 
   return (
     <HashRouter>
-      <div className={`app ${theme === 'dark' ? 'dark' : ''}`} style={{ minHeight: '100vh' }}>
-        <NavigationWrapper>
+      <ErrorBoundary>
+        <div className={`app ${theme === 'dark' ? 'dark' : ''}`} style={{ minHeight: '100vh' }}>
+          <NavigationWrapper>
           <Routes>
             <Route path="/" element={<Navigate to="/home" replace />} />
             
@@ -309,7 +311,7 @@ export default function App() {
                   hideUserIcon={false}
                 />
                 <main className="container" style={{ paddingBottom: '80px' }}>
-                  <AchievementsPageFixed
+                  <AchievementsPage
                     theme={theme}
                     achievements={mockAchievements}
                     currentPage="/achievements"
@@ -439,7 +441,8 @@ export default function App() {
             userRole={secretAccessGrantedRole || 'Admin'}
           />
         )}
-      </div>
+        </div>
+      </ErrorBoundary>
     </HashRouter>
   );
 }

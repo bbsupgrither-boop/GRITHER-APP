@@ -4,10 +4,10 @@ import { useThemeToggle } from './useThemeToggle';
 export type Theme = 'light' | 'dark';
 
 export const useTheme = () => {
-  const [theme, setTheme] = useState<Theme>('dark'); // По умолчанию темная тема
+  const [theme, setTheme] = useState<Theme>('dark'); // РџРѕ СѓРјРѕР»С‡Р°РЅРёСЋ С‚РµРјРЅР°СЏ С‚РµРјР°
   const { themeToggleCount, incrementThemeToggleCount, resetThemeToggleCount } = useThemeToggle();
 
-  // Применение темы к DOM
+  // РџСЂРёРјРµРЅРµРЅРёРµ С‚РµРјС‹ Рє DOM
   useEffect(() => {
     if (theme === 'dark') {
       document.documentElement.classList.add('dark');
@@ -16,42 +16,42 @@ export const useTheme = () => {
     }
   }, [theme]);
 
-  // Инициализация темы из localStorage или системных настроек
+  // РРЅРёС†РёР°Р»РёР·Р°С†РёСЏ С‚РµРјС‹ РёР· localStorage РёР»Рё СЃРёСЃС‚РµРјРЅС‹С… РЅР°СЃС‚СЂРѕРµРє
   useEffect(() => {
-    // Проверяем localStorage
+    // РџСЂРѕРІРµСЂСЏРµРј localStorage
     const savedTheme = localStorage.getItem('grither-theme') as Theme;
     if (savedTheme && (savedTheme === 'light' || savedTheme === 'dark')) {
       setTheme(savedTheme);
       return;
     }
 
-    // Проверяем системную тему
+    // РџСЂРѕРІРµСЂСЏРµРј СЃРёСЃС‚РµРјРЅСѓСЋ С‚РµРјСѓ
     if (window.matchMedia && window.matchMedia('(prefers-color-scheme: light)').matches) {
       setTheme('light');
     }
 
-    // Проверяем Telegram Web App
+    // РџСЂРѕРІРµСЂСЏРµРј Telegram Web App
     if (window.Telegram && window.Telegram.WebApp) {
       const telegramTheme = window.Telegram.WebApp.colorScheme === 'light' ? 'light' : 'dark';
       setTheme(telegramTheme);
     }
   }, []);
 
-  // Функция переключения темы
+  // Р¤СѓРЅРєС†РёСЏ РїРµСЂРµРєР»СЋС‡РµРЅРёСЏ С‚РµРјС‹
   const toggleTheme = () => {
     const newTheme = theme === 'light' ? 'dark' : 'light';
-    console.log(`🌗 Theme toggle: ${theme} → ${newTheme}`);
+    console.log(`рџЊ— Theme toggle: ${theme} в†’ ${newTheme}`);
     setTheme(newTheme);
     localStorage.setItem('grither-theme', newTheme);
     
-    // Увеличиваем счетчик переключений только при включении (light -> dark)
+    // РЈРІРµР»РёС‡РёРІР°РµРј СЃС‡РµС‚С‡РёРє РїРµСЂРµРєР»СЋС‡РµРЅРёР№ С‚РѕР»СЊРєРѕ РїСЂРё РІРєР»СЋС‡РµРЅРёРё (light -> dark)
     if (newTheme === 'dark') {
-      console.log(`🔢 Incrementing theme toggle count: ${themeToggleCount} → ${themeToggleCount + 1}`);
+      console.log(`рџ”ў Incrementing theme toggle count: ${themeToggleCount} в†’ ${themeToggleCount + 1}`);
       incrementThemeToggleCount();
     }
   };
 
-  // Функция установки конкретной темы
+  // Р¤СѓРЅРєС†РёСЏ СѓСЃС‚Р°РЅРѕРІРєРё РєРѕРЅРєСЂРµС‚РЅРѕР№ С‚РµРјС‹
   const setThemeMode = (newTheme: Theme) => {
     setTheme(newTheme);
     localStorage.setItem('grither-theme', newTheme);

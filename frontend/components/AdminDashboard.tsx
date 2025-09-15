@@ -1,4 +1,4 @@
-﻿import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import { 
   Users, 
   DollarSign, 
@@ -79,28 +79,28 @@ export const AdminDashboard: React.FC<AdminDashboardProps> = ({ theme, onNavigat
     {
       id: '1',
       type: 'info',
-      title: 'Система обновлена',
-      message: 'Версия 1.2.0 успешно развернута',
+      title: 'РЎРёСЃС‚РµРјР° РѕР±РЅРѕРІР»РµРЅР°',
+      message: 'Р’РµСЂСЃРёСЏ 1.2.0 СѓСЃРїРµС€РЅРѕ СЂР°Р·РІРµСЂРЅСѓС‚Р°',
       timestamp: new Date().toISOString(),
       urgent: false
     },
     {
       id: '2',
       type: 'warning',
-      title: 'Высокая нагрузка',
-      message: 'Количество активных пользователей превышает обычные значения',
+      title: 'Р’С‹СЃРѕРєР°СЏ РЅР°РіСЂСѓР·РєР°',
+      message: 'РљРѕР»РёС‡РµСЃС‚РІРѕ Р°РєС‚РёРІРЅС‹С… РїРѕР»СЊР·РѕРІР°С‚РµР»РµР№ РїСЂРµРІС‹С€Р°РµС‚ РѕР±С‹С‡РЅС‹Рµ Р·РЅР°С‡РµРЅРёСЏ',
       timestamp: new Date(Date.now() - 3600000).toISOString(),
       urgent: true
     }
   ]);
 
-  // Загрузка статистики
+  // Р—Р°РіСЂСѓР·РєР° СЃС‚Р°С‚РёСЃС‚РёРєРё
   useEffect(() => {
     loadDashboardStats();
   }, [database]);
 
   const loadDashboardStats = async () => {
-    // Загрузка реальных данных из базы данных
+    // Р—Р°РіСЂСѓР·РєР° СЂРµР°Р»СЊРЅС‹С… РґР°РЅРЅС‹С… РёР· Р±Р°Р·С‹ РґР°РЅРЅС‹С…
     const users = database.users || [];
     const tasks = database.tasks || [];
     const achievements = database.achievements || [];
@@ -108,7 +108,7 @@ export const AdminDashboard: React.FC<AdminDashboardProps> = ({ theme, onNavigat
     const shopItems = database.shopItems || [];
     const notifications = database.notifications || [];
 
-    // Подсчет статистики
+    // РџРѕРґСЃС‡РµС‚ СЃС‚Р°С‚РёСЃС‚РёРєРё
     const activeUsers = users.filter(user => user.lastActive && 
       new Date(user.lastActive).getTime() > Date.now() - 24 * 60 * 60 * 1000).length;
     
@@ -146,38 +146,38 @@ export const AdminDashboard: React.FC<AdminDashboardProps> = ({ theme, onNavigat
     setStats(realStats);
   };
 
-  // Быстрые действия
+  // Р‘С‹СЃС‚СЂС‹Рµ РґРµР№СЃС‚РІРёСЏ
   const quickActions: QuickAction[] = [
     {
       id: 'emergency_notification',
-      title: 'Экстренное уведомление',
-      description: 'Отправить всем пользователям',
+      title: 'Р­РєСЃС‚СЂРµРЅРЅРѕРµ СѓРІРµРґРѕРјР»РµРЅРёРµ',
+      description: 'РћС‚РїСЂР°РІРёС‚СЊ РІСЃРµРј РїРѕР»СЊР·РѕРІР°С‚РµР»СЏРј',
       icon: <Bell className="w-5 h-5" />,
       color: 'bg-red-500',
       action: () => {
-        // Открыть модал экстренного уведомления
+        // РћС‚РєСЂС‹С‚СЊ РјРѕРґР°Р» СЌРєСЃС‚СЂРµРЅРЅРѕРіРѕ СѓРІРµРґРѕРјР»РµРЅРёСЏ
         console.log('Emergency notification');
       }
     },
     {
       id: 'system_restart',
-      title: 'Перезапуск системы',
-      description: 'Техническое обслуживание',
+      title: 'РџРµСЂРµР·Р°РїСѓСЃРє СЃРёСЃС‚РµРјС‹',
+      description: 'РўРµС…РЅРёС‡РµСЃРєРѕРµ РѕР±СЃР»СѓР¶РёРІР°РЅРёРµ',
       icon: <RefreshCw className="w-5 h-5" />,
       color: 'bg-orange-500',
       action: () => {
-        // Подтверждение перезапуска
+        // РџРѕРґС‚РІРµСЂР¶РґРµРЅРёРµ РїРµСЂРµР·Р°РїСѓСЃРєР°
         console.log('System restart');
       }
     },
     {
       id: 'export_data',
-      title: 'Экспорт данных',
-      description: 'Выгрузка статистики',
+      title: 'Р­РєСЃРїРѕСЂС‚ РґР°РЅРЅС‹С…',
+      description: 'Р’С‹РіСЂСѓР·РєР° СЃС‚Р°С‚РёСЃС‚РёРєРё',
       icon: <Download className="w-5 h-5" />,
       color: 'bg-blue-500',
       action: () => {
-        // Экспорт данных
+        // Р­РєСЃРїРѕСЂС‚ РґР°РЅРЅС‹С…
         console.log('Export data');
       }
     }
@@ -193,14 +193,14 @@ export const AdminDashboard: React.FC<AdminDashboardProps> = ({ theme, onNavigat
 
   return (
     <div className="p-6 space-y-6">
-      {/* Заголовок */}
+      {/* Р—Р°РіРѕР»РѕРІРѕРє */}
       <div className="flex items-center justify-between">
         <div>
           <h1 className="text-2xl font-bold" style={{ color: theme === 'dark' ? '#E8ECF2' : '#0F172A' }}>
-            Панель управления
+            РџР°РЅРµР»СЊ СѓРїСЂР°РІР»РµРЅРёСЏ
           </h1>
           <p className="text-sm opacity-70" style={{ color: theme === 'dark' ? '#A7B0BD' : '#6B7280' }}>
-            Обзор системы и быстрые действия
+            РћР±Р·РѕСЂ СЃРёСЃС‚РµРјС‹ Рё Р±С‹СЃС‚СЂС‹Рµ РґРµР№СЃС‚РІРёСЏ
           </p>
         </div>
         <button
@@ -214,9 +214,9 @@ export const AdminDashboard: React.FC<AdminDashboardProps> = ({ theme, onNavigat
         </button>
       </div>
 
-      {/* Аналитические блоки */}
+      {/* РђРЅР°Р»РёС‚РёС‡РµСЃРєРёРµ Р±Р»РѕРєРё */}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-        {/* Активные пользователи */}
+        {/* РђРєС‚РёРІРЅС‹Рµ РїРѕР»СЊР·РѕРІР°С‚РµР»Рё */}
         <div 
           className="p-6 rounded-xl"
           style={{
@@ -229,16 +229,16 @@ export const AdminDashboard: React.FC<AdminDashboardProps> = ({ theme, onNavigat
               <Users className="w-6 h-6 text-blue-500" />
             </div>
             <span className="text-xs px-2 py-1 rounded-full bg-green-500 bg-opacity-20 text-green-500">
-              +{stats.newRegistrations} новых
+              +{stats.newRegistrations} РЅРѕРІС‹С…
             </span>
           </div>
           <div>
-            <h3 className="text-sm opacity-70 mb-1">Активные пользователи</h3>
+            <h3 className="text-sm opacity-70 mb-1">РђРєС‚РёРІРЅС‹Рµ РїРѕР»СЊР·РѕРІР°С‚РµР»Рё</h3>
             <p className="text-2xl font-bold">{stats.activeUsers.toLocaleString()}</p>
           </div>
         </div>
 
-        {/* Финансовая статистика */}
+        {/* Р¤РёРЅР°РЅСЃРѕРІР°СЏ СЃС‚Р°С‚РёСЃС‚РёРєР° */}
         <div 
           className="p-6 rounded-xl"
           style={{
@@ -251,16 +251,16 @@ export const AdminDashboard: React.FC<AdminDashboardProps> = ({ theme, onNavigat
               <DollarSign className="w-6 h-6 text-green-500" />
             </div>
             <span className="text-xs px-2 py-1 rounded-full bg-green-500 bg-opacity-20 text-green-500">
-              +{stats.dailyTransactions} за день
+              +{stats.dailyTransactions} Р·Р° РґРµРЅСЊ
             </span>
           </div>
           <div>
-            <h3 className="text-sm opacity-70 mb-1">Общий оборот</h3>
-            <p className="text-2xl font-bold">{stats.totalRevenue.toLocaleString()} ₽</p>
+            <h3 className="text-sm opacity-70 mb-1">РћР±С‰РёР№ РѕР±РѕСЂРѕС‚</h3>
+            <p className="text-2xl font-bold">{stats.totalRevenue.toLocaleString()} в‚Ѕ</p>
           </div>
         </div>
 
-        {/* Статистика заданий */}
+        {/* РЎС‚Р°С‚РёСЃС‚РёРєР° Р·Р°РґР°РЅРёР№ */}
         <div 
           className="p-6 rounded-xl"
           style={{
@@ -273,16 +273,16 @@ export const AdminDashboard: React.FC<AdminDashboardProps> = ({ theme, onNavigat
               <CheckSquare className="w-6 h-6 text-purple-500" />
             </div>
             <span className="text-xs px-2 py-1 rounded-full bg-red-500 bg-opacity-20 text-red-500">
-              {stats.failedTasks} провальных
+              {stats.failedTasks} РїСЂРѕРІР°Р»СЊРЅС‹С…
             </span>
           </div>
           <div>
-            <h3 className="text-sm opacity-70 mb-1">Выполненные задачи</h3>
+            <h3 className="text-sm opacity-70 mb-1">Р’С‹РїРѕР»РЅРµРЅРЅС‹Рµ Р·Р°РґР°С‡Рё</h3>
             <p className="text-2xl font-bold">{stats.completedTasks}</p>
           </div>
         </div>
 
-        {/* Достижения */}
+        {/* Р”РѕСЃС‚РёР¶РµРЅРёСЏ */}
         <div 
           className="p-6 rounded-xl"
           style={{
@@ -295,16 +295,16 @@ export const AdminDashboard: React.FC<AdminDashboardProps> = ({ theme, onNavigat
               <Trophy className="w-6 h-6 text-yellow-500" />
             </div>
             <span className="text-xs px-2 py-1 rounded-full bg-blue-500 bg-opacity-20 text-blue-500">
-              +{stats.recentAchievements} новых
+              +{stats.recentAchievements} РЅРѕРІС‹С…
             </span>
           </div>
           <div>
-            <h3 className="text-sm opacity-70 mb-1">Популярные достижения</h3>
+            <h3 className="text-sm opacity-70 mb-1">РџРѕРїСѓР»СЏСЂРЅС‹Рµ РґРѕСЃС‚РёР¶РµРЅРёСЏ</h3>
             <p className="text-2xl font-bold">{stats.popularAchievements}</p>
           </div>
         </div>
 
-        {/* Баттлы */}
+        {/* Р‘Р°С‚С‚Р»С‹ */}
         <div 
           className="p-6 rounded-xl"
           style={{
@@ -317,16 +317,16 @@ export const AdminDashboard: React.FC<AdminDashboardProps> = ({ theme, onNavigat
               <Swords className="w-6 h-6 text-red-500" />
             </div>
             <span className="text-xs px-2 py-1 rounded-full bg-orange-500 bg-opacity-20 text-orange-500">
-              {stats.totalBets.toLocaleString()} ₽ ставок
+              {stats.totalBets.toLocaleString()} в‚Ѕ СЃС‚Р°РІРѕРє
             </span>
           </div>
           <div>
-            <h3 className="text-sm opacity-70 mb-1">Активные баттлы</h3>
+            <h3 className="text-sm opacity-70 mb-1">РђРєС‚РёРІРЅС‹Рµ Р±Р°С‚С‚Р»С‹</h3>
             <p className="text-2xl font-bold">{stats.activeBattles}</p>
           </div>
         </div>
 
-        {/* Магазин */}
+        {/* РњР°РіР°Р·РёРЅ */}
         <div 
           className="p-6 rounded-xl"
           style={{
@@ -339,20 +339,20 @@ export const AdminDashboard: React.FC<AdminDashboardProps> = ({ theme, onNavigat
               <ShoppingBag className="w-6 h-6 text-indigo-500" />
             </div>
             <span className="text-xs px-2 py-1 rounded-full bg-indigo-500 bg-opacity-20 text-indigo-500">
-              {stats.popularItems} популярных
+              {stats.popularItems} РїРѕРїСѓР»СЏСЂРЅС‹С…
             </span>
           </div>
           <div>
-            <h3 className="text-sm opacity-70 mb-1">Продажи</h3>
+            <h3 className="text-sm opacity-70 mb-1">РџСЂРѕРґР°Р¶Рё</h3>
             <p className="text-2xl font-bold">{stats.shopSales}</p>
           </div>
         </div>
       </div>
 
-      {/* Быстрые действия */}
+      {/* Р‘С‹СЃС‚СЂС‹Рµ РґРµР№СЃС‚РІРёСЏ */}
       <div>
         <h2 className="text-xl font-semibold mb-4" style={{ color: theme === 'dark' ? '#E8ECF2' : '#0F172A' }}>
-          Быстрые действия
+          Р‘С‹СЃС‚СЂС‹Рµ РґРµР№СЃС‚РІРёСЏ
         </h2>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
           {quickActions.map((action) => (
@@ -381,10 +381,10 @@ export const AdminDashboard: React.FC<AdminDashboardProps> = ({ theme, onNavigat
         </div>
       </div>
 
-      {/* Системные уведомления */}
+      {/* РЎРёСЃС‚РµРјРЅС‹Рµ СѓРІРµРґРѕРјР»РµРЅРёСЏ */}
       <div>
         <h2 className="text-xl font-semibold mb-4" style={{ color: theme === 'dark' ? '#E8ECF2' : '#0F172A' }}>
-          Системные уведомления
+          РЎРёСЃС‚РµРјРЅС‹Рµ СѓРІРµРґРѕРјР»РµРЅРёСЏ
         </h2>
         <div className="space-y-3">
           {notifications.map((notification) => (
@@ -428,7 +428,7 @@ export const AdminDashboard: React.FC<AdminDashboardProps> = ({ theme, onNavigat
                 className="p-1 rounded-lg hover:bg-opacity-10"
                 style={{ backgroundColor: theme === 'dark' ? 'rgba(255,255,255,0.1)' : 'rgba(0,0,0,0.1)' }}
               >
-                ×
+                Г—
               </button>
             </div>
           ))}

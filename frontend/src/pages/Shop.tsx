@@ -56,9 +56,9 @@ export default function ShopPage({
             <ShoppingBag className="w-6 h-6 text-purple-500" />
           </div>
           <div>
-            <h1 className="unified-heading">Магазин</h1>
+            <h1 className="unified-heading">РњР°РіР°Р·РёРЅ</h1>
             <p className="unified-text text-muted-foreground">
-              💰 {userCoins} G-монет
+              рџ’° {userCoins} G-РјРѕРЅРµС‚
             </p>
           </div>
         </div>
@@ -76,7 +76,7 @@ export default function ShopPage({
             }`}
           >
             <Package className="w-4 h-4 mx-auto mb-1" />
-            <span className="unified-text text-xs">Кейсы</span>
+            <span className="unified-text text-xs">РљРµР№СЃС‹</span>
           </button>
           
           <button
@@ -88,7 +88,7 @@ export default function ShopPage({
             }`}
           >
             <ShoppingBag className="w-4 h-4 mx-auto mb-1" />
-            <span className="unified-text text-xs">Магазин</span>
+            <span className="unified-text text-xs">РњР°РіР°Р·РёРЅ</span>
           </button>
           
           <button
@@ -99,8 +99,8 @@ export default function ShopPage({
                 : 'text-muted-foreground hover:text-foreground'
             }`}
           >
-            <span className="text-lg mb-1">🎰</span>
-            <span className="unified-text text-xs">Рулетка</span>
+            <span className="text-lg mb-1">рџЋ°</span>
+            <span className="unified-text text-xs">Р СѓР»РµС‚РєР°</span>
           </button>
         </div>
       </div>
@@ -120,16 +120,16 @@ export default function ShopPage({
                     {userCase.description}
                   </p>
                   <div className="flex items-center justify-between">
-                    <span className="unified-text text-sm">💰 {userCase.price} монет</span>
-                    <span className="unified-text text-sm">📦 {userCase.quantity} шт</span>
+                    <span className="unified-text text-sm">рџ’° {userCase.price} РјРѕРЅРµС‚</span>
+                    <span className="unified-text text-sm">рџ“¦ {userCase.quantity} С€С‚</span>
                   </div>
                 </div>
                 <button 
                   className="apple-button px-4 py-2"
                   disabled={userCoins < userCase.price}
-                  aria-label={`Купить ${userCase.name}`}
+                  aria-label={`РљСѓРїРёС‚СЊ ${userCase.name}`}
                 >
-                  Купить
+                  РљСѓРїРёС‚СЊ
                 </button>
               </div>
             </div>
@@ -138,9 +138,9 @@ export default function ShopPage({
           {userCases.length === 0 && (
             <div className="glass-card p-8 text-center">
               <Package className="w-16 h-16 text-muted-foreground mx-auto mb-4" />
-              <h3 className="unified-heading mb-2">Нет кейсов</h3>
+              <h3 className="unified-heading mb-2">РќРµС‚ РєРµР№СЃРѕРІ</h3>
               <p className="unified-text text-muted-foreground">
-                Кейсы скоро появятся в магазине
+                РљРµР№СЃС‹ СЃРєРѕСЂРѕ РїРѕСЏРІСЏС‚СЃСЏ РІ РјР°РіР°Р·РёРЅРµ
               </p>
             </div>
           )}
@@ -153,21 +153,21 @@ export default function ShopPage({
             <div key={item.id} className="glass-card p-4">
               <div className="flex items-center gap-4">
                 <div className="w-16 h-16 bg-gradient-to-br from-green-500 to-blue-500 rounded-lg flex items-center justify-center">
-                  <span className="text-2xl">🛍️</span>
+                  <span className="text-2xl">рџ›ЌпёЏ</span>
                 </div>
                 <div className="flex-1">
                   <h3 className="unified-text font-medium">{item.name}</h3>
                   <p className="unified-text text-muted-foreground text-sm mb-2">
                     {item.description}
                   </p>
-                  <span className="unified-text text-sm">💰 {item.price} монет</span>
+                  <span className="unified-text text-sm">рџ’° {item.price} РјРѕРЅРµС‚</span>
                 </div>
                 <button 
                   className="apple-button px-4 py-2"
                   disabled={userCoins < item.price}
-                  aria-label={`Купить ${item.name}`}
+                  aria-label={`РљСѓРїРёС‚СЊ ${item.name}`}
                 >
-                  Купить
+                  РљСѓРїРёС‚СЊ
                 </button>
               </div>
             </div>
@@ -176,9 +176,9 @@ export default function ShopPage({
           {shopItems.length === 0 && (
             <div className="glass-card p-8 text-center">
               <ShoppingBag className="w-16 h-16 text-muted-foreground mx-auto mb-4" />
-              <h3 className="unified-heading mb-2">Магазин пуст</h3>
+              <h3 className="unified-heading mb-2">РњР°РіР°Р·РёРЅ РїСѓСЃС‚</h3>
               <p className="unified-text text-muted-foreground">
-                Товары скоро появятся
+                РўРѕРІР°СЂС‹ СЃРєРѕСЂРѕ РїРѕСЏРІСЏС‚СЃСЏ
               </p>
             </div>
           )}
@@ -187,13 +187,13 @@ export default function ShopPage({
 
       {activeTab === 'roulette' && (
         <div className="glass-card p-8 text-center">
-          <span className="text-6xl mb-4 block">🎰</span>
-          <h3 className="unified-heading mb-2">Рулетка</h3>
+          <span className="text-6xl mb-4 block">рџЋ°</span>
+          <h3 className="unified-heading mb-2">Р СѓР»РµС‚РєР°</h3>
           <p className="unified-text text-muted-foreground mb-4">
-            Сыграйте в рулетку и выиграйте призы!
+            РЎС‹РіСЂР°Р№С‚Рµ РІ СЂСѓР»РµС‚РєСѓ Рё РІС‹РёРіСЂР°Р№С‚Рµ РїСЂРёР·С‹!
           </p>
-          <button className="apple-button px-6 py-3" aria-label="Играть в рулетку">
-            🎲 Играть (100 монет)
+          <button className="apple-button px-6 py-3" aria-label="РРіСЂР°С‚СЊ РІ СЂСѓР»РµС‚РєСѓ">
+            рџЋІ РРіСЂР°С‚СЊ (100 РјРѕРЅРµС‚)
           </button>
         </div>
       )}

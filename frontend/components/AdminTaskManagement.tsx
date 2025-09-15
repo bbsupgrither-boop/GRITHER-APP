@@ -26,7 +26,7 @@ interface AdminTaskManagementProps {
   theme: 'light' | 'dark';
 }
 
-// Используем TaskData из базы данных
+// РСЃРїРѕР»СЊР·СѓРµРј TaskData РёР· Р±Р°Р·С‹ РґР°РЅРЅС‹С…
 
 interface TaskForm {
   title: string;
@@ -43,26 +43,26 @@ interface TaskForm {
 }
 
 const TASK_TYPES = [
-  { value: 'development', label: 'Разработка', icon: '💻' },
-  { value: 'testing', label: 'Тестирование', icon: '🧪' },
-  { value: 'design', label: 'Дизайн', icon: '🎨' },
-  { value: 'marketing', label: 'Маркетинг', icon: '📢' },
-  { value: 'other', label: 'Другое', icon: '📋' }
+  { value: 'development', label: 'Р Р°Р·СЂР°Р±РѕС‚РєР°', icon: 'рџ’»' },
+  { value: 'testing', label: 'РўРµСЃС‚РёСЂРѕРІР°РЅРёРµ', icon: 'рџ§Є' },
+  { value: 'design', label: 'Р”РёР·Р°Р№РЅ', icon: 'рџЋЁ' },
+  { value: 'marketing', label: 'РњР°СЂРєРµС‚РёРЅРі', icon: 'рџ“ў' },
+  { value: 'other', label: 'Р”СЂСѓРіРѕРµ', icon: 'рџ“‹' }
 ];
 
 const PRIORITY_LEVELS = [
-  { value: 'low', label: 'Низкий', color: 'bg-green-500' },
-  { value: 'medium', label: 'Средний', color: 'bg-yellow-500' },
-  { value: 'high', label: 'Высокий', color: 'bg-orange-500' },
-  { value: 'critical', label: 'Критический', color: 'bg-red-500' }
+  { value: 'low', label: 'РќРёР·РєРёР№', color: 'bg-green-500' },
+  { value: 'medium', label: 'РЎСЂРµРґРЅРёР№', color: 'bg-yellow-500' },
+  { value: 'high', label: 'Р’С‹СЃРѕРєРёР№', color: 'bg-orange-500' },
+  { value: 'critical', label: 'РљСЂРёС‚РёС‡РµСЃРєРёР№', color: 'bg-red-500' }
 ];
 
 const STATUS_LABELS = {
-  new: 'Новая',
-  in_progress: 'В работе',
-  completed: 'Выполнена',
-  cancelled: 'Отменена',
-  overdue: 'Просрочена'
+  new: 'РќРѕРІР°СЏ',
+  in_progress: 'Р’ СЂР°Р±РѕС‚Рµ',
+  completed: 'Р’С‹РїРѕР»РЅРµРЅР°',
+  cancelled: 'РћС‚РјРµРЅРµРЅР°',
+  overdue: 'РџСЂРѕСЃСЂРѕС‡РµРЅР°'
 };
 
 const STATUS_COLORS = {
@@ -73,12 +73,12 @@ const STATUS_COLORS = {
   overdue: 'bg-red-500'
 };
 
-// Mock пользователи
+// Mock РїРѕР»СЊР·РѕРІР°С‚РµР»Рё
 const MOCK_USERS = [
-  { id: '1', name: 'Алексей Иванов', role: 'developer' },
-  { id: '2', name: 'Мария Петрова', role: 'designer' },
-  { id: '3', name: 'Дмитрий Сидоров', role: 'tester' },
-  { id: '4', name: 'Анна Козлова', role: 'marketer' }
+  { id: '1', name: 'РђР»РµРєСЃРµР№ РРІР°РЅРѕРІ', role: 'developer' },
+  { id: '2', name: 'РњР°СЂРёСЏ РџРµС‚СЂРѕРІР°', role: 'designer' },
+  { id: '3', name: 'Р”РјРёС‚СЂРёР№ РЎРёРґРѕСЂРѕРІ', role: 'tester' },
+  { id: '4', name: 'РђРЅРЅР° РљРѕР·Р»РѕРІР°', role: 'marketer' }
 ];
 
 export const AdminTaskManagement: React.FC<AdminTaskManagementProps> = ({ theme }) => {
@@ -105,12 +105,12 @@ export const AdminTaskManagement: React.FC<AdminTaskManagementProps> = ({ theme 
     }
   });
 
-  // Загрузка задач
+  // Р—Р°РіСЂСѓР·РєР° Р·Р°РґР°С‡
   useEffect(() => {
     loadTasks();
   }, []);
 
-  // Фильтрация задач
+  // Р¤РёР»СЊС‚СЂР°С†РёСЏ Р·Р°РґР°С‡
   useEffect(() => {
     let filtered = tasks;
 
@@ -142,17 +142,17 @@ export const AdminTaskManagement: React.FC<AdminTaskManagementProps> = ({ theme 
   }, [tasks, searchQuery, filterStatus, filterPriority, filterType, filterUser]);
 
   const loadTasks = async () => {
-    // Mock данные
+    // Mock РґР°РЅРЅС‹Рµ
     const mockTasks: Task[] = [
       {
         id: '1',
-        title: 'Создать новую страницу регистрации',
-        description: 'Разработать современную страницу регистрации с валидацией',
+        title: 'РЎРѕР·РґР°С‚СЊ РЅРѕРІСѓСЋ СЃС‚СЂР°РЅРёС†Сѓ СЂРµРіРёСЃС‚СЂР°С†РёРё',
+        description: 'Р Р°Р·СЂР°Р±РѕС‚Р°С‚СЊ СЃРѕРІСЂРµРјРµРЅРЅСѓСЋ СЃС‚СЂР°РЅРёС†Сѓ СЂРµРіРёСЃС‚СЂР°С†РёРё СЃ РІР°Р»РёРґР°С†РёРµР№',
         type: 'development',
         priority: 'high',
         status: 'in_progress',
         assignedTo: '1',
-        assignedToName: 'Алексей Иванов',
+        assignedToName: 'РђР»РµРєСЃРµР№ РРІР°РЅРѕРІ',
         assignedBy: 'admin',
         deadline: '2024-01-25T18:00:00Z',
         estimatedTime: 16,
@@ -161,13 +161,13 @@ export const AdminTaskManagement: React.FC<AdminTaskManagementProps> = ({ theme 
       },
       {
         id: '2',
-        title: 'Проверка системы уведомлений',
-        description: 'Протестировать все типы уведомлений в приложении',
+        title: 'РџСЂРѕРІРµСЂРєР° СЃРёСЃС‚РµРјС‹ СѓРІРµРґРѕРјР»РµРЅРёР№',
+        description: 'РџСЂРѕС‚РµСЃС‚РёСЂРѕРІР°С‚СЊ РІСЃРµ С‚РёРїС‹ СѓРІРµРґРѕРјР»РµРЅРёР№ РІ РїСЂРёР»РѕР¶РµРЅРёРё',
         type: 'testing',
         priority: 'medium',
         status: 'completed',
         assignedTo: '3',
-        assignedToName: 'Дмитрий Сидоров',
+        assignedToName: 'Р”РјРёС‚СЂРёР№ РЎРёРґРѕСЂРѕРІ',
         assignedBy: 'admin',
         deadline: '2024-01-22T16:45:00Z',
         estimatedTime: 8,
@@ -177,13 +177,13 @@ export const AdminTaskManagement: React.FC<AdminTaskManagementProps> = ({ theme 
       },
       {
         id: '3',
-        title: 'Дизайн мобильной версии',
-        description: 'Адаптировать дизайн под мобильные устройства',
+        title: 'Р”РёР·Р°Р№РЅ РјРѕР±РёР»СЊРЅРѕР№ РІРµСЂСЃРёРё',
+        description: 'РђРґР°РїС‚РёСЂРѕРІР°С‚СЊ РґРёР·Р°Р№РЅ РїРѕРґ РјРѕР±РёР»СЊРЅС‹Рµ СѓСЃС‚СЂРѕР№СЃС‚РІР°',
         type: 'design',
         priority: 'low',
         status: 'new',
         assignedTo: '2',
-        assignedToName: 'Мария Петрова',
+        assignedToName: 'РњР°СЂРёСЏ РџРµС‚СЂРѕРІР°',
         assignedBy: 'admin',
         deadline: '2024-01-30T12:00:00Z',
         estimatedTime: 24,
@@ -202,7 +202,7 @@ export const AdminTaskManagement: React.FC<AdminTaskManagementProps> = ({ theme 
       id: Date.now().toString(),
       ...formData,
       status: 'new',
-      assignedToName: assignedUser?.name || 'Неизвестно',
+      assignedToName: assignedUser?.name || 'РќРµРёР·РІРµСЃС‚РЅРѕ',
       assignedBy: 'admin',
       createdAt: new Date().toISOString()
     };
@@ -235,7 +235,7 @@ export const AdminTaskManagement: React.FC<AdminTaskManagementProps> = ({ theme 
     const updatedTask: Task = {
       ...editingTask,
       ...formData,
-      assignedToName: assignedUser?.name || 'Неизвестно'
+      assignedToName: assignedUser?.name || 'РќРµРёР·РІРµСЃС‚РЅРѕ'
     };
 
     setTasks(prev => prev.map(t => t.id === editingTask.id ? updatedTask : t));
@@ -245,7 +245,7 @@ export const AdminTaskManagement: React.FC<AdminTaskManagementProps> = ({ theme 
   };
 
   const handleDeleteTask = async (id: string) => {
-    if (window.confirm('Вы уверены, что хотите удалить эту задачу?')) {
+    if (window.confirm('Р’С‹ СѓРІРµСЂРµРЅС‹, С‡С‚Рѕ С…РѕС‚РёС‚Рµ СѓРґР°Р»РёС‚СЊ СЌС‚Сѓ Р·Р°РґР°С‡Сѓ?')) {
       setTasks(prev => prev.filter(t => t.id !== id));
     }
   };
@@ -277,7 +277,7 @@ export const AdminTaskManagement: React.FC<AdminTaskManagementProps> = ({ theme 
   };
 
   const getTypeIcon = (type: Task['type']) => {
-    return TASK_TYPES.find(t => t.value === type)?.icon || '📋';
+    return TASK_TYPES.find(t => t.value === type)?.icon || 'рџ“‹';
   };
 
   const getPriorityColor = (priority: Task['priority']) => {
@@ -294,14 +294,14 @@ export const AdminTaskManagement: React.FC<AdminTaskManagementProps> = ({ theme 
 
   return (
     <div className="p-6 space-y-6">
-      {/* Заголовок и статистика */}
+      {/* Р—Р°РіРѕР»РѕРІРѕРє Рё СЃС‚Р°С‚РёСЃС‚РёРєР° */}
       <div className="flex items-center justify-between">
         <div>
           <h1 className="text-2xl font-bold" style={{ color: theme === 'dark' ? '#E8ECF2' : '#0F172A' }}>
-            Управление задачами
+            РЈРїСЂР°РІР»РµРЅРёРµ Р·Р°РґР°С‡Р°РјРё
           </h1>
           <p className="text-sm opacity-70" style={{ color: theme === 'dark' ? '#A7B0BD' : '#6B7280' }}>
-            Создание, назначение и отслеживание задач
+            РЎРѕР·РґР°РЅРёРµ, РЅР°Р·РЅР°С‡РµРЅРёРµ Рё РѕС‚СЃР»РµР¶РёРІР°РЅРёРµ Р·Р°РґР°С‡
           </p>
         </div>
         <button
@@ -309,11 +309,11 @@ export const AdminTaskManagement: React.FC<AdminTaskManagementProps> = ({ theme 
           className="flex items-center px-4 py-2 rounded-lg bg-blue-500 text-white hover:bg-blue-600 transition-colors"
         >
           <Plus className="w-4 h-4 mr-2" />
-          Добавить задачу
+          Р”РѕР±Р°РІРёС‚СЊ Р·Р°РґР°С‡Сѓ
         </button>
       </div>
 
-      {/* Статистика */}
+      {/* РЎС‚Р°С‚РёСЃС‚РёРєР° */}
       <div className="grid grid-cols-2 md:grid-cols-5 gap-4">
         <div 
           className="p-4 rounded-xl text-center"
@@ -323,7 +323,7 @@ export const AdminTaskManagement: React.FC<AdminTaskManagementProps> = ({ theme 
           }}
         >
           <div className="text-2xl font-bold text-blue-500">{tasks.length}</div>
-          <div className="text-sm opacity-70">Всего</div>
+          <div className="text-sm opacity-70">Р’СЃРµРіРѕ</div>
         </div>
         <div 
           className="p-4 rounded-xl text-center"
@@ -335,7 +335,7 @@ export const AdminTaskManagement: React.FC<AdminTaskManagementProps> = ({ theme 
           <div className="text-2xl font-bold text-yellow-500">
             {tasks.filter(t => t.status === 'in_progress').length}
           </div>
-          <div className="text-sm opacity-70">В работе</div>
+          <div className="text-sm opacity-70">Р’ СЂР°Р±РѕС‚Рµ</div>
         </div>
         <div 
           className="p-4 rounded-xl text-center"
@@ -347,7 +347,7 @@ export const AdminTaskManagement: React.FC<AdminTaskManagementProps> = ({ theme 
           <div className="text-2xl font-bold text-green-500">
             {tasks.filter(t => t.status === 'completed').length}
           </div>
-          <div className="text-sm opacity-70">Выполнено</div>
+          <div className="text-sm opacity-70">Р’С‹РїРѕР»РЅРµРЅРѕ</div>
         </div>
         <div 
           className="p-4 rounded-xl text-center"
@@ -359,7 +359,7 @@ export const AdminTaskManagement: React.FC<AdminTaskManagementProps> = ({ theme 
           <div className="text-2xl font-bold text-red-500">
             {tasks.filter(t => isOverdue(t.deadline) && t.status !== 'completed').length}
           </div>
-          <div className="text-sm opacity-70">Просрочено</div>
+          <div className="text-sm opacity-70">РџСЂРѕСЃСЂРѕС‡РµРЅРѕ</div>
         </div>
         <div 
           className="p-4 rounded-xl text-center"
@@ -371,17 +371,17 @@ export const AdminTaskManagement: React.FC<AdminTaskManagementProps> = ({ theme 
           <div className="text-2xl font-bold text-blue-500">
             {tasks.filter(t => t.status === 'new').length}
           </div>
-          <div className="text-sm opacity-70">Новые</div>
+          <div className="text-sm opacity-70">РќРѕРІС‹Рµ</div>
         </div>
       </div>
 
-      {/* Фильтры */}
+      {/* Р¤РёР»СЊС‚СЂС‹ */}
       <div className="grid grid-cols-1 md:grid-cols-5 gap-4">
         <div className="relative">
           <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 w-4 h-4 opacity-50" />
           <input
             type="text"
-            placeholder="Поиск задач..."
+            placeholder="РџРѕРёСЃРє Р·Р°РґР°С‡..."
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
             className="w-full pl-10 pr-4 py-2 rounded-lg border"
@@ -403,7 +403,7 @@ export const AdminTaskManagement: React.FC<AdminTaskManagementProps> = ({ theme 
             color: theme === 'dark' ? '#E8ECF2' : '#0F172A'
           }}
         >
-          <option value="all">Все статусы</option>
+          <option value="all">Р’СЃРµ СЃС‚Р°С‚СѓСЃС‹</option>
           {Object.entries(STATUS_LABELS).map(([value, label]) => (
             <option key={value} value={value}>{label}</option>
           ))}
@@ -419,7 +419,7 @@ export const AdminTaskManagement: React.FC<AdminTaskManagementProps> = ({ theme 
             color: theme === 'dark' ? '#E8ECF2' : '#0F172A'
           }}
         >
-          <option value="all">Все приоритеты</option>
+          <option value="all">Р’СЃРµ РїСЂРёРѕСЂРёС‚РµС‚С‹</option>
           {PRIORITY_LEVELS.map(priority => (
             <option key={priority.value} value={priority.value}>{priority.label}</option>
           ))}
@@ -435,7 +435,7 @@ export const AdminTaskManagement: React.FC<AdminTaskManagementProps> = ({ theme 
             color: theme === 'dark' ? '#E8ECF2' : '#0F172A'
           }}
         >
-          <option value="all">Все типы</option>
+          <option value="all">Р’СЃРµ С‚РёРїС‹</option>
           {TASK_TYPES.map(type => (
             <option key={type.value} value={type.value}>{type.icon} {type.label}</option>
           ))}
@@ -451,14 +451,14 @@ export const AdminTaskManagement: React.FC<AdminTaskManagementProps> = ({ theme 
             color: theme === 'dark' ? '#E8ECF2' : '#0F172A'
           }}
         >
-          <option value="all">Все исполнители</option>
+          <option value="all">Р’СЃРµ РёСЃРїРѕР»РЅРёС‚РµР»Рё</option>
           {MOCK_USERS.map(user => (
             <option key={user.id} value={user.id}>{user.name}</option>
           ))}
         </select>
       </div>
 
-      {/* Список задач */}
+      {/* РЎРїРёСЃРѕРє Р·Р°РґР°С‡ */}
       <div className="space-y-4">
         {filteredTasks.map((task) => (
           <div
@@ -500,23 +500,23 @@ export const AdminTaskManagement: React.FC<AdminTaskManagementProps> = ({ theme 
                       </span>
                       <span className="flex items-center">
                         <Clock className="w-3 h-3 mr-1" />
-                        {task.estimatedTime}ч
+                        {task.estimatedTime}С‡
                       </span>
-                      <span>💰 {task.reward.coins} монет</span>
-                      <span>⭐ {task.reward.experience} опыта</span>
+                      <span>рџ’° {task.reward.coins} РјРѕРЅРµС‚</span>
+                      <span>в­ђ {task.reward.experience} РѕРїС‹С‚Р°</span>
                     </div>
                   </div>
                 </div>
               </div>
 
               <div className="flex items-center space-x-2">
-                {/* Быстрое изменение статуса */}
+                {/* Р‘С‹СЃС‚СЂРѕРµ РёР·РјРµРЅРµРЅРёРµ СЃС‚Р°С‚СѓСЃР° */}
                 {task.status === 'new' && (
                   <button
                     onClick={() => handleStatusChange(task.id, 'in_progress')}
                     className="px-3 py-1 rounded-lg text-xs bg-yellow-500 bg-opacity-20 text-yellow-500 hover:bg-opacity-30"
                   >
-                    В работу
+                    Р’ СЂР°Р±РѕС‚Сѓ
                   </button>
                 )}
                 {task.status === 'in_progress' && (
@@ -524,7 +524,7 @@ export const AdminTaskManagement: React.FC<AdminTaskManagementProps> = ({ theme 
                     onClick={() => handleStatusChange(task.id, 'completed')}
                     className="px-3 py-1 rounded-lg text-xs bg-green-500 bg-opacity-20 text-green-500 hover:bg-opacity-30"
                   >
-                    Завершить
+                    Р—Р°РІРµСЂС€РёС‚СЊ
                   </button>
                 )}
                 
@@ -549,7 +549,7 @@ export const AdminTaskManagement: React.FC<AdminTaskManagementProps> = ({ theme 
         ))}
       </div>
 
-      {/* Модал создания/редактирования */}
+      {/* РњРѕРґР°Р» СЃРѕР·РґР°РЅРёСЏ/СЂРµРґР°РєС‚РёСЂРѕРІР°РЅРёСЏ */}
       {showCreateForm && (
         <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center p-4 z-50">
           <div 
@@ -561,7 +561,7 @@ export const AdminTaskManagement: React.FC<AdminTaskManagementProps> = ({ theme 
           >
             <div className="flex items-center justify-between mb-6">
               <h2 className="text-xl font-bold" style={{ color: theme === 'dark' ? '#E8ECF2' : '#0F172A' }}>
-                {editingTask ? 'Редактировать задачу' : 'Создать задачу'}
+                {editingTask ? 'Р РµРґР°РєС‚РёСЂРѕРІР°С‚СЊ Р·Р°РґР°С‡Сѓ' : 'РЎРѕР·РґР°С‚СЊ Р·Р°РґР°С‡Сѓ'}
               </h2>
               <button
                 onClick={() => {
@@ -577,10 +577,10 @@ export const AdminTaskManagement: React.FC<AdminTaskManagementProps> = ({ theme 
             </div>
 
             <div className="space-y-4">
-              {/* Основная информация */}
+              {/* РћСЃРЅРѕРІРЅР°СЏ РёРЅС„РѕСЂРјР°С†РёСЏ */}
               <div>
                 <label className="block text-sm font-medium mb-2" style={{ color: theme === 'dark' ? '#E8ECF2' : '#0F172A' }}>
-                  Название задачи *
+                  РќР°Р·РІР°РЅРёРµ Р·Р°РґР°С‡Рё *
                 </label>
                 <input
                   type="text"
@@ -592,13 +592,13 @@ export const AdminTaskManagement: React.FC<AdminTaskManagementProps> = ({ theme 
                     borderColor: theme === 'dark' ? 'rgba(255,255,255,0.2)' : '#E6E9EF',
                     color: theme === 'dark' ? '#E8ECF2' : '#0F172A'
                   }}
-                  placeholder="Введите название задачи"
+                  placeholder="Р’РІРµРґРёС‚Рµ РЅР°Р·РІР°РЅРёРµ Р·Р°РґР°С‡Рё"
                 />
               </div>
 
               <div>
                 <label className="block text-sm font-medium mb-2" style={{ color: theme === 'dark' ? '#E8ECF2' : '#0F172A' }}>
-                  Описание
+                  РћРїРёСЃР°РЅРёРµ
                 </label>
                 <textarea
                   value={formData.description}
@@ -610,14 +610,14 @@ export const AdminTaskManagement: React.FC<AdminTaskManagementProps> = ({ theme 
                     borderColor: theme === 'dark' ? 'rgba(255,255,255,0.2)' : '#E6E9EF',
                     color: theme === 'dark' ? '#E8ECF2' : '#0F172A'
                   }}
-                  placeholder="Подробное описание задачи"
+                  placeholder="РџРѕРґСЂРѕР±РЅРѕРµ РѕРїРёСЃР°РЅРёРµ Р·Р°РґР°С‡Рё"
                 />
               </div>
 
               <div className="grid grid-cols-2 gap-4">
                 <div>
                   <label className="block text-sm font-medium mb-2" style={{ color: theme === 'dark' ? '#E8ECF2' : '#0F172A' }}>
-                    Тип
+                    РўРёРї
                   </label>
                   <select
                     value={formData.type}
@@ -639,7 +639,7 @@ export const AdminTaskManagement: React.FC<AdminTaskManagementProps> = ({ theme 
 
                 <div>
                   <label className="block text-sm font-medium mb-2" style={{ color: theme === 'dark' ? '#E8ECF2' : '#0F172A' }}>
-                    Приоритет
+                    РџСЂРёРѕСЂРёС‚РµС‚
                   </label>
                   <select
                     value={formData.priority}
@@ -662,7 +662,7 @@ export const AdminTaskManagement: React.FC<AdminTaskManagementProps> = ({ theme 
 
               <div>
                 <label className="block text-sm font-medium mb-2" style={{ color: theme === 'dark' ? '#E8ECF2' : '#0F172A' }}>
-                  Исполнитель *
+                  РСЃРїРѕР»РЅРёС‚РµР»СЊ *
                 </label>
                 <select
                   value={formData.assignedTo}
@@ -674,7 +674,7 @@ export const AdminTaskManagement: React.FC<AdminTaskManagementProps> = ({ theme 
                     color: theme === 'dark' ? '#E8ECF2' : '#0F172A'
                   }}
                 >
-                  <option value="">Выберите исполнителя</option>
+                  <option value="">Р’С‹Р±РµСЂРёС‚Рµ РёСЃРїРѕР»РЅРёС‚РµР»СЏ</option>
                   {MOCK_USERS.map(user => (
                     <option key={user.id} value={user.id}>{user.name}</option>
                   ))}
@@ -684,7 +684,7 @@ export const AdminTaskManagement: React.FC<AdminTaskManagementProps> = ({ theme 
               <div className="grid grid-cols-2 gap-4">
                 <div>
                   <label className="block text-sm font-medium mb-2" style={{ color: theme === 'dark' ? '#E8ECF2' : '#0F172A' }}>
-                    Дедлайн
+                    Р”РµРґР»Р°Р№РЅ
                   </label>
                   <input
                     type="datetime-local"
@@ -701,7 +701,7 @@ export const AdminTaskManagement: React.FC<AdminTaskManagementProps> = ({ theme 
 
                 <div>
                   <label className="block text-sm font-medium mb-2" style={{ color: theme === 'dark' ? '#E8ECF2' : '#0F172A' }}>
-                    Оценочное время (часы)
+                    РћС†РµРЅРѕС‡РЅРѕРµ РІСЂРµРјСЏ (С‡Р°СЃС‹)
                   </label>
                   <input
                     type="number"
@@ -718,15 +718,15 @@ export const AdminTaskManagement: React.FC<AdminTaskManagementProps> = ({ theme 
                 </div>
               </div>
 
-              {/* Награды */}
+              {/* РќР°РіСЂР°РґС‹ */}
               <div>
                 <h3 className="text-lg font-semibold mb-3" style={{ color: theme === 'dark' ? '#E8ECF2' : '#0F172A' }}>
-                  Награды
+                  РќР°РіСЂР°РґС‹
                 </h3>
                 <div className="grid grid-cols-2 gap-4">
                   <div>
                     <label className="block text-sm font-medium mb-2" style={{ color: theme === 'dark' ? '#E8ECF2' : '#0F172A' }}>
-                      Монеты (50-500)
+                      РњРѕРЅРµС‚С‹ (50-500)
                     </label>
                     <input
                       type="number"
@@ -747,7 +747,7 @@ export const AdminTaskManagement: React.FC<AdminTaskManagementProps> = ({ theme 
                   </div>
                   <div>
                     <label className="block text-sm font-medium mb-2" style={{ color: theme === 'dark' ? '#E8ECF2' : '#0F172A' }}>
-                      Опыт (10-100)
+                      РћРїС‹С‚ (10-100)
                     </label>
                     <input
                       type="number"
@@ -784,13 +784,13 @@ export const AdminTaskManagement: React.FC<AdminTaskManagementProps> = ({ theme 
                   color: theme === 'dark' ? '#E8ECF2' : '#0F172A'
                 }}
               >
-                Отмена
+                РћС‚РјРµРЅР°
               </button>
               <button
                 onClick={editingTask ? handleUpdateTask : handleCreateTask}
                 className="px-4 py-2 rounded-lg bg-blue-500 text-white hover:bg-blue-600 transition-colors"
               >
-                {editingTask ? 'Сохранить' : 'Создать'}
+                {editingTask ? 'РЎРѕС…СЂР°РЅРёС‚СЊ' : 'РЎРѕР·РґР°С‚СЊ'}
               </button>
             </div>
           </div>

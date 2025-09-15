@@ -1,4 +1,4 @@
-﻿import { useState } from 'react';
+п»їimport { useState } from 'react';
 import { X } from 'lucide-react';
 import { Dialog, DialogContent, DialogTitle, DialogDescription } from './ui/dialog';
 import { Battle, BattleInvitation } from '../types/battles';
@@ -48,12 +48,12 @@ export function AllBattlesModal({
       >
         {/* Accessibility elements */}
         <DialogTitle className="sr-only">
-          Р’СЃРµ Р°РєС‚РёРІРЅС‹Рµ Р±Р°С‚С‚Р»С‹ Рё РїСЂРёРіР»Р°С€РµРЅРёСЏ
+          Р вЂ™РЎРѓР Вµ Р В°Р С”РЎвЂљР С‘Р Р†Р Р…РЎвЂ№Р Вµ Р В±Р В°РЎвЂљРЎвЂљР В»РЎвЂ№ Р С‘ Р С—РЎР‚Р С‘Р С–Р В»Р В°РЎв‚¬Р ВµР Р…Р С‘РЎРЏ
         </DialogTitle>
         <DialogDescription className="sr-only">
-          РџСЂРѕСЃРјРѕС‚СЂ РІСЃРµС… Р°РєС‚РёРІРЅС‹С… Р±Р°С‚С‚Р»РѕРІ, РїСЂРёРіР»Р°С€РµРЅРёР№ РЅР° Р±Р°С‚С‚Р», РёСЃС‚РѕСЂРёРё Р·Р°РІРµСЂС€РµРЅРЅС‹С… Р±Р°С‚С‚Р»РѕРІ Рё РІРѕР·РјРѕР¶РЅРѕСЃС‚СЊ РїСЂРёРЅСЏС‚СЊ РёР»Рё РѕС‚РєР»РѕРЅРёС‚СЊ РІС…РѕРґСЏС‰РёРµ РІС‹Р·РѕРІС‹
+          Р СџРЎР‚Р С•РЎРѓР СР С•РЎвЂљРЎР‚ Р Р†РЎРѓР ВµРЎвЂ¦ Р В°Р С”РЎвЂљР С‘Р Р†Р Р…РЎвЂ№РЎвЂ¦ Р В±Р В°РЎвЂљРЎвЂљР В»Р С•Р Р†, Р С—РЎР‚Р С‘Р С–Р В»Р В°РЎв‚¬Р ВµР Р…Р С‘Р в„– Р Р…Р В° Р В±Р В°РЎвЂљРЎвЂљР В», Р С‘РЎРѓРЎвЂљР С•РЎР‚Р С‘Р С‘ Р В·Р В°Р Р†Р ВµРЎР‚РЎв‚¬Р ВµР Р…Р Р…РЎвЂ№РЎвЂ¦ Р В±Р В°РЎвЂљРЎвЂљР В»Р С•Р Р† Р С‘ Р Р†Р С•Р В·Р СР С•Р В¶Р Р…Р С•РЎРѓРЎвЂљРЎРЉ Р С—РЎР‚Р С‘Р Р…РЎРЏРЎвЂљРЎРЉ Р С‘Р В»Р С‘ Р С•РЎвЂљР С”Р В»Р С•Р Р…Р С‘РЎвЂљРЎРЉ Р Р†РЎвЂ¦Р С•Р Т‘РЎРЏРЎвЂ°Р С‘Р Вµ Р Р†РЎвЂ№Р В·Р С•Р Р†РЎвЂ№
         </DialogDescription>
-        {/* Р—Р°РіРѕР»РѕРІРѕРє */}
+        {/* Р вЂ”Р В°Р С–Р С•Р В»Р С•Р Р†Р С•Р С” */}
         <div 
           className="flex items-center justify-between p-6 border-b shrink-0"
           style={{
@@ -68,7 +68,7 @@ export function AllBattlesModal({
               color: theme === 'dark' ? '#E8ECF2' : '#0F172A'
             }}
           >
-            Р‘Р°С‚С‚Р»С‹
+            Р вЂР В°РЎвЂљРЎвЂљР В»РЎвЂ№
           </h2>
           
           <button
@@ -96,7 +96,7 @@ export function AllBattlesModal({
           </button>
         </div>
 
-        {/* РўР°Р±С‹ */}
+        {/* Р СћР В°Р В±РЎвЂ№ */}
         <div 
           className="flex p-3 gap-2 border-b shrink-0"
           style={{
@@ -128,7 +128,7 @@ export function AllBattlesModal({
                 : '1px solid transparent'
             }}
           >
-            РђРєС‚РёРІРЅС‹Рµ ({activeBattles.length + pendingInvitations.length})
+            Р С’Р С”РЎвЂљР С‘Р Р†Р Р…РЎвЂ№Р Вµ ({activeBattles.length + pendingInvitations.length})
           </button>
           
           <button
@@ -154,16 +154,16 @@ export function AllBattlesModal({
                 : '1px solid transparent'
             }}
           >
-            РСЃС‚РѕСЂРёСЏ ({completedBattles.length})
+            Р ВРЎРѓРЎвЂљР С•РЎР‚Р С‘РЎРЏ ({completedBattles.length})
           </button>
         </div>
 
-        {/* РљРѕРЅС‚РµРЅС‚ СЃ С‚Р°Р±Р°РјРё */}
+        {/* Р С™Р С•Р Р…РЎвЂљР ВµР Р…РЎвЂљ РЎРѓ РЎвЂљР В°Р В±Р В°Р СР С‘ */}
         <div className="flex-1 overflow-y-auto">
-          {/* РђРєС‚РёРІРЅС‹Рµ Р±Р°С‚С‚Р»С‹ Рё РїСЂРёРіР»Р°С€РµРЅРёСЏ */}
+          {/* Р С’Р С”РЎвЂљР С‘Р Р†Р Р…РЎвЂ№Р Вµ Р В±Р В°РЎвЂљРЎвЂљР В»РЎвЂ№ Р С‘ Р С—РЎР‚Р С‘Р С–Р В»Р В°РЎв‚¬Р ВµР Р…Р С‘РЎРЏ */}
           {activeTab === 'current' && (
             <div className="p-6 space-y-4">
-              {/* РћР¶РёРґР°СЋС‰РёРµ РїСЂРёРіР»Р°С€РµРЅРёСЏ */}
+              {/* Р С›Р В¶Р С‘Р Т‘Р В°РЎР‹РЎвЂ°Р С‘Р Вµ Р С—РЎР‚Р С‘Р С–Р В»Р В°РЎв‚¬Р ВµР Р…Р С‘РЎРЏ */}
               {pendingInvitations.length > 0 && (
                 <div className="space-y-3">
                   <h3 
@@ -172,7 +172,7 @@ export function AllBattlesModal({
                       color: theme === 'dark' ? '#A7B0BD' : '#6B7280'
                     }}
                   >
-                    Р’С…РѕРґСЏС‰РёРµ РїСЂРёРіР»Р°С€РµРЅРёСЏ ({pendingInvitations.length})
+                    Р вЂ™РЎвЂ¦Р С•Р Т‘РЎРЏРЎвЂ°Р С‘Р Вµ Р С—РЎР‚Р С‘Р С–Р В»Р В°РЎв‚¬Р ВµР Р…Р С‘РЎРЏ ({pendingInvitations.length})
                   </h3>
                   
                   {pendingInvitations.map((invitation) => (
@@ -204,7 +204,7 @@ export function AllBattlesModal({
                               color: theme === 'dark' ? '#A7B0BD' : '#6B7280'
                             }}
                           >
-                            РІС‹Р·С‹РІР°РµС‚ РІР°СЃ
+                            Р Р†РЎвЂ№Р В·РЎвЂ№Р Р†Р В°Р ВµРЎвЂљ Р Р†Р В°РЎРѓ
                           </span>
                         </div>
                         
@@ -226,7 +226,7 @@ export function AllBattlesModal({
                             background: '#34C759'
                           }}
                         >
-                          РџСЂРёРЅСЏС‚СЊ
+                          Р СџРЎР‚Р С‘Р Р…РЎРЏРЎвЂљРЎРЉ
                         </button>
                         <button
                           onClick={() => onDeclineInvitation?.(invitation.id)}
@@ -238,7 +238,7 @@ export function AllBattlesModal({
                             color: theme === 'dark' ? '#E8ECF2' : '#0F172A'
                           }}
                         >
-                          РћС‚РєР»РѕРЅРёС‚СЊ
+                          Р С›РЎвЂљР С”Р В»Р С•Р Р…Р С‘РЎвЂљРЎРЉ
                         </button>
                       </div>
                     </div>
@@ -246,7 +246,7 @@ export function AllBattlesModal({
                 </div>
               )}
 
-              {/* РђРєС‚РёРІРЅС‹Рµ Р±Р°С‚С‚Р»С‹ */}
+              {/* Р С’Р С”РЎвЂљР С‘Р Р†Р Р…РЎвЂ№Р Вµ Р В±Р В°РЎвЂљРЎвЂљР В»РЎвЂ№ */}
               {activeBattles.length > 0 && (
                 <div className="space-y-3">
                   <h3 
@@ -255,7 +255,7 @@ export function AllBattlesModal({
                       color: theme === 'dark' ? '#A7B0BD' : '#6B7280'
                     }}
                   >
-                    РђРєС‚РёРІРЅС‹Рµ Р±Р°С‚С‚Р»С‹ ({activeBattles.length})
+                    Р С’Р С”РЎвЂљР С‘Р Р†Р Р…РЎвЂ№Р Вµ Р В±Р В°РЎвЂљРЎвЂљР В»РЎвЂ№ ({activeBattles.length})
                   </h3>
                   
                   {activeBattles.map((battle) => (
@@ -315,14 +315,14 @@ export function AllBattlesModal({
                           color: theme === 'dark' ? '#A7B0BD' : '#6B7280'
                         }}
                       >
-                        РќР°С‡Р°С‚: {battle.startedAt.toLocaleDateString('ru-RU')}
+                        Р СњР В°РЎвЂЎР В°РЎвЂљ: {battle.startedAt.toLocaleDateString('ru-RU')}
                       </div>
                     </div>
                   ))}
                 </div>
               )}
 
-              {/* РџСѓСЃС‚РѕРµ СЃРѕСЃС‚РѕСЏРЅРёРµ РґР»СЏ Р°РєС‚РёРІРЅС‹С… */}
+              {/* Р СџРЎС“РЎРѓРЎвЂљР С•Р Вµ РЎРѓР С•РЎРѓРЎвЂљР С•РЎРЏР Р…Р С‘Р Вµ Р Т‘Р В»РЎРЏ Р В°Р С”РЎвЂљР С‘Р Р†Р Р…РЎвЂ№РЎвЂ¦ */}
               {activeBattles.length === 0 && pendingInvitations.length === 0 && (
                 <div className="text-center py-12">
                   <div 
@@ -331,7 +331,7 @@ export function AllBattlesModal({
                       color: theme === 'dark' ? '#A7B0BD' : '#6B7280'
                     }}
                   >
-                    вљ”пёЏ
+                    РІС™вЂќРїС‘РЏ
                   </div>
                   <p 
                     className="text-sm"
@@ -339,7 +339,7 @@ export function AllBattlesModal({
                       color: theme === 'dark' ? '#A7B0BD' : '#6B7280'
                     }}
                   >
-                    РќРµС‚ Р°РєС‚РёРІРЅС‹С… Р±Р°С‚С‚Р»РѕРІ
+                    Р СњР ВµРЎвЂљ Р В°Р С”РЎвЂљР С‘Р Р†Р Р…РЎвЂ№РЎвЂ¦ Р В±Р В°РЎвЂљРЎвЂљР В»Р С•Р Р†
                   </p>
                   <p 
                     className="text-xs mt-1"
@@ -347,14 +347,14 @@ export function AllBattlesModal({
                       color: theme === 'dark' ? '#6B7280' : '#9CA3AF'
                     }}
                   >
-                    РЎРѕР·РґР°Р№С‚Рµ РІС‹Р·РѕРІ РєРѕР»Р»РµРіРµ!
+                    Р РЋР С•Р В·Р Т‘Р В°Р в„–РЎвЂљР Вµ Р Р†РЎвЂ№Р В·Р С•Р Р† Р С”Р С•Р В»Р В»Р ВµР С–Р Вµ!
                   </p>
                 </div>
               )}
             </div>
           )}
 
-          {/* РСЃС‚РѕСЂРёСЏ Р±Р°С‚С‚Р»РѕРІ */}
+          {/* Р ВРЎРѓРЎвЂљР С•РЎР‚Р С‘РЎРЏ Р В±Р В°РЎвЂљРЎвЂљР В»Р С•Р Р† */}
           {activeTab === 'history' && (
             <div className="p-6 space-y-4">
               {completedBattles.length > 0 ? (
@@ -378,8 +378,8 @@ export function AllBattlesModal({
                             className="px-3 py-1 rounded-full text-sm font-medium text-white"
                             style={{
                               background: battle.winnerId === battle.challengerId 
-                                ? '#30D158'  // Р—РµР»РµРЅС‹Р№ РґР»СЏ РїРѕР±РµРґРёС‚РµР»СЏ
-                                : '#FF453A'  // РљСЂР°СЃРЅС‹Р№ РґР»СЏ РїСЂРѕРёРіСЂР°РІС€РµРіРѕ
+                                ? '#30D158'  // Р вЂ”Р ВµР В»Р ВµР Р…РЎвЂ№Р в„– Р Т‘Р В»РЎРЏ Р С—Р С•Р В±Р ВµР Т‘Р С‘РЎвЂљР ВµР В»РЎРЏ
+                                : '#FF453A'  // Р С™РЎР‚Р В°РЎРѓР Р…РЎвЂ№Р в„– Р Т‘Р В»РЎРЏ Р С—РЎР‚Р С•Р С‘Р С–РЎР‚Р В°Р Р†РЎв‚¬Р ВµР С–Р С•
                             }}
                           >
                             {battle.challengerName}
@@ -396,8 +396,8 @@ export function AllBattlesModal({
                             className="px-3 py-1 rounded-full text-sm font-medium text-white"
                             style={{
                               background: battle.winnerId === battle.opponentId 
-                                ? '#30D158'  // Р—РµР»РµРЅС‹Р№ РґР»СЏ РїРѕР±РµРґРёС‚РµР»СЏ
-                                : '#FF453A'  // РљСЂР°СЃРЅС‹Р№ РґР»СЏ РїСЂРѕРёРіСЂР°РІС€РµРіРѕ
+                                ? '#30D158'  // Р вЂ”Р ВµР В»Р ВµР Р…РЎвЂ№Р в„– Р Т‘Р В»РЎРЏ Р С—Р С•Р В±Р ВµР Т‘Р С‘РЎвЂљР ВµР В»РЎРЏ
+                                : '#FF453A'  // Р С™РЎР‚Р В°РЎРѓР Р…РЎвЂ№Р в„– Р Т‘Р В»РЎРЏ Р С—РЎР‚Р С•Р С‘Р С–РЎР‚Р В°Р Р†РЎв‚¬Р ВµР С–Р С•
                             }}
                           >
                             {battle.opponentName}
@@ -407,7 +407,7 @@ export function AllBattlesModal({
                         <div 
                           className="text-sm font-medium"
                           style={{
-                            color: '#30D158'  // Р—РµР»РµРЅС‹Р№ С†РІРµС‚ РґР»СЏ СЃСѓРјРјС‹
+                            color: '#30D158'  // Р вЂ”Р ВµР В»Р ВµР Р…РЎвЂ№Р в„– РЎвЂ Р Р†Р ВµРЎвЂљ Р Т‘Р В»РЎРЏ РЎРѓРЎС“Р СР СРЎвЂ№
                           }}
                         >
                           {battle.stake}g
@@ -421,20 +421,20 @@ export function AllBattlesModal({
                             color: theme === 'dark' ? '#A7B0BD' : '#6B7280'
                           }}
                         >
-                          Р—Р°РІРµСЂС€РµРЅ: {battle.completedAt?.toLocaleDateString('ru-RU', {
+                          Р вЂ”Р В°Р Р†Р ВµРЎР‚РЎв‚¬Р ВµР Р…: {battle.completedAt?.toLocaleDateString('ru-RU', {
                             day: '2-digit',
                             month: '2-digit', 
                             year: 'numeric'
-                          }) || 'РќРµРґР°РІРЅРѕ'}
+                          }) || 'Р СњР ВµР Т‘Р В°Р Р†Р Р…Р С•'}
                         </div>
                         
                         <div 
                           className="text-xs font-medium"
                           style={{
-                            color: '#30D158'  // Р—РµР»РµРЅС‹Р№ С†РІРµС‚ РґР»СЏ С‚РµРєСЃС‚Р° РїРѕР±РµРґРёС‚РµР»СЏ
+                            color: '#30D158'  // Р вЂ”Р ВµР В»Р ВµР Р…РЎвЂ№Р в„– РЎвЂ Р Р†Р ВµРЎвЂљ Р Т‘Р В»РЎРЏ РЎвЂљР ВµР С”РЎРѓРЎвЂљР В° Р С—Р С•Р В±Р ВµР Т‘Р С‘РЎвЂљР ВµР В»РЎРЏ
                           }}
                         >
-                          РџРѕР±РµРґРёС‚РµР»СЊ: {battle.winnerName || (battle.winnerId === battle.challengerId ? battle.challengerName : battle.opponentName)}
+                          Р СџР С•Р В±Р ВµР Т‘Р С‘РЎвЂљР ВµР В»РЎРЉ: {battle.winnerName || (battle.winnerId === battle.challengerId ? battle.challengerName : battle.opponentName)}
                         </div>
                       </div>
                     </div>
@@ -448,7 +448,7 @@ export function AllBattlesModal({
                       color: theme === 'dark' ? '#A7B0BD' : '#6B7280'
                     }}
                   >
-                    рџ“–
+                    СЂСџвЂњвЂ“
                   </div>
                   <p 
                     className="text-sm"
@@ -456,7 +456,7 @@ export function AllBattlesModal({
                       color: theme === 'dark' ? '#A7B0BD' : '#6B7280'
                     }}
                   >
-                    РСЃС‚РѕСЂРёСЏ РїСѓСЃС‚Р°
+                    Р ВРЎРѓРЎвЂљР С•РЎР‚Р С‘РЎРЏ Р С—РЎС“РЎРѓРЎвЂљР В°
                   </p>
                   <p 
                     className="text-xs mt-1"
@@ -464,7 +464,7 @@ export function AllBattlesModal({
                       color: theme === 'dark' ? '#6B7280' : '#9CA3AF'
                     }}
                   >
-                    Р—Р°РІРµСЂС€С‘РЅРЅС‹Рµ Р±Р°С‚С‚Р»С‹ РїРѕСЏРІСЏС‚СЃСЏ Р·РґРµСЃСЊ
+                    Р вЂ”Р В°Р Р†Р ВµРЎР‚РЎв‚¬РЎвЂР Р…Р Р…РЎвЂ№Р Вµ Р В±Р В°РЎвЂљРЎвЂљР В»РЎвЂ№ Р С—Р С•РЎРЏР Р†РЎРЏРЎвЂљРЎРѓРЎРЏ Р В·Р Т‘Р ВµРЎРѓРЎРЉ
                   </p>
                 </div>
               )}

@@ -1,4 +1,4 @@
-// Безопасные утилиты для работы с данными
+// Р‘РµР·РѕРїР°СЃРЅС‹Рµ СѓС‚РёР»РёС‚С‹ РґР»СЏ СЂР°Р±РѕС‚С‹ СЃ РґР°РЅРЅС‹РјРё
 
 export function safeDate(input?: string | number | Date): string {
   if (!input) return "";

@@ -1,5 +1,5 @@
-// Простая система базы данных на localStorage
-// В будущем можно заменить на реальную БД
+// РџСЂРѕСЃС‚Р°СЏ СЃРёСЃС‚РµРјР° Р±Р°Р·С‹ РґР°РЅРЅС‹С… РЅР° localStorage
+// Р’ Р±СѓРґСѓС‰РµРј РјРѕР¶РЅРѕ Р·Р°РјРµРЅРёС‚СЊ РЅР° СЂРµР°Р»СЊРЅСѓСЋ Р‘Р”
 
 export interface UserData {
   id: string;
@@ -11,7 +11,7 @@ export interface UserData {
   level: number;
   experience: number;
   gCoins: number;
-  achievements: string[]; // ID достижений
+  achievements: string[]; // ID РґРѕСЃС‚РёР¶РµРЅРёР№
   tasksCompleted: number;
   lastActive: string;
   createdAt: string;
@@ -22,7 +22,7 @@ export interface UserData {
 
 export interface AchievementData {
   id: string;
-  userId?: string; // Для системных достижений может быть undefined
+  userId?: string; // Р”Р»СЏ СЃРёСЃС‚РµРјРЅС‹С… РґРѕСЃС‚РёР¶РµРЅРёР№ РјРѕР¶РµС‚ Р±С‹С‚СЊ undefined
   title: string;
   description: string;
   type: 'tasks' | 'battle' | 'collection' | 'social' | 'special';
@@ -36,8 +36,8 @@ export interface AchievementData {
   color: string;
   isActive: boolean;
   completionCount: number;
-  progress?: number; // Для пользовательских достижений
-  completed?: boolean; // Для пользовательских достижений
+  progress?: number; // Р”Р»СЏ РїРѕР»СЊР·РѕРІР°С‚РµР»СЊСЃРєРёС… РґРѕСЃС‚РёР¶РµРЅРёР№
+  completed?: boolean; // Р”Р»СЏ РїРѕР»СЊР·РѕРІР°С‚РµР»СЊСЃРєРёС… РґРѕСЃС‚РёР¶РµРЅРёР№
   completedAt?: string;
   createdAt: string;
 }
@@ -103,7 +103,7 @@ class DatabaseService {
   private readonly DB_VERSION = '1.0';
   private readonly DB_PREFIX = 'grither_db_';
 
-  // Инициализация базы данных
+  // РРЅРёС†РёР°Р»РёР·Р°С†РёСЏ Р±Р°Р·С‹ РґР°РЅРЅС‹С…
   init() {
     const dbVersion = localStorage.getItem(`${this.DB_PREFIX}version`);
     if (!dbVersion) {
@@ -112,40 +112,40 @@ class DatabaseService {
     }
   }
 
-  // Миграция данных из старой системы
+  // РњРёРіСЂР°С†РёСЏ РґР°РЅРЅС‹С… РёР· СЃС‚Р°СЂРѕР№ СЃРёСЃС‚РµРјС‹
   private migrateFromOldSystem() {
-    console.log('🔄 Миграция данных из старой системы...');
+    console.log('рџ”„ РњРёРіСЂР°С†РёСЏ РґР°РЅРЅС‹С… РёР· СЃС‚Р°СЂРѕР№ СЃРёСЃС‚РµРјС‹...');
     
-    // Здесь можно добавить логику миграции данных
-    // Например, перенос данных из mock данных в новую структуру
+    // Р—РґРµСЃСЊ РјРѕР¶РЅРѕ РґРѕР±Р°РІРёС‚СЊ Р»РѕРіРёРєСѓ РјРёРіСЂР°С†РёРё РґР°РЅРЅС‹С…
+    // РќР°РїСЂРёРјРµСЂ, РїРµСЂРµРЅРѕСЃ РґР°РЅРЅС‹С… РёР· mock РґР°РЅРЅС‹С… РІ РЅРѕРІСѓСЋ СЃС‚СЂСѓРєС‚СѓСЂСѓ
   }
 
-  // === ПОЛЬЗОВАТЕЛИ ===
+  // === РџРћР›Р¬Р—РћР’РђРўР•Р›Р ===
 
-  // Получить данные пользователя
+  // РџРѕР»СѓС‡РёС‚СЊ РґР°РЅРЅС‹Рµ РїРѕР»СЊР·РѕРІР°С‚РµР»СЏ
   getUser(telegramId: string): UserData | null {
     try {
       const userData = localStorage.getItem(`${this.DB_PREFIX}user_${telegramId}`);
       return userData ? JSON.parse(userData) : null;
     } catch (error) {
-      console.error('Ошибка получения данных пользователя:', error);
+      console.error('РћС€РёР±РєР° РїРѕР»СѓС‡РµРЅРёСЏ РґР°РЅРЅС‹С… РїРѕР»СЊР·РѕРІР°С‚РµР»СЏ:', error);
       return null;
     }
   }
 
-  // Создать или обновить пользователя
+  // РЎРѕР·РґР°С‚СЊ РёР»Рё РѕР±РЅРѕРІРёС‚СЊ РїРѕР»СЊР·РѕРІР°С‚РµР»СЏ
   saveUser(userData: UserData): boolean {
     try {
       userData.lastActive = new Date().toISOString();
       localStorage.setItem(`${this.DB_PREFIX}user_${userData.telegramId}`, JSON.stringify(userData));
       return true;
     } catch (error) {
-      console.error('Ошибка сохранения пользователя:', error);
+      console.error('РћС€РёР±РєР° СЃРѕС…СЂР°РЅРµРЅРёСЏ РїРѕР»СЊР·РѕРІР°С‚РµР»СЏ:', error);
       return false;
     }
   }
 
-  // Создать нового пользователя
+  // РЎРѕР·РґР°С‚СЊ РЅРѕРІРѕРіРѕ РїРѕР»СЊР·РѕРІР°С‚РµР»СЏ
   createUser(telegramId: string, name: string, role: UserData['role'], teamNumber?: number): UserData {
     const newUser: UserData = {
       telegramId,
@@ -154,7 +154,7 @@ class DatabaseService {
       teamNumber,
       level: 1,
       experience: 0,
-      gCoins: 100, // Стартовые монеты
+      gCoins: 100, // РЎС‚Р°СЂС‚РѕРІС‹Рµ РјРѕРЅРµС‚С‹
       achievements: [],
       tasksCompleted: 0,
       lastActive: new Date().toISOString(),
@@ -165,7 +165,7 @@ class DatabaseService {
     return newUser;
   }
 
-  // Обновить прогресс пользователя
+  // РћР±РЅРѕРІРёС‚СЊ РїСЂРѕРіСЂРµСЃСЃ РїРѕР»СЊР·РѕРІР°С‚РµР»СЏ
   updateUserProgress(telegramId: string, progress: Partial<Pick<UserData, 'level' | 'experience' | 'gCoins' | 'tasksCompleted'>>): boolean {
     const user = this.getUser(telegramId);
     if (!user) return false;
@@ -179,7 +179,7 @@ class DatabaseService {
     return this.saveUser(updatedUser);
   }
 
-  // Добавить достижение пользователю
+  // Р”РѕР±Р°РІРёС‚СЊ РґРѕСЃС‚РёР¶РµРЅРёРµ РїРѕР»СЊР·РѕРІР°С‚РµР»СЋ
   addUserAchievement(telegramId: string, achievementId: string): boolean {
     const user = this.getUser(telegramId);
     if (!user) return false;
@@ -193,20 +193,20 @@ class DatabaseService {
     return true;
   }
 
-  // === ДОСТИЖЕНИЯ ===
+  // === Р”РћРЎРўРР–Р•РќРРЇ ===
 
-  // Получить достижения пользователя
+  // РџРѕР»СѓС‡РёС‚СЊ РґРѕСЃС‚РёР¶РµРЅРёСЏ РїРѕР»СЊР·РѕРІР°С‚РµР»СЏ
   getUserAchievements(telegramId: string): AchievementData[] {
     try {
       const achievements = localStorage.getItem(`${this.DB_PREFIX}achievements_${telegramId}`);
       return achievements ? JSON.parse(achievements) : [];
     } catch (error) {
-      console.error('Ошибка получения достижений:', error);
+      console.error('РћС€РёР±РєР° РїРѕР»СѓС‡РµРЅРёСЏ РґРѕСЃС‚РёР¶РµРЅРёР№:', error);
       return [];
     }
   }
 
-  // Сохранить достижение
+  // РЎРѕС…СЂР°РЅРёС‚СЊ РґРѕСЃС‚РёР¶РµРЅРёРµ
   saveAchievement(achievement: AchievementData): boolean {
     try {
       const existing = this.getUserAchievements(achievement.userId);
@@ -216,25 +216,25 @@ class DatabaseService {
       localStorage.setItem(`${this.DB_PREFIX}achievements_${achievement.userId}`, JSON.stringify(updated));
       return true;
     } catch (error) {
-      console.error('Ошибка сохранения достижения:', error);
+      console.error('РћС€РёР±РєР° СЃРѕС…СЂР°РЅРµРЅРёСЏ РґРѕСЃС‚РёР¶РµРЅРёСЏ:', error);
       return false;
     }
   }
 
-  // === ЗАДАЧИ ===
+  // === Р—РђР”РђР§Р ===
 
-  // Получить задачи пользователя
+  // РџРѕР»СѓС‡РёС‚СЊ Р·Р°РґР°С‡Рё РїРѕР»СЊР·РѕРІР°С‚РµР»СЏ
   getUserTasks(telegramId: string): TaskData[] {
     try {
       const tasks = localStorage.getItem(`${this.DB_PREFIX}tasks_${telegramId}`);
       return tasks ? JSON.parse(tasks) : [];
     } catch (error) {
-      console.error('Ошибка получения задач:', error);
+      console.error('РћС€РёР±РєР° РїРѕР»СѓС‡РµРЅРёСЏ Р·Р°РґР°С‡:', error);
       return [];
     }
   }
 
-  // Сохранить задачу
+  // РЎРѕС…СЂР°РЅРёС‚СЊ Р·Р°РґР°С‡Сѓ
   saveTask(task: TaskData): boolean {
     try {
       const existing = this.getUserTasks(task.userId);
@@ -244,42 +244,42 @@ class DatabaseService {
       localStorage.setItem(`${this.DB_PREFIX}tasks_${task.userId}`, JSON.stringify(updated));
       return true;
     } catch (error) {
-      console.error('Ошибка сохранения задачи:', error);
+      console.error('РћС€РёР±РєР° СЃРѕС…СЂР°РЅРµРЅРёСЏ Р·Р°РґР°С‡Рё:', error);
       return false;
     }
   }
 
-  // === УВЕДОМЛЕНИЯ ===
+  // === РЈР’Р•Р”РћРњР›Р•РќРРЇ ===
 
-  // Получить уведомления пользователя
+  // РџРѕР»СѓС‡РёС‚СЊ СѓРІРµРґРѕРјР»РµРЅРёСЏ РїРѕР»СЊР·РѕРІР°С‚РµР»СЏ
   getUserNotifications(telegramId: string): NotificationData[] {
     try {
       const notifications = localStorage.getItem(`${this.DB_PREFIX}notifications_${telegramId}`);
       return notifications ? JSON.parse(notifications) : [];
     } catch (error) {
-      console.error('Ошибка получения уведомлений:', error);
+      console.error('РћС€РёР±РєР° РїРѕР»СѓС‡РµРЅРёСЏ СѓРІРµРґРѕРјР»РµРЅРёР№:', error);
       return [];
     }
   }
 
-  // Сохранить уведомление
+  // РЎРѕС…СЂР°РЅРёС‚СЊ СѓРІРµРґРѕРјР»РµРЅРёРµ
   saveNotification(notification: NotificationData): boolean {
     try {
       const existing = this.getUserNotifications(notification.userId);
       existing.push(notification);
       
-      // Ограничиваем количество уведомлений (последние 100)
+      // РћРіСЂР°РЅРёС‡РёРІР°РµРј РєРѕР»РёС‡РµСЃС‚РІРѕ СѓРІРµРґРѕРјР»РµРЅРёР№ (РїРѕСЃР»РµРґРЅРёРµ 100)
       const limited = existing.slice(-100);
       
       localStorage.setItem(`${this.DB_PREFIX}notifications_${notification.userId}`, JSON.stringify(limited));
       return true;
     } catch (error) {
-      console.error('Ошибка сохранения уведомления:', error);
+      console.error('РћС€РёР±РєР° СЃРѕС…СЂР°РЅРµРЅРёСЏ СѓРІРµРґРѕРјР»РµРЅРёСЏ:', error);
       return false;
     }
   }
 
-  // Отметить уведомление как прочитанное
+  // РћС‚РјРµС‚РёС‚СЊ СѓРІРµРґРѕРјР»РµРЅРёРµ РєР°Рє РїСЂРѕС‡РёС‚Р°РЅРЅРѕРµ
   markNotificationAsRead(telegramId: string, notificationId: string): boolean {
     try {
       const notifications = this.getUserNotifications(telegramId);
@@ -291,14 +291,14 @@ class DatabaseService {
       }
       return false;
     } catch (error) {
-      console.error('Ошибка обновления уведомления:', error);
+      console.error('РћС€РёР±РєР° РѕР±РЅРѕРІР»РµРЅРёСЏ СѓРІРµРґРѕРјР»РµРЅРёСЏ:', error);
       return false;
     }
   }
 
-  // === СИСТЕМНЫЕ ФУНКЦИИ ===
+  // === РЎРРЎРўР•РњРќР«Р• Р¤РЈРќРљР¦РР ===
 
-  // Получить статистику пользователя
+  // РџРѕР»СѓС‡РёС‚СЊ СЃС‚Р°С‚РёСЃС‚РёРєСѓ РїРѕР»СЊР·РѕРІР°С‚РµР»СЏ
   getUserStats(telegramId: string) {
     const user = this.getUser(telegramId);
     const achievements = this.getUserAchievements(telegramId);
@@ -315,7 +315,7 @@ class DatabaseService {
     };
   }
 
-  // Очистить все данные пользователя (для тестирования)
+  // РћС‡РёСЃС‚РёС‚СЊ РІСЃРµ РґР°РЅРЅС‹Рµ РїРѕР»СЊР·РѕРІР°С‚РµР»СЏ (РґР»СЏ С‚РµСЃС‚РёСЂРѕРІР°РЅРёСЏ)
   clearUserData(telegramId: string): boolean {
     try {
       localStorage.removeItem(`${this.DB_PREFIX}user_${telegramId}`);
@@ -324,12 +324,12 @@ class DatabaseService {
       localStorage.removeItem(`${this.DB_PREFIX}notifications_${telegramId}`);
       return true;
     } catch (error) {
-      console.error('Ошибка очистки данных:', error);
+      console.error('РћС€РёР±РєР° РѕС‡РёСЃС‚РєРё РґР°РЅРЅС‹С…:', error);
       return false;
     }
   }
 
-  // Экспорт данных пользователя
+  // Р­РєСЃРїРѕСЂС‚ РґР°РЅРЅС‹С… РїРѕР»СЊР·РѕРІР°С‚РµР»СЏ
   exportUserData(telegramId: string) {
     return {
       user: this.getUser(telegramId),
@@ -340,7 +340,7 @@ class DatabaseService {
     };
   }
 
-  // Импорт данных пользователя
+  // РРјРїРѕСЂС‚ РґР°РЅРЅС‹С… РїРѕР»СЊР·РѕРІР°С‚РµР»СЏ
   importUserData(telegramId: string, data: any): boolean {
     try {
       if (data.user) this.saveUser(data.user);
@@ -355,14 +355,14 @@ class DatabaseService {
       }
       return true;
     } catch (error) {
-      console.error('Ошибка импорта данных:', error);
+      console.error('РћС€РёР±РєР° РёРјРїРѕСЂС‚Р° РґР°РЅРЅС‹С…:', error);
       return false;
     }
   }
 }
 
-// Создаем единственный экземпляр сервиса
+// РЎРѕР·РґР°РµРј РµРґРёРЅСЃС‚РІРµРЅРЅС‹Р№ СЌРєР·РµРјРїР»СЏСЂ СЃРµСЂРІРёСЃР°
 export const databaseService = new DatabaseService();
 
-// Инициализируем БД при импорте
+// РРЅРёС†РёР°Р»РёР·РёСЂСѓРµРј Р‘Р” РїСЂРё РёРјРїРѕСЂС‚Рµ
 databaseService.init();

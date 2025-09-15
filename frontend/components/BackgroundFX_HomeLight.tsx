@@ -1,9 +1,9 @@
-﻿interface BackgroundFX_HomeLightProps {
+п»їinterface BackgroundFX_HomeLightProps {
   mode?: 'subtle' | 'debug';
 }
 
 export function BackgroundFX_HomeLight({ mode = 'subtle' }: BackgroundFX_HomeLightProps) {
-  // Р РµР¶РёРј debug РґР»СЏ РїСЂРѕРІРµСЂРєРё СЌС„С„РµРєС‚РѕРІ - Р±РѕР»РµРµ РІС‹СЃРѕРєР°СЏ РІРёРґРёРјРѕСЃС‚СЊ
+  // Р В Р ВµР В¶Р С‘Р С debug Р Т‘Р В»РЎРЏ Р С—РЎР‚Р С•Р Р†Р ВµРЎР‚Р С”Р С‘ РЎРЊРЎвЂћРЎвЂћР ВµР С”РЎвЂљР С•Р Р† - Р В±Р С•Р В»Р ВµР Вµ Р Р†РЎвЂ№РЎРѓР С•Р С”Р В°РЎРЏ Р Р†Р С‘Р Т‘Р С‘Р СР С•РЎРѓРЎвЂљРЎРЉ
   const spotlightOpacity = mode === 'debug' ? 0.55 : 0.20;
   const vignetteOpacity = mode === 'debug' ? 0.18 : 0.05;
 
@@ -22,7 +22,7 @@ export function BackgroundFX_HomeLight({ mode = 'subtle' }: BackgroundFX_HomeLig
         pointerEvents: 'none'
       }}
     >
-      {/* BaseBG - Р‘Р°Р·РѕРІС‹Р№ С„РѕРЅ */}
+      {/* BaseBG - Р вЂР В°Р В·Р С•Р Р†РЎвЂ№Р в„– РЎвЂћР С•Р Р… */}
       <div
         style={{
           position: 'absolute',
@@ -37,11 +37,11 @@ export function BackgroundFX_HomeLight({ mode = 'subtle' }: BackgroundFX_HomeLig
         }}
       />
 
-      {/* Spotlight - Р Р°РґРёР°Р»СЊРЅС‹Р№ РіСЂР°РґРёРµРЅС‚ РїРѕРґ Р»РѕРіРѕС‚РёРїРѕРј */}
+      {/* Spotlight - Р В Р В°Р Т‘Р С‘Р В°Р В»РЎРЉР Р…РЎвЂ№Р в„– Р С–РЎР‚Р В°Р Т‘Р С‘Р ВµР Р…РЎвЂљ Р С—Р С•Р Т‘ Р В»Р С•Р С–Р С•РЎвЂљР С‘Р С—Р С•Р С */}
       <div
         style={{
           position: 'absolute',
-          top: '80px', // РџРѕР·РёС†РёСЏ РїРѕРґ Р»РѕРіРѕС‚РёРїРѕРј
+          top: '80px', // Р СџР С•Р В·Р С‘РЎвЂ Р С‘РЎРЏ Р С—Р С•Р Т‘ Р В»Р С•Р С–Р С•РЎвЂљР С‘Р С—Р С•Р С
           left: '50%',
           transform: 'translateX(-50%)',
           width: '520px',
@@ -52,7 +52,7 @@ export function BackgroundFX_HomeLight({ mode = 'subtle' }: BackgroundFX_HomeLig
         }}
       />
 
-      {/* Vignette - Р’РёРЅСЊРµС‚РєР° РїРѕ РєСЂР°СЏРј */}
+      {/* Vignette - Р вЂ™Р С‘Р Р…РЎРЉР ВµРЎвЂљР С”Р В° Р С—Р С• Р С”РЎР‚Р В°РЎРЏР С */}
       <div
         style={{
           position: 'absolute',

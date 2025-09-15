@@ -1,4 +1,4 @@
-﻿import React from 'react';
+п»їimport React from 'react';
 import { Plus, Sword } from 'lucide-react';
 import { Battle, BattleInvitation } from '../types/battles';
 
@@ -37,7 +37,7 @@ export const BattleCard: React.FC<BattleCardProps> = ({
             color: theme === 'dark' ? '#E8ECF2' : '#0F172A'
           }}
         >
-          Баттлы
+          Р‘Р°С‚С‚Р»С‹
         </h3>
         
         <button
@@ -53,7 +53,7 @@ export const BattleCard: React.FC<BattleCardProps> = ({
 
       {(activeBattles.length > 0 || pendingInvitations.length > 0) ? (
         <div className="space-y-2">
-          {/* Активные баттлы */}
+          {/* РђРєС‚РёРІРЅС‹Рµ Р±Р°С‚С‚Р»С‹ */}
           {activeBattles.slice(0, 2).map((battle) => (
             <div 
               key={battle.id}
@@ -66,11 +66,11 @@ export const BattleCard: React.FC<BattleCardProps> = ({
                 color: theme === 'dark' ? '#E8ECF2' : '#0F172A'
               }}
             >
-              {battle.participants[0]?.name || 'Игрок 1'} vs {battle.participants[1]?.name || 'Игрок 2'}
+              {battle.participants[0]?.name || 'РРіСЂРѕРє 1'} vs {battle.participants[1]?.name || 'РРіСЂРѕРє 2'}
             </div>
           ))}
 
-          {/* Приглашения */}
+          {/* РџСЂРёРіР»Р°С€РµРЅРёСЏ */}
           {pendingInvitations.slice(0, 2 - activeBattles.length).map((invitation) => (
             <div 
               key={invitation.id}
@@ -83,11 +83,11 @@ export const BattleCard: React.FC<BattleCardProps> = ({
                 color: theme === 'dark' ? '#E8ECF2' : '#0F172A'
               }}
             >
-              {invitation.from?.name || 'Игрок'} вызывает
+              {invitation.from?.name || 'РРіСЂРѕРє'} РІС‹Р·С‹РІР°РµС‚
             </div>
           ))}
 
-          {/* Показать больше */}
+          {/* РџРѕРєР°Р·Р°С‚СЊ Р±РѕР»СЊС€Рµ */}
           {(activeBattles.length > 2 || pendingInvitations.length > 2) && (
             <div 
               style={{
@@ -97,7 +97,7 @@ export const BattleCard: React.FC<BattleCardProps> = ({
                 padding: '4px'
               }}
             >
-              +{Math.max(0, activeBattles.length - 2) + Math.max(0, pendingInvitations.length - 2)} еще
+              +{Math.max(0, activeBattles.length - 2) + Math.max(0, pendingInvitations.length - 2)} РµС‰Рµ
             </div>
           )}
         </div>
@@ -109,9 +109,9 @@ export const BattleCard: React.FC<BattleCardProps> = ({
             color: theme === 'dark' ? '#A7B0BD' : '#6B7280'
           }}
         >
-          <div style={{ fontSize: '24px', marginBottom: '8px' }}>⚔️</div>
-          <div style={{ fontSize: '14px', marginBottom: '4px' }}>Нет активных баттлов</div>
-          <div style={{ fontSize: '12px' }}>Нажмите + чтобы создать вызов</div>
+          <div style={{ fontSize: '24px', marginBottom: '8px' }}>вљ”пёЏ</div>
+          <div style={{ fontSize: '14px', marginBottom: '4px' }}>РќРµС‚ Р°РєС‚РёРІРЅС‹С… Р±Р°С‚С‚Р»РѕРІ</div>
+          <div style={{ fontSize: '12px' }}>РќР°Р¶РјРёС‚Рµ + С‡С‚РѕР±С‹ СЃРѕР·РґР°С‚СЊ РІС‹Р·РѕРІ</div>
         </div>
       )}
     </div>

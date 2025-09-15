@@ -1,4 +1,4 @@
-﻿import { useState } from 'react';
+п»їimport { useState } from 'react';
 import { Header } from './Header';
 import { BottomNavigation } from './BottomNavigation';
 import { ModalOpaque } from './ModalOpaque';
@@ -17,23 +17,23 @@ interface BattlesPageProps {
 export function BattlesPage({ onNavigate, currentPage, onOpenSettings, profilePhoto, theme = 'light' }: BattlesPageProps) {
   const currentUser = mockAppState.currentUser;
   
-  // Mock РґР°РЅРЅС‹Рµ СЃРѕС‚СЂСѓРґРЅРёРєРѕРІ СЃ РєРѕРјР°РЅРґР°РјРё
+  // Mock Р Т‘Р В°Р Р…Р Р…РЎвЂ№Р Вµ РЎРѓР С•РЎвЂљРЎР‚РЎС“Р Т‘Р Р…Р С‘Р С”Р С•Р Р† РЎРѓ Р С”Р С•Р СР В°Р Р…Р Т‘Р В°Р СР С‘
   const employees = [
-    { id: '1', name: 'РђРЅРЅР° РРІР°РЅРѕРІР°', team: 1, level: 5, avatar: null, status: 'available' },
-    { id: '2', name: 'РџРµС‚СЂ РџРµС‚СЂРѕРІ', team: 1, level: 7, avatar: null, status: 'in_battle' },
-    { id: '3', name: 'РњР°СЂРёСЏ РЎРёРґРѕСЂРѕРІР°', team: 2, level: 6, avatar: null, status: 'available' },
-    { id: '4', name: 'РђР»РµРєСЃРµР№ РљРѕР·Р»РѕРІ', team: 2, level: 8, avatar: null, status: 'available' },
-    { id: '5', name: 'Р•Р»РµРЅР° РњРѕСЂРѕР·РѕРІР°', team: 3, level: 4, avatar: null, status: 'available' },
-    { id: '6', name: 'Р”РјРёС‚СЂРёР№ Р’РѕР»РєРѕРІ', team: 3, level: 9, avatar: null, status: 'available' },
-    { id: '7', name: 'РћР»СЊРіР° РЎРѕРєРѕР»РѕРІР°', team: 4, level: 5, avatar: null, status: 'available' },
-    { id: '8', name: 'РЎРµСЂРіРµР№ РћСЂР»РѕРІ', team: 4, level: 6, avatar: null, status: 'in_battle' },
-    { id: '9', name: 'РњРёС…Р°РёР» Р С‹Р±Р°РєРѕРІ', team: 5, level: 7, avatar: null, status: 'available' },
-    { id: '10', name: 'РўР°С‚СЊСЏРЅР° Р‘РµР»РѕРІР°', team: 5, level: 5, avatar: null, status: 'available' },
-    { id: '11', name: 'Р’Р»Р°РґРёРјРёСЂ РќРѕРІРёРєРѕРІ', team: 6, level: 8, avatar: null, status: 'available' },
-    { id: '12', name: 'Р•РєР°С‚РµСЂРёРЅР° РџРѕРїРѕРІР°', team: 6, level: 6, avatar: null, status: 'available' },
+    { id: '1', name: 'Р С’Р Р…Р Р…Р В° Р ВР Р†Р В°Р Р…Р С•Р Р†Р В°', team: 1, level: 5, avatar: null, status: 'available' },
+    { id: '2', name: 'Р СџР ВµРЎвЂљРЎР‚ Р СџР ВµРЎвЂљРЎР‚Р С•Р Р†', team: 1, level: 7, avatar: null, status: 'in_battle' },
+    { id: '3', name: 'Р СљР В°РЎР‚Р С‘РЎРЏ Р РЋР С‘Р Т‘Р С•РЎР‚Р С•Р Р†Р В°', team: 2, level: 6, avatar: null, status: 'available' },
+    { id: '4', name: 'Р С’Р В»Р ВµР С”РЎРѓР ВµР в„– Р С™Р С•Р В·Р В»Р С•Р Р†', team: 2, level: 8, avatar: null, status: 'available' },
+    { id: '5', name: 'Р вЂўР В»Р ВµР Р…Р В° Р СљР С•РЎР‚Р С•Р В·Р С•Р Р†Р В°', team: 3, level: 4, avatar: null, status: 'available' },
+    { id: '6', name: 'Р вЂќР СР С‘РЎвЂљРЎР‚Р С‘Р в„– Р вЂ™Р С•Р В»Р С”Р С•Р Р†', team: 3, level: 9, avatar: null, status: 'available' },
+    { id: '7', name: 'Р С›Р В»РЎРЉР С–Р В° Р РЋР С•Р С”Р С•Р В»Р С•Р Р†Р В°', team: 4, level: 5, avatar: null, status: 'available' },
+    { id: '8', name: 'Р РЋР ВµРЎР‚Р С–Р ВµР в„– Р С›РЎР‚Р В»Р С•Р Р†', team: 4, level: 6, avatar: null, status: 'in_battle' },
+    { id: '9', name: 'Р СљР С‘РЎвЂ¦Р В°Р С‘Р В» Р В РЎвЂ№Р В±Р В°Р С”Р С•Р Р†', team: 5, level: 7, avatar: null, status: 'available' },
+    { id: '10', name: 'Р СћР В°РЎвЂљРЎРЉРЎРЏР Р…Р В° Р вЂР ВµР В»Р С•Р Р†Р В°', team: 5, level: 5, avatar: null, status: 'available' },
+    { id: '11', name: 'Р вЂ™Р В»Р В°Р Т‘Р С‘Р СР С‘РЎР‚ Р СњР С•Р Р†Р С‘Р С”Р С•Р Р†', team: 6, level: 8, avatar: null, status: 'available' },
+    { id: '12', name: 'Р вЂўР С”Р В°РЎвЂљР ВµРЎР‚Р С‘Р Р…Р В° Р СџР С•Р С—Р С•Р Р†Р В°', team: 6, level: 6, avatar: null, status: 'available' },
   ];
   
-  // Mock Р°РєС‚РёРІРЅС‹С… Р±Р°С‚С‚Р»РѕРІ
+  // Mock Р В°Р С”РЎвЂљР С‘Р Р†Р Р…РЎвЂ№РЎвЂ¦ Р В±Р В°РЎвЂљРЎвЂљР В»Р С•Р Р†
   const [activeBattles, setActiveBattles] = useState([
     {
       id: '1',
@@ -45,31 +45,31 @@ export function BattlesPage({ onNavigate, currentPage, onOpenSettings, profilePh
     }
   ]);
 
-  // РЎРѕСЃС‚РѕСЏРЅРёСЏ РјРѕРґР°Р»СЊРЅС‹С… РѕРєРѕРЅ
+  // Р РЋР С•РЎРѓРЎвЂљР С•РЎРЏР Р…Р С‘РЎРЏ Р СР С•Р Т‘Р В°Р В»РЎРЉР Р…РЎвЂ№РЎвЂ¦ Р С•Р С”Р С•Р Р…
   const [isEmployeeSelectOpen, setIsEmployeeSelectOpen] = useState(false);
   const [isBattleConfirmOpen, setIsBattleConfirmOpen] = useState(false);
   const [isEmployeeDetailOpen, setIsEmployeeDetailOpen] = useState(false);
   const [isCancelBattleOpen, setIsCancelBattleOpen] = useState(false);
   const [isVictorySubmitOpen, setIsVictorySubmitOpen] = useState(false);
 
-  // РЎРѕСЃС‚РѕСЏРЅРёСЏ РґР»СЏ РІС‹Р±РѕСЂР° СЃРѕС‚СЂСѓРґРЅРёРєР°
+  // Р РЋР С•РЎРѓРЎвЂљР С•РЎРЏР Р…Р С‘РЎРЏ Р Т‘Р В»РЎРЏ Р Р†РЎвЂ№Р В±Р С•РЎР‚Р В° РЎРѓР С•РЎвЂљРЎР‚РЎС“Р Т‘Р Р…Р С‘Р С”Р В°
   const [selectedEmployee, setSelectedEmployee] = useState<any>(null);
   const [selectedTeam, setSelectedTeam] = useState<number | null>(null);
   const [isTeamSelectOpen, setIsTeamSelectOpen] = useState(false);
 
-  // РЎРѕСЃС‚РѕСЏРЅРёСЏ РґР»СЏ РїРѕРґС‚РІРµСЂР¶РґРµРЅРёСЏ РїРѕР±РµРґС‹
+  // Р РЋР С•РЎРѓРЎвЂљР С•РЎРЏР Р…Р С‘РЎРЏ Р Т‘Р В»РЎРЏ Р С—Р С•Р Т‘РЎвЂљР Р†Р ВµРЎР‚Р В¶Р Т‘Р ВµР Р…Р С‘РЎРЏ Р С—Р С•Р В±Р ВµР Т‘РЎвЂ№
   const [victoryComment, setVictoryComment] = useState('');
   const [victoryFile1, setVictoryFile1] = useState<File | null>(null);
   const [victoryFile2, setVictoryFile2] = useState<File | null>(null);
   const [selectedBattle, setSelectedBattle] = useState<any>(null);
 
-  // РЎРѕСЃС‚РѕСЏРЅРёСЏ РЅР°РІРёРіР°С†РёРё
+  // Р РЋР С•РЎРѓРЎвЂљР С•РЎРЏР Р…Р С‘РЎРЏ Р Р…Р В°Р Р†Р С‘Р С–Р В°РЎвЂ Р С‘Р С‘
   const [activeTab, setActiveTab] = useState<'battles' | 'employees'>('battles');
 
-  // РџСЂРѕРІРµСЂСЏРµРј РµСЃС‚СЊ Р»Рё Сѓ РїРѕР»СЊР·РѕРІР°С‚РµР»СЏ Р°РєС‚РёРІРЅС‹Р№ Р±Р°С‚С‚Р»
+  // Р СџРЎР‚Р С•Р Р†Р ВµРЎР‚РЎРЏР ВµР С Р ВµРЎРѓРЎвЂљРЎРЉ Р В»Р С‘ РЎС“ Р С—Р С•Р В»РЎРЉР В·Р С•Р Р†Р В°РЎвЂљР ВµР В»РЎРЏ Р В°Р С”РЎвЂљР С‘Р Р†Р Р…РЎвЂ№Р в„– Р В±Р В°РЎвЂљРЎвЂљР В»
   const hasActiveBattle = activeBattles.length > 0;
 
-  // Р¤РёР»СЊС‚СЂСѓРµРј СЃРѕС‚СЂСѓРґРЅРёРєРѕРІ РїРѕ РІС‹Р±СЂР°РЅРЅРѕР№ РєРѕРјР°РЅРґРµ
+  // Р В¤Р С‘Р В»РЎРЉРЎвЂљРЎР‚РЎС“Р ВµР С РЎРѓР С•РЎвЂљРЎР‚РЎС“Р Т‘Р Р…Р С‘Р С”Р С•Р Р† Р С—Р С• Р Р†РЎвЂ№Р В±РЎР‚Р В°Р Р…Р Р…Р С•Р в„– Р С”Р С•Р СР В°Р Р…Р Т‘Р Вµ
   const filteredEmployees = selectedTeam 
     ? employees.filter(emp => emp.team === selectedTeam)
     : employees.filter(emp => emp.team >= 1 && emp.team <= 6);
@@ -79,20 +79,20 @@ export function BattlesPage({ onNavigate, currentPage, onOpenSettings, profilePh
     const diff = endDate.getTime() - now.getTime();
     
     if (diff <= 0) {
-      return 'Р’СЂРµРјСЏ РёСЃС‚РµРєР»Рѕ';
+      return 'Р вЂ™РЎР‚Р ВµР СРЎРЏ Р С‘РЎРѓРЎвЂљР ВµР С”Р В»Р С•';
     }
     
     const days = Math.floor(diff / (1000 * 60 * 60 * 24));
     const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
     
     if (days > 0) {
-      return `${days}Рґ ${hours}С‡`;
+      return `${days}Р Т‘ ${hours}РЎвЂЎ`;
     } else {
-      return `${hours}С‡`;
+      return `${hours}РЎвЂЎ`;
     }
   };
 
-  // РћР±СЂР°Р±РѕС‚С‡РёРєРё
+  // Р С›Р В±РЎР‚Р В°Р В±Р С•РЎвЂљРЎвЂЎР С‘Р С”Р С‘
   const handleEmployeeSelect = (employee: any) => {
     if (hasActiveBattle || employee.status === 'in_battle') return;
     setSelectedEmployee(employee);
@@ -142,14 +142,14 @@ export function BattlesPage({ onNavigate, currentPage, onOpenSettings, profilePh
   const submitVictoryProof = () => {
     if (!victoryFile1 || !victoryFile2) return;
     
-    console.log('Р”РѕРєР°Р·Р°С‚РµР»СЊСЃС‚РІР° РїРѕР±РµРґС‹ РѕС‚РїСЂР°РІР»РµРЅС‹:', {
+    console.log('Р вЂќР С•Р С”Р В°Р В·Р В°РЎвЂљР ВµР В»РЎРЉРЎРѓРЎвЂљР Р†Р В° Р С—Р С•Р В±Р ВµР Т‘РЎвЂ№ Р С•РЎвЂљР С—РЎР‚Р В°Р Р†Р В»Р ВµР Р…РЎвЂ№:', {
       battle: selectedBattle.id,
       comment: victoryComment,
       file1: victoryFile1.name,
       file2: victoryFile2.name
     });
 
-    // РЎР±СЂРѕСЃ С„РѕСЂРјС‹
+    // Р РЋР В±РЎР‚Р С•РЎРѓ РЎвЂћР С•РЎР‚Р СРЎвЂ№
     setVictoryComment('');
     setVictoryFile1(null);
     setVictoryFile2(null);
@@ -195,7 +195,7 @@ export function BattlesPage({ onNavigate, currentPage, onOpenSettings, profilePh
             className="glass-card rounded-2xl flex flex-col apple-shadow" 
             style={{ minHeight: '500px' }}
           >
-            {/* Р—Р°РіРѕР»РѕРІРѕРє */}
+            {/* Р вЂ”Р В°Р С–Р С•Р В»Р С•Р Р†Р С•Р С” */}
             <div 
               className="flex items-center justify-between p-6"
               style={{
@@ -211,7 +211,7 @@ export function BattlesPage({ onNavigate, currentPage, onOpenSettings, profilePh
                   color: theme === 'dark' ? '#E8ECF2' : '#0F172A'
                 }}
               >
-                Р‘Р°С‚С‚Р»С‹
+                Р вЂР В°РЎвЂљРЎвЂљР В»РЎвЂ№
               </h2>
               <button
                 onClick={() => setIsEmployeeSelectOpen(true)}
@@ -247,7 +247,7 @@ export function BattlesPage({ onNavigate, currentPage, onOpenSettings, profilePh
               </button>
             </div>
 
-            {/* Р’РєР»Р°РґРєРё */}
+            {/* Р вЂ™Р С”Р В»Р В°Р Т‘Р С”Р С‘ */}
             <div className="px-6 py-4">
               <div 
                 className="flex gap-2 p-1 rounded-2xl"
@@ -277,7 +277,7 @@ export function BattlesPage({ onNavigate, currentPage, onOpenSettings, profilePh
                       : 'none'
                   }}
                 >
-                  Р‘Р°С‚С‚Р»С‹ ({activeBattles.length})
+                  Р вЂР В°РЎвЂљРЎвЂљР В»РЎвЂ№ ({activeBattles.length})
                 </button>
                 <button
                   onClick={() => setActiveTab('employees')}
@@ -298,15 +298,15 @@ export function BattlesPage({ onNavigate, currentPage, onOpenSettings, profilePh
                       : 'none'
                   }}
                 >
-                  РЎРѕС‚СЂСѓРґРЅРёРєРё
+                  Р РЋР С•РЎвЂљРЎР‚РЎС“Р Т‘Р Р…Р С‘Р С”Р С‘
                 </button>
               </div>
             </div>
             
-            {/* РљРѕРЅС‚РµРЅС‚ */}
+            {/* Р С™Р С•Р Р…РЎвЂљР ВµР Р…РЎвЂљ */}
             <div className="flex-1 overflow-y-auto px-6 pb-6">
               {activeTab === 'battles' ? (
-                // РЎРїРёСЃРѕРє Р±Р°С‚С‚Р»РѕРІ
+                // Р РЋР С—Р С‘РЎРѓР С•Р С” Р В±Р В°РЎвЂљРЎвЂљР В»Р С•Р Р†
                 activeBattles.length > 0 ? (
                   <div className="space-y-4">
                     {activeBattles.map((battle) => (
@@ -347,7 +347,7 @@ export function BattlesPage({ onNavigate, currentPage, onOpenSettings, profilePh
                                 color: theme === 'dark' ? '#A7B0BD' : '#6B7280'
                               }}
                             >
-                              РљРѕРјР°РЅРґР° {battle.opponent?.team} вЂў РЈСЂРѕРІРµРЅСЊ {battle.opponent?.level}
+                              Р С™Р С•Р СР В°Р Р…Р Т‘Р В° {battle.opponent?.team} РІР‚Сћ Р Р€РЎР‚Р С•Р Р†Р ВµР Р…РЎРЉ {battle.opponent?.level}
                             </div>
                           </div>
                         </div>
@@ -378,7 +378,7 @@ export function BattlesPage({ onNavigate, currentPage, onOpenSettings, profilePh
                               color: '#FFFFFF'
                             }}
                           >
-                            РџРѕРґС‚РІРµСЂРґРёС‚СЊ РїРѕР±РµРґСѓ
+                            Р СџР С•Р Т‘РЎвЂљР Р†Р ВµРЎР‚Р Т‘Р С‘РЎвЂљРЎРЉ Р С—Р С•Р В±Р ВµР Т‘РЎС“
                           </button>
                           <button
                             onClick={() => handleCancelBattle(battle)}
@@ -389,7 +389,7 @@ export function BattlesPage({ onNavigate, currentPage, onOpenSettings, profilePh
                               border: '1px solid #EF4444'
                             }}
                           >
-                            РћС‚РјРµРЅРёС‚СЊ
+                            Р С›РЎвЂљР СР ВµР Р…Р С‘РЎвЂљРЎРЉ
                           </button>
                         </div>
                       </div>
@@ -411,15 +411,15 @@ export function BattlesPage({ onNavigate, currentPage, onOpenSettings, profilePh
                         className="text-sm opacity-70"
                         style={{ color: theme === 'dark' ? '#A7B0BD' : '#6B7280' }}
                       >
-                        РќРµС‚ Р°РєС‚РёРІРЅС‹С… Р±Р°С‚С‚Р»РѕРІ
+                        Р СњР ВµРЎвЂљ Р В°Р С”РЎвЂљР С‘Р Р†Р Р…РЎвЂ№РЎвЂ¦ Р В±Р В°РЎвЂљРЎвЂљР В»Р С•Р Р†
                       </p>
                     </div>
                   </div>
                 )
               ) : (
-                // РЎРїРёСЃРѕРє СЃРѕС‚СЂСѓРґРЅРёРєРѕРІ
+                // Р РЋР С—Р С‘РЎРѓР С•Р С” РЎРѓР С•РЎвЂљРЎР‚РЎС“Р Т‘Р Р…Р С‘Р С”Р С•Р Р†
                 <div className="space-y-4">
-                  {/* Р¤РёР»СЊС‚СЂ РїРѕ РєРѕРјР°РЅРґР°Рј */}
+                  {/* Р В¤Р С‘Р В»РЎРЉРЎвЂљРЎР‚ Р С—Р С• Р С”Р С•Р СР В°Р Р…Р Т‘Р В°Р С */}
                   <div className="relative">
                     <button
                       onClick={() => setIsTeamSelectOpen(!isTeamSelectOpen)}
@@ -433,7 +433,7 @@ export function BattlesPage({ onNavigate, currentPage, onOpenSettings, profilePh
                       }}
                     >
                       <span>
-                        {selectedTeam ? `РљРѕРјР°РЅРґР° ${selectedTeam}` : 'Р’СЃРµ РєРѕРјР°РЅРґС‹ (1-6)'}
+                        {selectedTeam ? `Р С™Р С•Р СР В°Р Р…Р Т‘Р В° ${selectedTeam}` : 'Р вЂ™РЎРѓР Вµ Р С”Р С•Р СР В°Р Р…Р Т‘РЎвЂ№ (1-6)'}
                       </span>
                       <ChevronDown className="w-4 h-4" />
                     </button>
@@ -458,7 +458,7 @@ export function BattlesPage({ onNavigate, currentPage, onOpenSettings, profilePh
                             color: theme === 'dark' ? '#E8ECF2' : '#0F172A'
                           }}
                         >
-                          Р’СЃРµ РєРѕРјР°РЅРґС‹ (1-6)
+                          Р вЂ™РЎРѓР Вµ Р С”Р С•Р СР В°Р Р…Р Т‘РЎвЂ№ (1-6)
                         </button>
                         {[1, 2, 3, 4, 5, 6].map(team => (
                           <button
@@ -472,14 +472,14 @@ export function BattlesPage({ onNavigate, currentPage, onOpenSettings, profilePh
                               color: theme === 'dark' ? '#E8ECF2' : '#0F172A'
                             }}
                           >
-                            РљРѕРјР°РЅРґР° {team}
+                            Р С™Р С•Р СР В°Р Р…Р Т‘Р В° {team}
                           </button>
                         ))}
                       </div>
                     )}
                   </div>
 
-                  {/* РЎРїРёСЃРѕРє СЃРѕС‚СЂСѓРґРЅРёРєРѕРІ */}
+                  {/* Р РЋР С—Р С‘РЎРѓР С•Р С” РЎРѓР С•РЎвЂљРЎР‚РЎС“Р Т‘Р Р…Р С‘Р С”Р С•Р Р† */}
                   <div className="space-y-3">
                     {filteredEmployees.map((employee) => (
                       <div
@@ -519,7 +519,7 @@ export function BattlesPage({ onNavigate, currentPage, onOpenSettings, profilePh
                               color: theme === 'dark' ? '#A7B0BD' : '#6B7280'
                             }}
                           >
-                            РљРѕРјР°РЅРґР° {employee.team} вЂў РЈСЂРѕРІРµРЅСЊ {employee.level}
+                            Р С™Р С•Р СР В°Р Р…Р Т‘Р В° {employee.team} РІР‚Сћ Р Р€РЎР‚Р С•Р Р†Р ВµР Р…РЎРЉ {employee.level}
                           </div>
                         </div>
                         <button
@@ -567,15 +567,15 @@ export function BattlesPage({ onNavigate, currentPage, onOpenSettings, profilePh
         <BottomNavigation onNavigate={onNavigate} currentPage={currentPage} theme={theme} />
       </div>
 
-      {/* РњРѕРґР°Р»СЊРЅРѕРµ РѕРєРЅРѕ РІС‹Р±РѕСЂР° СЃРѕС‚СЂСѓРґРЅРёРєР° */}
+      {/* Р СљР С•Р Т‘Р В°Р В»РЎРЉР Р…Р С•Р Вµ Р С•Р С”Р Р…Р С• Р Р†РЎвЂ№Р В±Р С•РЎР‚Р В° РЎРѓР С•РЎвЂљРЎР‚РЎС“Р Т‘Р Р…Р С‘Р С”Р В° */}
       <ModalOpaque
         isOpen={isEmployeeSelectOpen}
         onClose={() => setIsEmployeeSelectOpen(false)}
-        title="Р’С‹Р±СЂР°С‚СЊ СЃРѕРїРµСЂРЅРёРєР°"
+        title="Р вЂ™РЎвЂ№Р В±РЎР‚Р В°РЎвЂљРЎРЉ РЎРѓР С•Р С—Р ВµРЎР‚Р Р…Р С‘Р С”Р В°"
         theme={theme}
       >
         <div className="space-y-4">
-          {/* Р¤РёР»СЊС‚СЂ РїРѕ РєРѕРјР°РЅРґР°Рј */}
+          {/* Р В¤Р С‘Р В»РЎРЉРЎвЂљРЎР‚ Р С—Р С• Р С”Р С•Р СР В°Р Р…Р Т‘Р В°Р С */}
           <div className="relative">
             <button
               onClick={() => setIsTeamSelectOpen(!isTeamSelectOpen)}
@@ -589,7 +589,7 @@ export function BattlesPage({ onNavigate, currentPage, onOpenSettings, profilePh
               }}
             >
               <span>
-                {selectedTeam ? `РљРѕРјР°РЅРґР° ${selectedTeam}` : 'Р’СЃРµ РєРѕРјР°РЅРґС‹ (1-6)'}
+                {selectedTeam ? `Р С™Р С•Р СР В°Р Р…Р Т‘Р В° ${selectedTeam}` : 'Р вЂ™РЎРѓР Вµ Р С”Р С•Р СР В°Р Р…Р Т‘РЎвЂ№ (1-6)'}
               </span>
               <ChevronDown className="w-4 h-4" />
             </button>
@@ -614,7 +614,7 @@ export function BattlesPage({ onNavigate, currentPage, onOpenSettings, profilePh
                     color: theme === 'dark' ? '#E8ECF2' : '#0F172A'
                   }}
                 >
-                  Р’СЃРµ РєРѕРјР°РЅРґС‹ (1-6)
+                  Р вЂ™РЎРѓР Вµ Р С”Р С•Р СР В°Р Р…Р Т‘РЎвЂ№ (1-6)
                 </button>
                 {[1, 2, 3, 4, 5, 6].map(team => (
                   <button
@@ -628,14 +628,14 @@ export function BattlesPage({ onNavigate, currentPage, onOpenSettings, profilePh
                       color: theme === 'dark' ? '#E8ECF2' : '#0F172A'
                     }}
                   >
-                    РљРѕРјР°РЅРґР° {team}
+                    Р С™Р С•Р СР В°Р Р…Р Т‘Р В° {team}
                   </button>
                 ))}
               </div>
             )}
           </div>
 
-          {/* РЎРїРёСЃРѕРє СЃРѕС‚СЂСѓРґРЅРёРєРѕРІ */}
+          {/* Р РЋР С—Р С‘РЎРѓР С•Р С” РЎРѓР С•РЎвЂљРЎР‚РЎС“Р Т‘Р Р…Р С‘Р С”Р С•Р Р† */}
           <div className="space-y-3 max-h-80 overflow-y-auto">
             {filteredEmployees.map((employee) => (
               <div
@@ -676,14 +676,14 @@ export function BattlesPage({ onNavigate, currentPage, onOpenSettings, profilePh
                       color: theme === 'dark' ? '#A7B0BD' : '#6B7280'
                     }}
                   >
-                    РљРѕРјР°РЅРґР° {employee.team} вЂў РЈСЂРѕРІРµРЅСЊ {employee.level}
+                    Р С™Р С•Р СР В°Р Р…Р Т‘Р В° {employee.team} РІР‚Сћ Р Р€РЎР‚Р С•Р Р†Р ВµР Р…РЎРЉ {employee.level}
                   </div>
                   {employee.status === 'in_battle' && (
                     <div 
                       className="text-xs mt-1"
                       style={{ color: '#EF4444' }}
                     >
-                      РЈС‡Р°СЃС‚РІСѓРµС‚ РІ Р±Р°С‚С‚Р»Рµ
+                      Р Р€РЎвЂЎР В°РЎРѓРЎвЂљР Р†РЎС“Р ВµРЎвЂљ Р Р† Р В±Р В°РЎвЂљРЎвЂљР В»Р Вµ
                     </div>
                   )}
                 </div>
@@ -699,11 +699,11 @@ export function BattlesPage({ onNavigate, currentPage, onOpenSettings, profilePh
         </div>
       </ModalOpaque>
 
-      {/* РџРѕРґС‚РІРµСЂР¶РґРµРЅРёРµ РІС‹Р·РѕРІР° РЅР° Р±Р°С‚С‚Р» */}
+      {/* Р СџР С•Р Т‘РЎвЂљР Р†Р ВµРЎР‚Р В¶Р Т‘Р ВµР Р…Р С‘Р Вµ Р Р†РЎвЂ№Р В·Р С•Р Р†Р В° Р Р…Р В° Р В±Р В°РЎвЂљРЎвЂљР В» */}
       <ModalOpaque
         isOpen={isBattleConfirmOpen}
         onClose={() => setIsBattleConfirmOpen(false)}
-        title="РџРѕРґС‚РІРµСЂРґРёС‚СЊ РІС‹Р·РѕРІ"
+        title="Р СџР С•Р Т‘РЎвЂљР Р†Р ВµРЎР‚Р Т‘Р С‘РЎвЂљРЎРЉ Р Р†РЎвЂ№Р В·Р С•Р Р†"
         theme={theme}
         actions={
           <div className="flex gap-3">
@@ -718,7 +718,7 @@ export function BattlesPage({ onNavigate, currentPage, onOpenSettings, profilePh
                 color: theme === 'dark' ? '#E8ECF2' : '#0F172A'
               }}
             >
-              РћС‚РјРµРЅРёС‚СЊ
+              Р С›РЎвЂљР СР ВµР Р…Р С‘РЎвЂљРЎРЉ
             </button>
             <button
               onClick={handleBattleConfirm}
@@ -727,7 +727,7 @@ export function BattlesPage({ onNavigate, currentPage, onOpenSettings, profilePh
                 backgroundColor: '#2B82FF'
               }}
             >
-              Р‘Р°С‚С‚Р»!
+              Р вЂР В°РЎвЂљРЎвЂљР В»!
             </button>
           </div>
         }
@@ -748,7 +748,7 @@ export function BattlesPage({ onNavigate, currentPage, onOpenSettings, profilePh
                 color: theme === 'dark' ? '#E8ECF2' : '#0F172A'
               }}
             >
-              Р’С‹Р·РІР°С‚СЊ РЅР° Р±Р°С‚С‚Р»?
+              Р вЂ™РЎвЂ№Р В·Р Р†Р В°РЎвЂљРЎРЉ Р Р…Р В° Р В±Р В°РЎвЂљРЎвЂљР В»?
             </p>
             <p 
               className="text-sm"
@@ -776,7 +776,7 @@ export function BattlesPage({ onNavigate, currentPage, onOpenSettings, profilePh
                   color: theme === 'dark' ? '#E8ECF2' : '#0F172A'
                 }}
               >
-                РќР°РіСЂР°РґР°: 500g
+                Р СњР В°Р С–РЎР‚Р В°Р Т‘Р В°: 500g
               </span>
             </div>
             <p 
@@ -785,17 +785,17 @@ export function BattlesPage({ onNavigate, currentPage, onOpenSettings, profilePh
                 color: theme === 'dark' ? '#A7B0BD' : '#6B7280'
               }}
             >
-              Р’СЂРµРјСЏ РЅР° РІС‹РїРѕР»РЅРµРЅРёРµ: 7 РґРЅРµР№
+              Р вЂ™РЎР‚Р ВµР СРЎРЏ Р Р…Р В° Р Р†РЎвЂ№Р С—Р С•Р В»Р Р…Р ВµР Р…Р С‘Р Вµ: 7 Р Т‘Р Р…Р ВµР в„–
             </p>
           </div>
         </div>
       </ModalOpaque>
 
-      {/* Р”РµС‚Р°Р»Рё СЃРѕС‚СЂСѓРґРЅРёРєР° */}
+      {/* Р вЂќР ВµРЎвЂљР В°Р В»Р С‘ РЎРѓР С•РЎвЂљРЎР‚РЎС“Р Т‘Р Р…Р С‘Р С”Р В° */}
       <ModalOpaque
         isOpen={isEmployeeDetailOpen}
         onClose={() => setIsEmployeeDetailOpen(false)}
-        title="РРЅС„РѕСЂРјР°С†РёСЏ Рѕ СЃРѕС‚СЂСѓРґРЅРёРєРµ"
+        title="Р ВР Р…РЎвЂћР С•РЎР‚Р СР В°РЎвЂ Р С‘РЎРЏ Р С• РЎРѓР С•РЎвЂљРЎР‚РЎС“Р Т‘Р Р…Р С‘Р С”Р Вµ"
         theme={theme}
       >
         {selectedEmployee && (
@@ -826,7 +826,7 @@ export function BattlesPage({ onNavigate, currentPage, onOpenSettings, profilePh
                   color: theme === 'dark' ? '#A7B0BD' : '#6B7280'
                 }}
               >
-                РљРѕРјР°РЅРґР° {selectedEmployee.team} вЂў РЈСЂРѕРІРµРЅСЊ {selectedEmployee.level}
+                Р С™Р С•Р СР В°Р Р…Р Т‘Р В° {selectedEmployee.team} РІР‚Сћ Р Р€РЎР‚Р С•Р Р†Р ВµР Р…РЎРЉ {selectedEmployee.level}
               </p>
             </div>
 
@@ -845,7 +845,7 @@ export function BattlesPage({ onNavigate, currentPage, onOpenSettings, profilePh
                   color: theme === 'dark' ? '#E8ECF2' : '#0F172A'
                 }}
               >
-                РЎС‚Р°С‚РёСЃС‚РёРєР°
+                Р РЋРЎвЂљР В°РЎвЂљР С‘РЎРѓРЎвЂљР С‘Р С”Р В°
               </h4>
               <div className="grid grid-cols-2 gap-4 text-center text-sm">
                 <div>
@@ -862,7 +862,7 @@ export function BattlesPage({ onNavigate, currentPage, onOpenSettings, profilePh
                       color: theme === 'dark' ? '#A7B0BD' : '#6B7280'
                     }}
                   >
-                    РџРѕР±РµРґ
+                    Р СџР С•Р В±Р ВµР Т‘
                   </div>
                 </div>
                 <div>
@@ -879,7 +879,7 @@ export function BattlesPage({ onNavigate, currentPage, onOpenSettings, profilePh
                       color: theme === 'dark' ? '#A7B0BD' : '#6B7280'
                     }}
                   >
-                    РџРѕСЂР°Р¶РµРЅРёР№
+                    Р СџР С•РЎР‚Р В°Р В¶Р ВµР Р…Р С‘Р в„–
                   </div>
                 </div>
               </div>
@@ -896,18 +896,18 @@ export function BattlesPage({ onNavigate, currentPage, onOpenSettings, profilePh
                   backgroundColor: '#2B82FF'
                 }}
               >
-                Р’С‹Р·РІР°С‚СЊ РЅР° Р±Р°С‚С‚Р»
+                Р вЂ™РЎвЂ№Р В·Р Р†Р В°РЎвЂљРЎРЉ Р Р…Р В° Р В±Р В°РЎвЂљРЎвЂљР В»
               </button>
             )}
           </div>
         )}
       </ModalOpaque>
 
-      {/* РџРѕРґС‚РІРµСЂР¶РґРµРЅРёРµ РѕС‚РјРµРЅС‹ Р±Р°С‚С‚Р»Р° */}
+      {/* Р СџР С•Р Т‘РЎвЂљР Р†Р ВµРЎР‚Р В¶Р Т‘Р ВµР Р…Р С‘Р Вµ Р С•РЎвЂљР СР ВµР Р…РЎвЂ№ Р В±Р В°РЎвЂљРЎвЂљР В»Р В° */}
       <ModalOpaque
         isOpen={isCancelBattleOpen}
         onClose={() => setIsCancelBattleOpen(false)}
-        title="РћС‚РјРµРЅРёС‚СЊ Р±Р°С‚С‚Р»"
+        title="Р С›РЎвЂљР СР ВµР Р…Р С‘РЎвЂљРЎРЉ Р В±Р В°РЎвЂљРЎвЂљР В»"
         theme={theme}
         actions={
           <div className="flex gap-3">
@@ -922,7 +922,7 @@ export function BattlesPage({ onNavigate, currentPage, onOpenSettings, profilePh
                 color: theme === 'dark' ? '#E8ECF2' : '#0F172A'
               }}
             >
-              РќРµС‚
+              Р СњР ВµРЎвЂљ
             </button>
             <button
               onClick={confirmCancelBattle}
@@ -931,7 +931,7 @@ export function BattlesPage({ onNavigate, currentPage, onOpenSettings, profilePh
                 backgroundColor: '#EF4444'
               }}
             >
-              Р”Р°, РѕС‚РјРµРЅРёС‚СЊ
+              Р вЂќР В°, Р С•РЎвЂљР СР ВµР Р…Р С‘РЎвЂљРЎРЉ
             </button>
           </div>
         }
@@ -952,7 +952,7 @@ export function BattlesPage({ onNavigate, currentPage, onOpenSettings, profilePh
                 color: theme === 'dark' ? '#E8ECF2' : '#0F172A'
               }}
             >
-              Р’С‹ СѓРІРµСЂРµРЅС‹, С‡С‚Рѕ С…РѕС‚РёС‚Рµ РѕС‚РјРµРЅРёС‚СЊ Р±Р°С‚С‚Р»?
+              Р вЂ™РЎвЂ№ РЎС“Р Р†Р ВµРЎР‚Р ВµР Р…РЎвЂ№, РЎвЂЎРЎвЂљР С• РЎвЂ¦Р С•РЎвЂљР С‘РЎвЂљР Вµ Р С•РЎвЂљР СР ВµР Р…Р С‘РЎвЂљРЎРЉ Р В±Р В°РЎвЂљРЎвЂљР В»?
             </p>
             <p 
               className="text-sm"
@@ -960,13 +960,13 @@ export function BattlesPage({ onNavigate, currentPage, onOpenSettings, profilePh
                 color: theme === 'dark' ? '#A7B0BD' : '#6B7280'
               }}
             >
-              Р‘Р°С‚С‚Р» СЃ {selectedBattle?.opponent?.name} Р±СѓРґРµС‚ РѕС‚РјРµРЅРµРЅ
+              Р вЂР В°РЎвЂљРЎвЂљР В» РЎРѓ {selectedBattle?.opponent?.name} Р В±РЎС“Р Т‘Р ВµРЎвЂљ Р С•РЎвЂљР СР ВµР Р…Р ВµР Р…
             </p>
           </div>
         </div>
       </ModalOpaque>
 
-      {/* РџРѕРґС‚РІРµСЂР¶РґРµРЅРёРµ РїРѕР±РµРґС‹ */}
+      {/* Р СџР С•Р Т‘РЎвЂљР Р†Р ВµРЎР‚Р В¶Р Т‘Р ВµР Р…Р С‘Р Вµ Р С—Р С•Р В±Р ВµР Т‘РЎвЂ№ */}
       <ModalOpaque
         isOpen={isVictorySubmitOpen}
         onClose={() => {
@@ -975,7 +975,7 @@ export function BattlesPage({ onNavigate, currentPage, onOpenSettings, profilePh
           setVictoryFile1(null);
           setVictoryFile2(null);
         }}
-        title="РџРѕРґС‚РІРµСЂРґРёС‚СЊ РїРѕР±РµРґСѓ"
+        title="Р СџР С•Р Т‘РЎвЂљР Р†Р ВµРЎР‚Р Т‘Р С‘РЎвЂљРЎРЉ Р С—Р С•Р В±Р ВµР Т‘РЎС“"
         theme={theme}
         actions={
           <button
@@ -992,7 +992,7 @@ export function BattlesPage({ onNavigate, currentPage, onOpenSettings, profilePh
                 : (theme === 'dark' ? '#4A5568' : '#9CA3AF')
             }}
           >
-            РћС‚РїСЂР°РІРёС‚СЊ РЅР° РїСЂРѕРІРµСЂРєСѓ
+            Р С›РЎвЂљР С—РЎР‚Р В°Р Р†Р С‘РЎвЂљРЎРЉ Р Р…Р В° Р С—РЎР‚Р С•Р Р†Р ВµРЎР‚Р С”РЎС“
           </button>
         }
       >
@@ -1012,7 +1012,7 @@ export function BattlesPage({ onNavigate, currentPage, onOpenSettings, profilePh
                 color: theme === 'dark' ? '#E8ECF2' : '#0F172A'
               }}
             >
-              Р‘Р°С‚С‚Р» СЃ {selectedBattle?.opponent?.name}
+              Р вЂР В°РЎвЂљРЎвЂљР В» РЎРѓ {selectedBattle?.opponent?.name}
             </p>
             <p 
               className="text-sm"
@@ -1020,11 +1020,11 @@ export function BattlesPage({ onNavigate, currentPage, onOpenSettings, profilePh
                 color: theme === 'dark' ? '#A7B0BD' : '#6B7280'
               }}
             >
-              РџСЂРёРєСЂРµРїРёС‚Рµ РґРѕРєР°Р·Р°С‚РµР»СЊСЃС‚РІР° РїРѕР±РµРґС‹ РґР»СЏ РїСЂРѕРІРµСЂРєРё Р°РґРјРёРЅРёСЃС‚СЂР°С‚РѕСЂРѕРј
+              Р СџРЎР‚Р С‘Р С”РЎР‚Р ВµР С—Р С‘РЎвЂљР Вµ Р Т‘Р С•Р С”Р В°Р В·Р В°РЎвЂљР ВµР В»РЎРЉРЎРѓРЎвЂљР Р†Р В° Р С—Р С•Р В±Р ВµР Т‘РЎвЂ№ Р Т‘Р В»РЎРЏ Р С—РЎР‚Р С•Р Р†Р ВµРЎР‚Р С”Р С‘ Р В°Р Т‘Р СР С‘Р Р…Р С‘РЎРѓРЎвЂљРЎР‚Р В°РЎвЂљР С•РЎР‚Р С•Р С
             </p>
           </div>
 
-          {/* РљРѕРјРјРµРЅС‚Р°СЂРёР№ */}
+          {/* Р С™Р С•Р СР СР ВµР Р…РЎвЂљР В°РЎР‚Р С‘Р в„– */}
           <div>
             <label 
               className="block mb-2 font-medium"
@@ -1032,12 +1032,12 @@ export function BattlesPage({ onNavigate, currentPage, onOpenSettings, profilePh
                 color: theme === 'dark' ? '#E8ECF2' : '#0F172A'
               }}
             >
-              РљРѕРјРјРµРЅС‚Р°СЂРёР№
+              Р С™Р С•Р СР СР ВµР Р…РЎвЂљР В°РЎР‚Р С‘Р в„–
             </label>
             <textarea
               value={victoryComment}
               onChange={(e) => setVictoryComment(e.target.value)}
-              placeholder="РћРїРёС€РёС‚Рµ СЂРµР·СѓР»СЊС‚Р°С‚С‹ Р±Р°С‚С‚Р»Р°..."
+              placeholder="Р С›Р С—Р С‘РЎв‚¬Р С‘РЎвЂљР Вµ РЎР‚Р ВµР В·РЎС“Р В»РЎРЉРЎвЂљР В°РЎвЂљРЎвЂ№ Р В±Р В°РЎвЂљРЎвЂљР В»Р В°..."
               rows={3}
               className="w-full p-3 rounded-xl transition-colors resize-none"
               style={{
@@ -1051,7 +1051,7 @@ export function BattlesPage({ onNavigate, currentPage, onOpenSettings, profilePh
             />
           </div>
 
-          {/* Р¤Р°Р№Р»С‹ */}
+          {/* Р В¤Р В°Р в„–Р В»РЎвЂ№ */}
           <div className="space-y-3">
             <div>
               <label 
@@ -1060,7 +1060,7 @@ export function BattlesPage({ onNavigate, currentPage, onOpenSettings, profilePh
                   color: theme === 'dark' ? '#E8ECF2' : '#0F172A'
                 }}
               >
-                РћС‚С‡РµС‚ РїРµСЂРІРѕРіРѕ СѓС‡Р°СЃС‚РЅРёРєР° *
+                Р С›РЎвЂљРЎвЂЎР ВµРЎвЂљ Р С—Р ВµРЎР‚Р Р†Р С•Р С–Р С• РЎС“РЎвЂЎР В°РЎРѓРЎвЂљР Р…Р С‘Р С”Р В° *
               </label>
               <div className="flex items-center gap-2">
                 <div 
@@ -1074,7 +1074,7 @@ export function BattlesPage({ onNavigate, currentPage, onOpenSettings, profilePh
                   }}
                 >
                   <span className="block truncate text-sm">
-                    {victoryFile1 ? victoryFile1.name : 'Р¤Р°Р№Р» РЅРµ РІС‹Р±СЂР°РЅ'}
+                    {victoryFile1 ? victoryFile1.name : 'Р В¤Р В°Р в„–Р В» Р Р…Р Вµ Р Р†РЎвЂ№Р В±РЎР‚Р В°Р Р…'}
                   </span>
                 </div>
                 <div className="relative">
@@ -1105,7 +1105,7 @@ export function BattlesPage({ onNavigate, currentPage, onOpenSettings, profilePh
                   color: theme === 'dark' ? '#E8ECF2' : '#0F172A'
                 }}
               >
-                РћС‚С‡РµС‚ РІС‚РѕСЂРѕРіРѕ СѓС‡Р°СЃС‚РЅРёРєР° *
+                Р С›РЎвЂљРЎвЂЎР ВµРЎвЂљ Р Р†РЎвЂљР С•РЎР‚Р С•Р С–Р С• РЎС“РЎвЂЎР В°РЎРѓРЎвЂљР Р…Р С‘Р С”Р В° *
               </label>
               <div className="flex items-center gap-2">
                 <div 
@@ -1119,7 +1119,7 @@ export function BattlesPage({ onNavigate, currentPage, onOpenSettings, profilePh
                   }}
                 >
                   <span className="block truncate text-sm">
-                    {victoryFile2 ? victoryFile2.name : 'Р¤Р°Р№Р» РЅРµ РІС‹Р±СЂР°РЅ'}
+                    {victoryFile2 ? victoryFile2.name : 'Р В¤Р В°Р в„–Р В» Р Р…Р Вµ Р Р†РЎвЂ№Р В±РЎР‚Р В°Р Р…'}
                   </span>
                 </div>
                 <div className="relative">
@@ -1150,7 +1150,7 @@ export function BattlesPage({ onNavigate, currentPage, onOpenSettings, profilePh
               color: theme === 'dark' ? '#A7B0BD' : '#6B7280'
             }}
           >
-            * РћР±СЏР·Р°С‚РµР»СЊРЅРѕ РїСЂРёР»РѕР¶РёС‚СЊ РѕС‚С‡РµС‚С‹ РѕР±РѕРёС… СѓС‡Р°СЃС‚РЅРёРєРѕРІ РґР»СЏ РїСЂРѕРІРµСЂРєРё
+            * Р С›Р В±РЎРЏР В·Р В°РЎвЂљР ВµР В»РЎРЉР Р…Р С• Р С—РЎР‚Р С‘Р В»Р С•Р В¶Р С‘РЎвЂљРЎРЉ Р С•РЎвЂљРЎвЂЎР ВµРЎвЂљРЎвЂ№ Р С•Р В±Р С•Р С‘РЎвЂ¦ РЎС“РЎвЂЎР В°РЎРѓРЎвЂљР Р…Р С‘Р С”Р С•Р Р† Р Т‘Р В»РЎРЏ Р С—РЎР‚Р С•Р Р†Р ВµРЎР‚Р С”Р С‘
           </p>
         </div>
       </ModalOpaque>

@@ -29,7 +29,7 @@ interface AdminShopManagementProps {
   theme: 'light' | 'dark';
 }
 
-// Используем ShopItemData из базы данных
+// РСЃРїРѕР»СЊР·СѓРµРј ShopItemData РёР· Р±Р°Р·С‹ РґР°РЅРЅС‹С…
 
 interface CaseItem extends ShopItemData {
   caseType: 'bronze' | 'silver' | 'gold' | 'platinum';
@@ -67,24 +67,24 @@ interface OrderItem {
 }
 
 const CATEGORIES = [
-  { value: 'cases', label: 'Кейсы и наборы', icon: '🎁' },
-  { value: 'boosters', label: 'Бустеры и усилители', icon: '⚡' },
-  { value: 'cosmetics', label: 'Косметические предметы', icon: '🎨' },
-  { value: 'exclusive', label: 'Эксклюзивные награды', icon: '🏆' }
+  { value: 'cases', label: 'РљРµР№СЃС‹ Рё РЅР°Р±РѕСЂС‹', icon: 'рџЋЃ' },
+  { value: 'boosters', label: 'Р‘СѓСЃС‚РµСЂС‹ Рё СѓСЃРёР»РёС‚РµР»Рё', icon: 'вљЎ' },
+  { value: 'cosmetics', label: 'РљРѕСЃРјРµС‚РёС‡РµСЃРєРёРµ РїСЂРµРґРјРµС‚С‹', icon: 'рџЋЁ' },
+  { value: 'exclusive', label: 'Р­РєСЃРєР»СЋР·РёРІРЅС‹Рµ РЅР°РіСЂР°РґС‹', icon: 'рџЏ†' }
 ];
 
 const RARITY_LEVELS = [
-  { value: 'common', label: 'Обычный', color: 'bg-gray-500' },
-  { value: 'rare', label: 'Редкий', color: 'bg-blue-500' },
-  { value: 'epic', label: 'Эпический', color: 'bg-purple-500' },
-  { value: 'legendary', label: 'Легендарный', color: 'bg-orange-500' }
+  { value: 'common', label: 'РћР±С‹С‡РЅС‹Р№', color: 'bg-gray-500' },
+  { value: 'rare', label: 'Р РµРґРєРёР№', color: 'bg-blue-500' },
+  { value: 'epic', label: 'Р­РїРёС‡РµСЃРєРёР№', color: 'bg-purple-500' },
+  { value: 'legendary', label: 'Р›РµРіРµРЅРґР°СЂРЅС‹Р№', color: 'bg-orange-500' }
 ];
 
 const CASE_TYPES = [
-  { value: 'bronze', label: 'Бронзовый', color: '#CD7F32', priceRange: '100-300' },
-  { value: 'silver', label: 'Серебряный', color: '#C0C0C0', priceRange: '300-600' },
-  { value: 'gold', label: 'Золотой', color: '#FFD700', priceRange: '600-1200' },
-  { value: 'platinum', label: 'Платиновый', color: '#E5E4E2', priceRange: '1200+' }
+  { value: 'bronze', label: 'Р‘СЂРѕРЅР·РѕРІС‹Р№', color: '#CD7F32', priceRange: '100-300' },
+  { value: 'silver', label: 'РЎРµСЂРµР±СЂСЏРЅС‹Р№', color: '#C0C0C0', priceRange: '300-600' },
+  { value: 'gold', label: 'Р—РѕР»РѕС‚РѕР№', color: '#FFD700', priceRange: '600-1200' },
+  { value: 'platinum', label: 'РџР»Р°С‚РёРЅРѕРІС‹Р№', color: '#E5E4E2', priceRange: '1200+' }
 ];
 
 export const AdminShopManagement: React.FC<AdminShopManagementProps> = ({ theme }) => {
@@ -103,27 +103,27 @@ export const AdminShopManagement: React.FC<AdminShopManagementProps> = ({ theme 
   const [editingItem, setEditingItem] = useState<ShopItem | CaseItem | null>(null);
   const [formData, setFormData] = useState<any>({});
 
-  // Загрузка данных
+  // Р—Р°РіСЂСѓР·РєР° РґР°РЅРЅС‹С…
   useEffect(() => {
     loadData();
   }, []);
 
-  // Фильтрация
+  // Р¤РёР»СЊС‚СЂР°С†РёСЏ
   useEffect(() => {
     filterData();
   }, [items, cases, orders, searchQuery, filterCategory, filterRarity, filterStatus]);
 
   const loadData = async () => {
-    // Mock данные
+    // Mock РґР°РЅРЅС‹Рµ
     const mockItems: ShopItem[] = [
       {
         id: '1',
-        name: 'Кейс "Удача"',
-        description: 'Содержит случайные награды',
+        name: 'РљРµР№СЃ "РЈРґР°С‡Р°"',
+        description: 'РЎРѕРґРµСЂР¶РёС‚ СЃР»СѓС‡Р°Р№РЅС‹Рµ РЅР°РіСЂР°РґС‹',
         category: 'cases',
         price: 100,
         image: '/api/placeholder/100/100',
-        icon: '🎁',
+        icon: 'рџЋЃ',
         rarity: 'common',
         isActive: true,
         salesCount: 1247,
@@ -132,12 +132,12 @@ export const AdminShopManagement: React.FC<AdminShopManagementProps> = ({ theme 
       },
       {
         id: '2',
-        name: 'Бустер опыта',
-        description: 'Увеличивает получение опыта на 50%',
+        name: 'Р‘СѓСЃС‚РµСЂ РѕРїС‹С‚Р°',
+        description: 'РЈРІРµР»РёС‡РёРІР°РµС‚ РїРѕР»СѓС‡РµРЅРёРµ РѕРїС‹С‚Р° РЅР° 50%',
         category: 'boosters',
         price: 50,
         image: '/api/placeholder/100/100',
-        icon: '⚡',
+        icon: 'вљЎ',
         rarity: 'rare',
         isActive: true,
         salesCount: 856,
@@ -150,11 +150,11 @@ export const AdminShopManagement: React.FC<AdminShopManagementProps> = ({ theme 
       {
         id: '1',
         name: 'CLASSIC',
-        description: 'Обычный кейс с базовыми предметами',
+        description: 'РћР±С‹С‡РЅС‹Р№ РєРµР№СЃ СЃ Р±Р°Р·РѕРІС‹РјРё РїСЂРµРґРјРµС‚Р°РјРё',
         category: 'cases',
         price: 100,
         image: '/api/placeholder/100/100',
-        icon: '🎁',
+        icon: 'рџЋЃ',
         rarity: 'common',
         isActive: true,
         salesCount: 1247,
@@ -164,22 +164,22 @@ export const AdminShopManagement: React.FC<AdminShopManagementProps> = ({ theme 
         prizes: [
           {
             id: '1',
-            name: '50 монет',
-            description: 'Небольшое количество монет',
+            name: '50 РјРѕРЅРµС‚',
+            description: 'РќРµР±РѕР»СЊС€РѕРµ РєРѕР»РёС‡РµСЃС‚РІРѕ РјРѕРЅРµС‚',
             probability: 40,
             value: 50,
             rarity: 'common',
-            icon: '💰',
+            icon: 'рџ’°',
             isGuaranteed: false
           },
           {
             id: '2',
-            name: '100 опыта',
-            description: 'Немного опыта для прогресса',
+            name: '100 РѕРїС‹С‚Р°',
+            description: 'РќРµРјРЅРѕРіРѕ РѕРїС‹С‚Р° РґР»СЏ РїСЂРѕРіСЂРµСЃСЃР°',
             probability: 30,
             value: 100,
             rarity: 'common',
-            icon: '⭐',
+            icon: 'в­ђ',
             isGuaranteed: false
           }
         ],
@@ -191,9 +191,9 @@ export const AdminShopManagement: React.FC<AdminShopManagementProps> = ({ theme 
       {
         id: '1',
         userId: 'user1',
-        userName: 'Алексей Иванов',
+        userName: 'РђР»РµРєСЃРµР№ РРІР°РЅРѕРІ',
         items: [
-          { id: '1', name: 'Кейс "Удача"', quantity: 2, price: 100 }
+          { id: '1', name: 'РљРµР№СЃ "РЈРґР°С‡Р°"', quantity: 2, price: 100 }
         ],
         totalAmount: 200,
         status: 'completed',
@@ -203,9 +203,9 @@ export const AdminShopManagement: React.FC<AdminShopManagementProps> = ({ theme 
       {
         id: '2',
         userId: 'user2',
-        userName: 'Мария Петрова',
+        userName: 'РњР°СЂРёСЏ РџРµС‚СЂРѕРІР°',
         items: [
-          { id: '2', name: 'Бустер опыта', quantity: 1, price: 50 }
+          { id: '2', name: 'Р‘СѓСЃС‚РµСЂ РѕРїС‹С‚Р°', quantity: 1, price: 50 }
         ],
         totalAmount: 50,
         status: 'pending',
@@ -291,23 +291,23 @@ export const AdminShopManagement: React.FC<AdminShopManagementProps> = ({ theme 
 
   const getStatusLabel = (status: string) => {
     switch (status) {
-      case 'completed': return 'Выполнен';
-      case 'pending': return 'Ожидает';
-      case 'cancelled': return 'Отменен';
-      case 'refunded': return 'Возврат';
+      case 'completed': return 'Р’С‹РїРѕР»РЅРµРЅ';
+      case 'pending': return 'РћР¶РёРґР°РµС‚';
+      case 'cancelled': return 'РћС‚РјРµРЅРµРЅ';
+      case 'refunded': return 'Р’РѕР·РІСЂР°С‚';
       default: return status;
     }
   };
 
   const renderItemsTab = () => (
     <div className="space-y-6">
-      {/* Фильтры */}
+      {/* Р¤РёР»СЊС‚СЂС‹ */}
       <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
         <div className="relative">
           <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 w-4 h-4 opacity-50" />
           <input
             type="text"
-            placeholder="Поиск товаров..."
+            placeholder="РџРѕРёСЃРє С‚РѕРІР°СЂРѕРІ..."
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
             className="w-full pl-10 pr-4 py-2 rounded-lg border"
@@ -329,7 +329,7 @@ export const AdminShopManagement: React.FC<AdminShopManagementProps> = ({ theme 
             color: theme === 'dark' ? '#E8ECF2' : '#0F172A'
           }}
         >
-          <option value="all">Все категории</option>
+          <option value="all">Р’СЃРµ РєР°С‚РµРіРѕСЂРёРё</option>
           {CATEGORIES.map(category => (
             <option key={category.value} value={category.value}>
               {category.icon} {category.label}
@@ -347,7 +347,7 @@ export const AdminShopManagement: React.FC<AdminShopManagementProps> = ({ theme 
             color: theme === 'dark' ? '#E8ECF2' : '#0F172A'
           }}
         >
-          <option value="all">Все редкости</option>
+          <option value="all">Р’СЃРµ СЂРµРґРєРѕСЃС‚Рё</option>
           {RARITY_LEVELS.map(rarity => (
             <option key={rarity.value} value={rarity.value}>
               {rarity.label}
@@ -360,11 +360,11 @@ export const AdminShopManagement: React.FC<AdminShopManagementProps> = ({ theme 
           className="flex items-center justify-center px-4 py-2 rounded-lg bg-blue-500 text-white hover:bg-blue-600 transition-colors"
         >
           <Plus className="w-4 h-4 mr-2" />
-          Добавить товар
+          Р”РѕР±Р°РІРёС‚СЊ С‚РѕРІР°СЂ
         </button>
       </div>
 
-      {/* Список товаров */}
+      {/* РЎРїРёСЃРѕРє С‚РѕРІР°СЂРѕРІ */}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
         {filteredItems.map((item) => (
           <div
@@ -424,13 +424,13 @@ export const AdminShopManagement: React.FC<AdminShopManagementProps> = ({ theme 
 
   const renderCasesTab = () => (
     <div className="space-y-6">
-      {/* Фильтры */}
+      {/* Р¤РёР»СЊС‚СЂС‹ */}
       <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
         <div className="relative">
           <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 w-4 h-4 opacity-50" />
           <input
             type="text"
-            placeholder="Поиск кейсов..."
+            placeholder="РџРѕРёСЃРє РєРµР№СЃРѕРІ..."
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
             className="w-full pl-10 pr-4 py-2 rounded-lg border"
@@ -452,7 +452,7 @@ export const AdminShopManagement: React.FC<AdminShopManagementProps> = ({ theme 
             color: theme === 'dark' ? '#E8ECF2' : '#0F172A'
           }}
         >
-          <option value="all">Все редкости</option>
+          <option value="all">Р’СЃРµ СЂРµРґРєРѕСЃС‚Рё</option>
           {RARITY_LEVELS.map(rarity => (
             <option key={rarity.value} value={rarity.value}>
               {rarity.label}
@@ -465,11 +465,11 @@ export const AdminShopManagement: React.FC<AdminShopManagementProps> = ({ theme 
           className="flex items-center justify-center px-4 py-2 rounded-lg bg-blue-500 text-white hover:bg-blue-600 transition-colors"
         >
           <Plus className="w-4 h-4 mr-2" />
-          Создать кейс
+          РЎРѕР·РґР°С‚СЊ РєРµР№СЃ
         </button>
       </div>
 
-      {/* Список кейсов */}
+      {/* РЎРїРёСЃРѕРє РєРµР№СЃРѕРІ */}
       <div className="space-y-4">
         {filteredCases.map((caseItem) => (
           <div
@@ -506,9 +506,9 @@ export const AdminShopManagement: React.FC<AdminShopManagementProps> = ({ theme 
                     {caseItem.description}
                   </p>
                   <div className="flex items-center space-x-4 mt-2 text-xs opacity-60">
-                    <span>💰 {caseItem.price} монет</span>
-                    <span>🎁 {caseItem.prizes.length} призов</span>
-                    <span>📊 {caseItem.salesCount} продаж</span>
+                    <span>рџ’° {caseItem.price} РјРѕРЅРµС‚</span>
+                    <span>рџЋЃ {caseItem.prizes.length} РїСЂРёР·РѕРІ</span>
+                    <span>рџ“Љ {caseItem.salesCount} РїСЂРѕРґР°Р¶</span>
                   </div>
                 </div>
               </div>
@@ -533,13 +533,13 @@ export const AdminShopManagement: React.FC<AdminShopManagementProps> = ({ theme 
 
   const renderOrdersTab = () => (
     <div className="space-y-6">
-      {/* Фильтры */}
+      {/* Р¤РёР»СЊС‚СЂС‹ */}
       <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
         <div className="relative">
           <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 w-4 h-4 opacity-50" />
           <input
             type="text"
-            placeholder="Поиск заказов..."
+            placeholder="РџРѕРёСЃРє Р·Р°РєР°Р·РѕРІ..."
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
             className="w-full pl-10 pr-4 py-2 rounded-lg border"
@@ -561,15 +561,15 @@ export const AdminShopManagement: React.FC<AdminShopManagementProps> = ({ theme 
             color: theme === 'dark' ? '#E8ECF2' : '#0F172A'
           }}
         >
-          <option value="all">Все статусы</option>
-          <option value="pending">Ожидает</option>
-          <option value="completed">Выполнен</option>
-          <option value="cancelled">Отменен</option>
-          <option value="refunded">Возврат</option>
+          <option value="all">Р’СЃРµ СЃС‚Р°С‚СѓСЃС‹</option>
+          <option value="pending">РћР¶РёРґР°РµС‚</option>
+          <option value="completed">Р’С‹РїРѕР»РЅРµРЅ</option>
+          <option value="cancelled">РћС‚РјРµРЅРµРЅ</option>
+          <option value="refunded">Р’РѕР·РІСЂР°С‚</option>
         </select>
       </div>
 
-      {/* Список заказов */}
+      {/* РЎРїРёСЃРѕРє Р·Р°РєР°Р·РѕРІ */}
       <div className="space-y-4">
         {filteredOrders.map((order) => (
           <div
@@ -589,7 +589,7 @@ export const AdminShopManagement: React.FC<AdminShopManagementProps> = ({ theme 
                 <div>
                   <div className="flex items-center space-x-2">
                     <h3 className="font-semibold" style={{ color: theme === 'dark' ? '#E8ECF2' : '#0F172A' }}>
-                      Заказ #{order.id}
+                      Р—Р°РєР°Р· #{order.id}
                     </h3>
                     <span className={`px-2 py-1 rounded-full text-xs ${getStatusColor(order.status)} text-white`}>
                       {getStatusLabel(order.status)}
@@ -599,9 +599,9 @@ export const AdminShopManagement: React.FC<AdminShopManagementProps> = ({ theme 
                     {order.userName}
                   </p>
                   <div className="flex items-center space-x-4 mt-2 text-xs opacity-60">
-                    <span>💰 {order.totalAmount} монет</span>
-                    <span>📦 {order.items.length} товар(ов)</span>
-                    <span>📅 {new Date(order.createdAt).toLocaleDateString()}</span>
+                    <span>рџ’° {order.totalAmount} РјРѕРЅРµС‚</span>
+                    <span>рџ“¦ {order.items.length} С‚РѕРІР°СЂ(РѕРІ)</span>
+                    <span>рџ“… {new Date(order.createdAt).toLocaleDateString()}</span>
                   </div>
                 </div>
               </div>
@@ -610,10 +610,10 @@ export const AdminShopManagement: React.FC<AdminShopManagementProps> = ({ theme 
                 {order.status === 'pending' && (
                   <>
                     <button className="px-3 py-1 rounded-lg text-xs bg-green-500 bg-opacity-20 text-green-500 hover:bg-opacity-30">
-                      Одобрить
+                      РћРґРѕР±СЂРёС‚СЊ
                     </button>
                     <button className="px-3 py-1 rounded-lg text-xs bg-red-500 bg-opacity-20 text-red-500 hover:bg-opacity-30">
-                      Отклонить
+                      РћС‚РєР»РѕРЅРёС‚СЊ
                     </button>
                   </>
                 )}
@@ -630,24 +630,24 @@ export const AdminShopManagement: React.FC<AdminShopManagementProps> = ({ theme 
 
   return (
     <div className="p-6 space-y-6">
-      {/* Заголовок */}
+      {/* Р—Р°РіРѕР»РѕРІРѕРє */}
       <div className="flex items-center justify-between">
         <div>
           <h1 className="text-2xl font-bold" style={{ color: theme === 'dark' ? '#E8ECF2' : '#0F172A' }}>
-            Управление магазином
+            РЈРїСЂР°РІР»РµРЅРёРµ РјР°РіР°Р·РёРЅРѕРј
           </h1>
           <p className="text-sm opacity-70" style={{ color: theme === 'dark' ? '#A7B0BD' : '#6B7280' }}>
-            Управление товарами и кейсами
+            РЈРїСЂР°РІР»РµРЅРёРµ С‚РѕРІР°СЂР°РјРё Рё РєРµР№СЃР°РјРё
           </p>
         </div>
       </div>
 
-      {/* Табы */}
+      {/* РўР°Р±С‹ */}
       <div className="flex space-x-2 border-b" style={{ borderColor: theme === 'dark' ? 'rgba(255,255,255,0.1)' : '#E6E9EF' }}>
         {[
-          { id: 'items', label: 'Товары', icon: Package },
-          { id: 'cases', label: 'Кейсы', icon: Box },
-          { id: 'orders', label: 'Заказы', icon: ShoppingCart }
+          { id: 'items', label: 'РўРѕРІР°СЂС‹', icon: Package },
+          { id: 'cases', label: 'РљРµР№СЃС‹', icon: Box },
+          { id: 'orders', label: 'Р—Р°РєР°Р·С‹', icon: ShoppingCart }
         ].map((tab) => (
           <button
             key={tab.id}
@@ -667,7 +667,7 @@ export const AdminShopManagement: React.FC<AdminShopManagementProps> = ({ theme 
         ))}
       </div>
 
-      {/* Контент */}
+      {/* РљРѕРЅС‚РµРЅС‚ */}
       {activeTab === 'items' && renderItemsTab()}
       {activeTab === 'cases' && renderCasesTab()}
       {activeTab === 'orders' && renderOrdersTab()}

@@ -1,4 +1,4 @@
-﻿import { useState } from 'react';
+п»їimport { useState } from 'react';
 import { motion } from 'framer-motion';
 import { Header } from './Header';
 import { BottomNavigation } from './BottomNavigation';
@@ -58,10 +58,10 @@ export function CasesPage({
   const [caseDetailsOpen, setCaseDetailsOpen] = useState(false);
   const [selectedCaseForDetails, setSelectedCaseForDetails] = useState<CaseType | null>(null);
   const [selectedShopItem, setSelectedShopItem] = useState<CaseShopItem | null>(null);
-  // РЈРґР°Р»РµРЅРѕ Р»РѕРєР°Р»СЊРЅРѕРµ СЃРѕСЃС‚РѕСЏРЅРёРµ - С‚РµРїРµСЂСЊ РёСЃРїРѕР»СЊР·СѓРµРј РїСЂРѕРїСЃС‹
+  // Р Р€Р Т‘Р В°Р В»Р ВµР Р…Р С• Р В»Р С•Р С”Р В°Р В»РЎРЉР Р…Р С•Р Вµ РЎРѓР С•РЎРѓРЎвЂљР С•РЎРЏР Р…Р С‘Р Вµ - РЎвЂљР ВµР С—Р ВµРЎР‚РЎРЉ Р С‘РЎРѓР С—Р С•Р В»РЎРЉР В·РЎС“Р ВµР С Р С—РЎР‚Р С•Р С—РЎРѓРЎвЂ№
   const [lastFreeCase, setLastFreeCase] = useState<Date | null>(null);
 
-  // Р¤СѓРЅРєС†РёСЏ РґР»СЏ РїСЂРѕРІРµСЂРєРё, СЏРІР»СЏРµС‚СЃСЏ Р»Рё СЃС‚СЂРѕРєР° URL
+  // Р В¤РЎС“Р Р…Р С”РЎвЂ Р С‘РЎРЏ Р Т‘Р В»РЎРЏ Р С—РЎР‚Р С•Р Р†Р ВµРЎР‚Р С”Р С‘, РЎРЏР Р†Р В»РЎРЏР ВµРЎвЂљРЎРѓРЎРЏ Р В»Р С‘ РЎРѓРЎвЂљРЎР‚Р С•Р С”Р В° URL
   const isImageUrl = (str: string) => {
     try {
       new URL(str);
@@ -71,7 +71,7 @@ export function CasesPage({
     }
   };
 
-  // РљРѕРјРїРѕРЅРµРЅС‚ РґР»СЏ РѕС‚РѕР±СЂР°Р¶РµРЅРёСЏ РёР·РѕР±СЂР°Р¶РµРЅРёСЏ РёР»Рё СЌРјРѕРґР·Рё
+  // Р С™Р С•Р СР С—Р С•Р Р…Р ВµР Р…РЎвЂљ Р Т‘Р В»РЎРЏ Р С•РЎвЂљР С•Р В±РЎР‚Р В°Р В¶Р ВµР Р…Р С‘РЎРЏ Р С‘Р В·Р С•Р В±РЎР‚Р В°Р В¶Р ВµР Р…Р С‘РЎРЏ Р С‘Р В»Р С‘ РЎРЊР СР С•Р Т‘Р В·Р С‘
   const ImageOrEmoji = ({ src, className = '', style = {} }: { src: string; className?: string; style?: React.CSSProperties }) => {
     if (isImageUrl(src)) {
       return (
@@ -90,8 +90,8 @@ export function CasesPage({
     );
   };
 
-  // РџСЂРѕРІРµСЂСЏРµРј РґРѕСЃС‚СѓРїРЅРѕСЃС‚СЊ Р±РµСЃРїР»Р°С‚РЅРѕРіРѕ РєРµР№СЃР° (РґР»СЏ С‚РµСЃС‚РёСЂРѕРІР°РЅРёСЏ РІСЃРµРіРґР° РґРѕСЃС‚СѓРїРµРЅ)
-  const isFreeAvailable = true; // Р’ Р±СѓРґСѓС‰РµРј: !lastFreeCase || Date.now() - lastFreeCase.getTime() > 24 * 60 * 60 * 1000;
+  // Р СџРЎР‚Р С•Р Р†Р ВµРЎР‚РЎРЏР ВµР С Р Т‘Р С•РЎРѓРЎвЂљРЎС“Р С—Р Р…Р С•РЎРѓРЎвЂљРЎРЉ Р В±Р ВµРЎРѓР С—Р В»Р В°РЎвЂљР Р…Р С•Р С–Р С• Р С”Р ВµР в„–РЎРѓР В° (Р Т‘Р В»РЎРЏ РЎвЂљР ВµРЎРѓРЎвЂљР С‘РЎР‚Р С•Р Р†Р В°Р Р…Р С‘РЎРЏ Р Р†РЎРѓР ВµР С–Р Т‘Р В° Р Т‘Р С•РЎРѓРЎвЂљРЎС“Р С—Р ВµР Р…)
+  const isFreeAvailable = true; // Р вЂ™ Р В±РЎС“Р Т‘РЎС“РЎвЂ°Р ВµР С: !lastFreeCase || Date.now() - lastFreeCase.getTime() > 24 * 60 * 60 * 1000;
 
   const handleFreeCaseOpen = () => {
     if (isFreeAvailable) {
@@ -110,7 +110,7 @@ export function CasesPage({
   };
 
   const handleRouletteResult = (result: RouletteResult) => {
-    console.log('РџРѕР»СѓС‡РµРЅ РєРµР№СЃ:', result.selectedCase);
+    console.log('Р СџР С•Р В»РЎС“РЎвЂЎР ВµР Р… Р С”Р ВµР в„–РЎРѓ:', result.selectedCase);
     setWonCase(result.selectedCase);
   };
 
@@ -121,7 +121,7 @@ export function CasesPage({
 
   const handleClaimCase = () => {
     if (wonCase) {
-      // Р”РѕР±Р°РІР»СЏРµРј РєРµР№СЃ РІ РёРЅРІРµРЅС‚Р°СЂСЊ
+      // Р вЂќР С•Р В±Р В°Р Р†Р В»РЎРЏР ВµР С Р С”Р ВµР в„–РЎРѓ Р Р† Р С‘Р Р…Р Р†Р ВµР Р…РЎвЂљР В°РЎР‚РЎРЉ
       const newCase: UserCase = {
         id: `user_case_${Date.now()}`,
         caseTypeId: wonCase.id,
@@ -133,7 +133,7 @@ export function CasesPage({
       setLastFreeCase(new Date());
     }
     
-    // Р—Р°РєСЂС‹РІР°РµРј РјРѕРґР°Р» Рё СЃР±СЂР°СЃС‹РІР°РµРј СЃРѕСЃС‚РѕСЏРЅРёРµ
+    // Р вЂ”Р В°Р С”РЎР‚РЎвЂ№Р Р†Р В°Р ВµР С Р СР С•Р Т‘Р В°Р В» Р С‘ РЎРѓР В±РЎР‚Р В°РЎРѓРЎвЂ№Р Р†Р В°Р ВµР С РЎРѓР С•РЎРѓРЎвЂљР С•РЎРЏР Р…Р С‘Р Вµ
     setIsRouletteOpen(false);
     setIsSpinning(false);
     setHasSpun(false);
@@ -142,7 +142,7 @@ export function CasesPage({
   };
 
   const handleCloseCaseRoulette = () => {
-    // РњРѕР¶РЅРѕ Р·Р°РєСЂС‹С‚СЊ С‚РѕР»СЊРєРѕ РµСЃР»Рё РЅРµ РёРґРµС‚ РІСЂР°С‰РµРЅРёРµ Рё РјРѕР¶РЅРѕ Р·Р°Р±СЂР°С‚СЊ СЂРµР·СѓР»СЊС‚Р°С‚
+    // Р СљР С•Р В¶Р Р…Р С• Р В·Р В°Р С”РЎР‚РЎвЂ№РЎвЂљРЎРЉ РЎвЂљР С•Р В»РЎРЉР С”Р С• Р ВµРЎРѓР В»Р С‘ Р Р…Р Вµ Р С‘Р Т‘Р ВµРЎвЂљ Р Р†РЎР‚Р В°РЎвЂ°Р ВµР Р…Р С‘Р Вµ Р С‘ Р СР С•Р В¶Р Р…Р С• Р В·Р В°Р В±РЎР‚Р В°РЎвЂљРЎРЉ РЎР‚Р ВµР В·РЎС“Р В»РЎРЉРЎвЂљР В°РЎвЂљ
     if (!isSpinning && (!canSpin || hasSpun)) {
       if (hasSpun && wonCase) {
         handleClaimCase();
@@ -156,7 +156,7 @@ export function CasesPage({
     }
   };
 
-  // РћР±СЂР°Р±РѕС‚С‡РёРєРё РґР»СЏ РѕС‚РєСЂС‹С‚РёСЏ РєРµР№СЃРѕРІ
+  // Р С›Р В±РЎР‚Р В°Р В±Р С•РЎвЂљРЎвЂЎР С‘Р С”Р С‘ Р Т‘Р В»РЎРЏ Р С•РЎвЂљР С”РЎР‚РЎвЂ№РЎвЂљР С‘РЎРЏ Р С”Р ВµР в„–РЎРѓР С•Р Р†
   const handleOpenCase = (userCase: UserCase) => {
     const caseType = cases.find(c => c.id === userCase.caseTypeId);
     if (!caseType) return;
@@ -176,7 +176,7 @@ export function CasesPage({
   };
 
   const handlePrizeRouletteResult = (result: PrizeRouletteResult) => {
-    console.log('РџРѕР»СѓС‡РµРЅ РїСЂРёР·:', result.selectedPrize);
+    console.log('Р СџР С•Р В»РЎС“РЎвЂЎР ВµР Р… Р С—РЎР‚Р С‘Р В·:', result.selectedPrize);
     setWonPrize(result.selectedPrize);
   };
 
@@ -187,33 +187,33 @@ export function CasesPage({
 
   const handleClaimPrize = () => {
     if (wonPrize && openingCase && currentUser) {
-      // РџСЂРѕРІРµСЂСЏРµРј С‚РёРї РїСЂРёР·Р° Рё Р·Р°С‡РёСЃР»СЏРµРј СЃРѕРѕС‚РІРµС‚СЃС‚РІСѓСЋС‰СѓСЋ РЅР°РіСЂР°РґСѓ
+      // Р СџРЎР‚Р С•Р Р†Р ВµРЎР‚РЎРЏР ВµР С РЎвЂљР С‘Р С— Р С—РЎР‚Р С‘Р В·Р В° Р С‘ Р В·Р В°РЎвЂЎР С‘РЎРѓР В»РЎРЏР ВµР С РЎРѓР С•Р С•РЎвЂљР Р†Р ВµРЎвЂљРЎРѓРЎвЂљР Р†РЎС“РЎР‹РЎвЂ°РЎС“РЎР‹ Р Р…Р В°Р С–РЎР‚Р В°Р Т‘РЎС“
       if (wonPrize.type === 'coins' && onUpdateUserBalance) {
         onUpdateUserBalance(currentUser.id, wonPrize.value);
-        console.log(`Р—Р°С‡РёСЃР»РµРЅРѕ ${wonPrize.value} РјРѕРЅРµС‚ РїРѕР»СЊР·РѕРІР°С‚РµР»СЋ ${currentUser.name}`);
+        console.log(`Р вЂ”Р В°РЎвЂЎР С‘РЎРѓР В»Р ВµР Р…Р С• ${wonPrize.value} Р СР С•Р Р…Р ВµРЎвЂљ Р С—Р С•Р В»РЎРЉР В·Р С•Р Р†Р В°РЎвЂљР ВµР В»РЎР‹ ${currentUser.name}`);
       } else if (wonPrize.type === 'experience' && onUpdateUserExperience) {
         onUpdateUserExperience(currentUser.id, wonPrize.value);
-        console.log(`Р—Р°С‡РёСЃР»РµРЅРѕ ${wonPrize.value} РѕРїС‹С‚Р° РїРѕР»СЊР·РѕРІР°С‚РµР»СЋ ${currentUser.name}`);
+        console.log(`Р вЂ”Р В°РЎвЂЎР С‘РЎРѓР В»Р ВµР Р…Р С• ${wonPrize.value} Р С•Р С—РЎвЂ№РЎвЂљР В° Р С—Р С•Р В»РЎРЉР В·Р С•Р Р†Р В°РЎвЂљР ВµР В»РЎР‹ ${currentUser.name}`);
       } else if (!wonPrize.type) {
-        // Р•СЃР»Рё С‚РёРї РЅРµ СѓРєР°Р·Р°РЅ, РѕРїСЂРµРґРµР»СЏРµРј РїРѕ РЅР°Р·РІР°РЅРёСЋ РїСЂРёР·Р°
-        if (wonPrize.name.toLowerCase().includes('РјРѕРЅРµС‚') || wonPrize.name.toLowerCase().includes('coins') || wonPrize.name.toLowerCase().includes('g-coin')) {
+        // Р вЂўРЎРѓР В»Р С‘ РЎвЂљР С‘Р С— Р Р…Р Вµ РЎС“Р С”Р В°Р В·Р В°Р Р…, Р С•Р С—РЎР‚Р ВµР Т‘Р ВµР В»РЎРЏР ВµР С Р С—Р С• Р Р…Р В°Р В·Р Р†Р В°Р Р…Р С‘РЎР‹ Р С—РЎР‚Р С‘Р В·Р В°
+        if (wonPrize.name.toLowerCase().includes('Р СР С•Р Р…Р ВµРЎвЂљ') || wonPrize.name.toLowerCase().includes('coins') || wonPrize.name.toLowerCase().includes('g-coin')) {
           if (onUpdateUserBalance) {
             onUpdateUserBalance(currentUser.id, wonPrize.value);
-            console.log(`Р—Р°С‡РёСЃР»РµРЅРѕ ${wonPrize.value} РјРѕРЅРµС‚ РїРѕР»СЊР·РѕРІР°С‚РµР»СЋ ${currentUser.name} (РѕРїСЂРµРґРµР»РµРЅРѕ РїРѕ РЅР°Р·РІР°РЅРёСЋ)`);
+            console.log(`Р вЂ”Р В°РЎвЂЎР С‘РЎРѓР В»Р ВµР Р…Р С• ${wonPrize.value} Р СР С•Р Р…Р ВµРЎвЂљ Р С—Р С•Р В»РЎРЉР В·Р С•Р Р†Р В°РЎвЂљР ВµР В»РЎР‹ ${currentUser.name} (Р С•Р С—РЎР‚Р ВµР Т‘Р ВµР В»Р ВµР Р…Р С• Р С—Р С• Р Р…Р В°Р В·Р Р†Р В°Р Р…Р С‘РЎР‹)`);
           }
-        } else if (wonPrize.name.toLowerCase().includes('РѕРїС‹С‚') || wonPrize.name.toLowerCase().includes('exp') || wonPrize.name.toLowerCase().includes('experience')) {
+        } else if (wonPrize.name.toLowerCase().includes('Р С•Р С—РЎвЂ№РЎвЂљ') || wonPrize.name.toLowerCase().includes('exp') || wonPrize.name.toLowerCase().includes('experience')) {
           if (onUpdateUserExperience) {
             onUpdateUserExperience(currentUser.id, wonPrize.value);
-            console.log(`Р—Р°С‡РёСЃР»РµРЅРѕ ${wonPrize.value} РѕРїС‹С‚Р° РїРѕР»СЊР·РѕРІР°С‚РµР»СЋ ${currentUser.name} (РѕРїСЂРµРґРµР»РµРЅРѕ РїРѕ РЅР°Р·РІР°РЅРёСЋ)`);
+            console.log(`Р вЂ”Р В°РЎвЂЎР С‘РЎРѓР В»Р ВµР Р…Р С• ${wonPrize.value} Р С•Р С—РЎвЂ№РЎвЂљР В° Р С—Р С•Р В»РЎРЉР В·Р С•Р Р†Р В°РЎвЂљР ВµР В»РЎР‹ ${currentUser.name} (Р С•Р С—РЎР‚Р ВµР Т‘Р ВµР В»Р ВµР Р…Р С• Р С—Р С• Р Р…Р В°Р В·Р Р†Р В°Р Р…Р С‘РЎР‹)`);
           }
         }
       }
       
-      // РЈРґР°Р»СЏРµРј РєРµР№СЃ РёР· РёРЅРІРµРЅС‚Р°СЂСЏ РїРѕСЃР»Рµ РѕС‚РєСЂС‹С‚РёСЏ
+      // Р Р€Р Т‘Р В°Р В»РЎРЏР ВµР С Р С”Р ВµР в„–РЎРѓ Р С‘Р В· Р С‘Р Р…Р Р†Р ВµР Р…РЎвЂљР В°РЎР‚РЎРЏ Р С—Р С•РЎРѓР В»Р Вµ Р С•РЎвЂљР С”РЎР‚РЎвЂ№РЎвЂљР С‘РЎРЏ
       setUserCases(prev => prev.filter(uc => uc.id !== openingCase.id));
     }
     
-    // Р—Р°РєСЂС‹РІР°РµРј РјРѕРґР°Р» Рё СЃР±СЂР°СЃС‹РІР°РµРј СЃРѕСЃС‚РѕСЏРЅРёРµ
+    // Р вЂ”Р В°Р С”РЎР‚РЎвЂ№Р Р†Р В°Р ВµР С Р СР С•Р Т‘Р В°Р В» Р С‘ РЎРѓР В±РЎР‚Р В°РЎРѓРЎвЂ№Р Р†Р В°Р ВµР С РЎРѓР С•РЎРѓРЎвЂљР С•РЎРЏР Р…Р С‘Р Вµ
     setIsPrizeRouletteOpen(false);
     setIsSpinning(false);
     setHasSpun(false);
@@ -223,7 +223,7 @@ export function CasesPage({
   };
 
   const handleClosePrizeRoulette = () => {
-    // РњРѕР¶РЅРѕ Р·Р°РєСЂС‹С‚СЊ С‚РѕР»СЊРєРѕ РµСЃР»Рё РЅРµ РёРґРµС‚ РІСЂР°С‰РµРЅРёРµ Рё РјРѕР¶РЅРѕ Р·Р°Р±СЂР°С‚СЊ СЂРµР·СѓР»СЊС‚Р°С‚
+    // Р СљР С•Р В¶Р Р…Р С• Р В·Р В°Р С”РЎР‚РЎвЂ№РЎвЂљРЎРЉ РЎвЂљР С•Р В»РЎРЉР С”Р С• Р ВµРЎРѓР В»Р С‘ Р Р…Р Вµ Р С‘Р Т‘Р ВµРЎвЂљ Р Р†РЎР‚Р В°РЎвЂ°Р ВµР Р…Р С‘Р Вµ Р С‘ Р СР С•Р В¶Р Р…Р С• Р В·Р В°Р В±РЎР‚Р В°РЎвЂљРЎРЉ РЎР‚Р ВµР В·РЎС“Р В»РЎРЉРЎвЂљР В°РЎвЂљ
     if (!isSpinning && (!canSpin || hasSpun)) {
       if (hasSpun && wonPrize) {
         handleClaimPrize();
@@ -238,19 +238,19 @@ export function CasesPage({
     }
   };
 
-  // РћР±СЂР°Р±РѕС‚С‡РёРє РїРѕРєР°Р·Р° РґРµС‚Р°Р»РµР№ РєРµР№СЃР°
+  // Р С›Р В±РЎР‚Р В°Р В±Р С•РЎвЂљРЎвЂЎР С‘Р С” Р С—Р С•Р С”Р В°Р В·Р В° Р Т‘Р ВµРЎвЂљР В°Р В»Р ВµР в„– Р С”Р ВµР в„–РЎРѓР В°
   const handleShowCaseDetails = (caseType: CaseType, shopItem: CaseShopItem) => {
     setSelectedCaseForDetails(caseType);
     setSelectedShopItem(shopItem);
     setCaseDetailsOpen(true);
   };
 
-  // РћР±СЂР°Р±РѕС‚С‡РёРє РїРѕРєСѓРїРєРё РєРµР№СЃР°
+  // Р С›Р В±РЎР‚Р В°Р В±Р С•РЎвЂљРЎвЂЎР С‘Р С” Р С—Р С•Р С”РЎС“Р С—Р С”Р С‘ Р С”Р ВµР в„–РЎРѓР В°
   const handleBuyCase = (shopItem: CaseShopItem) => {
     const caseType = mockCaseTypes.find(c => c.id === shopItem.caseTypeId);
     if (!caseType) return;
 
-    // Р”РѕР±Р°РІР»СЏРµРј РєСѓРїР»РµРЅРЅС‹Р№ РєРµР№СЃ РІ РёРЅРІРµРЅС‚Р°СЂСЊ
+    // Р вЂќР С•Р В±Р В°Р Р†Р В»РЎРЏР ВµР С Р С”РЎС“Р С—Р В»Р ВµР Р…Р Р…РЎвЂ№Р в„– Р С”Р ВµР в„–РЎРѓ Р Р† Р С‘Р Р…Р Р†Р ВµР Р…РЎвЂљР В°РЎР‚РЎРЉ
     const newCase: UserCase = {
       id: `user_case_${Date.now()}`,
       caseTypeId: caseType.id,
@@ -260,16 +260,16 @@ export function CasesPage({
     
     setUserCases(prev => [...prev, newCase]);
     
-    // Р—Р°РєСЂС‹РІР°РµРј РјРѕРґР°Р» РґРµС‚Р°Р»РµР№ РµСЃР»Рё РѕРЅ РѕС‚РєСЂС‹С‚
+    // Р вЂ”Р В°Р С”РЎР‚РЎвЂ№Р Р†Р В°Р ВµР С Р СР С•Р Т‘Р В°Р В» Р Т‘Р ВµРЎвЂљР В°Р В»Р ВµР в„– Р ВµРЎРѓР В»Р С‘ Р С•Р Р… Р С•РЎвЂљР С”РЎР‚РЎвЂ№РЎвЂљ
     setCaseDetailsOpen(false);
     
-    // РџРµСЂРµРєР»СЋС‡Р°РµРјСЃСЏ РЅР° РІРєР»Р°РґРєСѓ "РњРѕРё РєРµР№СЃС‹"
+    // Р СџР ВµРЎР‚Р ВµР С”Р В»РЎР‹РЎвЂЎР В°Р ВµР СРЎРѓРЎРЏ Р Р…Р В° Р Р†Р С”Р В»Р В°Р Т‘Р С”РЎС“ "Р СљР С•Р С‘ Р С”Р ВµР в„–РЎРѓРЎвЂ№"
     setActiveTab('inventory');
   };
 
   const renderFreeCase = () => (
     <div className="space-y-6">
-      {/* Р—Р°РіРѕР»РѕРІРѕРє РґР»СЏ Р±РµСЃРїР»Р°С‚РЅРѕРіРѕ РєРµР№СЃР° */}
+      {/* Р вЂ”Р В°Р С–Р С•Р В»Р С•Р Р†Р С•Р С” Р Т‘Р В»РЎРЏ Р В±Р ВµРЎРѓР С—Р В»Р В°РЎвЂљР Р…Р С•Р С–Р С• Р С”Р ВµР в„–РЎРѓР В° */}
       <div className="text-center">
         <h3 
           className="text-2xl font-bold mb-2"
@@ -277,7 +277,7 @@ export function CasesPage({
             color: theme === 'dark' ? '#E8ECF2' : '#0F172A'
           }}
         >
-          Р‘Р•РЎРџР›РђРўРќР«Р™ РљР•Р™РЎ
+          Р вЂР вЂўР РЋР СџР вЂєР С’Р СћР СњР В«Р в„ў Р С™Р вЂўР в„ўР РЋ
         </h3>
         <div className="w-24 h-0.5 bg-gradient-to-r from-transparent via-green-400 to-transparent mx-auto"></div>
       </div>
@@ -315,13 +315,13 @@ export function CasesPage({
                 textShadow: theme === 'dark' ? '0 0 10px rgba(34, 197, 94, 0.8)' : '0 0 5px rgba(34, 197, 94, 0.3)'
               }}
             >
-              Р‘Р•РЎРџР›РђРўРќР«Р™ РљР•Р™РЎ GRITHER
+              Р вЂР вЂўР РЋР СџР вЂєР С’Р СћР СњР В«Р в„ў Р С™Р вЂўР в„ўР РЋ GRITHER
             </h4>
             <p 
               className="text-sm opacity-80"
               style={{ color: theme === 'dark' ? '#D1D5DB' : '#6B7280' }}
             >
-              РџРѕР»СѓС‡РёС‚Рµ СЃР»СѓС‡Р°пїЅпїЅРЅС‹Р№ РєРµР№СЃ СЃРѕРІРµСЂС€РµРЅРЅРѕ Р±РµСЃРїР»Р°С‚РЅРѕ РєР°Р¶РґС‹Рµ 24 С‡Р°СЃР°!
+              Р СџР С•Р В»РЎС“РЎвЂЎР С‘РЎвЂљР Вµ РЎРѓР В»РЎС“РЎвЂЎР В°РїС—Р…РїС—Р…Р Р…РЎвЂ№Р в„– Р С”Р ВµР в„–РЎРѓ РЎРѓР С•Р Р†Р ВµРЎР‚РЎв‚¬Р ВµР Р…Р Р…Р С• Р В±Р ВµРЎРѓР С—Р В»Р В°РЎвЂљР Р…Р С• Р С”Р В°Р В¶Р Т‘РЎвЂ№Р Вµ 24 РЎвЂЎР В°РЎРѓР В°!
             </p>
           </div>
           
@@ -336,7 +336,7 @@ export function CasesPage({
                 textShadow: '0 1px 2px rgba(0,0,0,0.3)'
               }}
             >
-              РћРўРљР Р«РўР¬ Р‘Р•РЎРџР›РђРўРќР«Р™ РљР•Р™РЎ
+              Р С›Р СћР С™Р В Р В«Р СћР В¬ Р вЂР вЂўР РЋР СџР вЂєР С’Р СћР СњР В«Р в„ў Р С™Р вЂўР в„ўР РЋ
             </button>
           ) : (
             <div className="space-y-4">
@@ -348,7 +348,7 @@ export function CasesPage({
                 }}
               >
                 <Clock className="w-4 h-4 text-red-400" />
-                <span className="text-red-300 text-sm font-medium">РЎР»РµРґСѓСЋС‰РёР№ РєРµР№СЃ С‡РµСЂРµР·: 18:45:23</span>
+                <span className="text-red-300 text-sm font-medium">Р РЋР В»Р ВµР Т‘РЎС“РЎР‹РЎвЂ°Р С‘Р в„– Р С”Р ВµР в„–РЎРѓ РЎвЂЎР ВµРЎР‚Р ВµР В·: 18:45:23</span>
               </div>
               <button
                 disabled
@@ -359,7 +359,7 @@ export function CasesPage({
                   boxShadow: `0 4px 15px rgba(0, 0, 0, 0.2)`
                 }}
               >
-                РћР–РР”РђРќРР•...
+                Р С›Р вЂ“Р ВР вЂќР С’Р СњР ВР вЂў...
               </button>
             </div>
           )}
@@ -370,7 +370,7 @@ export function CasesPage({
 
   const renderShop = () => (
     <div className="space-y-6">
-      {/* Р—Р°РіРѕР»РѕРІРѕРє GRITHER */}
+      {/* Р вЂ”Р В°Р С–Р С•Р В»Р С•Р Р†Р С•Р С” GRITHER */}
       <div className="text-center">
         <h3 
           className="text-2xl font-bold mb-2"
@@ -392,7 +392,7 @@ export function CasesPage({
             ? shopItem.price * (1 - shopItem.discount / 100)
             : shopItem.price;
 
-          // Р¤РѕСЂРјР°С‚РёСЂСѓРµРј С†РµРЅСѓ РІ СЃС‚РёР»Рµ G-COIN
+          // Р В¤Р С•РЎР‚Р СР В°РЎвЂљР С‘РЎР‚РЎС“Р ВµР С РЎвЂ Р ВµР Р…РЎС“ Р Р† РЎРѓРЎвЂљР С‘Р В»Р Вµ G-COIN
           const formattedPrice = (Math.floor(discountPrice) / 1000).toFixed(3).replace('.', '.');
 
           return (
@@ -410,7 +410,7 @@ export function CasesPage({
               }}
             >
               <div className="flex flex-col items-center text-center space-y-3">
-                {/* Р‘РѕР»СЊС€РѕРµ РёР·РѕР±СЂР°Р¶РµРЅРёРµ РєРµР№СЃР° СЃ РЅРµРѕРЅРѕРІС‹Рј СЌС„С„РµРєС‚РѕРј */}
+                {/* Р вЂР С•Р В»РЎРЉРЎв‚¬Р С•Р Вµ Р С‘Р В·Р С•Р В±РЎР‚Р В°Р В¶Р ВµР Р…Р С‘Р Вµ Р С”Р ВµР в„–РЎРѓР В° РЎРѓ Р Р…Р ВµР С•Р Р…Р С•Р Р†РЎвЂ№Р С РЎРЊРЎвЂћРЎвЂћР ВµР С”РЎвЂљР С•Р С */}
                 <div 
                   className="relative w-full h-28 rounded-xl overflow-hidden cursor-pointer transition-all duration-300 hover:scale-105"
                   style={{ 
@@ -437,7 +437,7 @@ export function CasesPage({
                     src={caseType.image}
                     className="w-full h-full object-cover"
                   />
-                  {/* РќРµРѕРЅРѕРІР°СЏ СЂР°РјРєР° */}
+                  {/* Р СњР ВµР С•Р Р…Р С•Р Р†Р В°РЎРЏ РЎР‚Р В°Р СР С”Р В° */}
                   <div 
                     className="absolute inset-0 rounded-xl border-2 opacity-60"
                     style={{ 
@@ -459,7 +459,7 @@ export function CasesPage({
                       })()
                     }}
                   />
-                  {/* GRITHER Р»РѕРіРѕС‚РёРї РЅР° РёР·РѕР±СЂР°Р¶РµРЅРёРё */}
+                  {/* GRITHER Р В»Р С•Р С–Р С•РЎвЂљР С‘Р С— Р Р…Р В° Р С‘Р В·Р С•Р В±РЎР‚Р В°Р В¶Р ВµР Р…Р С‘Р С‘ */}
                   <div 
                     className="absolute bottom-2 left-2 px-2 py-1 rounded text-xs font-bold"
                     style={{
@@ -472,7 +472,7 @@ export function CasesPage({
                   </div>
                 </div>
                 
-                {/* РќР°Р·РІР°РЅРёРµ РєРµР№СЃР° */}
+                {/* Р СњР В°Р В·Р Р†Р В°Р Р…Р С‘Р Вµ Р С”Р ВµР в„–РЎРѓР В° */}
                 <h4 
                   className="text-lg font-bold tracking-wider"
                   style={{ 
@@ -485,7 +485,7 @@ export function CasesPage({
                   {caseType.name}
                 </h4>
                 
-                {/* Р¦РµРЅР° РІ G-COIN С„РѕСЂРјР°С‚Рµ */}
+                {/* Р В¦Р ВµР Р…Р В° Р Р† G-COIN РЎвЂћР С•РЎР‚Р СР В°РЎвЂљР Вµ */}
                 <div className="space-y-2">
                   <div 
                     className="px-3 py-1 rounded-lg text-sm font-medium"
@@ -508,7 +508,7 @@ export function CasesPage({
                   </div>
                 </div>
                 
-                {/* РљРЅРѕРїРєР° РїРѕРєСѓРїРєРё РІ СЃС‚РёР»Рµ GRITHER */}
+                {/* Р С™Р Р…Р С•Р С—Р С”Р В° Р С—Р С•Р С”РЎС“Р С—Р С”Р С‘ Р Р† РЎРѓРЎвЂљР С‘Р В»Р Вµ GRITHER */}
                 <button
                   onClick={() => handleBuyCase(shopItem)}
                   className="w-full py-2 px-3 rounded-xl font-bold text-xs tracking-wide transition-all duration-200 transform hover:scale-105 hover:shadow-lg disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center text-center"
@@ -524,7 +524,7 @@ export function CasesPage({
                   }}
                   disabled={!shopItem.isAvailable}
                 >
-                  {shopItem.isAvailable ? 'РљРЈРџРРўР¬' : 'РќР•Р”РћРЎРўРЈРџРќРћ'}
+                  {shopItem.isAvailable ? 'Р С™Р Р€Р СџР ВР СћР В¬' : 'Р СњР вЂўР вЂќР С›Р РЋР СћР Р€Р СџР СњР С›'}
                 </button>
               </div>
             </div>
@@ -536,7 +536,7 @@ export function CasesPage({
 
   const renderInventory = () => (
     <div className="space-y-6">
-      {/* Р—Р°РіРѕР»РѕРІРѕРє РґР»СЏ РёРЅРІРµРЅС‚Р°СЂСЏ */}
+      {/* Р вЂ”Р В°Р С–Р С•Р В»Р С•Р Р†Р С•Р С” Р Т‘Р В»РЎРЏ Р С‘Р Р…Р Р†Р ВµР Р…РЎвЂљР В°РЎР‚РЎРЏ */}
       <div className="text-center">
         <h3 
           className="text-2xl font-bold mb-2"
@@ -544,7 +544,7 @@ export function CasesPage({
             color: theme === 'dark' ? '#E8ECF2' : '#0F172A'
           }}
         >
-          РњРћР РљР•Р™РЎР«
+          Р СљР С›Р В Р С™Р вЂўР в„ўР РЋР В«
         </h3>
         <div className="w-24 h-0.5 bg-gradient-to-r from-transparent via-cyan-400 to-transparent mx-auto"></div>
       </div>
@@ -554,9 +554,9 @@ export function CasesPage({
           <div className="w-16 h-16 mx-auto mb-4 rounded-full bg-surface-2 flex items-center justify-center">
             <ShoppingBag className="w-8 h-8 text-muted-foreground" />
           </div>
-          <h4 className="font-medium mb-2">РџСѓСЃС‚Рѕ</h4>
+          <h4 className="font-medium mb-2">Р СџРЎС“РЎРѓРЎвЂљР С•</h4>
           <p className="text-sm text-muted-foreground opacity-60">
-            Р—РґРµСЃСЊ РїРѕСЏРІСЏС‚СЃСЏ РїРѕР»СѓС‡РµРЅРЅС‹Рµ РєРµР№СЃС‹
+            Р вЂ”Р Т‘Р ВµРЎРѓРЎРЉ Р С—Р С•РЎРЏР Р†РЎРЏРЎвЂљРЎРѓРЎРЏ Р С—Р С•Р В»РЎС“РЎвЂЎР ВµР Р…Р Р…РЎвЂ№Р Вµ Р С”Р ВµР в„–РЎРѓРЎвЂ№
           </p>
         </div>
       ) : (
@@ -580,7 +580,7 @@ export function CasesPage({
                 }}
               >
                 <div className="flex flex-col items-center text-center space-y-4">
-                  {/* Р‘РѕР»СЊС€РѕРµ РёР·РѕР±СЂР°Р¶РµРЅРёРµ РєРµР№СЃР° СЃ РЅРµРѕРЅРѕРІС‹Рј СЌС„С„РµРєС‚РѕРј */}
+                  {/* Р вЂР С•Р В»РЎРЉРЎв‚¬Р С•Р Вµ Р С‘Р В·Р С•Р В±РЎР‚Р В°Р В¶Р ВµР Р…Р С‘Р Вµ Р С”Р ВµР в„–РЎРѓР В° РЎРѓ Р Р…Р ВµР С•Р Р…Р С•Р Р†РЎвЂ№Р С РЎРЊРЎвЂћРЎвЂћР ВµР С”РЎвЂљР С•Р С */}
                   <div 
                     className="relative w-full h-24 rounded-xl overflow-hidden transition-all duration-300"
                     style={{ 
@@ -606,7 +606,7 @@ export function CasesPage({
                       src={caseType.image}
                       className="w-full h-full object-cover"
                     />
-                    {/* РќРµРѕРЅРѕРІР°СЏ СЂР°РјРєР° */}
+                    {/* Р СњР ВµР С•Р Р…Р С•Р Р†Р В°РЎРЏ РЎР‚Р В°Р СР С”Р В° */}
                     <div 
                       className="absolute inset-0 rounded-xl border-2 opacity-60"
                       style={{ 
@@ -628,7 +628,7 @@ export function CasesPage({
                         })()
                       }}
                     />
-                    {/* GRITHER Р»РѕРіРѕС‚РёРї */}
+                    {/* GRITHER Р В»Р С•Р С–Р С•РЎвЂљР С‘Р С— */}
                     <div 
                       className="absolute bottom-1 left-1 px-1.5 py-0.5 rounded text-xs font-bold"
                       style={{
@@ -641,7 +641,7 @@ export function CasesPage({
                     </div>
                   </div>
                   
-                  {/* РќР°Р·РІР°РЅРёРµ РєРµР№СЃР° */}
+                  {/* Р СњР В°Р В·Р Р†Р В°Р Р…Р С‘Р Вµ Р С”Р ВµР в„–РЎРѓР В° */}
                   <h4 
                     className="text-lg font-bold tracking-wider"
                     style={{ 
@@ -654,7 +654,7 @@ export function CasesPage({
                     {caseType.name}
                   </h4>
                   
-                  {/* Р”Р°С‚Р° РїРѕР»СѓС‡РµРЅРёСЏ */}
+                  {/* Р вЂќР В°РЎвЂљР В° Р С—Р С•Р В»РЎС“РЎвЂЎР ВµР Р…Р С‘РЎРЏ */}
                   <p 
                     className="text-xs opacity-70"
                     style={{ color: theme === 'dark' ? '#FFFFFF' : '#6B7280' }}
@@ -662,7 +662,7 @@ export function CasesPage({
                     {userCase.obtainedAt.toLocaleDateString()}
                   </p>
                   
-                  {/* РљРЅРѕРїРєР° РѕС‚РєСЂС‹С‚РёСЏ РІ СЃС‚РёР»Рµ GRITHER */}
+                  {/* Р С™Р Р…Р С•Р С—Р С”Р В° Р С•РЎвЂљР С”РЎР‚РЎвЂ№РЎвЂљР С‘РЎРЏ Р Р† РЎРѓРЎвЂљР С‘Р В»Р Вµ GRITHER */}
                   <button
                     onClick={() => handleOpenCase(userCase)}
                     className="w-full py-2.5 px-4 rounded-xl font-bold text-sm tracking-wide transition-all duration-200 transform hover:scale-105 hover:shadow-lg flex items-center justify-center text-center"
@@ -672,7 +672,7 @@ export function CasesPage({
                       boxShadow: `0 4px 15px rgba(255, 255, 255, 0.2), inset 0 1px 0 rgba(255, 255, 255, 0.3)`
                     }}
                   >
-                    РћРўРљР Р«РўР¬
+                    Р С›Р СћР С™Р В Р В«Р СћР В¬
                   </button>
                 </div>
               </div>
@@ -701,9 +701,9 @@ export function CasesPage({
 
       <div className="px-4 pb-24">
         <div className="space-y-6">
-          {/* Р—Р°РіРѕР»РѕРІРѕРє СѓР±СЂР°РЅ - С‚РµРїРµСЂСЊ РѕРЅ РІРЅСѓС‚СЂРё renderShop */}
+          {/* Р вЂ”Р В°Р С–Р С•Р В»Р С•Р Р†Р С•Р С” РЎС“Р В±РЎР‚Р В°Р Р… - РЎвЂљР ВµР С—Р ВµРЎР‚РЎРЉ Р С•Р Р… Р Р†Р Р…РЎС“РЎвЂљРЎР‚Р С‘ renderShop */}
 
-          {/* РўР°Р±С‹ РІ СЃС‚РёР»Рµ GRITHER */}
+          {/* Р СћР В°Р В±РЎвЂ№ Р Р† РЎРѓРЎвЂљР С‘Р В»Р Вµ GRITHER */}
           <div 
             className="flex rounded-xl p-1 border"
             style={{
@@ -736,7 +736,7 @@ export function CasesPage({
                 background: 'transparent'
               }}
             >
-              пїЅпїЅР•РЎРџР›РђРўРќР«Р™
+              РїС—Р…РїС—Р…Р вЂўР РЋР СџР вЂєР С’Р СћР СњР В«Р в„ў
             </button>
             <button
               onClick={() => setActiveTab('shop')}
@@ -755,7 +755,7 @@ export function CasesPage({
                 background: 'transparent'
               }}
             >
-              РњРђР“РђР—РРќ
+              Р СљР С’Р вЂњР С’Р вЂ”Р ВР Сњ
             </button>
             <button
               onClick={() => setActiveTab('inventory')}
@@ -774,11 +774,11 @@ export function CasesPage({
                 background: 'transparent'
               }}
             >
-              РњРћР РљР•Р™РЎР«
+              Р СљР С›Р В Р С™Р вЂўР в„ўР РЋР В«
             </button>
           </div>
 
-          {/* РљРѕРЅС‚РµРЅС‚ С‚Р°Р±РѕРІ */}
+          {/* Р С™Р С•Р Р…РЎвЂљР ВµР Р…РЎвЂљ РЎвЂљР В°Р В±Р С•Р Р† */}
           <motion.div
             key={activeTab}
             initial={{ opacity: 0, y: 10 }}
@@ -798,31 +798,31 @@ export function CasesPage({
         theme={theme}
       />
 
-      {/* РњРѕРґР°Р» СЂСѓР»РµС‚РєРё РєРµР№СЃРѕРІ */}
+      {/* Р СљР С•Р Т‘Р В°Р В» РЎР‚РЎС“Р В»Р ВµРЎвЂљР С”Р С‘ Р С”Р ВµР в„–РЎРѓР С•Р Р† */}
       <Modal
         isOpen={isRouletteOpen}
         onClose={handleCloseCaseRoulette}
-        title="РћС‚РєСЂС‹С‚РёРµ РєРµР№СЃР°"
+        title="Р С›РЎвЂљР С”РЎР‚РЎвЂ№РЎвЂљР С‘Р Вµ Р С”Р ВµР в„–РЎРѓР В°"
         theme={theme}
       >
         <div className="space-y-6">
           {canSpin && (
             <p className="text-center text-muted-foreground">
-              РќР°Р¶РјРёС‚Рµ РєРЅРѕРїРєСѓ, С‡С‚РѕР±С‹ Р·Р°РїСѓСЃС‚РёС‚СЊ СЂСѓР»РµС‚РєСѓ
+              Р СњР В°Р В¶Р СР С‘РЎвЂљР Вµ Р С”Р Р…Р С•Р С—Р С”РЎС“, РЎвЂЎРЎвЂљР С•Р В±РЎвЂ№ Р В·Р В°Р С—РЎС“РЎРѓРЎвЂљР С‘РЎвЂљРЎРЉ РЎР‚РЎС“Р В»Р ВµРЎвЂљР С”РЎС“
             </p>
           )}
           
           {isSpinning && (
             <p className="text-center text-muted-foreground">
-              РћРїСЂРµРґРµР»СЏРµРј РІР°С€ РєРµР№СЃ...
+              Р С›Р С—РЎР‚Р ВµР Т‘Р ВµР В»РЎРЏР ВµР С Р Р†Р В°РЎв‚¬ Р С”Р ВµР в„–РЎРѓ...
             </p>
           )}
           
           {hasSpun && !isSpinning && wonCase && (
             <div className="text-center space-y-2">
-              <p className="text-primary font-semibold">РџРѕР·РґСЂР°РІР»СЏРµРј!</p>
+              <p className="text-primary font-semibold">Р СџР С•Р В·Р Т‘РЎР‚Р В°Р Р†Р В»РЎРЏР ВµР С!</p>
               <p className="text-muted-foreground">
-                Р’С‹ РїРѕР»СѓС‡РёР»Рё: <span className="font-medium text-foreground">{wonCase.name}</span>
+                Р вЂ™РЎвЂ№ Р С—Р С•Р В»РЎС“РЎвЂЎР С‘Р В»Р С‘: <span className="font-medium text-foreground">{wonCase.name}</span>
               </p>
             </div>
           )}
@@ -841,7 +841,7 @@ export function CasesPage({
                 onClick={handleStartSpin}
                 className="px-8 py-3 bg-primary text-primary-foreground rounded-xl font-medium hover:bg-primary-pressed transition-colors"
               >
-                РљСЂСѓС‚РёС‚СЊ
+                Р С™РЎР‚РЎС“РЎвЂљР С‘РЎвЂљРЎРЉ
               </button>
             )}
             
@@ -850,38 +850,38 @@ export function CasesPage({
                 onClick={handleClaimCase}
                 className="px-8 py-3 bg-primary text-primary-foreground rounded-xl font-medium hover:bg-primary-pressed transition-colors"
               >
-                Р—Р°Р±СЂР°С‚СЊ РєРµР№СЃ
+                Р вЂ”Р В°Р В±РЎР‚Р В°РЎвЂљРЎРЉ Р С”Р ВµР в„–РЎРѓ
               </button>
             )}
           </div>
         </div>
       </Modal>
 
-      {/* РњРѕРґР°Р» СЂСѓР»РµС‚РєРё РїСЂРёР·РѕРІ */}
+      {/* Р СљР С•Р Т‘Р В°Р В» РЎР‚РЎС“Р В»Р ВµРЎвЂљР С”Р С‘ Р С—РЎР‚Р С‘Р В·Р С•Р Р† */}
       <Modal
         isOpen={isPrizeRouletteOpen}
         onClose={handleClosePrizeRoulette}
-        title={openingCase ? `пїЅпїЅС‚РєСЂС‹С‚РёРµ: ${cases.find(c => c.id === openingCase.caseTypeId)?.name}` : "РћС‚РєСЂС‹С‚РёРµ РєРµР№СЃР°"}
+        title={openingCase ? `РїС—Р…РїС—Р…РЎвЂљР С”РЎР‚РЎвЂ№РЎвЂљР С‘Р Вµ: ${cases.find(c => c.id === openingCase.caseTypeId)?.name}` : "Р С›РЎвЂљР С”РЎР‚РЎвЂ№РЎвЂљР С‘Р Вµ Р С”Р ВµР в„–РЎРѓР В°"}
         theme={theme}
       >
         <div className="space-y-6">
           {canSpin && (
             <p className="text-center text-muted-foreground">
-              РќР°Р¶РјРёС‚Рµ РєРЅРѕРїРєСѓ, С‡С‚РѕР±С‹ Р·Р°РїСѓСЃС‚РёС‚СЊ СЂСѓР»РµС‚РєСѓ РїСЂРёР·пїЅпїЅРІ
+              Р СњР В°Р В¶Р СР С‘РЎвЂљР Вµ Р С”Р Р…Р С•Р С—Р С”РЎС“, РЎвЂЎРЎвЂљР С•Р В±РЎвЂ№ Р В·Р В°Р С—РЎС“РЎРѓРЎвЂљР С‘РЎвЂљРЎРЉ РЎР‚РЎС“Р В»Р ВµРЎвЂљР С”РЎС“ Р С—РЎР‚Р С‘Р В·РїС—Р…РїС—Р…Р Р†
             </p>
           )}
           
           {isSpinning && (
             <p className="text-center text-muted-foreground">
-              РћРїСЂРµРґРµР»СЏРµРј РІР°С€ РїСЂРёР·...
+              Р С›Р С—РЎР‚Р ВµР Т‘Р ВµР В»РЎРЏР ВµР С Р Р†Р В°РЎв‚¬ Р С—РЎР‚Р С‘Р В·...
             </p>
           )}
           
           {hasSpun && !isSpinning && wonPrize && (
             <div className="text-center space-y-2">
-              <p className="text-primary font-semibold">РџРѕР·РґСЂР°РІР»СЏРµРј!</p>
+              <p className="text-primary font-semibold">Р СџР С•Р В·Р Т‘РЎР‚Р В°Р Р†Р В»РЎРЏР ВµР С!</p>
               <p className="text-muted-foreground">
-                Р’С‹ РїРѕР»СѓС‡РёР»Рё: <span className="font-medium text-foreground">{wonPrize.name}</span>
+                Р вЂ™РЎвЂ№ Р С—Р С•Р В»РЎС“РЎвЂЎР С‘Р В»Р С‘: <span className="font-medium text-foreground">{wonPrize.name}</span>
               </p>
               <div className="flex items-center justify-center gap-2">
                 <div className="w-8 h-8 rounded overflow-hidden">
@@ -919,7 +919,7 @@ export function CasesPage({
                 onClick={handleStartPrizeSpin}
                 className="px-8 py-3 bg-primary text-primary-foreground rounded-xl font-medium hover:bg-primary-pressed transition-colors"
               >
-                РљСЂСѓС‚РёС‚СЊ
+                Р С™РЎР‚РЎС“РЎвЂљР С‘РЎвЂљРЎРЉ
               </button>
             )}
             
@@ -928,23 +928,23 @@ export function CasesPage({
                 onClick={handleClaimPrize}
                 className="px-8 py-3 bg-primary text-primary-foreground rounded-xl font-medium hover:bg-primary-pressed transition-colors"
               >
-                Р—Р°Р±СЂР°С‚СЊ РїСЂРёР·
+                Р вЂ”Р В°Р В±РЎР‚Р В°РЎвЂљРЎРЉ Р С—РЎР‚Р С‘Р В·
               </button>
             )}
           </div>
         </div>
       </Modal>
 
-      {/* РњРѕРґР°Р» РґРµС‚Р°Р»РµР№ РєРµР№СЃР° */}
+      {/* Р СљР С•Р Т‘Р В°Р В» Р Т‘Р ВµРЎвЂљР В°Р В»Р ВµР в„– Р С”Р ВµР в„–РЎРѓР В° */}
       <Modal
         isOpen={caseDetailsOpen}
         onClose={() => setCaseDetailsOpen(false)}
-        title={selectedCaseForDetails ? `Р”РµС‚Р°Р»Рё: ${selectedCaseForDetails.name}` : "Р”РµС‚Р°Р»Рё РєРµР№СЃР°"}
+        title={selectedCaseForDetails ? `Р вЂќР ВµРЎвЂљР В°Р В»Р С‘: ${selectedCaseForDetails.name}` : "Р вЂќР ВµРЎвЂљР В°Р В»Р С‘ Р С”Р ВµР в„–РЎРѓР В°"}
         theme={theme}
       >
         {selectedCaseForDetails && selectedShopItem && (
           <div className="space-y-6">
-            {/* РР·РѕР±СЂР°Р¶РµРЅРёРµ РєРµР№СЃР° */}
+            {/* Р ВР В·Р С•Р В±РЎР‚Р В°Р В¶Р ВµР Р…Р С‘Р Вµ Р С”Р ВµР в„–РЎРѓР В° */}
             <div className="flex justify-center">
               <div 
                 className="w-32 h-32 rounded-2xl border-2 overflow-hidden shadow-lg"
@@ -961,7 +961,7 @@ export function CasesPage({
               </div>
             </div>
 
-            {/* РћРїРёСЃР°РЅРёРµ Рё СЂРµРґРєРѕСЃС‚СЊ */}
+            {/* Р С›Р С—Р С‘РЎРѓР В°Р Р…Р С‘Р Вµ Р С‘ РЎР‚Р ВµР Т‘Р С”Р С•РЎРѓРЎвЂљРЎРЉ */}
             <div className="text-center space-y-3">
               <div 
                 className="inline-block px-4 py-2 rounded-full text-sm font-medium"
@@ -970,20 +970,20 @@ export function CasesPage({
                   color: selectedCaseForDetails.color
                 }}
               >
-                {selectedCaseForDetails.rarity === 'common' && 'РћР±С‹С‡РЅС‹Р№'}
-                {selectedCaseForDetails.rarity === 'rare' && 'Р РµРґРєРёР№'}
-                {selectedCaseForDetails.rarity === 'epic' && 'Р­РїРёС‡РµСЃРєРёР№'}
-                {selectedCaseForDetails.rarity === 'legendary' && 'Р›РµРіРµРЅРґР°СЂРЅС‹Р№'}
-                {selectedCaseForDetails.rarity === 'mythic' && 'РњРёС„РёС‡РµСЃРєРёР№'}
+                {selectedCaseForDetails.rarity === 'common' && 'Р С›Р В±РЎвЂ№РЎвЂЎР Р…РЎвЂ№Р в„–'}
+                {selectedCaseForDetails.rarity === 'rare' && 'Р В Р ВµР Т‘Р С”Р С‘Р в„–'}
+                {selectedCaseForDetails.rarity === 'epic' && 'Р В­Р С—Р С‘РЎвЂЎР ВµРЎРѓР С”Р С‘Р в„–'}
+                {selectedCaseForDetails.rarity === 'legendary' && 'Р вЂєР ВµР С–Р ВµР Р…Р Т‘Р В°РЎР‚Р Р…РЎвЂ№Р в„–'}
+                {selectedCaseForDetails.rarity === 'mythic' && 'Р СљР С‘РЎвЂћР С‘РЎвЂЎР ВµРЎРѓР С”Р С‘Р в„–'}
               </div>
               <p className="text-muted-foreground">
                 {selectedCaseForDetails.description}
               </p>
             </div>
 
-            {/* РЎРѕРґРµСЂР¶РёРјРѕРµ РєРµР№СЃР° */}
+            {/* Р РЋР С•Р Т‘Р ВµРЎР‚Р В¶Р С‘Р СР С•Р Вµ Р С”Р ВµР в„–РЎРѓР В° */}
             <div className="space-y-3">
-              <h4 className="font-semibold">Р’РѕР·РјРѕР¶РЅС‹Рµ РїСЂРёР·С‹:</h4>
+              <h4 className="font-semibold">Р вЂ™Р С•Р В·Р СР С•Р В¶Р Р…РЎвЂ№Р Вµ Р С—РЎР‚Р С‘Р В·РЎвЂ№:</h4>
               <div className="grid gap-2">
                 {selectedCaseForDetails.prizes.slice(0, 6).map((prize) => (
                   <div key={prize.id} className="flex items-center gap-3 p-3 glass-card">
@@ -996,7 +996,7 @@ export function CasesPage({
                     <div className="flex-1">
                       <div className="font-medium text-sm">{prize.name}</div>
                       <div className="text-xs text-muted-foreground">
-                        РЁР°РЅСЃ: {prize.dropChance}%
+                        Р РЃР В°Р Р…РЎРѓ: {prize.dropChance}%
                       </div>
                     </div>
                     <div 
@@ -1006,28 +1006,28 @@ export function CasesPage({
                         color: prize.color 
                       }}
                     >
-                      {prize.rarity === 'common' && 'РћР±С‹С‡РЅС‹Р№'}
-                      {prize.rarity === 'rare' && 'Р РµРґРєРёР№'}
-                      {prize.rarity === 'epic' && 'Р­РїРёС‡РµСЃРєРёР№'}
-                      {prize.rarity === 'legendary' && 'Р›РµРіРµРЅРґР°СЂРЅС‹Р№'}
-                      {prize.rarity === 'mythic' && 'РњРёС„РёС‡РµСЃРєРёР№'}
+                      {prize.rarity === 'common' && 'Р С›Р В±РЎвЂ№РЎвЂЎР Р…РЎвЂ№Р в„–'}
+                      {prize.rarity === 'rare' && 'Р В Р ВµР Т‘Р С”Р С‘Р в„–'}
+                      {prize.rarity === 'epic' && 'Р В­Р С—Р С‘РЎвЂЎР ВµРЎРѓР С”Р С‘Р в„–'}
+                      {prize.rarity === 'legendary' && 'Р вЂєР ВµР С–Р ВµР Р…Р Т‘Р В°РЎР‚Р Р…РЎвЂ№Р в„–'}
+                      {prize.rarity === 'mythic' && 'Р СљР С‘РЎвЂћР С‘РЎвЂЎР ВµРЎРѓР С”Р С‘Р в„–'}
                     </div>
                   </div>
                 ))}
                 {selectedCaseForDetails.prizes.length > 6 && (
                   <div className="text-center text-sm text-muted-foreground">
-                    Рё РµС‰С‘ {selectedCaseForDetails.prizes.length - 6} РїСЂРёР·РѕРІ...
+                    Р С‘ Р ВµРЎвЂ°РЎвЂ {selectedCaseForDetails.prizes.length - 6} Р С—РЎР‚Р С‘Р В·Р С•Р Р†...
                   </div>
                 )}
               </div>
             </div>
 
-            {/* Р¦РµРЅР° Рё РєРЅРѕРїРєР° РїРѕРєСѓРїРєРё */}
+            {/* Р В¦Р ВµР Р…Р В° Р С‘ Р С”Р Р…Р С•Р С—Р С”Р В° Р С—Р С•Р С”РЎС“Р С—Р С”Р С‘ */}
             <div className="space-y-4">
               <div className="flex items-center justify-center gap-2 p-4 glass-card">
                 {selectedShopItem.discount && (
                   <span className="text-sm text-muted-foreground line-through">
-                    {selectedShopItem.price} {selectedShopItem.currency === 'coins' ? 'рџЄ™' : 'рџ’Ћ'}
+                    {selectedShopItem.price} {selectedShopItem.currency === 'coins' ? 'СЂСџР„в„ў' : 'СЂСџвЂ™Р‹'}
                   </span>
                 )}
                 <span className="text-xl font-semibold flex items-center gap-2">
@@ -1039,7 +1039,7 @@ export function CasesPage({
                 </span>
                 {selectedShopItem.discount && (
                   <span className="text-sm bg-destructive text-destructive-foreground px-3 py-1 rounded-full font-medium">
-                    -{selectedShopItem.discount}% СЃРєРёРґРєР°
+                    -{selectedShopItem.discount}% РЎРѓР С”Р С‘Р Т‘Р С”Р В°
                   </span>
                 )}
               </div>
@@ -1049,7 +1049,7 @@ export function CasesPage({
                 className="w-full py-3 px-6 bg-primary text-primary-foreground rounded-xl font-medium hover:bg-primary-pressed transition-colors text-center"
                 disabled={!selectedShopItem.isAvailable}
               >
-                {selectedShopItem.isAvailable ? 'РљСѓРїРёС‚СЊ РєРµР№СЃ' : 'РќРµРґРѕпїЅпїЅС‚СѓРїРЅРѕ'}
+                {selectedShopItem.isAvailable ? 'Р С™РЎС“Р С—Р С‘РЎвЂљРЎРЉ Р С”Р ВµР в„–РЎРѓ' : 'Р СњР ВµР Т‘Р С•РїС—Р…РїС—Р…РЎвЂљРЎС“Р С—Р Р…Р С•'}
               </button>
             </div>
           </div>

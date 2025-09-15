@@ -1,4 +1,4 @@
-﻿import React from 'react';
+п»їimport React from 'react';
 
 interface PanelProps {
   leftIcon?: React.ReactNode;
@@ -21,14 +21,14 @@ export function Panel({ leftIcon, title, rightButton, children, className = '', 
         boxShadow: theme === 'dark' ? '0 8px 24px rgba(0, 0, 0, 0.6)' : '0 8px 24px rgba(0, 0, 0, 0.10)'
       }}
     >
-      {/* РЁР°РїРєР° РїР°РЅРµР»Рё */}
+      {/* Р РЃР В°Р С—Р С”Р В° Р С—Р В°Р Р…Р ВµР В»Р С‘ */}
       <div className="flex items-center justify-between mb-4">
-        {/* Р›РµРІР°СЏ РёРєРѕРЅРєР° РёР»Рё РїСѓСЃС‚РѕРµ РјРµСЃС‚Рѕ */}
+        {/* Р вЂєР ВµР Р†Р В°РЎРЏ Р С‘Р С”Р С•Р Р…Р С”Р В° Р С‘Р В»Р С‘ Р С—РЎС“РЎРѓРЎвЂљР С•Р Вµ Р СР ВµРЎРѓРЎвЂљР С• */}
         <div className="w-8 h-8 flex items-center justify-center">
           {leftIcon || <div />}
         </div>
         
-        {/* Р—Р°РіРѕР»РѕРІРѕРє РїРѕ С†РµРЅС‚СЂСѓ */}
+        {/* Р вЂ”Р В°Р С–Р С•Р В»Р С•Р Р†Р С•Р С” Р С—Р С• РЎвЂ Р ВµР Р…РЎвЂљРЎР‚РЎС“ */}
         <h2 
           className="text-lg font-medium flex-1 text-center"
           style={{ color: theme === 'dark' ? '#E8ECF2' : '#0F172A' }}
@@ -36,13 +36,13 @@ export function Panel({ leftIcon, title, rightButton, children, className = '', 
           {title}
         </h2>
         
-        {/* РџСЂР°РІР°СЏ РєРЅРѕРїРєР° РёР»Рё РїСѓСЃС‚РѕРµ РјРµСЃС‚Рѕ */}
+        {/* Р СџРЎР‚Р В°Р Р†Р В°РЎРЏ Р С”Р Р…Р С•Р С—Р С”Р В° Р С‘Р В»Р С‘ Р С—РЎС“РЎРѓРЎвЂљР С•Р Вµ Р СР ВµРЎРѓРЎвЂљР С• */}
         <div className="w-8 h-8 flex items-center justify-center">
           {rightButton || <div />}
         </div>
       </div>
       
-      {/* РЎРѕРґРµСЂР¶РёРјРѕРµ РїР°РЅРµР»Рё */}
+      {/* Р РЋР С•Р Т‘Р ВµРЎР‚Р В¶Р С‘Р СР С•Р Вµ Р С—Р В°Р Р…Р ВµР В»Р С‘ */}
       <div className="space-y-3">
         {children}
       </div>

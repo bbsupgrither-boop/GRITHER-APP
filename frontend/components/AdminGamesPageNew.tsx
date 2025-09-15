@@ -1,4 +1,4 @@
-﻿import { useState } from 'react';
+п»їimport { useState } from 'react';
 import { Plus, Eye, Edit, Trash2, Play, Pause, Archive, Copy, Check, ChevronLeft, ChevronRight, Home, Users, Zap, Trophy, CheckSquare, ShoppingBag, Gamepad2, Box, CircleDot, Scissors, DollarSign, X, Settings } from './Icons';
 import { Dialog, DialogContent, DialogTitle, DialogDescription } from './ui/dialog';
 import { Button } from './ui/button';
@@ -13,27 +13,27 @@ interface AdminGamesPageNewProps {
 }
 
 export function AdminGamesPageNew({ onBack, onNavigateToSection }: AdminGamesPageNewProps) {
-  // РќР°РІРёРіР°С†РёРѕРЅРЅС‹Рµ СЌР»РµРјРµРЅС‚С‹ РїР°РЅРµР»Рё Р°РґРјРёРЅРёСЃС‚СЂР°С‚РѕСЂР°
+  // Р СњР В°Р Р†Р С‘Р С–Р В°РЎвЂ Р С‘Р С•Р Р…Р Р…РЎвЂ№Р Вµ РЎРЊР В»Р ВµР СР ВµР Р…РЎвЂљРЎвЂ№ Р С—Р В°Р Р…Р ВµР В»Р С‘ Р В°Р Т‘Р СР С‘Р Р…Р С‘РЎРѓРЎвЂљРЎР‚Р В°РЎвЂљР С•РЎР‚Р В°
   const navigationItems = [
-    { icon: Home, label: 'Р“Р»Р°РІРЅР°СЏ', section: 'dashboard' },
-    { icon: Users, label: 'Р’РѕСЂРєРµСЂС‹', section: 'workers' },
-    { icon: Zap, label: 'Р‘Р°С‚С‚Р»С‹', section: 'battles' },
-    { icon: Trophy, label: 'Р”РѕСЃС‚РёР¶РµРЅРёСЏ', section: 'achievements' },
-    { icon: CheckSquare, label: 'Р—Р°РґР°С‡Рё', section: 'tasks' },
-    { icon: ShoppingBag, label: 'РўРѕРІР°СЂС‹', section: 'shop' },
-    { icon: Gamepad2, label: 'РРіСЂС‹', section: 'games' },
-    { icon: Box, label: 'РљРµР№СЃС‹', section: 'cases' }
+    { icon: Home, label: 'Р вЂњР В»Р В°Р Р†Р Р…Р В°РЎРЏ', section: 'dashboard' },
+    { icon: Users, label: 'Р вЂ™Р С•РЎР‚Р С”Р ВµРЎР‚РЎвЂ№', section: 'workers' },
+    { icon: Zap, label: 'Р вЂР В°РЎвЂљРЎвЂљР В»РЎвЂ№', section: 'battles' },
+    { icon: Trophy, label: 'Р вЂќР С•РЎРѓРЎвЂљР С‘Р В¶Р ВµР Р…Р С‘РЎРЏ', section: 'achievements' },
+    { icon: CheckSquare, label: 'Р вЂ”Р В°Р Т‘Р В°РЎвЂЎР С‘', section: 'tasks' },
+    { icon: ShoppingBag, label: 'Р СћР С•Р Р†Р В°РЎР‚РЎвЂ№', section: 'shop' },
+    { icon: Gamepad2, label: 'Р ВР С–РЎР‚РЎвЂ№', section: 'games' },
+    { icon: Box, label: 'Р С™Р ВµР в„–РЎРѓРЎвЂ№', section: 'cases' }
   ];
 
-  // Р”РѕР±Р°РІР»СЏРµРј С‚РµСЃС‚РѕРІСѓСЋ РёРіСЂСѓ РґР»СЏ РґРµРјРѕРЅСЃС‚СЂР°С†РёРё  
+  // Р вЂќР С•Р В±Р В°Р Р†Р В»РЎРЏР ВµР С РЎвЂљР ВµРЎРѓРЎвЂљР С•Р Р†РЎС“РЎР‹ Р С‘Р С–РЎР‚РЎС“ Р Т‘Р В»РЎРЏ Р Т‘Р ВµР СР С•Р Р…РЎРѓРЎвЂљРЎР‚Р В°РЎвЂ Р С‘Р С‘  
   const [games, setGames] = useState<Game[]>([
     {
       id: '1',
-      name: 'РџРџРџ',
-      description: 'РљРѕР»РµСЃРѕ С„РѕСЂС‚СѓРЅС‹ вЂў РљСѓР»РґР°СѓРЅ 300СЃ',
+      name: 'Р СџР СџР Сџ',
+      description: 'Р С™Р С•Р В»Р ВµРЎРѓР С• РЎвЂћР С•РЎР‚РЎвЂљРЎС“Р Р…РЎвЂ№ РІР‚Сћ Р С™РЎС“Р В»Р Т‘Р В°РЎС“Р Р… 300РЎРѓ',
       type: 'wheel',
       status: 'draft',
-      icon: 'рџЋ®',
+      icon: 'СЂСџР‹В®',
       config: {
         sectors: [],
         spinAnimationMs: 3000
@@ -57,17 +57,17 @@ export function AdminGamesPageNew({ onBack, onNavigateToSection }: AdminGamesPag
   const [selectedGame, setSelectedGame] = useState<Game | null>(null);
   const [copiedJson, setCopiedJson] = useState(false);
 
-  // РЎРѕСЃС‚РѕСЏРЅРёРµ РјР°СЃС‚РµСЂР° СЃРѕР·РґР°РЅРёСЏ РёРіСЂС‹
+  // Р РЋР С•РЎРѓРЎвЂљР С•РЎРЏР Р…Р С‘Р Вµ Р СР В°РЎРѓРЎвЂљР ВµРЎР‚Р В° РЎРѓР С•Р В·Р Т‘Р В°Р Р…Р С‘РЎРЏ Р С‘Р С–РЎР‚РЎвЂ№
   const [wizardState, setWizardState] = useState<GameWizardState>({
     currentStep: 0,
     steps: [
-      { id: 'type', title: 'РўРёРї РёРіСЂС‹', description: 'Р’С‹Р±РµСЂРёС‚Рµ С‚РёРї РјРёРЅРё-РёРіСЂС‹', isComplete: false },
-      { id: 'basic', title: 'РћСЃРЅРѕРІРЅРѕРµ', description: 'РќР°Р·РІР°РЅРёРµ, РѕРїРёСЃР°РЅРёРµ, РёРєРѕРЅРєР°', isComplete: false },
-      { id: 'config', title: 'РџР°СЂР°РјРµС‚СЂС‹', description: 'РќР°СЃС‚СЂРѕР№РєРё РёРіСЂС‹', isComplete: false },
-      { id: 'rewards', title: 'РќР°РіСЂР°РґС‹', description: 'РЎРёСЃС‚РµРјР° РЅР°РіСЂР°Рґ', isComplete: false },
-      { id: 'access', title: 'Р”РѕСЃС‚СѓРї', description: 'Р’РёРґРёРјРѕСЃС‚СЊ Рё РєСѓР»РґР°СѓРЅ', isComplete: false },
-      { id: 'preview', title: 'РџСЂРµРґРїСЂРѕСЃРјРѕС‚СЂ', description: 'РџСЂРѕРІРµСЂРєР° РёпїЅпїЅСЂС‹', isComplete: false },
-      { id: 'publish', title: 'РџСѓР±Р»РёРєР°С†РёСЏ', description: 'РЎРѕС…СЂР°РЅРµРЅРёРµ РёРіСЂС‹', isComplete: false }
+      { id: 'type', title: 'Р СћР С‘Р С— Р С‘Р С–РЎР‚РЎвЂ№', description: 'Р вЂ™РЎвЂ№Р В±Р ВµРЎР‚Р С‘РЎвЂљР Вµ РЎвЂљР С‘Р С— Р СР С‘Р Р…Р С‘-Р С‘Р С–РЎР‚РЎвЂ№', isComplete: false },
+      { id: 'basic', title: 'Р С›РЎРѓР Р…Р С•Р Р†Р Р…Р С•Р Вµ', description: 'Р СњР В°Р В·Р Р†Р В°Р Р…Р С‘Р Вµ, Р С•Р С—Р С‘РЎРѓР В°Р Р…Р С‘Р Вµ, Р С‘Р С”Р С•Р Р…Р С”Р В°', isComplete: false },
+      { id: 'config', title: 'Р СџР В°РЎР‚Р В°Р СР ВµРЎвЂљРЎР‚РЎвЂ№', description: 'Р СњР В°РЎРѓРЎвЂљРЎР‚Р С•Р в„–Р С”Р С‘ Р С‘Р С–РЎР‚РЎвЂ№', isComplete: false },
+      { id: 'rewards', title: 'Р СњР В°Р С–РЎР‚Р В°Р Т‘РЎвЂ№', description: 'Р РЋР С‘РЎРѓРЎвЂљР ВµР СР В° Р Р…Р В°Р С–РЎР‚Р В°Р Т‘', isComplete: false },
+      { id: 'access', title: 'Р вЂќР С•РЎРѓРЎвЂљРЎС“Р С—', description: 'Р вЂ™Р С‘Р Т‘Р С‘Р СР С•РЎРѓРЎвЂљРЎРЉ Р С‘ Р С”РЎС“Р В»Р Т‘Р В°РЎС“Р Р…', isComplete: false },
+      { id: 'preview', title: 'Р СџРЎР‚Р ВµР Т‘Р С—РЎР‚Р С•РЎРѓР СР С•РЎвЂљРЎР‚', description: 'Р СџРЎР‚Р С•Р Р†Р ВµРЎР‚Р С”Р В° Р С‘РїС—Р…РїС—Р…РЎР‚РЎвЂ№', isComplete: false },
+      { id: 'publish', title: 'Р СџРЎС“Р В±Р В»Р С‘Р С”Р В°РЎвЂ Р С‘РЎРЏ', description: 'Р РЋР С•РЎвЂ¦РЎР‚Р В°Р Р…Р ВµР Р…Р С‘Р Вµ Р С‘Р С–РЎР‚РЎвЂ№', isComplete: false }
     ],
     gameData: {
       type: undefined,
@@ -83,29 +83,29 @@ export function AdminGamesPageNew({ onBack, onNavigateToSection }: AdminGamesPag
   const gameTypes = [
     { 
       id: 'wheel' as GameType, 
-      name: 'РљРѕР»РµСЃРѕ С„РѕСЂС‚СѓРЅС‹', 
+      name: 'Р С™Р С•Р В»Р ВµРЎРѓР С• РЎвЂћР С•РЎР‚РЎвЂљРЎС“Р Р…РЎвЂ№', 
       icon: CircleDot,
-      description: 'РљСЂСѓС‚РёС‚Рµ РєРѕР»РµСЃРѕ Рё РїРѕР»СѓС‡Р°Р№С‚Рµ СЃР»СѓС‡Р°Р№РЅС‹Рµ РЅР°РіСЂР°РґС‹'
+      description: 'Р С™РЎР‚РЎС“РЎвЂљР С‘РЎвЂљР Вµ Р С”Р С•Р В»Р ВµРЎРѓР С• Р С‘ Р С—Р С•Р В»РЎС“РЎвЂЎР В°Р в„–РЎвЂљР Вµ РЎРѓР В»РЎС“РЎвЂЎР В°Р в„–Р Р…РЎвЂ№Р Вµ Р Р…Р В°Р С–РЎР‚Р В°Р Т‘РЎвЂ№'
     },
     { 
       id: 'rps' as GameType, 
-      name: 'РљР°РјРµРЅСЊ, РЅРѕР¶РЅРёС†С‹, Р±СѓРјР°РіР°', 
+      name: 'Р С™Р В°Р СР ВµР Р…РЎРЉ, Р Р…Р С•Р В¶Р Р…Р С‘РЎвЂ РЎвЂ№, Р В±РЎС“Р СР В°Р С–Р В°', 
       icon: Scissors,
-      description: 'РљР»Р°СЃСЃРёС‡РµСЃРєР°СЏ пїЅпїЅРіСЂР° РїСЂРѕС‚РёРІ Р±РѕС‚Р° РёР»Рё РґСЂСѓРіРёС… РёРіСЂРѕРєРѕРІ'
+      description: 'Р С™Р В»Р В°РЎРѓРЎРѓР С‘РЎвЂЎР ВµРЎРѓР С”Р В°РЎРЏ РїС—Р…РїС—Р…Р С–РЎР‚Р В° Р С—РЎР‚Р С•РЎвЂљР С‘Р Р† Р В±Р С•РЎвЂљР В° Р С‘Р В»Р С‘ Р Т‘РЎР‚РЎС“Р С–Р С‘РЎвЂ¦ Р С‘Р С–РЎР‚Р С•Р С”Р С•Р Р†'
     },
     { 
       id: 'slots' as GameType, 
-      name: 'РЎР»РѕС‚С‹', 
+      name: 'Р РЋР В»Р С•РЎвЂљРЎвЂ№', 
       icon: DollarSign,
-      description: 'РђРІС‚РѕРјР°С‚ СЃ Р±Р°СЂР°Р±Р°РЅР°РјРё Рё РєРѕРјР±РёРЅР°С†РёСЏРјРё СЃРёРјРІРѕР»РѕРІ'
+      description: 'Р С’Р Р†РЎвЂљР С•Р СР В°РЎвЂљ РЎРѓ Р В±Р В°РЎР‚Р В°Р В±Р В°Р Р…Р В°Р СР С‘ Р С‘ Р С”Р С•Р СР В±Р С‘Р Р…Р В°РЎвЂ Р С‘РЎРЏР СР С‘ РЎРѓР С‘Р СР Р†Р С•Р В»Р С•Р Р†'
     }
   ];
 
   const rewardTypes = [
-    { id: 'xp' as RewardType, name: 'РћРїС‹С‚ (XP)', icon: 'в­ђ' },
-    { id: 'currency' as RewardType, name: 'Р’Р°Р»СЋС‚Р°', icon: 'рџ’°' },
-    { id: 'loot' as RewardType, name: 'РџСЂРµРґРјРµС‚', icon: 'рџЋЃ' },
-    { id: 'none' as RewardType, name: 'Р‘РµР· РЅР°РіСЂР°РґС‹', icon: 'вќЊ' }
+    { id: 'xp' as RewardType, name: 'Р С›Р С—РЎвЂ№РЎвЂљ (XP)', icon: 'РІВ­С’' },
+    { id: 'currency' as RewardType, name: 'Р вЂ™Р В°Р В»РЎР‹РЎвЂљР В°', icon: 'СЂСџвЂ™В°' },
+    { id: 'loot' as RewardType, name: 'Р СџРЎР‚Р ВµР Т‘Р СР ВµРЎвЂљ', icon: 'СЂСџР‹Рѓ' },
+    { id: 'none' as RewardType, name: 'Р вЂР ВµР В· Р Р…Р В°Р С–РЎР‚Р В°Р Т‘РЎвЂ№', icon: 'РІСњРЉ' }
   ];
 
   const resetWizard = () => {
@@ -217,9 +217,9 @@ export function AdminGamesPageNew({ onBack, onNavigateToSection }: AdminGamesPag
         return {
           sectors: [
             { label: '10 XP', weight: 40, rewardType: 'xp' as RewardType, rewardValue: 10 },
-            { label: '50 РјРѕРЅРµС‚', weight: 30, rewardType: 'currency' as RewardType, rewardValue: 50 },
-            { label: '100 РјРѕРЅРµС‚', weight: 20, rewardType: 'currency' as RewardType, rewardValue: 100 },
-            { label: 'РџСѓСЃС‚Рѕ', weight: 10, rewardType: 'none' as RewardType, rewardValue: 0 }
+            { label: '50 Р СР С•Р Р…Р ВµРЎвЂљ', weight: 30, rewardType: 'currency' as RewardType, rewardValue: 50 },
+            { label: '100 Р СР С•Р Р…Р ВµРЎвЂљ', weight: 20, rewardType: 'currency' as RewardType, rewardValue: 100 },
+            { label: 'Р СџРЎС“РЎРѓРЎвЂљР С•', weight: 10, rewardType: 'none' as RewardType, rewardValue: 0 }
           ],
           spinAnimationMs: 3000
         };
@@ -234,15 +234,15 @@ export function AdminGamesPageNew({ onBack, onNavigateToSection }: AdminGamesPag
         return {
           reels: 3,
           symbols: [
-            { id: 'cherry', label: 'Р’РёС€РЅСЏ', icon: 'рџЌ’', rarity: 1 },
-            { id: 'lemon', label: 'Р›РёРјРѕРЅ', icon: 'рџЌ‹', rarity: 1 },
-            { id: 'grape', label: 'Р’РёРЅРѕРіСЂР°Рґ', icon: 'рџЌ‡', rarity: 2 },
-            { id: 'bell', label: 'РљРѕР»РѕРєРѕР»', icon: 'рџ””', rarity: 3 },
-            { id: 'star', label: 'Р—РІРµР·РґР°', icon: 'в­ђ', rarity: 5 }
+            { id: 'cherry', label: 'Р вЂ™Р С‘РЎв‚¬Р Р…РЎРЏ', icon: 'СЂСџРЊвЂ™', rarity: 1 },
+            { id: 'lemon', label: 'Р вЂєР С‘Р СР С•Р Р…', icon: 'СЂСџРЊвЂ№', rarity: 1 },
+            { id: 'grape', label: 'Р вЂ™Р С‘Р Р…Р С•Р С–РЎР‚Р В°Р Т‘', icon: 'СЂСџРЊвЂЎ', rarity: 2 },
+            { id: 'bell', label: 'Р С™Р С•Р В»Р С•Р С”Р С•Р В»', icon: 'СЂСџвЂќвЂќ', rarity: 3 },
+            { id: 'star', label: 'Р вЂ”Р Р†Р ВµР В·Р Т‘Р В°', icon: 'РІВ­С’', rarity: 5 }
           ],
           combinations: [
-            { pattern: ['cherry', 'cherry', 'cherry'], multiplier: 10, description: 'РўСЂРё РІРёС€РЅРё' },
-            { pattern: ['star', 'star', 'star'], multiplier: 100, description: 'РўСЂРё Р·РІРµР·РґС‹' }
+            { pattern: ['cherry', 'cherry', 'cherry'], multiplier: 10, description: 'Р СћРЎР‚Р С‘ Р Р†Р С‘РЎв‚¬Р Р…Р С‘' },
+            { pattern: ['star', 'star', 'star'], multiplier: 100, description: 'Р СћРЎР‚Р С‘ Р В·Р Р†Р ВµР В·Р Т‘РЎвЂ№' }
           ],
           spinDurationMs: 2000
         };
@@ -259,8 +259,8 @@ export function AdminGamesPageNew({ onBack, onNavigateToSection }: AdminGamesPag
         return (
           <div className="space-y-6">
             <div className="text-center mb-6">
-              <h3 className="text-lg font-medium text-foreground mb-2">Р’С‹Р±РµСЂРёС‚Рµ С‚РёРї РёРіСЂС‹</h3>
-              <p className="text-sm text-muted-foreground">РљР°Р¶РґС‹Р№ С‚РёРї РёРјРµРµС‚ СЃРІРѕРё РѕСЃРѕР±РµРЅРЅРѕСЃС‚Рё Рё РЅР°СЃС‚СЂРѕР№РєРё</p>
+              <h3 className="text-lg font-medium text-foreground mb-2">Р вЂ™РЎвЂ№Р В±Р ВµРЎР‚Р С‘РЎвЂљР Вµ РЎвЂљР С‘Р С— Р С‘Р С–РЎР‚РЎвЂ№</h3>
+              <p className="text-sm text-muted-foreground">Р С™Р В°Р В¶Р Т‘РЎвЂ№Р в„– РЎвЂљР С‘Р С— Р С‘Р СР ВµР ВµРЎвЂљ РЎРѓР Р†Р С•Р С‘ Р С•РЎРѓР С•Р В±Р ВµР Р…Р Р…Р С•РЎРѓРЎвЂљР С‘ Р С‘ Р Р…Р В°РЎРѓРЎвЂљРЎР‚Р С•Р в„–Р С”Р С‘</p>
             </div>
             <div className="grid gap-4">
               {gameTypes.map((type) => {
@@ -300,41 +300,41 @@ export function AdminGamesPageNew({ onBack, onNavigateToSection }: AdminGamesPag
         return (
           <div className="space-y-6">
             <div className="text-center mb-6">
-              <h3 className="text-lg font-medium text-foreground mb-2">РћСЃРЅРѕРІРЅР°СЏ РёРЅС„РѕСЂРјР°С†РёСЏ</h3>
-              <p className="text-sm text-muted-foreground">РќР°Р·РІР°РЅРёРµ Рё РѕРїРёСЃР°РЅРёРµ РёРіСЂС‹</p>
+              <h3 className="text-lg font-medium text-foreground mb-2">Р С›РЎРѓР Р…Р С•Р Р†Р Р…Р В°РЎРЏ Р С‘Р Р…РЎвЂћР С•РЎР‚Р СР В°РЎвЂ Р С‘РЎРЏ</h3>
+              <p className="text-sm text-muted-foreground">Р СњР В°Р В·Р Р†Р В°Р Р…Р С‘Р Вµ Р С‘ Р С•Р С—Р С‘РЎРѓР В°Р Р…Р С‘Р Вµ Р С‘Р С–РЎР‚РЎвЂ№</p>
             </div>
             <div className="space-y-4">
               <div>
                 <label className="text-sm font-medium text-foreground mb-2 block">
-                  РќР°Р·РІР°РЅРёРµ РёРіСЂС‹ *
+                  Р СњР В°Р В·Р Р†Р В°Р Р…Р С‘Р Вµ Р С‘Р С–РЎР‚РЎвЂ№ *
                 </label>
                 <Input
                   value={wizardState.gameData.name || ''}
                   onChange={(e) => updateWizardData({ name: e.target.value })}
-                  placeholder="Р’РІРµРґРёС‚Рµ РЅР°Р·РІР°РЅРёРµ РёРіСЂС‹"
+                  placeholder="Р вЂ™Р Р†Р ВµР Т‘Р С‘РЎвЂљР Вµ Р Р…Р В°Р В·Р Р†Р В°Р Р…Р С‘Р Вµ Р С‘Р С–РЎР‚РЎвЂ№"
                   className="glass-card"
                 />
               </div>
               <div>
                 <label className="text-sm font-medium text-foreground mb-2 block">
-                  РћРїРёСЃР°РЅРёРµ
+                  Р С›Р С—Р С‘РЎРѓР В°Р Р…Р С‘Р Вµ
                 </label>
                 <Textarea
                   value={wizardState.gameData.description || ''}
                   onChange={(e) => updateWizardData({ description: e.target.value })}
-                  placeholder="РљСЂР°С‚РєРѕРµ РѕРїРёСЃР°РЅРёРµ РёРіСЂС‹"
+                  placeholder="Р С™РЎР‚Р В°РЎвЂљР С”Р С•Р Вµ Р С•Р С—Р С‘РЎРѓР В°Р Р…Р С‘Р Вµ Р С‘Р С–РЎР‚РЎвЂ№"
                   className="glass-card resize-none"
                   rows={3}
                 />
               </div>
               <div>
                 <label className="text-sm font-medium text-foreground mb-2 block">
-                  РРєРѕРЅРєР° (emoji)
+                  Р ВР С”Р С•Р Р…Р С”Р В° (emoji)
                 </label>
                 <Input
                   value={wizardState.gameData.icon || ''}
                   onChange={(e) => updateWizardData({ icon: e.target.value })}
-                  placeholder="рџЋ®"
+                  placeholder="СЂСџР‹В®"
                   className="glass-card"
                   maxLength={2}
                 />
@@ -362,7 +362,7 @@ export function AdminGamesPageNew({ onBack, onNavigateToSection }: AdminGamesPag
         return (
           <div className="text-center py-8">
             <div className="text-muted-foreground">
-              РЁР°Рі "{currentStepData.title}" РІ СЂР°Р·СЂР°Р±РѕС‚РєРµ
+              Р РЃР В°Р С– "{currentStepData.title}" Р Р† РЎР‚Р В°Р В·РЎР‚Р В°Р В±Р С•РЎвЂљР С”Р Вµ
             </div>
           </div>
         );
@@ -380,7 +380,7 @@ export function AdminGamesPageNew({ onBack, onNavigateToSection }: AdminGamesPag
       case 'config':
         return !!wizardState.gameData.config;
       case 'rewards':
-        return true; // РќР°РіСЂР°РґС‹ РЅРµ РѕР±СЏР·Р°С‚РµР»СЊРЅС‹
+        return true; // Р СњР В°Р С–РЎР‚Р В°Р Т‘РЎвЂ№ Р Р…Р Вµ Р С•Р В±РЎРЏР В·Р В°РЎвЂљР ВµР В»РЎРЉР Р…РЎвЂ№
       case 'access':
         return !!wizardState.gameData.access?.cooldownSeconds;
       case 'preview':
@@ -403,9 +403,9 @@ export function AdminGamesPageNew({ onBack, onNavigateToSection }: AdminGamesPag
 
   const getStatusLabel = (status: GameStatus) => {
     switch (status) {
-      case 'published': return 'РћРїСѓР±Р»РёРєРѕРІР°РЅРѕ';
-      case 'draft': return 'Р§РµСЂРЅРѕРІРёРє';
-      case 'archived': return 'РђСЂС…РёРІ';
+      case 'published': return 'Р С›Р С—РЎС“Р В±Р В»Р С‘Р С”Р С•Р Р†Р В°Р Р…Р С•';
+      case 'draft': return 'Р В§Р ВµРЎР‚Р Р…Р С•Р Р†Р С‘Р С”';
+      case 'archived': return 'Р С’РЎР‚РЎвЂ¦Р С‘Р Р†';
       default: return status;
     }
   };
@@ -421,7 +421,7 @@ export function AdminGamesPageNew({ onBack, onNavigateToSection }: AdminGamesPag
   const renderGameConfigStep = () => {
     const gameType = wizardState.gameData.type;
     
-    if (!gameType) return <div>РЎРЅР°С‡Р°Р»Р° РІС‹Р±РµСЂРёС‚Рµ С‚РёРї РёРіСЂС‹</div>;
+    if (!gameType) return <div>Р РЋР Р…Р В°РЎвЂЎР В°Р В»Р В° Р Р†РЎвЂ№Р В±Р ВµРЎР‚Р С‘РЎвЂљР Вµ РЎвЂљР С‘Р С— Р С‘Р С–РЎР‚РЎвЂ№</div>;
 
     switch (gameType) {
       case 'wheel':
@@ -431,7 +431,7 @@ export function AdminGamesPageNew({ onBack, onNavigateToSection }: AdminGamesPag
       case 'slots':
         return renderSlotsConfig();
       default:
-        return <div>РќРµРёР·РІРµСЃС‚РЅС‹Р№ С‚РёРї РёРіСЂС‹</div>;
+        return <div>Р СњР ВµР С‘Р В·Р Р†Р ВµРЎРѓРЎвЂљР Р…РЎвЂ№Р в„– РЎвЂљР С‘Р С— Р С‘Р С–РЎР‚РЎвЂ№</div>;
     }
   };
 
@@ -444,7 +444,7 @@ export function AdminGamesPageNew({ onBack, onNavigateToSection }: AdminGamesPag
     
     const addSector = () => {
       const newSector: WheelSector = {
-        label: 'РќРѕРІС‹Р№ СЃРµРєС‚РѕСЂ',
+        label: 'Р СњР С•Р Р†РЎвЂ№Р в„– РЎРѓР ВµР С”РЎвЂљР С•РЎР‚',
         weight: 10,
         rewardType: 'none',
         rewardValue: 0
@@ -465,14 +465,14 @@ export function AdminGamesPageNew({ onBack, onNavigateToSection }: AdminGamesPag
     return (
       <div className="space-y-6">
         <div className="text-center mb-6">
-          <h3 className="text-lg font-medium text-foreground mb-2">РќР°СЃС‚СЂРѕР№РєРё РєРѕР»РµСЃР° С„РѕСЂС‚СѓРЅС‹</h3>
-          <p className="text-sm text-muted-foreground">Р”РѕР±Р°РІСЊС‚Рµ СЃРµРєС‚РѕСЂС‹ Рё РЅР°СЃС‚СЂРѕР№С‚Рµ Р°РЅРёРјР°С†РёСЋ</p>
+          <h3 className="text-lg font-medium text-foreground mb-2">Р СњР В°РЎРѓРЎвЂљРЎР‚Р С•Р в„–Р С”Р С‘ Р С”Р С•Р В»Р ВµРЎРѓР В° РЎвЂћР С•РЎР‚РЎвЂљРЎС“Р Р…РЎвЂ№</h3>
+          <p className="text-sm text-muted-foreground">Р вЂќР С•Р В±Р В°Р Р†РЎРЉРЎвЂљР Вµ РЎРѓР ВµР С”РЎвЂљР С•РЎР‚РЎвЂ№ Р С‘ Р Р…Р В°РЎРѓРЎвЂљРЎР‚Р С•Р в„–РЎвЂљР Вµ Р В°Р Р…Р С‘Р СР В°РЎвЂ Р С‘РЎР‹</p>
         </div>
         
         <div className="space-y-4">
           <div>
             <label className="text-sm font-medium text-foreground mb-2 block">
-              Р’СЂРµРјСЏ Р°РЅРёРјР°С†РёРё (РјСЃ)
+              Р вЂ™РЎР‚Р ВµР СРЎРЏ Р В°Р Р…Р С‘Р СР В°РЎвЂ Р С‘Р С‘ (Р СРЎРѓ)
             </label>
             <Input
               type="number"
@@ -485,13 +485,13 @@ export function AdminGamesPageNew({ onBack, onNavigateToSection }: AdminGamesPag
           </div>
           
           <div className="flex items-center justify-between">
-            <label className="text-sm font-medium text-foreground">РЎРµРєС‚РѕСЂС‹ РєРѕР»РµСЃР°</label>
+            <label className="text-sm font-medium text-foreground">Р РЋР ВµР С”РЎвЂљР С•РЎР‚РЎвЂ№ Р С”Р С•Р В»Р ВµРЎРѓР В°</label>
             <button
               onClick={addSector}
               className="flex items-center gap-2 bg-primary text-primary-foreground px-3 py-2 rounded-lg hover:scale-[0.98] transition-transform text-sm"
             >
               <Plus className="w-4 h-4" />
-              Р”РѕР±Р°РІРёС‚СЊ СЃРµРєС‚РѕСЂ
+              Р вЂќР С•Р В±Р В°Р Р†Р С‘РЎвЂљРЎРЉ РЎРѓР ВµР С”РЎвЂљР С•РЎР‚
             </button>
           </div>
           
@@ -499,7 +499,7 @@ export function AdminGamesPageNew({ onBack, onNavigateToSection }: AdminGamesPag
             {config.sectors.map((sector, index) => (
               <div key={index} className="glass-card rounded-xl p-4">
                 <div className="flex items-center justify-between mb-3">
-                  <span className="text-sm font-medium text-foreground">РЎРµРєС‚РѕСЂ {index + 1}</span>
+                  <span className="text-sm font-medium text-foreground">Р РЋР ВµР С”РЎвЂљР С•РЎР‚ {index + 1}</span>
                   <button
                     onClick={() => removeSector(index)}
                     className="p-1 hover:bg-red-100 rounded transition-colors"
@@ -510,16 +510,16 @@ export function AdminGamesPageNew({ onBack, onNavigateToSection }: AdminGamesPag
                 
                 <div className="grid grid-cols-2 gap-3">
                   <div>
-                    <label className="text-xs text-muted-foreground mb-1 block">РќР°Р·РІР°РЅРёРµ</label>
+                    <label className="text-xs text-muted-foreground mb-1 block">Р СњР В°Р В·Р Р†Р В°Р Р…Р С‘Р Вµ</label>
                     <Input
                       value={sector.label}
                       onChange={(e) => updateSector(index, { label: e.target.value })}
                       className="glass-card text-sm"
-                      placeholder="РќР°Р·РІР°РЅРёРµ СЃРµРєС‚РѕСЂР°"
+                      placeholder="Р СњР В°Р В·Р Р†Р В°Р Р…Р С‘Р Вµ РЎРѓР ВµР С”РЎвЂљР С•РЎР‚Р В°"
                     />
                   </div>
                   <div>
-                    <label className="text-xs text-muted-foreground mb-1 block">Р’РµСЃ (%)</label>
+                    <label className="text-xs text-muted-foreground mb-1 block">Р вЂ™Р ВµРЎРѓ (%)</label>
                     <Input
                       type="number"
                       value={sector.weight}
@@ -530,7 +530,7 @@ export function AdminGamesPageNew({ onBack, onNavigateToSection }: AdminGamesPag
                     />
                   </div>
                   <div>
-                    <label className="text-xs text-muted-foreground mb-1 block">РўРёРї РЅР°РіСЂР°РґС‹</label>
+                    <label className="text-xs text-muted-foreground mb-1 block">Р СћР С‘Р С— Р Р…Р В°Р С–РЎР‚Р В°Р Т‘РЎвЂ№</label>
                     <Select
                       value={sector.rewardType}
                       onValueChange={(value: RewardType) => updateSector(index, { rewardType: value })}
@@ -548,7 +548,7 @@ export function AdminGamesPageNew({ onBack, onNavigateToSection }: AdminGamesPag
                     </Select>
                   </div>
                   <div>
-                    <label className="text-xs text-muted-foreground mb-1 block">РљРѕР»РёС‡РµСЃС‚РІРѕ</label>
+                    <label className="text-xs text-muted-foreground mb-1 block">Р С™Р С•Р В»Р С‘РЎвЂЎР ВµРЎРѓРЎвЂљР Р†Р С•</label>
                     <Input
                       type="number"
                       value={sector.rewardValue}
@@ -565,7 +565,7 @@ export function AdminGamesPageNew({ onBack, onNavigateToSection }: AdminGamesPag
           
           {config.sectors.length === 0 && (
             <div className="text-center py-8 text-muted-foreground">
-              Р”РѕР±Р°РІСЊС‚Рµ СЃРµРєС‚РѕСЂС‹ РґР»СЏ РєРѕР»РµСЃР°
+              Р вЂќР С•Р В±Р В°Р Р†РЎРЉРЎвЂљР Вµ РЎРѓР ВµР С”РЎвЂљР С•РЎР‚РЎвЂ№ Р Т‘Р В»РЎРЏ Р С”Р С•Р В»Р ВµРЎРѓР В°
             </div>
           )}
         </div>
@@ -587,13 +587,13 @@ export function AdminGamesPageNew({ onBack, onNavigateToSection }: AdminGamesPag
     return (
       <div className="space-y-6">
         <div className="text-center mb-6">
-          <h3 className="text-lg font-medium text-foreground mb-2">РќР°СЃС‚СЂРѕР№РєРё РєР°РјРµРЅСЊ-РЅРѕР¶РЅРёС†С‹-Р±СѓРјР°РіР°</h3>
-          <p className="text-sm text-muted-foreground">Р РµР¶РёРј РёРіСЂС‹ Рё РЅР°РіСЂР°РґС‹</p>
+          <h3 className="text-lg font-medium text-foreground mb-2">Р СњР В°РЎРѓРЎвЂљРЎР‚Р С•Р в„–Р С”Р С‘ Р С”Р В°Р СР ВµР Р…РЎРЉ-Р Р…Р С•Р В¶Р Р…Р С‘РЎвЂ РЎвЂ№-Р В±РЎС“Р СР В°Р С–Р В°</h3>
+          <p className="text-sm text-muted-foreground">Р В Р ВµР В¶Р С‘Р С Р С‘Р С–РЎР‚РЎвЂ№ Р С‘ Р Р…Р В°Р С–РЎР‚Р В°Р Т‘РЎвЂ№</p>
         </div>
         
         <div className="space-y-4">
           <div>
-            <label className="text-sm font-medium text-foreground mb-2 block">Р РµР¶РёРј РёРіСЂС‹</label>
+            <label className="text-sm font-medium text-foreground mb-2 block">Р В Р ВµР В¶Р С‘Р С Р С‘Р С–РЎР‚РЎвЂ№</label>
             <div className="grid grid-cols-2 gap-3">
               <button
                 onClick={() => updateRPSConfig({ mode: 'pve' })}
@@ -601,9 +601,9 @@ export function AdminGamesPageNew({ onBack, onNavigateToSection }: AdminGamesPag
                   config.mode === 'pve' ? 'bg-primary text-primary-foreground' : 'glass-card'
                 }`}
               >
-                <div className="font-medium">РџСЂРѕС‚РёРІ Р±РѕС‚Р° (PvE)</div>
+                <div className="font-medium">Р СџРЎР‚Р С•РЎвЂљР С‘Р Р† Р В±Р С•РЎвЂљР В° (PvE)</div>
                 <div className={`text-sm ${config.mode === 'pve' ? 'opacity-90' : 'text-muted-foreground'}`}>
-                  РРіСЂР° РїСЂРѕС‚РёРІ РєРѕРјРїСЊСЋС‚РµСЂР°
+                  Р ВР С–РЎР‚Р В° Р С—РЎР‚Р С•РЎвЂљР С‘Р Р† Р С”Р С•Р СР С—РЎРЉРЎР‹РЎвЂљР ВµРЎР‚Р В°
                 </div>
               </button>
               <button
@@ -612,16 +612,16 @@ export function AdminGamesPageNew({ onBack, onNavigateToSection }: AdminGamesPag
                   config.mode === 'pvp' ? 'bg-primary text-primary-foreground' : 'glass-card'
                 }`}
               >
-                <div className="font-medium">РџСЂРѕС‚РёРІ РёРіСЂРѕРєР° (PvP)</div>
+                <div className="font-medium">Р СџРЎР‚Р С•РЎвЂљР С‘Р Р† Р С‘Р С–РЎР‚Р С•Р С”Р В° (PvP)</div>
                 <div className={`text-sm ${config.mode === 'pvp' ? 'opacity-90' : 'text-muted-foreground'}`}>
-                  РРіСЂР° РїСЂРѕС‚РёРІ РґСЂСѓРіРёС… РёРіСЂРѕРєРѕРІ
+                  Р ВР С–РЎР‚Р В° Р С—РЎР‚Р С•РЎвЂљР С‘Р Р† Р Т‘РЎР‚РЎС“Р С–Р С‘РЎвЂ¦ Р С‘Р С–РЎР‚Р С•Р С”Р С•Р Р†
                 </div>
               </button>
             </div>
           </div>
           
           <div>
-            <label className="text-sm font-medium text-foreground mb-2 block">РљРѕР»РёС‡РµСЃС‚РІРѕ СЂР°СѓРЅРґРѕРІ</label>
+            <label className="text-sm font-medium text-foreground mb-2 block">Р С™Р С•Р В»Р С‘РЎвЂЎР ВµРЎРѓРЎвЂљР Р†Р С• РЎР‚Р В°РЎС“Р Р…Р Т‘Р С•Р Р†</label>
             <Input
               type="number"
               value={config.rounds}
@@ -633,10 +633,10 @@ export function AdminGamesPageNew({ onBack, onNavigateToSection }: AdminGamesPag
           </div>
           
           <div className="glass-card rounded-xl p-4">
-            <h4 className="font-medium text-foreground mb-3">РќР°РіСЂР°РґР° Р·Р° РїРѕР±РµРґСѓ</h4>
+            <h4 className="font-medium text-foreground mb-3">Р СњР В°Р С–РЎР‚Р В°Р Т‘Р В° Р В·Р В° Р С—Р С•Р В±Р ВµР Т‘РЎС“</h4>
             <div className="grid grid-cols-2 gap-3">
               <div>
-                <label className="text-xs text-muted-foreground mb-1 block">РўРёРї РЅР°РіСЂР°РґС‹</label>
+                <label className="text-xs text-muted-foreground mb-1 block">Р СћР С‘Р С— Р Р…Р В°Р С–РЎР‚Р В°Р Т‘РЎвЂ№</label>
                 <Select
                   value={config.winReward.type}
                   onValueChange={(value: RewardType) => 
@@ -656,7 +656,7 @@ export function AdminGamesPageNew({ onBack, onNavigateToSection }: AdminGamesPag
                 </Select>
               </div>
               <div>
-                <label className="text-xs text-muted-foreground mb-1 block">РљРѕР»РёС‡РµСЃС‚РІРѕ</label>
+                <label className="text-xs text-muted-foreground mb-1 block">Р С™Р С•Р В»Р С‘РЎвЂЎР ВµРЎРѓРЎвЂљР Р†Р С•</label>
                 <Input
                   type="number"
                   value={config.winReward.value}
@@ -689,14 +689,14 @@ export function AdminGamesPageNew({ onBack, onNavigateToSection }: AdminGamesPag
     return (
       <div className="space-y-6">
         <div className="text-center mb-6">
-          <h3 className="text-lg font-medium text-foreground mb-2">РќР°СЃС‚СЂРѕР№РєРё СЃР»РѕС‚РѕРІ</h3>
-          <p className="text-sm text-muted-foreground">Р‘Р°СЂР°Р±Р°РЅС‹, СЃРёРјРІРѕР»С‹ Рё РєРѕРјР±РёРЅР°С†РёРё</p>
+          <h3 className="text-lg font-medium text-foreground mb-2">Р СњР В°РЎРѓРЎвЂљРЎР‚Р С•Р в„–Р С”Р С‘ РЎРѓР В»Р С•РЎвЂљР С•Р Р†</h3>
+          <p className="text-sm text-muted-foreground">Р вЂР В°РЎР‚Р В°Р В±Р В°Р Р…РЎвЂ№, РЎРѓР С‘Р СР Р†Р С•Р В»РЎвЂ№ Р С‘ Р С”Р С•Р СР В±Р С‘Р Р…Р В°РЎвЂ Р С‘Р С‘</p>
         </div>
         
         <div className="space-y-4">
           <div className="grid grid-cols-2 gap-3">
             <div>
-              <label className="text-sm font-medium text-foreground mb-2 block">РљРѕР»РёС‡РµСЃС‚РІРѕ Р±Р°СЂР°Р±Р°РЅРѕРІ</label>
+              <label className="text-sm font-medium text-foreground mb-2 block">Р С™Р С•Р В»Р С‘РЎвЂЎР ВµРЎРѓРЎвЂљР Р†Р С• Р В±Р В°РЎР‚Р В°Р В±Р В°Р Р…Р С•Р Р†</label>
               <Input
                 type="number"
                 value={config.reels}
@@ -707,7 +707,7 @@ export function AdminGamesPageNew({ onBack, onNavigateToSection }: AdminGamesPag
               />
             </div>
             <div>
-              <label className="text-sm font-medium text-foreground mb-2 block">Р’СЂРµРјСЏ РїСЂРѕРєСЂСѓС‚РєРё (РјСЃ)</label>
+              <label className="text-sm font-medium text-foreground mb-2 block">Р вЂ™РЎР‚Р ВµР СРЎРЏ Р С—РЎР‚Р С•Р С”РЎР‚РЎС“РЎвЂљР С”Р С‘ (Р СРЎРѓ)</label>
               <Input
                 type="number"
                 value={config.spinDurationMs}
@@ -720,7 +720,7 @@ export function AdminGamesPageNew({ onBack, onNavigateToSection }: AdminGamesPag
           </div>
           
           <div className="text-center py-8 text-muted-foreground">
-            РџРѕРґСЂРѕР±РЅС‹Рµ РЅР°СЃС‚СЂРѕР№РєРё СЃРёРјРІРѕР»РѕРІ Рё РєРѕРјР±РёРЅР°С†РёР№ Р±СѓРґСѓС‚ РґРѕР±Р°РІР»РµРЅС‹ РІ СЃР»РµРґСѓСЋС‰РµР№ РІРµСЂСЃРёРё
+            Р СџР С•Р Т‘РЎР‚Р С•Р В±Р Р…РЎвЂ№Р Вµ Р Р…Р В°РЎРѓРЎвЂљРЎР‚Р С•Р в„–Р С”Р С‘ РЎРѓР С‘Р СР Р†Р С•Р В»Р С•Р Р† Р С‘ Р С”Р С•Р СР В±Р С‘Р Р…Р В°РЎвЂ Р С‘Р в„– Р В±РЎС“Р Т‘РЎС“РЎвЂљ Р Т‘Р С•Р В±Р В°Р Р†Р В»Р ВµР Р…РЎвЂ№ Р Р† РЎРѓР В»Р ВµР Т‘РЎС“РЎР‹РЎвЂ°Р ВµР в„– Р Р†Р ВµРЎР‚РЎРѓР С‘Р С‘
           </div>
         </div>
       </div>
@@ -732,10 +732,10 @@ export function AdminGamesPageNew({ onBack, onNavigateToSection }: AdminGamesPag
     
     const addReward = () => {
       const newReward: GameReward = {
-        condition: 'Р·Р° РїРѕР±РµРґСѓ',
+        condition: 'Р В·Р В° Р С—Р С•Р В±Р ВµР Т‘РЎС“',
         type: 'currency',
         value: 10,
-        description: 'РќР°РіСЂР°РґР° Р·Р° РІС‹РїРѕР»РЅРµРЅРёРµ СѓСЃР»РѕРІРёСЏ'
+        description: 'Р СњР В°Р С–РЎР‚Р В°Р Т‘Р В° Р В·Р В° Р Р†РЎвЂ№Р С—Р С•Р В»Р Р…Р ВµР Р…Р С‘Р Вµ РЎС“РЎРѓР В»Р С•Р Р†Р С‘РЎРЏ'
       };
       updateWizardData({ rewards: [...rewards, newReward] });
     };
@@ -753,18 +753,18 @@ export function AdminGamesPageNew({ onBack, onNavigateToSection }: AdminGamesPag
     return (
       <div className="space-y-6">
         <div className="text-center mb-6">
-          <h3 className="text-lg font-medium text-foreground mb-2">РЎРёСЃС‚РµРјР° РЅР°РіСЂР°Рґ</h3>
-          <p className="text-sm text-muted-foreground">РќР°СЃС‚СЂРѕР№С‚Рµ РЅР°РіСЂР°РґС‹ Р·Р° СЂР°Р·Р»РёС‡РЅС‹Рµ РґРµР№СЃС‚РІРёСЏ</p>
+          <h3 className="text-lg font-medium text-foreground mb-2">Р РЋР С‘РЎРѓРЎвЂљР ВµР СР В° Р Р…Р В°Р С–РЎР‚Р В°Р Т‘</h3>
+          <p className="text-sm text-muted-foreground">Р СњР В°РЎРѓРЎвЂљРЎР‚Р С•Р в„–РЎвЂљР Вµ Р Р…Р В°Р С–РЎР‚Р В°Р Т‘РЎвЂ№ Р В·Р В° РЎР‚Р В°Р В·Р В»Р С‘РЎвЂЎР Р…РЎвЂ№Р Вµ Р Т‘Р ВµР в„–РЎРѓРЎвЂљР Р†Р С‘РЎРЏ</p>
         </div>
         
         <div className="flex items-center justify-between">
-          <label className="text-sm font-medium text-foreground">РќР°РіСЂР°РґС‹</label>
+          <label className="text-sm font-medium text-foreground">Р СњР В°Р С–РЎР‚Р В°Р Т‘РЎвЂ№</label>
           <button
             onClick={addReward}
             className="flex items-center gap-2 bg-primary text-primary-foreground px-3 py-2 rounded-lg hover:scale-[0.98] transition-transform text-sm"
           >
             <Plus className="w-4 h-4" />
-            Р”РѕР±Р°РІРёС‚СЊ РЅР°РіСЂР°РґСѓ
+            Р вЂќР С•Р В±Р В°Р Р†Р С‘РЎвЂљРЎРЉ Р Р…Р В°Р С–РЎР‚Р В°Р Т‘РЎС“
           </button>
         </div>
         
@@ -772,7 +772,7 @@ export function AdminGamesPageNew({ onBack, onNavigateToSection }: AdminGamesPag
           {rewards.map((reward, index) => (
             <div key={index} className="glass-card rounded-xl p-4">
               <div className="flex items-center justify-between mb-3">
-                <span className="text-sm font-medium text-foreground">РќР°РіСЂР°РґР° {index + 1}</span>
+                <span className="text-sm font-medium text-foreground">Р СњР В°Р С–РЎР‚Р В°Р Т‘Р В° {index + 1}</span>
                 <button
                   onClick={() => removeReward(index)}
                   className="p-1 hover:bg-red-100 rounded transition-colors"
@@ -783,16 +783,16 @@ export function AdminGamesPageNew({ onBack, onNavigateToSection }: AdminGamesPag
               
               <div className="grid grid-cols-2 gap-3 mb-3">
                 <div>
-                  <label className="text-xs text-muted-foreground mb-1 block">РЈСЃР»РѕРІРёРµ</label>
+                  <label className="text-xs text-muted-foreground mb-1 block">Р Р€РЎРѓР В»Р С•Р Р†Р С‘Р Вµ</label>
                   <Input
                     value={reward.condition}
                     onChange={(e) => updateReward(index, { condition: e.target.value })}
                     className="glass-card text-sm"
-                    placeholder="Р·Р° РїРѕР±РµРґСѓ"
+                    placeholder="Р В·Р В° Р С—Р С•Р В±Р ВµР Т‘РЎС“"
                   />
                 </div>
                 <div>
-                  <label className="text-xs text-muted-foreground mb-1 block">РўРёРї РЅР°РіСЂР°РґС‹</label>
+                  <label className="text-xs text-muted-foreground mb-1 block">Р СћР С‘Р С— Р Р…Р В°Р С–РЎР‚Р В°Р Т‘РЎвЂ№</label>
                   <Select
                     value={reward.type}
                     onValueChange={(value: RewardType) => updateReward(index, { type: value })}
@@ -813,7 +813,7 @@ export function AdminGamesPageNew({ onBack, onNavigateToSection }: AdminGamesPag
               
               <div className="grid grid-cols-2 gap-3">
                 <div>
-                  <label className="text-xs text-muted-foreground mb-1 block">РљРѕР»РёС‡РµСЃС‚РІРѕ</label>
+                  <label className="text-xs text-muted-foreground mb-1 block">Р С™Р С•Р В»Р С‘РЎвЂЎР ВµРЎРѓРЎвЂљР Р†Р С•</label>
                   <Input
                     type="number"
                     value={reward.value}
@@ -823,12 +823,12 @@ export function AdminGamesPageNew({ onBack, onNavigateToSection }: AdminGamesPag
                   />
                 </div>
                 <div>
-                  <label className="text-xs text-muted-foreground mb-1 block">РћРїРёСЃР°РЅРёРµ</label>
+                  <label className="text-xs text-muted-foreground mb-1 block">Р С›Р С—Р С‘РЎРѓР В°Р Р…Р С‘Р Вµ</label>
                   <Input
                     value={reward.description}
                     onChange={(e) => updateReward(index, { description: e.target.value })}
                     className="glass-card text-sm"
-                    placeholder="РћРїРёСЃР°РЅРёРµ РЅР°РіСЂР°РґС‹"
+                    placeholder="Р С›Р С—Р С‘РЎРѓР В°Р Р…Р С‘Р Вµ Р Р…Р В°Р С–РЎР‚Р В°Р Т‘РЎвЂ№"
                   />
                 </div>
               </div>
@@ -838,7 +838,7 @@ export function AdminGamesPageNew({ onBack, onNavigateToSection }: AdminGamesPag
         
         {rewards.length === 0 && (
           <div className="text-center py-8 text-muted-foreground">
-            Р”РѕР±Р°РІСЊС‚Рµ РЅР°РіСЂР°РґС‹ РґР»СЏ РёРіСЂС‹
+            Р вЂќР С•Р В±Р В°Р Р†РЎРЉРЎвЂљР Вµ Р Р…Р В°Р С–РЎР‚Р В°Р Т‘РЎвЂ№ Р Т‘Р В»РЎРЏ Р С‘Р С–РЎР‚РЎвЂ№
           </div>
         )}
       </div>
@@ -855,13 +855,13 @@ export function AdminGamesPageNew({ onBack, onNavigateToSection }: AdminGamesPag
     return (
       <div className="space-y-6">
         <div className="text-center mb-6">
-          <h3 className="text-lg font-medium text-foreground mb-2">РќР°СЃС‚СЂРѕР№РєРё РґРѕСЃС‚СѓРїР°</h3>
-          <p className="text-sm text-muted-foreground">Р’РёРґРёРјРѕСЃС‚СЊ РёРіСЂС‹ Рё РѕРіСЂР°РЅРёС‡РµРЅРёСЏ</p>
+          <h3 className="text-lg font-medium text-foreground mb-2">Р СњР В°РЎРѓРЎвЂљРЎР‚Р С•Р в„–Р С”Р С‘ Р Т‘Р С•РЎРѓРЎвЂљРЎС“Р С—Р В°</h3>
+          <p className="text-sm text-muted-foreground">Р вЂ™Р С‘Р Т‘Р С‘Р СР С•РЎРѓРЎвЂљРЎРЉ Р С‘Р С–РЎР‚РЎвЂ№ Р С‘ Р С•Р С–РЎР‚Р В°Р Р…Р С‘РЎвЂЎР ВµР Р…Р С‘РЎРЏ</p>
         </div>
         
         <div className="space-y-4">
           <div>
-            <label className="text-sm font-medium text-foreground mb-2 block">Р’РёРґРёРјРѕСЃС‚СЊ</label>
+            <label className="text-sm font-medium text-foreground mb-2 block">Р вЂ™Р С‘Р Т‘Р С‘Р СР С•РЎРѓРЎвЂљРЎРЉ</label>
             <div className="space-y-2">
               <button
                 onClick={() => updateAccess({ visibility: 'public' })}
@@ -869,9 +869,9 @@ export function AdminGamesPageNew({ onBack, onNavigateToSection }: AdminGamesPag
                   access.visibility === 'public' ? 'bg-primary text-primary-foreground' : 'glass-card'
                 }`}
               >
-                <div className="font-medium">рџЊђ РџСѓР±Р»РёС‡РЅР°СЏ</div>
+                <div className="font-medium">СЂСџРЉС’ Р СџРЎС“Р В±Р В»Р С‘РЎвЂЎР Р…Р В°РЎРЏ</div>
                 <div className={`text-sm ${access.visibility === 'public' ? 'opacity-90' : 'text-muted-foreground'}`}>
-                  РРіСЂР° РґРѕСЃС‚СѓРїРЅР° РІСЃРµРј РїРѕР»СЊР·РѕРІР°С‚РµР»СЏРј
+                  Р ВР С–РЎР‚Р В° Р Т‘Р С•РЎРѓРЎвЂљРЎС“Р С—Р Р…Р В° Р Р†РЎРѓР ВµР С Р С—Р С•Р В»РЎРЉР В·Р С•Р Р†Р В°РЎвЂљР ВµР В»РЎРЏР С
                 </div>
               </button>
               <button
@@ -880,9 +880,9 @@ export function AdminGamesPageNew({ onBack, onNavigateToSection }: AdminGamesPag
                   access.visibility === 'private' ? 'bg-primary text-primary-foreground' : 'glass-card'
                 }`}
               >
-                <div className="font-medium">рџ”’ РџСЂРёРІР°С‚РЅР°СЏ</div>
+                <div className="font-medium">СЂСџвЂќвЂ™ Р СџРЎР‚Р С‘Р Р†Р В°РЎвЂљР Р…Р В°РЎРЏ</div>
                 <div className={`text-sm ${access.visibility === 'private' ? 'opacity-90' : 'text-muted-foreground'}`}>
-                  РРіСЂР° РґРѕСЃС‚СѓРїРЅР° С‚РѕР»СЊРєРѕ РїРѕ РїСЂСЏРјРѕР№ СЃСЃС‹Р»РєРµ
+                  Р ВР С–РЎР‚Р В° Р Т‘Р С•РЎРѓРЎвЂљРЎС“Р С—Р Р…Р В° РЎвЂљР С•Р В»РЎРЉР С”Р С• Р С—Р С• Р С—РЎР‚РЎРЏР СР С•Р в„– РЎРѓРЎРѓРЎвЂ№Р В»Р С”Р Вµ
                 </div>
               </button>
               <button
@@ -891,9 +891,9 @@ export function AdminGamesPageNew({ onBack, onNavigateToSection }: AdminGamesPag
                   access.visibility === 'byRole' ? 'bg-primary text-primary-foreground' : 'glass-card'
                 }`}
               >
-                <div className="font-medium">рџ‘Ґ РџРѕ СЂРѕР»СЏРј</div>
+                <div className="font-medium">СЂСџвЂТђ Р СџР С• РЎР‚Р С•Р В»РЎРЏР С</div>
                 <div className={`text-sm ${access.visibility === 'byRole' ? 'opacity-90' : 'text-muted-foreground'}`}>
-                  РРіСЂР° РґРѕСЃС‚СѓРїРЅР° С‚РѕР»СЊРєРѕ РѕРїСЂРµРґРµР»РµРЅРЅС‹Рј СЂРѕР»СЏРј
+                  Р ВР С–РЎР‚Р В° Р Т‘Р С•РЎРѓРЎвЂљРЎС“Р С—Р Р…Р В° РЎвЂљР С•Р В»РЎРЉР С”Р С• Р С•Р С—РЎР‚Р ВµР Т‘Р ВµР В»Р ВµР Р…Р Р…РЎвЂ№Р С РЎР‚Р С•Р В»РЎРЏР С
                 </div>
               </button>
             </div>
@@ -901,7 +901,7 @@ export function AdminGamesPageNew({ onBack, onNavigateToSection }: AdminGamesPag
           
           <div>
             <label className="text-sm font-medium text-foreground mb-2 block">
-              РљСѓР»РґР°СѓРЅ (СЃРµРєСѓРЅРґС‹)
+              Р С™РЎС“Р В»Р Т‘Р В°РЎС“Р Р… (РЎРѓР ВµР С”РЎС“Р Р…Р Т‘РЎвЂ№)
             </label>
             <Input
               type="number"
@@ -912,7 +912,7 @@ export function AdminGamesPageNew({ onBack, onNavigateToSection }: AdminGamesPag
               placeholder="300"
             />
             <p className="text-xs text-muted-foreground mt-1">
-              Р’СЂРµРјСЏ РѕР¶РёРґР°РЅРёСЏ РјРµР¶РґСѓ РёРіСЂР°РјРё РґР»СЏ РѕРґРЅРѕРіРѕ РїРѕР»СЊР·РѕРІР°С‚РµР»СЏ
+              Р вЂ™РЎР‚Р ВµР СРЎРЏ Р С•Р В¶Р С‘Р Т‘Р В°Р Р…Р С‘РЎРЏ Р СР ВµР В¶Р Т‘РЎС“ Р С‘Р С–РЎР‚Р В°Р СР С‘ Р Т‘Р В»РЎРЏ Р С•Р Т‘Р Р…Р С•Р С–Р С• Р С—Р С•Р В»РЎРЉР В·Р С•Р Р†Р В°РЎвЂљР ВµР В»РЎРЏ
             </p>
           </div>
         </div>
@@ -924,8 +924,8 @@ export function AdminGamesPageNew({ onBack, onNavigateToSection }: AdminGamesPag
     return (
       <div className="space-y-6">
         <div className="text-center mb-6">
-          <h3 className="text-lg font-medium text-foreground mb-2">РџСЂРµРґРїСЂРѕСЃРјРѕС‚СЂ РёРіСЂС‹</h3>
-          <p className="text-sm text-muted-foreground">РџСЂРѕРІРµСЂСЊС‚Рµ РЅР°СЃС‚СЂРѕР№РєРё РїРµСЂРµРґ РїСѓР±Р»РёРєР°С†РёРµР№</p>
+          <h3 className="text-lg font-medium text-foreground mb-2">Р СџРЎР‚Р ВµР Т‘Р С—РЎР‚Р С•РЎРѓР СР С•РЎвЂљРЎР‚ Р С‘Р С–РЎР‚РЎвЂ№</h3>
+          <p className="text-sm text-muted-foreground">Р СџРЎР‚Р С•Р Р†Р ВµРЎР‚РЎРЉРЎвЂљР Вµ Р Р…Р В°РЎРѓРЎвЂљРЎР‚Р С•Р в„–Р С”Р С‘ Р С—Р ВµРЎР‚Р ВµР Т‘ Р С—РЎС“Р В±Р В»Р С‘Р С”Р В°РЎвЂ Р С‘Р ВµР в„–</p>
         </div>
         
         <div className="glass-card rounded-2xl p-6">
@@ -951,15 +951,15 @@ export function AdminGamesPageNew({ onBack, onNavigateToSection }: AdminGamesPag
           
           <div className="space-y-3 text-sm">
             <div className="flex justify-between">
-              <span className="text-muted-foreground">РљСѓР»РґР°СѓРЅ:</span>
-              <span>{wizardState.gameData.access?.cooldownSeconds}СЃ</span>
+              <span className="text-muted-foreground">Р С™РЎС“Р В»Р Т‘Р В°РЎС“Р Р…:</span>
+              <span>{wizardState.gameData.access?.cooldownSeconds}РЎРѓ</span>
             </div>
             <div className="flex justify-between">
-              <span className="text-muted-foreground">Р’РёРґРёРјРѕСЃС‚СЊ:</span>
+              <span className="text-muted-foreground">Р вЂ™Р С‘Р Т‘Р С‘Р СР С•РЎРѓРЎвЂљРЎРЉ:</span>
               <span>{wizardState.gameData.access?.visibility}</span>
             </div>
             <div className="flex justify-between">
-              <span className="text-muted-foreground">РќР°РіСЂР°Рґ:</span>
+              <span className="text-muted-foreground">Р СњР В°Р С–РЎР‚Р В°Р Т‘:</span>
               <span>{wizardState.gameData.rewards?.length || 0}</span>
             </div>
           </div>
@@ -967,7 +967,7 @@ export function AdminGamesPageNew({ onBack, onNavigateToSection }: AdminGamesPag
         
         <div className="text-center">
           <button className="w-full bg-primary text-primary-foreground py-3 rounded-xl hover:scale-[0.98] transition-transform">
-            РџСЂРѕР±РЅР°СЏ РёРіСЂР°
+            Р СџРЎР‚Р С•Р В±Р Р…Р В°РЎРЏ Р С‘Р С–РЎР‚Р В°
           </button>
         </div>
       </div>
@@ -978,8 +978,8 @@ export function AdminGamesPageNew({ onBack, onNavigateToSection }: AdminGamesPag
     return (
       <div className="space-y-6">
         <div className="text-center mb-6">
-          <h3 className="text-lg font-medium text-foreground mb-2">РџСѓР±Р»РёРєР°С†РёСЏ РёРіСЂС‹</h3>
-          <p className="text-sm text-muted-foreground">Р’С‹Р±РµСЂРёС‚Рµ, РєР°Рє СЃРѕС…СЂР°РЅРёС‚СЊ РёРіСЂСѓ</p>
+          <h3 className="text-lg font-medium text-foreground mb-2">Р СџРЎС“Р В±Р В»Р С‘Р С”Р В°РЎвЂ Р С‘РЎРЏ Р С‘Р С–РЎР‚РЎвЂ№</h3>
+          <p className="text-sm text-muted-foreground">Р вЂ™РЎвЂ№Р В±Р ВµРЎР‚Р С‘РЎвЂљР Вµ, Р С”Р В°Р С” РЎРѓР С•РЎвЂ¦РЎР‚Р В°Р Р…Р С‘РЎвЂљРЎРЉ Р С‘Р С–РЎР‚РЎС“</p>
         </div>
         
         <div className="space-y-3">
@@ -989,9 +989,9 @@ export function AdminGamesPageNew({ onBack, onNavigateToSection }: AdminGamesPag
               wizardState.gameData.status === 'draft' ? 'bg-orange-500 text-white' : 'glass-card'
             }`}
           >
-            <div className="font-medium">рџ“ќ РЎРѕС…СЂР°РЅРёС‚СЊ РєР°Рє С‡РµСЂРЅРѕРІРёРє</div>
+            <div className="font-medium">СЂСџвЂњСњ Р РЋР С•РЎвЂ¦РЎР‚Р В°Р Р…Р С‘РЎвЂљРЎРЉ Р С”Р В°Р С” РЎвЂЎР ВµРЎР‚Р Р…Р С•Р Р†Р С‘Р С”</div>
             <div className={`text-sm ${wizardState.gameData.status === 'draft' ? 'opacity-90' : 'text-muted-foreground'}`}>
-              РРіСЂР° Р±СѓРґРµС‚ СЃРѕС…СЂР°РЅРµРЅР°, РЅРѕ РЅРµ Р±СѓРґРµС‚ РґРѕСЃС‚СѓРїРЅР° РїРѕР»СЊР·РѕРІР°С‚РµР»СЏРј
+              Р ВР С–РЎР‚Р В° Р В±РЎС“Р Т‘Р ВµРЎвЂљ РЎРѓР С•РЎвЂ¦РЎР‚Р В°Р Р…Р ВµР Р…Р В°, Р Р…Р С• Р Р…Р Вµ Р В±РЎС“Р Т‘Р ВµРЎвЂљ Р Т‘Р С•РЎРѓРЎвЂљРЎС“Р С—Р Р…Р В° Р С—Р С•Р В»РЎРЉР В·Р С•Р Р†Р В°РЎвЂљР ВµР В»РЎРЏР С
             </div>
           </button>
           <button
@@ -1000,15 +1000,15 @@ export function AdminGamesPageNew({ onBack, onNavigateToSection }: AdminGamesPag
               wizardState.gameData.status === 'published' ? 'bg-green-600 text-white' : 'glass-card'
             }`}
           >
-            <div className="font-medium">рџљЂ РћРїСѓР±Р»РёРєРѕРІР°С‚СЊ СЃСЂР°Р·Сѓ</div>
+            <div className="font-medium">СЂСџС™Р‚ Р С›Р С—РЎС“Р В±Р В»Р С‘Р С”Р С•Р Р†Р В°РЎвЂљРЎРЉ РЎРѓРЎР‚Р В°Р В·РЎС“</div>
             <div className={`text-sm ${wizardState.gameData.status === 'published' ? 'opacity-90' : 'text-muted-foreground'}`}>
-              РРіСЂР° СЃС‚Р°РЅРµС‚ РґРѕСЃС‚СѓРїРЅР° РІСЃРµРј РїРѕР»СЊР·РѕРІР°С‚РµР»СЏРј РЅРµРјРµРґР»РµРЅРЅРѕ
+              Р ВР С–РЎР‚Р В° РЎРѓРЎвЂљР В°Р Р…Р ВµРЎвЂљ Р Т‘Р С•РЎРѓРЎвЂљРЎС“Р С—Р Р…Р В° Р Р†РЎРѓР ВµР С Р С—Р С•Р В»РЎРЉР В·Р С•Р Р†Р В°РЎвЂљР ВµР В»РЎРЏР С Р Р…Р ВµР СР ВµР Т‘Р В»Р ВµР Р…Р Р…Р С•
             </div>
           </button>
         </div>
         
         <div className="glass-card rounded-xl p-4">
-          <h4 className="font-medium text-foreground mb-2">JSON РєРѕРЅС„РёРіСѓСЂР°С†РёСЏ</h4>
+          <h4 className="font-medium text-foreground mb-2">JSON Р С”Р С•Р Р…РЎвЂћР С‘Р С–РЎС“РЎР‚Р В°РЎвЂ Р С‘РЎРЏ</h4>
           <pre className="text-xs bg-secondary p-3 rounded-lg overflow-auto max-h-40 text-foreground">
             {JSON.stringify(wizardState.gameData, null, 2)}
           </pre>
@@ -1021,7 +1021,7 @@ export function AdminGamesPageNew({ onBack, onNavigateToSection }: AdminGamesPag
             className="flex items-center gap-2 mt-2 text-sm text-primary hover:underline"
           >
             {copiedJson ? <Check className="w-4 h-4" /> : <Copy className="w-4 h-4" />}
-            {copiedJson ? 'РЎРєРѕРїРёСЂРѕРІР°РЅРѕ!' : 'РЎРєРѕРїРёСЂРѕРІР°С‚СЊ JSON'}
+            {copiedJson ? 'Р РЋР С”Р С•Р С—Р С‘РЎР‚Р С•Р Р†Р В°Р Р…Р С•!' : 'Р РЋР С”Р С•Р С—Р С‘РЎР‚Р С•Р Р†Р В°РЎвЂљРЎРЉ JSON'}
           </button>
         </div>
       </div>
@@ -1031,24 +1031,24 @@ export function AdminGamesPageNew({ onBack, onNavigateToSection }: AdminGamesPag
   return (
     <div className="min-h-screen bg-background pb-20">
       <div className="p-6 space-y-6">
-        {/* Р—Р°РіРѕР»РѕРІРѕРє */}
+        {/* Р вЂ”Р В°Р С–Р С•Р В»Р С•Р Р†Р С•Р С” */}
         <div className="flex items-center justify-between">
-          <h1 className="text-xl font-medium text-foreground">РЈРїСЂР°РІР»РµРЅРёРµ РёРіСЂР°РјРё</h1>
+          <h1 className="text-xl font-medium text-foreground">Р Р€Р С—РЎР‚Р В°Р Р†Р В»Р ВµР Р…Р С‘Р Вµ Р С‘Р С–РЎР‚Р В°Р СР С‘</h1>
           <button
             onClick={() => setIsWizardOpen(true)}
             className="flex items-center gap-2 bg-primary text-primary-foreground px-4 py-2 rounded-xl hover:scale-[0.98] transition-transform apple-shadow"
           >
             <Plus className="w-4 h-4" />
-            РЎРѕР·РґР°С‚СЊ РёРіСЂСѓ
+            Р РЋР С•Р В·Р Т‘Р В°РЎвЂљРЎРЉ Р С‘Р С–РЎР‚РЎС“
           </button>
         </div>
 
-        {/* РЎС‚Р°С‚РёСЃС‚РёРєР° */}
+        {/* Р РЋРЎвЂљР В°РЎвЂљР С‘РЎРѓРЎвЂљР С‘Р С”Р В° */}
         <div className="grid grid-cols-2 gap-4">
           <div className="glass-card p-4 rounded-2xl apple-shadow">
             <div className="text-center">
               <div className="text-2xl font-medium text-foreground mb-1">{games.length}</div>
-              <div className="text-sm text-muted-foreground">Р’СЃРµРіРѕ РёРіСЂ</div>
+              <div className="text-sm text-muted-foreground">Р вЂ™РЎРѓР ВµР С–Р С• Р С‘Р С–РЎР‚</div>
             </div>
           </div>
           <div className="glass-card p-4 rounded-2xl apple-shadow">
@@ -1056,7 +1056,7 @@ export function AdminGamesPageNew({ onBack, onNavigateToSection }: AdminGamesPag
               <div className="text-2xl font-medium text-green-600 mb-1">
                 {games.filter(g => g.status === 'published').length}
               </div>
-              <div className="text-sm text-muted-foreground">РћРїСѓР±Р»РёРєРѕРІР°РЅРѕ</div>
+              <div className="text-sm text-muted-foreground">Р С›Р С—РЎС“Р В±Р В»Р С‘Р С”Р С•Р Р†Р В°Р Р…Р С•</div>
             </div>
           </div>
           <div className="glass-card p-4 rounded-2xl apple-shadow">
@@ -1064,7 +1064,7 @@ export function AdminGamesPageNew({ onBack, onNavigateToSection }: AdminGamesPag
               <div className="text-2xl font-medium text-orange-500 mb-1">
                 {games.filter(g => g.status === 'draft').length}
               </div>
-              <div className="text-sm text-muted-foreground">Р§РµСЂРЅРѕРІРёРєРё</div>
+              <div className="text-sm text-muted-foreground">Р В§Р ВµРЎР‚Р Р…Р С•Р Р†Р С‘Р С”Р С‘</div>
             </div>
           </div>
           <div className="glass-card p-4 rounded-2xl apple-shadow">
@@ -1072,12 +1072,12 @@ export function AdminGamesPageNew({ onBack, onNavigateToSection }: AdminGamesPag
               <div className="text-2xl font-medium text-muted-foreground mb-1">
                 {games.filter(g => g.status === 'archived').length}
               </div>
-              <div className="text-sm text-muted-foreground">Р’ Р°СЂС…РёРІРµ</div>
+              <div className="text-sm text-muted-foreground">Р вЂ™ Р В°РЎР‚РЎвЂ¦Р С‘Р Р†Р Вµ</div>
             </div>
           </div>
         </div>
 
-        {/* РЎРїРёСЃРѕРє РёРіСЂ */}
+        {/* Р РЋР С—Р С‘РЎРѓР С•Р С” Р С‘Р С–РЎР‚ */}
         <div className="space-y-4">
           {games.length > 0 ? (
             games.map((game) => {
@@ -1087,7 +1087,7 @@ export function AdminGamesPageNew({ onBack, onNavigateToSection }: AdminGamesPag
               return (
                 <div key={game.id} className="glass-card rounded-2xl p-4 apple-shadow">
                   <div className="flex items-start gap-4">
-                    {/* РРєРѕРЅРєР° РёРіСЂС‹ */}
+                    {/* Р ВР С”Р С•Р Р…Р С”Р В° Р С‘Р С–РЎР‚РЎвЂ№ */}
                     <div className="w-12 h-12 glass-card rounded-xl flex items-center justify-center">
                       {game.icon ? (
                         <span className="text-2xl">{game.icon}</span>
@@ -1097,12 +1097,12 @@ export function AdminGamesPageNew({ onBack, onNavigateToSection }: AdminGamesPag
                     </div>
                     
                     <div className="flex-1">
-                      {/* Р—Р°РіРѕР»РѕРІРѕРє Рё СЃС‚Р°С‚СѓСЃ */}
+                      {/* Р вЂ”Р В°Р С–Р С•Р В»Р С•Р Р†Р С•Р С” Р С‘ РЎРѓРЎвЂљР В°РЎвЂљРЎС“РЎРѓ */}
                       <div className="flex items-start justify-between mb-2">
                         <div>
                           <div className="font-medium text-foreground">{game.name}</div>
                           <div className="text-sm text-muted-foreground">
-                            {gameType?.name} вЂў РљСѓР»РґР°СѓРЅ: {game.access.cooldownSeconds}СЃ
+                            {gameType?.name} РІР‚Сћ Р С™РЎС“Р В»Р Т‘Р В°РЎС“Р Р…: {game.access.cooldownSeconds}РЎРѓ
                           </div>
                         </div>
                         <div className="flex items-center gap-3">
@@ -1112,7 +1112,7 @@ export function AdminGamesPageNew({ onBack, onNavigateToSection }: AdminGamesPag
                           <button
                             onClick={() => copyGameJson(game)}
                             className="p-2 hover:bg-black/5 rounded-lg transition-colors"
-                            title="РљРѕРїРёСЂРѕРІР°С‚СЊ JSON"
+                            title="Р С™Р С•Р С—Р С‘РЎР‚Р С•Р Р†Р В°РЎвЂљРЎРЉ JSON"
                           >
                             {copiedJson ? (
                               <Check className="w-4 h-4 text-green-600" />
@@ -1123,38 +1123,38 @@ export function AdminGamesPageNew({ onBack, onNavigateToSection }: AdminGamesPag
                         </div>
                       </div>
                       
-                      {/* РћРїРёСЃР°РЅРёРµ */}
+                      {/* Р С›Р С—Р С‘РЎРѓР В°Р Р…Р С‘Р Вµ */}
                       {game.description && (
                         <div className="text-sm text-muted-foreground mb-3">
                           {game.description}
                         </div>
                       )}
                       
-                      {/* РЎС‚Р°С‚РёСЃС‚РёРєР° */}
+                      {/* Р РЋРЎвЂљР В°РЎвЂљР С‘РЎРѓРЎвЂљР С‘Р С”Р В° */}
                       <div className="grid grid-cols-3 gap-4 text-sm mb-4">
                         <div>
-                          <span className="text-muted-foreground">РРіСЂ: </span>
+                          <span className="text-muted-foreground">Р ВР С–РЎР‚: </span>
                           <span className="text-foreground">{game.stats?.totalPlays || 0}</span>
                         </div>
                         <div>
-                          <span className="text-muted-foreground">РќР°РіСЂР°Рґ: </span>
+                          <span className="text-muted-foreground">Р СњР В°Р С–РЎР‚Р В°Р Т‘: </span>
                           <span className="text-foreground">{game.stats?.totalRewards || 0}</span>
                         </div>
                         <div>
-                          <span className="text-muted-foreground">РРіСЂРѕРєРѕРІ: </span>
+                          <span className="text-muted-foreground">Р ВР С–РЎР‚Р С•Р С”Р С•Р Р†: </span>
                           <span className="text-foreground">{game.stats?.uniquePlayers || 0}</span>
                         </div>
                       </div>
                       
-                      {/* Р”Р°С‚Р° РѕР±РЅРѕРІР»РµРЅРёСЏ */}
+                      {/* Р вЂќР В°РЎвЂљР В° Р С•Р В±Р Р…Р С•Р Р†Р В»Р ВµР Р…Р С‘РЎРЏ */}
                       <div className="text-xs text-muted-foreground mb-4">
-                        РћР±РЅРѕРІР»РµРЅРѕ: {formatDate(game.updatedAt)}
+                        Р С›Р В±Р Р…Р С•Р Р†Р В»Р ВµР Р…Р С•: {formatDate(game.updatedAt)}
                         {game.publishedAt && (
-                          <> вЂў РћРїСѓР±Р»РёРєРѕРІР°РЅРѕ: {formatDate(game.publishedAt)}</>
+                          <> РІР‚Сћ Р С›Р С—РЎС“Р В±Р В»Р С‘Р С”Р С•Р Р†Р В°Р Р…Р С•: {formatDate(game.publishedAt)}</>
                         )}
                       </div>
                       
-                      {/* Р”РµР№СЃС‚РІРёСЏ */}
+                      {/* Р вЂќР ВµР в„–РЎРѓРЎвЂљР Р†Р С‘РЎРЏ */}
                       <div className="flex items-center gap-2">
                         <button
                           onClick={() => {
@@ -1164,13 +1164,13 @@ export function AdminGamesPageNew({ onBack, onNavigateToSection }: AdminGamesPag
                           className="flex items-center gap-2 px-3 py-2 glass-card rounded-lg hover:scale-[0.98] transition-transform text-sm"
                         >
                           <Eye className="w-4 h-4" />
-                          РџСЂРµРґРїСЂРѕСЃРјРѕС‚СЂ
+                          Р СџРЎР‚Р ВµР Т‘Р С—РЎР‚Р С•РЎРѓР СР С•РЎвЂљРЎР‚
                         </button>
                         <button
                           className="flex items-center gap-2 px-3 py-2 glass-card rounded-lg hover:scale-[0.98] transition-transform text-sm"
                         >
                           <Edit className="w-4 h-4" />
-                          Р РµРґР°РєС‚РёСЂРѕРІР°С‚СЊ
+                          Р В Р ВµР Т‘Р В°Р С”РЎвЂљР С‘РЎР‚Р С•Р Р†Р В°РЎвЂљРЎРЉ
                         </button>
                         
                         {game.status === 'draft' && (
@@ -1179,7 +1179,7 @@ export function AdminGamesPageNew({ onBack, onNavigateToSection }: AdminGamesPag
                             className="flex items-center gap-2 px-3 py-2 bg-green-600 text-white rounded-lg hover:scale-[0.98] transition-transform text-sm"
                           >
                             <Play className="w-4 h-4" />
-                            РћРїСѓР±Р»РёРєРѕРІР°С‚СЊ
+                            Р С›Р С—РЎС“Р В±Р В»Р С‘Р С”Р С•Р Р†Р В°РЎвЂљРЎРЉ
                           </button>
                         )}
                         
@@ -1189,7 +1189,7 @@ export function AdminGamesPageNew({ onBack, onNavigateToSection }: AdminGamesPag
                             className="flex items-center gap-2 px-3 py-2 bg-orange-500 text-white rounded-lg hover:scale-[0.98] transition-transform text-sm"
                           >
                             <Pause className="w-4 h-4" />
-                            РЎРЅСЏС‚СЊ СЃ РїСѓР±Р»РёРєР°С†РёРё
+                            Р РЋР Р…РЎРЏРЎвЂљРЎРЉ РЎРѓ Р С—РЎС“Р В±Р В»Р С‘Р С”Р В°РЎвЂ Р С‘Р С‘
                           </button>
                         )}
                         
@@ -1198,7 +1198,7 @@ export function AdminGamesPageNew({ onBack, onNavigateToSection }: AdminGamesPag
                           className="flex items-center gap-2 px-3 py-2 glass-card rounded-lg hover:scale-[0.98] transition-transform text-sm"
                         >
                           <Archive className="w-4 h-4" />
-                          РђСЂС…РёРІРёСЂРѕРІР°С‚СЊ
+                          Р С’РЎР‚РЎвЂ¦Р С‘Р Р†Р С‘РЎР‚Р С•Р Р†Р В°РЎвЂљРЎРЉ
                         </button>
                         
                         <button
@@ -1206,7 +1206,7 @@ export function AdminGamesPageNew({ onBack, onNavigateToSection }: AdminGamesPag
                           className="flex items-center gap-2 px-3 py-2 bg-red-500 text-white rounded-lg hover:scale-[0.98] transition-transform text-sm"
                         >
                           <Trash2 className="w-4 h-4" />
-                          РЈРґР°Р»РёС‚СЊ
+                          Р Р€Р Т‘Р В°Р В»Р С‘РЎвЂљРЎРЉ
                         </button>
                       </div>
                     </div>
@@ -1217,30 +1217,30 @@ export function AdminGamesPageNew({ onBack, onNavigateToSection }: AdminGamesPag
           ) : (
             <div className="glass-card rounded-2xl p-8 text-center apple-shadow">
               <Gamepad2 className="w-12 h-12 text-muted-foreground mx-auto mb-4" />
-              <p className="text-muted-foreground mb-4">РРіСЂ РїРѕРєР° РЅРµС‚</p>
+              <p className="text-muted-foreground mb-4">Р ВР С–РЎР‚ Р С—Р С•Р С”Р В° Р Р…Р ВµРЎвЂљ</p>
               <button
                 onClick={() => setIsWizardOpen(true)}
                 className="bg-primary text-primary-foreground px-4 py-2 rounded-xl hover:scale-[0.98] transition-transform"
               >
-                РЎРѕР·РґР°С‚СЊ РїРµСЂРІСѓСЋ РёРіСЂСѓ
+                Р РЋР С•Р В·Р Т‘Р В°РЎвЂљРЎРЉ Р С—Р ВµРЎР‚Р Р†РЎС“РЎР‹ Р С‘Р С–РЎР‚РЎС“
               </button>
             </div>
           )}
         </div>
       </div>
 
-      {/* РњР°СЃС‚РµСЂ СЃРѕР·РґР°РЅРёСЏ РёРіСЂС‹ */}
+      {/* Р СљР В°РЎРѓРЎвЂљР ВµРЎР‚ РЎРѓР С•Р В·Р Т‘Р В°Р Р…Р С‘РЎРЏ Р С‘Р С–РЎР‚РЎвЂ№ */}
       <Dialog open={isWizardOpen} onOpenChange={setIsWizardOpen}>
         <DialogContent className="glass-card rounded-3xl border-2 border-border apple-shadow w-[90vw] max-w-2xl p-0 max-h-[90vh] flex flex-col [&>button]:hidden">
           <div className="p-6 flex-1 flex flex-col">
-            {/* Р—Р°РіРѕР»РѕРІРѕРє */}
+            {/* Р вЂ”Р В°Р С–Р С•Р В»Р С•Р Р†Р С•Р С” */}
             <div className="flex items-center justify-between mb-6">
               <div>
                 <DialogTitle className="text-lg font-medium text-foreground">
-                  РЎРѕР·РґР°РЅРёРµ РёРіСЂС‹
+                  Р РЋР С•Р В·Р Т‘Р В°Р Р…Р С‘Р Вµ Р С‘Р С–РЎР‚РЎвЂ№
                 </DialogTitle>
                 <p className="text-sm text-muted-foreground">
-                  РЁР°Рі {wizardState.currentStep + 1} РёР· {wizardState.steps.length}: {wizardState.steps[wizardState.currentStep].title}
+                  Р РЃР В°Р С– {wizardState.currentStep + 1} Р С‘Р В· {wizardState.steps.length}: {wizardState.steps[wizardState.currentStep].title}
                 </p>
               </div>
               <button
@@ -1255,10 +1255,10 @@ export function AdminGamesPageNew({ onBack, onNavigateToSection }: AdminGamesPag
             </div>
             
             <DialogDescription className="sr-only">
-              РњР°СЃС‚РµСЂ СЃРѕР·РґР°РЅРёСЏ РЅРѕРІРѕР№ РјРёРЅРё-РёРіСЂС‹
+              Р СљР В°РЎРѓРЎвЂљР ВµРЎР‚ РЎРѓР С•Р В·Р Т‘Р В°Р Р…Р С‘РЎРЏ Р Р…Р С•Р Р†Р С•Р в„– Р СР С‘Р Р…Р С‘-Р С‘Р С–РЎР‚РЎвЂ№
             </DialogDescription>
 
-            {/* РџСЂРѕРіСЂРµСЃСЃ-Р±Р°СЂ */}
+            {/* Р СџРЎР‚Р С•Р С–РЎР‚Р ВµРЎРѓРЎРѓ-Р В±Р В°РЎР‚ */}
             <div className="flex items-center gap-2 mb-6">
               {wizardState.steps.map((step, index) => (
                 <div
@@ -1274,12 +1274,12 @@ export function AdminGamesPageNew({ onBack, onNavigateToSection }: AdminGamesPag
               ))}
             </div>
 
-            {/* РЎРѕРґРµСЂР¶РёРјРѕРµ С€Р°РіР° */}
+            {/* Р РЋР С•Р Т‘Р ВµРЎР‚Р В¶Р С‘Р СР С•Р Вµ РЎв‚¬Р В°Р С–Р В° */}
             <div className="flex-1 overflow-y-auto">
               {renderWizardStep()}
             </div>
 
-            {/* РќР°РІРёРіР°С†РёСЏ */}
+            {/* Р СњР В°Р Р†Р С‘Р С–Р В°РЎвЂ Р С‘РЎРЏ */}
             <div className="flex items-center justify-between pt-6 mt-6 border-t border-border">
               <button
                 onClick={prevStep}
@@ -1287,7 +1287,7 @@ export function AdminGamesPageNew({ onBack, onNavigateToSection }: AdminGamesPag
                 className="flex items-center gap-2 px-4 py-2 glass-card rounded-xl hover:scale-[0.98] transition-transform disabled:opacity-50 disabled:cursor-not-allowed"
               >
                 <ChevronLeft className="w-4 h-4" />
-                РќР°Р·Р°Рґ
+                Р СњР В°Р В·Р В°Р Т‘
               </button>
               
               <div className="text-sm text-muted-foreground">
@@ -1300,7 +1300,7 @@ export function AdminGamesPageNew({ onBack, onNavigateToSection }: AdminGamesPag
                   disabled={!canProceedToNext()}
                   className="flex items-center gap-2 bg-primary text-primary-foreground px-4 py-2 rounded-xl hover:scale-[0.98] transition-transform disabled:opacity-50 disabled:cursor-not-allowed"
                 >
-                  РЎРѕР·РґР°С‚СЊ РёРіСЂСѓ
+                  Р РЋР С•Р В·Р Т‘Р В°РЎвЂљРЎРЉ Р С‘Р С–РЎР‚РЎС“
                 </button>
               ) : (
                 <button
@@ -1308,7 +1308,7 @@ export function AdminGamesPageNew({ onBack, onNavigateToSection }: AdminGamesPag
                   disabled={!canProceedToNext()}
                   className="flex items-center gap-2 bg-primary text-primary-foreground px-4 py-2 rounded-xl hover:scale-[0.98] transition-transform disabled:opacity-50 disabled:cursor-not-allowed"
                 >
-                  Р”Р°Р»РµРµ
+                  Р вЂќР В°Р В»Р ВµР Вµ
                   <ChevronRight className="w-4 h-4" />
                 </button>
               )}
@@ -1317,13 +1317,13 @@ export function AdminGamesPageNew({ onBack, onNavigateToSection }: AdminGamesPag
         </DialogContent>
       </Dialog>
 
-      {/* РџСЂРµРґРїСЂРѕСЃРјРѕС‚СЂ РёРіСЂС‹ */}
+      {/* Р СџРЎР‚Р ВµР Т‘Р С—РЎР‚Р С•РЎРѓР СР С•РЎвЂљРЎР‚ Р С‘Р С–РЎР‚РЎвЂ№ */}
       <Dialog open={isPreviewOpen} onOpenChange={setIsPreviewOpen}>
         <DialogContent className="glass-card rounded-3xl border-2 border-border apple-shadow w-[90vw] max-w-md p-0 [&>button]:hidden">
           <div className="p-6">
             <div className="flex items-center justify-between mb-6">
               <DialogTitle className="text-lg font-medium text-foreground">
-                РџСЂРµРґРїСЂРѕСЃРјРѕС‚СЂ РёРіСЂС‹
+                Р СџРЎР‚Р ВµР Т‘Р С—РЎР‚Р С•РЎРѓР СР С•РЎвЂљРЎР‚ Р С‘Р С–РЎР‚РЎвЂ№
               </DialogTitle>
               <button
                 onClick={() => setIsPreviewOpen(false)}
@@ -1334,7 +1334,7 @@ export function AdminGamesPageNew({ onBack, onNavigateToSection }: AdminGamesPag
             </div>
             
             <DialogDescription className="sr-only">
-              РџСЂРµРґРїСЂРѕСЃРјРѕС‚СЂ СЃРѕР·РґР°РЅРЅРѕР№ РёРіСЂС‹
+              Р СџРЎР‚Р ВµР Т‘Р С—РЎР‚Р С•РЎРѓР СР С•РЎвЂљРЎР‚ РЎРѓР С•Р В·Р Т‘Р В°Р Р…Р Р…Р С•Р в„– Р С‘Р С–РЎР‚РЎвЂ№
             </DialogDescription>
 
             {selectedGame && (
@@ -1355,12 +1355,12 @@ export function AdminGamesPageNew({ onBack, onNavigateToSection }: AdminGamesPag
                 
                 <div className="glass-card rounded-2xl p-4 mb-6">
                   <div className="text-center text-muted-foreground">
-                    РџСЂРµРґРїСЂРѕСЃРјРѕС‚СЂ РёРіСЂРѕРІРѕРіРѕ РёРЅС‚РµСЂС„РµР№СЃР° Р±СѓРґРµС‚ Р·РґРµСЃСЊ
+                    Р СџРЎР‚Р ВµР Т‘Р С—РЎР‚Р С•РЎРѓР СР С•РЎвЂљРЎР‚ Р С‘Р С–РЎР‚Р С•Р Р†Р С•Р С–Р С• Р С‘Р Р…РЎвЂљР ВµРЎР‚РЎвЂћР ВµР в„–РЎРѓР В° Р В±РЎС“Р Т‘Р ВµРЎвЂљ Р В·Р Т‘Р ВµРЎРѓРЎРЉ
                   </div>
                 </div>
                 
                 <button className="w-full bg-primary text-primary-foreground py-3 rounded-xl hover:scale-[0.98] transition-transform">
-                  РРіСЂР°С‚СЊ
+                  Р ВР С–РЎР‚Р В°РЎвЂљРЎРЉ
                 </button>
               </div>
             )}
@@ -1368,7 +1368,7 @@ export function AdminGamesPageNew({ onBack, onNavigateToSection }: AdminGamesPag
         </DialogContent>
       </Dialog>
 
-      {/* Р‘С‹СЃС‚СЂР°СЏ РЅР°РІРёРіР°С†РёСЏ */}
+      {/* Р вЂРЎвЂ№РЎРѓРЎвЂљРЎР‚Р В°РЎРЏ Р Р…Р В°Р Р†Р С‘Р С–Р В°РЎвЂ Р С‘РЎРЏ */}
       <div className="fixed bottom-0 left-0 right-0 bg-background border-t border-border/20">
         <div className="p-6">
           <div className="grid grid-cols-4 gap-4 mb-4">

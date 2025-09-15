@@ -1,4 +1,4 @@
-﻿import { Star } from './Icons';
+п»їimport { Star } from './Icons';
 import coinImage from 'figma:asset/acaa4cccbfaf8eeee6ecbbe8f29c92d03b701371.png';
 import { getCurrentLevelData, getNextLevelData, getProgressToNextLevel } from '../data/levels';
 
@@ -67,7 +67,7 @@ export function ModalXP({
         }}
         onClick={(e) => e.stopPropagation()}
       >
-        {/* Header - 40px высотой */}
+        {/* Header - 40px РІС‹СЃРѕС‚РѕР№ */}
         <div 
           className="flex items-center justify-center"
           style={{ 
@@ -75,7 +75,7 @@ export function ModalXP({
             minHeight: '40px'
           }}
         >
-          {/* Заголовок по центру */}
+          {/* Р—Р°РіРѕР»РѕРІРѕРє РїРѕ С†РµРЅС‚СЂСѓ */}
           <h2 
             className="font-semibold text-center"
             style={{ 
@@ -85,7 +85,7 @@ export function ModalXP({
               whiteSpace: 'nowrap'
             }}
           >
-            Ваш текущий опыт
+            Р’Р°С€ С‚РµРєСѓС‰РёР№ РѕРїС‹С‚
           </h2>
         </div>
 
@@ -99,10 +99,10 @@ export function ModalXP({
             style={{ 
               height: '48px',
               position: 'relative',
-              overflow: 'visible' // Clip content выключен
+              overflow: 'visible' // Clip content РІС‹РєР»СЋС‡РµРЅ
             }}
           >
-            {/* Звезда уровня - absolute позиция */}
+            {/* Р—РІРµР·РґР° СѓСЂРѕРІРЅСЏ - absolute РїРѕР·РёС†РёСЏ */}
             <div 
               style={{
                 position: 'absolute',
@@ -134,7 +134,7 @@ export function ModalXP({
               </div>
             </div>
 
-            {/* Прогресс бар по ширине 100%, высота 16, радиус 12 */}
+            {/* РџСЂРѕРіСЂРµСЃСЃ Р±Р°СЂ РїРѕ С€РёСЂРёРЅРµ 100%, РІС‹СЃРѕС‚Р° 16, СЂР°РґРёСѓСЃ 12 */}
             <div 
               style={{
                 width: '100%',
@@ -143,7 +143,7 @@ export function ModalXP({
                 borderRadius: '12px',
                 border: `1px solid ${theme === 'dark' ? '#2A2F36' : '#E6E9EF'}`,
                 position: 'relative',
-                top: '8px' // Центрируем в контейнере 48px
+                top: '8px' // Р¦РµРЅС‚СЂРёСЂСѓРµРј РІ РєРѕРЅС‚РµР№РЅРµСЂРµ 48px
               }}
             >
               <div 
@@ -159,7 +159,7 @@ export function ModalXP({
               />
             </div>
 
-            {/* Строка значения под полосой */}
+            {/* РЎС‚СЂРѕРєР° Р·РЅР°С‡РµРЅРёСЏ РїРѕРґ РїРѕР»РѕСЃРѕР№ */}
             <div 
               className="text-center"
               style={{ 
@@ -194,7 +194,7 @@ export function ModalXP({
                     marginBottom: '4px'
                   }}
                 >
-                  На следующем уровне:
+                  РќР° СЃР»РµРґСѓСЋС‰РµРј СѓСЂРѕРІРЅРµ:
                 </div>
                 <div 
                   style={{ 
@@ -202,7 +202,7 @@ export function ModalXP({
                     color: theme === 'dark' ? '#A7B0BD' : '#6B7280'
                   }}
                 >
-                  Статус: {nextLevelData.status}
+                  РЎС‚Р°С‚СѓСЃ: {nextLevelData.status}
                 </div>
               </div>
 
@@ -227,7 +227,7 @@ export function ModalXP({
                       whiteSpace: 'nowrap'
                     }}
                   >
-                    Награда:
+                    РќР°РіСЂР°РґР°:
                   </span>
 
                   <span 
@@ -264,7 +264,7 @@ export function ModalXP({
                   marginBottom: '4px'
                 }}
               >
-                Поздравляем!
+                РџРѕР·РґСЂР°РІР»СЏРµРј!
               </div>
               <div 
                 style={{ 
@@ -272,7 +272,7 @@ export function ModalXP({
                   color: theme === 'dark' ? '#A7B0BD' : '#6B7280'
                 }}
               >
-                Вы достигли максимального уровня
+                Р’С‹ РґРѕСЃС‚РёРіР»Рё РјР°РєСЃРёРјР°Р»СЊРЅРѕРіРѕ СѓСЂРѕРІРЅСЏ
               </div>
             </div>
           )}

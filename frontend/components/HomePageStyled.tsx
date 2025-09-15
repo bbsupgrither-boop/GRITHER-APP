@@ -1,4 +1,4 @@
-﻿import { useState } from 'react';
+п»їimport { useState } from 'react';
 import { Header } from './Header';
 import { BottomNavigation } from './BottomNavigation';
 import { Achievement } from '../types/achievements';
@@ -18,9 +18,9 @@ export function HomePageStyled({ onNavigate, currentPage, onOpenSettings, achiev
   const [activeTab, setActiveTab] = useState<'overview' | 'battles' | 'achievements'>('overview');
 
   const tabs = [
-    { id: 'overview' as const, label: 'РћР±Р·РѕСЂ', icon: Target },
-    { id: 'battles' as const, label: 'Р‘РёС‚РІС‹', icon: Zap },
-    { id: 'achievements' as const, label: 'Р”РѕСЃС‚РёР¶РµРЅРёСЏ', icon: Trophy }
+    { id: 'overview' as const, label: 'Р С›Р В±Р В·Р С•РЎР‚', icon: Target },
+    { id: 'battles' as const, label: 'Р вЂР С‘РЎвЂљР Р†РЎвЂ№', icon: Zap },
+    { id: 'achievements' as const, label: 'Р вЂќР С•РЎРѓРЎвЂљР С‘Р В¶Р ВµР Р…Р С‘РЎРЏ', icon: Trophy }
   ];
 
   const completedAchievements = achievements.filter(a => a.isCompleted);
@@ -29,15 +29,15 @@ export function HomePageStyled({ onNavigate, currentPage, onOpenSettings, achiev
 
   const renderOverviewTab = () => (
     <div className="space-y-4">
-      {/* РџСЂРѕРіСЂРµСЃСЃ РїРѕР»СЊР·РѕРІР°С‚РµР»СЏ */}
+      {/* Р СџРЎР‚Р С•Р С–РЎР‚Р ВµРЎРѓРЎРѓ Р С—Р С•Р В»РЎРЉР В·Р С•Р Р†Р В°РЎвЂљР ВµР В»РЎРЏ */}
       <div className="glass-card rounded-2xl p-4 apple-shadow">
         <div className="flex items-center gap-4">
           <div className="w-16 h-16 bg-gradient-to-br from-primary to-blue-600 rounded-xl flex items-center justify-center">
-            <span className="text-2xl text-white">рџљЂ</span>
+            <span className="text-2xl text-white">СЂСџС™Р‚</span>
           </div>
           <div className="flex-1">
             <div className="flex items-center justify-between mb-2">
-              <h3 className="font-medium text-foreground">РЈСЂРѕРІРµРЅСЊ {currentUser.level}</h3>
+              <h3 className="font-medium text-foreground">Р Р€РЎР‚Р С•Р Р†Р ВµР Р…РЎРЉ {currentUser.level}</h3>
               <span className="text-sm text-muted-foreground">{currentUser.experience}/{currentUser.maxExperience} XP</span>
             </div>
             <div className="w-full bg-secondary rounded-full h-2">
@@ -47,13 +47,13 @@ export function HomePageStyled({ onNavigate, currentPage, onOpenSettings, achiev
               />
             </div>
             <div className="mt-2 text-sm text-muted-foreground">
-              Р”Рѕ СЃР»РµРґСѓСЋС‰РµРіРѕ СѓСЂРѕРІРЅСЏ: {currentUser.maxExperience - currentUser.experience} XP
+              Р вЂќР С• РЎРѓР В»Р ВµР Т‘РЎС“РЎР‹РЎвЂ°Р ВµР С–Р С• РЎС“РЎР‚Р С•Р Р†Р Р…РЎРЏ: {currentUser.maxExperience - currentUser.experience} XP
             </div>
           </div>
         </div>
       </div>
 
-      {/* Р‘С‹СЃС‚СЂС‹Рµ РґРµР№СЃС‚РІРёСЏ */}
+      {/* Р вЂРЎвЂ№РЎРѓРЎвЂљРЎР‚РЎвЂ№Р Вµ Р Т‘Р ВµР в„–РЎРѓРЎвЂљР Р†Р С‘РЎРЏ */}
       <div className="grid grid-cols-2 gap-4">
         <button
           onClick={() => onNavigate('tasks')}
@@ -64,8 +64,8 @@ export function HomePageStyled({ onNavigate, currentPage, onOpenSettings, achiev
               <Target className="w-5 h-5 text-green-600" />
             </div>
             <div className="text-left">
-              <div className="font-medium text-foreground">Р—Р°РґР°С‡Рё</div>
-              <div className="text-sm text-muted-foreground">3 Р°РєС‚РёРІРЅС‹С…</div>
+              <div className="font-medium text-foreground">Р вЂ”Р В°Р Т‘Р В°РЎвЂЎР С‘</div>
+              <div className="text-sm text-muted-foreground">3 Р В°Р С”РЎвЂљР С‘Р Р†Р Р…РЎвЂ№РЎвЂ¦</div>
             </div>
           </div>
         </button>
@@ -79,23 +79,23 @@ export function HomePageStyled({ onNavigate, currentPage, onOpenSettings, achiev
               <Star className="w-5 h-5 text-purple-600" />
             </div>
             <div className="text-left">
-              <div className="font-medium text-foreground">РњР°РіР°Р·РёРЅ</div>
-              <div className="text-sm text-muted-foreground">РќРѕРІРёРЅРєРё</div>
+              <div className="font-medium text-foreground">Р СљР В°Р С–Р В°Р В·Р С‘Р Р…</div>
+              <div className="text-sm text-muted-foreground">Р СњР С•Р Р†Р С‘Р Р…Р С”Р С‘</div>
             </div>
           </div>
         </button>
       </div>
 
-      {/* РђРєС‚РёРІРЅС‹Рµ РґРѕСЃС‚РёР¶РµРЅРёСЏ */}
+      {/* Р С’Р С”РЎвЂљР С‘Р Р†Р Р…РЎвЂ№Р Вµ Р Т‘Р С•РЎРѓРЎвЂљР С‘Р В¶Р ВµР Р…Р С‘РЎРЏ */}
       {activeAchievements.length > 0 && (
         <div className="glass-card rounded-2xl p-4 apple-shadow">
           <div className="flex items-center justify-between mb-4">
-            <h3 className="font-medium text-foreground">Р’ РїСЂРѕС†РµСЃСЃРµ</h3>
+            <h3 className="font-medium text-foreground">Р вЂ™ Р С—РЎР‚Р С•РЎвЂ Р ВµРЎРѓРЎРѓР Вµ</h3>
             <button
               onClick={() => onNavigate('achievements')}
               className="text-primary text-sm hover:scale-[0.98] transition-transform"
             >
-              Р’СЃРµ
+              Р вЂ™РЎРѓР Вµ
             </button>
           </div>
           <div className="space-y-3">
@@ -122,16 +122,16 @@ export function HomePageStyled({ onNavigate, currentPage, onOpenSettings, achiev
         </div>
       )}
 
-      {/* РџРѕСЃР»РµРґРЅРёРµ РґРѕСЃС‚РёР¶РµРЅРёСЏ */}
+      {/* Р СџР С•РЎРѓР В»Р ВµР Т‘Р Р…Р С‘Р Вµ Р Т‘Р С•РЎРѓРЎвЂљР С‘Р В¶Р ВµР Р…Р С‘РЎРЏ */}
       {completedAchievements.length > 0 && (
         <div className="glass-card rounded-2xl p-4 apple-shadow">
           <div className="flex items-center justify-between mb-4">
-            <h3 className="font-medium text-foreground">РќРµРґР°РІРЅРёРµ РґРѕСЃС‚РёР¶РµРЅРёСЏ</h3>
+            <h3 className="font-medium text-foreground">Р СњР ВµР Т‘Р В°Р Р†Р Р…Р С‘Р Вµ Р Т‘Р С•РЎРѓРЎвЂљР С‘Р В¶Р ВµР Р…Р С‘РЎРЏ</h3>
             <button
               onClick={() => onNavigate('achievements')}
               className="text-primary text-sm hover:scale-[0.98] transition-transform"
             >
-              Р’СЃРµ
+              Р вЂ™РЎРѓР Вµ
             </button>
           </div>
           <div className="grid grid-cols-4 gap-3">
@@ -164,7 +164,7 @@ export function HomePageStyled({ onNavigate, currentPage, onOpenSettings, achiev
                 <div className="flex items-center gap-4 mt-2 text-xs">
                   <div className="flex items-center gap-1">
                     <Users className="w-3 h-3 text-muted-foreground" />
-                    <span className="text-muted-foreground">{battle.participants} СѓС‡Р°СЃС‚РЅРёРєРѕРІ</span>
+                    <span className="text-muted-foreground">{battle.participants} РЎС“РЎвЂЎР В°РЎРѓРЎвЂљР Р…Р С‘Р С”Р С•Р Р†</span>
                   </div>
                   <div className="flex items-center gap-1">
                     <Clock className="w-3 h-3 text-muted-foreground" />
@@ -184,22 +184,22 @@ export function HomePageStyled({ onNavigate, currentPage, onOpenSettings, achiev
       ) : (
         <div className="glass-card rounded-2xl p-8 text-center apple-shadow">
           <Zap className="w-12 h-12 text-muted-foreground mx-auto mb-4" />
-          <h3 className="text-lg font-medium text-foreground mb-2">РќРµС‚ Р°РєС‚РёРІРЅС‹С… Р±РёС‚РІ</h3>
+          <h3 className="text-lg font-medium text-foreground mb-2">Р СњР ВµРЎвЂљ Р В°Р С”РЎвЂљР С‘Р Р†Р Р…РЎвЂ№РЎвЂ¦ Р В±Р С‘РЎвЂљР Р†</h3>
           <p className="text-sm text-muted-foreground mb-4">
-            Р‘РёС‚РІС‹ СЃРєРѕСЂРѕ РЅР°С‡РЅСѓС‚СЃСЏ. РЎР»РµРґРёС‚Рµ Р·Р° РѕР±РЅРѕРІР»РµРЅРёСЏРјРё!
+            Р вЂР С‘РЎвЂљР Р†РЎвЂ№ РЎРѓР С”Р С•РЎР‚Р С• Р Р…Р В°РЎвЂЎР Р…РЎС“РЎвЂљРЎРѓРЎРЏ. Р РЋР В»Р ВµР Т‘Р С‘РЎвЂљР Вµ Р В·Р В° Р С•Р В±Р Р…Р С•Р Р†Р В»Р ВµР Р…Р С‘РЎРЏР СР С‘!
           </p>
         </div>
       )}
 
-      {/* Р›РёРґРµСЂР±РѕСЂРґ */}
+      {/* Р вЂєР С‘Р Т‘Р ВµРЎР‚Р В±Р С•РЎР‚Р Т‘ */}
       <div className="glass-card rounded-2xl p-4 apple-shadow">
         <div className="flex items-center justify-between mb-4">
-          <h3 className="font-medium text-foreground">РўРѕРї РёРіСЂРѕРєРѕРІ</h3>
+          <h3 className="font-medium text-foreground">Р СћР С•Р С— Р С‘Р С–РЎР‚Р С•Р С”Р С•Р Р†</h3>
           <button
             onClick={() => onNavigate('battles')}
             className="text-primary text-sm hover:scale-[0.98] transition-transform"
           >
-            РџРѕР»РЅС‹Р№ СЂРµР№С‚РёРЅРі
+            Р СџР С•Р В»Р Р…РЎвЂ№Р в„– РЎР‚Р ВµР в„–РЎвЂљР С‘Р Р…Р С–
           </button>
         </div>
         <div className="space-y-3">
@@ -215,7 +215,7 @@ export function HomePageStyled({ onNavigate, currentPage, onOpenSettings, achiev
               </div>
               <div className="flex-1">
                 <div className="font-medium text-foreground text-sm">{user.name}</div>
-                <div className="text-xs text-muted-foreground">РЈСЂРѕРІРµРЅСЊ {user.level}</div>
+                <div className="text-xs text-muted-foreground">Р Р€РЎР‚Р С•Р Р†Р ВµР Р…РЎРЉ {user.level}</div>
               </div>
               <div className="text-sm font-medium text-foreground">
                 {user.points.toLocaleString()}
@@ -249,7 +249,7 @@ export function HomePageStyled({ onNavigate, currentPage, onOpenSettings, achiev
                   {achievement.isCompleted && (
                     <div className="flex items-center gap-1 bg-green-100 text-green-600 px-2 py-1 rounded-full text-xs">
                       <Award className="w-3 h-3" />
-                      Р’С‹РїРѕР»РЅРµРЅРѕ
+                      Р вЂ™РЎвЂ№Р С—Р С•Р В»Р Р…Р ВµР Р…Р С•
                     </div>
                   )}
                 </div>
@@ -257,7 +257,7 @@ export function HomePageStyled({ onNavigate, currentPage, onOpenSettings, achiev
                 {!achievement.isCompleted && (
                   <div className="mb-2">
                     <div className="flex items-center justify-between text-sm mb-1">
-                      <span className="text-muted-foreground">РџСЂРѕРіСЂРµСЃСЃ</span>
+                      <span className="text-muted-foreground">Р СџРЎР‚Р С•Р С–РЎР‚Р ВµРЎРѓРЎРѓ</span>
                       <span className="text-foreground">{achievement.progress}/{achievement.maxProgress}</span>
                     </div>
                     <div className="w-full bg-secondary rounded-full h-2">
@@ -271,11 +271,11 @@ export function HomePageStyled({ onNavigate, currentPage, onOpenSettings, achiev
                 
                 <div className="flex items-center justify-between text-sm">
                   <div className="text-muted-foreground">
-                    РќР°РіСЂР°РґР°: {achievement.reward.coins} РјРѕРЅРµС‚
+                    Р СњР В°Р С–РЎР‚Р В°Р Т‘Р В°: {achievement.reward.coins} Р СР С•Р Р…Р ВµРЎвЂљ
                   </div>
                   {achievement.isCompleted && (
                     <div className="text-green-600 font-medium">
-                      +{achievement.reward.coins} рџ’°
+                      +{achievement.reward.coins} СЂСџвЂ™В°
                     </div>
                   )}
                 </div>
@@ -286,9 +286,9 @@ export function HomePageStyled({ onNavigate, currentPage, onOpenSettings, achiev
       ) : (
         <div className="glass-card rounded-2xl p-8 text-center apple-shadow">
           <Trophy className="w-12 h-12 text-muted-foreground mx-auto mb-4" />
-          <h3 className="text-lg font-medium text-foreground mb-2">РќРµС‚ РґРѕСЃС‚РёР¶РµРЅРёР№</h3>
+          <h3 className="text-lg font-medium text-foreground mb-2">Р СњР ВµРЎвЂљ Р Т‘Р С•РЎРѓРЎвЂљР С‘Р В¶Р ВµР Р…Р С‘Р в„–</h3>
           <p className="text-sm text-muted-foreground">
-            РќР°С‡РЅРёС‚Рµ РІС‹РїРѕР»РЅСЏС‚СЊ Р·Р°РґР°С‡Рё, С‡С‚РѕР±С‹ РїРѕР»СѓС‡РёС‚СЊ РїРµСЂРІС‹Рµ РґРѕСЃС‚РёР¶РµРЅРёСЏ!
+            Р СњР В°РЎвЂЎР Р…Р С‘РЎвЂљР Вµ Р Р†РЎвЂ№Р С—Р С•Р В»Р Р…РЎРЏРЎвЂљРЎРЉ Р В·Р В°Р Т‘Р В°РЎвЂЎР С‘, РЎвЂЎРЎвЂљР С•Р В±РЎвЂ№ Р С—Р С•Р В»РЎС“РЎвЂЎР С‘РЎвЂљРЎРЉ Р С—Р ВµРЎР‚Р Р†РЎвЂ№Р Вµ Р Т‘Р С•РЎРѓРЎвЂљР С‘Р В¶Р ВµР Р…Р С‘РЎРЏ!
           </p>
         </div>
       )}
@@ -305,14 +305,14 @@ export function HomePageStyled({ onNavigate, currentPage, onOpenSettings, achiev
       />
       
       <div className="pt-20 pb-20 p-6">
-        {/* РЎС‚Р°С‚РёСЃС‚РёРєР° РїРѕР»СЊР·РѕРІР°С‚РµР»СЏ */}
+        {/* Р РЋРЎвЂљР В°РЎвЂљР С‘РЎРѓРЎвЂљР С‘Р С”Р В° Р С—Р С•Р В»РЎРЉР В·Р С•Р Р†Р В°РЎвЂљР ВµР В»РЎРЏ */}
         <div className="grid grid-cols-3 gap-4 mb-6">
           <div className="glass-card p-4 rounded-2xl apple-shadow text-center">
             <div className="text-2xl font-medium text-foreground mb-1">
               {currentUser.level}
             </div>
             <div className="text-sm text-muted-foreground">
-              РЈСЂРѕРІРµРЅСЊ
+              Р Р€РЎР‚Р С•Р Р†Р ВµР Р…РЎРЉ
             </div>
           </div>
           <div className="glass-card p-4 rounded-2xl apple-shadow text-center">
@@ -320,7 +320,7 @@ export function HomePageStyled({ onNavigate, currentPage, onOpenSettings, achiev
               {completedAchievements.length}
             </div>
             <div className="text-sm text-muted-foreground">
-              Р”РѕСЃС‚РёР¶РµРЅРёР№
+              Р вЂќР С•РЎРѓРЎвЂљР С‘Р В¶Р ВµР Р…Р С‘Р в„–
             </div>
           </div>
           <div className="glass-card p-4 rounded-2xl apple-shadow text-center">
@@ -328,12 +328,12 @@ export function HomePageStyled({ onNavigate, currentPage, onOpenSettings, achiev
               {leaderboard.findIndex(u => u.id === currentUser.id) + 1 || 'N/A'}
             </div>
             <div className="text-sm text-muted-foreground">
-              РњРµСЃС‚Рѕ
+              Р СљР ВµРЎРѓРЎвЂљР С•
             </div>
           </div>
         </div>
 
-        {/* РўР°Р±С‹ */}
+        {/* Р СћР В°Р В±РЎвЂ№ */}
         <div className="flex gap-2 mb-6">
           {tabs.map((tab) => {
             const Icon = tab.icon;
@@ -355,7 +355,7 @@ export function HomePageStyled({ onNavigate, currentPage, onOpenSettings, achiev
           })}
         </div>
 
-        {/* РљРѕРЅС‚РµРЅС‚ С‚Р°Р±РѕРІ */}
+        {/* Р С™Р С•Р Р…РЎвЂљР ВµР Р…РЎвЂљ РЎвЂљР В°Р В±Р С•Р Р† */}
         {activeTab === 'overview' && renderOverviewTab()}
         {activeTab === 'battles' && renderBattlesTab()}
         {activeTab === 'achievements' && renderAchievementsTab()}

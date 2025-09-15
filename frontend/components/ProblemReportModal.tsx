@@ -19,7 +19,7 @@ export const ProblemReportModal: React.FC<ProblemReportModalProps> = ({
   const [isSubmitting, setIsSubmitting] = useState(false);
   const fileInputRef = useRef<HTMLInputElement>(null);
 
-  // Очистка формы при открытии/закрытии
+  // РћС‡РёСЃС‚РєР° С„РѕСЂРјС‹ РїСЂРё РѕС‚РєСЂС‹С‚РёРё/Р·Р°РєСЂС‹С‚РёРё
   React.useEffect(() => {
     if (isOpen) {
       setDescription('');
@@ -31,16 +31,16 @@ export const ProblemReportModal: React.FC<ProblemReportModalProps> = ({
   const handleFileSelect = (event: React.ChangeEvent<HTMLInputElement>) => {
     const file = event.target.files?.[0];
     if (file) {
-      // Проверяем размер файла (максимум 10MB)
+      // РџСЂРѕРІРµСЂСЏРµРј СЂР°Р·РјРµСЂ С„Р°Р№Р»Р° (РјР°РєСЃРёРјСѓРј 10MB)
       if (file.size > 10 * 1024 * 1024) {
-        alert('Файл слишком большой. Максимальный размер: 10MB');
+        alert('Р¤Р°Р№Р» СЃР»РёС€РєРѕРј Р±РѕР»СЊС€РѕР№. РњР°РєСЃРёРјР°Р»СЊРЅС‹Р№ СЂР°Р·РјРµСЂ: 10MB');
         return;
       }
       
-      // Проверяем тип файла (только изображения и видео)
+      // РџСЂРѕРІРµСЂСЏРµРј С‚РёРї С„Р°Р№Р»Р° (С‚РѕР»СЊРєРѕ РёР·РѕР±СЂР°Р¶РµРЅРёСЏ Рё РІРёРґРµРѕ)
       const allowedTypes = ['image/jpeg', 'image/png', 'image/gif', 'image/webp', 'video/mp4', 'video/webm'];
       if (!allowedTypes.includes(file.type)) {
-        alert('Неподдерживаемый тип файла. Разрешены только изображения и видео.');
+        alert('РќРµРїРѕРґРґРµСЂР¶РёРІР°РµРјС‹Р№ С‚РёРї С„Р°Р№Р»Р°. Р Р°Р·СЂРµС€РµРЅС‹ С‚РѕР»СЊРєРѕ РёР·РѕР±СЂР°Р¶РµРЅРёСЏ Рё РІРёРґРµРѕ.');
         return;
       }
       
@@ -59,7 +59,7 @@ export const ProblemReportModal: React.FC<ProblemReportModalProps> = ({
     e.preventDefault();
     
     if (!description.trim()) {
-      alert('Пожалуйста, опишите проблему');
+      alert('РџРѕР¶Р°Р»СѓР№СЃС‚Р°, РѕРїРёС€РёС‚Рµ РїСЂРѕР±Р»РµРјСѓ');
       return;
     }
 
@@ -71,11 +71,11 @@ export const ProblemReportModal: React.FC<ProblemReportModalProps> = ({
         file: selectedFile || undefined
       });
       
-      // Закрываем модальное окно после успешной отправки
+      // Р—Р°РєСЂС‹РІР°РµРј РјРѕРґР°Р»СЊРЅРѕРµ РѕРєРЅРѕ РїРѕСЃР»Рµ СѓСЃРїРµС€РЅРѕР№ РѕС‚РїСЂР°РІРєРё
       onClose();
     } catch (error) {
-      console.error('Ошибка при отправке отчета:', error);
-      alert('Произошла ошибка при отправке отчета. Попробуйте еще раз.');
+      console.error('РћС€РёР±РєР° РїСЂРё РѕС‚РїСЂР°РІРєРµ РѕС‚С‡РµС‚Р°:', error);
+      alert('РџСЂРѕРёР·РѕС€Р»Р° РѕС€РёР±РєР° РїСЂРё РѕС‚РїСЂР°РІРєРµ РѕС‚С‡РµС‚Р°. РџРѕРїСЂРѕР±СѓР№С‚Рµ РµС‰Рµ СЂР°Р·.');
     } finally {
       setIsSubmitting(false);
     }
@@ -124,7 +124,7 @@ export const ProblemReportModal: React.FC<ProblemReportModalProps> = ({
               color: theme === 'dark' ? '#E8ECF2' : '#0F172A'
             }}
           >
-            Сообщить о проблеме
+            РЎРѕРѕР±С‰РёС‚СЊ Рѕ РїСЂРѕР±Р»РµРјРµ
           </h2>
           
           <button
@@ -145,7 +145,7 @@ export const ProblemReportModal: React.FC<ProblemReportModalProps> = ({
             <textarea
               value={description}
               onChange={(e) => setDescription(e.target.value)}
-              placeholder="Опишите проблему подробно..."
+              placeholder="РћРїРёС€РёС‚Рµ РїСЂРѕР±Р»РµРјСѓ РїРѕРґСЂРѕР±РЅРѕ..."
               rows={4}
               className="w-full px-4 py-3 rounded-xl border transition-all focus:outline-none focus:ring-2 resize-none"
               style={{
@@ -169,7 +169,7 @@ export const ProblemReportModal: React.FC<ProblemReportModalProps> = ({
                 color: theme === 'dark' ? '#E8ECF2' : '#0F172A'
               }}
             >
-              Прикрепить файл (опционально)
+              РџСЂРёРєСЂРµРїРёС‚СЊ С„Р°Р№Р» (РѕРїС†РёРѕРЅР°Р»СЊРЅРѕ)
             </label>
             
             {selectedFile ? (
@@ -232,7 +232,7 @@ export const ProblemReportModal: React.FC<ProblemReportModalProps> = ({
                     fontSize: '12px'
                   }}
                 >
-                  Файл не выбран
+                  Р¤Р°Р№Р» РЅРµ РІС‹Р±СЂР°РЅ
                 </div>
                 
                 <button
@@ -273,7 +273,7 @@ export const ProblemReportModal: React.FC<ProblemReportModalProps> = ({
                 fontWeight: '500'
               }}
             >
-              Отменить
+              РћС‚РјРµРЅРёС‚СЊ
             </button>
             
             <button
@@ -288,7 +288,7 @@ export const ProblemReportModal: React.FC<ProblemReportModalProps> = ({
               }}
             >
               <Send style={{ width: '14px', height: '14px' }} />
-              {isSubmitting ? 'Отправка...' : 'Отправить'}
+              {isSubmitting ? 'РћС‚РїСЂР°РІРєР°...' : 'РћС‚РїСЂР°РІРёС‚СЊ'}
             </button>
           </div>
         </form>

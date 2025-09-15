@@ -16,7 +16,7 @@ export const AdminPanelJunior: React.FC<AdminPanelJuniorProps> = ({
     <AdminPanelMain 
       theme={theme}
       onClose={onClose}
-      adminName={`${adminName} (Младший Админ)`}
+      adminName={`${adminName} (РњР»Р°РґС€РёР№ РђРґРјРёРЅ)`}
     />
   );
 };

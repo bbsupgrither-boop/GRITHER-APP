@@ -39,14 +39,14 @@ export default function TasksPage({
             <CheckSquare className="w-6 h-6 text-green-500" />
           </div>
           <div>
-            <h1 className="unified-heading">Задачи</h1>
+            <h1 className="unified-heading">Р—Р°РґР°С‡Рё</h1>
             <p className="unified-text text-muted-foreground">
-              {tasks.length} задач
+              {tasks.length} Р·Р°РґР°С‡
             </p>
           </div>
         </div>
         
-        <button className="apple-button p-3" aria-label="Добавить задачу">
+        <button className="apple-button p-3" aria-label="Р”РѕР±Р°РІРёС‚СЊ Р·Р°РґР°С‡Сѓ">
           <Plus className="w-5 h-5" />
         </button>
       </div>
@@ -63,8 +63,8 @@ export default function TasksPage({
                   {task.description}
                 </p>
                 <div className="flex items-center gap-4 text-sm text-muted-foreground">
-                  <span>📅 {task.dueDate}</span>
-                  <span>💰 {task.reward?.coins || 0} монет</span>
+                  <span>рџ“… {task.dueDate}</span>
+                  <span>рџ’° {task.reward?.coins || 0} РјРѕРЅРµС‚</span>
                 </div>
               </div>
             </div>
@@ -75,9 +75,9 @@ export default function TasksPage({
       {tasks.length === 0 && (
         <div className="glass-card p-8 text-center">
           <CheckSquare className="w-16 h-16 text-muted-foreground mx-auto mb-4" />
-          <h3 className="unified-heading mb-2">Нет задач</h3>
+          <h3 className="unified-heading mb-2">РќРµС‚ Р·Р°РґР°С‡</h3>
           <p className="unified-text text-muted-foreground">
-            Нажмите кнопку "+" чтобы добавить новую задачу
+            РќР°Р¶РјРёС‚Рµ РєРЅРѕРїРєСѓ "+" С‡С‚РѕР±С‹ РґРѕР±Р°РІРёС‚СЊ РЅРѕРІСѓСЋ Р·Р°РґР°С‡Сѓ
           </p>
         </div>
       )}

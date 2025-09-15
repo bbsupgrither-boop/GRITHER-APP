@@ -1,4 +1,4 @@
-﻿import React from 'react';
+п»їimport React from 'react';
 
 interface EmptyCardProps {
   variant: 'shop_empty' | 'tasks_empty' | 'achievements_empty';
@@ -9,13 +9,13 @@ interface EmptyCardProps {
 
 const EMPTY_CARD_VARIANTS = {
   shop_empty: {
-    text: 'РўРѕРІР°СЂС‹ СЃРєРѕСЂРѕ РїРѕСЏРІСЏС‚СЃСЏ'
+    text: 'Р СћР С•Р Р†Р В°РЎР‚РЎвЂ№ РЎРѓР С”Р С•РЎР‚Р С• Р С—Р С•РЎРЏР Р†РЎРЏРЎвЂљРЎРѓРЎРЏ'
   },
   tasks_empty: {
-    text: 'РќРµС‚ Р°РєС‚РёРІРЅС‹С… Р·Р°РґР°С‡'
+    text: 'Р СњР ВµРЎвЂљ Р В°Р С”РЎвЂљР С‘Р Р†Р Р…РЎвЂ№РЎвЂ¦ Р В·Р В°Р Т‘Р В°РЎвЂЎ'
   },
   achievements_empty: {
-    text: 'РќРµС‚ РґРѕСЃС‚СѓРїРЅС‹С… РґРѕСЃС‚РёР¶РµРЅРёР№'
+    text: 'Р СњР ВµРЎвЂљ Р Т‘Р С•РЎРѓРЎвЂљРЎС“Р С—Р Р…РЎвЂ№РЎвЂ¦ Р Т‘Р С•РЎРѓРЎвЂљР С‘Р В¶Р ВµР Р…Р С‘Р в„–'
   }
 } as const;
 

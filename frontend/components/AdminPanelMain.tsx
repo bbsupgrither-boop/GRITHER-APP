@@ -39,43 +39,43 @@ interface NavigationItem {
 const NAVIGATION_ITEMS: NavigationItem[] = [
   {
     id: 'dashboard',
-    label: 'Главная',
+    label: 'Р“Р»Р°РІРЅР°СЏ',
     icon: <Home className="w-5 h-5" />,
     color: 'text-blue-500'
   },
   {
     id: 'users',
-    label: 'Сотрудники',
+    label: 'РЎРѕС‚СЂСѓРґРЅРёРєРё',
     icon: <Users className="w-5 h-5" />,
     color: 'text-indigo-500'
   },
   {
     id: 'battles',
-    label: 'Баттлы',
+    label: 'Р‘Р°С‚С‚Р»С‹',
     icon: <Swords className="w-5 h-5" />,
     color: 'text-red-500'
   },
   {
     id: 'achievements',
-    label: 'Достижения',
+    label: 'Р”РѕСЃС‚РёР¶РµРЅРёСЏ',
     icon: <Trophy className="w-5 h-5" />,
     color: 'text-yellow-500'
   },
   {
     id: 'tasks',
-    label: 'Задачи',
+    label: 'Р—Р°РґР°С‡Рё',
     icon: <CheckSquare className="w-5 h-5" />,
     color: 'text-green-500'
   },
   {
     id: 'shop',
-    label: 'Магазин',
+    label: 'РњР°РіР°Р·РёРЅ',
     icon: <ShoppingBag className="w-5 h-5" />,
     color: 'text-purple-500'
   },
   {
     id: 'notifications',
-    label: 'Уведомления',
+    label: 'РЈРІРµРґРѕРјР»РµРЅРёСЏ',
     icon: <MessageSquare className="w-5 h-5" />,
     color: 'text-orange-500'
   }
@@ -122,7 +122,7 @@ export const AdminPanelMain: React.FC<AdminPanelMainProps> = ({
         backgroundColor: theme === 'dark' ? 'rgba(0, 0, 0, 0.9)' : 'rgba(0, 0, 0, 0.8)'
       }}
     >
-      {/* Боковая панель */}
+      {/* Р‘РѕРєРѕРІР°СЏ РїР°РЅРµР»СЊ */}
       <div 
         className={`${sidebarOpen ? 'translate-x-0' : '-translate-x-full'} 
                    lg:translate-x-0 transition-transform duration-300 ease-in-out
@@ -132,7 +132,7 @@ export const AdminPanelMain: React.FC<AdminPanelMainProps> = ({
           borderRight: theme === 'dark' ? '1px solid rgba(255,255,255,0.1)' : '1px solid #E6E9EF'
         }}
       >
-        {/* Заголовок боковой панели */}
+        {/* Р—Р°РіРѕР»РѕРІРѕРє Р±РѕРєРѕРІРѕР№ РїР°РЅРµР»Рё */}
         <div className="p-6 border-b" style={{ borderColor: theme === 'dark' ? 'rgba(255,255,255,0.1)' : '#E6E9EF' }}>
           <div className="flex items-center space-x-3">
             <div className="p-2 rounded-lg bg-blue-500 bg-opacity-20">
@@ -140,7 +140,7 @@ export const AdminPanelMain: React.FC<AdminPanelMainProps> = ({
             </div>
             <div>
               <h1 className="text-lg font-bold" style={{ color: theme === 'dark' ? '#E8ECF2' : '#0F172A' }}>
-                Админ панель
+                РђРґРјРёРЅ РїР°РЅРµР»СЊ
               </h1>
               <p className="text-sm opacity-70" style={{ color: theme === 'dark' ? '#A7B0BD' : '#6B7280' }}>
                 {adminName}
@@ -149,7 +149,7 @@ export const AdminPanelMain: React.FC<AdminPanelMainProps> = ({
           </div>
         </div>
 
-        {/* Навигация */}
+        {/* РќР°РІРёРіР°С†РёСЏ */}
         <nav className="p-4 space-y-2">
           {NAVIGATION_ITEMS.map((item) => (
             <button
@@ -180,7 +180,7 @@ export const AdminPanelMain: React.FC<AdminPanelMainProps> = ({
           ))}
         </nav>
 
-        {/* Нижняя часть боковой панели */}
+        {/* РќРёР¶РЅСЏСЏ С‡Р°СЃС‚СЊ Р±РѕРєРѕРІРѕР№ РїР°РЅРµР»Рё */}
         <div className="absolute bottom-0 left-0 right-0 p-4">
           <div className="flex items-center space-x-3 p-3 rounded-lg" style={{ backgroundColor: theme === 'dark' ? 'rgba(255,255,255,0.05)' : 'rgba(0,0,0,0.05)' }}>
             <div className="p-2 rounded-lg bg-red-500 bg-opacity-20">
@@ -188,24 +188,24 @@ export const AdminPanelMain: React.FC<AdminPanelMainProps> = ({
             </div>
             <div>
               <p className="text-sm font-medium" style={{ color: theme === 'dark' ? '#E8ECF2' : '#0F172A' }}>
-                Настройки
+                РќР°СЃС‚СЂРѕР№РєРё
               </p>
               <p className="text-xs opacity-70" style={{ color: theme === 'dark' ? '#A7B0BD' : '#6B7280' }}>
-                Системные параметры
+                РЎРёСЃС‚РµРјРЅС‹Рµ РїР°СЂР°РјРµС‚СЂС‹
               </p>
             </div>
           </div>
         </div>
       </div>
 
-      {/* Основной контент */}
+      {/* РћСЃРЅРѕРІРЅРѕР№ РєРѕРЅС‚РµРЅС‚ */}
       <div 
         className="flex-1 flex flex-col overflow-hidden"
         style={{
           backgroundColor: theme === 'dark' ? '#0F1116' : '#F8F9FA'
         }}
       >
-        {/* Верхняя панель */}
+        {/* Р’РµСЂС…РЅСЏСЏ РїР°РЅРµР»СЊ */}
         <div 
           className="flex items-center justify-between p-4 border-b"
           style={{ 
@@ -227,12 +227,12 @@ export const AdminPanelMain: React.FC<AdminPanelMainProps> = ({
                 {NAVIGATION_ITEMS.find(item => item.id === currentSection)?.label}
               </h2>
               <p className="text-sm opacity-70" style={{ color: theme === 'dark' ? '#A7B0BD' : '#6B7280' }}>
-                {currentSection === 'dashboard' && 'Обзор системы и быстрые действия'}
-                {currentSection === 'users' && 'Управление сотрудниками и ролями'}
-                {currentSection === 'battles' && 'Модерация поединков и решение споров'}
-                {currentSection === 'achievements' && 'Создание, редактирование и модерация достижений'}
-                {currentSection === 'tasks' && 'Создание, назначение и отслеживание задач'}
-                {currentSection === 'shop' && 'Управление товарами и кейсами'}
+                {currentSection === 'dashboard' && 'РћР±Р·РѕСЂ СЃРёСЃС‚РµРјС‹ Рё Р±С‹СЃС‚СЂС‹Рµ РґРµР№СЃС‚РІРёСЏ'}
+                {currentSection === 'users' && 'РЈРїСЂР°РІР»РµРЅРёРµ СЃРѕС‚СЂСѓРґРЅРёРєР°РјРё Рё СЂРѕР»СЏРјРё'}
+                {currentSection === 'battles' && 'РњРѕРґРµСЂР°С†РёСЏ РїРѕРµРґРёРЅРєРѕРІ Рё СЂРµС€РµРЅРёРµ СЃРїРѕСЂРѕРІ'}
+                {currentSection === 'achievements' && 'РЎРѕР·РґР°РЅРёРµ, СЂРµРґР°РєС‚РёСЂРѕРІР°РЅРёРµ Рё РјРѕРґРµСЂР°С†РёСЏ РґРѕСЃС‚РёР¶РµРЅРёР№'}
+                {currentSection === 'tasks' && 'РЎРѕР·РґР°РЅРёРµ, РЅР°Р·РЅР°С‡РµРЅРёРµ Рё РѕС‚СЃР»РµР¶РёРІР°РЅРёРµ Р·Р°РґР°С‡'}
+                {currentSection === 'shop' && 'РЈРїСЂР°РІР»РµРЅРёРµ С‚РѕРІР°СЂР°РјРё Рё РєРµР№СЃР°РјРё'}
               </p>
             </div>
           </div>
@@ -256,13 +256,13 @@ export const AdminPanelMain: React.FC<AdminPanelMainProps> = ({
           </div>
         </div>
 
-        {/* Контент */}
+        {/* РљРѕРЅС‚РµРЅС‚ */}
         <div className="flex-1 overflow-y-auto">
           {renderCurrentSection()}
         </div>
       </div>
 
-      {/* Мобильная навигация снизу */}
+      {/* РњРѕР±РёР»СЊРЅР°СЏ РЅР°РІРёРіР°С†РёСЏ СЃРЅРёР·Сѓ */}
       <div 
         className="lg:hidden fixed bottom-0 left-0 right-0 p-4"
         style={{
@@ -290,7 +290,7 @@ export const AdminPanelMain: React.FC<AdminPanelMainProps> = ({
             </button>
           ))}
         </div>
-        {/* Индикатор внизу */}
+        {/* РРЅРґРёРєР°С‚РѕСЂ РІРЅРёР·Сѓ */}
         <div className="flex justify-center mt-2">
           <div 
             className="w-8 h-1 rounded-full"

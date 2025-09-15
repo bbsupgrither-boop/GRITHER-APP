@@ -1,4 +1,4 @@
-﻿import { useState, useEffect } from 'react';
+п»їimport { useState, useEffect } from 'react';
 import { Header } from './Header';
 import { BottomNavigation } from './BottomNavigation';
 import { Target, CheckCircle, Clock, AlertTriangle, Coins, Star, Calendar, Timer, User, Search } from './Icons';
@@ -28,13 +28,13 @@ export function TasksPageStyled({
   const [currentTime, setCurrentTime] = useState(new Date());
 
   const tabs = [
-    { id: 'active' as const, label: 'РђРєС‚РёРІРЅС‹Рµ', icon: Target },
-    { id: 'review' as const, label: 'РќР° РїСЂРѕРІРµСЂРєРµ', icon: Clock },
-    { id: 'completed' as const, label: 'Р’С‹РїРѕР»РЅРµРЅРЅС‹Рµ', icon: CheckCircle },
-    { id: 'overdue' as const, label: 'РџСЂРѕСЃСЂРѕС‡РµРЅРЅС‹Рµ', icon: AlertTriangle }
+    { id: 'active' as const, label: 'Р С’Р С”РЎвЂљР С‘Р Р†Р Р…РЎвЂ№Р Вµ', icon: Target },
+    { id: 'review' as const, label: 'Р СњР В° Р С—РЎР‚Р С•Р Р†Р ВµРЎР‚Р С”Р Вµ', icon: Clock },
+    { id: 'completed' as const, label: 'Р вЂ™РЎвЂ№Р С—Р С•Р В»Р Р…Р ВµР Р…Р Р…РЎвЂ№Р Вµ', icon: CheckCircle },
+    { id: 'overdue' as const, label: 'Р СџРЎР‚Р С•РЎРѓРЎР‚Р С•РЎвЂЎР ВµР Р…Р Р…РЎвЂ№Р Вµ', icon: AlertTriangle }
   ];
 
-  // РџСЂРµРѕР±СЂР°Р·СѓРµРј Р·Р°РґР°С‡Рё РёР· РіР»РѕР±Р°Р»СЊРЅРѕРіРѕ СЃРѕСЃС‚РѕСЏРЅРёСЏ
+  // Р СџРЎР‚Р ВµР С•Р В±РЎР‚Р В°Р В·РЎС“Р ВµР С Р В·Р В°Р Т‘Р В°РЎвЂЎР С‘ Р С‘Р В· Р С–Р В»Р С•Р В±Р В°Р В»РЎРЉР Р…Р С•Р С–Р С• РЎРѓР С•РЎРѓРЎвЂљР С•РЎРЏР Р…Р С‘РЎРЏ
   const convertGlobalTasksToTasks = (globalTasks: any[]) => {
     return globalTasks
       .filter(task => task.isPublished)
@@ -56,7 +56,7 @@ export function TasksPageStyled({
 
   const convertedTasks = convertGlobalTasksToTasks(globalTasks);
 
-  // РћР±РЅРѕРІР»СЏРµРј РІСЂРµРјСЏ РєР°Р¶РґСѓСЋ СЃРµРєСѓРЅРґСѓ РґР»СЏ С‚Р°Р№РјРµСЂР°
+  // Р С›Р В±Р Р…Р С•Р Р†Р В»РЎРЏР ВµР С Р Р†РЎР‚Р ВµР СРЎРЏ Р С”Р В°Р В¶Р Т‘РЎС“РЎР‹ РЎРѓР ВµР С”РЎС“Р Р…Р Т‘РЎС“ Р Т‘Р В»РЎРЏ РЎвЂљР В°Р в„–Р СР ВµРЎР‚Р В°
   useEffect(() => {
     const timer = setInterval(() => {
       setCurrentTime(new Date());
@@ -65,36 +65,36 @@ export function TasksPageStyled({
     return () => clearInterval(timer);
   }, []);
 
-  // РџСЂРѕРІРµСЂСЏРµРј РїСЂРѕСЃСЂРѕС‡РµРЅРЅС‹Рµ Р·Р°РґР°С‡Рё
+  // Р СџРЎР‚Р С•Р Р†Р ВµРЎР‚РЎРЏР ВµР С Р С—РЎР‚Р С•РЎРѓРЎР‚Р С•РЎвЂЎР ВµР Р…Р Р…РЎвЂ№Р Вµ Р В·Р В°Р Т‘Р В°РЎвЂЎР С‘
   const isTaskOverdue = (deadline: string) => {
     if (!deadline) return false;
     const deadlineDate = new Date(deadline);
     return currentTime > deadlineDate && activeTab === 'active';
   };
 
-  // РџРѕР»СѓС‡Р°РµРј РІСЂРµРјСЏ РґРѕ РґРµРґР»Р°Р№РЅР°
+  // Р СџР С•Р В»РЎС“РЎвЂЎР В°Р ВµР С Р Р†РЎР‚Р ВµР СРЎРЏ Р Т‘Р С• Р Т‘Р ВµР Т‘Р В»Р В°Р в„–Р Р…Р В°
   const getTimeRemaining = (deadline: string) => {
-    if (!deadline) return 'Р‘пїЅпїЅР· РґРµРґР»Р°Р№РЅР°';
+    if (!deadline) return 'Р вЂРїС—Р…РїС—Р…Р В· Р Т‘Р ВµР Т‘Р В»Р В°Р в„–Р Р…Р В°';
     
     const deadlineDate = new Date(deadline);
     const difference = deadlineDate.getTime() - currentTime.getTime();
 
-    if (difference <= 0) return 'РџСЂРѕСЃСЂРѕС‡РµРЅРѕ';
+    if (difference <= 0) return 'Р СџРЎР‚Р С•РЎРѓРЎР‚Р С•РЎвЂЎР ВµР Р…Р С•';
 
     const days = Math.floor(difference / (1000 * 60 * 60 * 24));
     const hours = Math.floor((difference / (1000 * 60 * 60)) % 24);
     const minutes = Math.floor((difference / 1000 / 60) % 60);
 
-    if (days > 0) return `${days}Рґ ${hours}С‡`;
-    if (hours > 0) return `${hours}С‡ ${minutes}Рј`;
-    return `${minutes}Рј`;
+    if (days > 0) return `${days}Р Т‘ ${hours}РЎвЂЎ`;
+    if (hours > 0) return `${hours}РЎвЂЎ ${minutes}Р С`;
+    return `${minutes}Р С`;
   };
 
-  // Р¤РёР»СЊС‚СЂР°С†РёСЏ Р·Р°РґР°С‡
+  // Р В¤Р С‘Р В»РЎРЉРЎвЂљРЎР‚Р В°РЎвЂ Р С‘РЎРЏ Р В·Р В°Р Т‘Р В°РЎвЂЎ
   const getFilteredTasks = () => {
     let filtered = convertedTasks;
 
-    // Р¤РёР»СЊС‚СЂ РїРѕ РїРѕРёСЃРєСѓ
+    // Р В¤Р С‘Р В»РЎРЉРЎвЂљРЎР‚ Р С—Р С• Р С—Р С•Р С‘РЎРѓР С”РЎС“
     if (searchQuery) {
       filtered = filtered.filter(task => 
         task.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
@@ -102,7 +102,7 @@ export function TasksPageStyled({
       );
     }
 
-    // Р¤РёР»СЊС‚СЂ РїРѕ С‚Р°Р±Р°Рј
+    // Р В¤Р С‘Р В»РЎРЉРЎвЂљРЎР‚ Р С—Р С• РЎвЂљР В°Р В±Р В°Р С
     switch (activeTab) {
       case 'active':
         return filtered.filter(task => task.status === 'active' && !isTaskOverdue(task.deadline));
@@ -182,8 +182,8 @@ export function TasksPageStyled({
             </div>
             <div className="flex items-center gap-2">
               <div className={`text-xs px-2 py-1 rounded-full ${getPriorityColor(task.priority)}`}>
-                {task.priority === 'high' ? 'Р’С‹СЃРѕРєРёР№' : 
-                 task.priority === 'medium' ? 'РЎСЂРµРґРЅРёР№' : 'РќРёР·РєРёР№'}
+                {task.priority === 'high' ? 'Р вЂ™РЎвЂ№РЎРѓР С•Р С”Р С‘Р в„–' : 
+                 task.priority === 'medium' ? 'Р РЋРЎР‚Р ВµР Т‘Р Р…Р С‘Р в„–' : 'Р СњР С‘Р В·Р С”Р С‘Р в„–'}
               </div>
             </div>
           </div>
@@ -192,7 +192,7 @@ export function TasksPageStyled({
             <div className="flex items-center gap-4">
               <div className="flex items-center gap-1 text-muted-foreground">
                 <Coins className="w-3 h-3" />
-                <span>{task.reward} {task.rewardType === 'coins' ? 'РјРѕРЅРµС‚' : 'XP'}</span>
+                <span>{task.reward} {task.rewardType === 'coins' ? 'Р СР С•Р Р…Р ВµРЎвЂљ' : 'XP'}</span>
               </div>
               {task.deadline && (
                 <div className={`flex items-center gap-1 ${
@@ -217,22 +217,22 @@ export function TasksPageStyled({
                   onClick={() => handleTaskAction(task, 'review')}
                   className="bg-primary text-primary-foreground px-3 py-1.5 rounded-lg text-xs hover:scale-[0.98] transition-transform"
                 >
-                  Р’С‹РїРѕР»РЅРёС‚СЊ
+                  Р вЂ™РЎвЂ№Р С—Р С•Р В»Р Р…Р С‘РЎвЂљРЎРЉ
                 </button>
               )}
               {task.status === 'review' && (
                 <div className="bg-yellow-100 text-yellow-600 px-3 py-1.5 rounded-lg text-xs">
-                  РќР° РїСЂРѕРІРµСЂРєРµ
+                  Р СњР В° Р С—РЎР‚Р С•Р Р†Р ВµРЎР‚Р С”Р Вµ
                 </div>
               )}
               {task.status === 'completed' && (
                 <div className="bg-green-100 text-green-600 px-3 py-1.5 rounded-lg text-xs">
-                  Р’С‹РїРѕР»РЅРµРЅРѕ
+                  Р вЂ™РЎвЂ№Р С—Р С•Р В»Р Р…Р ВµР Р…Р С•
                 </div>
               )}
               {isTaskOverdue(task.deadline) && task.status === 'active' && (
                 <div className="bg-red-100 text-red-600 px-3 py-1.5 rounded-lg text-xs">
-                  РџСЂРѕСЃСЂРѕС‡РµРЅРѕ
+                  Р СџРЎР‚Р С•РЎРѓРЎР‚Р С•РЎвЂЎР ВµР Р…Р С•
                 </div>
               )}
             </div>
@@ -245,21 +245,21 @@ export function TasksPageStyled({
   return (
     <div className="min-h-screen bg-background">
       <Header 
-        title="Р—Р°РґР°С‡Рё" 
+        title="Р вЂ”Р В°Р Т‘Р В°РЎвЂЎР С‘" 
         onOpenSettings={onOpenSettings} 
         profilePhoto={profilePhoto}
         user={currentUser}
       />
       
       <div className="pt-20 pb-20 p-6">
-        {/* РЎС‚Р°С‚РёСЃС‚РёРєР° */}
+        {/* Р РЋРЎвЂљР В°РЎвЂљР С‘РЎРѓРЎвЂљР С‘Р С”Р В° */}
         <div className="grid grid-cols-4 gap-3 mb-6">
           <div className="glass-card p-3 rounded-2xl apple-shadow text-center">
             <div className="text-xl font-medium text-blue-600 mb-1">
               {activeCount}
             </div>
             <div className="text-xs text-muted-foreground">
-              РђРєС‚РёРІРЅС‹Рµ
+              Р С’Р С”РЎвЂљР С‘Р Р†Р Р…РЎвЂ№Р Вµ
             </div>
           </div>
           <div className="glass-card p-3 rounded-2xl apple-shadow text-center">
@@ -267,7 +267,7 @@ export function TasksPageStyled({
               {reviewCount}
             </div>
             <div className="text-xs text-muted-foreground">
-              РќР° РїСЂРѕРІРµСЂРєРµ
+              Р СњР В° Р С—РЎР‚Р С•Р Р†Р ВµРЎР‚Р С”Р Вµ
             </div>
           </div>
           <div className="glass-card p-3 rounded-2xl apple-shadow text-center">
@@ -275,7 +275,7 @@ export function TasksPageStyled({
               {completedCount}
             </div>
             <div className="text-xs text-muted-foreground">
-              Р’С‹РїРѕР»РЅРµРЅРѕ
+              Р вЂ™РЎвЂ№Р С—Р С•Р В»Р Р…Р ВµР Р…Р С•
             </div>
           </div>
           <div className="glass-card p-3 rounded-2xl apple-shadow text-center">
@@ -283,18 +283,18 @@ export function TasksPageStyled({
               {overdueCount}
             </div>
             <div className="text-xs text-muted-foreground">
-              РџСЂРѕСЃСЂРѕС‡РµРЅРѕ
+              Р СџРЎР‚Р С•РЎРѓРЎР‚Р С•РЎвЂЎР ВµР Р…Р С•
             </div>
           </div>
         </div>
 
-        {/* РџРѕРёСЃРє */}
+        {/* Р СџР С•Р С‘РЎРѓР С” */}
         <div className="glass-card rounded-2xl p-4 mb-6 apple-shadow">
           <div className="flex items-center gap-3">
             <Search className="w-5 h-5 text-muted-foreground" />
             <input
               type="text"
-              placeholder="РџРѕРёСЃРє Р·Р°РґР°С‡..."
+              placeholder="Р СџР С•Р С‘РЎРѓР С” Р В·Р В°Р Т‘Р В°РЎвЂЎ..."
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
               className="flex-1 bg-transparent text-foreground placeholder-muted-foreground focus:outline-none"
@@ -304,13 +304,13 @@ export function TasksPageStyled({
                 onClick={() => setSearchQuery('')}
                 className="text-muted-foreground hover:text-foreground transition-colors"
               >
-                вњ•
+                РІСљвЂў
               </button>
             )}
           </div>
         </div>
 
-        {/* РўР°Р±С‹ */}
+        {/* Р СћР В°Р В±РЎвЂ№ */}
         <div className="grid grid-cols-4 gap-2 mb-6">
           {tabs.map((tab) => {
             const Icon = tab.icon;
@@ -332,7 +332,7 @@ export function TasksPageStyled({
           })}
         </div>
 
-        {/* РЎРїРёСЃРѕРє Р·Р°РґР°С‡ */}
+        {/* Р РЋР С—Р С‘РЎРѓР С•Р С” Р В·Р В°Р Т‘Р В°РЎвЂЎ */}
         <div className="space-y-4">
           {filteredTasks.length > 0 ? (
             filteredTasks.map(renderTaskCard)
@@ -340,18 +340,18 @@ export function TasksPageStyled({
             <div className="glass-card rounded-2xl p-8 text-center apple-shadow">
               <Target className="w-12 h-12 text-muted-foreground mx-auto mb-4" />
               <h3 className="text-lg font-medium text-foreground mb-2">
-                {searchQuery ? 'РќРёС‡РµРіРѕ РЅРµ РЅР°Р№РґРµРЅРѕ' : 'РќРµС‚ Р·Р°РґР°С‡'}
+                {searchQuery ? 'Р СњР С‘РЎвЂЎР ВµР С–Р С• Р Р…Р Вµ Р Р…Р В°Р в„–Р Т‘Р ВµР Р…Р С•' : 'Р СњР ВµРЎвЂљ Р В·Р В°Р Т‘Р В°РЎвЂЎ'}
               </h3>
               <p className="text-sm text-muted-foreground">
                 {searchQuery 
-                  ? 'РџРѕРїСЂРѕР±СѓР№С‚Рµ РёР·РјРµРЅРёС‚СЊ РїРѕРёСЃРєРѕРІС‹Р№ Р·Р°РїСЂРѕСЃ'
+                  ? 'Р СџР С•Р С—РЎР‚Р С•Р В±РЎС“Р в„–РЎвЂљР Вµ Р С‘Р В·Р СР ВµР Р…Р С‘РЎвЂљРЎРЉ Р С—Р С•Р С‘РЎРѓР С”Р С•Р Р†РЎвЂ№Р в„– Р В·Р В°Р С—РЎР‚Р С•РЎРѓ'
                   : activeTab === 'active'
-                  ? 'РЈ РІР°СЃ РЅРµС‚ Р°РєС‚РёРІРЅС‹С… Р·Р°РґР°С‡'
+                  ? 'Р Р€ Р Р†Р В°РЎРѓ Р Р…Р ВµРЎвЂљ Р В°Р С”РЎвЂљР С‘Р Р†Р Р…РЎвЂ№РЎвЂ¦ Р В·Р В°Р Т‘Р В°РЎвЂЎ'
                   : activeTab === 'completed'
-                  ? 'РЈ РІР°СЃ РЅРµС‚ РІС‹РїРѕР»РЅРµРЅРЅС‹С… Р·Р°РґР°С‡'
+                  ? 'Р Р€ Р Р†Р В°РЎРѓ Р Р…Р ВµРЎвЂљ Р Р†РЎвЂ№Р С—Р С•Р В»Р Р…Р ВµР Р…Р Р…РЎвЂ№РЎвЂ¦ Р В·Р В°Р Т‘Р В°РЎвЂЎ'
                   : activeTab === 'review'
-                  ? 'РќРµС‚ Р·Р°РґР°С‡ РЅР° РїСЂРѕРІРµСЂРєРµ'
-                  : 'РЈ РІР°СЃ РЅРµС‚ РїСЂРѕСЃСЂРѕС‡РµРЅРЅС‹С… Р·Р°РґР°С‡'
+                  ? 'Р СњР ВµРЎвЂљ Р В·Р В°Р Т‘Р В°РЎвЂЎ Р Р…Р В° Р С—РЎР‚Р С•Р Р†Р ВµРЎР‚Р С”Р Вµ'
+                  : 'Р Р€ Р Р†Р В°РЎРѓ Р Р…Р ВµРЎвЂљ Р С—РЎР‚Р С•РЎРѓРЎР‚Р С•РЎвЂЎР ВµР Р…Р Р…РЎвЂ№РЎвЂ¦ Р В·Р В°Р Т‘Р В°РЎвЂЎ'
                 }
               </p>
               {searchQuery && (
@@ -359,14 +359,14 @@ export function TasksPageStyled({
                   onClick={() => setSearchQuery('')}
                   className="mt-4 bg-primary text-primary-foreground px-4 py-2 rounded-xl hover:scale-[0.98] transition-transform"
                 >
-                  РћС‡РёСЃС‚РёС‚СЊ РїРѕРёСЃРє
+                  Р С›РЎвЂЎР С‘РЎРѓРЎвЂљР С‘РЎвЂљРЎРЉ Р С—Р С•Р С‘РЎРѓР С”
                 </button>
               )}
             </div>
           )}
         </div>
 
-        {/* РњРѕС‚РёРІР°С†РёРѕРЅРЅРѕРµ СЃРѕРѕР±С‰РµРЅРёРµ */}
+        {/* Р СљР С•РЎвЂљР С‘Р Р†Р В°РЎвЂ Р С‘Р С•Р Р…Р Р…Р С•Р Вµ РЎРѓР С•Р С•Р В±РЎвЂ°Р ВµР Р…Р С‘Р Вµ */}
         {convertedTasks.length > 0 && !searchQuery && (
           <div className="glass-card rounded-2xl p-4 mt-6 apple-shadow">
             <div className="flex items-center gap-3">
@@ -374,15 +374,15 @@ export function TasksPageStyled({
                 <Star className="w-5 h-5 text-blue-600" />
               </div>
               <div className="flex-1">
-                <div className="font-medium text-foreground text-sm">РЎРѕРІРµС‚ РґРЅСЏ</div>
+                <div className="font-medium text-foreground text-sm">Р РЋР С•Р Р†Р ВµРЎвЂљ Р Т‘Р Р…РЎРЏ</div>
                 <div className="text-sm text-muted-foreground">
                   {activeTab === 'active' 
-                    ? 'Р’С‹РїРѕР»РЅСЏР№С‚Рµ Р·Р°РґР°С‡Рё РІРѕРІСЂРµРјСЏ, С‡С‚РѕР±С‹ РїРѕР»СѓС‡РёС‚СЊ РїРѕР»РЅСѓСЋ РЅР°РіСЂР°РґСѓ!'
+                    ? 'Р вЂ™РЎвЂ№Р С—Р С•Р В»Р Р…РЎРЏР в„–РЎвЂљР Вµ Р В·Р В°Р Т‘Р В°РЎвЂЎР С‘ Р Р†Р С•Р Р†РЎР‚Р ВµР СРЎРЏ, РЎвЂЎРЎвЂљР С•Р В±РЎвЂ№ Р С—Р С•Р В»РЎС“РЎвЂЎР С‘РЎвЂљРЎРЉ Р С—Р С•Р В»Р Р…РЎС“РЎР‹ Р Р…Р В°Р С–РЎР‚Р В°Р Т‘РЎС“!'
                     : activeTab === 'completed'
-                    ? `РћС‚Р»РёС‡РЅРѕ! Р’С‹ РІС‹РїРѕР»РЅРёР»Рё ${completedCount} Р·Р°РґР°С‡. РџСЂРѕРґРѕР»Р¶Р°Р№С‚Рµ РІ С‚РѕРј Р¶Рµ РґСѓС…Рµ!`
+                    ? `Р С›РЎвЂљР В»Р С‘РЎвЂЎР Р…Р С•! Р вЂ™РЎвЂ№ Р Р†РЎвЂ№Р С—Р С•Р В»Р Р…Р С‘Р В»Р С‘ ${completedCount} Р В·Р В°Р Т‘Р В°РЎвЂЎ. Р СџРЎР‚Р С•Р Т‘Р С•Р В»Р В¶Р В°Р в„–РЎвЂљР Вµ Р Р† РЎвЂљР С•Р С Р В¶Р Вµ Р Т‘РЎС“РЎвЂ¦Р Вµ!`
                     : activeTab === 'overdue'
-                    ? 'РџРѕСЃС‚Р°СЂР°Р№С‚РµСЃСЊ РІС‹РїРѕР»РЅРёС‚СЊ РїСЂРѕСЃСЂРѕС‡РµРЅРЅС‹Рµ Р·Р°РґР°С‡Рё РєР°Рє РјРѕР¶РЅРѕ СЃРєРѕСЂРµРµ.'
-                    : 'Р”РѕР¶РґРёС‚РµСЃСЊ РїСЂРѕРІРµСЂРєРё РІР°С€РёС… Р·Р°РґР°С‡ Р°РґРјРёРЅРёСЃС‚СЂР°С‚РѕСЂРѕРј.'
+                    ? 'Р СџР С•РЎРѓРЎвЂљР В°РЎР‚Р В°Р в„–РЎвЂљР ВµРЎРѓРЎРЉ Р Р†РЎвЂ№Р С—Р С•Р В»Р Р…Р С‘РЎвЂљРЎРЉ Р С—РЎР‚Р С•РЎРѓРЎР‚Р С•РЎвЂЎР ВµР Р…Р Р…РЎвЂ№Р Вµ Р В·Р В°Р Т‘Р В°РЎвЂЎР С‘ Р С”Р В°Р С” Р СР С•Р В¶Р Р…Р С• РЎРѓР С”Р С•РЎР‚Р ВµР Вµ.'
+                    : 'Р вЂќР С•Р В¶Р Т‘Р С‘РЎвЂљР ВµРЎРѓРЎРЉ Р С—РЎР‚Р С•Р Р†Р ВµРЎР‚Р С”Р С‘ Р Р†Р В°РЎв‚¬Р С‘РЎвЂ¦ Р В·Р В°Р Т‘Р В°РЎвЂЎ Р В°Р Т‘Р СР С‘Р Р…Р С‘РЎРѓРЎвЂљРЎР‚Р В°РЎвЂљР С•РЎР‚Р С•Р С.'
                   }
                 </div>
               </div>

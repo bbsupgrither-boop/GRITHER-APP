@@ -31,7 +31,7 @@ interface AdminUserManagementProps {
   theme: 'light' | 'dark';
 }
 
-// Используем UserData из базы данных
+// РСЃРїРѕР»СЊР·СѓРµРј UserData РёР· Р±Р°Р·С‹ РґР°РЅРЅС‹С…
 
 interface Team {
   id: number;
@@ -42,19 +42,19 @@ interface Team {
 }
 
 const USER_ROLES = [
-  { value: 'worker', label: 'Сотрудник', icon: '👤', color: 'bg-gray-500' },
-  { value: 'team_lead', label: 'Тимлид', icon: '👑', color: 'bg-blue-500' },
-  { value: 'junior_admin', label: 'Младший Админ', icon: '🛡️', color: 'bg-green-500' },
-  { value: 'senior_admin', label: 'Старший Админ', icon: '⭐', color: 'bg-purple-500' },
-  { value: 'main_admin', label: 'Главный Админ', icon: '👑', color: 'bg-orange-500' }
+  { value: 'worker', label: 'РЎРѕС‚СЂСѓРґРЅРёРє', icon: 'рџ‘¤', color: 'bg-gray-500' },
+  { value: 'team_lead', label: 'РўРёРјР»РёРґ', icon: 'рџ‘‘', color: 'bg-blue-500' },
+  { value: 'junior_admin', label: 'РњР»Р°РґС€РёР№ РђРґРјРёРЅ', icon: 'рџ›ЎпёЏ', color: 'bg-green-500' },
+  { value: 'senior_admin', label: 'РЎС‚Р°СЂС€РёР№ РђРґРјРёРЅ', icon: 'в­ђ', color: 'bg-purple-500' },
+  { value: 'main_admin', label: 'Р“Р»Р°РІРЅС‹Р№ РђРґРјРёРЅ', icon: 'рџ‘‘', color: 'bg-orange-500' }
 ];
 
 const TEAMS = [
-  { id: 1, name: 'Команда А', teamLeadId: '1192050960', teamLeadName: 'Макс' },
-  { id: 2, name: 'Команда Б', teamLeadId: '639897713', teamLeadName: 'Вика' },
-  { id: 3, name: 'Команда В', teamLeadId: '1265713870', teamLeadName: 'Никита' },
-  { id: 4, name: 'Команда Г', teamLeadId: '484779656', teamLeadName: 'Сергей' },
-  { id: 5, name: 'Команда Д', teamLeadId: '285529209', teamLeadName: 'Федя' }
+  { id: 1, name: 'РљРѕРјР°РЅРґР° Рђ', teamLeadId: '1192050960', teamLeadName: 'РњР°РєСЃ' },
+  { id: 2, name: 'РљРѕРјР°РЅРґР° Р‘', teamLeadId: '639897713', teamLeadName: 'Р’РёРєР°' },
+  { id: 3, name: 'РљРѕРјР°РЅРґР° Р’', teamLeadId: '1265713870', teamLeadName: 'РќРёРєРёС‚Р°' },
+  { id: 4, name: 'РљРѕРјР°РЅРґР° Р“', teamLeadId: '484779656', teamLeadName: 'РЎРµСЂРіРµР№' },
+  { id: 5, name: 'РљРѕРјР°РЅРґР° Р”', teamLeadId: '285529209', teamLeadName: 'Р¤РµРґСЏ' }
 ];
 
 export const AdminUserManagement: React.FC<AdminUserManagementProps> = ({ theme }) => {
@@ -69,26 +69,26 @@ export const AdminUserManagement: React.FC<AdminUserManagementProps> = ({ theme 
   const [formData, setFormData] = useState<any>({});
   const [activeTab, setActiveTab] = useState<'active' | 'dismissed'>('active');
 
-  // Загрузка данных
+  // Р—Р°РіСЂСѓР·РєР° РґР°РЅРЅС‹С…
   useEffect(() => {
     loadUsers();
   }, []);
 
-  // Фильтрация
+  // Р¤РёР»СЊС‚СЂР°С†РёСЏ
   useEffect(() => {
     filterUsers();
   }, [users, searchQuery, filterRole, filterTeam, filterStatus, activeTab]);
 
   const loadUsers = async () => {
-    // Mock данные на основе базы данных из userRoles.ts
+    // Mock РґР°РЅРЅС‹Рµ РЅР° РѕСЃРЅРѕРІРµ Р±Р°Р·С‹ РґР°РЅРЅС‹С… РёР· userRoles.ts
     const mockUsers: User[] = [
       {
         id: '1',
         telegramId: '918064599',
-        name: 'Мирослав',
+        name: 'РњРёСЂРѕСЃР»Р°РІ',
         role: 'worker',
         teamNumber: 1,
-        teamName: 'Команда А',
+        teamName: 'РљРѕРјР°РЅРґР° Рђ',
         level: 5,
         experience: 1250,
         gCoins: 500,
@@ -102,10 +102,10 @@ export const AdminUserManagement: React.FC<AdminUserManagementProps> = ({ theme 
       {
         id: '2',
         telegramId: '1192050960',
-        name: 'Макс',
+        name: 'РњР°РєСЃ',
         role: 'team_lead',
         teamNumber: 1,
-        teamName: 'Команда А',
+        teamName: 'РљРѕРјР°РЅРґР° Рђ',
         level: 12,
         experience: 3200,
         gCoins: 1200,
@@ -119,7 +119,7 @@ export const AdminUserManagement: React.FC<AdminUserManagementProps> = ({ theme 
       {
         id: '3',
         telegramId: '1900528628',
-        name: 'Макс',
+        name: 'РњР°РєСЃ',
         role: 'main_admin',
         level: 20,
         experience: 5000,
@@ -134,10 +134,10 @@ export const AdminUserManagement: React.FC<AdminUserManagementProps> = ({ theme 
       {
         id: '4',
         telegramId: '1765172620',
-        name: 'Гоша',
+        name: 'Р“РѕС€Р°',
         role: 'worker',
         teamNumber: 2,
-        teamName: 'Команда Б',
+        teamName: 'РљРѕРјР°РЅРґР° Р‘',
         level: 3,
         experience: 800,
         gCoins: 300,
@@ -156,14 +156,14 @@ export const AdminUserManagement: React.FC<AdminUserManagementProps> = ({ theme 
   const filterUsers = () => {
     let filtered = users;
 
-    // Фильтр по табу
+    // Р¤РёР»СЊС‚СЂ РїРѕ С‚Р°Р±Сѓ
     if (activeTab === 'active') {
       filtered = filtered.filter(user => user.isActive);
     } else if (activeTab === 'dismissed') {
       filtered = filtered.filter(user => !user.isActive);
     }
 
-    // Поиск
+    // РџРѕРёСЃРє
     if (searchQuery) {
       filtered = filtered.filter(user =>
         user.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
@@ -172,12 +172,12 @@ export const AdminUserManagement: React.FC<AdminUserManagementProps> = ({ theme 
       );
     }
 
-    // Фильтр по роли
+    // Р¤РёР»СЊС‚СЂ РїРѕ СЂРѕР»Рё
     if (filterRole !== 'all') {
       filtered = filtered.filter(user => user.role === filterRole);
     }
 
-    // Фильтр по команде
+    // Р¤РёР»СЊС‚СЂ РїРѕ РєРѕРјР°РЅРґРµ
     if (filterTeam !== 'all') {
       filtered = filtered.filter(user => user.teamNumber?.toString() === filterTeam);
     }
@@ -251,7 +251,7 @@ export const AdminUserManagement: React.FC<AdminUserManagementProps> = ({ theme 
   };
 
   const handleDeleteUser = async (userId: string) => {
-    if (window.confirm('Вы уверены, что хотите удалить этого пользователя?')) {
+    if (window.confirm('Р’С‹ СѓРІРµСЂРµРЅС‹, С‡С‚Рѕ С…РѕС‚РёС‚Рµ СѓРґР°Р»РёС‚СЊ СЌС‚РѕРіРѕ РїРѕР»СЊР·РѕРІР°С‚РµР»СЏ?')) {
       setUsers(prev => prev.filter(u => u.id !== userId));
     }
   };
@@ -312,15 +312,15 @@ export const AdminUserManagement: React.FC<AdminUserManagementProps> = ({ theme 
             <div className="flex items-center space-x-4 mt-2 text-xs opacity-60">
               <span className="flex items-center">
                 <Star className="w-3 h-3 mr-1" />
-                Уровень {user.level}
+                РЈСЂРѕРІРµРЅСЊ {user.level}
               </span>
               <span className="flex items-center">
                 <DollarSign className="w-3 h-3 mr-1" />
-                {user.gCoins} монет
+                {user.gCoins} РјРѕРЅРµС‚
               </span>
               <span className="flex items-center">
                 <Activity className="w-3 h-3 mr-1" />
-                {user.tasksCompleted} задач
+                {user.tasksCompleted} Р·Р°РґР°С‡
               </span>
               <span className="flex items-center">
                 <Calendar className="w-3 h-3 mr-1" />
@@ -339,7 +339,7 @@ export const AdminUserManagement: React.FC<AdminUserManagementProps> = ({ theme 
                 : 'bg-red-500 bg-opacity-20 text-red-500'
             }`}
           >
-            {user.isActive ? 'Активен' : 'Уволен'}
+            {user.isActive ? 'РђРєС‚РёРІРµРЅ' : 'РЈРІРѕР»РµРЅ'}
           </button>
           
           <button
@@ -364,14 +364,14 @@ export const AdminUserManagement: React.FC<AdminUserManagementProps> = ({ theme 
 
   return (
     <div className="p-6 space-y-6">
-      {/* Заголовок и действия */}
+      {/* Р—Р°РіРѕР»РѕРІРѕРє Рё РґРµР№СЃС‚РІРёСЏ */}
       <div className="flex items-center justify-between">
         <div>
           <h1 className="text-2xl font-bold" style={{ color: theme === 'dark' ? '#E8ECF2' : '#0F172A' }}>
-            Управление пользователями
+            РЈРїСЂР°РІР»РµРЅРёРµ РїРѕР»СЊР·РѕРІР°С‚РµР»СЏРјРё
           </h1>
           <p className="text-sm opacity-70" style={{ color: theme === 'dark' ? '#A7B0BD' : '#6B7280' }}>
-            Управление сотрудниками и ролями
+            РЈРїСЂР°РІР»РµРЅРёРµ СЃРѕС‚СЂСѓРґРЅРёРєР°РјРё Рё СЂРѕР»СЏРјРё
           </p>
         </div>
         <button
@@ -379,15 +379,15 @@ export const AdminUserManagement: React.FC<AdminUserManagementProps> = ({ theme 
           className="flex items-center px-4 py-2 rounded-lg bg-blue-500 text-white hover:bg-blue-600 transition-colors"
         >
           <UserPlus className="w-4 h-4 mr-2" />
-          Добавить сотрудника
+          Р”РѕР±Р°РІРёС‚СЊ СЃРѕС‚СЂСѓРґРЅРёРєР°
         </button>
       </div>
 
-      {/* Табы */}
+      {/* РўР°Р±С‹ */}
       <div className="flex space-x-2 border-b" style={{ borderColor: theme === 'dark' ? 'rgba(255,255,255,0.1)' : '#E6E9EF' }}>
         {[
-          { id: 'active', label: 'Активные', icon: Users, count: users.filter(u => u.isActive).length },
-          { id: 'dismissed', label: 'Уволенные', icon: UserMinus, count: users.filter(u => !u.isActive).length }
+          { id: 'active', label: 'РђРєС‚РёРІРЅС‹Рµ', icon: Users, count: users.filter(u => u.isActive).length },
+          { id: 'dismissed', label: 'РЈРІРѕР»РµРЅРЅС‹Рµ', icon: UserMinus, count: users.filter(u => !u.isActive).length }
         ].map((tab) => (
           <button
             key={tab.id}
@@ -412,13 +412,13 @@ export const AdminUserManagement: React.FC<AdminUserManagementProps> = ({ theme 
         ))}
       </div>
 
-      {/* Фильтры */}
+      {/* Р¤РёР»СЊС‚СЂС‹ */}
       <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
         <div className="relative">
           <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 w-4 h-4 opacity-50" />
           <input
             type="text"
-            placeholder="Поиск пользователей..."
+            placeholder="РџРѕРёСЃРє РїРѕР»СЊР·РѕРІР°С‚РµР»РµР№..."
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
             className="w-full pl-10 pr-4 py-2 rounded-lg border"
@@ -440,7 +440,7 @@ export const AdminUserManagement: React.FC<AdminUserManagementProps> = ({ theme 
             color: theme === 'dark' ? '#E8ECF2' : '#0F172A'
           }}
         >
-          <option value="all">Все роли</option>
+          <option value="all">Р’СЃРµ СЂРѕР»Рё</option>
           {USER_ROLES.map(role => (
             <option key={role.value} value={role.value}>
               {role.icon} {role.label}
@@ -458,7 +458,7 @@ export const AdminUserManagement: React.FC<AdminUserManagementProps> = ({ theme 
             color: theme === 'dark' ? '#E8ECF2' : '#0F172A'
           }}
         >
-          <option value="all">Все команды</option>
+          <option value="all">Р’СЃРµ РєРѕРјР°РЅРґС‹</option>
           {TEAMS.map(team => (
             <option key={team.id} value={team.id.toString()}>
               {team.name}
@@ -467,7 +467,7 @@ export const AdminUserManagement: React.FC<AdminUserManagementProps> = ({ theme 
         </select>
       </div>
 
-      {/* Список пользователей */}
+      {/* РЎРїРёСЃРѕРє РїРѕР»СЊР·РѕРІР°С‚РµР»РµР№ */}
       <div className="space-y-4">
         {filteredUsers.length > 0 ? (
           filteredUsers.map(renderUserCard)
@@ -481,19 +481,19 @@ export const AdminUserManagement: React.FC<AdminUserManagementProps> = ({ theme 
           >
             <Users className="w-12 h-12 mx-auto mb-4 opacity-50" style={{ color: theme === 'dark' ? '#A7B0BD' : '#6B7280' }} />
             <h3 className="text-lg font-semibold mb-2" style={{ color: theme === 'dark' ? '#E8ECF2' : '#0F172A' }}>
-              {activeTab === 'active' ? 'Активных пользователей нет' : 'Уволенных пользователей нет'}
+              {activeTab === 'active' ? 'РђРєС‚РёРІРЅС‹С… РїРѕР»СЊР·РѕРІР°С‚РµР»РµР№ РЅРµС‚' : 'РЈРІРѕР»РµРЅРЅС‹С… РїРѕР»СЊР·РѕРІР°С‚РµР»РµР№ РЅРµС‚'}
             </h3>
             <p className="text-sm opacity-70" style={{ color: theme === 'dark' ? '#A7B0BD' : '#6B7280' }}>
               {activeTab === 'active' 
-                ? 'Все пользователи были уволены или не найдены по заданным фильтрам'
-                : 'Все пользователи активны'
+                ? 'Р’СЃРµ РїРѕР»СЊР·РѕРІР°С‚РµР»Рё Р±С‹Р»Рё СѓРІРѕР»РµРЅС‹ РёР»Рё РЅРµ РЅР°Р№РґРµРЅС‹ РїРѕ Р·Р°РґР°РЅРЅС‹Рј С„РёР»СЊС‚СЂР°Рј'
+                : 'Р’СЃРµ РїРѕР»СЊР·РѕРІР°С‚РµР»Рё Р°РєС‚РёРІРЅС‹'
               }
             </p>
           </div>
         )}
       </div>
 
-      {/* Модал создания/редактирования */}
+      {/* РњРѕРґР°Р» СЃРѕР·РґР°РЅРёСЏ/СЂРµРґР°РєС‚РёСЂРѕРІР°РЅРёСЏ */}
       {showCreateForm && (
         <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center p-4 z-50">
           <div 
@@ -505,7 +505,7 @@ export const AdminUserManagement: React.FC<AdminUserManagementProps> = ({ theme 
           >
             <div className="flex items-center justify-between mb-6">
               <h2 className="text-xl font-bold" style={{ color: theme === 'dark' ? '#E8ECF2' : '#0F172A' }}>
-                {editingUser ? 'Редактировать пользователя' : 'Добавить сотрудника'}
+                {editingUser ? 'Р РµРґР°РєС‚РёСЂРѕРІР°С‚СЊ РїРѕР»СЊР·РѕРІР°С‚РµР»СЏ' : 'Р”РѕР±Р°РІРёС‚СЊ СЃРѕС‚СЂСѓРґРЅРёРєР°'}
               </h2>
               <button
                 onClick={() => {
@@ -535,13 +535,13 @@ export const AdminUserManagement: React.FC<AdminUserManagementProps> = ({ theme 
                     borderColor: theme === 'dark' ? 'rgba(255,255,255,0.2)' : '#E6E9EF',
                     color: theme === 'dark' ? '#E8ECF2' : '#0F172A'
                   }}
-                  placeholder="Введите Telegram ID"
+                  placeholder="Р’РІРµРґРёС‚Рµ Telegram ID"
                 />
               </div>
 
               <div>
                 <label className="block text-sm font-medium mb-2" style={{ color: theme === 'dark' ? '#E8ECF2' : '#0F172A' }}>
-                  Имя *
+                  РРјСЏ *
                 </label>
                 <input
                   type="text"
@@ -553,14 +553,14 @@ export const AdminUserManagement: React.FC<AdminUserManagementProps> = ({ theme 
                     borderColor: theme === 'dark' ? 'rgba(255,255,255,0.2)' : '#E6E9EF',
                     color: theme === 'dark' ? '#E8ECF2' : '#0F172A'
                   }}
-                  placeholder="Введите имя пользователя"
+                  placeholder="Р’РІРµРґРёС‚Рµ РёРјСЏ РїРѕР»СЊР·РѕРІР°С‚РµР»СЏ"
                 />
               </div>
 
               <div className="grid grid-cols-2 gap-4">
                 <div>
                   <label className="block text-sm font-medium mb-2" style={{ color: theme === 'dark' ? '#E8ECF2' : '#0F172A' }}>
-                    Роль *
+                    Р РѕР»СЊ *
                   </label>
                   <select
                     value={formData.role}
@@ -582,7 +582,7 @@ export const AdminUserManagement: React.FC<AdminUserManagementProps> = ({ theme 
 
                 <div>
                   <label className="block text-sm font-medium mb-2" style={{ color: theme === 'dark' ? '#E8ECF2' : '#0F172A' }}>
-                    Команда
+                    РљРѕРјР°РЅРґР°
                   </label>
                   <select
                     value={formData.teamNumber}
@@ -594,7 +594,7 @@ export const AdminUserManagement: React.FC<AdminUserManagementProps> = ({ theme 
                       color: theme === 'dark' ? '#E8ECF2' : '#0F172A'
                     }}
                   >
-                    <option value="">Без команды</option>
+                    <option value="">Р‘РµР· РєРѕРјР°РЅРґС‹</option>
                     {TEAMS.map(team => (
                       <option key={team.id} value={team.id.toString()}>
                         {team.name}
@@ -608,7 +608,7 @@ export const AdminUserManagement: React.FC<AdminUserManagementProps> = ({ theme 
                 <div className="grid grid-cols-3 gap-4">
                   <div>
                     <label className="block text-sm font-medium mb-2" style={{ color: theme === 'dark' ? '#E8ECF2' : '#0F172A' }}>
-                      Уровень
+                      РЈСЂРѕРІРµРЅСЊ
                     </label>
                     <input
                       type="number"
@@ -625,7 +625,7 @@ export const AdminUserManagement: React.FC<AdminUserManagementProps> = ({ theme 
                   </div>
                   <div>
                     <label className="block text-sm font-medium mb-2" style={{ color: theme === 'dark' ? '#E8ECF2' : '#0F172A' }}>
-                      Опыт
+                      РћРїС‹С‚
                     </label>
                     <input
                       type="number"
@@ -642,7 +642,7 @@ export const AdminUserManagement: React.FC<AdminUserManagementProps> = ({ theme 
                   </div>
                   <div>
                     <label className="block text-sm font-medium mb-2" style={{ color: theme === 'dark' ? '#E8ECF2' : '#0F172A' }}>
-                      Монеты
+                      РњРѕРЅРµС‚С‹
                     </label>
                     <input
                       type="number"
@@ -675,13 +675,13 @@ export const AdminUserManagement: React.FC<AdminUserManagementProps> = ({ theme 
                   color: theme === 'dark' ? '#E8ECF2' : '#0F172A'
                 }}
               >
-                Отмена
+                РћС‚РјРµРЅР°
               </button>
               <button
                 onClick={editingUser ? handleUpdateUser : handleCreateUser}
                 className="px-4 py-2 rounded-lg bg-blue-500 text-white hover:bg-blue-600 transition-colors"
               >
-                {editingUser ? 'Сохранить' : 'Добавить'}
+                {editingUser ? 'РЎРѕС…СЂР°РЅРёС‚СЊ' : 'Р”РѕР±Р°РІРёС‚СЊ'}
               </button>
             </div>
           </div>

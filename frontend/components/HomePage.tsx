@@ -1,4 +1,4 @@
-﻿import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Header } from './Header';
 import { BottomNavigation } from './BottomNavigation';
 import { BackgroundFX } from './BackgroundFX';
@@ -72,18 +72,18 @@ export const HomePage: React.FC<HomePageProps> = ({
 }) => {
   // Mock data for battles
   const activeBattles = [
-    { id: '1', opponent: 'Елена Морозова', status: 'active' }
+    { id: '1', opponent: 'Р•Р»РµРЅР° РњРѕСЂРѕР·РѕРІР°', status: 'active' }
   ];
 
   const mockBattleInvitations = [
-    { id: '1', challenger: 'Мария Сидорова', status: 'pending' },
-    { id: '2', challenger: 'Анна Иванова', status: 'pending' }
+    { id: '1', challenger: 'РњР°СЂРёСЏ РЎРёРґРѕСЂРѕРІР°', status: 'pending' },
+    { id: '2', challenger: 'РђРЅРЅР° РРІР°РЅРѕРІР°', status: 'pending' }
   ];
 
   const mockLeaderboard = [
-    { id: '1', name: 'Петр Петров', level: 18 },
-    { id: '2', name: 'Елена Морозова', level: 16 },
-    { id: '3', name: 'Анна Иванова', level: 15 }
+    { id: '1', name: 'РџРµС‚СЂ РџРµС‚СЂРѕРІ', level: 18 },
+    { id: '2', name: 'Р•Р»РµРЅР° РњРѕСЂРѕР·РѕРІР°', level: 16 },
+    { id: '3', name: 'РђРЅРЅР° РРІР°РЅРѕРІР°', level: 15 }
   ];
 
   // Get current level data for display
@@ -98,10 +98,10 @@ export const HomePage: React.FC<HomePageProps> = ({
   
   const getSortLabel = (sort: string) => {
     switch (sort) {
-      case 'level': return 'По уровню';
-      case 'achievements': return 'По достижениям';
-      case 'balance': return 'По балансу';
-      default: return 'По уровню';
+      case 'level': return 'РџРѕ СѓСЂРѕРІРЅСЋ';
+      case 'achievements': return 'РџРѕ РґРѕСЃС‚РёР¶РµРЅРёСЏРј';
+      case 'balance': return 'РџРѕ Р±Р°Р»Р°РЅСЃСѓ';
+      default: return 'РџРѕ СѓСЂРѕРІРЅСЋ';
     }
   };
 
@@ -169,7 +169,7 @@ export const HomePage: React.FC<HomePageProps> = ({
           }}
         >
           
-          {/* Ваши достижения - одна панелька с достижениями внутри */}
+          {/* Р’Р°С€Рё РґРѕСЃС‚РёР¶РµРЅРёСЏ - РѕРґРЅР° РїР°РЅРµР»СЊРєР° СЃ РґРѕСЃС‚РёР¶РµРЅРёСЏРјРё РІРЅСѓС‚СЂРё */}
           <div 
             className="glass-card p-4"
             style={{
@@ -185,24 +185,24 @@ export const HomePage: React.FC<HomePageProps> = ({
                   color: theme === 'dark' ? '#E8ECF2' : '#0F172A'
                 }}
               >
-                Ваши достижения
+                Р’Р°С€Рё РґРѕСЃС‚РёР¶РµРЅРёСЏ
               </h3>
               
               <button
                 onClick={() => setIsAchievementsModalOpen(true)}
-                aria-label="Открыть ближайшие достижения"
+                aria-label="РћС‚РєСЂС‹С‚СЊ Р±Р»РёР¶Р°Р№С€РёРµ РґРѕСЃС‚РёР¶РµРЅРёСЏ"
                 className={`apple-button w-7 h-7 flex items-center justify-center focus:outline-none focus:ring-2 focus:ring-blue-400 transition-[transform,opacity] duration-200 active:scale-95 ${theme === 'dark' ? 'white-button' : ''}`}
               >
                 <Eye className="w-4 h-4" />
               </button>
             </div>
 
-            {/* Достижения внутри панельки */}
+            {/* Р”РѕСЃС‚РёР¶РµРЅРёСЏ РІРЅСѓС‚СЂРё РїР°РЅРµР»СЊРєРё */}
             <div className="space-y-3">
               {[
-                { name: 'Новичок', progress: 50, description: 'Достигните 2 уровня', rarity: 'common' },
-                { name: 'Трудолюбивый', progress: 30, description: 'Выполните 10 задач', rarity: 'rare' },
-                { name: 'Коллекционер', progress: 20, description: 'Откройте 5 кейсов', rarity: 'epic' }
+                { name: 'РќРѕРІРёС‡РѕРє', progress: 50, description: 'Р”РѕСЃС‚РёРіРЅРёС‚Рµ 2 СѓСЂРѕРІРЅСЏ', rarity: 'common' },
+                { name: 'РўСЂСѓРґРѕР»СЋР±РёРІС‹Р№', progress: 30, description: 'Р’С‹РїРѕР»РЅРёС‚Рµ 10 Р·Р°РґР°С‡', rarity: 'rare' },
+                { name: 'РљРѕР»Р»РµРєС†РёРѕРЅРµСЂ', progress: 20, description: 'РћС‚РєСЂРѕР№С‚Рµ 5 РєРµР№СЃРѕРІ', rarity: 'epic' }
               ].map((achievement, index) => (
                 <div key={index} className="flex items-center gap-3">
                   {/* Achievement icon */}
@@ -212,7 +212,7 @@ export const HomePage: React.FC<HomePageProps> = ({
                       backgroundColor: '#3B82F6'
                     }}
                   >
-                    🛡️
+                    рџ›ЎпёЏ
                   </div>
                   
                   {/* Achievement info */}
@@ -253,7 +253,7 @@ export const HomePage: React.FC<HomePageProps> = ({
             </div>
           </div>
 
-          {/* Статус/XP/Уровень */}
+          {/* РЎС‚Р°С‚СѓСЃ/XP/РЈСЂРѕРІРµРЅСЊ */}
           <div 
             className="glass-card p-4"
             style={{
@@ -270,7 +270,7 @@ export const HomePage: React.FC<HomePageProps> = ({
                       color: theme === 'dark' ? '#A7B0BD' : '#6B7280'
                     }}
                   >
-                    Статус: {currentLevelData.status}
+                    РЎС‚Р°С‚СѓСЃ: {currentLevelData.status}
                   </span>
                 </div>
                 <div>
@@ -287,7 +287,7 @@ export const HomePage: React.FC<HomePageProps> = ({
                       fontWeight: '600',
                       textDecoration: 'underline'
                     }}
-                    aria-label={`Открыть детали опыта: ${userExperience} XP`}
+                    aria-label={`РћС‚РєСЂС‹С‚СЊ РґРµС‚Р°Р»Рё РѕРїС‹С‚Р°: ${userExperience} XP`}
                   >
                     XP: {userExperience}
                   </button>
@@ -315,10 +315,10 @@ export const HomePage: React.FC<HomePageProps> = ({
             />
           </div>
 
-          {/* Баттлы и Рейтинг */}
+          {/* Р‘Р°С‚С‚Р»С‹ Рё Р РµР№С‚РёРЅРі */}
           <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '12px' }}>
             
-            {/* Баттлы */}
+            {/* Р‘Р°С‚С‚Р»С‹ */}
             <div 
               className="glass-card p-4"
               style={{
@@ -334,18 +334,18 @@ export const HomePage: React.FC<HomePageProps> = ({
                     color: theme === 'dark' ? '#E8ECF2' : '#0F172A'
                   }}
                 >
-                  Баттлы
+                  Р‘Р°С‚С‚Р»С‹
                 </h3>
                 
                 <button
-                  aria-label="Создать баттл"
+                  aria-label="РЎРѕР·РґР°С‚СЊ Р±Р°С‚С‚Р»"
                   className={`apple-button w-7 h-7 flex items-center justify-center focus:outline-none focus:ring-2 focus:ring-blue-400 transition-[transform,opacity] duration-200 active:scale-95 ${theme === 'dark' ? 'white-button' : ''}`}
                 >
                   <Plus className="w-4 h-4" />
                 </button>
               </div>
 
-              {/* Активные баттлы */}
+              {/* РђРєС‚РёРІРЅС‹Рµ Р±Р°С‚С‚Р»С‹ */}
               <div className="mb-4">
                 <h4 
                   style={{ 
@@ -355,7 +355,7 @@ export const HomePage: React.FC<HomePageProps> = ({
                     marginBottom: '8px'
                   }}
                 >
-                  Активные баттлы
+                  РђРєС‚РёРІРЅС‹Рµ Р±Р°С‚С‚Р»С‹
                 </h4>
                 
                 {activeBattles.map((battle) => (
@@ -370,12 +370,12 @@ export const HomePage: React.FC<HomePageProps> = ({
                       marginBottom: '4px'
                     }}
                   >
-                    {battle.opponent} vs Вы
+                    {battle.opponent} vs Р’С‹
                   </div>
                 ))}
               </div>
 
-              {/* Приглашения */}
+              {/* РџСЂРёРіР»Р°С€РµРЅРёСЏ */}
               <div className="mb-4">
                 <h4 
                   style={{ 
@@ -385,7 +385,7 @@ export const HomePage: React.FC<HomePageProps> = ({
                     marginBottom: '8px'
                   }}
                 >
-                  Приглашения
+                  РџСЂРёРіР»Р°С€РµРЅРёСЏ
                 </h4>
                 
                 {mockBattleInvitations.map((invitation) => (
@@ -420,7 +420,7 @@ export const HomePage: React.FC<HomePageProps> = ({
                         fontWeight: '500'
                       }}
                     >
-                      вызывает
+                      РІС‹Р·С‹РІР°РµС‚
                     </button>
                   </div>
                 ))}
@@ -433,11 +433,11 @@ export const HomePage: React.FC<HomePageProps> = ({
                   textAlign: 'center'
                 }}
               >
-                Всего: 3 баттлов
+                Р’СЃРµРіРѕ: 3 Р±Р°С‚С‚Р»РѕРІ
               </div>
             </div>
 
-            {/* Рейтинг */}
+            {/* Р РµР№С‚РёРЅРі */}
             <div 
               className="glass-card p-4"
               style={{
@@ -453,12 +453,12 @@ export const HomePage: React.FC<HomePageProps> = ({
                     color: theme === 'dark' ? '#E8ECF2' : '#0F172A'
                   }}
                 >
-                  Рейтинг
+                  Р РµР№С‚РёРЅРі
                 </h3>
                 
                 <button 
                   onClick={cycleSort}
-                  aria-label={`Сменить сортировку: ${getSortLabel(leaderboardSort)}`}
+                  aria-label={`РЎРјРµРЅРёС‚СЊ СЃРѕСЂС‚РёСЂРѕРІРєСѓ: ${getSortLabel(leaderboardSort)}`}
                   className={`apple-button w-7 h-7 flex items-center justify-center focus:outline-none focus:ring-2 focus:ring-blue-400 transition-[transform,opacity] duration-200 active:scale-95 ${theme === 'dark' ? 'white-button' : ''}`}
                 >
                   <Menu className="w-4 h-4" />
@@ -515,7 +515,7 @@ export const HomePage: React.FC<HomePageProps> = ({
                         color: theme === 'dark' ? '#A7B0BD' : '#6B7280'
                       }}
                     >
-                      Ур.{player.level}
+                      РЈСЂ.{player.level}
                     </div>
                   </div>
                 ))}
@@ -523,7 +523,7 @@ export const HomePage: React.FC<HomePageProps> = ({
             </div>
           </div>
 
-          {/* Ачивки */}
+          {/* РђС‡РёРІРєРё */}
           <div 
             className="glass-card p-4"
             style={{
@@ -539,12 +539,12 @@ export const HomePage: React.FC<HomePageProps> = ({
                   color: theme === 'dark' ? '#E8ECF2' : '#0F172A'
                 }}
               >
-                Ачивки
+                РђС‡РёРІРєРё
               </h3>
               
               <button
                 onClick={() => onNavigate('achievements')}
-                aria-label="Перейти к странице ачивок"
+                aria-label="РџРµСЂРµР№С‚Рё Рє СЃС‚СЂР°РЅРёС†Рµ Р°С‡РёРІРѕРє"
                 className={`apple-button w-7 h-7 flex items-center justify-center focus:outline-none focus:ring-2 focus:ring-blue-400 transition-[transform,opacity] duration-200 active:scale-95 ${theme === 'dark' ? 'white-button' : ''}`}
               >
                 <Eye className="w-4 h-4" />
@@ -553,11 +553,11 @@ export const HomePage: React.FC<HomePageProps> = ({
 
             <div className="flex justify-center gap-2">
               {[
-                { icon: '🏆', rarity: 'legendary', completed: true },
-                { icon: '🥇', rarity: 'epic', completed: true },
-                { icon: '🥈', rarity: 'rare', completed: true },
-                { icon: '🥉', rarity: 'common', completed: false },
-                { icon: '🎯', rarity: 'common', completed: false }
+                { icon: 'рџЏ†', rarity: 'legendary', completed: true },
+                { icon: 'рџҐ‡', rarity: 'epic', completed: true },
+                { icon: 'рџҐ€', rarity: 'rare', completed: true },
+                { icon: 'рџҐ‰', rarity: 'common', completed: false },
+                { icon: 'рџЋЇ', rarity: 'common', completed: false }
               ].map((achievement, index) => (
                 <div
                   key={index}
@@ -613,18 +613,18 @@ export const HomePage: React.FC<HomePageProps> = ({
       <ProductionModal
         isOpen={isAchievementsModalOpen}
         onClose={() => setIsAchievementsModalOpen(false)}
-        title="Ближайшие достижения"
+        title="Р‘Р»РёР¶Р°Р№С€РёРµ РґРѕСЃС‚РёР¶РµРЅРёСЏ"
         modalId="achievements-modal"
       >
         <div className="space-y-4">
           {/* Top 6 closest achievements or all available if less than 6 */}
           {[
-            { name: 'Первый шаг', progress: 75, rarity: 'common', description: 'Выполните первую задачу' },
-            { name: 'Активный участник', progress: 45, rarity: 'rare', description: 'Выполните 5 задач' },
-            { name: 'Мастер баттлов', progress: 90, rarity: 'epic', description: 'Выиграйте 3 баттла' },
-            { name: 'Покупатель', progress: 30, rarity: 'common', description: 'Совершите 3 покупки' },
-            { name: 'Воин', progress: 60, rarity: 'rare', description: 'Выиграйте 2 баттла' },
-            { name: 'Трудолюбивый', progress: 20, rarity: 'epic', description: 'Выполните 15 задач' }
+            { name: 'РџРµСЂРІС‹Р№ С€Р°Рі', progress: 75, rarity: 'common', description: 'Р’С‹РїРѕР»РЅРёС‚Рµ РїРµСЂРІСѓСЋ Р·Р°РґР°С‡Сѓ' },
+            { name: 'РђРєС‚РёРІРЅС‹Р№ СѓС‡Р°СЃС‚РЅРёРє', progress: 45, rarity: 'rare', description: 'Р’С‹РїРѕР»РЅРёС‚Рµ 5 Р·Р°РґР°С‡' },
+            { name: 'РњР°СЃС‚РµСЂ Р±Р°С‚С‚Р»РѕРІ', progress: 90, rarity: 'epic', description: 'Р’С‹РёРіСЂР°Р№С‚Рµ 3 Р±Р°С‚С‚Р»Р°' },
+            { name: 'РџРѕРєСѓРїР°С‚РµР»СЊ', progress: 30, rarity: 'common', description: 'РЎРѕРІРµСЂС€РёС‚Рµ 3 РїРѕРєСѓРїРєРё' },
+            { name: 'Р’РѕРёРЅ', progress: 60, rarity: 'rare', description: 'Р’С‹РёРіСЂР°Р№С‚Рµ 2 Р±Р°С‚С‚Р»Р°' },
+            { name: 'РўСЂСѓРґРѕР»СЋР±РёРІС‹Р№', progress: 20, rarity: 'epic', description: 'Р’С‹РїРѕР»РЅРёС‚Рµ 15 Р·Р°РґР°С‡' }
           ].slice(0, 6).map((achievement, index) => (
             <div key={index} className="flex items-center gap-4 p-3 rounded-lg" style={{
               backgroundColor: theme === 'dark' ? 'rgba(255, 255, 255, 0.05)' : 'rgba(0, 0, 0, 0.02)'
@@ -638,7 +638,7 @@ export const HomePage: React.FC<HomePageProps> = ({
                                  achievement.rarity === 'epic' ? '#a855f7' : '#fbbf24'
                 }}
               >
-                🏆
+                рџЏ†
               </div>
               
               {/* Achievement info */}

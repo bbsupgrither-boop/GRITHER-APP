@@ -1,4 +1,4 @@
-﻿import { useState } from 'react';
+п»їimport { useState } from 'react';
 import { Dialog, DialogContent, DialogTitle } from './ui/dialog';
 import { Star } from './Icons';
 import { X } from 'lucide-react';
@@ -21,21 +21,21 @@ export function ProgressXP({
 }: ProgressXPProps) {
   const [isXpDialogOpen, setIsXpDialogOpen] = useState(false);
   
-  // Р”Р°РЅРЅС‹Рµ РїРѕР»СЊР·РѕРІР°С‚РµР»СЏ
+  // Р вЂќР В°Р Р…Р Р…РЎвЂ№Р Вµ Р С—Р С•Р В»РЎРЉР В·Р С•Р Р†Р В°РЎвЂљР ВµР В»РЎРЏ
   const currentXp = experience;
   const currentLevel = level;
   const xpNeededForNextLevel = maxExperience;
-  const nextLevelReward = Math.floor(level * 50); // G-coins Р·Р° РїРµСЂРµС…РѕРґ РЅР° СЃР»РµРґСѓСЋС‰РёР№ СѓСЂРѕРІРµРЅСЊ
+  const nextLevelReward = Math.floor(level * 50); // G-coins Р В·Р В° Р С—Р ВµРЎР‚Р ВµРЎвЂ¦Р С•Р Т‘ Р Р…Р В° РЎРѓР В»Р ВµР Т‘РЎС“РЎР‹РЎвЂ°Р С‘Р в„– РЎС“РЎР‚Р С•Р Р†Р ВµР Р…РЎРЉ
   
-  // РСЃРїРѕР»СЊР·СѓРµРј CSS РїРµСЂРµРјРµРЅРЅС‹Рµ РґР»СЏ С‚РѕС‡РЅРѕРіРѕ СЃРѕРѕС‚РІРµС‚СЃС‚РІРёСЏ РґРёР·Р°Р№РЅ-СЃРёСЃС‚РµРјРµ
+  // Р ВРЎРѓР С—Р С•Р В»РЎРЉР В·РЎС“Р ВµР С CSS Р С—Р ВµРЎР‚Р ВµР СР ВµР Р…Р Р…РЎвЂ№Р Вµ Р Т‘Р В»РЎРЏ РЎвЂљР С•РЎвЂЎР Р…Р С•Р С–Р С• РЎРѓР С•Р С•РЎвЂљР Р†Р ВµРЎвЂљРЎРѓРЎвЂљР Р†Р С‘РЎРЏ Р Т‘Р С‘Р В·Р В°Р в„–Р Р…-РЎРѓР С‘РЎРѓРЎвЂљР ВµР СР Вµ
   
   return (
     <>
       {/* Progress XP Component */}
       <div className="flex flex-col" style={{ gap: '8px' }}>
-        {/* Р›РµРЅС‚Р° РїСЂРѕРіСЂРµСЃСЃР° СЃРѕ Р·РІРµР·РґРѕР№ */}
+        {/* Р вЂєР ВµР Р…РЎвЂљР В° Р С—РЎР‚Р С•Р С–РЎР‚Р ВµРЎРѓРЎРѓР В° РЎРѓР С• Р В·Р Р†Р ВµР В·Р Т‘Р С•Р в„– */}
         <div className="relative">
-          {/* Р—РІРµР·РґР° СЃР»РµРІР° СЃ РїРµСЂРµРєСЂС‹С‚РёРµРј */}
+          {/* Р вЂ”Р Р†Р ВµР В·Р Т‘Р В° РЎРѓР В»Р ВµР Р†Р В° РЎРѓ Р С—Р ВµРЎР‚Р ВµР С”РЎР‚РЎвЂ№РЎвЂљР С‘Р ВµР С */}
           <div 
             className="absolute z-10"
             style={{
@@ -63,7 +63,7 @@ export function ProgressXP({
             </div>
           </div>
           
-          {/* Р›РµРЅС‚Р° РїСЂРѕРіСЂРµСЃСЃР° */}
+          {/* Р вЂєР ВµР Р…РЎвЂљР В° Р С—РЎР‚Р С•Р С–РЎР‚Р ВµРЎРѓРЎРѓР В° */}
           <div 
             className="w-full"
             style={{
@@ -89,7 +89,7 @@ export function ProgressXP({
           </div>
         </div>
         
-        {/* Р§РёСЃР»Рѕ РїСЂРѕРіСЂРµСЃСЃР° РїРѕРґ Р»РµРЅС‚РѕР№ */}
+        {/* Р В§Р С‘РЎРѓР В»Р С• Р С—РЎР‚Р С•Р С–РЎР‚Р ВµРЎРѓРЎРѓР В° Р С—Р С•Р Т‘ Р В»Р ВµР Р…РЎвЂљР С•Р в„– */}
         <div className="text-center">
           <span 
             className="font-semibold"
@@ -125,7 +125,7 @@ export function ProgressXP({
               borderRadius: '16px'
             }}
           >
-            {/* РЁР°РїРєР° СЃ Р·Р°РіРѕР»РѕРІРєРѕРј Рё РєРЅРѕРїРєРѕР№ Р·Р°РєСЂС‹С‚РёСЏ */}
+            {/* Р РЃР В°Р С—Р С”Р В° РЎРѓ Р В·Р В°Р С–Р С•Р В»Р С•Р Р†Р С”Р С•Р С Р С‘ Р С”Р Р…Р С•Р С—Р С”Р С•Р в„– Р В·Р В°Р С”РЎР‚РЎвЂ№РЎвЂљР С‘РЎРЏ */}
             <div className="flex items-center justify-between" style={{ margin: '0 0 0 0' }}>
               <div className="flex-1"></div>
               <DialogTitle 
@@ -136,7 +136,7 @@ export function ProgressXP({
                   margin: 0
                 }}
               >
-                Р’Р°С€ С‚РµРєСѓС‰РёР№ РѕРїС‹С‚
+                Р вЂ™Р В°РЎв‚¬ РЎвЂљР ВµР С”РЎС“РЎвЂ°Р С‘Р в„– Р С•Р С—РЎвЂ№РЎвЂљ
               </DialogTitle>
               <div className="flex-1 flex justify-end">
                 <button
@@ -156,11 +156,11 @@ export function ProgressXP({
               </div>
             </div>
 
-            {/* Р‘Р»РѕРє РїСЂРѕРіСЂРµСЃСЃР° */}
+            {/* Р вЂР В»Р С•Р С” Р С—РЎР‚Р С•Р С–РЎР‚Р ВµРЎРѓРЎРѓР В° */}
             <div className="flex flex-col" style={{ gap: '8px' }}>
-              {/* Р›РµРЅС‚Р° РїСЂРѕРіСЂРµСЃСЃР° СЃРѕ Р·РІРµР·РґРѕР№ */}
+              {/* Р вЂєР ВµР Р…РЎвЂљР В° Р С—РЎР‚Р С•Р С–РЎР‚Р ВµРЎРѓРЎРѓР В° РЎРѓР С• Р В·Р Р†Р ВµР В·Р Т‘Р С•Р в„– */}
               <div className="relative">
-                {/* Р—РІРµР·РґР° СЃР»РµРІР° СЃ РїРµСЂРµРєСЂС‹С‚РёРµРј */}
+                {/* Р вЂ”Р Р†Р ВµР В·Р Т‘Р В° РЎРѓР В»Р ВµР Р†Р В° РЎРѓ Р С—Р ВµРЎР‚Р ВµР С”РЎР‚РЎвЂ№РЎвЂљР С‘Р ВµР С */}
                 <div 
                   className="absolute z-10"
                   style={{
@@ -188,7 +188,7 @@ export function ProgressXP({
                   </div>
                 </div>
                 
-                {/* Р›РµРЅС‚Р° РїСЂРѕРіСЂРµСЃСЃР° */}
+                {/* Р вЂєР ВµР Р…РЎвЂљР В° Р С—РЎР‚Р С•Р С–РЎР‚Р ВµРЎРѓРЎРѓР В° */}
                 <div 
                   className="w-full rounded-xl"
                   style={{
@@ -209,7 +209,7 @@ export function ProgressXP({
                 </div>
               </div>
               
-              {/* Р§РёСЃР»Рѕ РїСЂРѕРіСЂРµСЃСЃР° РїРѕРґ Р»РµРЅС‚РѕР№ */}
+              {/* Р В§Р С‘РЎРѓР В»Р С• Р С—РЎР‚Р С•Р С–РЎР‚Р ВµРЎРѓРЎРѓР В° Р С—Р С•Р Т‘ Р В»Р ВµР Р…РЎвЂљР С•Р в„– */}
               <div className="text-center">
                 <span 
                   className="font-semibold"
@@ -223,9 +223,9 @@ export function ProgressXP({
               </div>
             </div>
 
-            {/* Р‘Р»РѕРє РЅР°РіСЂР°РґС‹ */}
+            {/* Р вЂР В»Р С•Р С” Р Р…Р В°Р С–РЎР‚Р В°Р Т‘РЎвЂ№ */}
             <div className="flex flex-col items-center" style={{ gap: '8px' }}>
-              {/* Р—Р°РіРѕР»РѕРІРѕРє РЅР°РіСЂР°РґС‹ */}
+              {/* Р вЂ”Р В°Р С–Р С•Р В»Р С•Р Р†Р С•Р С” Р Р…Р В°Р С–РЎР‚Р В°Р Т‘РЎвЂ№ */}
               <span 
                 className="font-semibold text-center"
                 style={{ 
@@ -233,10 +233,10 @@ export function ProgressXP({
                   color: 'var(--text)'
                 }}
               >
-                РќР°РіСЂР°РґР° Р·Р° СѓСЂРѕРІРµРЅСЊ
+                Р СњР В°Р С–РЎР‚Р В°Р Т‘Р В° Р В·Р В° РЎС“РЎР‚Р С•Р Р†Р ВµР Р…РЎРЉ
               </span>
               
-              {/* РџРёР»СЋР»СЏ СЃ РјРѕРЅРµС‚РѕР№ */}
+              {/* Р СџР С‘Р В»РЎР‹Р В»РЎРЏ РЎРѓ Р СР С•Р Р…Р ВµРЎвЂљР С•Р в„– */}
               <div 
                 className="flex items-center border"
                 style={{

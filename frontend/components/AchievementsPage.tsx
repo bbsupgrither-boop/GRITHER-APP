@@ -1,4 +1,4 @@
-﻿import { useState } from 'react';
+import { useState } from 'react';
 import { Header } from './Header';
 import { BottomNavigation } from './BottomNavigation';
 import { Menu, X, Paperclip, Trophy } from './Icons';
@@ -42,7 +42,7 @@ export function AchievementsPage({ onNavigate, currentPage, onOpenSettings, achi
       case 'progress_desc':
         const percentDescA = (a.requirements.current / a.requirements.target) * 100;
         const percentDescB = (b.requirements.current / b.requirements.target) * 100;
-        // Сначала достижения с прогрессом, потом без прогресса
+        // РЎРЅР°С‡Р°Р»Р° РґРѕСЃС‚РёР¶РµРЅРёСЏ СЃ РїСЂРѕРіСЂРµСЃСЃРѕРј, РїРѕС‚РѕРј Р±РµР· РїСЂРѕРіСЂРµСЃСЃР°
         if (percentDescA > 0 && percentDescB === 0) return -1;
         if (percentDescA === 0 && percentDescB > 0) return 1;
         return percentDescB - percentDescA;
@@ -120,12 +120,12 @@ export function AchievementsPage({ onNavigate, currentPage, onOpenSettings, achi
                   margin: 0
                 }}
               >
-                Достижения
+                Р”РѕСЃС‚РёР¶РµРЅРёСЏ
               </h1>
               
               <button
                 onClick={() => setSortMenuOpen(true)}
-                aria-label="Открыть меню сортировки"
+                aria-label="РћС‚РєСЂС‹С‚СЊ РјРµРЅСЋ СЃРѕСЂС‚РёСЂРѕРІРєРё"
                 style={{
                   width: '40px',
                   height: '40px',
@@ -347,7 +347,7 @@ export function AchievementsPage({ onNavigate, currentPage, onOpenSettings, achi
                                 fontSize: '12px'
                               }}
                             >
-                              ✓
+                              вњ“
                             </div>
                           ) : (
                             <div
@@ -418,7 +418,7 @@ export function AchievementsPage({ onNavigate, currentPage, onOpenSettings, achi
                     marginBottom: '8px'
                   }}
                 >
-                  Нет достижений
+                  РќРµС‚ РґРѕСЃС‚РёР¶РµРЅРёР№
                 </h3>
                 <p 
                   style={{
@@ -427,7 +427,7 @@ export function AchievementsPage({ onNavigate, currentPage, onOpenSettings, achi
                     lineHeight: '1.4'
                   }}
                 >
-                  Выполняйте задачи и участвуйте в баттлах, чтобы получить достижения
+                  Р’С‹РїРѕР»РЅСЏР№С‚Рµ Р·Р°РґР°С‡Рё Рё СѓС‡Р°СЃС‚РІСѓР№С‚Рµ РІ Р±Р°С‚С‚Р»Р°С…, С‡С‚РѕР±С‹ РїРѕР»СѓС‡РёС‚СЊ РґРѕСЃС‚РёР¶РµРЅРёСЏ
                 </p>
               </div>
             )}
@@ -443,13 +443,13 @@ export function AchievementsPage({ onNavigate, currentPage, onOpenSettings, achi
       <Modal
         isOpen={sortMenuOpen}
         onClose={() => setSortMenuOpen(false)}
-        title="Сортировка достижений"
+        title="РЎРѕСЂС‚РёСЂРѕРІРєР° РґРѕСЃС‚РёР¶РµРЅРёР№"
         theme={theme}
       >
         <div style={{ display: 'flex', flexDirection: 'column', gap: '12px' }}>
           <button
             onClick={() => handleSort('alphabet')}
-            aria-label="Сортировать по алфавиту"
+            aria-label="РЎРѕСЂС‚РёСЂРѕРІР°С‚СЊ РїРѕ Р°Р»С„Р°РІРёС‚Сѓ"
             style={{
               width: '100%',
               padding: '12px 16px',
@@ -488,11 +488,11 @@ export function AchievementsPage({ onNavigate, currentPage, onOpenSettings, achi
               e.currentTarget.style.transform = 'scale(0.98)';
             }}
           >
-            По алфавиту
+            РџРѕ Р°Р»С„Р°РІРёС‚Сѓ
           </button>
           <button
             onClick={() => handleSort('progress_asc')}
-            aria-label="Сортировать по проценту выполнения (от меньшего)"
+            aria-label="РЎРѕСЂС‚РёСЂРѕРІР°С‚СЊ РїРѕ РїСЂРѕС†РµРЅС‚Сѓ РІС‹РїРѕР»РЅРµРЅРёСЏ (РѕС‚ РјРµРЅСЊС€РµРіРѕ)"
             style={{
               width: '100%',
               padding: '12px 16px',
@@ -531,11 +531,11 @@ export function AchievementsPage({ onNavigate, currentPage, onOpenSettings, achi
               e.currentTarget.style.transform = 'scale(0.98)';
             }}
           >
-            По проценту (от меньшего)
+            РџРѕ РїСЂРѕС†РµРЅС‚Сѓ (РѕС‚ РјРµРЅСЊС€РµРіРѕ)
           </button>
           <button
             onClick={() => handleSort('progress_desc')}
-            aria-label="Сортировать по проценту выполнения (от большего)"
+            aria-label="РЎРѕСЂС‚РёСЂРѕРІР°С‚СЊ РїРѕ РїСЂРѕС†РµРЅС‚Сѓ РІС‹РїРѕР»РЅРµРЅРёСЏ (РѕС‚ Р±РѕР»СЊС€РµРіРѕ)"
             style={{
               width: '100%',
               padding: '12px 16px',
@@ -574,7 +574,7 @@ export function AchievementsPage({ onNavigate, currentPage, onOpenSettings, achi
               e.currentTarget.style.transform = 'scale(0.98)';
             }}
           >
-            По проценту (от большего)
+            РџРѕ РїСЂРѕС†РµРЅС‚Сѓ (РѕС‚ Р±РѕР»СЊС€РµРіРѕ)
           </button>
         </div>
       </Modal>
@@ -615,7 +615,7 @@ export function AchievementsPage({ onNavigate, currentPage, onOpenSettings, achi
               marginBottom: '24px'
             }}>
               <h2 style={{ color: theme === 'dark' ? '#E8ECF2' : '#0F172A' }}>
-                Детали достижения
+                Р”РµС‚Р°Р»Рё РґРѕСЃС‚РёР¶РµРЅРёСЏ
               </h2>
               <button
                 onClick={() => setIsDetailOpen(false)}
@@ -656,7 +656,7 @@ export function AchievementsPage({ onNavigate, currentPage, onOpenSettings, achi
                 borderRadius: '8px'
               }}>
                 <span style={{ fontSize: '14px', color: theme === 'dark' ? '#A7B0BD' : '#6B7280' }}>
-                  Прогресс: {selectedAchievement.requirements.current}/{selectedAchievement.requirements.target}
+                  РџСЂРѕРіСЂРµСЃСЃ: {selectedAchievement.requirements.current}/{selectedAchievement.requirements.target}
                 </span>
                 <span style={{ 
                   fontSize: '14px',
@@ -683,7 +683,7 @@ export function AchievementsPage({ onNavigate, currentPage, onOpenSettings, achi
                   cursor: 'pointer'
                 }}
               >
-                Закрыть
+                Р—Р°РєСЂС‹С‚СЊ
               </button>
               <button
                 onClick={() => setFileUploadOpen(true)}
@@ -699,7 +699,7 @@ export function AchievementsPage({ onNavigate, currentPage, onOpenSettings, achi
                   cursor: 'pointer'
                 }}
               >
-                Прикрепить файл
+                РџСЂРёРєСЂРµРїРёС‚СЊ С„Р°Р№Р»
               </button>
             </div>
           </div>
@@ -740,7 +740,7 @@ export function AchievementsPage({ onNavigate, currentPage, onOpenSettings, achi
               marginBottom: '24px'
             }}>
               <h2 style={{ color: theme === 'dark' ? '#E8ECF2' : '#0F172A' }}>
-                Прикрепить файл
+                РџСЂРёРєСЂРµРїРёС‚СЊ С„Р°Р№Р»
               </h2>
               <button
                 onClick={() => setFileUploadOpen(false)}
@@ -770,7 +770,7 @@ export function AchievementsPage({ onNavigate, currentPage, onOpenSettings, achi
                 <Paperclip size={32} color={theme === 'dark' ? '#A7B0BD' : '#6B7280'} />
               </div>
               <p style={{ color: theme === 'dark' ? '#A7B0BD' : '#6B7280', marginBottom: '16px' }}>
-                Выберите файл для загрузки
+                Р’С‹Р±РµСЂРёС‚Рµ С„Р°Р№Р» РґР»СЏ Р·Р°РіСЂСѓР·РєРё
               </p>
               <input
                 type="file"
@@ -792,7 +792,7 @@ export function AchievementsPage({ onNavigate, currentPage, onOpenSettings, achi
                   cursor: 'pointer'
                 }}
               >
-                Выбрать файл
+                Р’С‹Р±СЂР°С‚СЊ С„Р°Р№Р»
               </label>
             </div>
           </div>

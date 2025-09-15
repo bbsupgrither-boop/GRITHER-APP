@@ -1,4 +1,4 @@
-﻿import { useState } from 'react';
+п»їimport { useState } from 'react';
 import { ArrowLeft, X, Package, CheckCircle, XCircle } from './Icons';
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription } from './ui/dialog';
 import { Button } from './ui/button';
@@ -28,7 +28,7 @@ function OrderDetailsModal({ order, isOpen, onClose, onApprove, onReject }: Orde
 
   const handleApprove = () => {
     if (!trackingInfo.trim()) {
-      alert('РќРµРѕР±С…РѕРґРёРјРѕ Р·Р°РїРѕР»РЅРёС‚СЊ РёРЅС„РѕСЂРјР°С†РёСЋ РґР»СЏ РѕС‚СЃР»РµР¶РёРІР°РЅРёСЏ');
+      alert('Р СњР ВµР С•Р В±РЎвЂ¦Р С•Р Т‘Р С‘Р СР С• Р В·Р В°Р С—Р С•Р В»Р Р…Р С‘РЎвЂљРЎРЉ Р С‘Р Р…РЎвЂћР С•РЎР‚Р СР В°РЎвЂ Р С‘РЎР‹ Р Т‘Р В»РЎРЏ Р С•РЎвЂљРЎРѓР В»Р ВµР В¶Р С‘Р Р†Р В°Р Р…Р С‘РЎРЏ');
       return;
     }
     onApprove(order!.id, trackingInfo);
@@ -39,7 +39,7 @@ function OrderDetailsModal({ order, isOpen, onClose, onApprove, onReject }: Orde
 
   const handleReject = () => {
     if (!rejectionReason.trim()) {
-      alert('РќРµРѕР±С…РѕРґРёРјРѕ СѓРєР°Р·Р°С‚СЊ РїСЂРёС‡РёРЅСѓ РѕС‚РєР»РѕРЅРµРЅРёСЏ');
+      alert('Р СњР ВµР С•Р В±РЎвЂ¦Р С•Р Т‘Р С‘Р СР С• РЎС“Р С”Р В°Р В·Р В°РЎвЂљРЎРЉ Р С—РЎР‚Р С‘РЎвЂЎР С‘Р Р…РЎС“ Р С•РЎвЂљР С”Р В»Р С•Р Р…Р ВµР Р…Р С‘РЎРЏ');
       return;
     }
     onReject(order!.id, rejectionReason);
@@ -56,10 +56,10 @@ function OrderDetailsModal({ order, isOpen, onClose, onApprove, onReject }: Orde
         <div className="p-6">
           <DialogHeader>
             <DialogTitle className="text-lg font-medium text-foreground text-center mb-4">
-              РўРѕРІР°СЂ
+              Р СћР С•Р Р†Р В°РЎР‚
             </DialogTitle>
             <DialogDescription className="sr-only">
-              Р”РµС‚Р°Р»Рё Р·Р°РєР°Р·Р° С‚РѕРІР°СЂР° РґР»СЏ РјРѕРґРµСЂР°С†РёРё
+              Р вЂќР ВµРЎвЂљР В°Р В»Р С‘ Р В·Р В°Р С”Р В°Р В·Р В° РЎвЂљР С•Р Р†Р В°РЎР‚Р В° Р Т‘Р В»РЎРЏ Р СР С•Р Т‘Р ВµРЎР‚Р В°РЎвЂ Р С‘Р С‘
             </DialogDescription>
             <div className="flex items-center justify-between mb-4">
               <div className="flex-1"></div>
@@ -73,22 +73,22 @@ function OrderDetailsModal({ order, isOpen, onClose, onApprove, onReject }: Orde
           </DialogHeader>
 
           <div className="space-y-4">
-            {/* РРЅС„РѕСЂРјР°С†РёСЏ Рѕ Р·Р°РєР°Р·Рµ */}
+            {/* Р ВР Р…РЎвЂћР С•РЎР‚Р СР В°РЎвЂ Р С‘РЎРЏ Р С• Р В·Р В°Р С”Р В°Р В·Р Вµ */}
             <div className="glass-card rounded-2xl p-4">
               <div className="text-sm font-medium text-foreground mb-3">
-                Р—Р°РєР°Р· #{order.id}
+                Р вЂ”Р В°Р С”Р В°Р В· #{order.id}
               </div>
               <div className="text-xs text-muted-foreground mb-2">
-                Р”Р°С‚Р° Р·Р°РєР°Р·Р°: {new Date(order.createdAt).toLocaleDateString()}
+                Р вЂќР В°РЎвЂљР В° Р В·Р В°Р С”Р В°Р В·Р В°: {new Date(order.createdAt).toLocaleDateString()}
               </div>
               <div className="text-xs text-muted-foreground">
-                РћР±С‰Р°СЏ СЃС‚РѕРёРјРѕСЃС‚СЊ: {order.total} РєРѕРёРЅРѕРІ
+                Р С›Р В±РЎвЂ°Р В°РЎРЏ РЎРѓРЎвЂљР С•Р С‘Р СР С•РЎРѓРЎвЂљРЎРЉ: {order.total} Р С”Р С•Р С‘Р Р…Р С•Р Р†
               </div>
             </div>
 
-            {/* РўРѕРІР°СЂС‹ РІ Р·Р°РєР°Р·Рµ */}
+            {/* Р СћР С•Р Р†Р В°РЎР‚РЎвЂ№ Р Р† Р В·Р В°Р С”Р В°Р В·Р Вµ */}
             <div className="glass-card rounded-2xl p-4">
-              <div className="text-sm font-medium text-foreground mb-3">РўРѕРІР°СЂС‹ РІ Р·Р°РєР°Р·Рµ:</div>
+              <div className="text-sm font-medium text-foreground mb-3">Р СћР С•Р Р†Р В°РЎР‚РЎвЂ№ Р Р† Р В·Р В°Р С”Р В°Р В·Р Вµ:</div>
               <div className="space-y-2">
                 {order.items.map((item, index) => (
                   <div key={index} className="flex items-center justify-between">
@@ -97,38 +97,38 @@ function OrderDetailsModal({ order, isOpen, onClose, onApprove, onReject }: Orde
                       <div>
                         <div className="text-sm font-medium text-foreground">{item.name}</div>
                         <div className="text-xs text-muted-foreground">
-                          {item.price} РєРѕРёРЅРѕРІ x {item.quantity}
+                          {item.price} Р С”Р С•Р С‘Р Р…Р С•Р Р† x {item.quantity}
                         </div>
                       </div>
                     </div>
                     <div className="text-sm font-medium text-foreground">
-                      {item.price * item.quantity} РєРѕРёРЅРѕРІ
+                      {item.price * item.quantity} Р С”Р С•Р С‘Р Р…Р С•Р Р†
                     </div>
                   </div>
                 ))}
               </div>
             </div>
 
-            {/* РРЅС„РѕСЂРјР°С†РёСЏ Рѕ СЃРѕС‚СЂСѓРґРЅРёРєРµ */}
+            {/* Р ВР Р…РЎвЂћР С•РЎР‚Р СР В°РЎвЂ Р С‘РЎРЏ Р С• РЎРѓР С•РЎвЂљРЎР‚РЎС“Р Т‘Р Р…Р С‘Р С”Р Вµ */}
             <div className="glass-card rounded-2xl p-4">
               <div className="text-sm font-medium text-foreground mb-2">
-                РЎРѕС‚СЂСѓРґРЅРёРє: {order.customerName || 'РќРµРёР·РІРµСЃС‚РµРЅ'}
+                Р РЋР С•РЎвЂљРЎР‚РЎС“Р Т‘Р Р…Р С‘Р С”: {order.customerName || 'Р СњР ВµР С‘Р В·Р Р†Р ВµРЎРѓРЎвЂљР ВµР Р…'}
               </div>
               <div className="text-xs text-muted-foreground">
-                РљРѕРјР°РЅРґР°: {order.customerTeam || 'РќРµ СѓРєР°Р·Р°РЅР°'}
+                Р С™Р С•Р СР В°Р Р…Р Т‘Р В°: {order.customerTeam || 'Р СњР Вµ РЎС“Р С”Р В°Р В·Р В°Р Р…Р В°'}
               </div>
             </div>
 
-            {/* Р¤РѕСЂРјС‹ РѕРґРѕР±СЂРµРЅРёСЏ/РѕС‚РєР»РѕРЅРµРЅРёСЏ */}
+            {/* Р В¤Р С•РЎР‚Р СРЎвЂ№ Р С•Р Т‘Р С•Р В±РЎР‚Р ВµР Р…Р С‘РЎРЏ/Р С•РЎвЂљР С”Р В»Р С•Р Р…Р ВµР Р…Р С‘РЎРЏ */}
             {showApprovalForm && (
               <div className="glass-card rounded-2xl p-4">
                 <div className="text-sm font-medium text-foreground mb-3">
-                  РРЅС„РѕСЂРјР°С†РёСЏ РґР»СЏ РѕС‚СЃР»РµР¶РёРІР°РЅРёСЏ *
+                  Р ВР Р…РЎвЂћР С•РЎР‚Р СР В°РЎвЂ Р С‘РЎРЏ Р Т‘Р В»РЎРЏ Р С•РЎвЂљРЎРѓР В»Р ВµР В¶Р С‘Р Р†Р В°Р Р…Р С‘РЎРЏ *
                 </div>
                 <textarea
                   value={trackingInfo}
                   onChange={(e) => setTrackingInfo(e.target.value)}
-                  placeholder="Р’РІРµРґРёС‚Рµ С‚СЂРµРє-РЅРѕРјРµСЂ, СЃСЃС‹Р»РєСѓ РЅР° СЃРµСЂС‚РёС„РёРєР°С‚ РёР»Рё РґСЂСѓРіСѓСЋ РёРЅС„РѕСЂРјР°С†РёСЋ РґР»СЏ РѕС‚СЃР»РµР¶РёРІР°РЅРёСЏ..."
+                  placeholder="Р вЂ™Р Р†Р ВµР Т‘Р С‘РЎвЂљР Вµ РЎвЂљРЎР‚Р ВµР С”-Р Р…Р С•Р СР ВµРЎР‚, РЎРѓРЎРѓРЎвЂ№Р В»Р С”РЎС“ Р Р…Р В° РЎРѓР ВµРЎР‚РЎвЂљР С‘РЎвЂћР С‘Р С”Р В°РЎвЂљ Р С‘Р В»Р С‘ Р Т‘РЎР‚РЎС“Р С–РЎС“РЎР‹ Р С‘Р Р…РЎвЂћР С•РЎР‚Р СР В°РЎвЂ Р С‘РЎР‹ Р Т‘Р В»РЎРЏ Р С•РЎвЂљРЎРѓР В»Р ВµР В¶Р С‘Р Р†Р В°Р Р…Р С‘РЎРЏ..."
                   className="w-full p-3 bg-input-background border border-border rounded-2xl text-sm resize-none"
                   rows={3}
                 />
@@ -138,13 +138,13 @@ function OrderDetailsModal({ order, isOpen, onClose, onApprove, onReject }: Orde
                     onClick={() => setShowApprovalForm(false)}
                     className="flex-1"
                   >
-                    РћС‚РјРµРЅРёС‚СЊ
+                    Р С›РЎвЂљР СР ВµР Р…Р С‘РЎвЂљРЎРЉ
                   </Button>
                   <Button
                     onClick={handleApprove}
                     className="flex-1 bg-green-500 hover:bg-green-600 text-white"
                   >
-                    РћРґРѕР±СЂРёС‚СЊ
+                    Р С›Р Т‘Р С•Р В±РЎР‚Р С‘РЎвЂљРЎРЉ
                   </Button>
                 </div>
               </div>
@@ -153,12 +153,12 @@ function OrderDetailsModal({ order, isOpen, onClose, onApprove, onReject }: Orde
             {showRejectionForm && (
               <div className="glass-card rounded-2xl p-4">
                 <div className="text-sm font-medium text-foreground mb-3">
-                  РџСЂРёС‡РёРЅР° РѕС‚РєР»РѕРЅРµРЅРёСЏ *
+                  Р СџРЎР‚Р С‘РЎвЂЎР С‘Р Р…Р В° Р С•РЎвЂљР С”Р В»Р С•Р Р…Р ВµР Р…Р С‘РЎРЏ *
                 </div>
                 <textarea
                   value={rejectionReason}
                   onChange={(e) => setRejectionReason(e.target.value)}
-                  placeholder="РЈРєР°Р¶РёС‚Рµ РїСЂРёС‡РёРЅСѓ РѕС‚РєР»РѕРЅРµРЅРёСЏ Р·Р°РєР°Р·Р°..."
+                  placeholder="Р Р€Р С”Р В°Р В¶Р С‘РЎвЂљР Вµ Р С—РЎР‚Р С‘РЎвЂЎР С‘Р Р…РЎС“ Р С•РЎвЂљР С”Р В»Р С•Р Р…Р ВµР Р…Р С‘РЎРЏ Р В·Р В°Р С”Р В°Р В·Р В°..."
                   className="w-full p-3 bg-input-background border border-border rounded-2xl text-sm resize-none"
                   rows={3}
                 />
@@ -168,19 +168,19 @@ function OrderDetailsModal({ order, isOpen, onClose, onApprove, onReject }: Orde
                     onClick={() => setShowRejectionForm(false)}
                     className="flex-1"
                   >
-                    РћС‚РјРµРЅРёС‚СЊ
+                    Р С›РЎвЂљР СР ВµР Р…Р С‘РЎвЂљРЎРЉ
                   </Button>
                   <Button
                     onClick={handleReject}
                     className="flex-1 bg-red-500 hover:bg-red-600 text-white"
                   >
-                    РћС‚РєР»РѕРЅРёС‚СЊ
+                    Р С›РЎвЂљР С”Р В»Р С•Р Р…Р С‘РЎвЂљРЎРЉ
                   </Button>
                 </div>
               </div>
             )}
 
-            {/* РљРЅРѕРїРєРё РґРµР№СЃС‚РІРёР№ */}
+            {/* Р С™Р Р…Р С•Р С—Р С”Р С‘ Р Т‘Р ВµР в„–РЎРѓРЎвЂљР Р†Р С‘Р в„– */}
             {!showApprovalForm && !showRejectionForm && (
               <div className="flex gap-3">
                 <Button
@@ -188,13 +188,13 @@ function OrderDetailsModal({ order, isOpen, onClose, onApprove, onReject }: Orde
                   onClick={() => setShowRejectionForm(true)}
                   className="flex-1 border-red-200 text-red-600 hover:bg-red-50"
                 >
-                  РћС‚РєР»РѕРЅРёС‚СЊ
+                  Р С›РЎвЂљР С”Р В»Р С•Р Р…Р С‘РЎвЂљРЎРЉ
                 </Button>
                 <Button
                   onClick={() => setShowApprovalForm(true)}
                   className="flex-1 bg-primary text-primary-foreground"
                 >
-                  РћРґРѕР±СЂРёС‚СЊ
+                  Р С›Р Т‘Р С•Р В±РЎР‚Р С‘РЎвЂљРЎРЉ
                 </Button>
               </div>
             )}
@@ -206,7 +206,7 @@ function OrderDetailsModal({ order, isOpen, onClose, onApprove, onReject }: Orde
 }
 
 export function ShopModerationPage({ onBack, orders, setOrders, onUpdateUserBalance }: ShopModerationPageProps) {
-  // Р—Р°РєР°Р·С‹ С‚РµРїРµСЂСЊ СѓРїСЂР°РІР»СЏСЋС‚СЃСЏ С‡РµСЂРµР· РіР»РѕР±Р°Р»СЊРЅРѕРµ СЃРѕСЃС‚РѕСЏРЅРёРµ
+  // Р вЂ”Р В°Р С”Р В°Р В·РЎвЂ№ РЎвЂљР ВµР С—Р ВµРЎР‚РЎРЉ РЎС“Р С—РЎР‚Р В°Р Р†Р В»РЎРЏРЎР‹РЎвЂљРЎРѓРЎРЏ РЎвЂЎР ВµРЎР‚Р ВµР В· Р С–Р В»Р С•Р В±Р В°Р В»РЎРЉР Р…Р С•Р Вµ РЎРѓР С•РЎРѓРЎвЂљР С•РЎРЏР Р…Р С‘Р Вµ
 
   const [selectedOrder, setSelectedOrder] = useState<Order | null>(null);
   const [showOrderDetails, setShowOrderDetails] = useState(false);
@@ -222,16 +222,16 @@ export function ShopModerationPage({ onBack, orders, setOrders, onUpdateUserBala
         ? { ...order, status: 'active' as const, trackingInfo }
         : order
     ));
-    console.log(`Р—Р°РєР°Р· ${orderId} РѕРґРѕР±СЂРµРЅ Р°РґРјРёРЅРёСЃС‚СЂР°С‚РѕСЂРѕРј СЃ РёРЅС„РѕСЂРјР°С†РёРµР№ РґР»СЏ РѕС‚СЃР»РµР¶РёРІР°РЅРёСЏ: ${trackingInfo}`);
+    console.log(`Р вЂ”Р В°Р С”Р В°Р В· ${orderId} Р С•Р Т‘Р С•Р В±РЎР‚Р ВµР Р… Р В°Р Т‘Р СР С‘Р Р…Р С‘РЎРѓРЎвЂљРЎР‚Р В°РЎвЂљР С•РЎР‚Р С•Р С РЎРѓ Р С‘Р Р…РЎвЂћР С•РЎР‚Р СР В°РЎвЂ Р С‘Р ВµР в„– Р Т‘Р В»РЎРЏ Р С•РЎвЂљРЎРѓР В»Р ВµР В¶Р С‘Р Р†Р В°Р Р…Р С‘РЎРЏ: ${trackingInfo}`);
   };
 
   const handleRejectOrder = (orderId: string, reason: string) => {
     const rejectedOrder = orders.find(order => order.id === orderId);
     
-    // Р’РѕР·РІСЂР°С‰Р°РµРј РґРµРЅСЊРіРё РїРѕР»СЊР·РѕРІР°С‚РµР»СЋ РїСЂпїЅпїЅ РѕС‚РєР»РѕРЅРµРЅРёРё Р·Р°РєР°Р·Р°
+    // Р вЂ™Р С•Р В·Р Р†РЎР‚Р В°РЎвЂ°Р В°Р ВµР С Р Т‘Р ВµР Р…РЎРЉР С–Р С‘ Р С—Р С•Р В»РЎРЉР В·Р С•Р Р†Р В°РЎвЂљР ВµР В»РЎР‹ Р С—РЎР‚РїС—Р…РїС—Р… Р С•РЎвЂљР С”Р В»Р С•Р Р…Р ВµР Р…Р С‘Р С‘ Р В·Р В°Р С”Р В°Р В·Р В°
     if (rejectedOrder && onUpdateUserBalance) {
       onUpdateUserBalance(rejectedOrder.userId, rejectedOrder.total);
-      console.log(`Р’РѕР·РІСЂР°С‰РµРЅРѕ ${rejectedOrder.total} РєРѕРёРЅРѕРІ РїРѕР»СЊР·РѕРІР°С‚РµР»СЋ ${rejectedOrder.userId} Р·Р° РѕС‚РєР»РѕРЅРµРЅРЅС‹Р№ Р·Р°РєР°Р·`);
+      console.log(`Р вЂ™Р С•Р В·Р Р†РЎР‚Р В°РЎвЂ°Р ВµР Р…Р С• ${rejectedOrder.total} Р С”Р С•Р С‘Р Р…Р С•Р Р† Р С—Р С•Р В»РЎРЉР В·Р С•Р Р†Р В°РЎвЂљР ВµР В»РЎР‹ ${rejectedOrder.userId} Р В·Р В° Р С•РЎвЂљР С”Р В»Р С•Р Р…Р ВµР Р…Р Р…РЎвЂ№Р в„– Р В·Р В°Р С”Р В°Р В·`);
     }
     
     setOrders(orders.map(order => 
@@ -239,14 +239,14 @@ export function ShopModerationPage({ onBack, orders, setOrders, onUpdateUserBala
         ? { ...order, status: 'rejected' as const, rejectionReason: reason }
         : order
     ));
-    console.log(`Р—Р°РєР°Р· ${orderId} РѕС‚РєР»РѕРЅРµРЅ Р°РґРјРёРЅРёСЃС‚СЂР°С‚РѕСЂРѕРј СЃ РїСЂРёС‡РёРЅРѕР№: ${reason}`);
+    console.log(`Р вЂ”Р В°Р С”Р В°Р В· ${orderId} Р С•РЎвЂљР С”Р В»Р С•Р Р…Р ВµР Р… Р В°Р Т‘Р СР С‘Р Р…Р С‘РЎРѓРЎвЂљРЎР‚Р В°РЎвЂљР С•РЎР‚Р С•Р С РЎРѓ Р С—РЎР‚Р С‘РЎвЂЎР С‘Р Р…Р С•Р в„–: ${reason}`);
   };
 
   const pendingOrdersList = orders.filter(order => order.status === 'pending');
 
   return (
     <div className="min-h-screen bg-background">
-      {/* Р—Р°РіРѕР»РѕРІРѕРє СЃС‚СЂР°РЅРёС†С‹ */}
+      {/* Р вЂ”Р В°Р С–Р С•Р В»Р С•Р Р†Р С•Р С” РЎРѓРЎвЂљРЎР‚Р В°Р Р…Р С‘РЎвЂ РЎвЂ№ */}
       <div className="p-6">
         <div className="flex items-center gap-4 mb-6">
           <button
@@ -255,18 +255,18 @@ export function ShopModerationPage({ onBack, orders, setOrders, onUpdateUserBala
           >
             <ArrowLeft className="w-5 h-5 text-foreground/70" />
           </button>
-          <h1 className="text-lg font-medium text-foreground">РњРѕРґРµСЂР°С†РёСЏ С‚РѕРІР°СЂРѕРІ</h1>
+          <h1 className="text-lg font-medium text-foreground">Р СљР С•Р Т‘Р ВµРЎР‚Р В°РЎвЂ Р С‘РЎРЏ РЎвЂљР С•Р Р†Р В°РЎР‚Р С•Р Р†</h1>
         </div>
       </div>
 
-      {/* РЎРѕРґРµСЂР¶РёРјРѕРµ */}
+      {/* Р РЋР С•Р Т‘Р ВµРЎР‚Р В¶Р С‘Р СР С•Р Вµ */}
       <div className="px-6 space-y-4 pb-20">
         {pendingOrdersList.length === 0 ? (
           <div className="glass-card rounded-2xl p-8 text-center">
             <Package className="w-12 h-12 text-muted-foreground mx-auto mb-4" />
-            <div className="text-foreground font-medium mb-2">РќРµС‚ Р·Р°РєР°Р·РѕРІ РЅР° РјРѕРґРµСЂР°С†РёРё</div>
+            <div className="text-foreground font-medium mb-2">Р СњР ВµРЎвЂљ Р В·Р В°Р С”Р В°Р В·Р С•Р Р† Р Р…Р В° Р СР С•Р Т‘Р ВµРЎР‚Р В°РЎвЂ Р С‘Р С‘</div>
             <div className="text-sm text-muted-foreground">
-              Р’СЃРµ Р·Р°РєР°Р·С‹ РѕР±СЂР°Р±РѕС‚Р°РЅС‹
+              Р вЂ™РЎРѓР Вµ Р В·Р В°Р С”Р В°Р В·РЎвЂ№ Р С•Р В±РЎР‚Р В°Р В±Р С•РЎвЂљР В°Р Р…РЎвЂ№
             </div>
           </div>
         ) : (
@@ -287,13 +287,13 @@ export function ShopModerationPage({ onBack, orders, setOrders, onUpdateUserBala
                   </div>
                   <div>
                     <div className="text-sm font-medium text-foreground">
-                      Р—Р°РєР°Р· #{order.id}
+                      Р вЂ”Р В°Р С”Р В°Р В· #{order.id}
                     </div>
                     <div className="text-xs text-muted-foreground">
-                      {order.items.length} С‚РѕРІР°СЂ(РѕРІ) вЂў {order.total} РєРѕРёРЅРѕРІ
+                      {order.items.length} РЎвЂљР С•Р Р†Р В°РЎР‚(Р С•Р Р†) РІР‚Сћ {order.total} Р С”Р С•Р С‘Р Р…Р С•Р Р†
                     </div>
                     <div className="text-xs text-muted-foreground">
-                      {order.customerName || 'РќРµРёР·РІРµСЃС‚РЅС‹Р№ РїРѕР»СЊР·РѕРІР°С‚РµР»СЊ'}
+                      {order.customerName || 'Р СњР ВµР С‘Р В·Р Р†Р ВµРЎРѓРЎвЂљР Р…РЎвЂ№Р в„– Р С—Р С•Р В»РЎРЉР В·Р С•Р Р†Р В°РЎвЂљР ВµР В»РЎРЉ'}
                     </div>
                   </div>
                 </div>
@@ -301,7 +301,7 @@ export function ShopModerationPage({ onBack, orders, setOrders, onUpdateUserBala
                   <button
                     onClick={(e) => {
                       e.stopPropagation();
-                      handleRejectOrder(order.id, 'РћС‚РєР»РѕРЅРµРЅРѕ Р°РґРјРёРЅРёСЃС‚СЂР°С‚РѕСЂРѕРј Р±РµР· СѓРєР°Р·Р°РЅРёСЏ РїСЂРёС‡РёРЅС‹');
+                      handleRejectOrder(order.id, 'Р С›РЎвЂљР С”Р В»Р С•Р Р…Р ВµР Р…Р С• Р В°Р Т‘Р СР С‘Р Р…Р С‘РЎРѓРЎвЂљРЎР‚Р В°РЎвЂљР С•РЎР‚Р С•Р С Р В±Р ВµР В· РЎС“Р С”Р В°Р В·Р В°Р Р…Р С‘РЎРЏ Р С—РЎР‚Р С‘РЎвЂЎР С‘Р Р…РЎвЂ№');
                     }}
                     className="p-2 hover:bg-red-50 rounded-lg transition-colors"
                   >
@@ -310,7 +310,7 @@ export function ShopModerationPage({ onBack, orders, setOrders, onUpdateUserBala
                   <button
                     onClick={(e) => {
                       e.stopPropagation();
-                      handleApproveOrder(order.id, 'РћРґРѕР±СЂРµРЅРѕ Р°РґРјРёРЅРёСЃС‚СЂР°С‚РѕСЂРѕРј Р±РµР· РґРѕРїРѕР»РЅРёС‚РµР»СЊРЅРѕР№ РёРЅС„РѕСЂРјР°С†РёРё');
+                      handleApproveOrder(order.id, 'Р С›Р Т‘Р С•Р В±РЎР‚Р ВµР Р…Р С• Р В°Р Т‘Р СР С‘Р Р…Р С‘РЎРѓРЎвЂљРЎР‚Р В°РЎвЂљР С•РЎР‚Р С•Р С Р В±Р ВµР В· Р Т‘Р С•Р С—Р С•Р В»Р Р…Р С‘РЎвЂљР ВµР В»РЎРЉР Р…Р С•Р в„– Р С‘Р Р…РЎвЂћР С•РЎР‚Р СР В°РЎвЂ Р С‘Р С‘');
                     }}
                     className="p-2 hover:bg-green-50 rounded-lg transition-colors"
                   >
@@ -323,7 +323,7 @@ export function ShopModerationPage({ onBack, orders, setOrders, onUpdateUserBala
         )}
       </div>
 
-      {/* РњРѕРґР°Р»СЊРЅРѕРµ РѕРєРЅРѕ РґРµС‚Р°Р»РµР№ Р·Р°РєР°Р·Р° */}
+      {/* Р СљР С•Р Т‘Р В°Р В»РЎРЉР Р…Р С•Р Вµ Р С•Р С”Р Р…Р С• Р Т‘Р ВµРЎвЂљР В°Р В»Р ВµР в„– Р В·Р В°Р С”Р В°Р В·Р В° */}
       <OrderDetailsModal
         order={selectedOrder}
         isOpen={showOrderDetails}

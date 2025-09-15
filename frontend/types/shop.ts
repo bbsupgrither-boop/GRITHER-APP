@@ -1,4 +1,4 @@
-﻿export interface ShopItem {
+export interface ShopItem {
   id: string;
   name: string;
   description: string;

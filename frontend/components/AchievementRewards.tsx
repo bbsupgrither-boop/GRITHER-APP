@@ -1,4 +1,4 @@
-﻿import React from 'react';
+п»їimport React from 'react';
 import { Eye, Trophy } from 'lucide-react';
 import { Achievement } from '../types/achievements';
 
@@ -13,12 +13,12 @@ export const AchievementRewards: React.FC<AchievementRewardsProps> = ({
   theme, 
   onViewAll 
 }) => {
-  // Получаем последние 5 разблокированных достижений
+  // РџРѕР»СѓС‡Р°РµРј РїРѕСЃР»РµРґРЅРёРµ 5 СЂР°Р·Р±Р»РѕРєРёСЂРѕРІР°РЅРЅС‹С… РґРѕСЃС‚РёР¶РµРЅРёР№
   const unlockedAchievements = achievements
     .filter(achievement => achievement.unlocked)
     .slice(-5);
 
-  // Заполняем до 5 слотов (пустые слоты в конце)
+  // Р—Р°РїРѕР»РЅСЏРµРј РґРѕ 5 СЃР»РѕС‚РѕРІ (РїСѓСЃС‚С‹Рµ СЃР»РѕС‚С‹ РІ РєРѕРЅС†Рµ)
   const slots = [...unlockedAchievements];
   while (slots.length < 5) {
     slots.push(null);
@@ -40,11 +40,11 @@ export const AchievementRewards: React.FC<AchievementRewardsProps> = ({
 
   const getRarityIcon = (rarity?: string) => {
     switch (rarity) {
-      case 'legendary': return '👑';
-      case 'epic': return '💜';
-      case 'rare': return '🔵';
+      case 'legendary': return 'рџ‘‘';
+      case 'epic': return 'рџ’њ';
+      case 'rare': return 'рџ”µ';
       case 'common':
-      default: return '⭐';
+      default: return 'в­ђ';
     }
   };
 
@@ -64,7 +64,7 @@ export const AchievementRewards: React.FC<AchievementRewardsProps> = ({
             color: theme === 'dark' ? '#E8ECF2' : '#0F172A'
           }}
         >
-          Ачивки
+          РђС‡РёРІРєРё
         </h3>
         
         <button
@@ -92,7 +92,7 @@ export const AchievementRewards: React.FC<AchievementRewardsProps> = ({
           >
             {achievement ? (
               <>
-                {/* Градиентный фон */}
+                {/* Р“СЂР°РґРёРµРЅС‚РЅС‹Р№ С„РѕРЅ */}
                 <div 
                   style={{
                     position: 'absolute',
@@ -103,7 +103,7 @@ export const AchievementRewards: React.FC<AchievementRewardsProps> = ({
                   }}
                 />
                 
-                {/* Иконка */}
+                {/* РРєРѕРЅРєР° */}
                 <div 
                   style={{
                     position: 'relative',
@@ -117,7 +117,7 @@ export const AchievementRewards: React.FC<AchievementRewardsProps> = ({
               </>
             ) : (
               <>
-                {/* Пустой слот */}
+                {/* РџСѓСЃС‚РѕР№ СЃР»РѕС‚ */}
                 <div 
                   style={{
                     width: '100%',
@@ -150,7 +150,7 @@ export const AchievementRewards: React.FC<AchievementRewardsProps> = ({
             color: theme === 'dark' ? '#A7B0BD' : '#6B7280'
           }}
         >
-          Нет разблокированных достижений
+          РќРµС‚ СЂР°Р·Р±Р»РѕРєРёСЂРѕРІР°РЅРЅС‹С… РґРѕСЃС‚РёР¶РµРЅРёР№
         </div>
       )}
     </div>

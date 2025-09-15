@@ -1,4 +1,4 @@
-﻿import { useState } from 'react';
+п»їimport { useState } from 'react';
 import { Eye, Menu, Check, ArrowLeft, Trophy, Star, Award, Medal } from './Icons';
 import { Dialog, DialogContent, DialogTitle, DialogDescription } from './ui/dialog';
 import { Achievement } from '../types/achievements';
@@ -11,10 +11,10 @@ export function AchievementIcons({ achievements = [] }: AchievementIconsProps) {
   const [isOpen, setIsOpen] = useState(false);
   const [isSelectionMode, setIsSelectionMode] = useState(false);
   
-  // РџРѕР»СѓС‡Р°РµРј С‚РѕР»СЊРєРѕ СЂР°Р·Р±Р»РѕРєРёСЂРѕРІР°РЅРЅС‹Рµ РґРѕСЃС‚РёР¶РµРЅРёСЏ
+  // Р СџР С•Р В»РЎС“РЎвЂЎР В°Р ВµР С РЎвЂљР С•Р В»РЎРЉР С”Р С• РЎР‚Р В°Р В·Р В±Р В»Р С•Р С”Р С‘РЎР‚Р С•Р Р†Р В°Р Р…Р Р…РЎвЂ№Р Вµ Р Т‘Р С•РЎРѓРЎвЂљР С‘Р В¶Р ВµР Р…Р С‘РЎРЏ
   const unlockedAchievements = achievements.filter(achievement => achievement.isUnlocked);
   
-  // РњР°РєСЃРёРјСѓРј 7 СЏС‡РµРµРє РґР»СЏ РѕС‚РѕР±СЂР°Р¶РµРЅРёСЏ (РєР°Рє РІ РѕСЂРёРіРёРЅР°Р»СЊРЅРѕРј РґРёР·Р°Р№РЅРµ)
+  // Р СљР В°Р С”РЎРѓР С‘Р СРЎС“Р С 7 РЎРЏРЎвЂЎР ВµР ВµР С” Р Т‘Р В»РЎРЏ Р С•РЎвЂљР С•Р В±РЎР‚Р В°Р В¶Р ВµР Р…Р С‘РЎРЏ (Р С”Р В°Р С” Р Р† Р С•РЎР‚Р С‘Р С–Р С‘Р Р…Р В°Р В»РЎРЉР Р…Р С•Р С Р Т‘Р С‘Р В·Р В°Р в„–Р Р…Р Вµ)
   const maxSlots = 7;
   
   const getAchievementIcon = (iconName: string, rarity: string) => {
@@ -40,7 +40,7 @@ export function AchievementIcons({ achievements = [] }: AchievementIconsProps) {
 
   const handleConfirmSelection = () => {
     setIsSelectionMode(false);
-    // Р—РґРµСЃСЊ Р±СѓРґРµС‚ Р»РѕРіРёРєР° СЃРѕС…СЂР°РЅРµРЅРёСЏ РІС‹Р±СЂР°РЅРЅС‹С… РґРѕСЃС‚РёР¶РµРЅРёР№
+    // Р вЂ”Р Т‘Р ВµРЎРѓРЎРЉ Р В±РЎС“Р Т‘Р ВµРЎвЂљ Р В»Р С•Р С–Р С‘Р С”Р В° РЎРѓР С•РЎвЂ¦РЎР‚Р В°Р Р…Р ВµР Р…Р С‘РЎРЏ Р Р†РЎвЂ№Р В±РЎР‚Р В°Р Р…Р Р…РЎвЂ№РЎвЂ¦ Р Т‘Р С•РЎРѓРЎвЂљР С‘Р В¶Р ВµР Р…Р С‘Р в„–
   };
 
   return (
@@ -48,7 +48,7 @@ export function AchievementIcons({ achievements = [] }: AchievementIconsProps) {
       <div className="mb-6">
         <div className="glass-card rounded-2xl p-4 apple-shadow">
           <div className="relative flex items-center justify-center mb-3">
-            <span className="font-medium text-foreground">РђС‡РёРІРєРё</span>
+            <span className="font-medium text-foreground">Р С’РЎвЂЎР С‘Р Р†Р С”Р С‘</span>
             <button 
               onClick={() => setIsOpen(true)}
               className="absolute right-0 apple-button p-2 rounded-full hover:scale-105 transition-transform"
@@ -86,7 +86,7 @@ export function AchievementIcons({ achievements = [] }: AchievementIconsProps) {
           {unlockedAchievements.length === 0 && (
             <div className="flex items-center justify-center mt-2">
               <p className="text-muted-foreground text-sm text-center opacity-70">
-                РќРµС‚ РїРѕР»СѓС‡РµРЅРЅС‹С… Р°С‡РёРІРѕРє
+                Р СњР ВµРЎвЂљ Р С—Р С•Р В»РЎС“РЎвЂЎР ВµР Р…Р Р…РЎвЂ№РЎвЂ¦ Р В°РЎвЂЎР С‘Р Р†Р С•Р С”
               </p>
             </div>
           )}
@@ -96,7 +96,7 @@ export function AchievementIcons({ achievements = [] }: AchievementIconsProps) {
       <Dialog open={isOpen} onOpenChange={setIsOpen}>
         <DialogContent className="glass-card rounded-3xl border-2 border-border apple-shadow w-[90vw] max-w-md p-6 [&>button]:hidden">
           <div className="relative">
-            {/* РљРЅРѕРїРєР° РЅР°Р·Р°Рґ (СЃС‚СЂРµР»РєР° РІР»РµРІРѕ) */}
+            {/* Р С™Р Р…Р С•Р С—Р С”Р В° Р Р…Р В°Р В·Р В°Р Т‘ (РЎРѓРЎвЂљРЎР‚Р ВµР В»Р С”Р В° Р Р†Р В»Р ВµР Р†Р С•) */}
             <button 
               onClick={() => setIsOpen(false)}
               className="absolute left-0 top-0 apple-button p-2 rounded-full hover:scale-105 transition-transform"
@@ -105,10 +105,10 @@ export function AchievementIcons({ achievements = [] }: AchievementIconsProps) {
             </button>
             
             <DialogTitle className="text-lg font-medium text-foreground text-center mb-6">
-              РђС‡РёРІРєРё
+              Р С’РЎвЂЎР С‘Р Р†Р С”Р С‘
             </DialogTitle>
             
-            {/* РљРЅРѕРїРєР° РІС‹Р±РѕСЂР° (С‚СЂРё Р»РёРЅРёРё) */}
+            {/* Р С™Р Р…Р С•Р С—Р С”Р В° Р Р†РЎвЂ№Р В±Р С•РЎР‚Р В° (РЎвЂљРЎР‚Р С‘ Р В»Р С‘Р Р…Р С‘Р С‘) */}
             {!isSelectionMode && (
               <button 
                 onClick={handleSelectionModeToggle}
@@ -118,7 +118,7 @@ export function AchievementIcons({ achievements = [] }: AchievementIconsProps) {
               </button>
             )}
 
-            {/* РљРЅРѕРїРєР° РїРѕРґС‚РІРµСЂР¶РґРµРЅРёСЏ (РіР°Р»РѕС‡РєР°) */}
+            {/* Р С™Р Р…Р С•Р С—Р С”Р В° Р С—Р С•Р Т‘РЎвЂљР Р†Р ВµРЎР‚Р В¶Р Т‘Р ВµР Р…Р С‘РЎРЏ (Р С–Р В°Р В»Р С•РЎвЂЎР С”Р В°) */}
             {isSelectionMode && (
               <button 
                 onClick={handleConfirmSelection}
@@ -130,15 +130,15 @@ export function AchievementIcons({ achievements = [] }: AchievementIconsProps) {
           </div>
           
           <DialogDescription className="sr-only">
-            РџСЂРѕСЃРјРѕС‚СЂ РІР°С€РёС… РїРѕР»СѓС‡РµРЅРЅС‹С… Р°С‡РёРІРѕРє
+            Р СџРЎР‚Р С•РЎРѓР СР С•РЎвЂљРЎР‚ Р Р†Р В°РЎв‚¬Р С‘РЎвЂ¦ Р С—Р С•Р В»РЎС“РЎвЂЎР ВµР Р…Р Р…РЎвЂ№РЎвЂ¦ Р В°РЎвЂЎР С‘Р Р†Р С•Р С”
           </DialogDescription>
 
-          {/* РљРѕРЅС‚РµРЅС‚ */}
+          {/* Р С™Р С•Р Р…РЎвЂљР ВµР Р…РЎвЂљ */}
           <div className="min-h-[120px]">
             {isSelectionMode ? (
               <div className="flex items-center justify-center h-full">
                 <p className="text-muted-foreground text-center">
-                  Р РµР¶РёРј РІС‹Р±РѕСЂР° РґРѕСЃС‚РёР¶РµРЅРёР№ РґР»СЏ РіР»Р°РІРЅРѕР№ СЃС‚СЂР°РЅРёС†С‹
+                  Р В Р ВµР В¶Р С‘Р С Р Р†РЎвЂ№Р В±Р С•РЎР‚Р В° Р Т‘Р С•РЎРѓРЎвЂљР С‘Р В¶Р ВµР Р…Р С‘Р в„– Р Т‘Р В»РЎРЏ Р С–Р В»Р В°Р Р†Р Р…Р С•Р в„– РЎРѓРЎвЂљРЎР‚Р В°Р Р…Р С‘РЎвЂ РЎвЂ№
                 </p>
               </div>
             ) : (
@@ -179,7 +179,7 @@ export function AchievementIcons({ achievements = [] }: AchievementIconsProps) {
                 ) : (
                   <div className="flex items-center justify-center h-full">
                     <p className="text-muted-foreground text-center">
-                      РќРµС‚ РїРѕР»СѓС‡РµРЅРЅС‹С… Р°С‡РёРІРѕРє
+                      Р СњР ВµРЎвЂљ Р С—Р С•Р В»РЎС“РЎвЂЎР ВµР Р…Р Р…РЎвЂ№РЎвЂ¦ Р В°РЎвЂЎР С‘Р Р†Р С•Р С”
                     </p>
                   </div>
                 )}

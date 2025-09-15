@@ -1,4 +1,4 @@
-﻿import { ReactNode, ButtonHTMLAttributes } from 'react';
+п»їimport { ReactNode, ButtonHTMLAttributes } from 'react';
 
 interface IconButtonProps extends Omit<ButtonHTMLAttributes<HTMLButtonElement>, 'children'> {
   icon: ReactNode;
@@ -16,7 +16,7 @@ export function IconButton({
   disabled,
   ...props 
 }: IconButtonProps) {
-  // Р Р°Р·РјРµСЂС‹ СЃРѕРіР»Р°СЃРЅРѕ СЃРїРµС†РёС„РёРєР°С†РёРё
+  // Р В Р В°Р В·Р СР ВµРЎР‚РЎвЂ№ РЎРѓР С•Р С–Р В»Р В°РЎРѓР Р…Р С• РЎРѓР С—Р ВµРЎвЂ Р С‘РЎвЂћР С‘Р С”Р В°РЎвЂ Р С‘Р С‘
   const sizes = {
     sm: { circle: 28, icon: 16 },
     md: { circle: 32, icon: 18 }
@@ -25,7 +25,7 @@ export function IconButton({
   const currentSize = sizes[size];
   const actualState = disabled ? 'disabled' : state;
 
-  // РЎС‚РёР»Рё РґР»СЏ СЃРІРµС‚Р»РѕР№ С‚РµРјС‹
+  // Р РЋРЎвЂљР С‘Р В»Р С‘ Р Т‘Р В»РЎРЏ РЎРѓР Р†Р ВµРЎвЂљР В»Р С•Р в„– РЎвЂљР ВµР СРЎвЂ№
   const lightStyles = {
     default: {
       backgroundColor: 'var(--surface)',
@@ -56,7 +56,7 @@ export function IconButton({
     }
   };
 
-  // РЎС‚РёР»Рё РґР»СЏ С‚РµРјРЅРѕР№ С‚РµРјС‹
+  // Р РЋРЎвЂљР С‘Р В»Р С‘ Р Т‘Р В»РЎРЏ РЎвЂљР ВµР СР Р…Р С•Р в„– РЎвЂљР ВµР СРЎвЂ№
   const darkStyles = {
     default: {
       backgroundColor: '#0F1116',

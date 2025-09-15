@@ -1,4 +1,4 @@
-﻿import { useState } from 'react';
+п»їimport { useState } from 'react';
 
 interface BattleLeaderboardSimpleProps {
   leaderboard?: any[];
@@ -18,18 +18,18 @@ export function BattleLeaderboardSimple({
 
   const handleTestClick = () => {
     console.log('TEST BUTTON CLICKED!');
-    alert('РўРµСЃС‚РѕРІР°СЏ РєРЅРѕРїРєР° СЂР°Р±РѕС‚Р°РµС‚!');
+    alert('Р СћР ВµРЎРѓРЎвЂљР С•Р Р†Р В°РЎРЏ Р С”Р Р…Р С•Р С—Р С”Р В° РЎР‚Р В°Р В±Р С•РЎвЂљР В°Р ВµРЎвЂљ!');
     setTestMode(!testMode);
   };
 
   const handleVictoryClick = () => {
     console.log('VICTORY BUTTON CLICKED! personalBattles:', personalBattles);
-    alert('РљРЅРѕРїРєР° "Р’С‹РёРіСЂР°Р»" СЂР°Р±РѕС‚Р°РµС‚!');
+    alert('Р С™Р Р…Р С•Р С—Р С”Р В° "Р вЂ™РЎвЂ№Р С‘Р С–РЎР‚Р В°Р В»" РЎР‚Р В°Р В±Р С•РЎвЂљР В°Р ВµРЎвЂљ!');
   };
 
   const handleCancelClick = () => {
     console.log('CANCEL BUTTON CLICKED! personalBattles:', personalBattles);
-    alert('РљРЅРѕРїРєР° "РћС‚РјРµРЅРёС‚СЊ" СЂР°Р±РѕС‚Р°РµС‚!');
+    alert('Р С™Р Р…Р С•Р С—Р С”Р В° "Р С›РЎвЂљР СР ВµР Р…Р С‘РЎвЂљРЎРЉ" РЎР‚Р В°Р В±Р С•РЎвЂљР В°Р ВµРЎвЂљ!');
   };
 
   const handleCreateBattle = () => {
@@ -37,19 +37,19 @@ export function BattleLeaderboardSimple({
     if (setPersonalBattles) {
       const newBattle = {
         id: Date.now().toString(),
-        opponent: { name: 'РўРµСЃС‚ РџСЂРѕС‚РёРІРЅРёРє', team: 2, level: 5 },
+        opponent: { name: 'Р СћР ВµРЎРѓРЎвЂљ Р СџРЎР‚Р С•РЎвЂљР С‘Р Р†Р Р…Р С‘Р С”', team: 2, level: 5 },
         prize: 500,
         status: 'active',
         endDate: new Date(Date.now() + 24 * 60 * 60 * 1000)
       };
       setPersonalBattles([...personalBattles, newBattle]);
-      alert('РўРµСЃС‚РѕРІС‹Р№ Р±Р°С‚С‚Р» СЃРѕР·РґР°РЅ!');
+      alert('Р СћР ВµРЎРѓРЎвЂљР С•Р Р†РЎвЂ№Р в„– Р В±Р В°РЎвЂљРЎвЂљР В» РЎРѓР С•Р В·Р Т‘Р В°Р Р…!');
     }
   };
 
   return (
     <div className="grid grid-cols-2 gap-3">
-      {/* Р‘Р°С‚С‚Р» СЃРµРєС†РёСЏ */}
+      {/* Р вЂР В°РЎвЂљРЎвЂљР В» РЎРѓР ВµР С”РЎвЂ Р С‘РЎРЏ */}
       <div 
         style={{
           backgroundColor: theme === 'dark' ? '#161A22' : '#FFFFFF',
@@ -75,7 +75,7 @@ export function BattleLeaderboardSimple({
               fontWeight: '500'
             }}
           >
-            Р”РёР°РіРЅРѕСЃС‚РёРєР° Р‘Р°С‚С‚Р»РѕРІ
+            Р вЂќР С‘Р В°Р С–Р Р…Р С•РЎРѓРЎвЂљР С‘Р С”Р В° Р вЂР В°РЎвЂљРЎвЂљР В»Р С•Р Р†
           </h3>
           
           <button
@@ -93,10 +93,10 @@ export function BattleLeaderboardSimple({
               position: 'relative',
               zIndex: 40
             }}
-            onMouseDown={(e) => console.log('Mouse down РЅР° С‚РµСЃС‚ РєРЅРѕРїРєРµ')}
-            onMouseUp={(e) => console.log('Mouse up РЅР° С‚РµСЃС‚ РєРЅРѕРїРєРµ')}
+            onMouseDown={(e) => console.log('Mouse down Р Р…Р В° РЎвЂљР ВµРЎРѓРЎвЂљ Р С”Р Р…Р С•Р С—Р С”Р Вµ')}
+            onMouseUp={(e) => console.log('Mouse up Р Р…Р В° РЎвЂљР ВµРЎРѓРЎвЂљ Р С”Р Р…Р С•Р С—Р С”Р Вµ')}
           >
-            РўР•РЎРў РљРќРћРџРљРђ {testMode ? 'вњ“' : 'вњ—'}
+            Р СћР вЂўР РЋР Сћ Р С™Р СњР С›Р СџР С™Р С’ {testMode ? 'РІСљвЂњ' : 'РІСљвЂ”'}
           </button>
 
           <button
@@ -115,7 +115,7 @@ export function BattleLeaderboardSimple({
               zIndex: 40
             }}
           >
-            РЎРѕР·РґР°С‚СЊ С‚РµСЃС‚РѕРІС‹Р№ Р±Р°С‚С‚Р»
+            Р РЋР С•Р В·Р Т‘Р В°РЎвЂљРЎРЉ РЎвЂљР ВµРЎРѓРЎвЂљР С•Р Р†РЎвЂ№Р в„– Р В±Р В°РЎвЂљРЎвЂљР В»
           </button>
         </div>
 
@@ -136,7 +136,7 @@ export function BattleLeaderboardSimple({
                   marginBottom: '4px'
                 }}
               >
-                Р‘Р°С‚С‚Р» СЃ {personalBattles[0].opponent.name}
+                Р вЂР В°РЎвЂљРЎвЂљР В» РЎРѓ {personalBattles[0].opponent.name}
               </div>
               <div 
                 style={{ 
@@ -145,7 +145,7 @@ export function BattleLeaderboardSimple({
                   marginBottom: '8px'
                 }}
               >
-                РЎС‚Р°РІРєР°: {personalBattles[0].prize}g
+                Р РЋРЎвЂљР В°Р Р†Р С”Р В°: {personalBattles[0].prize}g
               </div>
               
               <div style={{ display: 'flex', gap: '6px' }}>
@@ -153,11 +153,11 @@ export function BattleLeaderboardSimple({
                   onClick={(e) => {
                     e.preventDefault();
                     e.stopPropagation();
-                    console.log('DIRECT CLICK РЅР° РєРЅРѕРїРєСѓ Р’С‹РёРіСЂР°Р»');
+                    console.log('DIRECT CLICK Р Р…Р В° Р С”Р Р…Р С•Р С—Р С”РЎС“ Р вЂ™РЎвЂ№Р С‘Р С–РЎР‚Р В°Р В»');
                     handleVictoryClick();
                   }}
-                  onMouseDown={(e) => console.log('MouseDown РЅР° Р’С‹РёРіСЂР°Р»')}
-                  onMouseUp={(e) => console.log('MouseUp РЅР° Р’С‹РёРіСЂР°Р»')}
+                  onMouseDown={(e) => console.log('MouseDown Р Р…Р В° Р вЂ™РЎвЂ№Р С‘Р С–РЎР‚Р В°Р В»')}
+                  onMouseUp={(e) => console.log('MouseUp Р Р…Р В° Р вЂ™РЎвЂ№Р С‘Р С–РЎР‚Р В°Р В»')}
                   style={{
                     flex: 1,
                     padding: '6px',
@@ -171,17 +171,17 @@ export function BattleLeaderboardSimple({
                     zIndex: 50
                   }}
                 >
-                  Р’С‹РёРіСЂР°Р»
+                  Р вЂ™РЎвЂ№Р С‘Р С–РЎР‚Р В°Р В»
                 </button>
                 <button
                   onClick={(e) => {
                     e.preventDefault();
                     e.stopPropagation();
-                    console.log('DIRECT CLICK РЅР° РєРЅРѕРїРєСѓ РћС‚РјРµРЅРёС‚СЊ');
+                    console.log('DIRECT CLICK Р Р…Р В° Р С”Р Р…Р С•Р С—Р С”РЎС“ Р С›РЎвЂљР СР ВµР Р…Р С‘РЎвЂљРЎРЉ');
                     handleCancelClick();
                   }}
-                  onMouseDown={(e) => console.log('MouseDown РЅР° РћС‚РјРµРЅРёС‚СЊ')}
-                  onMouseUp={(e) => console.log('MouseUp РЅР° РћС‚РјРµРЅРёС‚СЊ')}
+                  onMouseDown={(e) => console.log('MouseDown Р Р…Р В° Р С›РЎвЂљР СР ВµР Р…Р С‘РЎвЂљРЎРЉ')}
+                  onMouseUp={(e) => console.log('MouseUp Р Р…Р В° Р С›РЎвЂљР СР ВµР Р…Р С‘РЎвЂљРЎРЉ')}
                   style={{
                     padding: '6px 8px',
                     backgroundColor: '#FF3B30',
@@ -194,7 +194,7 @@ export function BattleLeaderboardSimple({
                     zIndex: 50
                   }}
                 >
-                  РћС‚РјРµРЅРёС‚СЊ
+                  Р С›РЎвЂљР СР ВµР Р…Р С‘РЎвЂљРЎРЉ
                 </button>
               </div>
             </div>
@@ -208,12 +208,12 @@ export function BattleLeaderboardSimple({
               padding: '12px'
             }}
           >
-            РќРµС‚ Р°РєС‚РёРІРЅС‹С… Р±Р°С‚С‚Р»РѕРІ
+            Р СњР ВµРЎвЂљ Р В°Р С”РЎвЂљР С‘Р Р†Р Р…РЎвЂ№РЎвЂ¦ Р В±Р В°РЎвЂљРЎвЂљР В»Р С•Р Р†
           </div>
         )}
       </div>
 
-      {/* Р›РёРґРµСЂР±РѕСЂРґ СЃРµРєС†РёСЏ (СѓРїСЂРѕС‰РµРЅРЅР°СЏ) */}
+      {/* Р вЂєР С‘Р Т‘Р ВµРЎР‚Р В±Р С•РЎР‚Р Т‘ РЎРѓР ВµР С”РЎвЂ Р С‘РЎРЏ (РЎС“Р С—РЎР‚Р С•РЎвЂ°Р ВµР Р…Р Р…Р В°РЎРЏ) */}
       <div 
         style={{
           backgroundColor: theme === 'dark' ? '#161A22' : '#FFFFFF',
@@ -239,7 +239,7 @@ export function BattleLeaderboardSimple({
             fontWeight: '500'
           }}
         >
-          Р›РёРґРµСЂР±РѕСЂРґ
+          Р вЂєР С‘Р Т‘Р ВµРЎР‚Р В±Р С•РЎР‚Р Т‘
         </h3>
         <div 
           style={{
@@ -248,7 +248,7 @@ export function BattleLeaderboardSimple({
             marginTop: '4px'
           }}
         >
-          (Р·Р°РіР»СѓС€РєР°)
+          (Р В·Р В°Р С–Р В»РЎС“РЎв‚¬Р С”Р В°)
         </div>
       </div>
     </div>

@@ -31,10 +31,10 @@ export const AchievementsFull: React.FC<AchievementsFullProps> = ({ theme }) => 
             color: 'white',
             fontWeight: 'bold'
           }}>
-            И
+            Р
           </div>
           <div>
-            <div style={{ fontWeight: 'bold', color: theme === 'dark' ? '#fff' : '#000' }}>Иван Иванов</div>
+            <div style={{ fontWeight: 'bold', color: theme === 'dark' ? '#fff' : '#000' }}>РРІР°РЅ РРІР°РЅРѕРІ</div>
             <div style={{ fontSize: '12px', color: '#666' }}>WORKER</div>
           </div>
         </div>
@@ -50,7 +50,7 @@ export const AchievementsFull: React.FC<AchievementsFullProps> = ({ theme }) => 
             justifyContent: 'center',
             cursor: 'pointer'
           }}>
-            🔔
+            рџ””
           </button>
           <button style={{
             width: '40px',
@@ -63,7 +63,7 @@ export const AchievementsFull: React.FC<AchievementsFullProps> = ({ theme }) => 
             justifyContent: 'center',
             cursor: 'pointer'
           }}>
-            ⚙️
+            вљ™пёЏ
           </button>
         </div>
       </div>
@@ -76,7 +76,7 @@ export const AchievementsFull: React.FC<AchievementsFullProps> = ({ theme }) => 
         marginTop: '20px',
         marginBottom: '20px'
       }}>
-        <h1 style={{ color: theme === 'dark' ? '#fff' : '#000', fontSize: '1.5rem' }}>Доступные достижения</h1>
+        <h1 style={{ color: theme === 'dark' ? '#fff' : '#000', fontSize: '1.5rem' }}>Р”РѕСЃС‚СѓРїРЅС‹Рµ РґРѕСЃС‚РёР¶РµРЅРёСЏ</h1>
         <button style={{
           width: '32px',
           height: '32px',
@@ -88,13 +88,13 @@ export const AchievementsFull: React.FC<AchievementsFullProps> = ({ theme }) => 
           justifyContent: 'center',
           cursor: 'pointer'
         }}>
-          ☰
+          в°
         </button>
       </div>
 
       {/* Achievements List */}
       <div style={{ display: 'flex', flexDirection: 'column', gap: '12px' }}>
-        {/* Покупатель */}
+        {/* РџРѕРєСѓРїР°С‚РµР»СЊ */}
         <div style={{
           background: theme === 'dark' ? '#161A22' : '#fff',
           borderRadius: '16px',
@@ -115,19 +115,19 @@ export const AchievementsFull: React.FC<AchievementsFullProps> = ({ theme }) => 
             color: 'white',
             fontSize: '20px'
           }}>
-            🏆
+            рџЏ†
           </div>
           <div style={{ flex: 1 }}>
-            <div style={{ fontWeight: 'bold', color: theme === 'dark' ? '#fff' : '#000', marginBottom: '4px' }}>Покупатель</div>
-            <div style={{ fontSize: '12px', color: '#666', marginBottom: '4px' }}>Совершите 10 покупок в магазине</div>
+            <div style={{ fontWeight: 'bold', color: theme === 'dark' ? '#fff' : '#000', marginBottom: '4px' }}>РџРѕРєСѓРїР°С‚РµР»СЊ</div>
+            <div style={{ fontSize: '12px', color: '#666', marginBottom: '4px' }}>РЎРѕРІРµСЂС€РёС‚Рµ 10 РїРѕРєСѓРїРѕРє РІ РјР°РіР°Р·РёРЅРµ</div>
             <div style={{ fontSize: '10px', color: '#10B981', display: 'flex', alignItems: 'center', gap: '4px' }}>
-              📎 Файл прикреплен
+              рџ“Ћ Р¤Р°Р№Р» РїСЂРёРєСЂРµРїР»РµРЅ
             </div>
           </div>
           <div style={{ color: '#10B981', fontSize: '14px', fontWeight: 'bold' }}>70%</div>
         </div>
 
-        {/* Воин */}
+        {/* Р’РѕРёРЅ */}
         <div style={{
           background: theme === 'dark' ? '#161A22' : '#fff',
           borderRadius: '16px',
@@ -148,16 +148,16 @@ export const AchievementsFull: React.FC<AchievementsFullProps> = ({ theme }) => 
             color: 'white',
             fontSize: '20px'
           }}>
-            🏆
+            рџЏ†
           </div>
           <div style={{ flex: 1 }}>
-            <div style={{ fontWeight: 'bold', color: theme === 'dark' ? '#fff' : '#000', marginBottom: '4px' }}>Воин</div>
-            <div style={{ fontSize: '12px', color: '#666' }}>Выиграйте 5 баттлов</div>
+            <div style={{ fontWeight: 'bold', color: theme === 'dark' ? '#fff' : '#000', marginBottom: '4px' }}>Р’РѕРёРЅ</div>
+            <div style={{ fontSize: '12px', color: '#666' }}>Р’С‹РёРіСЂР°Р№С‚Рµ 5 Р±Р°С‚С‚Р»РѕРІ</div>
           </div>
           <div style={{ color: '#8B5CF6', fontSize: '14px', fontWeight: 'bold' }}>40%</div>
         </div>
 
-        {/* Трудолюбивый */}
+        {/* РўСЂСѓРґРѕР»СЋР±РёРІС‹Р№ */}
         <div style={{
           background: theme === 'dark' ? '#161A22' : '#fff',
           borderRadius: '16px',
@@ -178,16 +178,16 @@ export const AchievementsFull: React.FC<AchievementsFullProps> = ({ theme }) => 
             color: 'white',
             fontSize: '20px'
           }}>
-            🏆
+            рџЏ†
           </div>
           <div style={{ flex: 1 }}>
-            <div style={{ fontWeight: 'bold', color: theme === 'dark' ? '#fff' : '#000', marginBottom: '4px' }}>Трудолюбивый</div>
-            <div style={{ fontSize: '12px', color: '#666' }}>Выполните 10 задач</div>
+            <div style={{ fontWeight: 'bold', color: theme === 'dark' ? '#fff' : '#000', marginBottom: '4px' }}>РўСЂСѓРґРѕР»СЋР±РёРІС‹Р№</div>
+            <div style={{ fontSize: '12px', color: '#666' }}>Р’С‹РїРѕР»РЅРёС‚Рµ 10 Р·Р°РґР°С‡</div>
           </div>
           <div style={{ color: '#3B82F6', fontSize: '14px', fontWeight: 'bold' }}>30%</div>
         </div>
 
-        {/* Легенда */}
+        {/* Р›РµРіРµРЅРґР° */}
         <div style={{
           background: theme === 'dark' ? '#161A22' : '#fff',
           borderRadius: '16px',
@@ -208,16 +208,16 @@ export const AchievementsFull: React.FC<AchievementsFullProps> = ({ theme }) => 
             color: 'white',
             fontSize: '20px'
           }}>
-            🏆
+            рџЏ†
           </div>
           <div style={{ flex: 1 }}>
-            <div style={{ fontWeight: 'bold', color: theme === 'dark' ? '#fff' : '#000', marginBottom: '4px' }}>Легенда</div>
-            <div style={{ fontSize: '12px', color: '#666' }}>Достигните 20 уровня</div>
+            <div style={{ fontWeight: 'bold', color: theme === 'dark' ? '#fff' : '#000', marginBottom: '4px' }}>Р›РµРіРµРЅРґР°</div>
+            <div style={{ fontSize: '12px', color: '#666' }}>Р”РѕСЃС‚РёРіРЅРёС‚Рµ 20 СѓСЂРѕРІРЅСЏ</div>
           </div>
           <div style={{ color: '#F59E0B', fontSize: '14px', fontWeight: 'bold' }}>5%</div>
         </div>
 
-        {/* Первые шаги */}
+        {/* РџРµСЂРІС‹Рµ С€Р°РіРё */}
         <div style={{
           background: theme === 'dark' ? '#161A22' : '#fff',
           borderRadius: '16px',
@@ -238,11 +238,11 @@ export const AchievementsFull: React.FC<AchievementsFullProps> = ({ theme }) => 
             color: '#666',
             fontSize: '20px'
           }}>
-            🏆
+            рџЏ†
           </div>
           <div style={{ flex: 1 }}>
-            <div style={{ fontWeight: 'bold', color: theme === 'dark' ? '#fff' : '#000', marginBottom: '4px' }}>Первые шаги</div>
-            <div style={{ fontSize: '12px', color: '#666' }}>Выполните первую задачу</div>
+            <div style={{ fontWeight: 'bold', color: theme === 'dark' ? '#fff' : '#000', marginBottom: '4px' }}>РџРµСЂРІС‹Рµ С€Р°РіРё</div>
+            <div style={{ fontSize: '12px', color: '#666' }}>Р’С‹РїРѕР»РЅРёС‚Рµ РїРµСЂРІСѓСЋ Р·Р°РґР°С‡Сѓ</div>
           </div>
           <div style={{ color: '#666', fontSize: '14px', fontWeight: 'bold' }}>0%</div>
         </div>
@@ -271,8 +271,8 @@ export const AchievementsFull: React.FC<AchievementsFullProps> = ({ theme }) => 
           cursor: 'pointer',
           color: theme === 'dark' ? '#666' : '#999'
         }}>
-          <div style={{ fontSize: '20px' }}>🏠</div>
-          <div style={{ fontSize: '10px' }}>Главная</div>
+          <div style={{ fontSize: '20px' }}>рџЏ </div>
+          <div style={{ fontSize: '10px' }}>Р“Р»Р°РІРЅР°СЏ</div>
         </button>
         <button style={{
           display: 'flex',
@@ -284,8 +284,8 @@ export const AchievementsFull: React.FC<AchievementsFullProps> = ({ theme }) => 
           cursor: 'pointer',
           color: '#5AA7FF'
         }}>
-          <div style={{ fontSize: '20px' }}>🏆</div>
-          <div style={{ fontSize: '10px' }}>Достижения</div>
+          <div style={{ fontSize: '20px' }}>рџЏ†</div>
+          <div style={{ fontSize: '10px' }}>Р”РѕСЃС‚РёР¶РµРЅРёСЏ</div>
         </button>
         <button style={{
           display: 'flex',
@@ -297,8 +297,8 @@ export const AchievementsFull: React.FC<AchievementsFullProps> = ({ theme }) => 
           cursor: 'pointer',
           color: theme === 'dark' ? '#666' : '#999'
         }}>
-          <div style={{ fontSize: '20px' }}>✅</div>
-          <div style={{ fontSize: '10px' }}>Задачи</div>
+          <div style={{ fontSize: '20px' }}>вњ…</div>
+          <div style={{ fontSize: '10px' }}>Р—Р°РґР°С‡Рё</div>
         </button>
         <button style={{
           display: 'flex',
@@ -310,8 +310,8 @@ export const AchievementsFull: React.FC<AchievementsFullProps> = ({ theme }) => 
           cursor: 'pointer',
           color: theme === 'dark' ? '#666' : '#999'
         }}>
-          <div style={{ fontSize: '20px' }}>🛒</div>
-          <div style={{ fontSize: '10px' }}>Магазин</div>
+          <div style={{ fontSize: '20px' }}>рџ›’</div>
+          <div style={{ fontSize: '10px' }}>РњР°РіР°Р·РёРЅ</div>
         </button>
       </div>
     </div>

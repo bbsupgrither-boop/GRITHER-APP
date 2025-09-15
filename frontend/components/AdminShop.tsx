@@ -1,4 +1,4 @@
-﻿import { useState } from 'react';
+п»їimport { useState } from 'react';
 import { Plus, Edit, Trash2, Package, DollarSign } from './Icons';
 import { Button } from './ui/button';
 import { Input } from './ui/input';
@@ -20,28 +20,28 @@ export function AdminShop() {
   const [items, setItems] = useState<ShopItem[]>([
     {
       id: '1',
-      name: 'РђРІР°С‚Р°СЂ "Р—РІРµР·РґР°"',
-      description: 'Р­РєСЃРєР»СЋР·РёРІРЅС‹Р№ Р°РІР°С‚Р°СЂ СЃРѕ Р·РІРµР·РґРЅС‹Рј РґРёР·Р°Р№РЅРѕРј',
+      name: 'Р С’Р Р†Р В°РЎвЂљР В°РЎР‚ "Р вЂ”Р Р†Р ВµР В·Р Т‘Р В°"',
+      description: 'Р В­Р С”РЎРѓР С”Р В»РЎР‹Р В·Р С‘Р Р†Р Р…РЎвЂ№Р в„– Р В°Р Р†Р В°РЎвЂљР В°РЎР‚ РЎРѓР С• Р В·Р Р†Р ВµР В·Р Т‘Р Р…РЎвЂ№Р С Р Т‘Р С‘Р В·Р В°Р в„–Р Р…Р С•Р С',
       price: 500,
-      category: 'РђРІР°С‚Р°СЂС‹',
-      stock: -1, // -1 РѕР·РЅР°С‡Р°РµС‚ РЅРµРѕРіСЂР°РЅРёС‡РµРЅРЅС‹Р№ Р·Р°РїР°СЃ
+      category: 'Р С’Р Р†Р В°РЎвЂљР В°РЎР‚РЎвЂ№',
+      stock: -1, // -1 Р С•Р В·Р Р…Р В°РЎвЂЎР В°Р ВµРЎвЂљ Р Р…Р ВµР С•Р С–РЎР‚Р В°Р Р…Р С‘РЎвЂЎР ВµР Р…Р Р…РЎвЂ№Р в„– Р В·Р В°Р С—Р В°РЎРѓ
       available: true
     },
     {
       id: '2',
-      name: 'Р‘РµР№РґР¶ "Р›РµРіРµРЅРґР°"',
-      description: 'РћСЃРѕР±С‹Р№ Р±РµР№РґР¶ РґР»СЏ РІС‹РґР°СЋС‰РёС…СЃСЏ РґРѕСЃС‚РёР¶РµРЅРёР№',
+      name: 'Р вЂР ВµР в„–Р Т‘Р В¶ "Р вЂєР ВµР С–Р ВµР Р…Р Т‘Р В°"',
+      description: 'Р С›РЎРѓР С•Р В±РЎвЂ№Р в„– Р В±Р ВµР в„–Р Т‘Р В¶ Р Т‘Р В»РЎРЏ Р Р†РЎвЂ№Р Т‘Р В°РЎР‹РЎвЂ°Р С‘РЎвЂ¦РЎРѓРЎРЏ Р Т‘Р С•РЎРѓРЎвЂљР С‘Р В¶Р ВµР Р…Р С‘Р в„–',
       price: 1000,
-      category: 'Р‘РµР№РґР¶Рё',
+      category: 'Р вЂР ВµР в„–Р Т‘Р В¶Р С‘',
       stock: 50,
       available: true
     },
     {
       id: '3',
-      name: 'РўРµРјР° "РљРѕСЃРјРѕСЃ"',
-      description: 'РљРѕСЃРјРёС‡РµСЃРєР°СЏ С‚РµРјР° РѕС„РѕСЂРјР»РµРЅРёСЏ РїСЂРѕС„РёР»СЏ',
+      name: 'Р СћР ВµР СР В° "Р С™Р С•РЎРѓР СР С•РЎРѓ"',
+      description: 'Р С™Р С•РЎРѓР СР С‘РЎвЂЎР ВµРЎРѓР С”Р В°РЎРЏ РЎвЂљР ВµР СР В° Р С•РЎвЂћР С•РЎР‚Р СР В»Р ВµР Р…Р С‘РЎРЏ Р С—РЎР‚Р С•РЎвЂћР С‘Р В»РЎРЏ',
       price: 750,
-      category: 'РўРµРјС‹',
+      category: 'Р СћР ВµР СРЎвЂ№',
       stock: -1,
       available: false
     }
@@ -115,31 +115,31 @@ export function AdminShop() {
   return (
     <>
       <div className="p-4 space-y-6">
-        {/* Р—Р°РіРѕР»РѕРІРѕРє Рё РєРЅРѕРїРєР° СЃРѕР·РґР°РЅРёСЏ */}
+        {/* Р вЂ”Р В°Р С–Р С•Р В»Р С•Р Р†Р С•Р С” Р С‘ Р С”Р Р…Р С•Р С—Р С”Р В° РЎРѓР С•Р В·Р Т‘Р В°Р Р…Р С‘РЎРЏ */}
         <div className="flex items-center justify-between">
-          <h2 className="text-xl font-medium text-foreground">РЈРїСЂР°РІР»РµРЅРёРµ РјР°РіР°Р·РёРЅРѕРј</h2>
+          <h2 className="text-xl font-medium text-foreground">Р Р€Р С—РЎР‚Р В°Р Р†Р В»Р ВµР Р…Р С‘Р Вµ Р СР В°Р С–Р В°Р В·Р С‘Р Р…Р С•Р С</h2>
           <Button
             onClick={() => setCreateModalOpen(true)}
             className="bg-primary text-primary-foreground"
           >
             <Plus className="w-4 h-4 mr-2" />
-            Р”РѕР±Р°РІРёС‚СЊ С‚РѕРІР°СЂ
+            Р вЂќР С•Р В±Р В°Р Р†Р С‘РЎвЂљРЎРЉ РЎвЂљР С•Р Р†Р В°РЎР‚
           </Button>
         </div>
 
-        {/* РЎС‚Р°С‚РёСЃС‚РёРєР° */}
+        {/* Р РЋРЎвЂљР В°РЎвЂљР С‘РЎРѓРЎвЂљР С‘Р С”Р В° */}
         <div className="grid grid-cols-3 gap-4">
           <div className="glass-card p-4 rounded-2xl">
             <div className="flex items-center gap-2 mb-2">
               <Package className="w-5 h-5 text-primary" />
-              <span className="font-medium text-foreground">Р’СЃРµРіРѕ С‚РѕРІР°СЂРѕРІ</span>
+              <span className="font-medium text-foreground">Р вЂ™РЎРѓР ВµР С–Р С• РЎвЂљР С•Р Р†Р В°РЎР‚Р С•Р Р†</span>
             </div>
             <div className="text-2xl font-semibold text-foreground">{items.length}</div>
           </div>
           <div className="glass-card p-4 rounded-2xl">
             <div className="flex items-center gap-2 mb-2">
               <DollarSign className="w-5 h-5 text-green-600" />
-              <span className="font-medium text-foreground">Р”РѕСЃС‚СѓРїРЅС‹С…</span>
+              <span className="font-medium text-foreground">Р вЂќР С•РЎРѓРЎвЂљРЎС“Р С—Р Р…РЎвЂ№РЎвЂ¦</span>
             </div>
             <div className="text-2xl font-semibold text-foreground">
               {items.filter(item => item.available).length}
@@ -148,7 +148,7 @@ export function AdminShop() {
           <div className="glass-card p-4 rounded-2xl">
             <div className="flex items-center gap-2 mb-2">
               <Package className="w-5 h-5 text-orange-600" />
-              <span className="font-medium text-foreground">РќРµРґРѕСЃС‚СѓРїРЅС‹С…</span>
+              <span className="font-medium text-foreground">Р СњР ВµР Т‘Р С•РЎРѓРЎвЂљРЎС“Р С—Р Р…РЎвЂ№РЎвЂ¦</span>
             </div>
             <div className="text-2xl font-semibold text-foreground">
               {items.filter(item => !item.available).length}
@@ -156,11 +156,11 @@ export function AdminShop() {
           </div>
         </div>
 
-        {/* РЎРїРёСЃРѕРє С‚РѕРІР°СЂРѕРІ */}
+        {/* Р РЋР С—Р С‘РЎРѓР С•Р С” РЎвЂљР С•Р Р†Р В°РЎР‚Р С•Р Р† */}
         <div className="space-y-3">
           {items.length === 0 ? (
             <div className="glass-card p-8 rounded-2xl text-center">
-              <div className="text-muted-foreground">РўРѕРІР°СЂС‹ РїРѕРєР° РЅРµ РґРѕР±Р°РІР»РµРЅС‹</div>
+              <div className="text-muted-foreground">Р СћР С•Р Р†Р В°РЎР‚РЎвЂ№ Р С—Р С•Р С”Р В° Р Р…Р Вµ Р Т‘Р С•Р В±Р В°Р Р†Р В»Р ВµР Р…РЎвЂ№</div>
             </div>
           ) : (
             items.map((item) => (
@@ -173,19 +173,19 @@ export function AdminShop() {
                         {item.category}
                       </span>
                       <span className="text-sm font-medium text-foreground">
-                        {item.price} РѕС‡РєРѕРІ
+                        {item.price} Р С•РЎвЂЎР С”Р С•Р Р†
                       </span>
                       <span className={`px-2 py-1 text-xs rounded-full ${
                         item.available 
                           ? 'bg-green-100 text-green-800 dark:bg-green-900/20 dark:text-green-400'
                           : 'bg-red-100 text-red-800 dark:bg-red-900/20 dark:text-red-400'
                       }`}>
-                        {item.available ? 'Р”РѕСЃС‚СѓРїРµРЅ' : 'РќРµРґРѕСЃС‚СѓРїРµРЅ'}
+                        {item.available ? 'Р вЂќР С•РЎРѓРЎвЂљРЎС“Р С—Р ВµР Р…' : 'Р СњР ВµР Т‘Р С•РЎРѓРЎвЂљРЎС“Р С—Р ВµР Р…'}
                       </span>
                     </div>
                     <p className="text-sm text-muted-foreground mb-2">{item.description}</p>
                     <div className="text-xs text-muted-foreground">
-                      Р—Р°РїР°СЃ: {item.stock === -1 ? 'РќРµРѕРіСЂР°РЅРёС‡РµРЅРЅС‹Р№' : `${item.stock} С€С‚.`}
+                      Р вЂ”Р В°Р С—Р В°РЎРѓ: {item.stock === -1 ? 'Р СњР ВµР С•Р С–РЎР‚Р В°Р Р…Р С‘РЎвЂЎР ВµР Р…Р Р…РЎвЂ№Р в„–' : `${item.stock} РЎв‚¬РЎвЂљ.`}
                     </div>
                   </div>
                   <div className="flex items-center gap-2 ml-4">
@@ -195,7 +195,7 @@ export function AdminShop() {
                       onClick={() => toggleAvailability(item.id)}
                       className={item.available ? 'text-red-600' : 'text-green-600'}
                     >
-                      {item.available ? 'РЎРєСЂС‹С‚СЊ' : 'РџРѕРєР°Р·Р°С‚СЊ'}
+                      {item.available ? 'Р РЋР С”РЎР‚РЎвЂ№РЎвЂљРЎРЉ' : 'Р СџР С•Р С”Р В°Р В·Р В°РЎвЂљРЎРЉ'}
                     </Button>
                     <Button
                       variant="outline"
@@ -220,40 +220,40 @@ export function AdminShop() {
         </div>
       </div>
 
-      {/* РњРѕРґР°Р»СЊРЅРѕРµ РѕРєРЅРѕ СЃРѕР·РґР°РЅРёСЏ */}
+      {/* Р СљР С•Р Т‘Р В°Р В»РЎРЉР Р…Р С•Р Вµ Р С•Р С”Р Р…Р С• РЎРѓР С•Р В·Р Т‘Р В°Р Р…Р С‘РЎРЏ */}
       <Dialog open={createModalOpen} onOpenChange={setCreateModalOpen}>
         <DialogContent className="glass-card border-none max-w-md p-0 [&>button]:hidden">
           <div className="p-6">
             <DialogHeader>
               <DialogTitle className="text-lg font-medium text-foreground mb-4">
-                Р”РѕР±Р°РІРёС‚СЊ С‚РѕРІР°СЂ
+                Р вЂќР С•Р В±Р В°Р Р†Р С‘РЎвЂљРЎРЉ РЎвЂљР С•Р Р†Р В°РЎР‚
               </DialogTitle>
               <DialogDescription className="sr-only">
-                Р¤РѕСЂРјР° РґР»СЏ РґРѕР±Р°РІР»РµРЅРёСЏ РЅРѕРІРѕРіРѕ С‚РѕРІР°СЂР° РІ РјР°РіР°Р·РёРЅ
+                Р В¤Р С•РЎР‚Р СР В° Р Т‘Р В»РЎРЏ Р Т‘Р С•Р В±Р В°Р Р†Р В»Р ВµР Р…Р С‘РЎРЏ Р Р…Р С•Р Р†Р С•Р С–Р С• РЎвЂљР С•Р Р†Р В°РЎР‚Р В° Р Р† Р СР В°Р С–Р В°Р В·Р С‘Р Р…
               </DialogDescription>
             </DialogHeader>
             
             <div className="space-y-4">
               <div>
                 <label className="block text-sm font-medium text-foreground/80 mb-2">
-                  РќР°Р·РІР°РЅРёРµ
+                  Р СњР В°Р В·Р Р†Р В°Р Р…Р С‘Р Вµ
                 </label>
                 <Input
                   value={formData.name}
                   onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                  placeholder="Р’РІРµРґРёС‚Рµ РЅР°Р·РІР°РЅРёРµ С‚РѕРІР°СЂР°"
+                  placeholder="Р вЂ™Р Р†Р ВµР Т‘Р С‘РЎвЂљР Вµ Р Р…Р В°Р В·Р Р†Р В°Р Р…Р С‘Р Вµ РЎвЂљР С•Р Р†Р В°РЎР‚Р В°"
                   className="bg-input-background"
                 />
               </div>
               
               <div>
                 <label className="block text-sm font-medium text-foreground/80 mb-2">
-                  РћРїРёСЃР°РЅРёРµ
+                  Р С›Р С—Р С‘РЎРѓР В°Р Р…Р С‘Р Вµ
                 </label>
                 <Textarea
                   value={formData.description}
                   onChange={(e) => setFormData({ ...formData, description: e.target.value })}
-                  placeholder="Р’РІРµРґРёС‚Рµ РѕРїРёСЃР°РЅРёРµ С‚РѕРІР°СЂР°"
+                  placeholder="Р вЂ™Р Р†Р ВµР Т‘Р С‘РЎвЂљР Вµ Р С•Р С—Р С‘РЎРѓР В°Р Р…Р С‘Р Вµ РЎвЂљР С•Р Р†Р В°РЎР‚Р В°"
                   className="bg-input-background min-h-20"
                 />
               </div>
@@ -261,7 +261,7 @@ export function AdminShop() {
               <div className="grid grid-cols-2 gap-4">
                 <div>
                   <label className="block text-sm font-medium text-foreground/80 mb-2">
-                    Р¦РµРЅР° (РѕС‡РєРё)
+                    Р В¦Р ВµР Р…Р В° (Р С•РЎвЂЎР С”Р С‘)
                   </label>
                   <Input
                     type="number"
@@ -273,13 +273,13 @@ export function AdminShop() {
                 
                 <div>
                   <label className="block text-sm font-medium text-foreground/80 mb-2">
-                    Р—Р°РїР°СЃ
+                    Р вЂ”Р В°Р С—Р В°РЎРѓ
                   </label>
                   <Input
                     type="number"
                     value={formData.stock === -1 ? '' : formData.stock}
                     onChange={(e) => setFormData({ ...formData, stock: e.target.value === '' ? -1 : parseInt(e.target.value) || 0 })}
-                    placeholder="РџСѓСЃС‚Рѕ = в€ћ"
+                    placeholder="Р СџРЎС“РЎРѓРЎвЂљР С• = РІв‚¬С›"
                     className="bg-input-background"
                   />
                 </div>
@@ -287,19 +287,19 @@ export function AdminShop() {
               
               <div>
                 <label className="block text-sm font-medium text-foreground/80 mb-2">
-                  РљР°С‚РµРіРѕСЂРёСЏ
+                  Р С™Р В°РЎвЂљР ВµР С–Р С•РЎР‚Р С‘РЎРЏ
                 </label>
                 <Input
                   value={formData.category}
                   onChange={(e) => setFormData({ ...formData, category: e.target.value })}
-                  placeholder="РљР°С‚РµРіРѕСЂРёСЏ С‚РѕРІР°СЂР°"
+                  placeholder="Р С™Р В°РЎвЂљР ВµР С–Р С•РЎР‚Р С‘РЎРЏ РЎвЂљР С•Р Р†Р В°РЎР‚Р В°"
                   className="bg-input-background"
                 />
               </div>
               
               <div>
                 <label className="block text-sm font-medium text-foreground/80 mb-2">
-                  URL РёР·РѕР±СЂР°Р¶РµРЅРёСЏ
+                  URL Р С‘Р В·Р С•Р В±РЎР‚Р В°Р В¶Р ВµР Р…Р С‘РЎРЏ
                 </label>
                 <Input
                   value={formData.imageUrl}
@@ -318,7 +318,7 @@ export function AdminShop() {
                   className="rounded"
                 />
                 <label htmlFor="available" className="text-sm font-medium text-foreground/80">
-                  Р”РѕСЃС‚СѓРїРµРЅ РґР»СЏ РїРѕРєСѓРїРєРё
+                  Р вЂќР С•РЎРѓРЎвЂљРЎС“Р С—Р ВµР Р… Р Т‘Р В»РЎРЏ Р С—Р С•Р С”РЎС“Р С—Р С”Р С‘
                 </label>
               </div>
               
@@ -328,14 +328,14 @@ export function AdminShop() {
                   onClick={() => setCreateModalOpen(false)}
                   className="flex-1"
                 >
-                  РћС‚РјРµРЅРёС‚СЊ
+                  Р С›РЎвЂљР СР ВµР Р…Р С‘РЎвЂљРЎРЉ
                 </Button>
                 <Button
                   onClick={handleCreate}
                   className="flex-1 bg-primary text-primary-foreground"
                   disabled={!formData.name || !formData.description}
                 >
-                  Р”РѕР±Р°РІРёС‚СЊ
+                  Р вЂќР С•Р В±Р В°Р Р†Р С‘РЎвЂљРЎРЉ
                 </Button>
               </div>
             </div>
@@ -343,40 +343,40 @@ export function AdminShop() {
         </DialogContent>
       </Dialog>
 
-      {/* РњРѕРґР°Р»СЊРЅРѕРµ РѕРєРЅРѕ СЂРµРґР°РєС‚РёСЂРѕРІР°РЅРёСЏ */}
+      {/* Р СљР С•Р Т‘Р В°Р В»РЎРЉР Р…Р С•Р Вµ Р С•Р С”Р Р…Р С• РЎР‚Р ВµР Т‘Р В°Р С”РЎвЂљР С‘РЎР‚Р С•Р Р†Р В°Р Р…Р С‘РЎРЏ */}
       <Dialog open={editModalOpen} onOpenChange={setEditModalOpen}>
         <DialogContent className="glass-card border-none max-w-md p-0 [&>button]:hidden">
           <div className="p-6">
             <DialogHeader>
               <DialogTitle className="text-lg font-medium text-foreground mb-4">
-                Р РµРґР°РєС‚РёСЂРѕРІР°С‚СЊ С‚РѕРІР°СЂ
+                Р В Р ВµР Т‘Р В°Р С”РЎвЂљР С‘РЎР‚Р С•Р Р†Р В°РЎвЂљРЎРЉ РЎвЂљР С•Р Р†Р В°РЎР‚
               </DialogTitle>
               <DialogDescription className="sr-only">
-                Р¤РѕСЂРјР° РґР»СЏ СЂРµРґР°РєС‚РёСЂРѕРІР°РЅРёСЏ СЃСѓС‰РµСЃС‚РІСѓСЋС‰РµРіРѕ С‚РѕРІР°СЂР°
+                Р В¤Р С•РЎР‚Р СР В° Р Т‘Р В»РЎРЏ РЎР‚Р ВµР Т‘Р В°Р С”РЎвЂљР С‘РЎР‚Р С•Р Р†Р В°Р Р…Р С‘РЎРЏ РЎРѓРЎС“РЎвЂ°Р ВµРЎРѓРЎвЂљР Р†РЎС“РЎР‹РЎвЂ°Р ВµР С–Р С• РЎвЂљР С•Р Р†Р В°РЎР‚Р В°
               </DialogDescription>
             </DialogHeader>
             
             <div className="space-y-4">
               <div>
                 <label className="block text-sm font-medium text-foreground/80 mb-2">
-                  РќР°Р·РІР°РЅРёРµ
+                  Р СњР В°Р В·Р Р†Р В°Р Р…Р С‘Р Вµ
                 </label>
                 <Input
                   value={formData.name}
                   onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                  placeholder="Р’РІРµРґРёС‚Рµ РЅР°Р·РІР°РЅРёРµ С‚РѕРІР°СЂР°"
+                  placeholder="Р вЂ™Р Р†Р ВµР Т‘Р С‘РЎвЂљР Вµ Р Р…Р В°Р В·Р Р†Р В°Р Р…Р С‘Р Вµ РЎвЂљР С•Р Р†Р В°РЎР‚Р В°"
                   className="bg-input-background"
                 />
               </div>
               
               <div>
                 <label className="block text-sm font-medium text-foreground/80 mb-2">
-                  РћРїРёСЃР°РЅРёРµ
+                  Р С›Р С—Р С‘РЎРѓР В°Р Р…Р С‘Р Вµ
                 </label>
                 <Textarea
                   value={formData.description}
                   onChange={(e) => setFormData({ ...formData, description: e.target.value })}
-                  placeholder="Р’РІРµРґРёС‚Рµ РѕРїРёСЃР°РЅРёРµ С‚РѕРІР°СЂР°"
+                  placeholder="Р вЂ™Р Р†Р ВµР Т‘Р С‘РЎвЂљР Вµ Р С•Р С—Р С‘РЎРѓР В°Р Р…Р С‘Р Вµ РЎвЂљР С•Р Р†Р В°РЎР‚Р В°"
                   className="bg-input-background min-h-20"
                 />
               </div>
@@ -384,7 +384,7 @@ export function AdminShop() {
               <div className="grid grid-cols-2 gap-4">
                 <div>
                   <label className="block text-sm font-medium text-foreground/80 mb-2">
-                    Р¦РµРЅР° (РѕС‡РєРё)
+                    Р В¦Р ВµР Р…Р В° (Р С•РЎвЂЎР С”Р С‘)
                   </label>
                   <Input
                     type="number"
@@ -396,13 +396,13 @@ export function AdminShop() {
                 
                 <div>
                   <label className="block text-sm font-medium text-foreground/80 mb-2">
-                    Р—Р°РїР°СЃ
+                    Р вЂ”Р В°Р С—Р В°РЎРѓ
                   </label>
                   <Input
                     type="number"
                     value={formData.stock === -1 ? '' : formData.stock}
                     onChange={(e) => setFormData({ ...formData, stock: e.target.value === '' ? -1 : parseInt(e.target.value) || 0 })}
-                    placeholder="РџСѓСЃС‚Рѕ = в€ћ"
+                    placeholder="Р СџРЎС“РЎРѓРЎвЂљР С• = РІв‚¬С›"
                     className="bg-input-background"
                   />
                 </div>
@@ -410,19 +410,19 @@ export function AdminShop() {
               
               <div>
                 <label className="block text-sm font-medium text-foreground/80 mb-2">
-                  РљР°С‚РµРіРѕСЂРёСЏ
+                  Р С™Р В°РЎвЂљР ВµР С–Р С•РЎР‚Р С‘РЎРЏ
                 </label>
                 <Input
                   value={formData.category}
                   onChange={(e) => setFormData({ ...formData, category: e.target.value })}
-                  placeholder="РљР°С‚РµРіРѕСЂРёСЏ С‚РѕРІР°СЂР°"
+                  placeholder="Р С™Р В°РЎвЂљР ВµР С–Р С•РЎР‚Р С‘РЎРЏ РЎвЂљР С•Р Р†Р В°РЎР‚Р В°"
                   className="bg-input-background"
                 />
               </div>
               
               <div>
                 <label className="block text-sm font-medium text-foreground/80 mb-2">
-                  URL РёР·РѕР±СЂР°Р¶РµРЅРёСЏ
+                  URL Р С‘Р В·Р С•Р В±РЎР‚Р В°Р В¶Р ВµР Р…Р С‘РЎРЏ
                 </label>
                 <Input
                   value={formData.imageUrl}
@@ -441,7 +441,7 @@ export function AdminShop() {
                   className="rounded"
                 />
                 <label htmlFor="available-edit" className="text-sm font-medium text-foreground/80">
-                  Р”РѕСЃС‚СѓРїРµРЅ РґР»СЏ РїРѕРєСѓРїРєРё
+                  Р вЂќР С•РЎРѓРЎвЂљРЎС“Р С—Р ВµР Р… Р Т‘Р В»РЎРЏ Р С—Р С•Р С”РЎС“Р С—Р С”Р С‘
                 </label>
               </div>
               
@@ -451,14 +451,14 @@ export function AdminShop() {
                   onClick={() => setEditModalOpen(false)}
                   className="flex-1"
                 >
-                  РћС‚РјРµРЅРёС‚СЊ
+                  Р С›РЎвЂљР СР ВµР Р…Р С‘РЎвЂљРЎРЉ
                 </Button>
                 <Button
                   onClick={handleEdit}
                   className="flex-1 bg-primary text-primary-foreground"
                   disabled={!formData.name || !formData.description}
                 >
-                  РЎРѕС…СЂР°РЅРёС‚СЊ
+                  Р РЋР С•РЎвЂ¦РЎР‚Р В°Р Р…Р С‘РЎвЂљРЎРЉ
                 </Button>
               </div>
             </div>

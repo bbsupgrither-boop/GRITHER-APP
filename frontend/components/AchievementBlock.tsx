@@ -1,4 +1,4 @@
-﻿import React from 'react';
+п»їimport React from 'react';
 import { Eye } from 'lucide-react';
 import { Achievement } from '../types/achievements';
 
@@ -13,7 +13,7 @@ export const AchievementBlock: React.FC<AchievementBlockProps> = ({
   theme, 
   onViewAll 
 }) => {
-  // Получаем ТОП-3 достижения в процессе выполнения
+  // РџРѕР»СѓС‡Р°РµРј РўРћРџ-3 РґРѕСЃС‚РёР¶РµРЅРёСЏ РІ РїСЂРѕС†РµСЃСЃРµ РІС‹РїРѕР»РЅРµРЅРёСЏ
   const inProgressAchievements = achievements
     .filter(achievement => !achievement.unlocked && achievement.requirements.current > 0)
     .slice(0, 3);
@@ -30,11 +30,11 @@ export const AchievementBlock: React.FC<AchievementBlockProps> = ({
 
   const getRarityIcon = (rarity?: string) => {
     switch (rarity) {
-      case 'legendary': return '👑';
-      case 'epic': return '💜';
-      case 'rare': return '🔵';
+      case 'legendary': return 'рџ‘‘';
+      case 'epic': return 'рџ’њ';
+      case 'rare': return 'рџ”µ';
       case 'common':
-      default: return '⭐';
+      default: return 'в­ђ';
     }
   };
 
@@ -54,7 +54,7 @@ export const AchievementBlock: React.FC<AchievementBlockProps> = ({
             color: theme === 'dark' ? '#E8ECF2' : '#0F172A'
           }}
         >
-          Ваши достижения
+          Р’Р°С€Рё РґРѕСЃС‚РёР¶РµРЅРёСЏ
         </h3>
         
         <button
@@ -83,7 +83,7 @@ export const AchievementBlock: React.FC<AchievementBlockProps> = ({
                   border: `1px solid ${theme === 'dark' ? 'rgba(255, 255, 255, 0.05)' : 'rgba(0, 0, 0, 0.05)'}`
                 }}
               >
-                {/* Иконка в цветном кружке */}
+                {/* РРєРѕРЅРєР° РІ С†РІРµС‚РЅРѕРј РєСЂСѓР¶РєРµ */}
                 <div 
                   style={{
                     width: '40px',
@@ -100,7 +100,7 @@ export const AchievementBlock: React.FC<AchievementBlockProps> = ({
                   {getRarityIcon(achievement.rarity)}
                 </div>
 
-                {/* Информация о достижении */}
+                {/* РРЅС„РѕСЂРјР°С†РёСЏ Рѕ РґРѕСЃС‚РёР¶РµРЅРёРё */}
                 <div style={{ flex: 1, minWidth: 0 }}>
                   <h4 
                     style={{ 
@@ -116,7 +116,7 @@ export const AchievementBlock: React.FC<AchievementBlockProps> = ({
                     {achievement.title}
                   </h4>
                   
-                  {/* Прогресс-бар */}
+                  {/* РџСЂРѕРіСЂРµСЃСЃ-Р±Р°СЂ */}
                   <div 
                     style={{
                       width: '100%',
@@ -138,7 +138,7 @@ export const AchievementBlock: React.FC<AchievementBlockProps> = ({
                   </div>
                 </div>
 
-                {/* Процент выполнения */}
+                {/* РџСЂРѕС†РµРЅС‚ РІС‹РїРѕР»РЅРµРЅРёСЏ */}
                 <div 
                   style={{
                     fontSize: '12px',
@@ -163,7 +163,7 @@ export const AchievementBlock: React.FC<AchievementBlockProps> = ({
             fontSize: '14px'
           }}
         >
-          Нет достижений в процессе
+          РќРµС‚ РґРѕСЃС‚РёР¶РµРЅРёР№ РІ РїСЂРѕС†РµСЃСЃРµ
         </div>
       )}
     </div>

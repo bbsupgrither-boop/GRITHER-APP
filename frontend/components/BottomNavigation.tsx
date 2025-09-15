@@ -1,4 +1,4 @@
-﻿import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
 import { Home, Trophy, CheckSquare, ShoppingCart } from 'lucide-react';
 
@@ -52,10 +52,10 @@ export const BottomNavigation: React.FC<BottomNavigationProps> = ({
   }, []);
 
   const navItems = [
-    { icon: Home, page: '/home', label: 'Главная' },
-    { icon: Trophy, page: '/achievements', label: 'Достижения' },
-    { icon: CheckSquare, page: '/tasks', label: 'Задачи' },
-    { icon: ShoppingCart, page: '/shop', label: 'Магазин' },
+    { icon: Home, page: '/home', label: 'Р“Р»Р°РІРЅР°СЏ' },
+    { icon: Trophy, page: '/achievements', label: 'Р”РѕСЃС‚РёР¶РµРЅРёСЏ' },
+    { icon: CheckSquare, page: '/tasks', label: 'Р—Р°РґР°С‡Рё' },
+    { icon: ShoppingCart, page: '/shop', label: 'РњР°РіР°Р·РёРЅ' },
   ];
 
   const currentPage = location.pathname;
@@ -68,13 +68,13 @@ export const BottomNavigation: React.FC<BottomNavigationProps> = ({
   const navigationContent = (
     <div 
       style={{ 
-        position: 'fixed',      // Всегда поверх контента
-        bottom: '24px',         // Отступ от нижнего края экрана
-        left: '50%',           // Начало от центра экрана
-        marginLeft: '-160px',   // Смещение для точного центрирования
-        zIndex: 1000,          // Высокий приоритет над контентом
-        width: 'calc(100vw - 48px)',  // Ширина экрана минус отступы по 24px с каждой стороны
-        maxWidth: '320px',             // Максимальная ширина 320px для больших экранов
+        position: 'fixed',      // Р’СЃРµРіРґР° РїРѕРІРµСЂС… РєРѕРЅС‚РµРЅС‚Р°
+        bottom: '24px',         // РћС‚СЃС‚СѓРї РѕС‚ РЅРёР¶РЅРµРіРѕ РєСЂР°СЏ СЌРєСЂР°РЅР°
+        left: '50%',           // РќР°С‡Р°Р»Рѕ РѕС‚ С†РµРЅС‚СЂР° СЌРєСЂР°РЅР°
+        marginLeft: '-160px',   // РЎРјРµС‰РµРЅРёРµ РґР»СЏ С‚РѕС‡РЅРѕРіРѕ С†РµРЅС‚СЂРёСЂРѕРІР°РЅРёСЏ
+        zIndex: 1000,          // Р’С‹СЃРѕРєРёР№ РїСЂРёРѕСЂРёС‚РµС‚ РЅР°Рґ РєРѕРЅС‚РµРЅС‚РѕРј
+        width: 'calc(100vw - 48px)',  // РЁРёСЂРёРЅР° СЌРєСЂР°РЅР° РјРёРЅСѓСЃ РѕС‚СЃС‚СѓРїС‹ РїРѕ 24px СЃ РєР°Р¶РґРѕР№ СЃС‚РѕСЂРѕРЅС‹
+        maxWidth: '320px',             // РњР°РєСЃРёРјР°Р»СЊРЅР°СЏ С€РёСЂРёРЅР° 320px РґР»СЏ Р±РѕР»СЊС€РёС… СЌРєСЂР°РЅРѕРІ
         userSelect: 'none',
         WebkitUserSelect: 'none',
         WebkitTouchCallout: 'none'
@@ -83,11 +83,11 @@ export const BottomNavigation: React.FC<BottomNavigationProps> = ({
       <div
         className="flex items-center justify-center"
         style={{
-          backgroundColor: theme === 'dark' ? '#12151B' : '#F3F5F8', // Полупрозрачный фон
-          borderRadius: '24px',        // Сильно закругленные углы
-          padding: '8px',              // Внутренние отступы
-          gap: '12px',                 // Равномерные отступы между кнопками
-          overflow: 'hidden',          // Clip content - кнопки не выходят за пределы
+          backgroundColor: theme === 'dark' ? '#12151B' : '#F3F5F8', // РџРѕР»СѓРїСЂРѕР·СЂР°С‡РЅС‹Р№ С„РѕРЅ
+          borderRadius: '24px',        // РЎРёР»СЊРЅРѕ Р·Р°РєСЂСѓРіР»РµРЅРЅС‹Рµ СѓРіР»С‹
+          padding: '8px',              // Р’РЅСѓС‚СЂРµРЅРЅРёРµ РѕС‚СЃС‚СѓРїС‹
+          gap: '12px',                 // Р Р°РІРЅРѕРјРµСЂРЅС‹Рµ РѕС‚СЃС‚СѓРїС‹ РјРµР¶РґСѓ РєРЅРѕРїРєР°РјРё
+          overflow: 'hidden',          // Clip content - РєРЅРѕРїРєРё РЅРµ РІС‹С…РѕРґСЏС‚ Р·Р° РїСЂРµРґРµР»С‹
           width: '100%',
           boxSizing: 'border-box'
         }}
@@ -102,15 +102,15 @@ export const BottomNavigation: React.FC<BottomNavigationProps> = ({
               onClick={() => navigate(item.page)}
               className="relative flex items-center justify-center transition-all duration-200"
               style={{ 
-                width: '44px',      // Фиксированная ширина
-                height: '44px',     // Фиксированная высота
-                minWidth: '44px',   // Минимальная ширина
-                minHeight: '44px',  // Минимальная высота
-                maxWidth: '44px',   // Максимальная ширина (предотвращает растягивание)
-                maxHeight: '44px',  // Максимальная высота
-                borderRadius: '50%', // Круглая форма
-                flexShrink: 0,      // Hug contents - кнопки не сжимаются
-                flexGrow: 0         // Кнопки не растягиваются
+                width: '44px',      // Р¤РёРєСЃРёСЂРѕРІР°РЅРЅР°СЏ С€РёСЂРёРЅР°
+                height: '44px',     // Р¤РёРєСЃРёСЂРѕРІР°РЅРЅР°СЏ РІС‹СЃРѕС‚Р°
+                minWidth: '44px',   // РњРёРЅРёРјР°Р»СЊРЅР°СЏ С€РёСЂРёРЅР°
+                minHeight: '44px',  // РњРёРЅРёРјР°Р»СЊРЅР°СЏ РІС‹СЃРѕС‚Р°
+                maxWidth: '44px',   // РњР°РєСЃРёРјР°Р»СЊРЅР°СЏ С€РёСЂРёРЅР° (РїСЂРµРґРѕС‚РІСЂР°С‰Р°РµС‚ СЂР°СЃС‚СЏРіРёРІР°РЅРёРµ)
+                maxHeight: '44px',  // РњР°РєСЃРёРјР°Р»СЊРЅР°СЏ РІС‹СЃРѕС‚Р°
+                borderRadius: '50%', // РљСЂСѓРіР»Р°СЏ С„РѕСЂРјР°
+                flexShrink: 0,      // Hug contents - РєРЅРѕРїРєРё РЅРµ СЃР¶РёРјР°СЋС‚СЃСЏ
+                flexGrow: 0         // РљРЅРѕРїРєРё РЅРµ СЂР°СЃС‚СЏРіРёРІР°СЋС‚СЃСЏ
               }}
             >
               {/* Active indicator */}
@@ -118,11 +118,11 @@ export const BottomNavigation: React.FC<BottomNavigationProps> = ({
                 <div 
                   className="absolute rounded-full"
                   style={{
-                    width: '36px',              // Немного меньше кнопки
+                    width: '36px',              // РќРµРјРЅРѕРіРѕ РјРµРЅСЊС€Рµ РєРЅРѕРїРєРё
                     height: '36px',
                     backgroundColor: theme === 'dark' 
-                      ? 'rgba(43, 130, 255, 0.12)'  // Темная тема: 12% прозрачности
-                      : 'rgba(43, 130, 255, 0.10)'  // Светлая тема: 10% прозрачности
+                      ? 'rgba(43, 130, 255, 0.12)'  // РўРµРјРЅР°СЏ С‚РµРјР°: 12% РїСЂРѕР·СЂР°С‡РЅРѕСЃС‚Рё
+                      : 'rgba(43, 130, 255, 0.10)'  // РЎРІРµС‚Р»Р°СЏ С‚РµРјР°: 10% РїСЂРѕР·СЂР°С‡РЅРѕСЃС‚Рё
                   }}
                 />
               )}
@@ -131,11 +131,11 @@ export const BottomNavigation: React.FC<BottomNavigationProps> = ({
               <Icon 
                 className="relative z-10 transition-colors duration-200"
                 style={{
-                  width: '24px',   // Оптимальный размер для круглых кнопок 44px
+                  width: '24px',   // РћРїС‚РёРјР°Р»СЊРЅС‹Р№ СЂР°Р·РјРµСЂ РґР»СЏ РєСЂСѓРіР»С‹С… РєРЅРѕРїРѕРє 44px
                   height: '24px',
                   color: isActive 
-                    ? '#2B82FF'                                    // Активная: синий Apple
-                    : theme === 'dark' ? '#A7B0BD' : '#6B7280'    // Неактивная: серый по теме
+                    ? '#2B82FF'                                    // РђРєС‚РёРІРЅР°СЏ: СЃРёРЅРёР№ Apple
+                    : theme === 'dark' ? '#A7B0BD' : '#6B7280'    // РќРµР°РєС‚РёРІРЅР°СЏ: СЃРµСЂС‹Р№ РїРѕ С‚РµРјРµ
                 }}
               />
             </button>
@@ -145,6 +145,6 @@ export const BottomNavigation: React.FC<BottomNavigationProps> = ({
     </div>
   );
 
-  // Рендерим навигацию
+  // Р РµРЅРґРµСЂРёРј РЅР°РІРёРіР°С†РёСЋ
   return navigationContent;
 };

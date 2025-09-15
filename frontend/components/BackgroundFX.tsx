@@ -1,4 +1,4 @@
-﻿import React from 'react';
+import React from 'react';
 
 interface BackgroundFXProps {
   theme: 'light' | 'dark';
@@ -7,10 +7,10 @@ interface BackgroundFXProps {
 
 export const BackgroundFX: React.FC<BackgroundFXProps> = ({ theme, isHomePage = false }) => {
   if (isHomePage && theme === 'light') {
-    // Красивый градиентный фон для главной страницы с эффектом неба
+    // РљСЂР°СЃРёРІС‹Р№ РіСЂР°РґРёРµРЅС‚РЅС‹Р№ С„РѕРЅ РґР»СЏ РіР»Р°РІРЅРѕР№ СЃС‚СЂР°РЅРёС†С‹ СЃ СЌС„С„РµРєС‚РѕРј РЅРµР±Р°
     return (
       <div className="fixed inset-0 background-fx">
-        {/* Основной градиентный слой */}
+        {/* РћСЃРЅРѕРІРЅРѕР№ РіСЂР°РґРёРµРЅС‚РЅС‹Р№ СЃР»РѕР№ */}
         <div 
           className="absolute inset-0"
           style={{
@@ -25,7 +25,7 @@ export const BackgroundFX: React.FC<BackgroundFXProps> = ({ theme, isHomePage = 
           }}
         />
         
-        {/* Декоративный синий эффект неба */}
+        {/* Р”РµРєРѕСЂР°С‚РёРІРЅС‹Р№ СЃРёРЅРёР№ СЌС„С„РµРєС‚ РЅРµР±Р° */}
         <div 
           className="absolute"
           style={{
@@ -42,7 +42,7 @@ export const BackgroundFX: React.FC<BackgroundFXProps> = ({ theme, isHomePage = 
           }}
         />
         
-        {/* Дополнительный слой для глубины */}
+        {/* Р”РѕРїРѕР»РЅРёС‚РµР»СЊРЅС‹Р№ СЃР»РѕР№ РґР»СЏ РіР»СѓР±РёРЅС‹ */}
         <div 
           className="absolute inset-0"
           style={{
@@ -59,7 +59,7 @@ export const BackgroundFX: React.FC<BackgroundFXProps> = ({ theme, isHomePage = 
   }
 
   if (isHomePage && theme === 'dark') {
-    // Темная тема для главной страницы
+    // РўРµРјРЅР°СЏ С‚РµРјР° РґР»СЏ РіР»Р°РІРЅРѕР№ СЃС‚СЂР°РЅРёС†С‹
     return (
       <div className="fixed inset-0 background-fx">
         <div 
@@ -78,11 +78,11 @@ export const BackgroundFX: React.FC<BackgroundFXProps> = ({ theme, isHomePage = 
     );
   }
 
-  // Обычные страницы
+  // РћР±С‹С‡РЅС‹Рµ СЃС‚СЂР°РЅРёС†С‹
   if (theme === 'light') {
     return (
       <div className="fixed inset-0 background-fx">
-        {/* Основной фон */}
+        {/* РћСЃРЅРѕРІРЅРѕР№ С„РѕРЅ */}
         <div 
           className="absolute inset-0"
           style={{
@@ -92,7 +92,7 @@ export const BackgroundFX: React.FC<BackgroundFXProps> = ({ theme, isHomePage = 
           }}
         />
         
-        {/* Декоративный синий эффект неба */}
+        {/* Р”РµРєРѕСЂР°С‚РёРІРЅС‹Р№ СЃРёРЅРёР№ СЌС„С„РµРєС‚ РЅРµР±Р° */}
         <div 
           className="absolute"
           style={{
@@ -112,7 +112,7 @@ export const BackgroundFX: React.FC<BackgroundFXProps> = ({ theme, isHomePage = 
     );
   }
 
-  // Темная тема для обычных страниц
+  // РўРµРјРЅР°СЏ С‚РµРјР° РґР»СЏ РѕР±С‹С‡РЅС‹С… СЃС‚СЂР°РЅРёС†
   return (
     <div className="fixed inset-0 background-fx">
       <div 

@@ -1,4 +1,4 @@
-﻿import React, { useEffect } from 'react';
+п»їimport React, { useEffect } from 'react';
 import { X } from './Icons';
 
 interface BackdropProps {
@@ -7,7 +7,7 @@ interface BackdropProps {
   theme?: 'light' | 'dark';
 }
 
-// РћС‚РґРµР»СЊРЅС‹Р№ РєРѕРјРїРѕРЅРµРЅС‚ Backdrop
+// Р С›РЎвЂљР Т‘Р ВµР В»РЎРЉР Р…РЎвЂ№Р в„– Р С”Р С•Р СР С—Р С•Р Р…Р ВµР Р…РЎвЂљ Backdrop
 function Backdrop({ isVisible, onClick, theme = 'light' }: BackdropProps) {
   if (!isVisible) return null;
 
@@ -43,7 +43,7 @@ export function ModalOpaque({
   theme = 'light',
   size = 'auto'
 }: ModalOpaqueProps) {
-  // РћР±СЂР°Р±РѕС‚РєР° Escape Рё Р±Р»РѕРєРёСЂРѕРІРєР° СЃРєСЂРѕР»Р»Р°
+  // Р С›Р В±РЎР‚Р В°Р В±Р С•РЎвЂљР С”Р В° Escape Р С‘ Р В±Р В»Р С•Р С”Р С‘РЎР‚Р С•Р Р†Р С”Р В° РЎРѓР С”РЎР‚Р С•Р В»Р В»Р В°
   useEffect(() => {
     if (!isOpen) return;
     
@@ -66,7 +66,7 @@ export function ModalOpaque({
 
   return (
     <>
-      {/* Backdrop - СЂР°Р·РјС‹РІР°РµС‚ С„РѕРЅ */}
+      {/* Backdrop - РЎР‚Р В°Р В·Р СРЎвЂ№Р Р†Р В°Р ВµРЎвЂљ РЎвЂћР С•Р Р… */}
       <Backdrop 
         isVisible={isOpen} 
         onClick={onClose} 
@@ -82,9 +82,9 @@ export function ModalOpaque({
           className="relative w-full max-w-[90%]"
           onClick={(e) => e.stopPropagation()}
           style={{
-            // РџРѕР»РЅРѕСЃС‚СЊСЋ РЅРµРїСЂРѕР·СЂР°С‡РЅС‹Р№ РєРѕРЅС‚РµР№РЅРµСЂ
+            // Р СџР С•Р В»Р Р…Р С•РЎРѓРЎвЂљРЎРЉРЎР‹ Р Р…Р ВµР С—РЎР‚Р С•Р В·РЎР‚Р В°РЎвЂЎР Р…РЎвЂ№Р в„– Р С”Р С•Р Р…РЎвЂљР ВµР в„–Р Р…Р ВµРЎР‚
             backgroundColor: theme === 'light' ? '#FFFFFF' : '#161A22',
-            opacity: '1', // 100% РЅРµРїСЂРѕР·СЂР°С‡РЅРѕСЃС‚СЊ
+            opacity: '1', // 100% Р Р…Р ВµР С—РЎР‚Р С•Р В·РЎР‚Р В°РЎвЂЎР Р…Р С•РЎРѓРЎвЂљРЎРЉ
             borderRadius: '16px',
             border: `1px solid ${theme === 'light' ? '#E6E9EF' : 'rgba(255, 255, 255, 0.06)'}`,
             boxShadow: theme === 'light' 
@@ -94,7 +94,7 @@ export function ModalOpaque({
             minWidth: '280px',
             maxHeight: '80vh',
             overflow: 'hidden',
-            // РЈР±РёСЂР°РµРј РІСЃРµ СЌС„С„РµРєС‚С‹ СЂР°Р·РјС‹С‚РёСЏ Рё РїСЂРѕР·СЂР°С‡РЅРѕСЃС‚Рё
+            // Р Р€Р В±Р С‘РЎР‚Р В°Р ВµР С Р Р†РЎРѓР Вµ РЎРЊРЎвЂћРЎвЂћР ВµР С”РЎвЂљРЎвЂ№ РЎР‚Р В°Р В·Р СРЎвЂ№РЎвЂљР С‘РЎРЏ Р С‘ Р С—РЎР‚Р С•Р В·РЎР‚Р В°РЎвЂЎР Р…Р С•РЎРѓРЎвЂљР С‘
             backdropFilter: 'none',
             WebkitBackdropFilter: 'none'
           }}
@@ -167,5 +167,5 @@ export function ModalOpaque({
   );
 }
 
-// Р­РєСЃРїРѕСЂС‚РёСЂСѓРµРј С‚Р°РєР¶Рµ Backdrop РґР»СЏ РёСЃРїРѕР»СЊР·РѕРІР°РЅРёСЏ РІ РґСЂСѓРіРёС… РєРѕРјРїРѕРЅРµРЅС‚Р°С… РµСЃР»Рё РЅСѓР¶РЅРѕ
+// Р В­Р С”РЎРѓР С—Р С•РЎР‚РЎвЂљР С‘РЎР‚РЎС“Р ВµР С РЎвЂљР В°Р С”Р В¶Р Вµ Backdrop Р Т‘Р В»РЎРЏ Р С‘РЎРѓР С—Р С•Р В»РЎРЉР В·Р С•Р Р†Р В°Р Р…Р С‘РЎРЏ Р Р† Р Т‘РЎР‚РЎС“Р С–Р С‘РЎвЂ¦ Р С”Р С•Р СР С—Р С•Р Р…Р ВµР Р…РЎвЂљР В°РЎвЂ¦ Р ВµРЎРѓР В»Р С‘ Р Р…РЎС“Р В¶Р Р…Р С•
 export { Backdrop };

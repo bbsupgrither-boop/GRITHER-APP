@@ -2,12 +2,12 @@
 import { Telegraf } from "telegraf";
 import { supabase } from "./db.js";
 
-// === ИНИЦИАЛИЗАЦИЯ БОТА ===
+// === РРќРР¦РРђР›РР—РђР¦РРЇ Р‘РћРўРђ ===
 const token = process.env.BOT_TOKEN;
 if (!token) throw new Error("BOT_TOKEN is missing");
 export const bot = new Telegraf(token);
 
-// === ХЕЛПЕР: ПРОВЕРКА АДМИНА ===
+// === РҐР•Р›РџР•Р : РџР РћР’Р•Р РљРђ РђР”РњРРќРђ ===
 async function isAdmin(userId) {
   const { data, error } = await supabase
     .from("admins")
@@ -21,7 +21,7 @@ async function isAdmin(userId) {
   return Array.isArray(data) && data.length === 1;
 }
 
-// === ЛОГ ВСЕХ ТЕКСТОВЫХ СООБЩЕНИЙ (для диагностики) ===
+// === Р›РћР“ Р’РЎР•РҐ РўР•РљРЎРўРћР’Р«РҐ РЎРћРћР‘Р©Р•РќРР™ (РґР»СЏ РґРёР°РіРЅРѕСЃС‚РёРєРё) ===
 bot.on("text", async (ctx, next) => {
   try {
     console.log("[text]", ctx.message?.text, "from", ctx.from?.id);
@@ -29,28 +29,28 @@ bot.on("text", async (ctx, next) => {
   return next();
 });
 
-// === СТАРТ ===
+// === РЎРўРђР Рў ===
 bot.start(async (ctx) => {
   const webAppUrl = 'https://bright-tiramisu-4df5d7.netlify.app/?v=5';
-  await ctx.reply('Открыть приложение 👇', {
+  await ctx.reply('РћС‚РєСЂС‹С‚СЊ РїСЂРёР»РѕР¶РµРЅРёРµ рџ‘‡', {
     reply_markup: {
-      keyboard: [[{ text: 'Открыть GRITHER', web_app: { url: webAppUrl } }]],
+      keyboard: [[{ text: 'РћС‚РєСЂС‹С‚СЊ GRITHER', web_app: { url: webAppUrl } }]],
       resize_keyboard: true,
       one_time_keyboard: true
     }
   });
 });
 
-// === ПОМОЩЬ ===
+// === РџРћРњРћР©Р¬ ===
 bot.command("help", async (ctx) => {
   await ctx.reply(
     [
-      "Команды:",
-      "/ping — проверка связи",
-      "/admin — проверить права",
-      "/list — список контент-блоков (админ)",
-      "/get <slug> — показать блок контента",
-      "/set <slug>|Заголовок|Текст — создать/обновить блок (админ)",
+      "РљРѕРјР°РЅРґС‹:",
+      "/ping вЂ” РїСЂРѕРІРµСЂРєР° СЃРІСЏР·Рё",
+      "/admin вЂ” РїСЂРѕРІРµСЂРёС‚СЊ РїСЂР°РІР°",
+      "/list вЂ” СЃРїРёСЃРѕРє РєРѕРЅС‚РµРЅС‚-Р±Р»РѕРєРѕРІ (Р°РґРјРёРЅ)",
+      "/get <slug> вЂ” РїРѕРєР°Р·Р°С‚СЊ Р±Р»РѕРє РєРѕРЅС‚РµРЅС‚Р°",
+      "/set <slug>|Р—Р°РіРѕР»РѕРІРѕРє|РўРµРєСЃС‚ вЂ” СЃРѕР·РґР°С‚СЊ/РѕР±РЅРѕРІРёС‚СЊ Р±Р»РѕРє (Р°РґРјРёРЅ)",
     ].join("\n")
   );
 });
@@ -60,16 +60,16 @@ bot.command("ping", async (ctx) => {
   await ctx.reply("pong");
 });
 
-// === ПРОВЕРКА АДМИНА ===
+// === РџР РћР’Р•Р РљРђ РђР”РњРРќРђ ===
 bot.command("admin", async (ctx) => {
   const ok = await isAdmin(ctx.from.id);
-  await ctx.reply(ok ? "Ты админ ✅" : "Нет доступа ❌");
+  await ctx.reply(ok ? "РўС‹ Р°РґРјРёРЅ вњ…" : "РќРµС‚ РґРѕСЃС‚СѓРїР° вќЊ");
 });
 
-// === СПИСОК БЛОКОВ (АДМИН) ===
+// === РЎРџРРЎРћРљ Р‘Р›РћРљРћР’ (РђР”РњРРќ) ===
 bot.command("list", async (ctx) => {
   if (!(await isAdmin(ctx.from.id))) {
-    await ctx.reply("Нет доступа ❌");
+    await ctx.reply("РќРµС‚ РґРѕСЃС‚СѓРїР° вќЊ");
     return;
   }
   const { data, error } = await supabase
@@ -79,24 +79,24 @@ bot.command("list", async (ctx) => {
     .limit(30);
 
   if (error) {
-    await ctx.reply("Ошибка: " + error.message);
+    await ctx.reply("РћС€РёР±РєР°: " + error.message);
     return;
   }
   if (!data || data.length === 0) {
-    await ctx.reply("Пусто");
+    await ctx.reply("РџСѓСЃС‚Рѕ");
     return;
   }
-  await ctx.reply(data.map((r) => `• ${r.slug} — ${r.title}`).join("\n"));
+  await ctx.reply(data.map((r) => `вЂў ${r.slug} вЂ” ${r.title}`).join("\n"));
 });
 
-// === ПОЛУЧИТЬ КОНТЕНТ: /get about ===
+// === РџРћР›РЈР§РРўР¬ РљРћРќРўР•РќРў: /get about ===
 bot.command("get", async (ctx) => {
   const txt = ctx.message?.text || "";
-  // поддержим /get и /get@имябота
+  // РїРѕРґРґРµСЂР¶РёРј /get Рё /get@РёРјСЏР±РѕС‚Р°
   const payload = txt.replace(/^\/get(@\S+)?\s*/i, "");
   const slug = payload.trim();
   if (!slug) {
-    await ctx.reply("Формат: /get slug");
+    await ctx.reply("Р¤РѕСЂРјР°С‚: /get slug");
     return;
   }
 
@@ -107,21 +107,21 @@ bot.command("get", async (ctx) => {
     .single();
 
   if (error || !data) {
-    await ctx.reply("Не найдено");
+    await ctx.reply("РќРµ РЅР°Р№РґРµРЅРѕ");
     return;
   }
   await ctx.reply(`*${data.title}*\n\n${data.body}`, { parse_mode: "Markdown" });
 });
 
-// === СОЗДАТЬ/ОБНОВИТЬ КОНТЕНТ: /set about|Заголовок|Текст ===
+// === РЎРћР—Р”РђРўР¬/РћР‘РќРћР’РРўР¬ РљРћРќРўР•РќРў: /set about|Р—Р°РіРѕР»РѕРІРѕРє|РўРµРєСЃС‚ ===
 bot.command("set", async (ctx) => {
   if (!(await isAdmin(ctx.from.id))) {
-    await ctx.reply("Нет доступа ❌");
+    await ctx.reply("РќРµС‚ РґРѕСЃС‚СѓРїР° вќЊ");
     return;
   }
 
   const txt = ctx.message?.text || "";
-  // поддержим /set и /set@имябота
+  // РїРѕРґРґРµСЂР¶РёРј /set Рё /set@РёРјСЏР±РѕС‚Р°
   const payload = txt.replace(/^\/set(@\S+)?\s*/i, "");
   const parts = payload.split("|");
   const slug = (parts[0] || "").trim();
@@ -129,7 +129,7 @@ bot.command("set", async (ctx) => {
   const body = parts.slice(2).join("|").trim();
 
   if (!slug || !title || !body) {
-    await ctx.reply("Формат: /set slug|Заголовок|Текст");
+    await ctx.reply("Р¤РѕСЂРјР°С‚: /set slug|Р—Р°РіРѕР»РѕРІРѕРє|РўРµРєСЃС‚");
     return;
   }
 
@@ -145,13 +145,13 @@ bot.command("set", async (ctx) => {
     .single();
 
   if (error) {
-    await ctx.reply("Ошибка: " + error.message);
+    await ctx.reply("РћС€РёР±РєР°: " + error.message);
     return;
   }
 
   console.log("[content_updated]", { slug, by: ctx.from.id });
-  await ctx.reply(`OK: ${data.slug} обновлён`);
+  await ctx.reply(`OK: ${data.slug} РѕР±РЅРѕРІР»С‘РЅ`);
 });
 
-// === ЭКСПОРТ ВЕБХУКА ===
+// === Р­РљРЎРџРћР Рў Р’Р•Р‘РҐРЈРљРђ ===
 export const webhookCallback = bot.webhookCallback("/");

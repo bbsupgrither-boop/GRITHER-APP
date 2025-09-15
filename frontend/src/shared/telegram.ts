@@ -1,4 +1,4 @@
-// Безопасный доступ к Telegram WebApp API
+// Р‘РµР·РѕРїР°СЃРЅС‹Р№ РґРѕСЃС‚СѓРї Рє Telegram WebApp API
 
 export function getTelegramWebApp() {
   return (window as any).Telegram?.WebApp;
@@ -15,10 +15,10 @@ export function onViewportChange(handler: (height: number) => void) {
   
   tg.onEvent("viewportChanged", handler);
   
-  // Возвращаем функцию очистки
+  // Р’РѕР·РІСЂР°С‰Р°РµРј С„СѓРЅРєС†РёСЋ РѕС‡РёСЃС‚РєРё
   return () => {
-    // Telegram WebApp не предоставляет способ отписаться от событий
-    // Поэтому просто игнорируем ошибки
+    // Telegram WebApp РЅРµ РїСЂРµРґРѕСЃС‚Р°РІР»СЏРµС‚ СЃРїРѕСЃРѕР± РѕС‚РїРёСЃР°С‚СЊСЃСЏ РѕС‚ СЃРѕР±С‹С‚РёР№
+    // РџРѕСЌС‚РѕРјСѓ РїСЂРѕСЃС‚Рѕ РёРіРЅРѕСЂРёСЂСѓРµРј РѕС€РёР±РєРё
   };
 }
 

@@ -1,4 +1,4 @@
-﻿import { useState } from 'react';
+п»їimport { useState } from 'react';
 import { CheckSquare, Paperclip } from './Icons';
 import { ModalOpaque } from './ModalOpaque';
 
@@ -88,7 +88,7 @@ export function AchievementModerationModal({ isOpen, onClose, achievement, onApp
       <ModalOpaque
         isOpen={isOpen}
         onClose={onClose}
-        title="РЈСЃР»РѕРІРёСЏ РІС‹РїРѕР»РЅРµРЅРёСЏ РґРѕСЃС‚РёР¶РµРЅРёСЏ"
+        title="Р Р€РЎРѓР В»Р С•Р Р†Р С‘РЎРЏ Р Р†РЎвЂ№Р С—Р С•Р В»Р Р…Р ВµР Р…Р С‘РЎРЏ Р Т‘Р С•РЎРѓРЎвЂљР С‘Р В¶Р ВµР Р…Р С‘РЎРЏ"
         theme={theme}
         actions={
           <div className="flex gap-3">
@@ -106,7 +106,7 @@ export function AchievementModerationModal({ isOpen, onClose, achievement, onApp
                 padding: '0 20px'
               }}
             >
-              РћС‚РјРµРЅРёС‚СЊ
+              Р С›РЎвЂљР СР ВµР Р…Р С‘РЎвЂљРЎРЉ
             </button>
             <button
               onClick={handleRejectClick}
@@ -120,11 +120,11 @@ export function AchievementModerationModal({ isOpen, onClose, achievement, onApp
                 padding: '0 20px'
               }}
             >
-              РћС‚РєР»РѕРЅРёС‚СЊ
+              Р С›РЎвЂљР С”Р В»Р С•Р Р…Р С‘РЎвЂљРЎРЉ
             </button>
             <button
               onClick={() => {
-                // РћРґРѕР±СЂРёС‚СЊ РІСЃРµ РІС‹РїРѕР»РЅРµРЅРЅС‹Рµ РїРѕРґР·Р°РґР°С‡Рё
+                // Р С›Р Т‘Р С•Р В±РЎР‚Р С‘РЎвЂљРЎРЉ Р Р†РЎРѓР Вµ Р Р†РЎвЂ№Р С—Р С•Р В»Р Р…Р ВµР Р…Р Р…РЎвЂ№Р Вµ Р С—Р С•Р Т‘Р В·Р В°Р Т‘Р В°РЎвЂЎР С‘
                 achievement.subtasks.forEach(subtask => {
                   if (subtask.hasAttachment && !subtask.completed) {
                     onApprove(achievement.id, subtask.id);
@@ -142,7 +142,7 @@ export function AchievementModerationModal({ isOpen, onClose, achievement, onApp
                 padding: '0 20px'
               }}
             >
-              РџСЂРёРјРµРЅРёС‚СЊ
+              Р СџРЎР‚Р С‘Р СР ВµР Р…Р С‘РЎвЂљРЎРЉ
             </button>
           </div>
         }
@@ -150,7 +150,7 @@ export function AchievementModerationModal({ isOpen, onClose, achievement, onApp
         <div style={{ maxHeight: '60vh', overflowY: 'auto' }}>
 
           <div className="flex gap-4 mb-6">
-            {/* РРєРѕРЅРєР° РґРѕСЃС‚РёР¶РµРЅРёСЏ */}
+            {/* Р ВР С”Р С•Р Р…Р С”Р В° Р Т‘Р С•РЎРѓРЎвЂљР С‘Р В¶Р ВµР Р…Р С‘РЎРЏ */}
             <div 
               className="flex items-center justify-center flex-shrink-0"
               style={{
@@ -160,10 +160,10 @@ export function AchievementModerationModal({ isOpen, onClose, achievement, onApp
                 borderRadius: '12px'
               }}
             >
-              <span style={{ fontSize: '32px' }}>рџЏ†</span>
+              <span style={{ fontSize: '32px' }}>СЂСџРЏвЂ </span>
             </div>
             
-            {/* РРЅС„РѕСЂРјР°С†РёСЏ Рѕ РґРѕСЃС‚РёР¶РµРЅРёРё */}
+            {/* Р ВР Р…РЎвЂћР С•РЎР‚Р СР В°РЎвЂ Р С‘РЎРЏ Р С• Р Т‘Р С•РЎРѓРЎвЂљР С‘Р В¶Р ВµР Р…Р С‘Р С‘ */}
             <div className="flex-1">
               <h4 
                 className="font-medium mb-2"
@@ -181,7 +181,7 @@ export function AchievementModerationModal({ isOpen, onClose, achievement, onApp
                 {achievement.description}
               </p>
               
-              {/* РџРѕРґР·Р°РґР°С‡Рё */}
+              {/* Р СџР С•Р Т‘Р В·Р В°Р Т‘Р В°РЎвЂЎР С‘ */}
               <div className="space-y-2">
                 {achievement.subtasks.map((subtask, index) => (
                   <div key={subtask.id} className="flex items-center justify-between gap-2">
@@ -192,11 +192,11 @@ export function AchievementModerationModal({ isOpen, onClose, achievement, onApp
                           fontSize: '14px'
                         }}
                       >
-                        вЂў {subtask.description}
+                        РІР‚Сћ {subtask.description}
                       </span>
                     </div>
                     <div className="flex items-center gap-1">
-                      {/* Р“Р°Р»РѕС‡РєР° РґР»СЏ РѕРґРѕР±СЂРµРЅРёСЏ */}
+                      {/* Р вЂњР В°Р В»Р С•РЎвЂЎР С”Р В° Р Т‘Р В»РЎРЏ Р С•Р Т‘Р С•Р В±РЎР‚Р ВµР Р…Р С‘РЎРЏ */}
                       <button
                         onClick={() => handleSubtaskApprove(subtask.id)}
                         disabled={!subtask.hasAttachment || subtask.completed}
@@ -219,7 +219,7 @@ export function AchievementModerationModal({ isOpen, onClose, achievement, onApp
                         />
                       </button>
                       
-                      {/* РЎРєСЂРµРїРєР° РґР»СЏ РїСЂРѕСЃРјРѕС‚СЂР° С„Р°Р№Р»РѕРІ */}
+                      {/* Р РЋР С”РЎР‚Р ВµР С—Р С”Р В° Р Т‘Р В»РЎРЏ Р С—РЎР‚Р С•РЎРѓР СР С•РЎвЂљРЎР‚Р В° РЎвЂћР В°Р в„–Р В»Р С•Р Р† */}
                       <button
                         onClick={() => subtask.attachments?.[0] && handleFileView(subtask.attachments[0])}
                         disabled={!subtask.hasAttachment}
@@ -246,7 +246,7 @@ export function AchievementModerationModal({ isOpen, onClose, achievement, onApp
             </div>
           </div>
 
-          {/* РџСЂРѕРіСЂРµСЃСЃ РІС‹РїРѕР»РЅРµРЅРёСЏ */}
+          {/* Р СџРЎР‚Р С•Р С–РЎР‚Р ВµРЎРѓРЎРѓ Р Р†РЎвЂ№Р С—Р С•Р В»Р Р…Р ВµР Р…Р С‘РЎРЏ */}
           <div 
             className="mb-6 p-3 rounded-lg"
             style={{
@@ -260,7 +260,7 @@ export function AchievementModerationModal({ isOpen, onClose, achievement, onApp
                   fontSize: '14px'
                 }}
               >
-                РџСЂРѕРіСЂРµСЃСЃ РІС‹РїРѕР»РЅРµРЅРёСЏ
+                Р СџРЎР‚Р С•Р С–РЎР‚Р ВµРЎРѓРЎРѓ Р Р†РЎвЂ№Р С—Р С•Р В»Р Р…Р ВµР Р…Р С‘РЎРЏ
               </span>
               <span 
                 style={{ 
@@ -289,7 +289,7 @@ export function AchievementModerationModal({ isOpen, onClose, achievement, onApp
             </div>
           </div>
 
-          {/* РРЅС„РѕСЂРјР°С†РёСЏ Рѕ РїРѕРґР°С‡Рµ */}
+          {/* Р ВР Р…РЎвЂћР С•РЎР‚Р СР В°РЎвЂ Р С‘РЎРЏ Р С• Р С—Р С•Р Т‘Р В°РЎвЂЎР Вµ */}
           <div 
             className="mb-6 space-y-1"
             style={{
@@ -297,18 +297,18 @@ export function AchievementModerationModal({ isOpen, onClose, achievement, onApp
               fontSize: '12px'
             }}
           >
-            <div>РЎРѕС‚СЂСѓРґРЅРёРє: {achievement.assignedTo}</div>
-            <div>Р”Р°С‚Р° РїРѕРґР°С‡Рё: {new Date(achievement.submittedDate).toLocaleDateString('ru-RU')}</div>
-            <div>РќР°РіСЂР°РґР°: {achievement.reward.amount} {achievement.reward.type}</div>
+            <div>Р РЋР С•РЎвЂљРЎР‚РЎС“Р Т‘Р Р…Р С‘Р С”: {achievement.assignedTo}</div>
+            <div>Р вЂќР В°РЎвЂљР В° Р С—Р С•Р Т‘Р В°РЎвЂЎР С‘: {new Date(achievement.submittedDate).toLocaleDateString('ru-RU')}</div>
+            <div>Р СњР В°Р С–РЎР‚Р В°Р Т‘Р В°: {achievement.reward.amount} {achievement.reward.type}</div>
           </div>
         </div>
       </ModalOpaque>
 
-      {/* РњРѕРґР°Р»СЊРЅРѕРµ РѕРєРЅРѕ РїРѕРґС‚РІРµСЂР¶РґРµРЅРёСЏ РѕРґРѕР±СЂРµРЅРёСЏ */}
+      {/* Р СљР С•Р Т‘Р В°Р В»РЎРЉР Р…Р С•Р Вµ Р С•Р С”Р Р…Р С• Р С—Р С•Р Т‘РЎвЂљР Р†Р ВµРЎР‚Р В¶Р Т‘Р ВµР Р…Р С‘РЎРЏ Р С•Р Т‘Р С•Р В±РЎР‚Р ВµР Р…Р С‘РЎРЏ */}
       <ModalOpaque
         isOpen={confirmModalOpen}
         onClose={() => setConfirmModalOpen(false)}
-        title="РџРѕРґС‚РІРµСЂР¶РґРµРЅРёРµ РІС‹РїРѕР»РЅРµРЅРёСЏ"
+        title="Р СџР С•Р Т‘РЎвЂљР Р†Р ВµРЎР‚Р В¶Р Т‘Р ВµР Р…Р С‘Р Вµ Р Р†РЎвЂ№Р С—Р С•Р В»Р Р…Р ВµР Р…Р С‘РЎРЏ"
         theme={theme}
         actions={
           <div className="flex gap-3">
@@ -326,7 +326,7 @@ export function AchievementModerationModal({ isOpen, onClose, achievement, onApp
                 padding: '0 20px'
               }}
             >
-              РќРµС‚
+              Р СњР ВµРЎвЂљ
             </button>
             <button
               onClick={handleConfirmApprove}
@@ -340,7 +340,7 @@ export function AchievementModerationModal({ isOpen, onClose, achievement, onApp
                 padding: '0 20px'
               }}
             >
-              Р”Р°
+              Р вЂќР В°
             </button>
           </div>
         }
@@ -352,16 +352,16 @@ export function AchievementModerationModal({ isOpen, onClose, achievement, onApp
               fontSize: '14px'
             }}
           >
-            Р’С‹ СѓРІРµСЂРµРЅС‹, С‡С‚Рѕ Р·Р°РґР°РЅРёРµ РІС‹РїРѕР»РЅРµРЅРѕ РІРµСЂРЅРѕ?
+            Р вЂ™РЎвЂ№ РЎС“Р Р†Р ВµРЎР‚Р ВµР Р…РЎвЂ№, РЎвЂЎРЎвЂљР С• Р В·Р В°Р Т‘Р В°Р Р…Р С‘Р Вµ Р Р†РЎвЂ№Р С—Р С•Р В»Р Р…Р ВµР Р…Р С• Р Р†Р ВµРЎР‚Р Р…Р С•?
           </p>
         </div>
       </ModalOpaque>
 
-      {/* РњРѕРґР°Р»СЊРЅРѕРµ РѕРєРЅРѕ РѕС‚РєР»РѕРЅРµРЅРёСЏ */}
+      {/* Р СљР С•Р Т‘Р В°Р В»РЎРЉР Р…Р С•Р Вµ Р С•Р С”Р Р…Р С• Р С•РЎвЂљР С”Р В»Р С•Р Р…Р ВµР Р…Р С‘РЎРЏ */}
       <ModalOpaque
         isOpen={rejectionModalOpen}
         onClose={() => setRejectionModalOpen(false)}
-        title="РџСЂРёС‡РёРЅР° РѕС‚РєР»РѕРЅРµРЅРёСЏ"
+        title="Р СџРЎР‚Р С‘РЎвЂЎР С‘Р Р…Р В° Р С•РЎвЂљР С”Р В»Р С•Р Р…Р ВµР Р…Р С‘РЎРЏ"
         theme={theme}
         actions={
           <div className="flex gap-3">
@@ -379,7 +379,7 @@ export function AchievementModerationModal({ isOpen, onClose, achievement, onApp
                 padding: '0 20px'
               }}
             >
-              РћС‚РјРµРЅР°
+              Р С›РЎвЂљР СР ВµР Р…Р В°
             </button>
             <button
               onClick={handleConfirmReject}
@@ -394,14 +394,14 @@ export function AchievementModerationModal({ isOpen, onClose, achievement, onApp
                 padding: '0 20px'
               }}
             >
-              РћС‚РїСЂР°РІРёС‚СЊ
+              Р С›РЎвЂљР С—РЎР‚Р В°Р Р†Р С‘РЎвЂљРЎРЉ
             </button>
           </div>
         }
       >
         <div>
           <textarea
-            placeholder="РЈРєР°Р¶РёС‚Рµ, С‡С‚Рѕ РІС‹РїРѕР»РЅРµРЅРѕ РЅРµРїСЂР°РІРёР»СЊРЅРѕ..."
+            placeholder="Р Р€Р С”Р В°Р В¶Р С‘РЎвЂљР Вµ, РЎвЂЎРЎвЂљР С• Р Р†РЎвЂ№Р С—Р С•Р В»Р Р…Р ВµР Р…Р С• Р Р…Р ВµР С—РЎР‚Р В°Р Р†Р С‘Р В»РЎРЉР Р…Р С•..."
             value={rejectionReason}
             onChange={(e) => setRejectionReason(e.target.value)}
             className="w-full transition-colors resize-none"
@@ -422,11 +422,11 @@ export function AchievementModerationModal({ isOpen, onClose, achievement, onApp
         </div>
       </ModalOpaque>
 
-      {/* РњРѕРґР°Р»СЊРЅРѕРµ РѕРєРЅРѕ РїСЂРѕСЃРјРѕС‚СЂР° С„Р°Р№Р»Р° */}
+      {/* Р СљР С•Р Т‘Р В°Р В»РЎРЉР Р…Р С•Р Вµ Р С•Р С”Р Р…Р С• Р С—РЎР‚Р С•РЎРѓР СР С•РЎвЂљРЎР‚Р В° РЎвЂћР В°Р в„–Р В»Р В° */}
       <ModalOpaque
         isOpen={fileViewerOpen}
         onClose={() => setFileViewerOpen(false)}
-        title="РџСЂРѕСЃРјРѕС‚СЂ С„Р°Р№Р»Р°"
+        title="Р СџРЎР‚Р С•РЎРѓР СР С•РЎвЂљРЎР‚ РЎвЂћР В°Р в„–Р В»Р В°"
         theme={theme}
         actions={
           <button
@@ -440,7 +440,7 @@ export function AchievementModerationModal({ isOpen, onClose, achievement, onApp
               border: 'none'
             }}
           >
-            Р—Р°РєСЂС‹С‚СЊ
+            Р вЂ”Р В°Р С”РЎР‚РЎвЂ№РЎвЂљРЎРЉ
           </button>
         }
       >
@@ -450,7 +450,7 @@ export function AchievementModerationModal({ isOpen, onClose, achievement, onApp
             backgroundColor: theme === 'dark' ? 'rgba(43, 130, 255, 0.12)' : 'rgba(43, 130, 255, 0.10)'
           }}
         >
-          <div style={{ fontSize: '64px', marginBottom: '16px' }}>рџ“„</div>
+          <div style={{ fontSize: '64px', marginBottom: '16px' }}>СЂСџвЂњвЂћ</div>
           <p 
             className="mb-2"
             style={{ 
@@ -458,7 +458,7 @@ export function AchievementModerationModal({ isOpen, onClose, achievement, onApp
               color: theme === 'dark' ? '#A7B0BD' : '#6B7280'
             }}
           >
-            Р¤Р°Р№Р»: {selectedFile}
+            Р В¤Р В°Р в„–Р В»: {selectedFile}
           </p>
           <p 
             style={{ 
@@ -466,7 +466,7 @@ export function AchievementModerationModal({ isOpen, onClose, achievement, onApp
               color: theme === 'dark' ? '#A7B0BD' : '#6B7280'
             }}
           >
-            РџСЂРµРґРІР°СЂРёС‚РµР»СЊРЅС‹Р№ РїСЂРѕСЃРјРѕС‚СЂ С„Р°Р№Р»Р°
+            Р СџРЎР‚Р ВµР Т‘Р Р†Р В°РЎР‚Р С‘РЎвЂљР ВµР В»РЎРЉР Р…РЎвЂ№Р в„– Р С—РЎР‚Р С•РЎРѓР СР С•РЎвЂљРЎР‚ РЎвЂћР В°Р в„–Р В»Р В°
           </p>
         </div>
       </ModalOpaque>

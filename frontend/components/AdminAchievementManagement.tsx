@@ -24,7 +24,7 @@ interface AdminAchievementManagementProps {
   theme: 'light' | 'dark';
 }
 
-// Используем AchievementData из базы данных
+// РСЃРїРѕР»СЊР·СѓРµРј AchievementData РёР· Р±Р°Р·С‹ РґР°РЅРЅС‹С…
 
 interface AchievementForm {
   title: string;
@@ -41,18 +41,18 @@ interface AchievementForm {
 }
 
 const ACHIEVEMENT_TYPES = [
-  { value: 'tasks', label: 'Задачи', icon: '📋' },
-  { value: 'battle', label: 'Боевые', icon: '⚔️' },
-  { value: 'collection', label: 'Коллекционирование', icon: '🎁' },
-  { value: 'social', label: 'Социальные', icon: '👥' },
-  { value: 'special', label: 'Специальные', icon: '⭐' }
+  { value: 'tasks', label: 'Р—Р°РґР°С‡Рё', icon: 'рџ“‹' },
+  { value: 'battle', label: 'Р‘РѕРµРІС‹Рµ', icon: 'вљ”пёЏ' },
+  { value: 'collection', label: 'РљРѕР»Р»РµРєС†РёРѕРЅРёСЂРѕРІР°РЅРёРµ', icon: 'рџЋЃ' },
+  { value: 'social', label: 'РЎРѕС†РёР°Р»СЊРЅС‹Рµ', icon: 'рџ‘Ґ' },
+  { value: 'special', label: 'РЎРїРµС†РёР°Р»СЊРЅС‹Рµ', icon: 'в­ђ' }
 ];
 
 const DIFFICULTY_LEVELS = [
-  { value: 'easy', label: 'Легко', color: 'bg-green-500' },
-  { value: 'medium', label: 'Средне', color: 'bg-yellow-500' },
-  { value: 'hard', label: 'Сложно', color: 'bg-orange-500' },
-  { value: 'extreme', label: 'Экстремально', color: 'bg-red-500' }
+  { value: 'easy', label: 'Р›РµРіРєРѕ', color: 'bg-green-500' },
+  { value: 'medium', label: 'РЎСЂРµРґРЅРµ', color: 'bg-yellow-500' },
+  { value: 'hard', label: 'РЎР»РѕР¶РЅРѕ', color: 'bg-orange-500' },
+  { value: 'extreme', label: 'Р­РєСЃС‚СЂРµРјР°Р»СЊРЅРѕ', color: 'bg-red-500' }
 ];
 
 export const AdminAchievementManagement: React.FC<AdminAchievementManagementProps> = ({ theme }) => {
@@ -73,16 +73,16 @@ export const AdminAchievementManagement: React.FC<AdminAchievementManagementProp
       experience: 0,
       specialItems: []
     },
-    icon: '🏆',
+    icon: 'рџЏ†',
     color: '#FFD700'
   });
 
-  // Загрузка достижений
+  // Р—Р°РіСЂСѓР·РєР° РґРѕСЃС‚РёР¶РµРЅРёР№
   useEffect(() => {
     loadAchievements();
   }, []);
 
-  // Фильтрация достижений
+  // Р¤РёР»СЊС‚СЂР°С†РёСЏ РґРѕСЃС‚РёР¶РµРЅРёР№
   useEffect(() => {
     let filtered = achievements;
 
@@ -105,16 +105,16 @@ export const AdminAchievementManagement: React.FC<AdminAchievementManagementProp
   }, [achievements, searchQuery, filterType, filterDifficulty]);
 
   const loadAchievements = async () => {
-    // Mock данные - в реальности загружаем из БД
+    // Mock РґР°РЅРЅС‹Рµ - РІ СЂРµР°Р»СЊРЅРѕСЃС‚Рё Р·Р°РіСЂСѓР¶Р°РµРј РёР· Р‘Р”
     const mockAchievements: AchievementData[] = [
       {
         id: '1',
-        title: 'Первые шаги',
-        description: 'Выполните первую задачу',
+        title: 'РџРµСЂРІС‹Рµ С€Р°РіРё',
+        description: 'Р’С‹РїРѕР»РЅРёС‚Рµ РїРµСЂРІСѓСЋ Р·Р°РґР°С‡Сѓ',
         type: 'tasks',
         difficulty: 'easy',
         reward: { coins: 100, experience: 50 },
-        icon: '🏆',
+        icon: 'рџЏ†',
         color: '#FFD700',
         isActive: true,
         completionCount: 1247,
@@ -122,12 +122,12 @@ export const AdminAchievementManagement: React.FC<AdminAchievementManagementProp
       },
       {
         id: '2',
-        title: 'Трудолюбивый',
-        description: 'Выполните 10 задач',
+        title: 'РўСЂСѓРґРѕР»СЋР±РёРІС‹Р№',
+        description: 'Р’С‹РїРѕР»РЅРёС‚Рµ 10 Р·Р°РґР°С‡',
         type: 'tasks',
         difficulty: 'medium',
         reward: { coins: 500, experience: 200 },
-        icon: '⚡',
+        icon: 'вљЎ',
         color: '#00FF00',
         isActive: true,
         completionCount: 856,
@@ -135,12 +135,12 @@ export const AdminAchievementManagement: React.FC<AdminAchievementManagementProp
       },
       {
         id: '3',
-        title: 'Боец',
-        description: 'Выиграйте первый баттл',
+        title: 'Р‘РѕРµС†',
+        description: 'Р’С‹РёРіСЂР°Р№С‚Рµ РїРµСЂРІС‹Р№ Р±Р°С‚С‚Р»',
         type: 'battle',
         difficulty: 'medium',
         reward: { coins: 300, experience: 150 },
-        icon: '⚔️',
+        icon: 'вљ”пёЏ',
         color: '#FF0000',
         isActive: true,
         completionCount: 623,
@@ -194,7 +194,7 @@ export const AdminAchievementManagement: React.FC<AdminAchievementManagementProp
   };
 
   const handleDeleteAchievement = async (id: string) => {
-    if (window.confirm('Вы уверены, что хотите удалить это достижение?')) {
+    if (window.confirm('Р’С‹ СѓРІРµСЂРµРЅС‹, С‡С‚Рѕ С…РѕС‚РёС‚Рµ СѓРґР°Р»РёС‚СЊ СЌС‚Рѕ РґРѕСЃС‚РёР¶РµРЅРёРµ?')) {
       setAchievements(prev => prev.filter(a => a.id !== id));
     }
   };
@@ -212,13 +212,13 @@ export const AdminAchievementManagement: React.FC<AdminAchievementManagementProp
       type: 'tasks',
       difficulty: 'easy',
       reward: { coins: 0, experience: 0, specialItems: [] },
-      icon: '🏆',
+      icon: 'рџЏ†',
       color: '#FFD700'
     });
   };
 
   const getTypeIcon = (type: Achievement['type']) => {
-    return ACHIEVEMENT_TYPES.find(t => t.value === type)?.icon || '🏆';
+    return ACHIEVEMENT_TYPES.find(t => t.value === type)?.icon || 'рџЏ†';
   };
 
   const getDifficultyColor = (difficulty: Achievement['difficulty']) => {
@@ -227,14 +227,14 @@ export const AdminAchievementManagement: React.FC<AdminAchievementManagementProp
 
   return (
     <div className="p-6 space-y-6">
-      {/* Заголовок и действия */}
+      {/* Р—Р°РіРѕР»РѕРІРѕРє Рё РґРµР№СЃС‚РІРёСЏ */}
       <div className="flex items-center justify-between">
         <div>
           <h1 className="text-2xl font-bold" style={{ color: theme === 'dark' ? '#E8ECF2' : '#0F172A' }}>
-            Управление достижениями
+            РЈРїСЂР°РІР»РµРЅРёРµ РґРѕСЃС‚РёР¶РµРЅРёСЏРјРё
           </h1>
           <p className="text-sm opacity-70" style={{ color: theme === 'dark' ? '#A7B0BD' : '#6B7280' }}>
-            Создание, редактирование и модерация достижений
+            РЎРѕР·РґР°РЅРёРµ, СЂРµРґР°РєС‚РёСЂРѕРІР°РЅРёРµ Рё РјРѕРґРµСЂР°С†РёСЏ РґРѕСЃС‚РёР¶РµРЅРёР№
           </p>
         </div>
         <button
@@ -242,17 +242,17 @@ export const AdminAchievementManagement: React.FC<AdminAchievementManagementProp
           className="flex items-center px-4 py-2 rounded-lg bg-blue-500 text-white hover:bg-blue-600 transition-colors"
         >
           <Plus className="w-4 h-4 mr-2" />
-          Добавить
+          Р”РѕР±Р°РІРёС‚СЊ
         </button>
       </div>
 
-      {/* Фильтры и поиск */}
+      {/* Р¤РёР»СЊС‚СЂС‹ Рё РїРѕРёСЃРє */}
       <div className="flex flex-col md:flex-row gap-4">
         <div className="relative flex-1">
           <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 w-4 h-4 opacity-50" />
           <input
             type="text"
-            placeholder="Поиск по названию или описанию..."
+            placeholder="РџРѕРёСЃРє РїРѕ РЅР°Р·РІР°РЅРёСЋ РёР»Рё РѕРїРёСЃР°РЅРёСЋ..."
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
             className="w-full pl-10 pr-4 py-2 rounded-lg border"
@@ -274,7 +274,7 @@ export const AdminAchievementManagement: React.FC<AdminAchievementManagementProp
             color: theme === 'dark' ? '#E8ECF2' : '#0F172A'
           }}
         >
-          <option value="all">Все типы</option>
+          <option value="all">Р’СЃРµ С‚РёРїС‹</option>
           {ACHIEVEMENT_TYPES.map(type => (
             <option key={type.value} value={type.value}>
               {type.icon} {type.label}
@@ -292,7 +292,7 @@ export const AdminAchievementManagement: React.FC<AdminAchievementManagementProp
             color: theme === 'dark' ? '#E8ECF2' : '#0F172A'
           }}
         >
-          <option value="all">Все сложности</option>
+          <option value="all">Р’СЃРµ СЃР»РѕР¶РЅРѕСЃС‚Рё</option>
           {DIFFICULTY_LEVELS.map(difficulty => (
             <option key={difficulty.value} value={difficulty.value}>
               {difficulty.label}
@@ -301,7 +301,7 @@ export const AdminAchievementManagement: React.FC<AdminAchievementManagementProp
         </select>
       </div>
 
-      {/* Список достижений */}
+      {/* РЎРїРёСЃРѕРє РґРѕСЃС‚РёР¶РµРЅРёР№ */}
       <div className="space-y-4">
         {filteredAchievements.map((achievement) => (
           <div
@@ -338,9 +338,9 @@ export const AdminAchievementManagement: React.FC<AdminAchievementManagementProp
                     {achievement.description}
                   </p>
                   <div className="flex items-center space-x-4 mt-2 text-xs opacity-60">
-                    <span>💰 {achievement.reward.coins} монет</span>
-                    <span>⭐ {achievement.reward.experience} опыта</span>
-                    <span>👥 {achievement.completionCount} получили</span>
+                    <span>рџ’° {achievement.reward.coins} РјРѕРЅРµС‚</span>
+                    <span>в­ђ {achievement.reward.experience} РѕРїС‹С‚Р°</span>
+                    <span>рџ‘Ґ {achievement.completionCount} РїРѕР»СѓС‡РёР»Рё</span>
                   </div>
                 </div>
               </div>
@@ -354,7 +354,7 @@ export const AdminAchievementManagement: React.FC<AdminAchievementManagementProp
                       : 'bg-gray-500 bg-opacity-20 text-gray-500'
                   }`}
                 >
-                  {achievement.isActive ? 'Активно' : 'Неактивно'}
+                  {achievement.isActive ? 'РђРєС‚РёРІРЅРѕ' : 'РќРµР°РєС‚РёРІРЅРѕ'}
                 </button>
                 
                 <button
@@ -378,7 +378,7 @@ export const AdminAchievementManagement: React.FC<AdminAchievementManagementProp
         ))}
       </div>
 
-      {/* Модал создания/редактирования */}
+      {/* РњРѕРґР°Р» СЃРѕР·РґР°РЅРёСЏ/СЂРµРґР°РєС‚РёСЂРѕРІР°РЅРёСЏ */}
       {showCreateForm && (
         <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center p-4 z-50">
           <div 
@@ -390,7 +390,7 @@ export const AdminAchievementManagement: React.FC<AdminAchievementManagementProp
           >
             <div className="flex items-center justify-between mb-6">
               <h2 className="text-xl font-bold" style={{ color: theme === 'dark' ? '#E8ECF2' : '#0F172A' }}>
-                {editingAchievement ? 'Редактировать достижение' : 'Создать достижение'}
+                {editingAchievement ? 'Р РµРґР°РєС‚РёСЂРѕРІР°С‚СЊ РґРѕСЃС‚РёР¶РµРЅРёРµ' : 'РЎРѕР·РґР°С‚СЊ РґРѕСЃС‚РёР¶РµРЅРёРµ'}
               </h2>
               <button
                 onClick={() => {
@@ -406,10 +406,10 @@ export const AdminAchievementManagement: React.FC<AdminAchievementManagementProp
             </div>
 
             <div className="space-y-4">
-              {/* Основные данные */}
+              {/* РћСЃРЅРѕРІРЅС‹Рµ РґР°РЅРЅС‹Рµ */}
               <div>
                 <label className="block text-sm font-medium mb-2" style={{ color: theme === 'dark' ? '#E8ECF2' : '#0F172A' }}>
-                  Название *
+                  РќР°Р·РІР°РЅРёРµ *
                 </label>
                 <input
                   type="text"
@@ -421,13 +421,13 @@ export const AdminAchievementManagement: React.FC<AdminAchievementManagementProp
                     borderColor: theme === 'dark' ? 'rgba(255,255,255,0.2)' : '#E6E9EF',
                     color: theme === 'dark' ? '#E8ECF2' : '#0F172A'
                   }}
-                  placeholder="Введите название достижения"
+                  placeholder="Р’РІРµРґРёС‚Рµ РЅР°Р·РІР°РЅРёРµ РґРѕСЃС‚РёР¶РµРЅРёСЏ"
                 />
               </div>
 
               <div>
                 <label className="block text-sm font-medium mb-2" style={{ color: theme === 'dark' ? '#E8ECF2' : '#0F172A' }}>
-                  Описание *
+                  РћРїРёСЃР°РЅРёРµ *
                 </label>
                 <textarea
                   value={formData.description}
@@ -439,14 +439,14 @@ export const AdminAchievementManagement: React.FC<AdminAchievementManagementProp
                     borderColor: theme === 'dark' ? 'rgba(255,255,255,0.2)' : '#E6E9EF',
                     color: theme === 'dark' ? '#E8ECF2' : '#0F172A'
                   }}
-                  placeholder="Опишите условия получения достижения"
+                  placeholder="РћРїРёС€РёС‚Рµ СѓСЃР»РѕРІРёСЏ РїРѕР»СѓС‡РµРЅРёСЏ РґРѕСЃС‚РёР¶РµРЅРёСЏ"
                 />
               </div>
 
               <div className="grid grid-cols-2 gap-4">
                 <div>
                   <label className="block text-sm font-medium mb-2" style={{ color: theme === 'dark' ? '#E8ECF2' : '#0F172A' }}>
-                    Тип
+                    РўРёРї
                   </label>
                   <select
                     value={formData.type}
@@ -468,7 +468,7 @@ export const AdminAchievementManagement: React.FC<AdminAchievementManagementProp
 
                 <div>
                   <label className="block text-sm font-medium mb-2" style={{ color: theme === 'dark' ? '#E8ECF2' : '#0F172A' }}>
-                    Сложность
+                    РЎР»РѕР¶РЅРѕСЃС‚СЊ
                   </label>
                   <select
                     value={formData.difficulty}
@@ -489,15 +489,15 @@ export const AdminAchievementManagement: React.FC<AdminAchievementManagementProp
                 </div>
               </div>
 
-              {/* Награды */}
+              {/* РќР°РіСЂР°РґС‹ */}
               <div>
                 <h3 className="text-lg font-semibold mb-3" style={{ color: theme === 'dark' ? '#E8ECF2' : '#0F172A' }}>
-                  Награды
+                  РќР°РіСЂР°РґС‹
                 </h3>
                 <div className="grid grid-cols-2 gap-4">
                   <div>
                     <label className="block text-sm font-medium mb-2" style={{ color: theme === 'dark' ? '#E8ECF2' : '#0F172A' }}>
-                      Монеты (0-10000)
+                      РњРѕРЅРµС‚С‹ (0-10000)
                     </label>
                     <input
                       type="number"
@@ -518,7 +518,7 @@ export const AdminAchievementManagement: React.FC<AdminAchievementManagementProp
                   </div>
                   <div>
                     <label className="block text-sm font-medium mb-2" style={{ color: theme === 'dark' ? '#E8ECF2' : '#0F172A' }}>
-                      Опыт (0-1000)
+                      РћРїС‹С‚ (0-1000)
                     </label>
                     <input
                       type="number"
@@ -540,15 +540,15 @@ export const AdminAchievementManagement: React.FC<AdminAchievementManagementProp
                 </div>
               </div>
 
-              {/* Визуал */}
+              {/* Р’РёР·СѓР°Р» */}
               <div>
                 <h3 className="text-lg font-semibold mb-3" style={{ color: theme === 'dark' ? '#E8ECF2' : '#0F172A' }}>
-                  Визуальное оформление
+                  Р’РёР·СѓР°Р»СЊРЅРѕРµ РѕС„РѕСЂРјР»РµРЅРёРµ
                 </h3>
                 <div className="grid grid-cols-2 gap-4">
                   <div>
                     <label className="block text-sm font-medium mb-2" style={{ color: theme === 'dark' ? '#E8ECF2' : '#0F172A' }}>
-                      Иконка
+                      РРєРѕРЅРєР°
                     </label>
                     <input
                       type="text"
@@ -560,12 +560,12 @@ export const AdminAchievementManagement: React.FC<AdminAchievementManagementProp
                         borderColor: theme === 'dark' ? 'rgba(255,255,255,0.2)' : '#E6E9EF',
                         color: theme === 'dark' ? '#E8ECF2' : '#0F172A'
                       }}
-                      placeholder="🏆"
+                      placeholder="рџЏ†"
                     />
                   </div>
                   <div>
                     <label className="block text-sm font-medium mb-2" style={{ color: theme === 'dark' ? '#E8ECF2' : '#0F172A' }}>
-                      Цвет
+                      Р¦РІРµС‚
                     </label>
                     <input
                       type="color"
@@ -595,13 +595,13 @@ export const AdminAchievementManagement: React.FC<AdminAchievementManagementProp
                   color: theme === 'dark' ? '#E8ECF2' : '#0F172A'
                 }}
               >
-                Отмена
+                РћС‚РјРµРЅР°
               </button>
               <button
                 onClick={editingAchievement ? handleUpdateAchievement : handleCreateAchievement}
                 className="px-4 py-2 rounded-lg bg-blue-500 text-white hover:bg-blue-600 transition-colors"
               >
-                {editingAchievement ? 'Сохранить' : 'Создать'}
+                {editingAchievement ? 'РЎРѕС…СЂР°РЅРёС‚СЊ' : 'РЎРѕР·РґР°С‚СЊ'}
               </button>
             </div>
           </div>

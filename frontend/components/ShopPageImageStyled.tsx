@@ -1,4 +1,4 @@
-﻿import { useState } from 'react';
+п»їimport { useState } from 'react';
 import { ShoppingCart, Settings, Plus, Minus, X, CheckCircle, Clock } from './Icons';
 import { Header } from './Header';
 import { BottomNavigation } from './BottomNavigation';
@@ -22,7 +22,7 @@ interface ShopPageImageStyledProps {
   onUpdateUserBalance?: (userId: string, amount: number) => void;
 }
 
-// РўРёРї РґР»СЏ С‚РѕРІР°СЂР° РІ РєРѕСЂР·РёРЅРµ
+// Р СћР С‘Р С— Р Т‘Р В»РЎРЏ РЎвЂљР С•Р Р†Р В°РЎР‚Р В° Р Р† Р С”Р С•РЎР‚Р В·Р С‘Р Р…Р Вµ
 interface CartItem {
   id: string;
   name: string;
@@ -44,14 +44,14 @@ export function ShopPageImageStyled({
   currentUser,
   onUpdateUserBalance
 }: ShopPageImageStyledProps) {
-  const userBalance = currentUser?.balance || 0; // РСЃРїРѕР»СЊР·СѓРµРј СЂРµР°Р»СЊРЅС‹Р№ Р±Р°Р»Р°РЅСЃ РїРѕР»СЊР·РѕРІР°С‚РµР»СЏ
+  const userBalance = currentUser?.balance || 0; // Р ВРЎРѓР С—Р С•Р В»РЎРЉР В·РЎС“Р ВµР С РЎР‚Р ВµР В°Р В»РЎРЉР Р…РЎвЂ№Р в„– Р В±Р В°Р В»Р В°Р Р…РЎРѓ Р С—Р С•Р В»РЎРЉР В·Р С•Р Р†Р В°РЎвЂљР ВµР В»РЎРЏ
   const [cart, setCart] = useState<CartItem[]>([]);
   const [isCartOpen, setIsCartOpen] = useState(false);
   const [cartTab, setCartTab] = useState<'cart' | 'active' | 'completed'>('cart');
   const [isItemDetailsOpen, setIsItemDetailsOpen] = useState(false);
   const [selectedItem, setSelectedItem] = useState<ShopItem | null>(null);
 
-  // Р¤СѓРЅРєС†РёРё РґР»СЏ СЂР°Р±РѕС‚С‹ СЃ РєРѕСЂР·РёРЅРѕР№
+  // Р В¤РЎС“Р Р…Р С”РЎвЂ Р С‘Р С‘ Р Т‘Р В»РЎРЏ РЎР‚Р В°Р В±Р С•РЎвЂљРЎвЂ№ РЎРѓ Р С”Р С•РЎР‚Р В·Р С‘Р Р…Р С•Р в„–
   const addToCart = (item: ShopItem) => {
     setCart(prevCart => {
       const existingItem = prevCart.find(cartItem => cartItem.id === item.id);
@@ -104,12 +104,12 @@ export function ShopPageImageStyled({
   const checkout = () => {
     const totalPrice = getTotalCartPrice();
     if (userBalance >= totalPrice && cart.length > 0) {
-      // РЎРїРёСЃС‹РІР°РµРј РґРµРЅСЊРіРё СЃ Р±Р°Р»Р°РЅСЃР° РїРѕР»СЊР·РѕРІР°С‚РµР»СЏ
+      // Р РЋР С—Р С‘РЎРѓРЎвЂ№Р Р†Р В°Р ВµР С Р Т‘Р ВµР Р…РЎРЉР С–Р С‘ РЎРѓ Р В±Р В°Р В»Р В°Р Р…РЎРѓР В° Р С—Р С•Р В»РЎРЉР В·Р С•Р Р†Р В°РЎвЂљР ВµР В»РЎРЏ
       if (onUpdateUserBalance && currentUser) {
         onUpdateUserBalance(currentUser.id, -totalPrice);
       }
       
-      // РЎРѕР·РґР°РµРј РЅРѕРІС‹Р№ Р·Р°РєР°Р· СЃРѕ СЃС‚Р°С‚СѓСЃРѕРј "pending" (РѕР¶РёРґР°РµС‚ РјРѕРґРµСЂР°С†РёРё)
+      // Р РЋР С•Р В·Р Т‘Р В°Р ВµР С Р Р…Р С•Р Р†РЎвЂ№Р в„– Р В·Р В°Р С”Р В°Р В· РЎРѓР С• РЎРѓРЎвЂљР В°РЎвЂљРЎС“РЎРѓР С•Р С "pending" (Р С•Р В¶Р С‘Р Т‘Р В°Р ВµРЎвЂљ Р СР С•Р Т‘Р ВµРЎР‚Р В°РЎвЂ Р С‘Р С‘)
       const newOrder: Order = {
         id: Date.now().toString(),
         items: cart.map(cartItem => ({
@@ -120,17 +120,17 @@ export function ShopPageImageStyled({
           emoji: cartItem.emoji
         })),
         total: totalPrice,
-        status: 'pending', // Р—Р°РєР°Р· РѕР¶РёРґР°РµС‚ РјРѕРґРµСЂР°С†РёРё РІ Р°РґРјРёРЅРєРµ
+        status: 'pending', // Р вЂ”Р В°Р С”Р В°Р В· Р С•Р В¶Р С‘Р Т‘Р В°Р ВµРЎвЂљ Р СР С•Р Т‘Р ВµРЎР‚Р В°РЎвЂ Р С‘Р С‘ Р Р† Р В°Р Т‘Р СР С‘Р Р…Р С”Р Вµ
         createdAt: new Date().toISOString(),
         userId: 'current-user',
-        customerName: currentUser?.name || 'РќРµРёР·РІРµСЃС‚РЅС‹Р№ РїРѕР»СЊР·РѕРІР°С‚РµР»СЊ',
-        customerTeam: 'Frontend Team' // TODO: РїРѕР»СѓС‡Р°С‚СЊ РёР· РїСЂРѕС„РёР»СЏ РїРѕР»СЊР·РѕРІР°С‚РµР»СЏ
+        customerName: currentUser?.name || 'Р СњР ВµР С‘Р В·Р Р†Р ВµРЎРѓРЎвЂљР Р…РЎвЂ№Р в„– Р С—Р С•Р В»РЎРЉР В·Р С•Р Р†Р В°РЎвЂљР ВµР В»РЎРЉ',
+        customerTeam: 'Frontend Team' // TODO: Р С—Р С•Р В»РЎС“РЎвЂЎР В°РЎвЂљРЎРЉ Р С‘Р В· Р С—РЎР‚Р С•РЎвЂћР С‘Р В»РЎРЏ Р С—Р С•Р В»РЎРЉР В·Р С•Р Р†Р В°РЎвЂљР ВµР В»РЎРЏ
       };
       
-      // Р”РѕР±Р°РІР»СЏРµРј Р·Р°РєР°Р· РІ СЃРїРёСЃРѕРє Р·Р°РєР°Р·РѕРІ
+      // Р вЂќР С•Р В±Р В°Р Р†Р В»РЎРЏР ВµР С Р В·Р В°Р С”Р В°Р В· Р Р† РЎРѓР С—Р С‘РЎРѓР С•Р С” Р В·Р В°Р С”Р В°Р В·Р С•Р Р†
       setOrders(prevOrders => [...prevOrders, newOrder]);
       
-      // РЈРјРµРЅСЊС€Р°РµРј РєРѕР»РёС‡РµСЃС‚РІРѕ С‚РѕРІР°СЂРѕРІ РЅР° СЃРєР»Р°РґРµ
+      // Р Р€Р СР ВµР Р…РЎРЉРЎв‚¬Р В°Р ВµР С Р С”Р С•Р В»Р С‘РЎвЂЎР ВµРЎРѓРЎвЂљР Р†Р С• РЎвЂљР С•Р Р†Р В°РЎР‚Р С•Р Р† Р Р…Р В° РЎРѓР С”Р В»Р В°Р Т‘Р Вµ
       setShopItems(prevItems => 
         prevItems.map(prevItem => {
           const cartItem = cart.find(c => c.id === prevItem.id);
@@ -141,11 +141,11 @@ export function ShopPageImageStyled({
         })
       );
       
-      // РћС‡РёС‰Р°РµРј РєРѕСЂР·РёРЅСѓ Рё РїРµСЂРµРєР»СЋС‡Р°РµРјСЃСЏ РЅР° С‚Р°Р± Р°РєС‚РёРІРЅС‹С… Р·Р°РєР°Р·РѕРІ
+      // Р С›РЎвЂЎР С‘РЎвЂ°Р В°Р ВµР С Р С”Р С•РЎР‚Р В·Р С‘Р Р…РЎС“ Р С‘ Р С—Р ВµРЎР‚Р ВµР С”Р В»РЎР‹РЎвЂЎР В°Р ВµР СРЎРѓРЎРЏ Р Р…Р В° РЎвЂљР В°Р В± Р В°Р С”РЎвЂљР С‘Р Р†Р Р…РЎвЂ№РЎвЂ¦ Р В·Р В°Р С”Р В°Р В·Р С•Р Р†
       clearCart();
       setCartTab('active');
       
-      console.log(`Р—Р°РєР°Р· РѕС‚РїСЂР°РІР»РµРЅ РЅР° РјРѕРґРµСЂР°С†РёСЋ РЅР° СЃСѓРјРјСѓ ${totalPrice} РєРѕРёРЅРѕРІ. РћСЃС‚Р°С‚РѕРє Р±Р°Р»Р°РЅСЃР°: ${userBalance - totalPrice}`, newOrder);
+      console.log(`Р вЂ”Р В°Р С”Р В°Р В· Р С•РЎвЂљР С—РЎР‚Р В°Р Р†Р В»Р ВµР Р… Р Р…Р В° Р СР С•Р Т‘Р ВµРЎР‚Р В°РЎвЂ Р С‘РЎР‹ Р Р…Р В° РЎРѓРЎС“Р СР СРЎС“ ${totalPrice} Р С”Р С•Р С‘Р Р…Р С•Р Р†. Р С›РЎРѓРЎвЂљР В°РЎвЂљР С•Р С” Р В±Р В°Р В»Р В°Р Р…РЎРѓР В°: ${userBalance - totalPrice}`, newOrder);
     }
   };
 
@@ -171,7 +171,7 @@ export function ShopPageImageStyled({
         color: theme === 'dark' ? '#E8ECF2' : '#0F172A'
       }}
     >
-      {/* РћР±С‹С‡РЅР°СЏ С€Р°РїРєР° */}
+      {/* Р С›Р В±РЎвЂ№РЎвЂЎР Р…Р В°РЎРЏ РЎв‚¬Р В°Р С—Р С”Р В° */}
       <Header 
         onNavigate={onNavigate}
         currentPage={currentPage}
@@ -198,8 +198,8 @@ export function ShopPageImageStyled({
           joinedDate: new Date()
         } : {
           id: 'guest',
-          name: '@Р»РёРЅРє', 
-          username: '@Р»РёРЅРє', 
+          name: '@Р В»Р С‘Р Р…Р С”', 
+          username: '@Р В»Р С‘Р Р…Р С”', 
           avatar: '',
           role: 'user',
           level: 1,
@@ -218,7 +218,7 @@ export function ShopPageImageStyled({
       />
       
       <div className="max-w-md mx-auto px-4 pb-32">
-        {/* РћСЃРЅРѕРІРЅР°СЏ РєР°СЂС‚РѕС‡РєР°-РєРѕРЅС‚РµР№РЅРµСЂ */}
+        {/* Р С›РЎРѓР Р…Р С•Р Р†Р Р…Р В°РЎРЏ Р С”Р В°РЎР‚РЎвЂљР С•РЎвЂЎР С”Р В°-Р С”Р С•Р Р…РЎвЂљР ВµР в„–Р Р…Р ВµРЎР‚ */}
         <div 
           style={{
             backgroundColor: theme === 'dark' ? '#161A22' : '#FFFFFF',
@@ -228,21 +228,21 @@ export function ShopPageImageStyled({
             boxShadow: theme === 'dark' ? '0 8px 24px rgba(0, 0, 0, 0.6)' : '0 8px 24px rgba(0, 0, 0, 0.10)'
           }}
         >
-          {/* Р’РЅСѓС‚СЂРµРЅРЅСЏСЏ С€Р°РїРєР° СЃ Р±Р°Р»Р°РЅСЃРѕРј, Р·Р°РіРѕР»РѕРІРєРѕРј Рё РєРѕСЂР·РёРЅРѕР№ */}
+          {/* Р вЂ™Р Р…РЎС“РЎвЂљРЎР‚Р ВµР Р…Р Р…РЎРЏРЎРЏ РЎв‚¬Р В°Р С—Р С”Р В° РЎРѓ Р В±Р В°Р В»Р В°Р Р…РЎРѓР С•Р С, Р В·Р В°Р С–Р С•Р В»Р С•Р Р†Р С”Р С•Р С Р С‘ Р С”Р С•РЎР‚Р В·Р С‘Р Р…Р С•Р в„– */}
           <div className="relative mb-4">
-            {/* Р—Р°РіРѕР»РѕРІРѕРє РїРѕ С†РµРЅС‚СЂСѓ (Р°Р±СЃРѕР»СЋС‚РЅРѕРµ РїРѕР·РёС†РёРѕРЅРёСЂРѕРІР°РЅРёРµ) */}
+            {/* Р вЂ”Р В°Р С–Р С•Р В»Р С•Р Р†Р С•Р С” Р С—Р С• РЎвЂ Р ВµР Р…РЎвЂљРЎР‚РЎС“ (Р В°Р В±РЎРѓР С•Р В»РЎР‹РЎвЂљР Р…Р С•Р Вµ Р С—Р С•Р В·Р С‘РЎвЂ Р С‘Р С•Р Р…Р С‘РЎР‚Р С•Р Р†Р В°Р Р…Р С‘Р Вµ) */}
             <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
               <h1 
                 className="text-xl font-semibold"
                 style={{ color: theme === 'dark' ? '#E8ECF2' : '#0F172A' }}
               >
-                РўРѕРІР°СЂС‹
+                Р СћР С•Р Р†Р В°РЎР‚РЎвЂ№
               </h1>
             </div>
             
-            {/* Р‘Р°Р»Р°РЅСЃ Рё РєРѕСЂР·РёРЅР° */}
+            {/* Р вЂР В°Р В»Р В°Р Р…РЎРѓ Р С‘ Р С”Р С•РЎР‚Р В·Р С‘Р Р…Р В° */}
             <div className="flex items-center justify-between">
-              {/* Р‘Р°Р»Р°РЅСЃ РІ РјР°Р»РµРЅСЊРєРѕР№ РєР°СЂС‚РѕС‡РєРµ */}
+              {/* Р вЂР В°Р В»Р В°Р Р…РЎРѓ Р Р† Р СР В°Р В»Р ВµР Р…РЎРЉР С”Р С•Р в„– Р С”Р В°РЎР‚РЎвЂљР С•РЎвЂЎР С”Р Вµ */}
               <div 
                 className="px-4 py-2"
                 style={{
@@ -254,7 +254,7 @@ export function ShopPageImageStyled({
                   className="text-xs leading-tight"
                   style={{ color: theme === 'dark' ? '#A7B0BD' : '#6B7280' }}
                 >
-                  Р‘Р°Р»Р°РЅСЃ
+                  Р вЂР В°Р В»Р В°Р Р…РЎРѓ
                 </div>
                 <div className="flex items-center gap-1">
                   <span 
@@ -271,7 +271,7 @@ export function ShopPageImageStyled({
                 </div>
               </div>
               
-              {/* РљРѕСЂР·РёРЅР° СЃРїСЂР°РІР° */}
+              {/* Р С™Р С•РЎР‚Р В·Р С‘Р Р…Р В° РЎРѓР С—РЎР‚Р В°Р Р†Р В° */}
               <button
                 onClick={() => setIsCartOpen(true)}
                 className="relative apple-button hover:scale-95 transition-transform"
@@ -298,7 +298,7 @@ export function ShopPageImageStyled({
             </div>
           </div>
 
-          {/* РЎРїРёСЃРѕРє С‚РѕРІР°СЂРѕРІ */}
+          {/* Р РЋР С—Р С‘РЎРѓР С•Р С” РЎвЂљР С•Р Р†Р В°РЎР‚Р С•Р Р† */}
           <div className="space-y-3">
             {shopItems.length > 0 ? (
               shopItems.map((item) => {
@@ -317,7 +317,7 @@ export function ShopPageImageStyled({
                     }}
                   >
                     <div className="flex items-center gap-4">
-                      {/* РРєРѕРЅРєР° РёР»Рё РёР·РѕР±СЂР°Р¶РµРЅРёРµ С‚РѕРІР°СЂР° */}
+                      {/* Р ВР С”Р С•Р Р…Р С”Р В° Р С‘Р В»Р С‘ Р С‘Р В·Р С•Р В±РЎР‚Р В°Р В¶Р ВµР Р…Р С‘Р Вµ РЎвЂљР С•Р Р†Р В°РЎР‚Р В° */}
                       <div 
                         className="w-12 h-12 flex items-center justify-center flex-shrink-0 cursor-pointer hover:scale-105 transition-transform overflow-hidden"
                         style={{
@@ -338,7 +338,7 @@ export function ShopPageImageStyled({
                         )}
                       </div>
                       
-                      {/* РРЅС„РѕСЂРјР°С†РёСЏ Рѕ С‚РѕРІР°СЂРµ */}
+                      {/* Р ВР Р…РЎвЂћР С•РЎР‚Р СР В°РЎвЂ Р С‘РЎРЏ Р С• РЎвЂљР С•Р Р†Р В°РЎР‚Р Вµ */}
                       <div className="flex-1 min-w-0">
                         <h3 
                           className="font-medium text-base leading-tight truncate"
@@ -361,7 +361,7 @@ export function ShopPageImageStyled({
                         </div>
                       </div>
                       
-                      {/* РљРЅРѕРїРєР° РљСѓРїРёС‚СЊ / РќРµС‚ РІ РЅР°Р»РёС‡РёРё */}
+                      {/* Р С™Р Р…Р С•Р С—Р С”Р В° Р С™РЎС“Р С—Р С‘РЎвЂљРЎРЉ / Р СњР ВµРЎвЂљ Р Р† Р Р…Р В°Р В»Р С‘РЎвЂЎР С‘Р С‘ */}
                       <button 
                         onClick={() => inStock && addToCart(item)}
                         className={`px-6 py-2 transition-all text-sm font-medium whitespace-nowrap text-center`}
@@ -389,8 +389,8 @@ export function ShopPageImageStyled({
                         disabled={!inStock}
                       >
                         {!inStock 
-                          ? 'РќРµС‚ РІ РЅР°Р»РёС‡РёРё' 
-                          : 'РљСѓРїРёС‚СЊ'
+                          ? 'Р СњР ВµРЎвЂљ Р Р† Р Р…Р В°Р В»Р С‘РЎвЂЎР С‘Р С‘' 
+                          : 'Р С™РЎС“Р С—Р С‘РЎвЂљРЎРЉ'
                         }
                       </button>
                     </div>
@@ -410,11 +410,11 @@ export function ShopPageImageStyled({
         theme={theme}
       />
 
-      {/* РњРѕРґР°Р»СЊРЅРѕРµ РѕРєРЅРѕ РєРѕСЂР·РёРЅС‹ */}
+      {/* Р СљР С•Р Т‘Р В°Р В»РЎРЉР Р…Р С•Р Вµ Р С•Р С”Р Р…Р С• Р С”Р С•РЎР‚Р В·Р С‘Р Р…РЎвЂ№ */}
       <ModalOpaque
         isOpen={isCartOpen}
         onClose={() => setIsCartOpen(false)}
-        title="РљРѕСЂР·РёРЅР°"
+        title="Р С™Р С•РЎР‚Р В·Р С‘Р Р…Р В°"
         theme={theme}
         actions={
           cartTab === 'cart' && cart.length > 0 ? (
@@ -439,7 +439,7 @@ export function ShopPageImageStyled({
                   fontWeight: 600
                 }}
               >
-                РћС‡РёСЃС‚РёС‚СЊ
+                Р С›РЎвЂЎР С‘РЎРѓРЎвЂљР С‘РЎвЂљРЎРЉ
               </button>
               <button
                 onClick={checkout}
@@ -464,14 +464,14 @@ export function ShopPageImageStyled({
                   fontWeight: 600
                 }}
               >
-                {userBalance < getTotalCartPrice() ? 'РќРµРґРѕСЃС‚Р°С‚РѕС‡РЅРѕ СЃСЂРµРґСЃС‚РІ' : 'Р—Р°РєР°Р·Р°С‚СЊ'}
+                {userBalance < getTotalCartPrice() ? 'Р СњР ВµР Т‘Р С•РЎРѓРЎвЂљР В°РЎвЂљР С•РЎвЂЎР Р…Р С• РЎРѓРЎР‚Р ВµР Т‘РЎРѓРЎвЂљР Р†' : 'Р вЂ”Р В°Р С”Р В°Р В·Р В°РЎвЂљРЎРЉ'}
               </button>
             </div>
           ) : undefined
         }
       >
         <div className="flex flex-col">
-          {/* РўР°Р±С‹ РєРѕСЂР·РёРЅС‹ */}
+          {/* Р СћР В°Р В±РЎвЂ№ Р С”Р С•РЎР‚Р В·Р С‘Р Р…РЎвЂ№ */}
           <div className="flex gap-2 mb-4">
             <button
               onClick={() => setCartTab('cart')}
@@ -493,7 +493,7 @@ export function ShopPageImageStyled({
                   : 'none'
               }}
             >
-              РљРѕСЂР·РёРЅР°
+              Р С™Р С•РЎР‚Р В·Р С‘Р Р…Р В°
             </button>
             <button
               onClick={() => setCartTab('active')}
@@ -515,7 +515,7 @@ export function ShopPageImageStyled({
                   : 'none'
               }}
             >
-              РђРєС‚РёРІРЅС‹Рµ
+              Р С’Р С”РЎвЂљР С‘Р Р†Р Р…РЎвЂ№Р Вµ
             </button>
             <button
               onClick={() => setCartTab('completed')}
@@ -537,11 +537,11 @@ export function ShopPageImageStyled({
                   : 'none'
               }}
             >
-              Р—Р°РІРµСЂС€РµРЅРЅС‹Рµ
+              Р вЂ”Р В°Р Р†Р ВµРЎР‚РЎв‚¬Р ВµР Р…Р Р…РЎвЂ№Р Вµ
             </button>
           </div>
 
-          {/* РџРѕРєР°Р·Р°С‚СЊ РёС‚РѕРіРѕ РґР»СЏ РєРѕСЂР·РёРЅС‹ */}
+          {/* Р СџР С•Р С”Р В°Р В·Р В°РЎвЂљРЎРЉ Р С‘РЎвЂљР С•Р С–Р С• Р Т‘Р В»РЎРЏ Р С”Р С•РЎР‚Р В·Р С‘Р Р…РЎвЂ№ */}
           {cartTab === 'cart' && cart.length > 0 && (
             <div 
               className="flex items-center justify-between mb-4 p-3 rounded-xl"
@@ -553,7 +553,7 @@ export function ShopPageImageStyled({
                 className="font-medium"
                 style={{ color: theme === 'dark' ? '#E8ECF2' : '#0F172A' }}
               >
-                РС‚РѕРіРѕ:
+                Р ВРЎвЂљР С•Р С–Р С•:
               </span>
               <div className="flex items-center gap-1">
                 <span 
@@ -571,7 +571,7 @@ export function ShopPageImageStyled({
             </div>
           )}
 
-          {/* РЎРѕРґРµСЂР¶РёРјРѕРµ РєРѕСЂР·РёРЅС‹ */}
+          {/* Р РЋР С•Р Т‘Р ВµРЎР‚Р В¶Р С‘Р СР С•Р Вµ Р С”Р С•РЎР‚Р В·Р С‘Р Р…РЎвЂ№ */}
           <div className="overflow-y-auto" style={{ maxHeight: '400px' }}>
             {cartTab === 'cart' && (
               <>
@@ -585,7 +585,7 @@ export function ShopPageImageStyled({
                       className="text-sm"
                       style={{ color: theme === 'dark' ? '#A7B0BD' : '#6B7280' }}
                     >
-                      РљРѕСЂР·РёРЅР° РїСѓСЃС‚Р°
+                      Р С™Р С•РЎР‚Р В·Р С‘Р Р…Р В° Р С—РЎС“РЎРѓРЎвЂљР В°
                     </p>
                   </div>
                 ) : (
@@ -632,7 +632,7 @@ export function ShopPageImageStyled({
                               className="text-xs"
                               style={{ color: theme === 'dark' ? '#A7B0BD' : '#6B7280' }}
                             >
-                              Р·Р° С€С‚.
+                              Р В·Р В° РЎв‚¬РЎвЂљ.
                             </span>
                           </div>
                         </div>
@@ -685,7 +685,7 @@ export function ShopPageImageStyled({
               </>
             )}
 
-            {/* РђРєС‚РёРІРЅС‹Рµ Р·Р°РєР°Р·С‹ */}
+            {/* Р С’Р С”РЎвЂљР С‘Р Р†Р Р…РЎвЂ№Р Вµ Р В·Р В°Р С”Р В°Р В·РЎвЂ№ */}
             {cartTab === 'active' && (
               <div className="space-y-3">
                 {orders.filter(order => order.status === 'active' || order.status === 'pending').length === 0 ? (
@@ -698,7 +698,7 @@ export function ShopPageImageStyled({
                       className="text-sm"
                       style={{ color: theme === 'dark' ? '#A7B0BD' : '#6B7280' }}
                     >
-                      РќРµС‚ Р°РєС‚РёРІРЅС‹С… Р·Р°РєР°Р·РѕРІ
+                      Р СњР ВµРЎвЂљ Р В°Р С”РЎвЂљР С‘Р Р†Р Р…РЎвЂ№РЎвЂ¦ Р В·Р В°Р С”Р В°Р В·Р С•Р Р†
                     </p>
                   </div>
                 ) : (
@@ -718,7 +718,7 @@ export function ShopPageImageStyled({
                           className="font-medium text-sm"
                           style={{ color: theme === 'dark' ? '#E8ECF2' : '#0F172A' }}
                         >
-                          Р—Р°РєР°Р· #{order.id}
+                          Р вЂ”Р В°Р С”Р В°Р В· #{order.id}
                         </span>
                         <span 
                           className="text-xs px-2 py-1 rounded-full"
@@ -731,7 +731,7 @@ export function ShopPageImageStyled({
                               : '#ff9500'
                           }}
                         >
-                          {order.status === 'pending' ? 'РћР¶РёРґР°РµС‚ РјРѕРґРµСЂР°С†РёРё' : 'Р’ РѕР±СЂР°Р±РѕС‚РєРµ'}
+                          {order.status === 'pending' ? 'Р С›Р В¶Р С‘Р Т‘Р В°Р ВµРЎвЂљ Р СР С•Р Т‘Р ВµРЎР‚Р В°РЎвЂ Р С‘Р С‘' : 'Р вЂ™ Р С•Р В±РЎР‚Р В°Р В±Р С•РЎвЂљР С”Р Вµ'}
                         </span>
                       </div>
                       <div 
@@ -769,7 +769,7 @@ export function ShopPageImageStyled({
                       >
                         <div className="flex justify-between font-medium text-sm">
                           <span style={{ color: theme === 'dark' ? '#E8ECF2' : '#0F172A' }}>
-                            РС‚РѕРіРѕ:
+                            Р ВРЎвЂљР С•Р С–Р С•:
                           </span>
                           <div className="flex items-center gap-1">
                             <span style={{ color: theme === 'dark' ? '#E8ECF2' : '#0F172A' }}>
@@ -789,7 +789,7 @@ export function ShopPageImageStyled({
               </div>
             )}
 
-            {/* Р—Р°РІРµСЂС€РµРЅРЅС‹Рµ Р·Р°РєР°Р·С‹ */}
+            {/* Р вЂ”Р В°Р Р†Р ВµРЎР‚РЎв‚¬Р ВµР Р…Р Р…РЎвЂ№Р Вµ Р В·Р В°Р С”Р В°Р В·РЎвЂ№ */}
             {cartTab === 'completed' && (
               <div className="space-y-3">
                 {orders.filter(order => order.status === 'completed').length === 0 ? (
@@ -802,7 +802,7 @@ export function ShopPageImageStyled({
                       className="text-sm"
                       style={{ color: theme === 'dark' ? '#A7B0BD' : '#6B7280' }}
                     >
-                      РќРµС‚ Р·Р°РІРµСЂС€РµРЅРЅС‹С… Р·Р°РєР°Р·РѕРІ
+                      Р СњР ВµРЎвЂљ Р В·Р В°Р Р†Р ВµРЎР‚РЎв‚¬Р ВµР Р…Р Р…РЎвЂ№РЎвЂ¦ Р В·Р В°Р С”Р В°Р В·Р С•Р Р†
                     </p>
                   </div>
                 ) : (
@@ -822,7 +822,7 @@ export function ShopPageImageStyled({
                           className="font-medium text-sm"
                           style={{ color: theme === 'dark' ? '#E8ECF2' : '#0F172A' }}
                         >
-                          Р—Р°РєР°Р· #{order.id}
+                          Р вЂ”Р В°Р С”Р В°Р В· #{order.id}
                         </span>
                         <span 
                           className="text-xs px-2 py-1 rounded-full"
@@ -831,7 +831,7 @@ export function ShopPageImageStyled({
                             color: '#34c759'
                           }}
                         >
-                          Р—Р°РІРµСЂС€РµРЅ
+                          Р вЂ”Р В°Р Р†Р ВµРЎР‚РЎв‚¬Р ВµР Р…
                         </span>
                       </div>
                       <div 
@@ -869,7 +869,7 @@ export function ShopPageImageStyled({
                       >
                         <div className="flex justify-between font-medium text-sm">
                           <span style={{ color: theme === 'dark' ? '#E8ECF2' : '#0F172A' }}>
-                            РС‚РѕРіРѕ:
+                            Р ВРЎвЂљР С•Р С–Р С•:
                           </span>
                           <div className="flex items-center gap-1">
                             <span style={{ color: theme === 'dark' ? '#E8ECF2' : '#0F172A' }}>
@@ -892,11 +892,11 @@ export function ShopPageImageStyled({
         </div>
       </ModalOpaque>
 
-      {/* РњРѕРґР°Р»СЊРЅРѕРµ РѕРєРЅРѕ РѕРїРёСЃР°РЅРёСЏ С‚РѕРІР°СЂР° */}
+      {/* Р СљР С•Р Т‘Р В°Р В»РЎРЉР Р…Р С•Р Вµ Р С•Р С”Р Р…Р С• Р С•Р С—Р С‘РЎРѓР В°Р Р…Р С‘РЎРЏ РЎвЂљР С•Р Р†Р В°РЎР‚Р В° */}
       <ModalOpaque
         isOpen={isItemDetailsOpen}
         onClose={() => setIsItemDetailsOpen(false)}
-        title={selectedItem ? selectedItem.name : "Р”РµС‚Р°Р»Рё С‚РѕРІР°СЂР°"}
+        title={selectedItem ? selectedItem.name : "Р вЂќР ВµРЎвЂљР В°Р В»Р С‘ РЎвЂљР С•Р Р†Р В°РЎР‚Р В°"}
         theme={theme}
         actions={
           selectedItem && selectedItem.stock > 0 && userBalance >= selectedItem.price ? (
@@ -912,7 +912,7 @@ export function ShopPageImageStyled({
                 fontWeight: '600'
               }}
             >
-              РљСѓРїРёС‚СЊ Р·Р° {selectedItem.price.toLocaleString()}
+              Р С™РЎС“Р С—Р С‘РЎвЂљРЎРЉ Р В·Р В° {selectedItem.price.toLocaleString()}
               <img 
                 src={coinIcon} 
                 alt="coins" 
@@ -934,7 +934,7 @@ export function ShopPageImageStyled({
                 cursor: 'not-allowed'
               }}
             >
-              РќРµС‚ РІ РЅР°Р»РёС‡РёРё
+              Р СњР ВµРЎвЂљ Р Р† Р Р…Р В°Р В»Р С‘РЎвЂЎР С‘Р С‘
             </button>
           ) : selectedItem && userBalance < selectedItem.price ? (
             <button
@@ -951,14 +951,14 @@ export function ShopPageImageStyled({
                 cursor: 'not-allowed'
               }}
             >
-              РќРµРґРѕСЃС‚Р°С‚РѕС‡РЅРѕ СЃСЂРµРґСЃС‚РІ
+              Р СњР ВµР Т‘Р С•РЎРѓРЎвЂљР В°РЎвЂљР С•РЎвЂЎР Р…Р С• РЎРѓРЎР‚Р ВµР Т‘РЎРѓРЎвЂљР Р†
             </button>
           ) : undefined
         }
       >
         {selectedItem && (
           <div className="space-y-4">
-            {/* РРєРѕРЅРєР° РёР»Рё РёР·РѕР±СЂР°Р¶РµРЅРёРµ С‚РѕРІР°СЂР° */}
+            {/* Р ВР С”Р С•Р Р…Р С”Р В° Р С‘Р В»Р С‘ Р С‘Р В·Р С•Р В±РЎР‚Р В°Р В¶Р ВµР Р…Р С‘Р Вµ РЎвЂљР С•Р Р†Р В°РЎР‚Р В° */}
             <div className="flex justify-center">
               <div 
                 className="w-24 h-24 rounded-2xl flex items-center justify-center shadow-lg overflow-hidden"
@@ -979,7 +979,7 @@ export function ShopPageImageStyled({
               </div>
             </div>
 
-            {/* РљР°С‚РµРіРѕСЂРёСЏ */}
+            {/* Р С™Р В°РЎвЂљР ВµР С–Р С•РЎР‚Р С‘РЎРЏ */}
             <div className="text-center">
               <span 
                 className="inline-block px-3 py-1 rounded-full text-sm font-medium"
@@ -992,7 +992,7 @@ export function ShopPageImageStyled({
               </span>
             </div>
 
-            {/* РћРїРёСЃР°РЅРёРµ */}
+            {/* Р С›Р С—Р С‘РЎРѓР В°Р Р…Р С‘Р Вµ */}
             <div className="text-center space-y-2">
               <p 
                 className="text-sm leading-relaxed"
@@ -1002,7 +1002,7 @@ export function ShopPageImageStyled({
               </p>
             </div>
 
-            {/* РРЅС„РѕСЂРјР°С†РёСЏ Рѕ РЅР°Р»РёС‡РёРё Рё С†РµРЅРµ */}
+            {/* Р ВР Р…РЎвЂћР С•РЎР‚Р СР В°РЎвЂ Р С‘РЎРЏ Р С• Р Р…Р В°Р В»Р С‘РЎвЂЎР С‘Р С‘ Р С‘ РЎвЂ Р ВµР Р…Р Вµ */}
             <div 
               className="p-4 rounded-xl space-y-2"
               style={{
@@ -1011,7 +1011,7 @@ export function ShopPageImageStyled({
             >
               <div className="flex justify-between text-sm">
                 <span style={{ color: theme === 'dark' ? '#A7B0BD' : '#6B7280' }}>
-                  Р¦РµРЅР°:
+                  Р В¦Р ВµР Р…Р В°:
                 </span>
                 <span 
                   className="font-medium"
@@ -1029,13 +1029,13 @@ export function ShopPageImageStyled({
               </div>
               <div className="flex justify-between text-sm">
                 <span style={{ color: theme === 'dark' ? '#A7B0BD' : '#6B7280' }}>
-                  Р’ РЅР°Р»РёС‡РёРё:
+                  Р вЂ™ Р Р…Р В°Р В»Р С‘РЎвЂЎР С‘Р С‘:
                 </span>
                 <span 
                   className="font-medium"
                   style={{ color: theme === 'dark' ? '#E8ECF2' : '#0F172A' }}
                 >
-                  {selectedItem.stock === -1 ? 'РќРµРѕРіСЂР°РЅРёС‡РµРЅРЅРѕ' : `${selectedItem.stock} С€С‚.`}
+                  {selectedItem.stock === -1 ? 'Р СњР ВµР С•Р С–РЎР‚Р В°Р Р…Р С‘РЎвЂЎР ВµР Р…Р Р…Р С•' : `${selectedItem.stock} РЎв‚¬РЎвЂљ.`}
                 </span>
               </div>
             </div>

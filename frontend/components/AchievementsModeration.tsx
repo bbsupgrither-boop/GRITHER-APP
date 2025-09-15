@@ -1,4 +1,4 @@
-﻿import { useState } from 'react';
+п»їimport { useState } from 'react';
 import { Menu, X } from './Icons';
 import { AchievementModerationModal } from './AchievementModerationModal';
 
@@ -34,7 +34,7 @@ interface Props {
 }
 
 export function AchievementsModeration({ currentAdminPage, setCurrentAdminPage }: Props) {
-  // РџСѓСЃС‚С‹Рµ РґР°РЅРЅС‹Рµ РґРѕСЃС‚РёР¶РµРЅРёР№ - РїРѕР»СЊР·РѕРІР°С‚РµР»Рё Р±СѓРґСѓС‚ РїРѕРґР°РІР°С‚СЊ РёС… СЃР°РјРѕСЃС‚РѕСЏС‚РµР»СЊРЅРѕ
+  // Р СџРЎС“РЎРѓРЎвЂљРЎвЂ№Р Вµ Р Т‘Р В°Р Р…Р Р…РЎвЂ№Р Вµ Р Т‘Р С•РЎРѓРЎвЂљР С‘Р В¶Р ВµР Р…Р С‘Р в„– - Р С—Р С•Р В»РЎРЉР В·Р С•Р Р†Р В°РЎвЂљР ВµР В»Р С‘ Р В±РЎС“Р Т‘РЎС“РЎвЂљ Р С—Р С•Р Т‘Р В°Р Р†Р В°РЎвЂљРЎРЉ Р С‘РЎвЂ¦ РЎРѓР В°Р СР С•РЎРѓРЎвЂљР С•РЎРЏРЎвЂљР ВµР В»РЎРЉР Р…Р С•
   const [pendingAchievements, setPendingAchievements] = useState<AchievementModeration[]>([]);
 
   const [selectedAchievement, setSelectedAchievement] = useState<AchievementModeration | null>(null);
@@ -79,18 +79,18 @@ export function AchievementsModeration({ currentAdminPage, setCurrentAdminPage }
 
   const getStatusBadge = (status: string, progress: number) => {
     if (status === 'approved') {
-      return <span className="px-2 py-1 bg-green-100 text-green-800 dark:bg-green-900/20 dark:text-green-400 rounded text-xs">РѕРґРѕР±СЂРµРЅРѕ</span>;
+      return <span className="px-2 py-1 bg-green-100 text-green-800 dark:bg-green-900/20 dark:text-green-400 rounded text-xs">Р С•Р Т‘Р С•Р В±РЎР‚Р ВµР Р…Р С•</span>;
     }
     if (status === 'rejected') {
-      return <span className="px-2 py-1 bg-red-100 text-red-800 dark:bg-red-900/20 dark:text-red-400 rounded text-xs">РѕС‚РєР»РѕРЅРµРЅРѕ</span>;
+      return <span className="px-2 py-1 bg-red-100 text-red-800 dark:bg-red-900/20 dark:text-red-400 rounded text-xs">Р С•РЎвЂљР С”Р В»Р С•Р Р…Р ВµР Р…Р С•</span>;
     }
-    return <span className="px-2 py-1 bg-yellow-100 text-yellow-800 dark:bg-yellow-900/20 dark:text-yellow-400 rounded text-xs">РЅР° РїСЂРѕРІРµСЂРєРµ</span>;
+    return <span className="px-2 py-1 bg-yellow-100 text-yellow-800 dark:bg-yellow-900/20 dark:text-yellow-400 rounded text-xs">Р Р…Р В° Р С—РЎР‚Р С•Р Р†Р ВµРЎР‚Р С”Р Вµ</span>;
   };
 
-  // Р¤РёР»СЊС‚СЂСѓРµРј С‚РѕР»СЊРєРѕ РЅР° РїСЂРѕРІРµСЂРєРµ
+  // Р В¤Р С‘Р В»РЎРЉРЎвЂљРЎР‚РЎС“Р ВµР С РЎвЂљР С•Р В»РЎРЉР С”Р С• Р Р…Р В° Р С—РЎР‚Р С•Р Р†Р ВµРЎР‚Р С”Р Вµ
   const filteredAchievements = pendingAchievements.filter(a => a.status === 'pending');
 
-  // РЎРѕСЂС‚РёСЂРѕРІРєР°
+  // Р РЋР С•РЎР‚РЎвЂљР С‘РЎР‚Р С•Р Р†Р С”Р В°
   const sortedAchievements = [...filteredAchievements].sort((a, b) => {
     switch (sortBy) {
       case 'date':
@@ -108,31 +108,31 @@ export function AchievementsModeration({ currentAdminPage, setCurrentAdminPage }
     <>
       <div className="min-h-screen bg-background pb-40">
         <div className="p-6">
-          {/* Р—Р°РіРѕР»РѕРІРѕРє */}
+          {/* Р вЂ”Р В°Р С–Р С•Р В»Р С•Р Р†Р С•Р С” */}
           <div className="text-center mb-8">
-            <h2 className="text-xl font-medium text-foreground">РњРѕРґРµСЂР°С†РёСЏ РґРѕСЃС‚РёР¶РµРЅРёР№</h2>
+            <h2 className="text-xl font-medium text-foreground">Р СљР С•Р Т‘Р ВµРЎР‚Р В°РЎвЂ Р С‘РЎРЏ Р Т‘Р С•РЎРѓРЎвЂљР С‘Р В¶Р ВµР Р…Р С‘Р в„–</h2>
           </div>
 
-          {/* Card СЃ РґРѕСЃС‚РёР¶РµРЅРёСЏРјРё РЅР° РїСЂРѕРІРµСЂРєРµ */}
+          {/* Card РЎРѓ Р Т‘Р С•РЎРѓРЎвЂљР С‘Р В¶Р ВµР Р…Р С‘РЎРЏР СР С‘ Р Р…Р В° Р С—РЎР‚Р С•Р Р†Р ВµРЎР‚Р С”Р Вµ */}
           <div className="px-6">
             <div className="glass-card rounded-2xl apple-shadow p-4">
-              {/* Р—Р°РіРѕР»РѕРІРѕРє СЃ СЃРѕСЂС‚РёСЂРѕРІРєРѕР№ */}
+              {/* Р вЂ”Р В°Р С–Р С•Р В»Р С•Р Р†Р С•Р С” РЎРѓ РЎРѓР С•РЎР‚РЎвЂљР С‘РЎР‚Р С•Р Р†Р С”Р С•Р в„– */}
               <div className="flex items-center justify-between mb-4">
-                <h3 className="text-lg font-medium text-foreground">Р”РѕСЃС‚РёР¶РµРЅРёСЏ РЅР° РїСЂРѕРІРµСЂРєРµ ({filteredAchievements.length})</h3>
+                <h3 className="text-lg font-medium text-foreground">Р вЂќР С•РЎРѓРЎвЂљР С‘Р В¶Р ВµР Р…Р С‘РЎРЏ Р Р…Р В° Р С—РЎР‚Р С•Р Р†Р ВµРЎР‚Р С”Р Вµ ({filteredAchievements.length})</h3>
                 <div className="relative">
                   <button 
                     onClick={() => setShowSortDropdown(!showSortDropdown)}
                     className="glass-card p-3 rounded-xl transition-colors hover:bg-accent/50" 
-                    title="РЎРѕСЂС‚РёСЂРѕРІРєР°"
+                    title="Р РЋР С•РЎР‚РЎвЂљР С‘РЎР‚Р С•Р Р†Р С”Р В°"
                   >
                     <Menu size={16} className="text-foreground/70" />
                   </button>
                   {showSortDropdown && (
                     <div className="absolute top-full right-0 mt-2 w-48 glass-card rounded-xl apple-shadow z-10">
                       {[
-                        { key: 'date', label: 'РџРѕ РґР°С‚Рµ РїРѕРґР°С‡Рё' },
-                        { key: 'progress', label: 'РџРѕ РїСЂРѕРіСЂРµСЃСЃСѓ' },
-                        { key: 'employee', label: 'РџРѕ СЃРѕС‚СЂСѓРґРЅРёРєСѓ' }
+                        { key: 'date', label: 'Р СџР С• Р Т‘Р В°РЎвЂљР Вµ Р С—Р С•Р Т‘Р В°РЎвЂЎР С‘' },
+                        { key: 'progress', label: 'Р СџР С• Р С—РЎР‚Р С•Р С–РЎР‚Р ВµРЎРѓРЎРѓРЎС“' },
+                        { key: 'employee', label: 'Р СџР С• РЎРѓР С•РЎвЂљРЎР‚РЎС“Р Т‘Р Р…Р С‘Р С”РЎС“' }
                       ].map((option) => (
                         <button
                           key={option.key}
@@ -152,7 +152,7 @@ export function AchievementsModeration({ currentAdminPage, setCurrentAdminPage }
                 </div>
               </div>
 
-              {/* РЎРїРёСЃРѕРє РґРѕСЃС‚РёР¶РµРЅРёР№ */}
+              {/* Р РЋР С—Р С‘РЎРѓР С•Р С” Р Т‘Р С•РЎРѓРЎвЂљР С‘Р В¶Р ВµР Р…Р С‘Р в„– */}
               <div className="space-y-3">
                 {sortedAchievements.map((achievement) => (
                   <div
@@ -166,14 +166,14 @@ export function AchievementsModeration({ currentAdminPage, setCurrentAdminPage }
                     </div>
                     
                     <div className="text-sm text-muted-foreground mb-2">
-                      РЎРѕС‚СЂСѓРґРЅРёРє: {achievement.assignedTo}
+                      Р РЋР С•РЎвЂљРЎР‚РЎС“Р Т‘Р Р…Р С‘Р С”: {achievement.assignedTo}
                     </div>
                     
                     <div className="text-sm text-muted-foreground mb-3">
-                      РџСЂРѕРіСЂРµСЃСЃ: {achievement.completionPercentage}% вЂў {new Date(achievement.submittedDate).toLocaleDateString('ru-RU')}
+                      Р СџРЎР‚Р С•Р С–РЎР‚Р ВµРЎРѓРЎРѓ: {achievement.completionPercentage}% РІР‚Сћ {new Date(achievement.submittedDate).toLocaleDateString('ru-RU')}
                     </div>
 
-                    {/* РџСЂРѕРіСЂРµСЃСЃ Р±Р°СЂ */}
+                    {/* Р СџРЎР‚Р С•Р С–РЎР‚Р ВµРЎРѓРЎРѓ Р В±Р В°РЎР‚ */}
                     <div className="w-full bg-secondary rounded-full h-2">
                       <div 
                         className="bg-primary rounded-full h-2 transition-all duration-300"
@@ -181,7 +181,7 @@ export function AchievementsModeration({ currentAdminPage, setCurrentAdminPage }
                       />
                     </div>
 
-                    {/* РљРЅРѕРїРєРё РґРµР№СЃС‚РІРёР№ */}
+                    {/* Р С™Р Р…Р С•Р С—Р С”Р С‘ Р Т‘Р ВµР в„–РЎРѓРЎвЂљР Р†Р С‘Р в„– */}
                     <div className="flex gap-2 mt-3">
                       <button
                         onClick={(e) => {
@@ -190,7 +190,7 @@ export function AchievementsModeration({ currentAdminPage, setCurrentAdminPage }
                         }}
                         className="flex-1 py-2 px-4 bg-green-500 text-white rounded-lg text-sm font-medium transition-colors hover:bg-green-600"
                       >
-                        РћРґРѕР±СЂРёС‚СЊ
+                        Р С›Р Т‘Р С•Р В±РЎР‚Р С‘РЎвЂљРЎРЉ
                       </button>
                       <button
                         onClick={(e) => {
@@ -199,7 +199,7 @@ export function AchievementsModeration({ currentAdminPage, setCurrentAdminPage }
                         }}
                         className="flex-1 py-2 px-4 bg-red-500 text-white rounded-lg text-sm font-medium transition-colors hover:bg-red-600"
                       >
-                        РћС‚РєР»РѕРЅРёС‚СЊ
+                        Р С›РЎвЂљР С”Р В»Р С•Р Р…Р С‘РЎвЂљРЎРЉ
                       </button>
                     </div>
                   </div>
@@ -207,7 +207,7 @@ export function AchievementsModeration({ currentAdminPage, setCurrentAdminPage }
 
                 {sortedAchievements.length === 0 && (
                   <div className="text-center text-muted-foreground py-8">
-                    РќРµС‚ РґРѕСЃС‚РёР¶РµРЅРёР№ РЅР° РїСЂРѕРІРµСЂРєРµ
+                    Р СњР ВµРЎвЂљ Р Т‘Р С•РЎРѓРЎвЂљР С‘Р В¶Р ВµР Р…Р С‘Р в„– Р Р…Р В° Р С—РЎР‚Р С•Р Р†Р ВµРЎР‚Р С”Р Вµ
                   </div>
                 )}
               </div>
@@ -216,7 +216,7 @@ export function AchievementsModeration({ currentAdminPage, setCurrentAdminPage }
                 onClick={() => setCurrentAdminPage?.('dashboard')}
                 className="w-full py-3 px-4 bg-primary text-primary-foreground rounded-full text-sm font-medium transition-colors hover:bg-primary/90 mt-6"
               >
-                Р—Р°РєСЂС‹С‚СЊ
+                Р вЂ”Р В°Р С”РЎР‚РЎвЂ№РЎвЂљРЎРЉ
               </button>
             </div>
           </div>

@@ -24,7 +24,7 @@ interface AdminBattleManagementProps {
   theme: 'light' | 'dark';
 }
 
-// Используем BattleData из базы данных
+// РСЃРїРѕР»СЊР·СѓРµРј BattleData РёР· Р±Р°Р·С‹ РґР°РЅРЅС‹С…
 
 interface BattleStats {
   totalBattles: number;
@@ -41,10 +41,10 @@ interface BattleStats {
 }
 
 const BATTLE_STATUS = {
-  active: { label: 'Активный', color: 'bg-yellow-500' },
-  completed: { label: 'Завершен', color: 'bg-green-500' },
-  cancelled: { label: 'Отменен', color: 'bg-red-500' },
-  disputed: { label: 'Спорный', color: 'bg-orange-500' }
+  active: { label: 'РђРєС‚РёРІРЅС‹Р№', color: 'bg-yellow-500' },
+  completed: { label: 'Р—Р°РІРµСЂС€РµРЅ', color: 'bg-green-500' },
+  cancelled: { label: 'РћС‚РјРµРЅРµРЅ', color: 'bg-red-500' },
+  disputed: { label: 'РЎРїРѕСЂРЅС‹Р№', color: 'bg-orange-500' }
 };
 
 export const AdminBattleManagement: React.FC<AdminBattleManagementProps> = ({ theme }) => {
@@ -64,31 +64,31 @@ export const AdminBattleManagement: React.FC<AdminBattleManagementProps> = ({ th
   const [activeTab, setActiveTab] = useState<'active' | 'history' | 'disputes'>('active');
   const [selectedBattle, setSelectedBattle] = useState<Battle | null>(null);
 
-  // Загрузка данных
+  // Р—Р°РіСЂСѓР·РєР° РґР°РЅРЅС‹С…
   useEffect(() => {
     loadBattles();
   }, []);
 
-  // Фильтрация
+  // Р¤РёР»СЊС‚СЂР°С†РёСЏ
   useEffect(() => {
     filterBattles();
   }, [battles, searchQuery, filterStatus, activeTab]);
 
   const loadBattles = async () => {
-    // Mock данные
+    // Mock РґР°РЅРЅС‹Рµ
     const mockBattles: Battle[] = [
       {
         id: '1',
         player1: {
           id: 'user1',
-          name: 'Алексей Иванов',
-          team: 'Команда А',
+          name: 'РђР»РµРєСЃРµР№ РРІР°РЅРѕРІ',
+          team: 'РљРѕРјР°РЅРґР° Рђ',
           balance: 1000
         },
         player2: {
           id: 'user2',
-          name: 'Мария Петрова',
-          team: 'Команда Б',
+          name: 'РњР°СЂРёСЏ РџРµС‚СЂРѕРІР°',
+          team: 'РљРѕРјР°РЅРґР° Р‘',
           balance: 750
         },
         stake: 250,
@@ -99,14 +99,14 @@ export const AdminBattleManagement: React.FC<AdminBattleManagementProps> = ({ th
         id: '2',
         player1: {
           id: 'user3',
-          name: 'Дмитрий Сидоров',
-          team: 'Команда В',
+          name: 'Р”РјРёС‚СЂРёР№ РЎРёРґРѕСЂРѕРІ',
+          team: 'РљРѕРјР°РЅРґР° Р’',
           balance: 500
         },
         player2: {
           id: 'user4',
-          name: 'Анна Козлова',
-          team: 'Команда Г',
+          name: 'РђРЅРЅР° РљРѕР·Р»РѕРІР°',
+          team: 'РљРѕРјР°РЅРґР° Р“',
           balance: 1200
         },
         stake: 300,
@@ -119,19 +119,19 @@ export const AdminBattleManagement: React.FC<AdminBattleManagementProps> = ({ th
         id: '3',
         player1: {
           id: 'user5',
-          name: 'Петр Петров',
-          team: 'Команда Д',
+          name: 'РџРµС‚СЂ РџРµС‚СЂРѕРІ',
+          team: 'РљРѕРјР°РЅРґР° Р”',
           balance: 800
         },
         player2: {
           id: 'user6',
-          name: 'Елена Морозова',
-          team: 'Команда Е',
+          name: 'Р•Р»РµРЅР° РњРѕСЂРѕР·РѕРІР°',
+          team: 'РљРѕРјР°РЅРґР° Р•',
           balance: 600
         },
         stake: 200,
         status: 'disputed',
-        disputeReason: 'Подозрение на читы',
+        disputeReason: 'РџРѕРґРѕР·СЂРµРЅРёРµ РЅР° С‡РёС‚С‹',
         proof: ['proof1.jpg', 'proof2.jpg'],
         createdAt: '2024-01-19T10:20:00Z'
       }
@@ -139,7 +139,7 @@ export const AdminBattleManagement: React.FC<AdminBattleManagementProps> = ({ th
 
     setBattles(mockBattles);
 
-    // Расчет статистики
+    // Р Р°СЃС‡РµС‚ СЃС‚Р°С‚РёСЃС‚РёРєРё
     const totalBattles = mockBattles.length;
     const activeBattles = mockBattles.filter(b => b.status === 'active').length;
     const completedBattles = mockBattles.filter(b => b.status === 'completed').length;
@@ -155,9 +155,9 @@ export const AdminBattleManagement: React.FC<AdminBattleManagementProps> = ({ th
       totalVolume,
       averageStake,
       topPlayers: [
-        { name: 'Анна Козлова', wins: 5, totalWinnings: 1500 },
-        { name: 'Алексей Иванов', wins: 4, totalWinnings: 1200 },
-        { name: 'Дмитрий Сидоров', wins: 3, totalWinnings: 900 }
+        { name: 'РђРЅРЅР° РљРѕР·Р»РѕРІР°', wins: 5, totalWinnings: 1500 },
+        { name: 'РђР»РµРєСЃРµР№ РРІР°РЅРѕРІ', wins: 4, totalWinnings: 1200 },
+        { name: 'Р”РјРёС‚СЂРёР№ РЎРёРґРѕСЂРѕРІ', wins: 3, totalWinnings: 900 }
       ]
     });
   };
@@ -165,7 +165,7 @@ export const AdminBattleManagement: React.FC<AdminBattleManagementProps> = ({ th
   const filterBattles = () => {
     let filtered = battles;
 
-    // Фильтр по табу
+    // Р¤РёР»СЊС‚СЂ РїРѕ С‚Р°Р±Сѓ
     if (activeTab === 'active') {
       filtered = filtered.filter(b => b.status === 'active');
     } else if (activeTab === 'history') {
@@ -174,7 +174,7 @@ export const AdminBattleManagement: React.FC<AdminBattleManagementProps> = ({ th
       filtered = filtered.filter(b => b.status === 'disputed');
     }
 
-    // Поиск
+    // РџРѕРёСЃРє
     if (searchQuery) {
       filtered = filtered.filter(battle =>
         battle.player1.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
@@ -183,7 +183,7 @@ export const AdminBattleManagement: React.FC<AdminBattleManagementProps> = ({ th
       );
     }
 
-    // Фильтр по статусу
+    // Р¤РёР»СЊС‚СЂ РїРѕ СЃС‚Р°С‚СѓСЃСѓ
     if (filterStatus !== 'all') {
       filtered = filtered.filter(battle => battle.status === filterStatus);
     }
@@ -262,7 +262,7 @@ export const AdminBattleManagement: React.FC<AdminBattleManagementProps> = ({ th
                   {battle.player1.team}
                 </div>
                 <div className="text-xs opacity-60">
-                  💰 {battle.player1.balance}
+                  рџ’° {battle.player1.balance}
                 </div>
               </div>
 
@@ -271,10 +271,10 @@ export const AdminBattleManagement: React.FC<AdminBattleManagementProps> = ({ th
                   VS
                 </div>
                 <div className="text-sm opacity-70" style={{ color: theme === 'dark' ? '#A7B0BD' : '#6B7280' }}>
-                  Ставка: {battle.stake} монет
+                  РЎС‚Р°РІРєР°: {battle.stake} РјРѕРЅРµС‚
                 </div>
                 <div className="text-xs opacity-60">
-                  📅 {new Date(battle.createdAt).toLocaleString()}
+                  рџ“… {new Date(battle.createdAt).toLocaleString()}
                 </div>
               </div>
 
@@ -289,7 +289,7 @@ export const AdminBattleManagement: React.FC<AdminBattleManagementProps> = ({ th
                   {battle.player2.team}
                 </div>
                 <div className="text-xs opacity-60">
-                  💰 {battle.player2.balance}
+                  рџ’° {battle.player2.balance}
                 </div>
               </div>
             </div>
@@ -314,7 +314,7 @@ export const AdminBattleManagement: React.FC<AdminBattleManagementProps> = ({ th
                 className="flex items-center space-x-1 px-3 py-1 rounded-lg bg-red-500 bg-opacity-20 text-red-500 hover:bg-opacity-30 text-sm"
               >
                 <X className="w-4 h-4" />
-                <span>Отменить</span>
+                <span>РћС‚РјРµРЅРёС‚СЊ</span>
               </button>
             </div>
           </div>
@@ -357,10 +357,10 @@ export const AdminBattleManagement: React.FC<AdminBattleManagementProps> = ({ th
                   VS
                 </div>
                 <div className="text-sm opacity-70" style={{ color: theme === 'dark' ? '#A7B0BD' : '#6B7280' }}>
-                  Ставка: {battle.stake} монет
+                  РЎС‚Р°РІРєР°: {battle.stake} РјРѕРЅРµС‚
                 </div>
                 <div className="text-xs opacity-60">
-                  📅 {new Date(battle.createdAt).toLocaleString()}
+                  рџ“… {new Date(battle.createdAt).toLocaleString()}
                 </div>
               </div>
 
@@ -419,19 +419,19 @@ export const AdminBattleManagement: React.FC<AdminBattleManagementProps> = ({ th
               
               <div>
                 <h3 className="font-semibold" style={{ color: theme === 'dark' ? '#E8ECF2' : '#0F172A' }}>
-                  Баттл #{battle.id}
+                  Р‘Р°С‚С‚Р» #{battle.id}
                 </h3>
                 <p className="text-sm opacity-70" style={{ color: theme === 'dark' ? '#A7B0BD' : '#6B7280' }}>
                   {battle.player1.name} vs {battle.player2.name}
                 </p>
                 <p className="text-sm opacity-70" style={{ color: theme === 'dark' ? '#A7B0BD' : '#6B7280' }}>
-                  Причина: {battle.disputeReason}
+                  РџСЂРёС‡РёРЅР°: {battle.disputeReason}
                 </p>
                 <div className="flex items-center space-x-4 mt-2 text-xs opacity-60">
-                  <span>💰 Ставка: {battle.stake} монет</span>
-                  <span>📅 {new Date(battle.createdAt).toLocaleString()}</span>
+                  <span>рџ’° РЎС‚Р°РІРєР°: {battle.stake} РјРѕРЅРµС‚</span>
+                  <span>рџ“… {new Date(battle.createdAt).toLocaleString()}</span>
                   {battle.proof && (
-                    <span>📎 Доказательства: {battle.proof.length}</span>
+                    <span>рџ“Ћ Р”РѕРєР°Р·Р°С‚РµР»СЊСЃС‚РІР°: {battle.proof.length}</span>
                   )}
                 </div>
               </div>
@@ -457,7 +457,7 @@ export const AdminBattleManagement: React.FC<AdminBattleManagementProps> = ({ th
                 className="flex items-center space-x-1 px-3 py-1 rounded-lg bg-blue-500 bg-opacity-20 text-blue-500 hover:bg-opacity-30 text-sm"
               >
                 <Eye className="w-4 h-4" />
-                <span>Подробнее</span>
+                <span>РџРѕРґСЂРѕР±РЅРµРµ</span>
               </button>
             </div>
           </div>
@@ -468,19 +468,19 @@ export const AdminBattleManagement: React.FC<AdminBattleManagementProps> = ({ th
 
   return (
     <div className="p-6 space-y-6">
-      {/* Заголовок */}
+      {/* Р—Р°РіРѕР»РѕРІРѕРє */}
       <div className="flex items-center justify-between">
         <div>
           <h1 className="text-2xl font-bold" style={{ color: theme === 'dark' ? '#E8ECF2' : '#0F172A' }}>
-            Управление баттлами
+            РЈРїСЂР°РІР»РµРЅРёРµ Р±Р°С‚С‚Р»Р°РјРё
           </h1>
           <p className="text-sm opacity-70" style={{ color: theme === 'dark' ? '#A7B0BD' : '#6B7280' }}>
-            Модерация поединков и решение споров
+            РњРѕРґРµСЂР°С†РёСЏ РїРѕРµРґРёРЅРєРѕРІ Рё СЂРµС€РµРЅРёРµ СЃРїРѕСЂРѕРІ
           </p>
         </div>
       </div>
 
-      {/* Статистика */}
+      {/* РЎС‚Р°С‚РёСЃС‚РёРєР° */}
       <div className="grid grid-cols-2 md:grid-cols-6 gap-4">
         <div 
           className="p-4 rounded-xl text-center"
@@ -490,7 +490,7 @@ export const AdminBattleManagement: React.FC<AdminBattleManagementProps> = ({ th
           }}
         >
           <div className="text-2xl font-bold text-blue-500">{stats.totalBattles}</div>
-          <div className="text-sm opacity-70">Всего</div>
+          <div className="text-sm opacity-70">Р’СЃРµРіРѕ</div>
         </div>
         <div 
           className="p-4 rounded-xl text-center"
@@ -500,7 +500,7 @@ export const AdminBattleManagement: React.FC<AdminBattleManagementProps> = ({ th
           }}
         >
           <div className="text-2xl font-bold text-yellow-500">{stats.activeBattles}</div>
-          <div className="text-sm opacity-70">Активных</div>
+          <div className="text-sm opacity-70">РђРєС‚РёРІРЅС‹С…</div>
         </div>
         <div 
           className="p-4 rounded-xl text-center"
@@ -510,7 +510,7 @@ export const AdminBattleManagement: React.FC<AdminBattleManagementProps> = ({ th
           }}
         >
           <div className="text-2xl font-bold text-green-500">{stats.completedBattles}</div>
-          <div className="text-sm opacity-70">Завершено</div>
+          <div className="text-sm opacity-70">Р—Р°РІРµСЂС€РµРЅРѕ</div>
         </div>
         <div 
           className="p-4 rounded-xl text-center"
@@ -520,7 +520,7 @@ export const AdminBattleManagement: React.FC<AdminBattleManagementProps> = ({ th
           }}
         >
           <div className="text-2xl font-bold text-orange-500">{stats.disputedBattles}</div>
-          <div className="text-sm opacity-70">Спорных</div>
+          <div className="text-sm opacity-70">РЎРїРѕСЂРЅС‹С…</div>
         </div>
         <div 
           className="p-4 rounded-xl text-center"
@@ -530,7 +530,7 @@ export const AdminBattleManagement: React.FC<AdminBattleManagementProps> = ({ th
           }}
         >
           <div className="text-2xl font-bold text-purple-500">{stats.totalVolume}</div>
-          <div className="text-sm opacity-70">Объем</div>
+          <div className="text-sm opacity-70">РћР±СЉРµРј</div>
         </div>
         <div 
           className="p-4 rounded-xl text-center"
@@ -540,16 +540,16 @@ export const AdminBattleManagement: React.FC<AdminBattleManagementProps> = ({ th
           }}
         >
           <div className="text-2xl font-bold text-indigo-500">{Math.round(stats.averageStake)}</div>
-          <div className="text-sm opacity-70">Средняя ставка</div>
+          <div className="text-sm opacity-70">РЎСЂРµРґРЅСЏСЏ СЃС‚Р°РІРєР°</div>
         </div>
       </div>
 
-      {/* Табы */}
+      {/* РўР°Р±С‹ */}
       <div className="flex space-x-2 border-b" style={{ borderColor: theme === 'dark' ? 'rgba(255,255,255,0.1)' : '#E6E9EF' }}>
         {[
-          { id: 'active', label: 'Активные', icon: Activity, count: stats.activeBattles },
-          { id: 'history', label: 'История', icon: Clock, count: stats.completedBattles },
-          { id: 'disputes', label: 'Споры', icon: AlertTriangle, count: stats.disputedBattles }
+          { id: 'active', label: 'РђРєС‚РёРІРЅС‹Рµ', icon: Activity, count: stats.activeBattles },
+          { id: 'history', label: 'РСЃС‚РѕСЂРёСЏ', icon: Clock, count: stats.completedBattles },
+          { id: 'disputes', label: 'РЎРїРѕСЂС‹', icon: AlertTriangle, count: stats.disputedBattles }
         ].map((tab) => (
           <button
             key={tab.id}
@@ -574,13 +574,13 @@ export const AdminBattleManagement: React.FC<AdminBattleManagementProps> = ({ th
         ))}
       </div>
 
-      {/* Фильтры */}
+      {/* Р¤РёР»СЊС‚СЂС‹ */}
       <div className="flex space-x-4">
         <div className="relative flex-1">
           <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 w-4 h-4 opacity-50" />
           <input
             type="text"
-            placeholder="Поиск баттлов..."
+            placeholder="РџРѕРёСЃРє Р±Р°С‚С‚Р»РѕРІ..."
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
             className="w-full pl-10 pr-4 py-2 rounded-lg border"
@@ -602,14 +602,14 @@ export const AdminBattleManagement: React.FC<AdminBattleManagementProps> = ({ th
             color: theme === 'dark' ? '#E8ECF2' : '#0F172A'
           }}
         >
-          <option value="all">Все статусы</option>
+          <option value="all">Р’СЃРµ СЃС‚Р°С‚СѓСЃС‹</option>
           {Object.entries(BATTLE_STATUS).map(([value, status]) => (
             <option key={value} value={value}>{status.label}</option>
           ))}
         </select>
       </div>
 
-      {/* Контент */}
+      {/* РљРѕРЅС‚РµРЅС‚ */}
       {activeTab === 'active' && renderActiveBattles()}
       {activeTab === 'history' && renderBattleHistory()}
       {activeTab === 'disputes' && renderDisputes()}

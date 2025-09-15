@@ -1,4 +1,4 @@
-﻿import { useEffect, useRef } from 'react';
+п»їimport { useEffect, useRef } from 'react';
 import { X, CheckCheck, Trash2, Trophy, Target, ShoppingBag, Swords, AlertCircle, Gift } from 'lucide-react';
 import { Notification } from '../types/notifications';
 
@@ -55,10 +55,10 @@ const formatTimestamp = (timestamp: Date) => {
   const hours = Math.floor(diff / 3600000);
   const days = Math.floor(diff / 86400000);
 
-  if (minutes < 1) return 'С‚РѕР»СЊРєРѕ С‡С‚Рѕ';
-  if (minutes < 60) return `${minutes} РјРёРЅ РЅР°Р·Р°Рґ`;
-  if (hours < 24) return `${hours} С‡ РЅР°Р·Р°Рґ`;
-  if (days < 7) return `${days} Рґ РЅР°Р·Р°Рґ`;
+  if (minutes < 1) return 'РЎвЂљР С•Р В»РЎРЉР С”Р С• РЎвЂЎРЎвЂљР С•';
+  if (minutes < 60) return `${minutes} Р СР С‘Р Р… Р Р…Р В°Р В·Р В°Р Т‘`;
+  if (hours < 24) return `${hours} РЎвЂЎ Р Р…Р В°Р В·Р В°Р Т‘`;
+  if (days < 7) return `${days} Р Т‘ Р Р…Р В°Р В·Р В°Р Т‘`;
   return timestamp.toLocaleDateString('ru-RU');
 };
 
@@ -73,7 +73,7 @@ export function NotificationsPanel({
 }: NotificationsPanelProps) {
   const panelRef = useRef<HTMLDivElement>(null);
 
-  // Р—Р°РєСЂС‹С‚РёРµ РїСЂРё РєР»РёРєРµ РІРЅРµ РїР°РЅРµР»Рё
+  // Р вЂ”Р В°Р С”РЎР‚РЎвЂ№РЎвЂљР С‘Р Вµ Р С—РЎР‚Р С‘ Р С”Р В»Р С‘Р С”Р Вµ Р Р†Р Р…Р Вµ Р С—Р В°Р Р…Р ВµР В»Р С‘
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
       if (panelRef.current && !panelRef.current.contains(event.target as Node)) {
@@ -112,7 +112,7 @@ export function NotificationsPanel({
         WebkitBackdropFilter: 'blur(20px)'
       }}
     >
-      {/* Р—Р°РіРѕР»РѕРІРѕРє */}
+      {/* Р вЂ”Р В°Р С–Р С•Р В»Р С•Р Р†Р С•Р С” */}
       <div 
         className="flex items-center justify-between p-4 border-b"
         style={{
@@ -128,7 +128,7 @@ export function NotificationsPanel({
               color: theme === 'dark' ? '#E8ECF2' : '#0F172A'
             }}
           >
-            РЈРІРµРґРѕРјР»РµРЅРёСЏ
+            Р Р€Р Р†Р ВµР Т‘Р С•Р СР В»Р ВµР Р…Р С‘РЎРЏ
           </h3>
           {unreadNotifications.length > 0 && (
             <span 
@@ -137,7 +137,7 @@ export function NotificationsPanel({
                 color: theme === 'dark' ? '#A7B0BD' : '#6B7280'
               }}
             >
-              {unreadNotifications.length} РЅРѕРІС‹С…
+              {unreadNotifications.length} Р Р…Р С•Р Р†РЎвЂ№РЎвЂ¦
             </span>
           )}
         </div>
@@ -147,7 +147,7 @@ export function NotificationsPanel({
             <button
               onClick={onMarkAllAsRead}
               className="p-1 rounded-lg hover:bg-surface-2 transition-colors"
-              title="РћС‚РјРµС‚РёС‚СЊ РІСЃРµ РєР°Рє РїСЂРѕС‡РёС‚Р°РЅРЅС‹Рµ"
+              title="Р С›РЎвЂљР СР ВµРЎвЂљР С‘РЎвЂљРЎРЉ Р Р†РЎРѓР Вµ Р С”Р В°Р С” Р С—РЎР‚Р С•РЎвЂЎР С‘РЎвЂљР В°Р Р…Р Р…РЎвЂ№Р Вµ"
             >
               <CheckCheck 
                 style={{
@@ -174,7 +174,7 @@ export function NotificationsPanel({
         </div>
       </div>
 
-      {/* РЎРїРёСЃРѕРє СѓРІРµРґРѕРјР»РµРЅРёР№ */}
+      {/* Р РЋР С—Р С‘РЎРѓР С•Р С” РЎС“Р Р†Р ВµР Т‘Р С•Р СР В»Р ВµР Р…Р С‘Р в„– */}
       <div className="max-h-80 overflow-y-auto">
         {sortedNotifications.length === 0 ? (
           <div 
@@ -191,7 +191,7 @@ export function NotificationsPanel({
                 margin: '0 auto 8px'
               }}
             />
-            <p className="text-sm">РЈРІРµРґРѕРјР»РµРЅРёР№ РЅРµС‚</p>
+            <p className="text-sm">Р Р€Р Р†Р ВµР Т‘Р С•Р СР В»Р ВµР Р…Р С‘Р в„– Р Р…Р ВµРЎвЂљ</p>
           </div>
         ) : (
           <div className="space-y-1 p-2">
@@ -220,7 +220,7 @@ export function NotificationsPanel({
                   onClick={() => !notification.read && onMarkAsRead(notification.id)}
                 >
                   <div className="flex items-start gap-3">
-                    {/* РРєРѕРЅРєР° С‚РёРїР° СѓРІРµРґРѕРјР»РµРЅРёСЏ */}
+                    {/* Р ВР С”Р С•Р Р…Р С”Р В° РЎвЂљР С‘Р С—Р В° РЎС“Р Р†Р ВµР Т‘Р С•Р СР В»Р ВµР Р…Р С‘РЎРЏ */}
                     <div 
                       className="w-8 h-8 rounded-full flex items-center justify-center flex-shrink-0"
                       style={{
@@ -237,7 +237,7 @@ export function NotificationsPanel({
                       />
                     </div>
 
-                    {/* РљРѕРЅС‚РµРЅС‚ СѓРІРµРґРѕРјР»РµРЅРёСЏ */}
+                    {/* Р С™Р С•Р Р…РЎвЂљР ВµР Р…РЎвЂљ РЎС“Р Р†Р ВµР Т‘Р С•Р СР В»Р ВµР Р…Р С‘РЎРЏ */}
                     <div className="flex-1 min-w-0">
                       <div className="flex items-start justify-between">
                         <h4 
@@ -300,7 +300,7 @@ export function NotificationsPanel({
         )}
       </div>
 
-      {/* Р¤СѓС‚РµСЂ СЃ РєРЅРѕРїРєРѕР№ РѕС‡РёСЃС‚РєРё */}
+      {/* Р В¤РЎС“РЎвЂљР ВµРЎР‚ РЎРѓ Р С”Р Р…Р С•Р С—Р С”Р С•Р в„– Р С•РЎвЂЎР С‘РЎРѓРЎвЂљР С”Р С‘ */}
       {notifications.length > 0 && (
         <div 
           className="p-3 border-t"
@@ -317,7 +317,7 @@ export function NotificationsPanel({
               color: theme === 'dark' ? '#A7B0BD' : '#6B7280'
             }}
           >
-            РћС‡РёСЃС‚РёС‚СЊ РІСЃРµ
+            Р С›РЎвЂЎР С‘РЎРѓРЎвЂљР С‘РЎвЂљРЎРЉ Р Р†РЎРѓР Вµ
           </button>
         </div>
       )}
@@ -325,5 +325,5 @@ export function NotificationsPanel({
   );
 }
 
-// РСЃРїСЂР°РІР»СЏРµРј РёРјРїРѕСЂС‚ Bell
+// Р ВРЎРѓР С—РЎР‚Р В°Р Р†Р В»РЎРЏР ВµР С Р С‘Р СР С—Р С•РЎР‚РЎвЂљ Bell
 import { Bell } from 'lucide-react';

@@ -26,7 +26,7 @@ export const CoinIcon: React.FC<CoinIconProps> = ({ size = 16, className = "" })
         </filter>
       </defs>
       
-      {/* Внешний ободок */}
+      {/* Р’РЅРµС€РЅРёР№ РѕР±РѕРґРѕРє */}
       <circle
         cx="12"
         cy="12"
@@ -37,7 +37,7 @@ export const CoinIcon: React.FC<CoinIconProps> = ({ size = 16, className = "" })
         strokeWidth="0.5"
       />
       
-      {/* Внутренний круг */}
+      {/* Р’РЅСѓС‚СЂРµРЅРЅРёР№ РєСЂСѓРі */}
       <circle
         cx="12"
         cy="12"
@@ -47,7 +47,7 @@ export const CoinIcon: React.FC<CoinIconProps> = ({ size = 16, className = "" })
         strokeWidth="0.3"
       />
       
-      {/* Буква G */}
+      {/* Р‘СѓРєРІР° G */}
       <text
         x="12"
         y="16"

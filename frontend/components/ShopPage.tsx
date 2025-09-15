@@ -1,4 +1,4 @@
-﻿import React, { useState, useEffect, useMemo } from 'react';
+import React, { useState, useEffect, useMemo } from 'react';
 import { 
   ShoppingBag, 
   Gift, 
@@ -57,7 +57,7 @@ export const ShopPage: React.FC<ShopPageProps> = ({ theme, currentPage, onNaviga
   // Mock data
   const mockUser = {
     id: 'current-user',
-    name: 'Иван Иванов',
+    name: 'РРІР°РЅ РРІР°РЅРѕРІ',
     balance: 2500,
     avatar: undefined
   };
@@ -65,50 +65,50 @@ export const ShopPage: React.FC<ShopPageProps> = ({ theme, currentPage, onNaviga
   const mockCaseShopItems = [
     {
       id: 'case1',
-      name: 'Бронзовый кейс',
+      name: 'Р‘СЂРѕРЅР·РѕРІС‹Р№ РєРµР№СЃ',
       price: 500,
       color: '#CD7F32',
-      description: 'Базовые предметы'
+      description: 'Р‘Р°Р·РѕРІС‹Рµ РїСЂРµРґРјРµС‚С‹'
     },
     {
       id: 'case2', 
-      name: 'Серебряный кейс',
+      name: 'РЎРµСЂРµР±СЂСЏРЅС‹Р№ РєРµР№СЃ',
       price: 1000,
       color: '#C0C0C0',
-      description: 'Хорошие предметы'
+      description: 'РҐРѕСЂРѕС€РёРµ РїСЂРµРґРјРµС‚С‹'
     },
     {
       id: 'case3',
-      name: 'Золотой кейс', 
+      name: 'Р—РѕР»РѕС‚РѕР№ РєРµР№СЃ', 
       price: 2500,
       color: '#FFD700',
-      description: 'Редкие предметы'
+      description: 'Р РµРґРєРёРµ РїСЂРµРґРјРµС‚С‹'
     }
   ];
 
   const localShopItems = [
     {
       id: 'shop1',
-      name: 'Бонус опыта 2x',
+      name: 'Р‘РѕРЅСѓСЃ РѕРїС‹С‚Р° 2x',
       price: 500,
-      description: 'Удваивает получаемый опыт на 24 часа',
-      emoji: '⚡',
+      description: 'РЈРґРІР°РёРІР°РµС‚ РїРѕР»СѓС‡Р°РµРјС‹Р№ РѕРїС‹С‚ РЅР° 24 С‡Р°СЃР°',
+      emoji: 'вљЎ',
       isActive: true
     },
     {
       id: 'shop2',
-      name: 'VIP статус',
+      name: 'VIP СЃС‚Р°С‚СѓСЃ',
       price: 2000,
-      description: 'Особые привилегии на 7 дней',
-      emoji: '👑',
+      description: 'РћСЃРѕР±С‹Рµ РїСЂРёРІРёР»РµРіРёРё РЅР° 7 РґРЅРµР№',
+      emoji: 'рџ‘‘',
       isActive: true
     },
     {
       id: 'shop3',
-      name: 'Бонус коинов',
+      name: 'Р‘РѕРЅСѓСЃ РєРѕРёРЅРѕРІ',
       price: 1000,
-      description: '+50% коинов за выполнение задач',
-      emoji: '💰',
+      description: '+50% РєРѕРёРЅРѕРІ Р·Р° РІС‹РїРѕР»РЅРµРЅРёРµ Р·Р°РґР°С‡',
+      emoji: 'рџ’°',
       isActive: true
     }
   ];
@@ -150,7 +150,7 @@ export const ShopPage: React.FC<ShopPageProps> = ({ theme, currentPage, onNaviga
 
   const handleCheckout = () => {
     if (cartTotal > mockUser.balance) {
-      alert('Недостаточно средств!');
+      alert('РќРµРґРѕСЃС‚Р°С‚РѕС‡РЅРѕ СЃСЂРµРґСЃС‚РІ!');
       return;
     }
 
@@ -165,7 +165,7 @@ export const ShopPage: React.FC<ShopPageProps> = ({ theme, currentPage, onNaviga
     setOrders(prev => [...prev, newOrder]);
     setCart([]);
     setCartModalOpen(false);
-    alert('Заказ оформлен!');
+    alert('Р—Р°РєР°Р· РѕС„РѕСЂРјР»РµРЅ!');
   };
 
   const getStatusColor = (status: string) => {
@@ -180,11 +180,11 @@ export const ShopPage: React.FC<ShopPageProps> = ({ theme, currentPage, onNaviga
 
   const getStatusText = (status: string) => {
     switch (status) {
-      case 'pending': return 'Ожидает';
-      case 'completed': return 'Выполнен';
-      case 'cancelled': return 'Отменен';
-      case 'rejected': return 'Отклонен';
-      default: return 'Неизвестно';
+      case 'pending': return 'РћР¶РёРґР°РµС‚';
+      case 'completed': return 'Р’С‹РїРѕР»РЅРµРЅ';
+      case 'cancelled': return 'РћС‚РјРµРЅРµРЅ';
+      case 'rejected': return 'РћС‚РєР»РѕРЅРµРЅ';
+      default: return 'РќРµРёР·РІРµСЃС‚РЅРѕ';
     }
   };
 
@@ -278,7 +278,7 @@ export const ShopPage: React.FC<ShopPageProps> = ({ theme, currentPage, onNaviga
             {/* Cart Button */}
             <button
               onClick={() => setCartModalOpen(true)}
-              aria-label="Открыть корзину"
+              aria-label="РћС‚РєСЂС‹С‚СЊ РєРѕСЂР·РёРЅСѓ"
               style={{
                 position: 'relative',
                 width: '44px',
@@ -349,14 +349,14 @@ export const ShopPage: React.FC<ShopPageProps> = ({ theme, currentPage, onNaviga
           boxShadow: '0 8px 32px rgba(0,0,0,0.1)'
         }}>
           {[
-            { id: 'free', label: 'БЕСПЛАТНЫЙ' },
-            { id: 'shop', label: 'МАГАЗИН' },
-            { id: 'my', label: 'МОИ КЕЙСЫ' }
+            { id: 'free', label: 'Р‘Р•РЎРџР›РђРўРќР«Р™' },
+            { id: 'shop', label: 'РњРђР“РђР—РРќ' },
+            { id: 'my', label: 'РњРћР РљР•Р™РЎР«' }
           ].map((tab) => (
             <button
               key={tab.id}
               onClick={() => setActiveTab(tab.id as any)}
-              aria-label={`Переключить на вкладку ${tab.label}`}
+              aria-label={`РџРµСЂРµРєР»СЋС‡РёС‚СЊ РЅР° РІРєР»Р°РґРєСѓ ${tab.label}`}
               style={{
                 flex: 1,
                 padding: '12px 16px',
@@ -409,7 +409,7 @@ export const ShopPage: React.FC<ShopPageProps> = ({ theme, currentPage, onNaviga
                 fontSize: '18px',
                 fontWeight: '500'
               }}>
-                БЕСПЛАТНЫЙ КЕЙС
+                Р‘Р•РЎРџР›РђРўРќР«Р™ РљР•Р™РЎ
               </h2>
               <div style={{
                 width: '100px',
@@ -448,7 +448,7 @@ export const ShopPage: React.FC<ShopPageProps> = ({ theme, currentPage, onNaviga
                 fontWeight: '500',
                 textShadow: '0 0 10px rgba(34, 197, 94, 0.5)'
               }}>
-                БЕСПЛАТНЫЙ КЕЙС GRITHER
+                Р‘Р•РЎРџР›РђРўРќР«Р™ РљР•Р™РЎ GRITHER
               </h3>
               <p style={{ 
                 color: theme === 'dark' ? '#A7B0BD' : '#6B7280',
@@ -456,12 +456,12 @@ export const ShopPage: React.FC<ShopPageProps> = ({ theme, currentPage, onNaviga
                 fontSize: '12px',
                 lineHeight: '1.4'
               }}>
-                Получите случайный кейс совершенно бесплатно каждые 24 часа!
+                РџРѕР»СѓС‡РёС‚Рµ СЃР»СѓС‡Р°Р№РЅС‹Р№ РєРµР№СЃ СЃРѕРІРµСЂС€РµРЅРЅРѕ Р±РµСЃРїР»Р°С‚РЅРѕ РєР°Р¶РґС‹Рµ 24 С‡Р°СЃР°!
               </p>
 
               {isFreeAvailable ? (
                 <button
-                  aria-label="Открыть бесплатный кейс"
+                  aria-label="РћС‚РєСЂС‹С‚СЊ Р±РµСЃРїР»Р°С‚РЅС‹Р№ РєРµР№СЃ"
                   style={{
                     background: 'linear-gradient(145deg, #22C55E, #16A34A)',
                     color: 'white',
@@ -489,7 +489,7 @@ export const ShopPage: React.FC<ShopPageProps> = ({ theme, currentPage, onNaviga
                     e.currentTarget.style.transform = 'scale(1.05)';
                   }}
                 >
-                  ОТКРЫТЬ БЕСПЛАТНЫЙ КЕЙС
+                  РћРўРљР Р«РўР¬ Р‘Р•РЎРџР›РђРўРќР«Р™ РљР•Р™РЎ
                 </button>
               ) : (
                 <div>
@@ -503,11 +503,11 @@ export const ShopPage: React.FC<ShopPageProps> = ({ theme, currentPage, onNaviga
                     fontSize: '12px'
                   }}>
                     <Clock size={16} />
-                    <span>Следующий кейс через: {timeLeft}</span>
+                    <span>РЎР»РµРґСѓСЋС‰РёР№ РєРµР№СЃ С‡РµСЂРµР·: {timeLeft}</span>
                   </div>
                   <button
                     disabled
-                    aria-label="Ожидание следующего бесплатного кейса"
+                    aria-label="РћР¶РёРґР°РЅРёРµ СЃР»РµРґСѓСЋС‰РµРіРѕ Р±РµСЃРїР»Р°С‚РЅРѕРіРѕ РєРµР№СЃР°"
                     style={{
                       background: 'linear-gradient(145deg, #6B7280, #4B5563)',
                       color: '#9CA3AF',
@@ -520,7 +520,7 @@ export const ShopPage: React.FC<ShopPageProps> = ({ theme, currentPage, onNaviga
                       opacity: 0.5
                     }}
                   >
-                    ОЖИДАНИЕ...
+                    РћР–РР”РђРќРР•...
                   </button>
                 </div>
               )}
@@ -536,7 +536,7 @@ export const ShopPage: React.FC<ShopPageProps> = ({ theme, currentPage, onNaviga
                 color: theme === 'dark' ? '#E8ECF2' : '#0F172A',
                 marginBottom: '16px'
               }}>
-                ПРЕМИУМ КЕЙСЫ
+                РџР Р•РњРРЈРњ РљР•Р™РЎР«
               </h3>
               <div style={{
                 display: 'grid',
@@ -619,7 +619,7 @@ export const ShopPage: React.FC<ShopPageProps> = ({ theme, currentPage, onNaviga
                           cursor: 'pointer'
                         }}
                       >
-                        КУПИТЬ
+                        РљРЈРџРРўР¬
                       </button>
                     </div>
                   </div>
@@ -633,7 +633,7 @@ export const ShopPage: React.FC<ShopPageProps> = ({ theme, currentPage, onNaviga
                 color: theme === 'dark' ? '#E8ECF2' : '#0F172A',
                 marginBottom: '16px'
               }}>
-                ТОВАРЫ МАГАЗИНА
+                РўРћР’РђР Р« РњРђР“РђР—РРќРђ
               </h3>
               <div style={{
                 display: 'grid',
@@ -701,7 +701,7 @@ export const ShopPage: React.FC<ShopPageProps> = ({ theme, currentPage, onNaviga
                         cursor: 'pointer'
                       }}
                     >
-                      В КОРЗИНУ
+                      Р’ РљРћР Р—РРќРЈ
                     </button>
                   </div>
                 ))}
@@ -716,7 +716,7 @@ export const ShopPage: React.FC<ShopPageProps> = ({ theme, currentPage, onNaviga
             color: theme === 'dark' ? '#E8ECF2' : '#0F172A',
             marginBottom: '16px'
           }}>
-            МОИ КЕЙСЫ
+            РњРћР РљР•Р™РЎР«
           </h3>
           
           {userCases.length === 0 ? (
@@ -742,10 +742,10 @@ export const ShopPage: React.FC<ShopPageProps> = ({ theme, currentPage, onNaviga
                 color: theme === 'dark' ? '#E8ECF2' : '#0F172A',
                 marginBottom: '8px'
               }}>
-                Пусто
+                РџСѓСЃС‚Рѕ
               </h4>
               <p style={{ color: theme === 'dark' ? '#A7B0BD' : '#6B7280' }}>
-                Здесь появятся полученные кейсы
+                Р—РґРµСЃСЊ РїРѕСЏРІСЏС‚СЃСЏ РїРѕР»СѓС‡РµРЅРЅС‹Рµ РєРµР№СЃС‹
               </p>
             </div>
           ) : (
@@ -786,7 +786,7 @@ export const ShopPage: React.FC<ShopPageProps> = ({ theme, currentPage, onNaviga
                       fontSize: '12px',
                       marginBottom: '12px'
                     }}>
-                      Получен: {new Date(userCase.obtainedAt).toLocaleDateString()}
+                      РџРѕР»СѓС‡РµРЅ: {new Date(userCase.obtainedAt).toLocaleDateString()}
                     </p>
                     <button
                       style={{
@@ -803,7 +803,7 @@ export const ShopPage: React.FC<ShopPageProps> = ({ theme, currentPage, onNaviga
                         cursor: 'pointer'
                       }}
                     >
-                      ОТКРЫТЬ КЕЙС
+                      РћРўРљР Р«РўР¬ РљР•Р™РЎ
                     </button>
                   </div>
                 </div>
@@ -850,7 +850,7 @@ export const ShopPage: React.FC<ShopPageProps> = ({ theme, currentPage, onNaviga
                 marginBottom: '24px'
               }}>
                 <h2 style={{ color: theme === 'dark' ? '#E8ECF2' : '#0F172A' }}>
-                  Корзина и заказы
+                  РљРѕСЂР·РёРЅР° Рё Р·Р°РєР°Р·С‹
                 </h2>
                 <button
                   onClick={() => setCartModalOpen(false)}
@@ -875,9 +875,9 @@ export const ShopPage: React.FC<ShopPageProps> = ({ theme, currentPage, onNaviga
                 padding: '4px'
               }}>
                 {[
-                  { id: 'cart', label: 'Корзина', icon: ShoppingCart },
-                  { id: 'active', label: 'Активные', icon: Clock },
-                  { id: 'completed', label: 'Завершенные', icon: CheckCircle }
+                  { id: 'cart', label: 'РљРѕСЂР·РёРЅР°', icon: ShoppingCart },
+                  { id: 'active', label: 'РђРєС‚РёРІРЅС‹Рµ', icon: Clock },
+                  { id: 'completed', label: 'Р—Р°РІРµСЂС€РµРЅРЅС‹Рµ', icon: CheckCircle }
                 ].map((tab) => (
                   <button
                     key={tab.id}
@@ -921,7 +921,7 @@ export const ShopPage: React.FC<ShopPageProps> = ({ theme, currentPage, onNaviga
                         <ShoppingCart size={32} color="#FFFFFF" />
                       </div>
                       <h4 style={{ color: theme === 'dark' ? '#E8ECF2' : '#0F172A' }}>
-                        Корзина пуста
+                        РљРѕСЂР·РёРЅР° РїСѓСЃС‚Р°
                       </h4>
                     </div>
                   ) : (
@@ -952,7 +952,7 @@ export const ShopPage: React.FC<ShopPageProps> = ({ theme, currentPage, onNaviga
                                 fontSize: '12px',
                                 color: theme === 'dark' ? '#A7B0BD' : '#6B7280'
                               }}>
-                                {item.price.toLocaleString()} коинов
+                                {item.price.toLocaleString()} РєРѕРёРЅРѕРІ
                               </div>
                             </div>
                           </div>
@@ -1018,14 +1018,14 @@ export const ShopPage: React.FC<ShopPageProps> = ({ theme, currentPage, onNaviga
                             fontWeight: 'bold',
                             color: theme === 'dark' ? '#E8ECF2' : '#0F172A'
                           }}>
-                            Итого:
+                            РС‚РѕРіРѕ:
                           </span>
                           <span style={{ 
                             fontWeight: 'bold',
                             color: '#3B82F6',
                             fontSize: '18px'
                           }}>
-                            {cartTotal.toLocaleString()} коинов
+                            {cartTotal.toLocaleString()} РєРѕРёРЅРѕРІ
                           </span>
                         </div>
                         <button
@@ -1043,7 +1043,7 @@ export const ShopPage: React.FC<ShopPageProps> = ({ theme, currentPage, onNaviga
                             opacity: cartTotal <= mockUser.balance ? 1 : 0.5
                           }}
                         >
-                          {cartTotal <= mockUser.balance ? 'ОФОРМИТЬ ЗАКАЗ' : 'НЕДОСТАТОЧНО СРЕДСТВ'}
+                          {cartTotal <= mockUser.balance ? 'РћР¤РћР РњРРўР¬ Р—РђРљРђР—' : 'РќР•Р”РћРЎРўРђРўРћР§РќРћ РЎР Р•Р”РЎРўР’'}
                         </button>
                       </div>
                     </>
@@ -1068,7 +1068,7 @@ export const ShopPage: React.FC<ShopPageProps> = ({ theme, currentPage, onNaviga
                         <Clock size={32} color="#FFFFFF" />
                       </div>
                       <h4 style={{ color: theme === 'dark' ? '#E8ECF2' : '#0F172A' }}>
-                        Нет активных заказов
+                        РќРµС‚ Р°РєС‚РёРІРЅС‹С… Р·Р°РєР°Р·РѕРІ
                       </h4>
                     </div>
                   ) : (
@@ -1094,7 +1094,7 @@ export const ShopPage: React.FC<ShopPageProps> = ({ theme, currentPage, onNaviga
                               fontWeight: 'bold',
                               color: theme === 'dark' ? '#E8ECF2' : '#0F172A'
                             }}>
-                              Заказ #{order.id.slice(-6)}
+                              Р—Р°РєР°Р· #{order.id.slice(-6)}
                             </span>
                             <span style={{
                               padding: '4px 8px',
@@ -1129,7 +1129,7 @@ export const ShopPage: React.FC<ShopPageProps> = ({ theme, currentPage, onNaviga
                               fontWeight: 'bold',
                               color: '#3B82F6'
                             }}>
-                              {order.total.toLocaleString()} коинов
+                              {order.total.toLocaleString()} РєРѕРёРЅРѕРІ
                             </span>
                           </div>
                         </div>
@@ -1156,7 +1156,7 @@ export const ShopPage: React.FC<ShopPageProps> = ({ theme, currentPage, onNaviga
                         <CheckCircle size={32} color="#FFFFFF" />
                       </div>
                       <h4 style={{ color: theme === 'dark' ? '#E8ECF2' : '#0F172A' }}>
-                        Нет завершенных заказов
+                        РќРµС‚ Р·Р°РІРµСЂС€РµРЅРЅС‹С… Р·Р°РєР°Р·РѕРІ
                       </h4>
                     </div>
                   ) : (
@@ -1186,7 +1186,7 @@ export const ShopPage: React.FC<ShopPageProps> = ({ theme, currentPage, onNaviga
                               fontWeight: 'bold',
                               color: theme === 'dark' ? '#E8ECF2' : '#0F172A'
                             }}>
-                              Заказ #{order.id.slice(-6)}
+                              Р—Р°РєР°Р· #{order.id.slice(-6)}
                             </span>
                             <span style={{
                               padding: '4px 8px',
@@ -1221,7 +1221,7 @@ export const ShopPage: React.FC<ShopPageProps> = ({ theme, currentPage, onNaviga
                               fontWeight: 'bold',
                               color: '#3B82F6'
                             }}>
-                              {order.total.toLocaleString()} коинов
+                              {order.total.toLocaleString()} РєРѕРёРЅРѕРІ
                             </span>
                           </div>
                         </div>

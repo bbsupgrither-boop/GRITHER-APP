@@ -31,14 +31,14 @@ export const useUserRole = (userId: string): UseUserRoleReturn => {
       return;
     }
 
-    // Получаем пользователя из базы данных
+    // РџРѕР»СѓС‡Р°РµРј РїРѕР»СЊР·РѕРІР°С‚РµР»СЏ РёР· Р±Р°Р·С‹ РґР°РЅРЅС‹С…
     const userData = getUserById(userId);
     
     if (userData) {
       setUser(userData);
       setUserRole(userData.role);
       
-      // Если пользователь тимлид, получаем его команду
+      // Р•СЃР»Рё РїРѕР»СЊР·РѕРІР°С‚РµР»СЊ С‚РёРјР»РёРґ, РїРѕР»СѓС‡Р°РµРј РµРіРѕ РєРѕРјР°РЅРґСѓ
       if (userData.role === 'team_lead') {
         const team = getTeamByTeamLeadId(userId);
         if (team) {
@@ -54,19 +54,19 @@ export const useUserRole = (userId: string): UseUserRoleReturn => {
     setIsLoading(false);
   }, [userId]);
 
-  // Функция проверки прав доступа
+  // Р¤СѓРЅРєС†РёСЏ РїСЂРѕРІРµСЂРєРё РїСЂР°РІ РґРѕСЃС‚СѓРїР°
   const checkPermission = (permission: string): boolean => {
     if (!user) return false;
     return hasPermission(userId, permission);
   };
 
-  // Функция проверки роли
+  // Р¤СѓРЅРєС†РёСЏ РїСЂРѕРІРµСЂРєРё СЂРѕР»Рё
   const checkRole = (role: UserRole): boolean => {
     if (!user) return false;
     return hasRole(userId, role);
   };
 
-  // Проверка доступа к админ панели
+  // РџСЂРѕРІРµСЂРєР° РґРѕСЃС‚СѓРїР° Рє Р°РґРјРёРЅ РїР°РЅРµР»Рё
   const canAccessAdminPanel = userRole !== null && 
     ['team_lead', 'junior_admin', 'senior_admin', 'main_admin'].includes(userRole);
 

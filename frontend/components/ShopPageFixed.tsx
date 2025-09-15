@@ -1,4 +1,4 @@
-﻿import { useState } from 'react';
+п»їimport { useState } from 'react';
 import { Header } from './Header';
 import { BottomNavigation } from './BottomNavigation';
 import { ShoppingBag, X, Package, Trash2, CheckCircle, Gift, Zap } from './Icons';
@@ -56,7 +56,7 @@ export function ShopPageFixed({ onNavigate, currentPage, onOpenSettings, profile
   const [isTrackingOpen, setIsTrackingOpen] = useState(false);
 
 
-  // Р¤СѓРЅРєС†РёСЏ РґР»СЏ РїРѕР»СѓС‡РµРЅРёСЏ РёРєРѕРЅРєРё С‚РѕРІР°СЂР° РїРѕ РєР°С‚РµРіРѕСЂРёРё
+  // Р В¤РЎС“Р Р…Р С”РЎвЂ Р С‘РЎРЏ Р Т‘Р В»РЎРЏ Р С—Р С•Р В»РЎС“РЎвЂЎР ВµР Р…Р С‘РЎРЏ Р С‘Р С”Р С•Р Р…Р С”Р С‘ РЎвЂљР С•Р Р†Р В°РЎР‚Р В° Р С—Р С• Р С”Р В°РЎвЂљР ВµР С–Р С•РЎР‚Р С‘Р С‘
   const getCategoryIcon = (category: string) => {
     switch (category) {
       case 'bonus': return Zap;
@@ -67,7 +67,7 @@ export function ShopPageFixed({ onNavigate, currentPage, onOpenSettings, profile
     }
   };
 
-  // РџСЂРµРѕР±СЂР°Р·СѓРµРј С‚РѕРІР°СЂС‹ РёР· РіР»РѕР±Р°Р»СЊРЅРѕРіРѕ СЃРѕСЃС‚РѕСЏРЅРёСЏ РІ С„РѕСЂРјР°С‚ Product, РїРѕРєР°Р·С‹РІР°РµРј С‚РѕР»СЊРєРѕ Р°РєС‚РёРІРЅС‹Рµ С‚РѕРІР°СЂС‹
+  // Р СџРЎР‚Р ВµР С•Р В±РЎР‚Р В°Р В·РЎС“Р ВµР С РЎвЂљР С•Р Р†Р В°РЎР‚РЎвЂ№ Р С‘Р В· Р С–Р В»Р С•Р В±Р В°Р В»РЎРЉР Р…Р С•Р С–Р С• РЎРѓР С•РЎРѓРЎвЂљР С•РЎРЏР Р…Р С‘РЎРЏ Р Р† РЎвЂћР С•РЎР‚Р СР В°РЎвЂљ Product, Р С—Р С•Р С”Р В°Р В·РЎвЂ№Р Р†Р В°Р ВµР С РЎвЂљР С•Р В»РЎРЉР С”Р С• Р В°Р С”РЎвЂљР С‘Р Р†Р Р…РЎвЂ№Р Вµ РЎвЂљР С•Р Р†Р В°РЎР‚РЎвЂ№
   const products: Product[] = (shopItems || [])
     .filter(item => item?.isActive)
     .map(item => ({
@@ -127,7 +127,7 @@ export function ShopPageFixed({ onNavigate, currentPage, onOpenSettings, profile
       return;
     }
 
-    // РЎРѕР·РґР°РµРј РЅРѕРІС‹Р№ Р·Р°РєР°Р·
+    // Р РЋР С•Р В·Р Т‘Р В°Р ВµР С Р Р…Р С•Р Р†РЎвЂ№Р в„– Р В·Р В°Р С”Р В°Р В·
     const newOrder: Order = {
       id: Date.now(),
       items: [...cart],
@@ -136,7 +136,7 @@ export function ShopPageFixed({ onNavigate, currentPage, onOpenSettings, profile
       status: 'pending'
     };
 
-    // РЎРЅРёРјР°РµРј РґРµРЅСЊРіРё СЃ Р±Р°Р»Р°РЅСЃР°
+    // Р РЋР Р…Р С‘Р СР В°Р ВµР С Р Т‘Р ВµР Р…РЎРЉР С–Р С‘ РЎРѓ Р В±Р В°Р В»Р В°Р Р…РЎРѓР В°
     setUserBalance(prev => prev - total);
     setGlobalOrders && setGlobalOrders(prevOrders => [newOrder, ...(prevOrders || [])]);
     clearCart();
@@ -148,11 +148,11 @@ export function ShopPageFixed({ onNavigate, currentPage, onOpenSettings, profile
 
   const getStatusText = (status: Order['status']) => {
     switch (status) {
-      case 'pending': return 'Р’ РїСЂРѕС†РµСЃСЃРµ РѕРґРѕР±СЂРµРЅРёСЏ';
-      case 'approved': return 'РћРґРѕР±СЂРµРЅ';
-      case 'rejected': return 'РћС‚РєР»РѕРЅРµРЅ';
-      case 'received': return 'РџРѕР»СѓС‡РµРЅ';
-      default: return 'РќРµРёР·РІРµСЃС‚РЅРѕ';
+      case 'pending': return 'Р вЂ™ Р С—РЎР‚Р С•РЎвЂ Р ВµРЎРѓРЎРѓР Вµ Р С•Р Т‘Р С•Р В±РЎР‚Р ВµР Р…Р С‘РЎРЏ';
+      case 'approved': return 'Р С›Р Т‘Р С•Р В±РЎР‚Р ВµР Р…';
+      case 'rejected': return 'Р С›РЎвЂљР С”Р В»Р С•Р Р…Р ВµР Р…';
+      case 'received': return 'Р СџР С•Р В»РЎС“РЎвЂЎР ВµР Р…';
+      default: return 'Р СњР ВµР С‘Р В·Р Р†Р ВµРЎРѓРЎвЂљР Р…Р С•';
     }
   };
 
@@ -195,15 +195,15 @@ export function ShopPageFixed({ onNavigate, currentPage, onOpenSettings, profile
         <div className="flex-1 overflow-hidden">
           <div className="mx-4 mt-6 h-full">
             <div className="glass-card rounded-2xl h-full flex flex-col apple-shadow">
-              {/* Р’РµСЂС…РЅСЏСЏ СЃРµРєС†РёСЏ СЃ Р±Р°Р»Р°РЅСЃРѕРј Рё Р·Р°РіРѕР»РѕРІРєРѕРј */}
+              {/* Р вЂ™Р ВµРЎР‚РЎвЂ¦Р Р…РЎРЏРЎРЏ РЎРѓР ВµР С”РЎвЂ Р С‘РЎРЏ РЎРѓ Р В±Р В°Р В»Р В°Р Р…РЎРѓР С•Р С Р С‘ Р В·Р В°Р С–Р С•Р В»Р С•Р Р†Р С”Р С•Р С */}
               <div className="flex items-center p-6 border-b border-border/20">
                 <div className="glass-card rounded-lg px-3 py-2 apple-shadow">
-                  <div className="text-xs text-muted-foreground mb-1">Р‘Р°Р»Р°РЅСЃ</div>
+                  <div className="text-xs text-muted-foreground mb-1">Р вЂР В°Р В»Р В°Р Р…РЎРѓ</div>
                   <div className="text-sm font-medium text-foreground">{userBalance}g</div>
                 </div>
                 
                 <h2 className="text-lg font-medium text-foreground flex-1 text-center">
-                  РњР°РіР°Р·РёРЅ
+                  Р СљР В°Р С–Р В°Р В·Р С‘Р Р…
                 </h2>
                 
                 <button
@@ -223,7 +223,7 @@ export function ShopPageFixed({ onNavigate, currentPage, onOpenSettings, profile
 
 
               
-              {/* РЎРїРёСЃРѕРє С‚РѕРІР°СЂРѕРІ */}
+              {/* Р РЋР С—Р С‘РЎРѓР С•Р С” РЎвЂљР С•Р Р†Р В°РЎР‚Р С•Р Р† */}
               <div className="flex-1 overflow-y-auto p-6 pb-24 space-y-4">
                 {products.length > 0 ? (
                   products.map((product) => {
@@ -263,7 +263,7 @@ export function ShopPageFixed({ onNavigate, currentPage, onOpenSettings, profile
                               : 'bg-muted text-muted-foreground cursor-not-allowed'
                           }`}
                         >
-                          РљСѓРїРёС‚СЊ
+                          Р С™РЎС“Р С—Р С‘РЎвЂљРЎРЉ
                         </button>
                       </div>
                     );
@@ -272,7 +272,7 @@ export function ShopPageFixed({ onNavigate, currentPage, onOpenSettings, profile
                   <div className="flex items-center justify-center min-h-[200px]">
                     <div className="bg-muted/50 backdrop-blur-sm rounded-xl p-6 w-80 apple-shadow">
                       <p className="text-muted-foreground opacity-70 text-center">
-                        РўРѕРІР°СЂС‹ РґР»СЏ РїРѕРєСѓРїРєРё РѕС‚СЃСѓС‚СЃС‚РІСѓСЋС‚
+                        Р СћР С•Р Р†Р В°РЎР‚РЎвЂ№ Р Т‘Р В»РЎРЏ Р С—Р С•Р С”РЎС“Р С—Р С”Р С‘ Р С•РЎвЂљРЎРѓРЎС“РЎвЂљРЎРѓРЎвЂљР Р†РЎС“РЎР‹РЎвЂљ
                       </p>
                     </div>
                   </div>
@@ -286,16 +286,16 @@ export function ShopPageFixed({ onNavigate, currentPage, onOpenSettings, profile
         <BottomNavigation onNavigate={onNavigate} currentPage={currentPage} />
       </div>
 
-      {/* РљРѕСЂР·РёРЅР° */}
+      {/* Р С™Р С•РЎР‚Р В·Р С‘Р Р…Р В° */}
       <Dialog open={isCartOpen} onOpenChange={setIsCartOpen}>
         <DialogContent 
           className="glass-card rounded-3xl border-2 border-border apple-shadow w-[90vw] max-w-md p-0 max-h-[80vh] flex flex-col [&>button]:hidden"
         >
           <div className="p-6 flex-1 flex flex-col">
-            {/* Р—Р°РіРѕР»РѕРІРѕРє РєРѕСЂР·РёРЅС‹ */}
+            {/* Р вЂ”Р В°Р С–Р С•Р В»Р С•Р Р†Р С•Р С” Р С”Р С•РЎР‚Р В·Р С‘Р Р…РЎвЂ№ */}
             <div className="flex items-center justify-between mb-6">
               <DialogTitle className="text-lg font-medium text-foreground">
-                РљРѕСЂР·РёРЅР°
+                Р С™Р С•РЎР‚Р В·Р С‘Р Р…Р В°
               </DialogTitle>
               <button
                 onClick={() => setIsCartOpen(false)}
@@ -306,13 +306,13 @@ export function ShopPageFixed({ onNavigate, currentPage, onOpenSettings, profile
             </div>
             
             <DialogDescription className="sr-only">
-              РљРѕСЂР·РёРЅР° РїРѕРєСѓРїРѕРє СЃ С‚РѕРІР°СЂР°РјРё РґР»СЏ РѕС„РѕСЂРјР»РµРЅРёСЏ Р·Р°РєР°Р·Р°
+              Р С™Р С•РЎР‚Р В·Р С‘Р Р…Р В° Р С—Р С•Р С”РЎС“Р С—Р С•Р С” РЎРѓ РЎвЂљР С•Р Р†Р В°РЎР‚Р В°Р СР С‘ Р Т‘Р В»РЎРЏ Р С•РЎвЂћР С•РЎР‚Р СР В»Р ВµР Р…Р С‘РЎРЏ Р В·Р В°Р С”Р В°Р В·Р В°
             </DialogDescription>
 
-            {/* Р‘Р°Р»Р°РЅСЃ Рё РєРЅРѕРїРєР° Р·Р°РєР°Р·РѕРІ */}
+            {/* Р вЂР В°Р В»Р В°Р Р…РЎРѓ Р С‘ Р С”Р Р…Р С•Р С—Р С”Р В° Р В·Р В°Р С”Р В°Р В·Р С•Р Р† */}
             <div className="flex items-center gap-3 mb-4">
               <div className="glass-card rounded-lg px-3 py-2">
-                <div className="text-xs text-muted-foreground mb-1">Р‘Р°Р»Р°РЅСЃ</div>
+                <div className="text-xs text-muted-foreground mb-1">Р вЂР В°Р В»Р В°Р Р…РЎРѓ</div>
                 <div className="text-sm font-medium text-foreground">{userBalance}g</div>
               </div>
               <button
@@ -322,11 +322,11 @@ export function ShopPageFixed({ onNavigate, currentPage, onOpenSettings, profile
                 }}
                 className="glass-card rounded-lg px-4 py-2 text-sm font-medium text-foreground hover:scale-[0.98] transition-transform ml-auto"
               >
-                Р—Р°РєР°Р·С‹
+                Р вЂ”Р В°Р С”Р В°Р В·РЎвЂ№
               </button>
             </div>
 
-            {/* РўРѕРІР°СЂС‹ РІ РєРѕСЂР·РёРЅРµ */}
+            {/* Р СћР С•Р Р†Р В°РЎР‚РЎвЂ№ Р Р† Р С”Р С•РЎР‚Р В·Р С‘Р Р…Р Вµ */}
             <div className="flex-1 overflow-y-auto space-y-3 mb-4">
               {cart.length > 0 ? (
                 cart.map((item) => (
@@ -340,7 +340,7 @@ export function ShopPageFixed({ onNavigate, currentPage, onOpenSettings, profile
                         {item.product.name}
                       </div>
                       <div className="text-xs text-muted-foreground">
-                        {formatPrice(item.product.price)} Г— {item.quantity}
+                        {formatPrice(item.product.price)} Р“вЂ” {item.quantity}
                       </div>
                     </div>
                     
@@ -358,16 +358,16 @@ export function ShopPageFixed({ onNavigate, currentPage, onOpenSettings, profile
                 ))
               ) : (
                 <div className="flex items-center justify-center py-12">
-                  <p className="text-muted-foreground">РљРѕСЂР·РёРЅР° РїСѓСЃС‚Р°</p>
+                  <p className="text-muted-foreground">Р С™Р С•РЎР‚Р В·Р С‘Р Р…Р В° Р С—РЎС“РЎРѓРЎвЂљР В°</p>
                 </div>
               )}
             </div>
 
-            {/* РС‚РѕРіРѕ Рё РєРЅРѕРїРєР° РїРѕРєСѓРїРєРё */}
+            {/* Р ВРЎвЂљР С•Р С–Р С• Р С‘ Р С”Р Р…Р С•Р С—Р С”Р В° Р С—Р С•Р С”РЎС“Р С—Р С”Р С‘ */}
             {cart.length > 0 && (
               <div className="border-t border-border/20 pt-4">
                 <div className="flex items-center justify-between mb-4">
-                  <span className="text-sm font-medium text-foreground">РС‚РѕРіРѕ:</span>
+                  <span className="text-sm font-medium text-foreground">Р ВРЎвЂљР С•Р С–Р С•:</span>
                   <span className="text-lg font-medium text-foreground">{formatPrice(getCartTotal())}</span>
                 </div>
                 
@@ -376,7 +376,7 @@ export function ShopPageFixed({ onNavigate, currentPage, onOpenSettings, profile
                     onClick={clearCart}
                     className="flex-1 glass-card rounded-2xl p-3 text-sm font-medium text-foreground hover:scale-[0.98] transition-transform"
                   >
-                    РћС‡РёСЃС‚РёС‚СЊ
+                    Р С›РЎвЂЎР С‘РЎРѓРЎвЂљР С‘РЎвЂљРЎРЉ
                   </button>
                   <button
                     onClick={handlePurchase}
@@ -387,7 +387,7 @@ export function ShopPageFixed({ onNavigate, currentPage, onOpenSettings, profile
                         : 'bg-primary text-primary-foreground hover:scale-[0.98]'
                     }`}
                   >
-                    РљСѓРїРёС‚СЊ
+                    Р С™РЎС“Р С—Р С‘РЎвЂљРЎРЉ
                   </button>
                 </div>
               </div>
@@ -396,7 +396,7 @@ export function ShopPageFixed({ onNavigate, currentPage, onOpenSettings, profile
         </DialogContent>
       </Dialog>
 
-      {/* РњРѕРґР°Р»СЊРЅРѕРµ РѕРєРЅРѕ РЅРµРґРѕСЃС‚Р°С‚РѕС‡РЅРѕ СЃСЂРµРґСЃС‚РІ */}
+      {/* Р СљР С•Р Т‘Р В°Р В»РЎРЉР Р…Р С•Р Вµ Р С•Р С”Р Р…Р С• Р Р…Р ВµР Т‘Р С•РЎРѓРЎвЂљР В°РЎвЂљР С•РЎвЂЎР Р…Р С• РЎРѓРЎР‚Р ВµР Т‘РЎРѓРЎвЂљР Р† */}
       <Dialog open={isInsufficientFundsOpen} onOpenChange={setIsInsufficientFundsOpen}>
         <DialogContent className="glass-card rounded-3xl border-2 border-border apple-shadow w-[90vw] max-w-sm p-6 [&>button]:hidden">
           <div className="text-center">
@@ -405,31 +405,31 @@ export function ShopPageFixed({ onNavigate, currentPage, onOpenSettings, profile
             </div>
             
             <DialogTitle className="text-lg font-medium text-foreground mb-2">
-              РќРµРґРѕСЃС‚Р°С‚РѕС‡РЅРѕ СЃСЂРµРґСЃС‚РІ
+              Р СњР ВµР Т‘Р С•РЎРѓРЎвЂљР В°РЎвЂљР С•РЎвЂЎР Р…Р С• РЎРѓРЎР‚Р ВµР Т‘РЎРѓРЎвЂљР Р†
             </DialogTitle>
             
             <DialogDescription className="text-sm text-muted-foreground mb-6">
-              РЈ РІР°СЃ РЅРµРґРѕСЃС‚Р°С‚РѕС‡РЅРѕ РјРѕРЅРµС‚ РґР»СЏ СЃРѕРІРµСЂС€РµРЅРёСЏ РїРѕРєСѓРїРєРё. Р’С‹РїРѕР»РЅРёС‚Рµ Р·Р°РґР°РЅРёСЏ, С‡С‚РѕР±С‹ Р·Р°СЂР°Р±РѕС‚Р°С‚СЊ Р±РѕР»СЊС€Рµ РјРѕРЅРµС‚.
+              Р Р€ Р Р†Р В°РЎРѓ Р Р…Р ВµР Т‘Р С•РЎРѓРЎвЂљР В°РЎвЂљР С•РЎвЂЎР Р…Р С• Р СР С•Р Р…Р ВµРЎвЂљ Р Т‘Р В»РЎРЏ РЎРѓР С•Р Р†Р ВµРЎР‚РЎв‚¬Р ВµР Р…Р С‘РЎРЏ Р С—Р С•Р С”РЎС“Р С—Р С”Р С‘. Р вЂ™РЎвЂ№Р С—Р С•Р В»Р Р…Р С‘РЎвЂљР Вµ Р В·Р В°Р Т‘Р В°Р Р…Р С‘РЎРЏ, РЎвЂЎРЎвЂљР С•Р В±РЎвЂ№ Р В·Р В°РЎР‚Р В°Р В±Р С•РЎвЂљР В°РЎвЂљРЎРЉ Р В±Р С•Р В»РЎРЉРЎв‚¬Р Вµ Р СР С•Р Р…Р ВµРЎвЂљ.
             </DialogDescription>
             
             <button
               onClick={() => setIsInsufficientFundsOpen(false)}
               className="w-full bg-primary text-primary-foreground rounded-2xl p-3 text-sm font-medium hover:scale-[0.98] transition-transform"
             >
-              РџРѕРЅСЏС‚РЅРѕ
+              Р СџР С•Р Р…РЎРЏРЎвЂљР Р…Р С•
             </button>
           </div>
         </DialogContent>
       </Dialog>
 
-      {/* Р”РµС‚Р°Р»Рё С‚РѕРІР°СЂР° */}
+      {/* Р вЂќР ВµРЎвЂљР В°Р В»Р С‘ РЎвЂљР С•Р Р†Р В°РЎР‚Р В° */}
       <Dialog open={isProductDetailOpen} onOpenChange={setIsProductDetailOpen}>
         <DialogContent className="glass-card rounded-3xl border-2 border-border apple-shadow w-[90vw] max-w-md p-0 max-h-[80vh] flex flex-col [&>button]:hidden">
           {selectedProduct && (
             <div className="p-6 flex-1 flex flex-col">
               <div className="flex items-center justify-between mb-6">
                 <DialogTitle className="text-lg font-medium text-foreground">
-                  Р”РµС‚Р°Р»Рё С‚РѕРІР°СЂР°
+                  Р вЂќР ВµРЎвЂљР В°Р В»Р С‘ РЎвЂљР С•Р Р†Р В°РЎР‚Р В°
                 </DialogTitle>
                 <button
                   onClick={() => setIsProductDetailOpen(false)}
@@ -440,7 +440,7 @@ export function ShopPageFixed({ onNavigate, currentPage, onOpenSettings, profile
               </div>
               
               <DialogDescription className="sr-only">
-                Р”РµС‚Р°Р»СЊРЅР°СЏ РёРЅС„РѕСЂРјР°С†РёСЏ Рѕ С‚РѕРІР°СЂРµ
+                Р вЂќР ВµРЎвЂљР В°Р В»РЎРЉР Р…Р В°РЎРЏ Р С‘Р Р…РЎвЂћР С•РЎР‚Р СР В°РЎвЂ Р С‘РЎРЏ Р С• РЎвЂљР С•Р Р†Р В°РЎР‚Р Вµ
               </DialogDescription>
 
               <div className="flex-1 overflow-y-auto space-y-4">
@@ -461,7 +461,7 @@ export function ShopPageFixed({ onNavigate, currentPage, onOpenSettings, profile
 
                 <div className="glass-card rounded-2xl p-4">
                   <div className="text-sm font-medium text-foreground mb-2">
-                    РћРїРёСЃР°РЅРёРµ
+                    Р С›Р С—Р С‘РЎРѓР В°Р Р…Р С‘Р Вµ
                   </div>
                   <div className="text-sm text-muted-foreground">
                     {selectedProduct.description}
@@ -474,7 +474,7 @@ export function ShopPageFixed({ onNavigate, currentPage, onOpenSettings, profile
                   onClick={() => setIsProductDetailOpen(false)}
                   className="flex-1 glass-card rounded-2xl p-3 text-sm font-medium text-foreground hover:scale-[0.98] transition-transform"
                 >
-                  РћС‚РјРµРЅРёС‚СЊ
+                  Р С›РЎвЂљР СР ВµР Р…Р С‘РЎвЂљРЎРЉ
                 </button>
                 <button
                   onClick={() => {
@@ -488,7 +488,7 @@ export function ShopPageFixed({ onNavigate, currentPage, onOpenSettings, profile
                       : 'bg-muted text-muted-foreground cursor-not-allowed'
                   }`}
                 >
-                  Р’ РєРѕСЂР·РёРЅСѓ
+                  Р вЂ™ Р С”Р С•РЎР‚Р В·Р С‘Р Р…РЎС“
                 </button>
               </div>
             </div>
@@ -496,14 +496,14 @@ export function ShopPageFixed({ onNavigate, currentPage, onOpenSettings, profile
         </DialogContent>
       </Dialog>
 
-      {/* РњРѕРґР°Р»СЊРЅРѕРµ РѕРєРЅРѕ Р·Р°РєР°Р·РѕРІ */}
+      {/* Р СљР С•Р Т‘Р В°Р В»РЎРЉР Р…Р С•Р Вµ Р С•Р С”Р Р…Р С• Р В·Р В°Р С”Р В°Р В·Р С•Р Р† */}
       <Dialog open={isOrdersOpen} onOpenChange={setIsOrdersOpen}>
         <DialogContent className="glass-card rounded-3xl border-2 border-border apple-shadow w-[90vw] max-w-md p-0 max-h-[80vh] flex flex-col [&>button]:hidden">
           <div className="p-6 flex-1 flex flex-col">
-            {/* Р—Р°РіРѕР»РѕРІРѕРє Р·Р°РєР°Р·РѕРІ */}
+            {/* Р вЂ”Р В°Р С–Р С•Р В»Р С•Р Р†Р С•Р С” Р В·Р В°Р С”Р В°Р В·Р С•Р Р† */}
             <div className="flex items-center justify-between mb-6">
               <DialogTitle className="text-lg font-medium text-foreground">
-                РњРѕРё Р·Р°РєР°Р·С‹
+                Р СљР С•Р С‘ Р В·Р В°Р С”Р В°Р В·РЎвЂ№
               </DialogTitle>
               <button
                 onClick={() => setIsOrdersOpen(false)}
@@ -514,10 +514,10 @@ export function ShopPageFixed({ onNavigate, currentPage, onOpenSettings, profile
             </div>
             
             <DialogDescription className="sr-only">
-              РЎРїРёСЃРѕРє РІР°С€РёС… Р·Р°РєР°Р·РѕРІ Рё РёС… СЃС‚Р°С‚СѓСЃ
+              Р РЋР С—Р С‘РЎРѓР С•Р С” Р Р†Р В°РЎв‚¬Р С‘РЎвЂ¦ Р В·Р В°Р С”Р В°Р В·Р С•Р Р† Р С‘ Р С‘РЎвЂ¦ РЎРѓРЎвЂљР В°РЎвЂљРЎС“РЎРѓ
             </DialogDescription>
 
-            {/* Р’РєР»Р°РґРєРё Р·Р°РєР°Р·РѕРІ */}
+            {/* Р вЂ™Р С”Р В»Р В°Р Т‘Р С”Р С‘ Р В·Р В°Р С”Р В°Р В·Р С•Р Р† */}
             <div className="flex gap-2 p-1 glass-card rounded-2xl mb-4">
               <button
                 onClick={() => setOrderTab('active')}
@@ -527,7 +527,7 @@ export function ShopPageFixed({ onNavigate, currentPage, onOpenSettings, profile
                     : 'text-muted-foreground hover:text-foreground'
                 }`}
               >
-                РђРєС‚РёРІРЅС‹Рµ ({activeOrders.length})
+                Р С’Р С”РЎвЂљР С‘Р Р†Р Р…РЎвЂ№Р Вµ ({activeOrders.length})
               </button>
               <button
                 onClick={() => setOrderTab('completed')}
@@ -537,18 +537,18 @@ export function ShopPageFixed({ onNavigate, currentPage, onOpenSettings, profile
                     : 'text-muted-foreground hover:text-foreground'
                 }`}
               >
-                Р—Р°РІРµСЂС€РµРЅРЅС‹Рµ ({completedOrders.length})
+                Р вЂ”Р В°Р Р†Р ВµРЎР‚РЎв‚¬Р ВµР Р…Р Р…РЎвЂ№Р Вµ ({completedOrders.length})
               </button>
             </div>
 
-            {/* РЎРїРёСЃРѕРє Р·Р°РєР°Р·РѕРІ */}
+            {/* Р РЋР С—Р С‘РЎРѓР С•Р С” Р В·Р В°Р С”Р В°Р В·Р С•Р Р† */}
             <div className="flex-1 overflow-y-auto space-y-3">
               {(orderTab === 'active' ? activeOrders : completedOrders).map((order) => (
                 <div key={order.id} className="glass-card rounded-2xl p-4">
                   <div className="flex items-start justify-between mb-3">
                     <div>
                       <div className="text-sm font-medium text-foreground">
-                        Р—Р°РєР°Р· #{order.id}
+                        Р вЂ”Р В°Р С”Р В°Р В· #{order.id}
                       </div>
                       <div className="text-xs text-muted-foreground">
                         {order.date}
@@ -571,7 +571,7 @@ export function ShopPageFixed({ onNavigate, currentPage, onOpenSettings, profile
                           <item.product.icon className="w-3 h-3 text-foreground/70" />
                         </div>
                         <div className="flex-1 text-xs text-muted-foreground">
-                          {item.product.name} Г— {item.quantity}
+                          {item.product.name} Р“вЂ” {item.quantity}
                         </div>
                         <div className="text-xs text-foreground">
                           {formatPrice(item.product.price * item.quantity)}
@@ -586,20 +586,20 @@ export function ShopPageFixed({ onNavigate, currentPage, onOpenSettings, profile
                         onClick={() => handleShowTracking(order)}
                         className="flex-1 glass-card rounded-lg p-2 text-xs font-medium text-foreground hover:scale-[0.98] transition-transform"
                       >
-                        РћС‚СЃР»РµРґРёС‚СЊ
+                        Р С›РЎвЂљРЎРѓР В»Р ВµР Т‘Р С‘РЎвЂљРЎРЉ
                       </button>
                       <button
                         onClick={() => handleMarkAsReceived(order.id)}
                         className="flex-1 bg-green-500 text-white rounded-lg p-2 text-xs font-medium hover:scale-[0.98] transition-transform"
                       >
-                        РџРѕР»СѓС‡РµРЅРѕ
+                        Р СџР С•Р В»РЎС“РЎвЂЎР ВµР Р…Р С•
                       </button>
                     </div>
                   )}
 
                   {order.status === 'received' && order.completedDate && (
                     <div className="text-xs text-green-600">
-                      РџРѕР»СѓС‡РµРЅРѕ: {order.completedDate}
+                      Р СџР С•Р В»РЎС“РЎвЂЎР ВµР Р…Р С•: {order.completedDate}
                     </div>
                   )}
                 </div>
@@ -608,7 +608,7 @@ export function ShopPageFixed({ onNavigate, currentPage, onOpenSettings, profile
               {(orderTab === 'active' ? activeOrders : completedOrders).length === 0 && (
                 <div className="flex items-center justify-center py-12">
                   <p className="text-muted-foreground text-center">
-                    {orderTab === 'active' ? 'РђРєС‚РёРІРЅС‹С… Р·Р°РєР°Р·РѕРІ РЅРµС‚' : 'Р—Р°РІРµСЂС€РµРЅРЅС‹С… Р·Р°РєР°Р·РѕРІ РЅРµС‚'}
+                    {orderTab === 'active' ? 'Р С’Р С”РЎвЂљР С‘Р Р†Р Р…РЎвЂ№РЎвЂ¦ Р В·Р В°Р С”Р В°Р В·Р С•Р Р† Р Р…Р ВµРЎвЂљ' : 'Р вЂ”Р В°Р Р†Р ВµРЎР‚РЎв‚¬Р ВµР Р…Р Р…РЎвЂ№РЎвЂ¦ Р В·Р В°Р С”Р В°Р В·Р С•Р Р† Р Р…Р ВµРЎвЂљ'}
                   </p>
                 </div>
               )}
@@ -617,34 +617,34 @@ export function ShopPageFixed({ onNavigate, currentPage, onOpenSettings, profile
         </DialogContent>
       </Dialog>
 
-      {/* РњРѕРґР°Р»СЊРЅРѕРµ РѕРєРЅРѕ РѕС‚СЃР»РµР¶РёРІР°РЅРёСЏ */}
+      {/* Р СљР С•Р Т‘Р В°Р В»РЎРЉР Р…Р С•Р Вµ Р С•Р С”Р Р…Р С• Р С•РЎвЂљРЎРѓР В»Р ВµР В¶Р С‘Р Р†Р В°Р Р…Р С‘РЎРЏ */}
       <Dialog open={isTrackingOpen} onOpenChange={setIsTrackingOpen}>
         <DialogContent className="glass-card rounded-3xl border-2 border-border apple-shadow w-[90vw] max-w-sm p-6 [&>button]:hidden">
           <div className="text-center">
             <DialogTitle className="text-lg font-medium text-foreground mb-4">
-              РћС‚СЃР»РµР¶РёРІР°РЅРёРµ Р·Р°РєР°Р·Р°
+              Р С›РЎвЂљРЎРѓР В»Р ВµР В¶Р С‘Р Р†Р В°Р Р…Р С‘Р Вµ Р В·Р В°Р С”Р В°Р В·Р В°
             </DialogTitle>
             
             <DialogDescription className="sr-only">
-              РРЅС„РѕСЂРјР°С†РёСЏ РѕР± РѕС‚СЃР»РµР¶РёРІР°РЅРёРё Р·Р°РєР°Р·Р°
+              Р ВР Р…РЎвЂћР С•РЎР‚Р СР В°РЎвЂ Р С‘РЎРЏ Р С•Р В± Р С•РЎвЂљРЎРѓР В»Р ВµР В¶Р С‘Р Р†Р В°Р Р…Р С‘Р С‘ Р В·Р В°Р С”Р В°Р В·Р В°
             </DialogDescription>
             
             {selectedOrder && (
               <div className="space-y-4">
                 <div className="glass-card rounded-2xl p-4">
                   <div className="text-sm font-medium text-foreground mb-2">
-                    Р—Р°РєР°Р· #{selectedOrder.id}
+                    Р вЂ”Р В°Р С”Р В°Р В· #{selectedOrder.id}
                   </div>
                   <div className="text-xs text-muted-foreground">
-                    РЎС‚Р°С‚СѓСЃ: {getStatusText(selectedOrder.status)}
+                    Р РЋРЎвЂљР В°РЎвЂљРЎС“РЎРѓ: {getStatusText(selectedOrder.status)}
                   </div>
                   <div className="text-xs text-muted-foreground">
-                    Р”Р°С‚Р° Р·Р°РєР°Р·Р°: {selectedOrder.date}
+                    Р вЂќР В°РЎвЂљР В° Р В·Р В°Р С”Р В°Р В·Р В°: {selectedOrder.date}
                   </div>
                 </div>
 
                 <div className="text-sm text-muted-foreground">
-                  Р’Р°С€ Р·Р°РєР°Р· РѕР±СЂР°Р±Р°С‚С‹РІР°РµС‚СЃСЏ Р°РґРјРёРЅРёСЃС‚СЂР°С‚РѕСЂРѕРј. Р’С‹ РїРѕР»СѓС‡РёС‚Рµ СѓРІРµРґРѕРјР»РµРЅРёРµ, РєРѕРіРґР° Р·Р°РєР°Р· Р±СѓРґРµС‚ РіРѕС‚РѕРІ Рє РїРѕР»СѓС‡РµРЅРёСЋ.
+                  Р вЂ™Р В°РЎв‚¬ Р В·Р В°Р С”Р В°Р В· Р С•Р В±РЎР‚Р В°Р В±Р В°РЎвЂљРЎвЂ№Р Р†Р В°Р ВµРЎвЂљРЎРѓРЎРЏ Р В°Р Т‘Р СР С‘Р Р…Р С‘РЎРѓРЎвЂљРЎР‚Р В°РЎвЂљР С•РЎР‚Р С•Р С. Р вЂ™РЎвЂ№ Р С—Р С•Р В»РЎС“РЎвЂЎР С‘РЎвЂљР Вµ РЎС“Р Р†Р ВµР Т‘Р С•Р СР В»Р ВµР Р…Р С‘Р Вµ, Р С”Р С•Р С–Р Т‘Р В° Р В·Р В°Р С”Р В°Р В· Р В±РЎС“Р Т‘Р ВµРЎвЂљ Р С–Р С•РЎвЂљР С•Р Р† Р С” Р С—Р С•Р В»РЎС“РЎвЂЎР ВµР Р…Р С‘РЎР‹.
                 </div>
               </div>
             )}
@@ -653,7 +653,7 @@ export function ShopPageFixed({ onNavigate, currentPage, onOpenSettings, profile
               onClick={() => setIsTrackingOpen(false)}
               className="w-full bg-primary text-primary-foreground rounded-2xl p-3 text-sm font-medium hover:scale-[0.98] transition-transform mt-6"
             >
-              Р—Р°РєСЂС‹С‚СЊ
+              Р вЂ”Р В°Р С”РЎР‚РЎвЂ№РЎвЂљРЎРЉ
             </button>
           </div>
         </DialogContent>

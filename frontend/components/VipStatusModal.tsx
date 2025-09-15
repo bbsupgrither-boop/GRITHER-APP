@@ -1,4 +1,4 @@
-﻿import { Package } from './Icons';
+п»їimport { Package } from './Icons';
 import { ModalOpaque } from './ModalOpaque';
 
 interface VipStatusModalProps {
@@ -14,7 +14,7 @@ export function VipStatusModal({ isOpen, onClose, onApprove, onReject, theme = '
     <ModalOpaque
       isOpen={isOpen}
       onClose={onClose}
-      title="VIP СЃС‚Р°С‚СѓСЃ"
+      title="VIP РЎРѓРЎвЂљР В°РЎвЂљРЎС“РЎРѓ"
       theme={theme}
       actions={
         <div className="flex gap-3">
@@ -31,7 +31,7 @@ export function VipStatusModal({ isOpen, onClose, onApprove, onReject, theme = '
               color: theme === 'dark' ? '#E8ECF2' : '#0F172A'
             }}
           >
-            РћС‚РјРµРЅРёС‚СЊ
+            Р С›РЎвЂљР СР ВµР Р…Р С‘РЎвЂљРЎРЉ
           </button>
           <button
             onClick={onApprove}
@@ -44,13 +44,13 @@ export function VipStatusModal({ isOpen, onClose, onApprove, onReject, theme = '
               border: 'none'
             }}
           >
-            РџСЂРёРјРµРЅРёС‚СЊ
+            Р СџРЎР‚Р С‘Р СР ВµР Р…Р С‘РЎвЂљРЎРЉ
           </button>
         </div>
       }
     >
       <div className="space-y-4">
-        {/* РРєРѕРЅРєР° С‚РѕРІР°СЂР° */}
+        {/* Р ВР С”Р С•Р Р…Р С”Р В° РЎвЂљР С•Р Р†Р В°РЎР‚Р В° */}
         <div className="flex justify-center mb-4">
           <div 
             className="flex items-center justify-center"
@@ -65,7 +65,7 @@ export function VipStatusModal({ isOpen, onClose, onApprove, onReject, theme = '
           </div>
         </div>
 
-        {/* РћРїРёСЃР°РЅРёРµ С‚РѕРІР°СЂР° */}
+        {/* Р С›Р С—Р С‘РЎРѓР В°Р Р…Р С‘Р Вµ РЎвЂљР С•Р Р†Р В°РЎР‚Р В° */}
         <div className="text-center">
           <div 
             className="mb-2 font-medium"
@@ -74,7 +74,7 @@ export function VipStatusModal({ isOpen, onClose, onApprove, onReject, theme = '
               color: theme === 'dark' ? '#E8ECF2' : '#0F172A'
             }}
           >
-            РћРїРёСЃР°РЅРёРµ С‚РѕРІР°СЂР°
+            Р С›Р С—Р С‘РЎРѓР В°Р Р…Р С‘Р Вµ РЎвЂљР С•Р Р†Р В°РЎР‚Р В°
           </div>
           <div 
             className="leading-relaxed"
@@ -83,11 +83,11 @@ export function VipStatusModal({ isOpen, onClose, onApprove, onReject, theme = '
               color: theme === 'dark' ? '#A7B0BD' : '#6B7280'
             }}
           >
-            РЎС‚Р°С‚СѓСЃ VIP РїРѕР»СЊР·РѕРІР°С‚РµР»СЏ РЅР° РјРµСЃСЏС† вЂў РџСЂРёРѕСЂРёС‚РµС‚РЅР°СЏ РїРѕРґРґРµСЂР¶РєР° вЂў РЎРєРёРґРєРё РЅР° РІСЃРµ С‚РѕРІР°СЂС‹
+            Р РЋРЎвЂљР В°РЎвЂљРЎС“РЎРѓ VIP Р С—Р С•Р В»РЎРЉР В·Р С•Р Р†Р В°РЎвЂљР ВµР В»РЎРЏ Р Р…Р В° Р СР ВµРЎРѓРЎРЏРЎвЂ  РІР‚Сћ Р СџРЎР‚Р С‘Р С•РЎР‚Р С‘РЎвЂљР ВµРЎвЂљР Р…Р В°РЎРЏ Р С—Р С•Р Т‘Р Т‘Р ВµРЎР‚Р В¶Р С”Р В° РІР‚Сћ Р РЋР С”Р С‘Р Т‘Р С”Р С‘ Р Р…Р В° Р Р†РЎРѓР Вµ РЎвЂљР С•Р Р†Р В°РЎР‚РЎвЂ№
           </div>
         </div>
 
-        {/* Р¦РµРЅР° */}
+        {/* Р В¦Р ВµР Р…Р В° */}
         <div className="text-center">
           <div 
             className="mb-1"
@@ -96,7 +96,7 @@ export function VipStatusModal({ isOpen, onClose, onApprove, onReject, theme = '
               color: theme === 'dark' ? '#A7B0BD' : '#6B7280'
             }}
           >
-            Р¦РµРЅР°:
+            Р В¦Р ВµР Р…Р В°:
           </div>
           <div 
             className="font-medium"

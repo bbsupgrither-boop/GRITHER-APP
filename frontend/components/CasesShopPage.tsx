@@ -79,14 +79,14 @@ export const CasesShopPage: React.FC<CasesShopPageProps> = ({
 
   // Mock roulette prizes
   const roulettePrizes: Prize[] = [
-    { id: 'r1', name: '100 монет', type: 'coins', amount: 100, rarity: 'common' },
-    { id: 'r2', name: '500 монет', type: 'coins', amount: 500, rarity: 'rare' },
-    { id: 'r3', name: '1000 монет', type: 'coins', amount: 1000, rarity: 'epic' },
-    { id: 'r4', name: 'Редкий кейс', type: 'case', caseId: 'case2', rarity: 'rare' },
-    { id: 'r5', name: 'Эпический кейс', type: 'case', caseId: 'case3', rarity: 'epic' },
-    { id: 'r6', name: 'Легендарный кейс', type: 'case', caseId: 'case4', rarity: 'legendary' },
-    { id: 'r7', name: '50 монет', type: 'coins', amount: 50, rarity: 'common' },
-    { id: 'r8', name: '200 монет', type: 'coins', amount: 200, rarity: 'common' },
+    { id: 'r1', name: '100 РјРѕРЅРµС‚', type: 'coins', amount: 100, rarity: 'common' },
+    { id: 'r2', name: '500 РјРѕРЅРµС‚', type: 'coins', amount: 500, rarity: 'rare' },
+    { id: 'r3', name: '1000 РјРѕРЅРµС‚', type: 'coins', amount: 1000, rarity: 'epic' },
+    { id: 'r4', name: 'Р РµРґРєРёР№ РєРµР№СЃ', type: 'case', caseId: 'case2', rarity: 'rare' },
+    { id: 'r5', name: 'Р­РїРёС‡РµСЃРєРёР№ РєРµР№СЃ', type: 'case', caseId: 'case3', rarity: 'epic' },
+    { id: 'r6', name: 'Р›РµРіРµРЅРґР°СЂРЅС‹Р№ РєРµР№СЃ', type: 'case', caseId: 'case4', rarity: 'legendary' },
+    { id: 'r7', name: '50 РјРѕРЅРµС‚', type: 'coins', amount: 50, rarity: 'common' },
+    { id: 'r8', name: '200 РјРѕРЅРµС‚', type: 'coins', amount: 200, rarity: 'common' },
   ];
 
   const getRarityColor = (rarity: string) => {
@@ -215,7 +215,7 @@ export const CasesShopPage: React.FC<CasesShopPageProps> = ({
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-2">
               <Coins className="w-6 h-6 text-yellow-500" />
-              <span className="text-lg font-semibold">Ваши монеты</span>
+              <span className="text-lg font-semibold">Р’Р°С€Рё РјРѕРЅРµС‚С‹</span>
             </div>
             <span className="text-2xl font-bold text-yellow-500">{userCoins}</span>
           </div>
@@ -229,9 +229,9 @@ export const CasesShopPage: React.FC<CasesShopPageProps> = ({
         }`}>
           <div className="flex">
             {[
-              { key: 'cases', label: 'Кейсы', icon: Package },
-              { key: 'shop', label: 'Магазин', icon: ShoppingBag },
-              { key: 'roulette', label: 'Рулетка', icon: RotateCcw }
+              { key: 'cases', label: 'РљРµР№СЃС‹', icon: Package },
+              { key: 'shop', label: 'РњР°РіР°Р·РёРЅ', icon: ShoppingBag },
+              { key: 'roulette', label: 'Р СѓР»РµС‚РєР°', icon: RotateCcw }
             ].map(({ key, label, icon: Icon }) => (
               <button
                 key={key}
@@ -256,7 +256,7 @@ export const CasesShopPage: React.FC<CasesShopPageProps> = ({
           <div className="space-y-4">
             {cases.length === 0 ? (
               <div className="text-center py-8">
-                <div className="text-gray-400 mb-2">Нет доступных кейсов</div>
+                <div className="text-gray-400 mb-2">РќРµС‚ РґРѕСЃС‚СѓРїРЅС‹С… РєРµР№СЃРѕРІ</div>
               </div>
             ) : (
               cases.map((caseItem) => (
@@ -287,9 +287,9 @@ export const CasesShopPage: React.FC<CasesShopPageProps> = ({
                           caseItem.rarity === 'rare' ? 'bg-blue-500/20 text-blue-400' :
                           'bg-gray-500/20 text-gray-400'
                         }`}>
-                          {caseItem.rarity === 'legendary' ? 'Легендарный' :
-                           caseItem.rarity === 'epic' ? 'Эпический' :
-                           caseItem.rarity === 'rare' ? 'Редкий' : 'Обычный'}
+                          {caseItem.rarity === 'legendary' ? 'Р›РµРіРµРЅРґР°СЂРЅС‹Р№' :
+                           caseItem.rarity === 'epic' ? 'Р­РїРёС‡РµСЃРєРёР№' :
+                           caseItem.rarity === 'rare' ? 'Р РµРґРєРёР№' : 'РћР±С‹С‡РЅС‹Р№'}
                         </div>
                       </div>
                     </div>
@@ -305,7 +305,7 @@ export const CasesShopPage: React.FC<CasesShopPageProps> = ({
           <div className="space-y-4">
             {shopItems.length === 0 ? (
               <div className="text-center py-8">
-                <div className="text-gray-400 mb-2">Нет доступных товаров</div>
+                <div className="text-gray-400 mb-2">РќРµС‚ РґРѕСЃС‚СѓРїРЅС‹С… С‚РѕРІР°СЂРѕРІ</div>
               </div>
             ) : (
               shopItems.map((item) => (
@@ -345,9 +345,9 @@ export const CasesShopPage: React.FC<CasesShopPageProps> = ({
               : 'bg-white/80 border-gray-200'
           }`}>
             <div className="text-center mb-6">
-              <h3 className="text-xl font-semibold mb-2">Колесо удачи</h3>
+              <h3 className="text-xl font-semibold mb-2">РљРѕР»РµСЃРѕ СѓРґР°С‡Рё</h3>
               <p className="text-sm text-gray-400 mb-4">
-                Потратьте 100 монет для вращения рулетки
+                РџРѕС‚СЂР°С‚СЊС‚Рµ 100 РјРѕРЅРµС‚ РґР»СЏ РІСЂР°С‰РµРЅРёСЏ СЂСѓР»РµС‚РєРё
               </p>
             </div>
 
@@ -406,19 +406,19 @@ export const CasesShopPage: React.FC<CasesShopPageProps> = ({
               {isRouletteSpinning ? (
                 <div className="flex items-center justify-center gap-2">
                   <div className="w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin" />
-                  Вращение...
+                  Р’СЂР°С‰РµРЅРёРµ...
                 </div>
               ) : (
                 <div className="flex items-center justify-center gap-2">
                   <Play className="w-4 h-4" />
-                  Вращать за 100 монет
+                  Р’СЂР°С‰Р°С‚СЊ Р·Р° 100 РјРѕРЅРµС‚
                 </div>
               )}
             </button>
 
             {/* Available Prizes */}
             <div className="mt-6">
-              <h4 className="font-medium mb-3">Возможные призы:</h4>
+              <h4 className="font-medium mb-3">Р’РѕР·РјРѕР¶РЅС‹Рµ РїСЂРёР·С‹:</h4>
               <div className="grid grid-cols-2 gap-2">
                 {roulettePrizes.slice(0, 6).map((prize) => (
                   <div key={prize.id} className={`p-2 rounded-lg text-xs ${
@@ -431,9 +431,9 @@ export const CasesShopPage: React.FC<CasesShopPageProps> = ({
                       prize.rarity === 'rare' ? 'text-blue-400' :
                       'text-gray-400'
                     }`}>
-                      {prize.rarity === 'legendary' ? 'Легендарный' :
-                       prize.rarity === 'epic' ? 'Эпический' :
-                       prize.rarity === 'rare' ? 'Редкий' : 'Обычный'}
+                      {prize.rarity === 'legendary' ? 'Р›РµРіРµРЅРґР°СЂРЅС‹Р№' :
+                       prize.rarity === 'epic' ? 'Р­РїРёС‡РµСЃРєРёР№' :
+                       prize.rarity === 'rare' ? 'Р РµРґРєРёР№' : 'РћР±С‹С‡РЅС‹Р№'}
                     </div>
                   </div>
                 ))}
@@ -456,7 +456,7 @@ export const CasesShopPage: React.FC<CasesShopPageProps> = ({
             theme === 'dark' ? 'bg-gray-800' : 'bg-white'
           }`}>
             <div className="flex items-center justify-between mb-6">
-              <h2 className="text-xl font-semibold">Покупка кейса</h2>
+              <h2 className="text-xl font-semibold">РџРѕРєСѓРїРєР° РєРµР№СЃР°</h2>
               <button
                 onClick={() => setIsCaseModalOpen(false)}
                 className="p-2 rounded-full hover:bg-gray-100 dark:hover:bg-gray-700"
@@ -480,14 +480,14 @@ export const CasesShopPage: React.FC<CasesShopPageProps> = ({
                 theme === 'dark' ? 'bg-gray-700/50 border-gray-600' : 'bg-gray-50 border-gray-200'
               }`}>
                 <div className="flex items-center justify-between">
-                  <span className="text-sm">Цена:</span>
+                  <span className="text-sm">Р¦РµРЅР°:</span>
                   <div className="flex items-center gap-1">
                     <Coins className="w-4 h-4 text-yellow-500" />
                     <span className="font-medium">{selectedCase.price}</span>
                   </div>
                 </div>
                 <div className="flex items-center justify-between mt-2">
-                  <span className="text-sm">Ваши монеты:</span>
+                  <span className="text-sm">Р’Р°С€Рё РјРѕРЅРµС‚С‹:</span>
                   <div className="flex items-center gap-1">
                     <Coins className="w-4 h-4 text-yellow-500" />
                     <span className="font-medium">{userCoins}</span>
@@ -500,7 +500,7 @@ export const CasesShopPage: React.FC<CasesShopPageProps> = ({
                   onClick={() => setIsCaseModalOpen(false)}
                   className="flex-1 py-2 px-4 rounded-xl bg-gray-200 dark:bg-gray-700 text-gray-700 dark:text-gray-300"
                 >
-                  Отменить
+                  РћС‚РјРµРЅРёС‚СЊ
                 </button>
                 <button
                   onClick={handleCasePurchase}
@@ -511,7 +511,7 @@ export const CasesShopPage: React.FC<CasesShopPageProps> = ({
                       : 'bg-blue-500 text-white'
                   }`}
                 >
-                  Купить
+                  РљСѓРїРёС‚СЊ
                 </button>
               </div>
             </div>
@@ -526,7 +526,7 @@ export const CasesShopPage: React.FC<CasesShopPageProps> = ({
             theme === 'dark' ? 'bg-gray-800' : 'bg-white'
           }`}>
             <div className="flex items-center justify-between mb-6">
-              <h2 className="text-xl font-semibold">Покупка товара</h2>
+              <h2 className="text-xl font-semibold">РџРѕРєСѓРїРєР° С‚РѕРІР°СЂР°</h2>
               <button
                 onClick={() => setIsShopModalOpen(false)}
                 className="p-2 rounded-full hover:bg-gray-100 dark:hover:bg-gray-700"
@@ -550,14 +550,14 @@ export const CasesShopPage: React.FC<CasesShopPageProps> = ({
                 theme === 'dark' ? 'bg-gray-700/50 border-gray-600' : 'bg-gray-50 border-gray-200'
               }`}>
                 <div className="flex items-center justify-between">
-                  <span className="text-sm">Цена:</span>
+                  <span className="text-sm">Р¦РµРЅР°:</span>
                   <div className="flex items-center gap-1">
                     <Coins className="w-4 h-4 text-yellow-500" />
                     <span className="font-medium">{selectedShopItem.price}</span>
                   </div>
                 </div>
                 <div className="flex items-center justify-between mt-2">
-                  <span className="text-sm">Ваши монеты:</span>
+                  <span className="text-sm">Р’Р°С€Рё РјРѕРЅРµС‚С‹:</span>
                   <div className="flex items-center gap-1">
                     <Coins className="w-4 h-4 text-yellow-500" />
                     <span className="font-medium">{userCoins}</span>
@@ -570,7 +570,7 @@ export const CasesShopPage: React.FC<CasesShopPageProps> = ({
                   onClick={() => setIsShopModalOpen(false)}
                   className="flex-1 py-2 px-4 rounded-xl bg-gray-200 dark:bg-gray-700 text-gray-700 dark:text-gray-300"
                 >
-                  Отменить
+                  РћС‚РјРµРЅРёС‚СЊ
                 </button>
                 <button
                   onClick={handleShopPurchase}
@@ -581,7 +581,7 @@ export const CasesShopPage: React.FC<CasesShopPageProps> = ({
                       : 'bg-blue-500 text-white'
                   }`}
                 >
-                  Купить
+                  РљСѓРїРёС‚СЊ
                 </button>
               </div>
             </div>
@@ -600,8 +600,8 @@ export const CasesShopPage: React.FC<CasesShopPageProps> = ({
                 <CheckCircle className="w-10 h-10 text-white" />
               </div>
               
-              <h2 className="text-2xl font-bold mb-2">Поздравляем!</h2>
-              <p className="text-lg mb-4">Вы выиграли:</p>
+              <h2 className="text-2xl font-bold mb-2">РџРѕР·РґСЂР°РІР»СЏРµРј!</h2>
+              <p className="text-lg mb-4">Р’С‹ РІС‹РёРіСЂР°Р»Рё:</p>
               
               <div className={`p-4 rounded-xl border mb-6 ${
                 theme === 'dark' ? 'bg-gray-700/50 border-gray-600' : 'bg-gray-50 border-gray-200'
@@ -613,9 +613,9 @@ export const CasesShopPage: React.FC<CasesShopPageProps> = ({
                   rouletteResult.rarity === 'rare' ? 'text-blue-400' :
                   'text-gray-400'
                 }`}>
-                  {rouletteResult.rarity === 'legendary' ? 'Легендарный приз!' :
-                   rouletteResult.rarity === 'epic' ? 'Эпический приз!' :
-                   rouletteResult.rarity === 'rare' ? 'Редкий приз!' : 'Обычный приз'}
+                  {rouletteResult.rarity === 'legendary' ? 'Р›РµРіРµРЅРґР°СЂРЅС‹Р№ РїСЂРёР·!' :
+                   rouletteResult.rarity === 'epic' ? 'Р­РїРёС‡РµСЃРєРёР№ РїСЂРёР·!' :
+                   rouletteResult.rarity === 'rare' ? 'Р РµРґРєРёР№ РїСЂРёР·!' : 'РћР±С‹С‡РЅС‹Р№ РїСЂРёР·'}
                 </div>
               </div>
 
@@ -623,7 +623,7 @@ export const CasesShopPage: React.FC<CasesShopPageProps> = ({
                 onClick={() => setIsRouletteModalOpen(false)}
                 className="w-full py-3 px-6 rounded-xl bg-blue-500 text-white font-semibold"
               >
-                Отлично!
+                РћС‚Р»РёС‡РЅРѕ!
               </button>
             </div>
           </div>

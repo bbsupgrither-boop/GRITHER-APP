@@ -67,109 +67,11 @@ export function AdminTasks({ currentAdminPage = 'tasks', setCurrentAdminPage }: 
     { icon: Box, label: 'РљРµР№СЃС‹', section: 'cases' }
   ];
 
-  // Placeholder РґР°РЅРЅС‹Рµ РґР»СЏ Р°РєС‚РёРІРЅС‹С… Р·Р°РґР°С‡ (РЅР° РїСЂРѕРІРµСЂРєРµ)
-  const [activeTasks, setActiveTasks] = useState<Task[]>([
-    {
-      id: '1',
-      title: 'РЎРѕР·РґР°С‚СЊ РїСЂРµР·РµРЅС‚Р°С†РёСЋ',
-      description: 'РЎРѕР·РґР°С‚СЊ РїСЂРµР·РµРЅС‚Р°С†РёСЋ РґР»СЏ РєР»РёРµРЅС‚Р° РїРѕ РЅРѕРІРѕРјСѓ РїСЂРѕРµРєС‚Сѓ',
-      subtasks: [
-        { id: '1', description: 'РџРѕРґРіРѕС‚РѕРІРёС‚СЊ РјР°РєРµС‚С‹', requiresAttachment: true },
-        { id: '2', description: 'РќР°РїРёСЃР°С‚СЊ С‚РµРєСЃС‚', requiresAttachment: false }
-      ],
-      assignedTo: ['РђР»РµРєСЃР°РЅРґСЂ РџРµС‚СЂРѕРІ, РљРѕРјР°РЅРґР° Рђ'],
-      assignedBy: 'РђРґРјРёРЅ',
-      dateAssigned: '2024-01-15',
-      deadline: '2024-01-20',
-      reward: { type: 'XP', amount: 100 },
-      difficulty: 'СЃСЂРµРґРЅРµРµ',
-      status: 'pending',
-      attachments: ['presentation.pdf', 'mockups.jpg']
-    },
-    {
-      id: '2',
-      title: 'РџСЂРѕРІРµСЃС‚Рё РёСЃСЃР»РµРґРѕРІР°РЅРёРµ',
-      description: 'РСЃСЃР»РµРґРѕРІР°С‚СЊ РєРѕРЅРєСѓСЂРµРЅС‚РѕРІ РІ СЃС„РµСЂРµ',
-      subtasks: [
-        { id: '1', description: 'РЎРѕР±СЂР°С‚СЊ РґР°РЅРЅС‹Рµ', requiresAttachment: false }
-      ],
-      assignedTo: ['РњР°СЂРёСЏ РРІР°РЅРѕРІР°, РљРѕРјР°РЅРґР° Р‘'],
-      assignedBy: 'РўРёРјР»РёРґ',
-      dateAssigned: '2024-01-14', 
-      reward: { type: 'XP', amount: 50 },
-      difficulty: 'Р»РµРіРєРѕРµ',
-      status: 'needs_revision',
-      rejectionReason: 'РќСѓР¶РЅРѕ РґРѕР±Р°РІРёС‚СЊ Р±РѕР»СЊС€Рµ РґРµС‚Р°Р»РµР№ РІ Р°РЅР°Р»РёР·. РќРµ С…РІР°С‚Р°РµС‚ РёРЅС„РѕСЂРјР°С†РёРё Рѕ С†РµРЅРѕРІС‹С… СЃС‚СЂР°С‚РµРіРёСЏС… РєРѕРЅРєСѓСЂРµРЅС‚РѕРІ.',
-      hasUnreadFeedback: false
-    },
-    {
-      id: '3',
-      title: 'Р Р°Р·СЂР°Р±РѕС‚Р°С‚СЊ РґРёР·Р°Р№РЅ',
-      description: 'РЎРѕР·РґР°С‚СЊ РґРёР·Р°Р№РЅ-РјР°РєРµС‚С‹ РґР»СЏ РјРѕР±РёР»СЊРЅРѕРіРѕ РїСЂРёР»РѕР¶РµРЅРёСЏ',
-      subtasks: [
-        { id: '1', description: 'Р“Р»Р°РІРЅР°СЏ СЃС‚СЂР°РЅРёС†Р°', requiresAttachment: true },
-        { id: '2', description: 'РЎС‚СЂР°РЅРёС†Р° РїСЂРѕС„РёР»СЏ', requiresAttachment: true }
-      ],
-      assignedTo: ['Р”РјРёС‚СЂРёР№ РЎРёРґРѕСЂРѕРІ, РљРѕРјР°РЅРґР° Рђ'],
-      assignedBy: 'РўРёРјР»РёРґ',
-      dateAssigned: '2024-01-13', 
-      reward: { type: 'XP', amount: 75 },
-      difficulty: 'СЃСЂРµРґРЅРµРµ',
-      status: 'pending',
-      attachments: ['design_v1.fig', 'mockup.png']
-    },
-    {
-      id: '4',
-      title: 'РќР°РїРёСЃР°С‚СЊ РѕС‚С‡РµС‚',
-      description: 'РџРѕРґРіРѕС‚РѕРІРёС‚СЊ РµР¶РµРјРµСЃСЏС‡РЅС‹Р№ РѕС‚С‡РµС‚ РїРѕ РїСЂРѕРґР°Р¶Р°Рј',
-      subtasks: [
-        { id: '1', description: 'РЎРѕР±СЂР°С‚СЊ СЃС‚Р°С‚РёСЃС‚РёРєСѓ', requiresAttachment: true }
-      ],
-      assignedTo: ['Р•Р»РµРЅР° РљРѕР·Р»РѕРІР°, РљРѕРјР°РЅРґР° Р’'],
-      assignedBy: 'РђРґРјРёРЅ',
-      dateAssigned: '2024-01-12', 
-      reward: { type: 'G-coin', amount: 25 },
-      difficulty: 'С‚СЏР¶РµР»РѕРµ',
-      status: 'pending',
-      attachments: ['report.xlsx', 'charts.png']
-    }
-  ]);
+  // РџСѓСЃС‚РѕР№ РјР°СЃСЃРёРІ Р°РєС‚РёРІРЅС‹С… Р·Р°РґР°С‡ (Р°РґРјРёРЅРёСЃС‚СЂР°С‚РѕСЂС‹ СЃРѕР·РґР°РґСѓС‚ Р·Р°РґР°С‡Рё СЃР°РјРѕСЃС‚РѕСЏС‚РµР»СЊРЅРѕ)
+  const [activeTasks, setActiveTasks] = useState<Task[]>([]);
 
-  // Placeholder РґР°РЅРЅС‹Рµ РґР»СЏ РІС‹РїРѕР»РЅРµРЅРЅС‹С… Р·Р°РґР°С‡
-  const [completedTasks, setCompletedTasks] = useState<Task[]>([
-    {
-      id: '5',
-      title: 'РЎРѕР·РґР°С‚СЊ Р»РѕРіРѕС‚РёРї',
-      description: 'Р Р°Р·СЂР°Р±РѕС‚Р°С‚СЊ Р»РѕРіРѕС‚РёРї РґР»СЏ РЅРѕРІРѕРіРѕ Р±СЂРµРЅРґР°',
-      subtasks: [
-        { id: '1', description: 'РљРѕРЅС†РµРїС‚СѓР°Р»СЊРЅС‹Рµ РЅР°Р±СЂРѕСЃРєРё', requiresAttachment: true },
-        { id: '2', description: 'Р¤РёРЅР°Р»СЊРЅР°СЏ РІРµСЂСЃРёСЏ', requiresAttachment: true }
-      ],
-      assignedTo: ['РђРЅРґСЂРµР№ РњРѕСЂРѕР·РѕРІ, РљРѕРјР°РЅРґР° Р‘'],
-      assignedBy: 'РђРґРјРёРЅ',
-      dateAssigned: '2024-01-10',
-      deadline: '2024-01-15',
-      completedDate: '2024-01-14',
-      reward: { type: 'XP', amount: 200 },
-      difficulty: 'С‚СЏР¶РµР»РѕРµ',
-      status: 'completed'
-    },
-    {
-      id: '6',
-      title: 'РћР±РЅРѕРІРёС‚СЊ Р±Р°Р·Сѓ РґР°РЅРЅС‹С…',
-      description: 'РђРєС‚СѓР°Р»РёР·РёСЂРѕРІР°С‚СЊ РёРЅС„РѕСЂРјР°С†РёСЋ Рѕ РєР»РёРµРЅС‚Р°С…',
-      subtasks: [
-        { id: '1', description: 'РџСЂРѕРІРµСЂРёС‚СЊ РєРѕРЅС‚Р°РєС‚С‹', requiresAttachment: false }
-      ],
-      assignedTo: ['РћР»СЊРіР° Р’РѕР»РєРѕРІР°, РљРѕРјР°РЅРґР° Рђ'],
-      assignedBy: 'РўРёРјР»РёРґ',
-      dateAssigned: '2024-01-08',
-      completedDate: '2024-01-10',
-      reward: { type: 'XP', amount: 150 },
-      difficulty: 'СЃСЂРµРґРЅРµРµ',
-      status: 'completed'
-    }
-  ]);
+  // РџСѓСЃС‚РѕР№ РјР°СЃСЃРёРІ РІС‹РїРѕР»РЅРµРЅРЅС‹С… Р·Р°РґР°С‡
+  const [completedTasks, setCompletedTasks] = useState<Task[]>([]);
 
   const [createModalOpen, setCreateModalOpen] = useState(false);
   const [historyModalOpen, setHistoryModalOpen] = useState(false);
@@ -506,7 +408,7 @@ export function AdminTasks({ currentAdminPage = 'tasks', setCurrentAdminPage }: 
                 ))}
                 {sortedActiveTasks.length === 0 && (
                   <div className="text-center text-muted-foreground py-8">
-                    РђРєС‚РёРІРЅС‹С… Р·Р°РґР°С‡ РЅРµС‚
+                    Р—Р°РґР°С‡ РЅР° РїСЂРѕРІРµСЂРєРµ РЅРµС‚
                   </div>
                 )}
               </div>
@@ -807,33 +709,15 @@ export function AdminTasks({ currentAdminPage = 'tasks', setCurrentAdminPage }: 
             <div className="p-6">
               {selectedTask && (
                 <div className="space-y-4">
-                  {/* Р—Р°РіРѕР»РѕРІРѕРє СЃ РєРЅРѕРїРєР°РјРё РґРµР№СЃС‚РІРёР№ */}
+                  {/* Р—Р°РіРѕР»РѕРІРѕРє СЃ РєСЂРµСЃС‚РёРєРѕРј */}
                   <div className="flex items-center justify-between">
                     <h3 className="text-lg font-medium text-foreground flex-1">{selectedTask.title}</h3>
-                    <div className="flex items-center gap-2 ml-4">
-                      <button 
-                        onClick={() => handleRejectTask(selectedTask.id)}
-                        disabled={selectedTask.status === 'needs_revision'}
-                        className={`p-2 rounded-lg transition-colors ${
-                          selectedTask.status === 'needs_revision' 
-                            ? 'opacity-30 cursor-not-allowed' 
-                            : 'hover:bg-red-50 dark:hover:bg-red-900/20'
-                        }`}
-                      >
-                        <X className="w-5 h-5 text-red-500" />
-                      </button>
-                      <button 
-                        onClick={() => handleApproveTask(selectedTask.id)}
-                        disabled={selectedTask.status === 'needs_revision'}
-                        className={`p-2 rounded-lg transition-colors ${
-                          selectedTask.status === 'needs_revision' 
-                            ? 'opacity-30 cursor-not-allowed' 
-                            : 'hover:bg-green-50 dark:hover:bg-green-900/20'
-                        }`}
-                      >
-                        <CheckSquare className="w-5 h-5 text-green-500" />
-                      </button>
-                    </div>
+                    <button
+                      onClick={() => setTaskDetailModalOpen(false)}
+                      className="p-2 hover:bg-black/5 dark:hover:bg-white/5 rounded-lg transition-colors"
+                    >
+                      <X className="w-5 h-5 text-foreground/70" />
+                    </button>
                   </div>
 
                   <div className="text-sm text-muted-foreground">
@@ -911,12 +795,42 @@ export function AdminTasks({ currentAdminPage = 'tasks', setCurrentAdminPage }: 
                     </div>
                   </div>
 
-                  <button
-                    onClick={() => setTaskDetailModalOpen(false)}
-                    className="w-full py-3 px-4 bg-primary text-primary-foreground rounded-full text-sm font-medium transition-colors hover:bg-primary/90"
-                  >
-                    Р—Р°РєСЂС‹С‚СЊ
-                  </button>
+                  {/* РљРЅРѕРїРєРё РґРµР№СЃС‚РІРёР№ РІРЅРёР·Сѓ (С‚РѕР»СЊРєРѕ РґР»СЏ Р°РєС‚РёРІРЅС‹С… Р·Р°РґР°С‡) */}
+                  {selectedTask.status !== 'completed' ? (
+                    <div className="flex gap-3 pt-4">
+                      <button
+                        onClick={() => handleRejectTask(selectedTask.id)}
+                        disabled={selectedTask.status === 'needs_revision'}
+                        className={`flex-1 py-3 px-4 rounded-full text-sm font-medium transition-colors text-center ${
+                          selectedTask.status === 'needs_revision'
+                            ? 'bg-secondary text-muted-foreground opacity-50 cursor-not-allowed'
+                            : 'bg-red-500 text-white hover:bg-red-600'
+                        }`}
+                      >
+                        РћС‚РєР»РѕРЅРёС‚СЊ
+                      </button>
+                      <button
+                        onClick={() => handleApproveTask(selectedTask.id)}
+                        disabled={selectedTask.status === 'needs_revision'}
+                        className={`flex-1 py-3 px-4 rounded-full text-sm font-medium transition-colors text-center ${
+                          selectedTask.status === 'needs_revision'
+                            ? 'bg-secondary text-muted-foreground opacity-50 cursor-not-allowed'
+                            : 'bg-primary text-primary-foreground hover:bg-primary/90'
+                        }`}
+                      >
+                        РћРґРѕР±СЂРёС‚СЊ
+                      </button>
+                    </div>
+                  ) : (
+                    <div className="pt-4">
+                      <button
+                        onClick={() => setTaskDetailModalOpen(false)}
+                        className="w-full py-3 px-4 bg-primary text-primary-foreground rounded-full text-sm font-medium transition-colors hover:bg-primary/90 text-center"
+                      >
+                        Р—Р°РєСЂС‹С‚СЊ
+                      </button>
+                    </div>
+                  )}
                 </div>
               )}
             </div>

@@ -1,4 +1,4 @@
-﻿import { useState } from 'react';
+п»їimport { useState } from 'react';
 import { motion } from 'framer-motion';
 import { ShoppingCart, Settings, Plus, Minus, X, CheckCircle, Clock } from './Icons';
 import { Header } from './Header';
@@ -23,7 +23,7 @@ interface ShopPageCasesStyleProps {
   onUpdateUserBalance?: (userId: string, amount: number) => void;
 }
 
-// РўРёРї РґР»СЏ С‚РѕРІР°СЂР° РІ РєРѕСЂР·РёРЅРµ
+// Р СћР С‘Р С— Р Т‘Р В»РЎРЏ РЎвЂљР С•Р Р†Р В°РЎР‚Р В° Р Р† Р С”Р С•РЎР‚Р В·Р С‘Р Р…Р Вµ
 interface CartItem {
   id: string;
   name: string;
@@ -52,7 +52,7 @@ export function ShopPageCasesStyleFixed({
   const [isItemDetailsOpen, setIsItemDetailsOpen] = useState(false);
   const [selectedItem, setSelectedItem] = useState<ShopItem | null>(null);
 
-  // Р¤СѓРЅРєС†РёСЏ РґР»СЏ РїСЂРѕРІРµСЂРєРё, СЏРІР»СЏРµС‚СЃСЏ Р»Рё СЃС‚СЂРѕРєР° URL
+  // Р В¤РЎС“Р Р…Р С”РЎвЂ Р С‘РЎРЏ Р Т‘Р В»РЎРЏ Р С—РЎР‚Р С•Р Р†Р ВµРЎР‚Р С”Р С‘, РЎРЏР Р†Р В»РЎРЏР ВµРЎвЂљРЎРѓРЎРЏ Р В»Р С‘ РЎРѓРЎвЂљРЎР‚Р С•Р С”Р В° URL
   const isImageUrl = (str: string) => {
     try {
       new URL(str);
@@ -62,7 +62,7 @@ export function ShopPageCasesStyleFixed({
     }
   };
 
-  // РљРѕРјРїРѕРЅРµРЅС‚ РґР»СЏ РѕС‚РѕР±СЂР°Р¶РµРЅРёСЏ РёР·РѕР±СЂР°Р¶РµРЅРёСЏ РёР»Рё СЌРјРѕРґР·Рё
+  // Р С™Р С•Р СР С—Р С•Р Р…Р ВµР Р…РЎвЂљ Р Т‘Р В»РЎРЏ Р С•РЎвЂљР С•Р В±РЎР‚Р В°Р В¶Р ВµР Р…Р С‘РЎРЏ Р С‘Р В·Р С•Р В±РЎР‚Р В°Р В¶Р ВµР Р…Р С‘РЎРЏ Р С‘Р В»Р С‘ РЎРЊР СР С•Р Т‘Р В·Р С‘
   const ImageOrEmoji = ({ src, className = '', style = {} }: { src: string; className?: string; style?: React.CSSProperties }) => {
     if (isImageUrl(src)) {
       return (
@@ -81,7 +81,7 @@ export function ShopPageCasesStyleFixed({
     );
   };
 
-  // Р¤СѓРЅРєС†РёРё РґР»СЏ СЂР°Р±РѕС‚С‹ СЃ РєРѕСЂР·РёРЅРѕР№
+  // Р В¤РЎС“Р Р…Р С”РЎвЂ Р С‘Р С‘ Р Т‘Р В»РЎРЏ РЎР‚Р В°Р В±Р С•РЎвЂљРЎвЂ№ РЎРѓ Р С”Р С•РЎР‚Р В·Р С‘Р Р…Р С•Р в„–
   const addToCart = (item: ShopItem) => {
     setCart(prevCart => {
       const existingItem = prevCart.find(cartItem => cartItem.id === item.id);
@@ -134,12 +134,12 @@ export function ShopPageCasesStyleFixed({
   const checkout = () => {
     const totalPrice = getTotalCartPrice();
     if (userBalance >= totalPrice && cart.length > 0) {
-      // РЎРїРёСЃС‹РІР°РµРј РґРµРЅСЊРіРё СЃ Р±Р°Р»Р°РЅСЃР° РїРѕР»СЊР·РѕРІР°С‚РµР»СЏ
+      // Р РЋР С—Р С‘РЎРѓРЎвЂ№Р Р†Р В°Р ВµР С Р Т‘Р ВµР Р…РЎРЉР С–Р С‘ РЎРѓ Р В±Р В°Р В»Р В°Р Р…РЎРѓР В° Р С—Р С•Р В»РЎРЉР В·Р С•Р Р†Р В°РЎвЂљР ВµР В»РЎРЏ
       if (onUpdateUserBalance && currentUser) {
         onUpdateUserBalance(currentUser.id, -totalPrice);
       }
       
-      // РЎРѕР·РґР°РµРј РЅРѕРІС‹Р№ Р·Р°РєР°Р· СЃРѕ СЃС‚Р°С‚СѓСЃРѕРј "pending"
+      // Р РЋР С•Р В·Р Т‘Р В°Р ВµР С Р Р…Р С•Р Р†РЎвЂ№Р в„– Р В·Р В°Р С”Р В°Р В· РЎРѓР С• РЎРѓРЎвЂљР В°РЎвЂљРЎС“РЎРѓР С•Р С "pending"
       const newOrder: Order = {
         id: Date.now().toString(),
         items: cart.map(cartItem => ({
@@ -153,13 +153,13 @@ export function ShopPageCasesStyleFixed({
         status: 'pending',
         createdAt: new Date().toISOString(),
         userId: 'current-user',
-        customerName: currentUser?.name || 'РќРµРёР·РІРµСЃС‚РЅС‹Р№ РїРѕР»СЊР·РѕРІР°С‚РµР»СЊ',
+        customerName: currentUser?.name || 'Р СњР ВµР С‘Р В·Р Р†Р ВµРЎРѓРЎвЂљР Р…РЎвЂ№Р в„– Р С—Р С•Р В»РЎРЉР В·Р С•Р Р†Р В°РЎвЂљР ВµР В»РЎРЉ',
         customerTeam: 'Frontend Team'
       };
       
       setOrders(prevOrders => [...prevOrders, newOrder]);
       
-      // РЈРјРµРЅСЊС€Р°РµРј РєРѕР»РёС‡РµСЃС‚РІРѕ С‚РѕРІР°СЂРѕРІ РЅР° СЃРєР»Р°РґРµ
+      // Р Р€Р СР ВµР Р…РЎРЉРЎв‚¬Р В°Р ВµР С Р С”Р С•Р В»Р С‘РЎвЂЎР ВµРЎРѓРЎвЂљР Р†Р С• РЎвЂљР С•Р Р†Р В°РЎР‚Р С•Р Р† Р Р…Р В° РЎРѓР С”Р В»Р В°Р Т‘Р Вµ
       setShopItems(prevItems => 
         prevItems.map(prevItem => {
           const cartItem = cart.find(c => c.id === prevItem.id);
@@ -173,7 +173,7 @@ export function ShopPageCasesStyleFixed({
       clearCart();
       setCartTab('active');
       
-      console.log(`Р—Р°РєР°Р· РѕС‚РїСЂР°РІР»РµРЅ РЅР° РјРѕРґРµСЂР°С†РёСЋ РЅР° СЃСѓРјРјСѓ ${totalPrice} РєРѕРёРЅРѕРІ`);
+      console.log(`Р вЂ”Р В°Р С”Р В°Р В· Р С•РЎвЂљР С—РЎР‚Р В°Р Р†Р В»Р ВµР Р… Р Р…Р В° Р СР С•Р Т‘Р ВµРЎР‚Р В°РЎвЂ Р С‘РЎР‹ Р Р…Р В° РЎРѓРЎС“Р СР СРЎС“ ${totalPrice} Р С”Р С•Р С‘Р Р…Р С•Р Р†`);
     }
   };
 
@@ -189,27 +189,27 @@ export function ShopPageCasesStyleFixed({
     }
   };
 
-  // Р¤СѓРЅРєС†РёСЏ РґР»СЏ РїРѕР»СѓС‡РµРЅРёСЏ С†РІРµС‚Р° С‚РѕРІР°СЂР° РЅР° РѕСЃРЅРѕРІРµ РєР°С‚РµРіРѕСЂРёРё РёР»Рё С†РµРЅС‹
+  // Р В¤РЎС“Р Р…Р С”РЎвЂ Р С‘РЎРЏ Р Т‘Р В»РЎРЏ Р С—Р С•Р В»РЎС“РЎвЂЎР ВµР Р…Р С‘РЎРЏ РЎвЂ Р Р†Р ВµРЎвЂљР В° РЎвЂљР С•Р Р†Р В°РЎР‚Р В° Р Р…Р В° Р С•РЎРѓР Р…Р С•Р Р†Р Вµ Р С”Р В°РЎвЂљР ВµР С–Р С•РЎР‚Р С‘Р С‘ Р С‘Р В»Р С‘ РЎвЂ Р ВµР Р…РЎвЂ№
   const getItemColor = (item: ShopItem) => {
     const category = item.category?.toLowerCase() || '';
     const price = item.price;
     
     if (category.includes('premium') || price > 5000) {
-      return { color: '#8B5CF6', glowColor: '#8B5CF6', intensity: 'high' }; // Р¤РёРѕР»РµС‚РѕРІС‹Р№ РґР»СЏ РїСЂРµРјРёСѓРј
+      return { color: '#8B5CF6', glowColor: '#8B5CF6', intensity: 'high' }; // Р В¤Р С‘Р С•Р В»Р ВµРЎвЂљР С•Р Р†РЎвЂ№Р в„– Р Т‘Р В»РЎРЏ Р С—РЎР‚Р ВµР СР С‘РЎС“Р С
     } else if (category.includes('special') || price > 2000) {
-      return { color: '#F59E0B', glowColor: '#F59E0B', intensity: 'medium' }; // Р—РѕР»РѕС‚РѕР№ РґР»СЏ РѕСЃРѕР±С‹С…
+      return { color: '#F59E0B', glowColor: '#F59E0B', intensity: 'medium' }; // Р вЂ”Р С•Р В»Р С•РЎвЂљР С•Р в„– Р Т‘Р В»РЎРЏ Р С•РЎРѓР С•Р В±РЎвЂ№РЎвЂ¦
     } else if (category.includes('rare') || price > 1000) {
-      return { color: '#06B6D4', glowColor: '#06B6D4', intensity: 'medium' }; // Р“РѕР»СѓР±РѕР№ РґР»СЏ СЂРµРґРєРёС…
+      return { color: '#06B6D4', glowColor: '#06B6D4', intensity: 'medium' }; // Р вЂњР С•Р В»РЎС“Р В±Р С•Р в„– Р Т‘Р В»РЎРЏ РЎР‚Р ВµР Т‘Р С”Р С‘РЎвЂ¦
     } else if (category.includes('uncommon') || price > 500) {
-      return { color: '#10B981', glowColor: '#10B981', intensity: 'low' }; // Р—РµР»РµРЅС‹Р№ РґР»СЏ РЅРµРѕР±С‹С‡РЅС‹С…
+      return { color: '#10B981', glowColor: '#10B981', intensity: 'low' }; // Р вЂ”Р ВµР В»Р ВµР Р…РЎвЂ№Р в„– Р Т‘Р В»РЎРЏ Р Р…Р ВµР С•Р В±РЎвЂ№РЎвЂЎР Р…РЎвЂ№РЎвЂ¦
     } else {
-      return { color: '#6B7280', glowColor: '#6B7280', intensity: 'low' }; // РЎРµСЂС‹Р№ РґР»СЏ РѕР±С‹С‡РЅС‹С…
+      return { color: '#6B7280', glowColor: '#6B7280', intensity: 'low' }; // Р РЋР ВµРЎР‚РЎвЂ№Р в„– Р Т‘Р В»РЎРЏ Р С•Р В±РЎвЂ№РЎвЂЎР Р…РЎвЂ№РЎвЂ¦
     }
   };
 
   const renderShop = () => (
     <div className="space-y-6">
-      {/* Р—Р°РіРѕР»РѕРІРѕРє GRITHER SHOP */}
+      {/* Р вЂ”Р В°Р С–Р С•Р В»Р С•Р Р†Р С•Р С” GRITHER SHOP */}
       <div className="text-center">
         <h3 
           className="text-2xl font-bold mb-2"
@@ -230,19 +230,19 @@ export function ShopPageCasesStyleFixed({
               backgroundColor: theme === 'dark' ? '#1C2029' : '#F3F5F8',
             }}
           >
-            <span className="text-2xl">рџ›’</span>
+            <span className="text-2xl">СЂСџвЂєвЂ™</span>
           </div>
           <h4 
             className="font-medium mb-2"
             style={{ color: theme === 'dark' ? '#E8ECF2' : '#0F172A' }}
           >
-            РњР°РіР°Р·РёРЅ РїСѓСЃС‚
+            Р СљР В°Р С–Р В°Р В·Р С‘Р Р… Р С—РЎС“РЎРѓРЎвЂљ
           </h4>
           <p 
             className="text-sm opacity-60"
             style={{ color: theme === 'dark' ? '#A7B0BD' : '#6B7280' }}
           >
-            РўРѕРІР°СЂС‹ СЃРєРѕСЂРѕ РїРѕСЏРІСЏС‚СЃСЏ
+            Р СћР С•Р Р†Р В°РЎР‚РЎвЂ№ РЎРѓР С”Р С•РЎР‚Р С• Р С—Р С•РЎРЏР Р†РЎРЏРЎвЂљРЎРѓРЎРЏ
           </p>
         </div>
       ) : (
@@ -250,7 +250,7 @@ export function ShopPageCasesStyleFixed({
           {shopItems.map((item) => {
             const itemStyle = getItemColor(item);
             
-            // Р¤РѕСЂРјР°С‚РёСЂСѓРµРј С†РµРЅСѓ Р±РµР· РґРµР»РµРЅРёСЏ РЅР° 1000
+            // Р В¤Р С•РЎР‚Р СР В°РЎвЂљР С‘РЎР‚РЎС“Р ВµР С РЎвЂ Р ВµР Р…РЎС“ Р В±Р ВµР В· Р Т‘Р ВµР В»Р ВµР Р…Р С‘РЎРЏ Р Р…Р В° 1000
             const formattedPrice = item.price.toLocaleString();
 
             return (
@@ -268,7 +268,7 @@ export function ShopPageCasesStyleFixed({
                 }}
               >
                 <div className="flex flex-col items-center text-center space-y-3">
-                  {/* Р‘РѕР»СЊС€РѕРµ РёР·РѕР±СЂР°Р¶РµРЅРёРµ С‚РѕРІР°СЂР° СЃ РЅРµРѕРЅРѕРІС‹Рј СЌС„С„РµРєС‚РѕРј */}
+                  {/* Р вЂР С•Р В»РЎРЉРЎв‚¬Р С•Р Вµ Р С‘Р В·Р С•Р В±РЎР‚Р В°Р В¶Р ВµР Р…Р С‘Р Вµ РЎвЂљР С•Р Р†Р В°РЎР‚Р В° РЎРѓ Р Р…Р ВµР С•Р Р…Р С•Р Р†РЎвЂ№Р С РЎРЊРЎвЂћРЎвЂћР ВµР С”РЎвЂљР С•Р С */}
                   <div 
                     className="relative w-full h-24 rounded-xl overflow-hidden cursor-pointer transition-all duration-300 hover:scale-105"
                     style={{ 
@@ -295,7 +295,7 @@ export function ShopPageCasesStyleFixed({
                       src={item.image || item.emoji}
                       className="w-full h-full object-cover"
                     />
-                    {/* РќРµРѕРЅРѕРІР°СЏ СЂР°РјРєР° */}
+                    {/* Р СњР ВµР С•Р Р…Р С•Р Р†Р В°РЎРЏ РЎР‚Р В°Р СР С”Р В° */}
                     <div 
                       className="absolute inset-0 rounded-xl border-2 opacity-60"
                       style={{ 
@@ -317,7 +317,7 @@ export function ShopPageCasesStyleFixed({
                         })()
                       }}
                     />
-                    {/* GRITHER Р»РѕРіРѕС‚РёРї РЅР° РёР·РѕР±СЂР°Р¶РµРЅРёРё */}
+                    {/* GRITHER Р В»Р С•Р С–Р С•РЎвЂљР С‘Р С— Р Р…Р В° Р С‘Р В·Р С•Р В±РЎР‚Р В°Р В¶Р ВµР Р…Р С‘Р С‘ */}
                     <div 
                       className="absolute bottom-1 left-1 px-1.5 py-0.5 rounded text-xs font-bold"
                       style={{
@@ -331,7 +331,7 @@ export function ShopPageCasesStyleFixed({
                     </div>
                   </div>
                   
-                  {/* РќР°Р·РІР°РЅРёРµ С‚РѕРІР°СЂР° */}
+                  {/* Р СњР В°Р В·Р Р†Р В°Р Р…Р С‘Р Вµ РЎвЂљР С•Р Р†Р В°РЎР‚Р В° */}
                   <h4 
                     className="text-sm font-bold tracking-wider"
                     style={{ 
@@ -344,7 +344,7 @@ export function ShopPageCasesStyleFixed({
                     {item.name.toUpperCase()}
                   </h4>
                   
-                  {/* Р¦РµРЅР° СЃ РјРѕРЅРµС‚РєРѕР№ */}
+                  {/* Р В¦Р ВµР Р…Р В° РЎРѓ Р СР С•Р Р…Р ВµРЎвЂљР С”Р С•Р в„– */}
                   <div 
                     className="px-2 py-1 rounded-lg text-xs font-medium flex items-center gap-1 justify-center"
                     style={{ 
@@ -361,7 +361,7 @@ export function ShopPageCasesStyleFixed({
                     />
                   </div>
                   
-                  {/* РљРЅРѕРїРєР° РїРѕРєСѓРїРєРё РІ СЃС‚РёР»Рµ GRITHER */}
+                  {/* Р С™Р Р…Р С•Р С—Р С”Р В° Р С—Р С•Р С”РЎС“Р С—Р С”Р С‘ Р Р† РЎРѓРЎвЂљР С‘Р В»Р Вµ GRITHER */}
                   <button
                     onClick={() => addToCart(item)}
                     className="w-full py-1.5 px-2 rounded-lg font-bold text-xs tracking-wide transition-all duration-200 transform hover:scale-105 hover:shadow-lg disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center text-center"
@@ -380,8 +380,8 @@ export function ShopPageCasesStyleFixed({
                     }}
                     disabled={item.stock <= 0 || userBalance < item.price}
                   >
-                    {item.stock <= 0 ? 'РќР•Рў Р’ РќРђР›РР§РР' : 
-                     userBalance < item.price ? 'РќР•Р”РћРЎРўРђРўРћР§РќРћ РЎР Р•Р”РЎРўР’' : 'РљРЈРџРРўР¬'}
+                    {item.stock <= 0 ? 'Р СњР вЂўР Сћ Р вЂ™ Р СњР С’Р вЂєР ВР В§Р ВР В' : 
+                     userBalance < item.price ? 'Р СњР вЂўР вЂќР С›Р РЋР СћР С’Р СћР С›Р В§Р СњР С› Р РЋР В Р вЂўР вЂќР РЋР СћР вЂ™' : 'Р С™Р Р€Р СџР ВР СћР В¬'}
                   </button>
                 </div>
               </div>
@@ -402,7 +402,7 @@ export function ShopPageCasesStyleFixed({
         color: theme === 'dark' ? '#E8ECF2' : '#0F172A'
       }}
     >
-      {/* РЁР°РїРєР° */}
+      {/* Р РЃР В°Р С—Р С”Р В° */}
       <Header 
         onNavigate={onNavigate}
         currentPage={currentPage}
@@ -431,10 +431,10 @@ export function ShopPageCasesStyleFixed({
       />
       
       <div className="max-w-md mx-auto px-4 pb-32 relative">
-        {/* РћСЃРЅРѕРІРЅРѕР№ РєРѕРЅС‚РµРЅС‚ СЃ РјР°РіР°Р·РёРЅРѕРј */}
-        {/* Р‘Р°Р»Р°РЅСЃ Рё РєРѕСЂР·РёРЅР° РІ С€Р°РїРєРµ */}
+        {/* Р С›РЎРѓР Р…Р С•Р Р†Р Р…Р С•Р в„– Р С”Р С•Р Р…РЎвЂљР ВµР Р…РЎвЂљ РЎРѓ Р СР В°Р С–Р В°Р В·Р С‘Р Р…Р С•Р С */}
+        {/* Р вЂР В°Р В»Р В°Р Р…РЎРѓ Р С‘ Р С”Р С•РЎР‚Р В·Р С‘Р Р…Р В° Р Р† РЎв‚¬Р В°Р С—Р С”Р Вµ */}
         <div className="flex items-center justify-between mb-6">
-          {/* Р‘Р°Р»Р°РЅСЃ */}
+          {/* Р вЂР В°Р В»Р В°Р Р…РЎРѓ */}
           <div 
             className="px-4 py-2 rounded-lg"
             style={{
@@ -445,7 +445,7 @@ export function ShopPageCasesStyleFixed({
               className="text-xs mb-1"
               style={{ color: theme === 'dark' ? '#A7B0BD' : '#6B7280' }}
             >
-              Р‘Р°Р»Р°РЅСЃ
+              Р вЂР В°Р В»Р В°Р Р…РЎРѓ
             </div>
             <div className="flex items-center gap-1">
               <span 
@@ -462,7 +462,7 @@ export function ShopPageCasesStyleFixed({
             </div>
           </div>
           
-          {/* РљРѕСЂР·РёРЅР° */}
+          {/* Р С™Р С•РЎР‚Р В·Р С‘Р Р…Р В° */}
           <button
             onClick={() => setIsCartOpen(true)}
             className="relative apple-button hover:scale-95 transition-transform"
@@ -486,31 +486,31 @@ export function ShopPageCasesStyleFixed({
           </button>
         </div>
 
-        {/* РњР°РіР°Р·РёРЅ */}
+        {/* Р СљР В°Р С–Р В°Р В·Р С‘Р Р… */}
         {renderShop()}
       </div>
 
-      {/* РќРёР¶РЅСЏСЏ РЅР°РІРёРіР°С†РёСЏ */}
+      {/* Р СњР С‘Р В¶Р Р…РЎРЏРЎРЏ Р Р…Р В°Р Р†Р С‘Р С–Р В°РЎвЂ Р С‘РЎРЏ */}
       <BottomNavigation 
         onNavigate={onNavigate} 
         currentPage={currentPage}
         theme={theme}
       />
 
-      {/* РњРѕРґР°Р»СЊРЅРѕРµ РѕРєРЅРѕ РєРѕСЂР·РёРЅС‹ */}
+      {/* Р СљР С•Р Т‘Р В°Р В»РЎРЉР Р…Р С•Р Вµ Р С•Р С”Р Р…Р С• Р С”Р С•РЎР‚Р В·Р С‘Р Р…РЎвЂ№ */}
       <ModalOpaque
         isOpen={isCartOpen}
         onClose={() => setIsCartOpen(false)}
-        title="РљРѕСЂР·РёРЅР°"
+        title="Р С™Р С•РЎР‚Р В·Р С‘Р Р…Р В°"
         theme={theme}
       >
         <div className="space-y-4">
-          {/* РўР°Р±С‹ РєРѕСЂР·РёРЅС‹ */}
+          {/* Р СћР В°Р В±РЎвЂ№ Р С”Р С•РЎР‚Р В·Р С‘Р Р…РЎвЂ№ */}
           <div className="flex space-x-2">
             {[
-              { key: 'cart', label: 'РљРѕСЂР·РёРЅР°', count: getTotalCartItems() },
-              { key: 'active', label: 'РђРєС‚РёРІРЅС‹Рµ', count: orders.filter(o => o.status === 'pending').length },
-              { key: 'completed', label: 'Р—Р°РІРµСЂС€РµРЅРЅС‹Рµ', count: orders.filter(o => o.status === 'completed').length }
+              { key: 'cart', label: 'Р С™Р С•РЎР‚Р В·Р С‘Р Р…Р В°', count: getTotalCartItems() },
+              { key: 'active', label: 'Р С’Р С”РЎвЂљР С‘Р Р†Р Р…РЎвЂ№Р Вµ', count: orders.filter(o => o.status === 'pending').length },
+              { key: 'completed', label: 'Р вЂ”Р В°Р Р†Р ВµРЎР‚РЎв‚¬Р ВµР Р…Р Р…РЎвЂ№Р Вµ', count: orders.filter(o => o.status === 'completed').length }
             ].map((tab) => (
               <button
                 key={tab.key}
@@ -540,7 +540,7 @@ export function ShopPageCasesStyleFixed({
             ))}
           </div>
 
-          {/* РЎРѕРґРµСЂР¶РёРјРѕРµ С‚Р°Р±РѕРІ */}
+          {/* Р РЋР С•Р Т‘Р ВµРЎР‚Р В¶Р С‘Р СР С•Р Вµ РЎвЂљР В°Р В±Р С•Р Р† */}
           {cartTab === 'cart' && (
             <div className="space-y-4">
               {cart.length === 0 ? (
@@ -550,7 +550,7 @@ export function ShopPageCasesStyleFixed({
                     style={{ color: theme === 'dark' ? '#A7B0BD' : '#6B7280' }}
                   />
                   <p style={{ color: theme === 'dark' ? '#A7B0BD' : '#6B7280' }}>
-                    РљРѕСЂР·РёРЅР° РїСѓСЃС‚Р°
+                    Р С™Р С•РЎР‚Р В·Р С‘Р Р…Р В° Р С—РЎС“РЎРѓРЎвЂљР В°
                   </p>
                 </div>
               ) : (
@@ -576,7 +576,7 @@ export function ShopPageCasesStyleFixed({
                             className="text-xs"
                             style={{ color: theme === 'dark' ? '#A7B0BD' : '#6B7280' }}
                           >
-                            {item.price.toLocaleString()} Г— {item.quantity}
+                            {item.price.toLocaleString()} Р“вЂ” {item.quantity}
                           </p>
                         </div>
                       </div>
@@ -618,7 +618,7 @@ export function ShopPageCasesStyleFixed({
                     </div>
                   ))}
                   
-                  {/* РС‚РѕРіРѕ Рё РєРЅРѕРїРєР° РѕС„РѕСЂРјР»РµРЅРёСЏ */}
+                  {/* Р ВРЎвЂљР С•Р С–Р С• Р С‘ Р С”Р Р…Р С•Р С—Р С”Р В° Р С•РЎвЂћР С•РЎР‚Р СР В»Р ВµР Р…Р С‘РЎРЏ */}
                   <div 
                     className="border-t pt-4"
                     style={{ 
@@ -630,7 +630,7 @@ export function ShopPageCasesStyleFixed({
                         className="font-medium"
                         style={{ color: theme === 'dark' ? '#E8ECF2' : '#0F172A' }}
                       >
-                        РС‚РѕРіРѕ:
+                        Р ВРЎвЂљР С•Р С–Р С•:
                       </span>
                       <div className="flex items-center gap-1">
                         <span 
@@ -655,7 +655,7 @@ export function ShopPageCasesStyleFixed({
                         color: '#FFFFFF'
                       }}
                     >
-                      {userBalance >= getTotalCartPrice() ? 'РћС„РѕСЂРјРёС‚СЊ Р·Р°РєР°Р·' : 'РќРµРґРѕСЃС‚Р°С‚РѕС‡РЅРѕ СЃСЂРµРґСЃС‚РІ'}
+                      {userBalance >= getTotalCartPrice() ? 'Р С›РЎвЂћР С•РЎР‚Р СР С‘РЎвЂљРЎРЉ Р В·Р В°Р С”Р В°Р В·' : 'Р СњР ВµР Т‘Р С•РЎРѓРЎвЂљР В°РЎвЂљР С•РЎвЂЎР Р…Р С• РЎРѓРЎР‚Р ВµР Т‘РЎРѓРЎвЂљР Р†'}
                     </button>
                   </div>
                 </>
@@ -672,7 +672,7 @@ export function ShopPageCasesStyleFixed({
                     style={{ color: theme === 'dark' ? '#A7B0BD' : '#6B7280' }}
                   />
                   <p style={{ color: theme === 'dark' ? '#A7B0BD' : '#6B7280' }}>
-                    РќРµС‚ Р°РєС‚РёРІРЅС‹С… Р·Р°РєР°Р·РѕРІ
+                    Р СњР ВµРЎвЂљ Р В°Р С”РЎвЂљР С‘Р Р†Р Р…РЎвЂ№РЎвЂ¦ Р В·Р В°Р С”Р В°Р В·Р С•Р Р†
                   </p>
                 </div>
               ) : (
@@ -689,7 +689,7 @@ export function ShopPageCasesStyleFixed({
                         className="text-sm font-medium"
                         style={{ color: theme === 'dark' ? '#E8ECF2' : '#0F172A' }}
                       >
-                        Р—Р°РєР°Р· #{order.id.slice(-4)}
+                        Р вЂ”Р В°Р С”Р В°Р В· #{order.id.slice(-4)}
                       </span>
                       <span 
                         className="text-xs px-2 py-1 rounded"
@@ -698,7 +698,7 @@ export function ShopPageCasesStyleFixed({
                           color: '#F59E0B'
                         }}
                       >
-                        РћР¶РёРґР°РµС‚
+                        Р С›Р В¶Р С‘Р Т‘Р В°Р ВµРЎвЂљ
                       </span>
                     </div>
                     <div className="flex items-center justify-between">
@@ -737,7 +737,7 @@ export function ShopPageCasesStyleFixed({
                     style={{ color: theme === 'dark' ? '#A7B0BD' : '#6B7280' }}
                   />
                   <p style={{ color: theme === 'dark' ? '#A7B0BD' : '#6B7280' }}>
-                    РќРµС‚ Р·Р°РІРµСЂС€РµРЅРЅС‹С… Р·Р°РєР°Р·РѕРІ
+                    Р СњР ВµРЎвЂљ Р В·Р В°Р Р†Р ВµРЎР‚РЎв‚¬Р ВµР Р…Р Р…РЎвЂ№РЎвЂ¦ Р В·Р В°Р С”Р В°Р В·Р С•Р Р†
                   </p>
                 </div>
               ) : (
@@ -754,7 +754,7 @@ export function ShopPageCasesStyleFixed({
                         className="text-sm font-medium"
                         style={{ color: theme === 'dark' ? '#E8ECF2' : '#0F172A' }}
                       >
-                        Р—Р°РєР°Р· #{order.id.slice(-4)}
+                        Р вЂ”Р В°Р С”Р В°Р В· #{order.id.slice(-4)}
                       </span>
                       <span 
                         className="text-xs px-2 py-1 rounded"
@@ -763,7 +763,7 @@ export function ShopPageCasesStyleFixed({
                           color: '#22C55E'
                         }}
                       >
-                        Р’С‹РїРѕР»РЅРµРЅ
+                        Р вЂ™РЎвЂ№Р С—Р С•Р В»Р Р…Р ВµР Р…
                       </span>
                     </div>
                     <div className="flex items-center justify-between">
@@ -795,11 +795,11 @@ export function ShopPageCasesStyleFixed({
         </div>
       </ModalOpaque>
 
-      {/* РњРѕРґР°Р»СЊРЅРѕРµ РѕРєРЅРѕ РґРµС‚Р°Р»РµР№ С‚РѕРІР°СЂР° */}
+      {/* Р СљР С•Р Т‘Р В°Р В»РЎРЉР Р…Р С•Р Вµ Р С•Р С”Р Р…Р С• Р Т‘Р ВµРЎвЂљР В°Р В»Р ВµР в„– РЎвЂљР С•Р Р†Р В°РЎР‚Р В° */}
       <ModalOpaque
         isOpen={isItemDetailsOpen}
         onClose={() => setIsItemDetailsOpen(false)}
-        title={selectedItem ? selectedItem.name : "Р”РµС‚Р°Р»Рё С‚РѕРІР°СЂР°"}
+        title={selectedItem ? selectedItem.name : "Р вЂќР ВµРЎвЂљР В°Р В»Р С‘ РЎвЂљР С•Р Р†Р В°РЎР‚Р В°"}
         theme={theme}
         actions={
           selectedItem && selectedItem.stock > 0 && userBalance >= selectedItem.price ? (
@@ -815,7 +815,7 @@ export function ShopPageCasesStyleFixed({
                 fontWeight: '600'
               }}
             >
-              РљСѓРїРёС‚СЊ Р·Р° {selectedItem.price.toLocaleString()}
+              Р С™РЎС“Р С—Р С‘РЎвЂљРЎРЉ Р В·Р В° {selectedItem.price.toLocaleString()}
               <img 
                 src={coinIcon} 
                 alt="coins" 
@@ -837,7 +837,7 @@ export function ShopPageCasesStyleFixed({
                 cursor: 'not-allowed'
               }}
             >
-              РќРµС‚ РІ РЅР°Р»РёС‡РёРё
+              Р СњР ВµРЎвЂљ Р Р† Р Р…Р В°Р В»Р С‘РЎвЂЎР С‘Р С‘
             </button>
           ) : selectedItem && userBalance < selectedItem.price ? (
             <button
@@ -854,14 +854,14 @@ export function ShopPageCasesStyleFixed({
                 cursor: 'not-allowed'
               }}
             >
-              РќРµРґРѕСЃС‚Р°С‚РѕС‡РЅРѕ СЃСЂРµРґСЃС‚РІ
+              Р СњР ВµР Т‘Р С•РЎРѓРЎвЂљР В°РЎвЂљР С•РЎвЂЎР Р…Р С• РЎРѓРЎР‚Р ВµР Т‘РЎРѓРЎвЂљР Р†
             </button>
           ) : undefined
         }
       >
         {selectedItem && (
           <div className="space-y-4">
-            {/* РРєРѕРЅРєР° РёР»Рё РёР·РѕР±СЂР°Р¶РµРЅРёРµ С‚РѕРІР°СЂР° */}
+            {/* Р ВР С”Р С•Р Р…Р С”Р В° Р С‘Р В»Р С‘ Р С‘Р В·Р С•Р В±РЎР‚Р В°Р В¶Р ВµР Р…Р С‘Р Вµ РЎвЂљР С•Р Р†Р В°РЎР‚Р В° */}
             <div className="flex justify-center">
               <div 
                 className="w-24 h-24 rounded-2xl flex items-center justify-center shadow-lg overflow-hidden"
@@ -882,7 +882,7 @@ export function ShopPageCasesStyleFixed({
               </div>
             </div>
 
-            {/* РљР°С‚РµРіРѕСЂРёСЏ */}
+            {/* Р С™Р В°РЎвЂљР ВµР С–Р С•РЎР‚Р С‘РЎРЏ */}
             <div className="text-center">
               <span 
                 className="inline-block px-3 py-1 rounded-full text-sm font-medium"
@@ -895,7 +895,7 @@ export function ShopPageCasesStyleFixed({
               </span>
             </div>
 
-            {/* РћРїРёСЃР°РЅРёРµ */}
+            {/* Р С›Р С—Р С‘РЎРѓР В°Р Р…Р С‘Р Вµ */}
             <div className="text-center space-y-2">
               <p 
                 className="text-sm leading-relaxed"
@@ -905,7 +905,7 @@ export function ShopPageCasesStyleFixed({
               </p>
             </div>
 
-            {/* РРЅС„РѕСЂРјР°С†РёСЏ Рѕ РЅР°Р»РёС‡РёРё Рё С†РµРЅРµ */}
+            {/* Р ВР Р…РЎвЂћР С•РЎР‚Р СР В°РЎвЂ Р С‘РЎРЏ Р С• Р Р…Р В°Р В»Р С‘РЎвЂЎР С‘Р С‘ Р С‘ РЎвЂ Р ВµР Р…Р Вµ */}
             <div 
               className="p-4 rounded-xl space-y-2"
               style={{
@@ -914,7 +914,7 @@ export function ShopPageCasesStyleFixed({
             >
               <div className="flex justify-between text-sm">
                 <span style={{ color: theme === 'dark' ? '#A7B0BD' : '#6B7280' }}>
-                  Р¦РµРЅР°:
+                  Р В¦Р ВµР Р…Р В°:
                 </span>
                 <span 
                   className="font-medium"
@@ -932,13 +932,13 @@ export function ShopPageCasesStyleFixed({
               </div>
               <div className="flex justify-between text-sm">
                 <span style={{ color: theme === 'dark' ? '#A7B0BD' : '#6B7280' }}>
-                  Р’ РЅР°Р»РёС‡РёРё:
+                  Р вЂ™ Р Р…Р В°Р В»Р С‘РЎвЂЎР С‘Р С‘:
                 </span>
                 <span 
                   className="font-medium"
                   style={{ color: theme === 'dark' ? '#E8ECF2' : '#0F172A' }}
                 >
-                  {selectedItem.stock === -1 ? 'РќРµРѕРіСЂР°РЅРёС‡РµРЅРЅРѕ' : `${selectedItem.stock} С€С‚.`}
+                  {selectedItem.stock === -1 ? 'Р СњР ВµР С•Р С–РЎР‚Р В°Р Р…Р С‘РЎвЂЎР ВµР Р…Р Р…Р С•' : `${selectedItem.stock} РЎв‚¬РЎвЂљ.`}
                 </span>
               </div>
             </div>

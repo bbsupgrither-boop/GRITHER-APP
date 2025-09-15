@@ -1,0 +1,54 @@
+﻿import React from 'react'
+import ReactDOM from 'react-dom/client'
+import App from './App.tsx'
+import './index.css'
+import './styles/production.css'
+
+// Function to hide preloader
+const hideLoader = () => {
+  const loader = document.getElementById('app-loader');
+  if (loader) {
+    loader.style.opacity = '0';
+    loader.style.transition = 'opacity 0.5s ease';
+    setTimeout(() => loader.remove(), 500);
+  }
+};
+
+class ErrorBoundary extends React.Component<any, { error?: Error }> {
+  constructor(props: any) {
+    super(props);
+    this.state = { error: undefined };
+  }
+  static getDerivedStateFromError(error: Error) {
+    return { error };
+  }
+  componentDidCatch(error: Error) {
+    console.error('UI error:', error);
+  }
+  render() {
+    if (this.state.error) {
+      return React.createElement('div', { role: 'alert', style: { padding: 16 } }, 'Ошибка UI');
+    }
+    return this.props.children;
+  }
+}
+
+// Telegram guard example usage (no crashes outside Telegram)
+try {
+  const tg = typeof window !== 'undefined' ? (window as any).Telegram?.WebApp : undefined;
+  tg?.expand?.();
+} catch {}
+
+// Build version info
+console.info("build", import.meta.env.VITE_APP_BUILD);
+
+ReactDOM.createRoot(document.getElementById('root')!).render(
+  <React.StrictMode>
+    <ErrorBoundary>
+      <App />
+    </ErrorBoundary>
+  </React.StrictMode>,
+)
+
+// Hide preloader after render
+setTimeout(hideLoader, 500);

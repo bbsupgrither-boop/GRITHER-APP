@@ -1,4 +1,4 @@
-﻿export interface Battle {
+export interface Battle {
   id: string;
   title?: string;
   challengerId: string;

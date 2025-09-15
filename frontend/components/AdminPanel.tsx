@@ -44,22 +44,22 @@ export const AdminPanel: React.FC<AdminPanelProps> = ({
 
   // Mock data
   const mockUsers = [
-    { id: '1', name: 'Иван Иванов', email: 'ivan@example.com', role: 'user', status: 'active', joinDate: '2024-01-15', level: 5, balance: 1200 },
-    { id: '2', name: 'Петр Петров', email: 'petr@example.com', role: 'user', status: 'active', joinDate: '2024-02-20', level: 8, balance: 2500 },
-    { id: '3', name: 'Анна Смирнова', email: 'anna@example.com', role: 'admin', status: 'active', joinDate: '2024-01-10', level: 15, balance: 5000 },
-    { id: '4', name: 'Сергей Козлов', email: 'sergey@example.com', role: 'user', status: 'banned', joinDate: '2024-03-05', level: 3, balance: 300 }
+    { id: '1', name: 'РРІР°РЅ РРІР°РЅРѕРІ', email: 'ivan@example.com', role: 'user', status: 'active', joinDate: '2024-01-15', level: 5, balance: 1200 },
+    { id: '2', name: 'РџРµС‚СЂ РџРµС‚СЂРѕРІ', email: 'petr@example.com', role: 'user', status: 'active', joinDate: '2024-02-20', level: 8, balance: 2500 },
+    { id: '3', name: 'РђРЅРЅР° РЎРјРёСЂРЅРѕРІР°', email: 'anna@example.com', role: 'admin', status: 'active', joinDate: '2024-01-10', level: 15, balance: 5000 },
+    { id: '4', name: 'РЎРµСЂРіРµР№ РљРѕР·Р»РѕРІ', email: 'sergey@example.com', role: 'user', status: 'banned', joinDate: '2024-03-05', level: 3, balance: 300 }
   ];
 
   const mockBattles = [
-    { id: '1', title: 'Турнир по программированию', participants: 25, prize: 1000, status: 'active', startDate: '2024-12-20', endDate: '2024-12-22' },
-    { id: '2', title: 'Конкурс дизайна', participants: 15, prize: 500, status: 'completed', startDate: '2024-12-15', endDate: '2024-12-17' },
-    { id: '3', title: 'Марафон задач', participants: 50, prize: 2000, status: 'upcoming', startDate: '2024-12-25', endDate: '2024-12-26' }
+    { id: '1', title: 'РўСѓСЂРЅРёСЂ РїРѕ РїСЂРѕРіСЂР°РјРјРёСЂРѕРІР°РЅРёСЋ', participants: 25, prize: 1000, status: 'active', startDate: '2024-12-20', endDate: '2024-12-22' },
+    { id: '2', title: 'РљРѕРЅРєСѓСЂСЃ РґРёР·Р°Р№РЅР°', participants: 15, prize: 500, status: 'completed', startDate: '2024-12-15', endDate: '2024-12-17' },
+    { id: '3', title: 'РњР°СЂР°С„РѕРЅ Р·Р°РґР°С‡', participants: 50, prize: 2000, status: 'upcoming', startDate: '2024-12-25', endDate: '2024-12-26' }
   ];
 
   const mockShopItems = [
-    { id: '1', name: 'Обычный кейс', price: 100, category: 'cases', status: 'active', sales: 150 },
-    { id: '2', name: 'Редкий кейс', price: 500, category: 'cases', status: 'active', sales: 75 },
-    { id: '3', name: 'Премиум подписка', price: 1000, category: 'subscription', status: 'active', sales: 30 }
+    { id: '1', name: 'РћР±С‹С‡РЅС‹Р№ РєРµР№СЃ', price: 100, category: 'cases', status: 'active', sales: 150 },
+    { id: '2', name: 'Р РµРґРєРёР№ РєРµР№СЃ', price: 500, category: 'cases', status: 'active', sales: 75 },
+    { id: '3', name: 'РџСЂРµРјРёСѓРј РїРѕРґРїРёСЃРєР°', price: 1000, category: 'subscription', status: 'active', sales: 30 }
   ];
 
   const mockAnalytics = {
@@ -68,7 +68,7 @@ export const AdminPanel: React.FC<AdminPanelProps> = ({
     totalRevenue: 45600,
     battlesCompleted: 234,
     averageSessionTime: '24:35',
-    topPerformer: 'Анна Смирнова'
+    topPerformer: 'РђРЅРЅР° РЎРјРёСЂРЅРѕРІР°'
   };
 
   const handleModalOpen = (type: string, item?: any) => {
@@ -118,8 +118,8 @@ export const AdminPanel: React.FC<AdminPanelProps> = ({
               <Shield className="w-6 h-6 text-white" />
             </div>
             <div>
-              <h1 className="text-xl font-semibold">Панель администратора</h1>
-              <p className="text-sm text-gray-400">Управление системой</p>
+              <h1 className="text-xl font-semibold">РџР°РЅРµР»СЊ Р°РґРјРёРЅРёСЃС‚СЂР°С‚РѕСЂР°</h1>
+              <p className="text-sm text-gray-400">РЈРїСЂР°РІР»РµРЅРёРµ СЃРёСЃС‚РµРјРѕР№</p>
             </div>
           </div>
 
@@ -129,13 +129,13 @@ export const AdminPanel: React.FC<AdminPanelProps> = ({
               theme === 'dark' ? 'bg-gray-700/50' : 'bg-gray-50'
             }`}>
               <div className="text-2xl font-bold text-blue-500">{mockAnalytics.totalUsers}</div>
-              <div className="text-sm text-gray-400">Пользователей</div>
+              <div className="text-sm text-gray-400">РџРѕР»СЊР·РѕРІР°С‚РµР»РµР№</div>
             </div>
             <div className={`p-3 rounded-xl ${
               theme === 'dark' ? 'bg-gray-700/50' : 'bg-gray-50'
             }`}>
               <div className="text-2xl font-bold text-green-500">{mockAnalytics.totalRevenue}</div>
-              <div className="text-sm text-gray-400">Доход (₽)</div>
+              <div className="text-sm text-gray-400">Р”РѕС…РѕРґ (в‚Ѕ)</div>
             </div>
           </div>
         </div>
@@ -148,12 +148,12 @@ export const AdminPanel: React.FC<AdminPanelProps> = ({
         }`}>
           <div className="grid grid-cols-3 gap-1">
             {[
-              { key: 'users', label: 'Пользователи', icon: Users },
-              { key: 'battles', label: 'Баттлы', icon: Trophy },
-              { key: 'shop', label: 'Магазин', icon: ShoppingBag },
-              { key: 'analytics', label: 'Аналитика', icon: BarChart3 },
-              { key: 'settings', label: 'Настройки', icon: Settings },
-              { key: 'content', label: 'Контент', icon: FileText }
+              { key: 'users', label: 'РџРѕР»СЊР·РѕРІР°С‚РµР»Рё', icon: Users },
+              { key: 'battles', label: 'Р‘Р°С‚С‚Р»С‹', icon: Trophy },
+              { key: 'shop', label: 'РњР°РіР°Р·РёРЅ', icon: ShoppingBag },
+              { key: 'analytics', label: 'РђРЅР°Р»РёС‚РёРєР°', icon: BarChart3 },
+              { key: 'settings', label: 'РќР°СЃС‚СЂРѕР№РєРё', icon: Settings },
+              { key: 'content', label: 'РљРѕРЅС‚РµРЅС‚', icon: FileText }
             ].map(({ key, label, icon: Icon }) => (
               <button
                 key={key}
@@ -177,7 +177,7 @@ export const AdminPanel: React.FC<AdminPanelProps> = ({
         {activeTab === 'users' && (
           <div className="space-y-4">
             <div className="flex items-center justify-between">
-              <h3 className="font-semibold">Управление пользователями</h3>
+              <h3 className="font-semibold">РЈРїСЂР°РІР»РµРЅРёРµ РїРѕР»СЊР·РѕРІР°С‚РµР»СЏРјРё</h3>
               <button
                 onClick={() => handleModalOpen('addUser')}
                 className="p-2 rounded-xl bg-blue-500 text-white"
@@ -202,13 +202,13 @@ export const AdminPanel: React.FC<AdminPanelProps> = ({
                       ? 'bg-green-500/20 text-green-400' 
                       : 'bg-red-500/20 text-red-400'
                   }`}>
-                    {user.status === 'active' ? 'Активен' : 'Заблокирован'}
+                    {user.status === 'active' ? 'РђРєС‚РёРІРµРЅ' : 'Р—Р°Р±Р»РѕРєРёСЂРѕРІР°РЅ'}
                   </div>
                 </div>
                 
                 <div className="flex items-center justify-between text-sm text-gray-400 mb-3">
-                  <span>Уровень {user.level}</span>
-                  <span>{user.balance} монет</span>
+                  <span>РЈСЂРѕРІРµРЅСЊ {user.level}</span>
+                  <span>{user.balance} РјРѕРЅРµС‚</span>
                   <span>{user.joinDate}</span>
                 </div>
 
@@ -233,7 +233,7 @@ export const AdminPanel: React.FC<AdminPanelProps> = ({
 
         {activeTab === 'analytics' && (
           <div className="space-y-4">
-            <h3 className="font-semibold">Аналитика системы</h3>
+            <h3 className="font-semibold">РђРЅР°Р»РёС‚РёРєР° СЃРёСЃС‚РµРјС‹</h3>
             
             <div className={`p-6 rounded-2xl border ${
               theme === 'dark' 
@@ -245,25 +245,25 @@ export const AdminPanel: React.FC<AdminPanelProps> = ({
                   theme === 'dark' ? 'bg-gray-700/50' : 'bg-gray-50'
                 }`}>
                   <div className="text-2xl font-bold text-blue-500">{mockAnalytics.totalUsers}</div>
-                  <div className="text-sm text-gray-400">Всего пользователей</div>
+                  <div className="text-sm text-gray-400">Р’СЃРµРіРѕ РїРѕР»СЊР·РѕРІР°С‚РµР»РµР№</div>
                 </div>
                 <div className={`p-3 rounded-xl ${
                   theme === 'dark' ? 'bg-gray-700/50' : 'bg-gray-50'
                 }`}>
                   <div className="text-2xl font-bold text-green-500">{mockAnalytics.activeUsers}</div>
-                  <div className="text-sm text-gray-400">Активных пользователей</div>
+                  <div className="text-sm text-gray-400">РђРєС‚РёРІРЅС‹С… РїРѕР»СЊР·РѕРІР°С‚РµР»РµР№</div>
                 </div>
                 <div className={`p-3 rounded-xl ${
                   theme === 'dark' ? 'bg-gray-700/50' : 'bg-gray-50'
                 }`}>
                   <div className="text-2xl font-bold text-yellow-500">{mockAnalytics.totalRevenue}</div>
-                  <div className="text-sm text-gray-400">Общий доход (₽)</div>
+                  <div className="text-sm text-gray-400">РћР±С‰РёР№ РґРѕС…РѕРґ (в‚Ѕ)</div>
                 </div>
                 <div className={`p-3 rounded-xl ${
                   theme === 'dark' ? 'bg-gray-700/50' : 'bg-gray-50'
                 }`}>
                   <div className="text-2xl font-bold text-purple-500">{mockAnalytics.battlesCompleted}</div>
-                  <div className="text-sm text-gray-400">Завершенных баттлов</div>
+                  <div className="text-sm text-gray-400">Р—Р°РІРµСЂС€РµРЅРЅС‹С… Р±Р°С‚С‚Р»РѕРІ</div>
                 </div>
               </div>
             </div>
@@ -274,10 +274,10 @@ export const AdminPanel: React.FC<AdminPanelProps> = ({
         {(activeTab === 'battles' || activeTab === 'shop' || activeTab === 'settings' || activeTab === 'content') && (
           <div className="space-y-4">
             <h3 className="font-semibold">
-              {activeTab === 'battles' && 'Управление баттлами'}
-              {activeTab === 'shop' && 'Управление магазином'}
-              {activeTab === 'settings' && 'Настройки системы'}
-              {activeTab === 'content' && 'Управление контентом'}
+              {activeTab === 'battles' && 'РЈРїСЂР°РІР»РµРЅРёРµ Р±Р°С‚С‚Р»Р°РјРё'}
+              {activeTab === 'shop' && 'РЈРїСЂР°РІР»РµРЅРёРµ РјР°РіР°Р·РёРЅРѕРј'}
+              {activeTab === 'settings' && 'РќР°СЃС‚СЂРѕР№РєРё СЃРёСЃС‚РµРјС‹'}
+              {activeTab === 'content' && 'РЈРїСЂР°РІР»РµРЅРёРµ РєРѕРЅС‚РµРЅС‚РѕРј'}
             </h3>
             <div className={`p-6 rounded-2xl border ${
               theme === 'dark' 
@@ -285,7 +285,7 @@ export const AdminPanel: React.FC<AdminPanelProps> = ({
                 : 'bg-white/80 border-gray-200'
             }`}>
               <div className="text-center text-gray-400">
-                Раздел в разработке
+                Р Р°Р·РґРµР» РІ СЂР°Р·СЂР°Р±РѕС‚РєРµ
               </div>
             </div>
           </div>
