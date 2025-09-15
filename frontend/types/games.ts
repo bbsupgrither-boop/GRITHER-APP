@@ -1,4 +1,4 @@
-п»їexport type GameType = 'wheel' | 'rps' | 'slots';
+export type GameType = 'wheel' | 'rps' | 'slots';
 export type GameStatus = 'draft' | 'published' | 'archived';
 export type RewardType = 'xp' | 'currency' | 'loot' | 'none';
 export type RPSMode = 'pve' | 'pvp';

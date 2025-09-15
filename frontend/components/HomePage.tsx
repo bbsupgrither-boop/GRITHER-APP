@@ -276,7 +276,8 @@ export const HomePage: React.FC<HomePageProps> = ({
                 <div>
                   <button
                     onClick={() => {
-                      // TODO: Open XP modal
+                      // TODO: Implement XP modal functionality
+                      console.log('XP modal clicked');
                     }}
                     style={{ 
                       fontSize: '14px',

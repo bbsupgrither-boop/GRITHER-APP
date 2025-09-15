@@ -124,7 +124,7 @@ export function ShopPageImageStyled({
         createdAt: new Date().toISOString(),
         userId: 'current-user',
         customerName: currentUser?.name || 'Р СњР ВµР С‘Р В·Р Р†Р ВµРЎРѓРЎвЂљР Р…РЎвЂ№Р в„– Р С—Р С•Р В»РЎРЉР В·Р С•Р Р†Р В°РЎвЂљР ВµР В»РЎРЉ',
-        customerTeam: 'Frontend Team' // TODO: Р С—Р С•Р В»РЎС“РЎвЂЎР В°РЎвЂљРЎРЉ Р С‘Р В· Р С—РЎР‚Р С•РЎвЂћР С‘Р В»РЎРЏ Р С—Р С•Р В»РЎРЉР В·Р С•Р Р†Р В°РЎвЂљР ВµР В»РЎРЏ
+        customerTeam: 'Frontend Team' // TODO: Получить из профиля пользователя
       };
       
       // Р вЂќР С•Р В±Р В°Р Р†Р В»РЎРЏР ВµР С Р В·Р В°Р С”Р В°Р В· Р Р† РЎРѓР С—Р С‘РЎРѓР С•Р С” Р В·Р В°Р С”Р В°Р В·Р С•Р Р†

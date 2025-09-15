@@ -5,7 +5,7 @@ import { HashRouter, Routes, Route, Navigate, useNavigate, useLocation } from 'r
 console.info("build", import.meta.env.VITE_APP_BUILD);
 
 // Import components
-import { HomePageSimple as HomePage } from './components/HomePage.simple';
+import { HomePage } from './components/HomePage';
 import { AchievementsPage } from './components/AchievementsPage';
 import { TasksPage } from './components/TasksPage';
 import { ShopPage } from './components/ShopPage';
@@ -16,74 +16,14 @@ import { SettingsModal } from './components/SettingsModal';
 import { SecretAdminAccess } from './components/SecretAdminAccess';
 import { ProblemReportModal } from './components/ProblemReportModal';
 import { AdminPanelMain } from './components/AdminPanelMain';
-import { ErrorBoundary } from './src/shared/ErrorBoundary';
 
 // Types
-interface User {
-  id: string;
-  name: string;
-  avatar?: string;
-  level: number;
-  xp: number;
-  balance: number;
-  role: string;
-}
-
-interface Achievement {
-  id: string;
-  title: string;
-  description: string;
-  progress: number;
-  maxProgress: number;
-  reward: {
-    xp: number;
-    coins: number;
-  };
-  requirements: {
-    type: string;
-    value: number;
-  };
-  icon: string;
-  isCompleted: boolean;
-}
-
-interface Battle {
-  id: string;
-  opponentName: string;
-  opponentAvatar?: string;
-  stake: number;
-  status: 'active' | 'pending' | 'completed';
-  winnerId?: string;
-}
-
-interface Task {
-  id: string;
-  title: string;
-  description: string;
-  reward: {
-    xp: number;
-    coins: number;
-  };
-  deadline?: string;
-  isCompleted: boolean;
-}
-
-interface ShopItem {
-  id: string;
-  name: string;
-  price: number;
-  icon: string;
-  description: string;
-}
-
-interface Notification {
-  id: string;
-  title: string;
-  message: string;
-  type: 'info' | 'success' | 'warning' | 'error';
-  timestamp: string;
-  isRead: boolean;
-}
+import { User } from './types/global';
+import { Achievement } from './types/achievements';
+import { Battle } from './types/battles';
+import { Task } from './types/tasks';
+import { ShopItem } from './types/shop';
+import { Notification } from './types/notifications';
 
 // Navigation wrapper component
 function NavigationWrapper({ children }: { children: React.ReactNode }) {
@@ -120,7 +60,7 @@ export default function App() {
   // Mock data
   const mockCurrentUser: User = {
     id: 'current-user',
-    name: 'РРІР°РЅ РРІР°РЅРѕРІ',
+    name: 'Иван Иванов',
     avatar: undefined,
     level: 1,
     xp: 0,
@@ -131,35 +71,35 @@ export default function App() {
   const mockAchievements: Achievement[] = [
     {
       id: '1',
-      title: 'РќРѕРІРёС‡РѕРє',
-      description: 'Р”РѕСЃС‚РёРіРЅРёС‚Рµ 2 СѓСЂРѕРІРЅСЏ',
+      title: 'Новичок',
+      description: 'Достигните 2 уровня',
       progress: 50,
       maxProgress: 100,
       reward: { xp: 100, coins: 50 },
       requirements: { type: 'level', value: 2 },
-      icon: 'рџ›ЎпёЏ',
+      icon: '🌟',
       isCompleted: false
     },
     {
       id: '2',
-      title: 'РўСЂСѓРґРѕР»СЋР±РёРІС‹Р№',
-      description: 'Р’С‹РїРѕР»РЅРёС‚Рµ 10 Р·Р°РґР°С‡',
+      title: 'Трудолюбивый',
+      description: 'Выполните 10 задач',
       progress: 30,
       maxProgress: 100,
       reward: { xp: 200, coins: 100 },
       requirements: { type: 'tasks', value: 10 },
-      icon: 'вљЎ',
+      icon: '❤️',
       isCompleted: false
     },
     {
       id: '3',
-      title: 'РљРѕР»Р»РµРєС†РёРѕРЅРµСЂ',
-      description: 'РћС‚РєСЂРѕР№С‚Рµ 5 РєРµР№СЃРѕРІ',
+      title: 'Коллекционер',
+      description: 'Откройте 5 кейсов',
       progress: 20,
       maxProgress: 100,
       reward: { xp: 150, coins: 75 },
       requirements: { type: 'cases', value: 5 },
-      icon: 'рџ“¦',
+      icon: '📦',
       isCompleted: false
     }
   ];
@@ -204,8 +144,8 @@ export default function App() {
   const mockTasks: Task[] = [
     {
       id: '1',
-      title: 'Р’С‹РїРѕР»РЅРёС‚СЊ Р·Р°РґР°С‡Сѓ',
-      description: 'РћРїРёСЃР°РЅРёРµ Р·Р°РґР°С‡Рё',
+      title: 'Выполнить задачу',
+      description: 'Описание задачи',
       reward: { xp: 50, coins: 25 },
       isCompleted: false
     }
@@ -216,7 +156,7 @@ export default function App() {
       id: '1',
       name: 'РљРµР№СЃ',
       price: 100,
-      icon: 'рџ“¦',
+      icon: '📦',
       description: 'РЎР»СѓС‡Р°Р№РЅС‹Р№ РїСЂРµРґРјРµС‚'
     }
   ];
@@ -224,8 +164,8 @@ export default function App() {
   const mockNotifications: Notification[] = [
     {
       id: '1',
-      title: 'РќРѕРІРѕРµ СѓРІРµРґРѕРјР»РµРЅРёРµ',
-      message: 'РЈ РІР°СЃ РЅРѕРІРѕРµ СЃРѕРѕР±С‰РµРЅРёРµ',
+      title: 'Новое уведомление',
+      message: 'У вас новое сообщение',
       type: 'info',
       timestamp: new Date().toISOString(),
       isRead: false
@@ -261,8 +201,7 @@ export default function App() {
 
   return (
     <HashRouter>
-      <ErrorBoundary>
-        <div className={`app ${theme === 'dark' ? 'dark' : ''}`} style={{ minHeight: '100vh' }}>
+      <div className={`app ${theme === 'dark' ? 'dark' : ''}`} style={{ minHeight: '100vh' }}>
           <NavigationWrapper>
           <Routes>
             <Route path="/" element={<Navigate to="/home" replace />} />
@@ -442,7 +381,6 @@ export default function App() {
           />
         )}
         </div>
-      </ErrorBoundary>
     </HashRouter>
   );
 }
