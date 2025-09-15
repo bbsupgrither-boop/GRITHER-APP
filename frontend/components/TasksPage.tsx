@@ -187,6 +187,7 @@ export const TasksPage: React.FC<TasksPageProps> = ({
       />
       
       <div className="min-h-screen px-4 py-8 pb-32">
+        {/* AUTOGEN START tasks-content */}
         <div className="glass-card p-6">
           {/* Header with filter and add button */}
           <div className="flex items-center justify-between mb-6">
@@ -309,6 +310,7 @@ export const TasksPage: React.FC<TasksPageProps> = ({
             )}
           </div>
         </div>
+        {/* AUTOGEN END tasks-content */}
       </div>
 
       <BottomNavigation 

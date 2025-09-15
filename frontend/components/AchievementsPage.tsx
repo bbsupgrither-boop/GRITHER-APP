@@ -92,6 +92,7 @@ export function AchievementsPage({ onNavigate, currentPage, onOpenSettings, achi
         
         {/* Main Content */}
         <div className="max-w-md mx-auto pt-20 px-4 pb-32">
+          {/* AUTOGEN START achievements-content */}
           <Panel
             title="Р”РѕСЃС‚СѓРїРЅС‹Рµ РґРѕСЃС‚РёР¶РµРЅРёСЏ"
             rightButton={
@@ -168,6 +169,7 @@ export function AchievementsPage({ onNavigate, currentPage, onOpenSettings, achi
               <EmptyCard variant="achievements_empty" />
             )}
           </Panel>
+          {/* AUTOGEN END achievements-content */}
         </div>
         
         {/* Bottom Navigation */}

@@ -155,7 +155,19 @@ export const HomePage: React.FC<HomePageProps> = ({
           paddingBottom: '128px'
         }}
       >
-        <div style={{ display: 'flex', flexDirection: 'column', gap: '12px' }}>
+        {/* AUTOGEN START home-content */}
+        <div
+          style={{
+            display: 'flex',
+            flexDirection: 'column',
+            gap: '12px',
+            maxWidth: '448px',
+            margin: '0 auto',
+            paddingLeft: '16px',
+            paddingRight: '16px',
+            paddingBottom: 'calc(96px + env(safe-area-inset-bottom))'
+          }}
+        >
           
           {/* Ваши достижения - одна панелька с достижениями внутри */}
           <div 
@@ -178,7 +190,8 @@ export const HomePage: React.FC<HomePageProps> = ({
               
               <button
                 onClick={() => setIsAchievementsModalOpen(true)}
-                className={`apple-button w-7 h-7 flex items-center justify-center ${theme === 'dark' ? 'white-button' : ''}`}
+                aria-label="Открыть ближайшие достижения"
+                className={`apple-button w-7 h-7 flex items-center justify-center focus:outline-none focus:ring-2 focus:ring-blue-400 transition-[transform,opacity] duration-200 active:scale-95 ${theme === 'dark' ? 'white-button' : ''}`}
               >
                 <Eye className="w-4 h-4" />
               </button>
@@ -274,6 +287,7 @@ export const HomePage: React.FC<HomePageProps> = ({
                       fontWeight: '600',
                       textDecoration: 'underline'
                     }}
+                    aria-label={`Открыть детали опыта: ${userExperience} XP`}
                   >
                     XP: {userExperience}
                   </button>
@@ -324,7 +338,8 @@ export const HomePage: React.FC<HomePageProps> = ({
                 </h3>
                 
                 <button
-                  className={`apple-button w-7 h-7 flex items-center justify-center ${theme === 'dark' ? 'white-button' : ''}`}
+                  aria-label="Создать баттл"
+                  className={`apple-button w-7 h-7 flex items-center justify-center focus:outline-none focus:ring-2 focus:ring-blue-400 transition-[transform,opacity] duration-200 active:scale-95 ${theme === 'dark' ? 'white-button' : ''}`}
                 >
                   <Plus className="w-4 h-4" />
                 </button>
@@ -443,7 +458,8 @@ export const HomePage: React.FC<HomePageProps> = ({
                 
                 <button 
                   onClick={cycleSort}
-                  className={`apple-button w-7 h-7 flex items-center justify-center ${theme === 'dark' ? 'white-button' : ''}`}
+                  aria-label={`Сменить сортировку: ${getSortLabel(leaderboardSort)}`}
+                  className={`apple-button w-7 h-7 flex items-center justify-center focus:outline-none focus:ring-2 focus:ring-blue-400 transition-[transform,opacity] duration-200 active:scale-95 ${theme === 'dark' ? 'white-button' : ''}`}
                 >
                   <Menu className="w-4 h-4" />
                 </button>
@@ -528,7 +544,8 @@ export const HomePage: React.FC<HomePageProps> = ({
               
               <button
                 onClick={() => onNavigate('achievements')}
-                className={`apple-button w-7 h-7 flex items-center justify-center ${theme === 'dark' ? 'white-button' : ''}`}
+                aria-label="Перейти к странице ачивок"
+                className={`apple-button w-7 h-7 flex items-center justify-center focus:outline-none focus:ring-2 focus:ring-blue-400 transition-[transform,opacity] duration-200 active:scale-95 ${theme === 'dark' ? 'white-button' : ''}`}
               >
                 <Eye className="w-4 h-4" />
               </button>
@@ -589,6 +606,7 @@ export const HomePage: React.FC<HomePageProps> = ({
           </div>
 
         </div>
+        {/* AUTOGEN END home-content */}
       </div>
 
       {/* Achievements Modal */}

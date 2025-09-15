@@ -197,6 +197,7 @@ export const ShopPage: React.FC<ShopPageProps> = ({ theme, currentPage, onNaviga
       padding: '20px',
       paddingBottom: '100px'
     }}>
+      {/* AUTOGEN START shop-content */}
       {/* Custom Header */}
       <div style={{
         display: 'flex',
@@ -1157,6 +1158,7 @@ export const ShopPage: React.FC<ShopPageProps> = ({ theme, currentPage, onNaviga
           </div>
         </>
       )}
+      {/* AUTOGEN END shop-content */}
     </div>
   );
 };

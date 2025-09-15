@@ -51,6 +51,7 @@ export const ProfilePage: React.FC<ProfilePageProps> = ({
         zIndex: 10,
         position: 'relative'
       }}>
+        {/* AUTOGEN START profile-content */}
         <h2 style={{ fontSize: '20px', fontWeight: 'bold', marginBottom: '16px' }}>Профиль пользователя</h2>
         
         {/* Фото и основная информация */}
@@ -172,6 +173,7 @@ export const ProfilePage: React.FC<ProfilePageProps> = ({
         >
           Вернуться на главную
         </button>
+        {/* AUTOGEN END profile-content */}
       </div>
 
       {/* Bottom Navigation */}
