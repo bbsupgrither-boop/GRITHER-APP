@@ -203,14 +203,14 @@ export const TasksPage: React.FC<TasksPageProps> = ({
               display: 'flex',
               alignItems: 'center',
               justifyContent: 'space-between',
-              marginBottom: '16px',
+              marginBottom: '24px',
               paddingTop: '20px'
             }}
           >
             <h1 
               style={{
-                fontSize: '18px',
-                fontWeight: '500',
+                fontSize: '24px',
+                fontWeight: '700',
                 color: theme === 'dark' ? '#E8ECF2' : '#0F172A',
                 margin: 0
               }}
@@ -222,8 +222,8 @@ export const TasksPage: React.FC<TasksPageProps> = ({
               onClick={() => setIsCreateModalOpen(true)}
               aria-label="Создать новую задачу"
               style={{
-                width: '40px',
-                height: '40px',
+                width: '44px',
+                height: '44px',
                 borderRadius: '50%',
                 border: 'none',
                 background: '#2B82FF',
@@ -235,17 +235,17 @@ export const TasksPage: React.FC<TasksPageProps> = ({
                 boxShadow: '0 4px 12px rgba(43, 130, 255, 0.3)'
               }}
               onMouseEnter={(e) => {
-                e.currentTarget.style.transform = 'translateY(-1px)';
+                e.currentTarget.style.transform = 'scale(1.05)';
                 e.currentTarget.style.background = '#2066C8';
                 e.currentTarget.style.boxShadow = '0 6px 16px rgba(43, 130, 255, 0.4)';
               }}
               onMouseLeave={(e) => {
-                e.currentTarget.style.transform = 'translateY(0)';
+                e.currentTarget.style.transform = 'scale(1)';
                 e.currentTarget.style.background = '#2B82FF';
                 e.currentTarget.style.boxShadow = '0 4px 12px rgba(43, 130, 255, 0.3)';
               }}
               onMouseDown={(e) => {
-                e.currentTarget.style.transform = 'translateY(0)';
+                e.currentTarget.style.transform = 'scale(0.95)';
               }}
             >
               <Plus style={{ width: '20px', height: '20px', color: 'white' }} />
@@ -257,7 +257,7 @@ export const TasksPage: React.FC<TasksPageProps> = ({
             style={{
               display: 'flex',
               gap: '8px',
-              marginBottom: '16px',
+              marginBottom: '20px',
               overflowX: 'auto',
               paddingBottom: '4px'
             }}
@@ -283,22 +283,21 @@ export const TasksPage: React.FC<TasksPageProps> = ({
                     filterType === 'in_progress' ? 'В процессе' :
                     filterType === 'completed' ? 'Завершенные' : 'Просроченные'}`}
                   style={{
-                    padding: '8px 16px',
-                    borderRadius: '20px',
+                    padding: '10px 16px',
+                    borderRadius: '12px',
                     background: isActive 
-                      ? `${getStatusColor(filterType)}20`
+                      ? getStatusColor(filterType)
                       : theme === 'dark' ? 'rgba(255, 255, 255, 0.1)' : 'rgba(0, 0, 0, 0.05)',
                     color: isActive 
-                      ? getStatusColor(filterType)
+                      ? '#FFFFFF'
                       : theme === 'dark' ? '#A7B0BD' : '#6B7280',
-                    fontSize: '12px',
+                    fontSize: '14px',
                     fontWeight: '500',
                     cursor: 'pointer',
                     transition: 'all 200ms ease',
                     whiteSpace: 'nowrap',
-                    border: isActive 
-                      ? `1px solid ${getStatusColor(filterType)}40`
-                      : theme === 'dark' ? '1px solid rgba(255, 255, 255, 0.1)' : '1px solid rgba(0, 0, 0, 0.1)'
+                    border: 'none',
+                    boxShadow: isActive ? '0 2px 8px rgba(0, 0, 0, 0.15)' : 'none'
                   }}
                   onMouseEnter={(e) => {
                     if (!isActive) {
@@ -327,7 +326,7 @@ export const TasksPage: React.FC<TasksPageProps> = ({
           </div>
 
           {/* Tasks list */}
-          <div style={{ display: 'flex', flexDirection: 'column', gap: '12px' }}>
+          <div style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
             {filteredTasks.length > 0 ? (
               filteredTasks.map((task) => {
                 const taskStatus = getTaskStatus(task);
@@ -341,8 +340,8 @@ export const TasksPage: React.FC<TasksPageProps> = ({
                     onClick={() => handleTaskClick(task)}
                     style={{
                       backgroundColor: theme === 'dark' ? '#161A22' : '#FFFFFF',
-                      borderRadius: '16px',
-                      padding: '16px',
+                      borderRadius: '20px',
+                      padding: '20px',
                       border: theme === 'dark' ? '1px solid rgba(255, 255, 255, 0.06)' : '1px solid #E6E9EF',
                       boxShadow: theme === 'dark' ? '0 8px 24px rgba(0, 0, 0, 0.6)' : '0 8px 24px rgba(0, 0, 0, 0.10)',
                       cursor: 'pointer',
@@ -351,22 +350,22 @@ export const TasksPage: React.FC<TasksPageProps> = ({
                       overflow: 'hidden'
                     }}
                     onMouseEnter={(e) => {
-                      e.currentTarget.style.transform = 'scale(0.98)';
+                      e.currentTarget.style.transform = 'translateY(-2px)';
                       e.currentTarget.style.boxShadow = theme === 'dark' 
                         ? '0 12px 32px rgba(0, 0, 0, 0.8)' 
                         : '0 12px 32px rgba(0, 0, 0, 0.15)';
                     }}
                     onMouseLeave={(e) => {
-                      e.currentTarget.style.transform = 'scale(1)';
+                      e.currentTarget.style.transform = 'translateY(0)';
                       e.currentTarget.style.boxShadow = theme === 'dark' 
                         ? '0 8px 24px rgba(0, 0, 0, 0.6)' 
                         : '0 8px 24px rgba(0, 0, 0, 0.10)';
                     }}
                     onMouseDown={(e) => {
-                      e.currentTarget.style.transform = 'scale(0.96)';
+                      e.currentTarget.style.transform = 'translateY(0)';
                     }}
                     onMouseUp={(e) => {
-                      e.currentTarget.style.transform = 'scale(0.98)';
+                      e.currentTarget.style.transform = 'translateY(-2px)';
                     }}
                   >
                     {/* Status indicator */}
@@ -376,21 +375,21 @@ export const TasksPage: React.FC<TasksPageProps> = ({
                         top: 0,
                         left: 0,
                         right: 0,
-                        height: '3px',
-                        background: `linear-gradient(90deg, ${statusColor}40, ${statusColor}80, ${statusColor}40)`,
-                        borderRadius: '16px 16px 0 0'
+                        height: '4px',
+                        background: `linear-gradient(90deg, ${statusColor}, ${statusColor}80)`,
+                        borderRadius: '20px 20px 0 0'
                       }}
                     />
                     
-                    <div style={{ display: 'flex', alignItems: 'flex-start', justifyContent: 'space-between', marginTop: '8px' }}>
+                    <div style={{ display: 'flex', alignItems: 'flex-start', justifyContent: 'space-between', marginTop: '12px' }}>
                       {/* Task info */}
                       <div style={{ flex: 1, minWidth: 0 }}>
                         <div 
                           style={{
-                            fontSize: '14px',
-                            fontWeight: '500',
+                            fontSize: '16px',
+                            fontWeight: '600',
                             color: theme === 'dark' ? '#E8ECF2' : '#0F172A',
-                            marginBottom: '4px',
+                            marginBottom: '6px',
                             lineHeight: '1.4'
                           }}
                         >
@@ -398,9 +397,9 @@ export const TasksPage: React.FC<TasksPageProps> = ({
                         </div>
                         <div 
                           style={{
-                            fontSize: '12px',
+                            fontSize: '14px',
                             color: theme === 'dark' ? '#A7B0BD' : '#6B7280',
-                            marginBottom: '8px',
+                            marginBottom: '12px',
                             lineHeight: '1.4',
                             display: '-webkit-box',
                             WebkitLineClamp: 2,
@@ -412,23 +411,23 @@ export const TasksPage: React.FC<TasksPageProps> = ({
                         </div>
                         
                         {/* Task metadata */}
-                        <div style={{ display: 'flex', alignItems: 'center', gap: '12px', marginBottom: '8px' }}>
-                          <div style={{ display: 'flex', alignItems: 'center', gap: '4px' }}>
-                            <Calendar style={{ width: '12px', height: '12px', color: theme === 'dark' ? '#A7B0BD' : '#6B7280' }} />
+                        <div style={{ display: 'flex', alignItems: 'center', gap: '16px', marginBottom: '12px' }}>
+                          <div style={{ display: 'flex', alignItems: 'center', gap: '6px' }}>
+                            <Calendar style={{ width: '14px', height: '14px', color: theme === 'dark' ? '#A7B0BD' : '#6B7280' }} />
                             <span 
                               style={{
-                                fontSize: '10px',
+                                fontSize: '12px',
                                 color: theme === 'dark' ? '#A7B0BD' : '#6B7280'
                               }}
                             >
                               {new Date(task.deadline).toLocaleDateString('ru-RU')}
                             </span>
                           </div>
-                          <div style={{ display: 'flex', alignItems: 'center', gap: '4px' }}>
-                            <Clock style={{ width: '12px', height: '12px', color: theme === 'dark' ? '#A7B0BD' : '#6B7280' }} />
+                          <div style={{ display: 'flex', alignItems: 'center', gap: '6px' }}>
+                            <Clock style={{ width: '14px', height: '14px', color: theme === 'dark' ? '#A7B0BD' : '#6B7280' }} />
                             <span 
                               style={{
-                                fontSize: '10px',
+                                fontSize: '12px',
                                 color: theme === 'dark' ? '#A7B0BD' : '#6B7280'
                               }}
                             >
@@ -441,16 +440,18 @@ export const TasksPage: React.FC<TasksPageProps> = ({
                         <div 
                           style={{
                             display: 'inline-block',
-                            padding: '2px 8px',
-                            borderRadius: '12px',
-                            fontSize: '8px',
-                            fontWeight: 'bold',
+                            padding: '4px 12px',
+                            borderRadius: '16px',
+                            fontSize: '10px',
+                            fontWeight: '600',
                             textTransform: 'uppercase',
                             letterSpacing: '0.5px',
                             background: task.priority === 'high' ? '#EF444420' :
                                        task.priority === 'medium' ? '#FF9F0A20' : '#22C55E20',
                             color: task.priority === 'high' ? '#EF4444' :
-                                   task.priority === 'medium' ? '#FF9F0A' : '#22C55E'
+                                   task.priority === 'medium' ? '#FF9F0A' : '#22C55E',
+                            border: `1px solid ${task.priority === 'high' ? '#EF444440' :
+                                   task.priority === 'medium' ? '#FF9F0A40' : '#22C55E40'}`
                           }}
                         >
                           {task.priority === 'high' ? 'Высокий' :
@@ -459,19 +460,19 @@ export const TasksPage: React.FC<TasksPageProps> = ({
                       </div>
                       
                       {/* Status and timer */}
-                      <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-end', gap: '8px' }}>
+                      <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-end', gap: '12px' }}>
                         {/* Status badge */}
                         <div
                           style={{
-                            padding: '4px 8px',
-                            borderRadius: '12px',
-                            fontSize: '10px',
-                            fontWeight: 'bold',
+                            padding: '6px 12px',
+                            borderRadius: '16px',
+                            fontSize: '12px',
+                            fontWeight: '600',
                             textTransform: 'uppercase',
                             letterSpacing: '0.5px',
-                            background: `${statusColor}20`,
-                            color: statusColor,
-                            border: `1px solid ${statusColor}40`
+                            background: statusColor,
+                            color: '#FFFFFF',
+                            boxShadow: `0 2px 8px ${statusColor}40`
                           }}
                         >
                           {taskStatus === 'completed' ? 'Завершена' :
@@ -489,8 +490,8 @@ export const TasksPage: React.FC<TasksPageProps> = ({
                               }}
                               aria-label={activeTimer === task.id ? 'Остановить таймер' : 'Запустить таймер'}
                               style={{
-                                width: '32px',
-                                height: '32px',
+                                width: '36px',
+                                height: '36px',
                                 borderRadius: '50%',
                                 border: 'none',
                                 background: activeTimer === task.id ? '#EF4444' : '#22C55E',
@@ -517,18 +518,19 @@ export const TasksPage: React.FC<TasksPageProps> = ({
                               }}
                             >
                               {activeTimer === task.id ? (
-                                <Pause style={{ width: '14px', height: '14px', color: 'white' }} />
+                                <Pause style={{ width: '16px', height: '16px', color: 'white' }} />
                               ) : (
-                                <Play style={{ width: '14px', height: '14px', color: 'white' }} />
+                                <Play style={{ width: '16px', height: '16px', color: 'white' }} />
                               )}
                             </button>
                             <span 
                               style={{
-                                fontSize: '12px',
+                                fontSize: '14px',
                                 fontFamily: 'monospace',
                                 color: theme === 'dark' ? '#A7B0BD' : '#6B7280',
-                                minWidth: '60px',
-                                textAlign: 'right'
+                                minWidth: '70px',
+                                textAlign: 'right',
+                                fontWeight: '500'
                               }}
                             >
                               {formatTime(timerSeconds[task.id] || 0)}
@@ -544,8 +546,8 @@ export const TasksPage: React.FC<TasksPageProps> = ({
               <div
                 style={{
                   backgroundColor: theme === 'dark' ? '#161A22' : '#FFFFFF',
-                  borderRadius: '16px',
-                  padding: '48px 16px',
+                  borderRadius: '20px',
+                  padding: '60px 20px',
                   textAlign: 'center',
                   border: theme === 'dark' ? '1px solid rgba(255, 255, 255, 0.06)' : '1px solid #E6E9EF',
                   boxShadow: theme === 'dark' ? '0 8px 24px rgba(0, 0, 0, 0.6)' : '0 8px 24px rgba(0, 0, 0, 0.10)'
@@ -553,22 +555,23 @@ export const TasksPage: React.FC<TasksPageProps> = ({
               >
                 <div
                   style={{
-                    width: '64px',
-                    height: '64px',
+                    width: '80px',
+                    height: '80px',
                     borderRadius: '50%',
-                    background: theme === 'dark' ? 'rgba(255, 255, 255, 0.1)' : 'rgba(0, 0, 0, 0.05)',
+                    background: theme === 'dark' ? 'rgba(43, 130, 255, 0.1)' : 'rgba(43, 130, 255, 0.05)',
                     display: 'flex',
                     alignItems: 'center',
                     justifyContent: 'center',
-                    margin: '0 auto 16px'
+                    margin: '0 auto 20px',
+                    border: `2px solid ${theme === 'dark' ? 'rgba(43, 130, 255, 0.2)' : 'rgba(43, 130, 255, 0.1)'}`
                   }}
                 >
-                  <FileText style={{ width: '32px', height: '32px', color: theme === 'dark' ? '#A7B0BD' : '#6B7280' }} />
+                  <FileText style={{ width: '40px', height: '40px', color: '#2B82FF' }} />
                 </div>
                 <h3 
                   style={{
-                    fontSize: '16px',
-                    fontWeight: '500',
+                    fontSize: '18px',
+                    fontWeight: '600',
                     color: theme === 'dark' ? '#E8ECF2' : '#0F172A',
                     marginBottom: '8px'
                   }}
@@ -577,9 +580,10 @@ export const TasksPage: React.FC<TasksPageProps> = ({
                 </h3>
                 <p 
                   style={{
-                    fontSize: '12px',
+                    fontSize: '14px',
                     color: theme === 'dark' ? '#A7B0BD' : '#6B7280',
-                    lineHeight: '1.4'
+                    lineHeight: '1.4',
+                    marginBottom: '20px'
                   }}
                 >
                   {filter === 'all' ? 'Создайте первую задачу' :
@@ -587,6 +591,33 @@ export const TasksPage: React.FC<TasksPageProps> = ({
                    filter === 'in_progress' ? 'Нет задач в процессе' :
                    filter === 'completed' ? 'Нет завершенных задач' : 'Нет просроченных задач'}
                 </p>
+                <button
+                  onClick={() => setIsCreateModalOpen(true)}
+                  style={{
+                    padding: '12px 24px',
+                    background: '#2B82FF',
+                    color: 'white',
+                    border: 'none',
+                    borderRadius: '12px',
+                    fontSize: '14px',
+                    fontWeight: '500',
+                    cursor: 'pointer',
+                    transition: 'all 200ms ease',
+                    boxShadow: '0 4px 12px rgba(43, 130, 255, 0.3)'
+                  }}
+                  onMouseEnter={(e) => {
+                    e.currentTarget.style.background = '#2066C8';
+                    e.currentTarget.style.transform = 'translateY(-1px)';
+                    e.currentTarget.style.boxShadow = '0 6px 16px rgba(43, 130, 255, 0.4)';
+                  }}
+                  onMouseLeave={(e) => {
+                    e.currentTarget.style.background = '#2B82FF';
+                    e.currentTarget.style.transform = 'translateY(0)';
+                    e.currentTarget.style.boxShadow = '0 4px 12px rgba(43, 130, 255, 0.3)';
+                  }}
+                >
+                  Создать задачу
+                </button>
               </div>
             )}
           </div>
@@ -602,354 +633,193 @@ export const TasksPage: React.FC<TasksPageProps> = ({
 
       {/* Create Task Modal */}
       {isCreateModalOpen && (
-        <CreateTaskModal
-          theme={theme}
-          onClose={() => setIsCreateModalOpen(false)}
-          onCreate={handleCreateTask}
-        />
+        <div
+          style={{
+            position: 'fixed',
+            top: 0,
+            left: 0,
+            right: 0,
+            bottom: 0,
+            background: 'rgba(0, 0, 0, 0.5)',
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            zIndex: 1000
+          }}
+          onClick={() => setIsCreateModalOpen(false)}
+        >
+          <div
+            style={{
+              background: theme === 'dark' ? '#161A22' : '#FFFFFF',
+              borderRadius: '16px',
+              padding: '24px',
+              width: '90vw',
+              maxWidth: '400px',
+              maxHeight: '80vh',
+              overflow: 'auto'
+            }}
+            onClick={(e) => e.stopPropagation()}
+          >
+            <div style={{
+              display: 'flex',
+              justifyContent: 'space-between',
+              alignItems: 'center',
+              marginBottom: '24px'
+            }}>
+              <h2 style={{ color: theme === 'dark' ? '#E8ECF2' : '#0F172A' }}>
+                Новая задача
+              </h2>
+              <button
+                onClick={() => setIsCreateModalOpen(false)}
+                style={{
+                  background: 'none',
+                  border: 'none',
+                  fontSize: '24px',
+                  cursor: 'pointer',
+                  color: theme === 'dark' ? '#A7B0BD' : '#6B7280'
+                }}
+              >
+                <X size={24} />
+              </button>
+            </div>
+            <div style={{ textAlign: 'center', padding: '20px' }}>
+              <p style={{ color: theme === 'dark' ? '#A7B0BD' : '#6B7280' }}>
+                Функция создания задач в разработке
+              </p>
+            </div>
+          </div>
+        </div>
       )}
 
       {/* Task Detail Modal */}
       {isDetailModalOpen && selectedTask && (
-        <TaskDetailModal
-          task={selectedTask}
-          theme={theme}
-          onClose={() => setIsDetailModalOpen(false)}
-          onComplete={() => handleCompleteTask(selectedTask.id)}
-          onFileUpload={(file) => handleFileUpload(file, selectedTask.id)}
-          isTimerActive={activeTimer === selectedTask.id}
-          timeSpent={timerSeconds[selectedTask.id] || 0}
-          onTimerToggle={() => handleTimerToggle(selectedTask.id)}
-        />
-      )}
-    </div>
-  );
-};
-
-// Create Task Modal Component
-interface CreateTaskModalProps {
-  theme: 'light' | 'dark';
-  onClose: () => void;
-  onCreate: (task: Omit<Task, 'id'>) => void;
-}
-
-const CreateTaskModal: React.FC<CreateTaskModalProps> = ({ theme, onClose, onCreate }) => {
-  const [title, setTitle] = useState('');
-  const [description, setDescription] = useState('');
-  const [deadline, setDeadline] = useState('');
-  const [priority, setPriority] = useState<'low' | 'medium' | 'high'>('medium');
-
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    if (title.trim()) {
-      onCreate({
-        title: title.trim(),
-        description: description.trim(),
-        deadline,
-        priority,
-        status: 'not_started',
-        completed: false,
-        createdAt: new Date().toISOString(),
-        timeSpent: 0
-      });
-    }
-  };
-
-  return (
-    <div className="fixed inset-0 flex items-center justify-center"
-         style={{ 
-           zIndex: 99999, 
-           pointerEvents: 'auto',
-           backgroundColor: 'rgba(0, 0, 0, 1)',
-           backdropFilter: 'blur(10px)',
-           WebkitBackdropFilter: 'blur(10px)',
-           position: 'fixed',
-           top: 0,
-           left: 0,
-           right: 0,
-           bottom: 0,
-           width: '100vw',
-           height: '100vh'
-         }}>
-      <div className={`p-6 rounded-2xl max-w-sm w-full mx-4 ${
-        theme === 'dark' ? 'bg-gray-800' : 'bg-white'
-      }`}>
-        <div className="flex items-center justify-between mb-6">
-          <h2 className="text-xl font-semibold">Новая задача</h2>
-          <button
-            onClick={onClose}
-            className="p-2 rounded-full hover:bg-gray-100 dark:hover:bg-gray-700"
+        <div
+          style={{
+            position: 'fixed',
+            top: 0,
+            left: 0,
+            right: 0,
+            bottom: 0,
+            background: 'rgba(0, 0, 0, 0.5)',
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            zIndex: 1000
+          }}
+          onClick={() => setIsDetailModalOpen(false)}
+        >
+          <div
+            style={{
+              background: theme === 'dark' ? '#161A22' : '#FFFFFF',
+              borderRadius: '16px',
+              padding: '24px',
+              width: '90vw',
+              maxWidth: '400px',
+              maxHeight: '80vh',
+              overflow: 'auto'
+            }}
+            onClick={(e) => e.stopPropagation()}
           >
-            <X className="w-5 h-5" />
-          </button>
-        </div>
-
-        <form onSubmit={handleSubmit} className="space-y-4">
-          <div>
-            <label className="block text-sm font-medium mb-2">Название</label>
-            <input
-              type="text"
-              value={title}
-              onChange={(e) => setTitle(e.target.value)}
-              className={`w-full p-3 rounded-xl border ${
-                theme === 'dark'
-                  ? 'bg-gray-700 border-gray-600 text-white'
-                  : 'bg-white border-gray-300 text-gray-900'
-              }`}
-              placeholder="Введите название задачи"
-              required
-            />
-          </div>
-
-          <div>
-            <label className="block text-sm font-medium mb-2">Описание</label>
-            <textarea
-              value={description}
-              onChange={(e) => setDescription(e.target.value)}
-              className={`w-full p-3 rounded-xl border ${
-                theme === 'dark'
-                  ? 'bg-gray-700 border-gray-600 text-white'
-                  : 'bg-white border-gray-300 text-gray-900'
-              }`}
-              rows={3}
-              placeholder="Описание задачи (необязательно)"
-            />
-          </div>
-
-          <div>
-            <label className="block text-sm font-medium mb-2">Дедлайн</label>
-            <input
-              type="datetime-local"
-              value={deadline}
-              onChange={(e) => setDeadline(e.target.value)}
-              className={`w-full p-3 rounded-xl border ${
-                theme === 'dark'
-                  ? 'bg-gray-700 border-gray-600 text-white'
-                  : 'bg-white border-gray-300 text-gray-900'
-              }`}
-              required
-            />
-          </div>
-
-          <div>
-            <label className="block text-sm font-medium mb-2">Приоритет</label>
-            <select
-              value={priority}
-              onChange={(e) => setPriority(e.target.value as 'low' | 'medium' | 'high')}
-              className={`w-full p-3 rounded-xl border ${
-                theme === 'dark'
-                  ? 'bg-gray-700 border-gray-600 text-white'
-                  : 'bg-white border-gray-300 text-gray-900'
-              }`}
-            >
-              <option value="low">Низкий</option>
-              <option value="medium">Средний</option>
-              <option value="high">Высокий</option>
-            </select>
-          </div>
-
-          <div className="flex gap-3 pt-4">
-            <button
-              type="button"
-              onClick={onClose}
-              className="flex-1 py-2 px-4 rounded-xl bg-gray-200 dark:bg-gray-700 text-gray-700 dark:text-gray-300"
-            >
-              Отменить
-            </button>
-            <button
-              type="submit"
-              className="flex-1 py-2 px-4 rounded-xl bg-blue-500 text-white"
-            >
-              Создать
-            </button>
-          </div>
-        </form>
-      </div>
-    </div>
-  );
-};
-
-// Task Detail Modal Component
-interface TaskDetailModalProps {
-  task: Task;
-  theme: 'light' | 'dark';
-  onClose: () => void;
-  onComplete: () => void;
-  onFileUpload: (event: React.ChangeEvent<HTMLInputElement>) => void;
-  isTimerActive: boolean;
-  timeSpent: number;
-  onTimerToggle: () => void;
-}
-
-const TaskDetailModal: React.FC<TaskDetailModalProps> = ({
-  task,
-  theme,
-  onClose,
-  onComplete,
-  onFileUpload,
-  isTimerActive,
-  timeSpent,
-  onTimerToggle
-}) => {
-  const formatTime = (seconds: number) => {
-    const hours = Math.floor(seconds / 3600);
-    const minutes = Math.floor((seconds % 3600) / 60);
-    const secs = seconds % 60;
-    return `${hours.toString().padStart(2, '0')}:${minutes.toString().padStart(2, '0')}:${secs.toString().padStart(2, '0')}`;
-  };
-
-  const getPriorityColor = (priority: string) => {
-    switch (priority) {
-      case 'high': return 'text-red-500';
-      case 'medium': return 'text-yellow-500';
-      case 'low': return 'text-green-500';
-      default: return 'text-gray-400';
-    }
-  };
-
-  return (
-    <div className="fixed inset-0 flex items-center justify-center"
-         style={{ 
-           zIndex: 99999, 
-           pointerEvents: 'auto',
-           backgroundColor: 'rgba(0, 0, 0, 1)',
-           backdropFilter: 'blur(10px)',
-           WebkitBackdropFilter: 'blur(10px)',
-           position: 'fixed',
-           top: 0,
-           left: 0,
-           right: 0,
-           bottom: 0,
-           width: '100vw',
-           height: '100vh'
-         }}>
-      <div className={`p-6 rounded-2xl max-w-sm w-full mx-4 max-h-[80vh] overflow-y-auto ${
-        theme === 'dark' ? 'bg-gray-800' : 'bg-white'
-      }`}>
-        <div className="flex items-center justify-between mb-6">
-          <h2 className="text-xl font-semibold">Детали задачи</h2>
-                            <button
-            onClick={onClose}
-            className="p-2 rounded-full hover:bg-gray-100 dark:hover:bg-gray-700"
-          >
-            <X className="w-5 h-5" />
-                            </button>
-                          </div>
-
-        <div className="space-y-6">
-          {/* Task Info */}
-          <div>
-            <h3 className="font-medium text-lg mb-2">{task.title}</h3>
-            {task.description && (
-              <p className="text-sm text-gray-400 mb-4">{task.description}</p>
-                  )}
-                </div>
-
-          {/* Task Details */}
-          <div className={`p-4 rounded-xl border ${
-            theme === 'dark' ? 'bg-gray-700/50 border-gray-600' : 'bg-gray-50 border-gray-200'
-          }`}>
-                  <div className="space-y-3">
-              <div className="flex items-center justify-between">
-                <span className="text-sm">Дедлайн:</span>
-                <span className="text-sm">{new Date(task.deadline).toLocaleString('ru-RU')}</span>
-                    </div>
-              <div className="flex items-center justify-between">
-                <span className="text-sm">Приоритет:</span>
-                <span className={`text-sm ${getPriorityColor(task.priority)}`}>
-                  {task.priority === 'high' ? 'Высокий' : 
-                   task.priority === 'medium' ? 'Средний' : 'Низкий'}
-                </span>
-                    </div>
-              <div className="flex items-center justify-between">
-                <span className="text-sm">Статус:</span>
-                <span className="text-sm">
-                  {task.completed ? 'Выполнено' : 
-                   task.status === 'in_progress' ? 'В работе' : 'Не начато'}
-                </span>
-                    </div>
-                  </div>
-                </div>
-
-          {/* Timer */}
-          <div className={`p-4 rounded-xl border ${
-            theme === 'dark' ? 'bg-gray-700/50 border-gray-600' : 'bg-gray-50 border-gray-200'
-          }`}>
-            <div className="flex items-center justify-between mb-3">
-              <span className="text-sm font-medium">Время работы</span>
-              <span className="text-sm font-mono">{formatTime(timeSpent)}</span>
-                </div>
-                  <button
-              onClick={onTimerToggle}
-              className={`w-full py-2 px-4 rounded-xl flex items-center justify-center gap-2 transition-all ${
-                isTimerActive
-                  ? 'bg-red-500 text-white hover:bg-red-600'
-                  : 'bg-blue-500 text-white hover:bg-blue-600'
-              }`}
-            >
-              {isTimerActive ? (
-                <>
-                  <Square className="w-4 h-4" />
-                  Остановить
-                </>
-              ) : (
-                <>
-                  <Play className="w-4 h-4" />
-                  Запустить
-                </>
-              )}
-                  </button>
-          </div>
-
-          {/* Attached Files */}
-          <div className={`p-4 rounded-xl border ${
-            theme === 'dark' ? 'bg-gray-700/50 border-gray-600' : 'bg-gray-50 border-gray-200'
-          }`}>
-            <div className="flex items-center justify-between mb-3">
-              <span className="text-sm font-medium">Прикрепленные файлы</span>
-              <label className="p-1 rounded cursor-pointer hover:bg-gray-100 dark:hover:bg-gray-600">
-                <Upload className="w-4 h-4" />
-              <input
-                type="file"
-                  onChange={onFileUpload}
-                className="hidden"
-                accept="image/*,video/*,.pdf,.doc,.docx"
-              />
-              </label>
-            </div>
-            {task.attachedFiles && task.attachedFiles.length > 0 ? (
-              <div className="space-y-2">
-                {task.attachedFiles.map((file, index) => (
-                  <div key={index} className="flex items-center gap-2 text-sm">
-                    <Paperclip className="w-3 h-3 text-blue-500" />
-                    <span>{file}</span>
-                  </div>
-                ))}
-              </div>
-            ) : (
-              <div className="text-sm text-gray-400">Нет прикрепленных файлов</div>
-            )}
-            </div>
-
-          {/* Actions */}
-          {!task.completed && (
-            <div className="flex gap-3">
+            <div style={{
+              display: 'flex',
+              justifyContent: 'space-between',
+              alignItems: 'center',
+              marginBottom: '24px'
+            }}>
+              <h2 style={{ color: theme === 'dark' ? '#E8ECF2' : '#0F172A' }}>
+                Детали задачи
+              </h2>
               <button
-                onClick={onClose}
-                className="flex-1 py-2 px-4 rounded-xl bg-gray-200 dark:bg-gray-700 text-gray-700 dark:text-gray-300"
+                onClick={() => setIsDetailModalOpen(false)}
+                style={{
+                  background: 'none',
+                  border: 'none',
+                  fontSize: '24px',
+                  cursor: 'pointer',
+                  color: theme === 'dark' ? '#A7B0BD' : '#6B7280'
+                }}
+              >
+                <X size={24} />
+              </button>
+            </div>
+            <div style={{ marginBottom: '16px' }}>
+              <h3 style={{ 
+                fontSize: '18px',
+                fontWeight: '600',
+                color: theme === 'dark' ? '#E8ECF2' : '#0F172A',
+                marginBottom: '8px'
+              }}>
+                {selectedTask.title}
+              </h3>
+              <p style={{ 
+                fontSize: '14px',
+                color: theme === 'dark' ? '#A7B0BD' : '#6B7280',
+                marginBottom: '12px'
+              }}>
+                {selectedTask.description}
+              </p>
+              <div style={{
+                display: 'flex',
+                justifyContent: 'space-between',
+                alignItems: 'center',
+                padding: '12px',
+                background: theme === 'dark' ? 'rgba(255, 255, 255, 0.05)' : 'rgba(0, 0, 0, 0.05)',
+                borderRadius: '8px'
+              }}>
+                <span style={{ fontSize: '14px', color: theme === 'dark' ? '#A7B0BD' : '#6B7280' }}>
+                  Дедлайн: {new Date(selectedTask.deadline).toLocaleDateString('ru-RU')}
+                </span>
+                <span style={{ 
+                  fontSize: '14px',
+                  fontWeight: '600',
+                  color: theme === 'dark' ? '#E8ECF2' : '#0F172A'
+                }}>
+                  {selectedTask.reward} {selectedTask.rewardType === 'coins' ? 'монет' : 'опыта'}
+                </span>
+              </div>
+            </div>
+            <div style={{ display: 'flex', gap: '12px' }}>
+              <button
+                onClick={() => setIsDetailModalOpen(false)}
+                style={{
+                  flex: 1,
+                  padding: '12px',
+                  background: 'transparent',
+                  color: theme === 'dark' ? '#E8ECF2' : '#0F172A',
+                  border: `1px solid ${theme === 'dark' ? '#A7B0BD' : '#6B7280'}`,
+                  borderRadius: '8px',
+                  fontSize: '14px',
+                  fontWeight: '500',
+                  cursor: 'pointer'
+                }}
               >
                 Закрыть
               </button>
-              <button
-                onClick={onComplete}
-                className="flex-1 py-2 px-4 rounded-xl bg-green-500 text-white"
-              >
-                Выполнить
-              </button>
+              {!selectedTask.completed && (
+                <button
+                  onClick={() => {
+                    handleCompleteTask(selectedTask.id);
+                    setIsDetailModalOpen(false);
+                  }}
+                  style={{
+                    flex: 1,
+                    padding: '12px',
+                    background: '#22C55E',
+                    color: 'white',
+                    border: 'none',
+                    borderRadius: '8px',
+                    fontSize: '14px',
+                    fontWeight: '500',
+                    cursor: 'pointer'
+                  }}
+                >
+                  Выполнить
+                </button>
+              )}
             </div>
-          )}
-                      </div>
-                    </div>
-                  </div>
+          </div>
+        </div>
+      )}
+    </div>
   );
 };
