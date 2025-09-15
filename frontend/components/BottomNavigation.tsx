@@ -52,10 +52,10 @@ export const BottomNavigation: React.FC<BottomNavigationProps> = ({
   }, []);
 
   const navItems = [
-    { icon: Home, page: '/home', label: 'Р“Р»Р°РІРЅР°СЏ' },
-    { icon: Trophy, page: '/achievements', label: 'Р”РѕСЃС‚РёР¶РµРЅРёСЏ' },
-    { icon: CheckSquare, page: '/tasks', label: 'Р—Р°РґР°С‡Рё' },
-    { icon: ShoppingCart, page: '/shop', label: 'РњР°РіР°Р·РёРЅ' },
+    { icon: Home, page: '/home', label: 'Главная' },
+    { icon: Trophy, page: '/achievements', label: 'Достижения' },
+    { icon: CheckSquare, page: '/tasks', label: 'Задачи' },
+    { icon: ShoppingCart, page: '/shop', label: 'Магазин' },
   ];
 
   const currentPage = location.pathname;

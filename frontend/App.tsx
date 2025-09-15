@@ -1,29 +1,75 @@
-import React, { useState, useEffect } from 'react';
-import { HashRouter, Routes, Route, Navigate, useNavigate, useLocation } from 'react-router-dom';
+import React from 'react';
+import { TestComponent } from './components/TestComponent';
 
 // Log build version
 console.info("build", import.meta.env.VITE_APP_BUILD);
 
-// Import components
-import { HomePage } from './components/HomePage';
-import { AchievementsPage } from './components/AchievementsPage';
-import { TasksPage } from './components/TasksPage';
-import { ShopPage } from './components/ShopPage';
-import { ProfilePage } from './components/ProfilePage';
-import { Header } from './components/Header';
-import { BottomNavigation } from './components/BottomNavigation';
-import { SettingsModal } from './components/SettingsModal';
-import { SecretAdminAccess } from './components/SecretAdminAccess';
-import { ProblemReportModal } from './components/ProblemReportModal';
-import { AdminPanelMain } from './components/AdminPanelMain';
-
 // Types
-import { User } from './types/global';
-import { Achievement } from './types/achievements';
-import { Battle } from './types/battles';
-import { Task } from './types/tasks';
-import { ShopItem } from './types/shop';
-import { Notification } from './types/notifications';
+interface User {
+  id: string;
+  name: string;
+  avatar?: string;
+  level: number;
+  xp: number;
+  balance: number;
+  role: string;
+}
+
+interface Achievement {
+  id: string;
+  title: string;
+  description: string;
+  progress: number;
+  maxProgress: number;
+  reward: {
+    xp: number;
+    coins: number;
+  };
+  requirements: {
+    type: string;
+    value: number;
+  };
+  icon: string;
+  isCompleted: boolean;
+}
+
+interface Battle {
+  id: string;
+  opponentName: string;
+  opponentAvatar?: string;
+  stake: number;
+  status: 'active' | 'pending' | 'completed';
+  winnerId?: string;
+}
+
+interface Task {
+  id: string;
+  title: string;
+  description: string;
+  reward: {
+    xp: number;
+    coins: number;
+  };
+  deadline?: string;
+  isCompleted: boolean;
+}
+
+interface ShopItem {
+  id: string;
+  name: string;
+  price: number;
+  icon: string;
+  description: string;
+}
+
+interface Notification {
+  id: string;
+  title: string;
+  message: string;
+  type: 'info' | 'success' | 'warning' | 'error';
+  timestamp: string;
+  isRead: boolean;
+}
 
 // Navigation wrapper component
 function NavigationWrapper({ children }: { children: React.ReactNode }) {
