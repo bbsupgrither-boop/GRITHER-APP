@@ -1234,8 +1234,8 @@ export const ShopPage: React.FC<ShopPageProps> = ({ theme, currentPage, onNaviga
           </div>
         </>
       )}
-      </div>
       {/* AUTOGEN END shop-content */}
+      </div>
     </div>
   );
 };

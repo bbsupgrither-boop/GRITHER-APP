@@ -203,14 +203,14 @@ export const TasksPage: React.FC<TasksPageProps> = ({
               display: 'flex',
               alignItems: 'center',
               justifyContent: 'space-between',
-              marginBottom: '24px',
+              marginBottom: '20px',
               paddingTop: '20px'
             }}
           >
             <h1 
               style={{
-                fontSize: '24px',
-                fontWeight: '700',
+                fontSize: '18px',
+                fontWeight: '500',
                 color: theme === 'dark' ? '#E8ECF2' : '#0F172A',
                 margin: 0
               }}
@@ -222,8 +222,8 @@ export const TasksPage: React.FC<TasksPageProps> = ({
               onClick={() => setIsCreateModalOpen(true)}
               aria-label="Создать новую задачу"
               style={{
-                width: '44px',
-                height: '44px',
+                width: '40px',
+                height: '40px',
                 borderRadius: '50%',
                 border: 'none',
                 background: '#2B82FF',
@@ -257,7 +257,7 @@ export const TasksPage: React.FC<TasksPageProps> = ({
             style={{
               display: 'flex',
               gap: '8px',
-              marginBottom: '20px',
+              marginBottom: '16px',
               overflowX: 'auto',
               paddingBottom: '4px'
             }}
@@ -283,21 +283,22 @@ export const TasksPage: React.FC<TasksPageProps> = ({
                     filterType === 'in_progress' ? 'В процессе' :
                     filterType === 'completed' ? 'Завершенные' : 'Просроченные'}`}
                   style={{
-                    padding: '10px 16px',
-                    borderRadius: '12px',
+                    padding: '8px 16px',
+                    borderRadius: '20px',
                     background: isActive 
-                      ? getStatusColor(filterType)
+                      ? `${getStatusColor(filterType)}20`
                       : theme === 'dark' ? 'rgba(255, 255, 255, 0.1)' : 'rgba(0, 0, 0, 0.05)',
                     color: isActive 
-                      ? '#FFFFFF'
+                      ? getStatusColor(filterType)
                       : theme === 'dark' ? '#A7B0BD' : '#6B7280',
-                    fontSize: '14px',
+                    fontSize: '12px',
                     fontWeight: '500',
                     cursor: 'pointer',
                     transition: 'all 200ms ease',
                     whiteSpace: 'nowrap',
-                    border: 'none',
-                    boxShadow: isActive ? '0 2px 8px rgba(0, 0, 0, 0.15)' : 'none'
+                    border: isActive 
+                      ? `1px solid ${getStatusColor(filterType)}40`
+                      : theme === 'dark' ? '1px solid rgba(255, 255, 255, 0.1)' : '1px solid rgba(0, 0, 0, 0.1)'
                   }}
                   onMouseEnter={(e) => {
                     if (!isActive) {
@@ -326,7 +327,7 @@ export const TasksPage: React.FC<TasksPageProps> = ({
           </div>
 
           {/* Tasks list */}
-          <div style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
+          <div style={{ display: 'flex', flexDirection: 'column', gap: '12px' }}>
             {filteredTasks.length > 0 ? (
               filteredTasks.map((task) => {
                 const taskStatus = getTaskStatus(task);
@@ -340,8 +341,8 @@ export const TasksPage: React.FC<TasksPageProps> = ({
                     onClick={() => handleTaskClick(task)}
                     style={{
                       backgroundColor: theme === 'dark' ? '#161A22' : '#FFFFFF',
-                      borderRadius: '20px',
-                      padding: '20px',
+                      borderRadius: '16px',
+                      padding: '16px',
                       border: theme === 'dark' ? '1px solid rgba(255, 255, 255, 0.06)' : '1px solid #E6E9EF',
                       boxShadow: theme === 'dark' ? '0 8px 24px rgba(0, 0, 0, 0.6)' : '0 8px 24px rgba(0, 0, 0, 0.10)',
                       cursor: 'pointer',
@@ -350,22 +351,22 @@ export const TasksPage: React.FC<TasksPageProps> = ({
                       overflow: 'hidden'
                     }}
                     onMouseEnter={(e) => {
-                      e.currentTarget.style.transform = 'translateY(-2px)';
+                      e.currentTarget.style.transform = 'scale(0.98)';
                       e.currentTarget.style.boxShadow = theme === 'dark' 
                         ? '0 12px 32px rgba(0, 0, 0, 0.8)' 
                         : '0 12px 32px rgba(0, 0, 0, 0.15)';
                     }}
                     onMouseLeave={(e) => {
-                      e.currentTarget.style.transform = 'translateY(0)';
+                      e.currentTarget.style.transform = 'scale(1)';
                       e.currentTarget.style.boxShadow = theme === 'dark' 
                         ? '0 8px 24px rgba(0, 0, 0, 0.6)' 
                         : '0 8px 24px rgba(0, 0, 0, 0.10)';
                     }}
                     onMouseDown={(e) => {
-                      e.currentTarget.style.transform = 'translateY(0)';
+                      e.currentTarget.style.transform = 'scale(0.96)';
                     }}
                     onMouseUp={(e) => {
-                      e.currentTarget.style.transform = 'translateY(-2px)';
+                      e.currentTarget.style.transform = 'scale(0.98)';
                     }}
                   >
                     {/* Status indicator */}
@@ -375,21 +376,21 @@ export const TasksPage: React.FC<TasksPageProps> = ({
                         top: 0,
                         left: 0,
                         right: 0,
-                        height: '4px',
-                        background: `linear-gradient(90deg, ${statusColor}, ${statusColor}80)`,
-                        borderRadius: '20px 20px 0 0'
+                        height: '3px',
+                        background: `linear-gradient(90deg, ${statusColor}40, ${statusColor}80, ${statusColor}40)`,
+                        borderRadius: '16px 16px 0 0'
                       }}
                     />
                     
-                    <div style={{ display: 'flex', alignItems: 'flex-start', justifyContent: 'space-between', marginTop: '12px' }}>
+                    <div style={{ display: 'flex', alignItems: 'flex-start', justifyContent: 'space-between', marginTop: '8px' }}>
                       {/* Task info */}
                       <div style={{ flex: 1, minWidth: 0 }}>
                         <div 
                           style={{
-                            fontSize: '16px',
-                            fontWeight: '600',
+                            fontSize: '14px',
+                            fontWeight: '500',
                             color: theme === 'dark' ? '#E8ECF2' : '#0F172A',
-                            marginBottom: '6px',
+                            marginBottom: '4px',
                             lineHeight: '1.4'
                           }}
                         >
@@ -397,9 +398,9 @@ export const TasksPage: React.FC<TasksPageProps> = ({
                         </div>
                         <div 
                           style={{
-                            fontSize: '14px',
+                            fontSize: '12px',
                             color: theme === 'dark' ? '#A7B0BD' : '#6B7280',
-                            marginBottom: '12px',
+                            marginBottom: '8px',
                             lineHeight: '1.4',
                             display: '-webkit-box',
                             WebkitLineClamp: 2,
@@ -411,23 +412,23 @@ export const TasksPage: React.FC<TasksPageProps> = ({
                         </div>
                         
                         {/* Task metadata */}
-                        <div style={{ display: 'flex', alignItems: 'center', gap: '16px', marginBottom: '12px' }}>
-                          <div style={{ display: 'flex', alignItems: 'center', gap: '6px' }}>
-                            <Calendar style={{ width: '14px', height: '14px', color: theme === 'dark' ? '#A7B0BD' : '#6B7280' }} />
+                        <div style={{ display: 'flex', alignItems: 'center', gap: '12px', marginBottom: '8px' }}>
+                          <div style={{ display: 'flex', alignItems: 'center', gap: '4px' }}>
+                            <Calendar style={{ width: '12px', height: '12px', color: theme === 'dark' ? '#A7B0BD' : '#6B7280' }} />
                             <span 
                               style={{
-                                fontSize: '12px',
+                                fontSize: '10px',
                                 color: theme === 'dark' ? '#A7B0BD' : '#6B7280'
                               }}
                             >
                               {new Date(task.deadline).toLocaleDateString('ru-RU')}
                             </span>
                           </div>
-                          <div style={{ display: 'flex', alignItems: 'center', gap: '6px' }}>
-                            <Clock style={{ width: '14px', height: '14px', color: theme === 'dark' ? '#A7B0BD' : '#6B7280' }} />
+                          <div style={{ display: 'flex', alignItems: 'center', gap: '4px' }}>
+                            <Clock style={{ width: '12px', height: '12px', color: theme === 'dark' ? '#A7B0BD' : '#6B7280' }} />
                             <span 
                               style={{
-                                fontSize: '12px',
+                                fontSize: '10px',
                                 color: theme === 'dark' ? '#A7B0BD' : '#6B7280'
                               }}
                             >
@@ -440,18 +441,16 @@ export const TasksPage: React.FC<TasksPageProps> = ({
                         <div 
                           style={{
                             display: 'inline-block',
-                            padding: '4px 12px',
-                            borderRadius: '16px',
-                            fontSize: '10px',
-                            fontWeight: '600',
+                            padding: '2px 8px',
+                            borderRadius: '12px',
+                            fontSize: '8px',
+                            fontWeight: 'bold',
                             textTransform: 'uppercase',
                             letterSpacing: '0.5px',
                             background: task.priority === 'high' ? '#EF444420' :
                                        task.priority === 'medium' ? '#FF9F0A20' : '#22C55E20',
                             color: task.priority === 'high' ? '#EF4444' :
-                                   task.priority === 'medium' ? '#FF9F0A' : '#22C55E',
-                            border: `1px solid ${task.priority === 'high' ? '#EF444440' :
-                                   task.priority === 'medium' ? '#FF9F0A40' : '#22C55E40'}`
+                                   task.priority === 'medium' ? '#FF9F0A' : '#22C55E'
                           }}
                         >
                           {task.priority === 'high' ? 'Высокий' :
@@ -460,19 +459,19 @@ export const TasksPage: React.FC<TasksPageProps> = ({
                       </div>
                       
                       {/* Status and timer */}
-                      <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-end', gap: '12px' }}>
+                      <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-end', gap: '8px' }}>
                         {/* Status badge */}
                         <div
                           style={{
-                            padding: '6px 12px',
-                            borderRadius: '16px',
-                            fontSize: '12px',
-                            fontWeight: '600',
+                            padding: '4px 8px',
+                            borderRadius: '12px',
+                            fontSize: '10px',
+                            fontWeight: 'bold',
                             textTransform: 'uppercase',
                             letterSpacing: '0.5px',
-                            background: statusColor,
-                            color: '#FFFFFF',
-                            boxShadow: `0 2px 8px ${statusColor}40`
+                            background: `${statusColor}20`,
+                            color: statusColor,
+                            border: `1px solid ${statusColor}40`
                           }}
                         >
                           {taskStatus === 'completed' ? 'Завершена' :
@@ -490,8 +489,8 @@ export const TasksPage: React.FC<TasksPageProps> = ({
                               }}
                               aria-label={activeTimer === task.id ? 'Остановить таймер' : 'Запустить таймер'}
                               style={{
-                                width: '36px',
-                                height: '36px',
+                                width: '32px',
+                                height: '32px',
                                 borderRadius: '50%',
                                 border: 'none',
                                 background: activeTimer === task.id ? '#EF4444' : '#22C55E',
@@ -518,19 +517,18 @@ export const TasksPage: React.FC<TasksPageProps> = ({
                               }}
                             >
                               {activeTimer === task.id ? (
-                                <Pause style={{ width: '16px', height: '16px', color: 'white' }} />
+                                <Pause style={{ width: '14px', height: '14px', color: 'white' }} />
                               ) : (
-                                <Play style={{ width: '16px', height: '16px', color: 'white' }} />
+                                <Play style={{ width: '14px', height: '14px', color: 'white' }} />
                               )}
                             </button>
                             <span 
                               style={{
-                                fontSize: '14px',
+                                fontSize: '12px',
                                 fontFamily: 'monospace',
                                 color: theme === 'dark' ? '#A7B0BD' : '#6B7280',
-                                minWidth: '70px',
-                                textAlign: 'right',
-                                fontWeight: '500'
+                                minWidth: '60px',
+                                textAlign: 'right'
                               }}
                             >
                               {formatTime(timerSeconds[task.id] || 0)}
@@ -546,8 +544,8 @@ export const TasksPage: React.FC<TasksPageProps> = ({
               <div
                 style={{
                   backgroundColor: theme === 'dark' ? '#161A22' : '#FFFFFF',
-                  borderRadius: '20px',
-                  padding: '60px 20px',
+                  borderRadius: '16px',
+                  padding: '48px 16px',
                   textAlign: 'center',
                   border: theme === 'dark' ? '1px solid rgba(255, 255, 255, 0.06)' : '1px solid #E6E9EF',
                   boxShadow: theme === 'dark' ? '0 8px 24px rgba(0, 0, 0, 0.6)' : '0 8px 24px rgba(0, 0, 0, 0.10)'
@@ -555,23 +553,22 @@ export const TasksPage: React.FC<TasksPageProps> = ({
               >
                 <div
                   style={{
-                    width: '80px',
-                    height: '80px',
+                    width: '64px',
+                    height: '64px',
                     borderRadius: '50%',
-                    background: theme === 'dark' ? 'rgba(43, 130, 255, 0.1)' : 'rgba(43, 130, 255, 0.05)',
+                    background: theme === 'dark' ? 'rgba(255, 255, 255, 0.1)' : 'rgba(0, 0, 0, 0.05)',
                     display: 'flex',
                     alignItems: 'center',
                     justifyContent: 'center',
-                    margin: '0 auto 20px',
-                    border: `2px solid ${theme === 'dark' ? 'rgba(43, 130, 255, 0.2)' : 'rgba(43, 130, 255, 0.1)'}`
+                    margin: '0 auto 16px'
                   }}
                 >
-                  <FileText style={{ width: '40px', height: '40px', color: '#2B82FF' }} />
+                  <FileText style={{ width: '32px', height: '32px', color: theme === 'dark' ? '#A7B0BD' : '#6B7280' }} />
                 </div>
                 <h3 
                   style={{
-                    fontSize: '18px',
-                    fontWeight: '600',
+                    fontSize: '16px',
+                    fontWeight: '500',
                     color: theme === 'dark' ? '#E8ECF2' : '#0F172A',
                     marginBottom: '8px'
                   }}
@@ -580,10 +577,9 @@ export const TasksPage: React.FC<TasksPageProps> = ({
                 </h3>
                 <p 
                   style={{
-                    fontSize: '14px',
+                    fontSize: '12px',
                     color: theme === 'dark' ? '#A7B0BD' : '#6B7280',
-                    lineHeight: '1.4',
-                    marginBottom: '20px'
+                    lineHeight: '1.4'
                   }}
                 >
                   {filter === 'all' ? 'Создайте первую задачу' :
@@ -591,33 +587,6 @@ export const TasksPage: React.FC<TasksPageProps> = ({
                    filter === 'in_progress' ? 'Нет задач в процессе' :
                    filter === 'completed' ? 'Нет завершенных задач' : 'Нет просроченных задач'}
                 </p>
-                <button
-                  onClick={() => setIsCreateModalOpen(true)}
-                  style={{
-                    padding: '12px 24px',
-                    background: '#2B82FF',
-                    color: 'white',
-                    border: 'none',
-                    borderRadius: '12px',
-                    fontSize: '14px',
-                    fontWeight: '500',
-                    cursor: 'pointer',
-                    transition: 'all 200ms ease',
-                    boxShadow: '0 4px 12px rgba(43, 130, 255, 0.3)'
-                  }}
-                  onMouseEnter={(e) => {
-                    e.currentTarget.style.background = '#2066C8';
-                    e.currentTarget.style.transform = 'translateY(-1px)';
-                    e.currentTarget.style.boxShadow = '0 6px 16px rgba(43, 130, 255, 0.4)';
-                  }}
-                  onMouseLeave={(e) => {
-                    e.currentTarget.style.background = '#2B82FF';
-                    e.currentTarget.style.transform = 'translateY(0)';
-                    e.currentTarget.style.boxShadow = '0 4px 12px rgba(43, 130, 255, 0.3)';
-                  }}
-                >
-                  Создать задачу
-                </button>
               </div>
             )}
           </div>
