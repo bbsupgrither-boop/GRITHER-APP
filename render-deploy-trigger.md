@@ -3,15 +3,20 @@
 This file triggers a new deployment to Render with the latest changes:
 
 ## Changes included:
-- ✅ Fixed modal visibility (navigation hidden when modals open)
-- ✅ New experience modal design with star and progress bar
-- ✅ Complete level system with 50 levels
-- ✅ Status progression (Новичок → Легенда)
-- ✅ Coin rewards system with golden G icon
-- ✅ Experience calculation and progression
+- ✅ Complete UI redesign based on Figma mockups
+- ✅ Design tokens system with light/dark theme support
+- ✅ Responsive layout with 448px max width and 16px padding
+- ✅ Accessibility features (aria-labels, focus states)
+- ✅ Interactive hover/active states with smooth transitions
+- ✅ HomePage with hero, progress, achievements, leaderboard
+- ✅ AchievementsPage with sorting and detail modals
+- ✅ TasksPage with filters, timers, and task management
+- ✅ ShopPage with tabs, cart, and case opening
+- ✅ ProfilePage with avatar, stats, and battle history
+- ✅ Safe-area-inset-bottom support for mobile devices
 - ✅ Production deployment ready
 
 ## Deployment timestamp:
-2025-01-27 15:45:00
+2025-01-27 16:00:00
 
-This deployment includes all modal fixes, complete level system, and production optimizations.
+This deployment includes complete UI overhaul with Figma-based design and all requested functionality.
