@@ -1,8 +1,8 @@
 // Design tokens extracted from Figma and local resources
 export const tokens = {
-  // Colors
+  // Colors from Figma
   colors: {
-    // Primary
+    // Primary brand colors
     primary: '#2B82FF',
     primaryPressed: '#2066C8',
     primaryMuted: 'rgba(43, 130, 255, 0.10)',
@@ -43,7 +43,7 @@ export const tokens = {
     chart5: '#af52de',
   },
   
-  // Typography
+  // Typography from Figma
   typography: {
     fontFamily: 'Inter, system-ui, sans-serif',
     fontSize: {
@@ -68,7 +68,7 @@ export const tokens = {
     },
   },
   
-  // Spacing
+  // Spacing from Figma
   spacing: {
     xs: '4px',
     sm: '8px',
@@ -80,17 +80,19 @@ export const tokens = {
     '4xl': '48px',
   },
   
-  // Border radius
+  // Border radius from Figma
   borderRadius: {
     sm: '8px',
     md: '12px',
     lg: '16px',
     xl: '20px',
     '2xl': '24px',
+    xl2: '1.25rem',
+    pill: '9999px',
     full: '50%',
   },
   
-  // Shadows
+  // Shadows from Figma
   shadows: {
     sm: '0 2px 8px rgba(0, 0, 0, 0.08)',
     md: '0 4px 12px rgba(0, 0, 0, 0.10)',
@@ -100,14 +102,14 @@ export const tokens = {
     darkLg: '0 12px 32px rgba(0, 0, 0, 0.8)',
   },
   
-  // Layout
+  // Layout constraints from Figma
   layout: {
     maxWidth: '448px',
     sidePadding: '16px',
     safeAreaBottom: 'env(safe-area-inset-bottom)',
   },
   
-  // Animation
+  // Animation from Figma
   animation: {
     duration: '200ms',
     easing: 'ease',

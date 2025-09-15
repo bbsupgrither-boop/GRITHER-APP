@@ -39,6 +39,9 @@ try {
   tg?.expand?.();
 } catch {}
 
+// Build version info
+console.info("build", import.meta.env.VITE_APP_BUILD);
+
 ReactDOM.createRoot(document.getElementById('root')!).render(
   <React.StrictMode>
     <ErrorBoundary>

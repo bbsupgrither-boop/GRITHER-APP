@@ -42,7 +42,7 @@ type FilterType = 'all' | 'not_started' | 'in_progress' | 'completed' | 'overdue
 
 export const TasksPage: React.FC<TasksPageProps> = ({
   onNavigate,
-  tasks,
+  tasks = [],
   setTasks,
   theme,
   user,
@@ -136,6 +136,10 @@ export const TasksPage: React.FC<TasksPageProps> = ({
   const handleTaskClick = (task: Task) => {
     setSelectedTask(task);
     setIsDetailModalOpen(true);
+    
+    // Safe Telegram WebApp access
+    const tg = typeof window !== "undefined" ? (window as any).Telegram?.WebApp : undefined;
+    tg?.expand?.();
   };
 
   const handleCompleteTask = (taskId: string) => {

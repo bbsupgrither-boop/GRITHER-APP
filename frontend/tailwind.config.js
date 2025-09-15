@@ -1,13 +1,24 @@
-module.exports = {
+export default {
   content: [
     "./index.html",
-    "./**/*.{js,ts,jsx,tsx}",
-    "./src/**/*.{js,ts,jsx,tsx,html}",
-    "./frontend/**/*.{js,ts,jsx,tsx,html}"
+    "./src/**/*.{ts,tsx,js,jsx}",
+    "./frontend/**/*.{ts,tsx,js,jsx,html}"
   ],
   theme: {
     extend: {
       colors: {
+        brand: {
+          50:  "#F2F8FF",
+          100: "#E6F0FF",
+          200: "#CFE2FF",
+          300: "#A7C8FF",
+          400: "#76A6FF",
+          500: "#4A84FF",
+          600: "#2E64E6",
+          700: "#254FC0",
+          800: "#1E4099",
+          900: "#162D6B"
+        },
         primary: '#2B82FF',
         'primary-pressed': '#2066C8',
         'primary-muted': 'rgba(43, 130, 255, 0.10)',
@@ -55,6 +66,8 @@ module.exports = {
         'lg': '16px',
         'xl': '20px',
         '2xl': '24px',
+        'xl2': '1.25rem',
+        'pill': '9999px'
       },
       boxShadow: {
         'sm': '0 2px 8px rgba(0, 0, 0, 0.08)',
@@ -70,10 +83,7 @@ module.exports = {
     }
   },
   safelist: [
-    { pattern: /(bg|text|border)-(primary|surface|text|border|success|warning|error|info)/ },
-    { pattern: /(bg|text|border)-(slate|gray|zinc|neutral|stone|blue|green|red|yellow|purple)-(100|200|300|400|500|600|700)/ },
-    { pattern: /(rounded|shadow|p|m|gap)-(sm|md|lg|xl|2xl|3xl|4xl)/ },
-    { pattern: /(text)-(xs|sm|base|lg|xl|2xl|3xl)/ },
+    { pattern: /(bg|text|border)-(slate|gray|zinc|neutral|stone|blue|green|red|yellow|purple)-(100|200|300|400|500|600|700)/ }
   ],
   plugins: []
 }
