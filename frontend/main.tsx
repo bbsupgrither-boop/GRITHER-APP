@@ -14,9 +14,36 @@ const hideLoader = () => {
   }
 };
 
+class ErrorBoundary extends React.Component<any, { error?: Error }> {
+  constructor(props: any) {
+    super(props);
+    this.state = { error: undefined };
+  }
+  static getDerivedStateFromError(error: Error) {
+    return { error };
+  }
+  componentDidCatch(error: Error) {
+    console.error('UI error:', error);
+  }
+  render() {
+    if (this.state.error) {
+      return React.createElement('div', { role: 'alert', style: { padding: 16 } }, 'Ошибка UI');
+    }
+    return this.props.children;
+  }
+}
+
+// Telegram guard example usage (no crashes outside Telegram)
+try {
+  const tg = typeof window !== 'undefined' ? (window as any).Telegram?.WebApp : undefined;
+  tg?.expand?.();
+} catch {}
+
 ReactDOM.createRoot(document.getElementById('root')!).render(
   <React.StrictMode>
-    <App />
+    <ErrorBoundary>
+      <App />
+    </ErrorBoundary>
   </React.StrictMode>,
 )
 
