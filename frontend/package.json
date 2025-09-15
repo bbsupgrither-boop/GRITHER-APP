@@ -68,8 +68,7 @@
   },
   "scripts": {
     "dev": "vite",
-    "build": "build.bat",
-    "build:local": "cross-env VITE_APP_BUILD=local-build vite build",
-    "build:unix": "cross-env VITE_APP_BUILD=$(git rev-parse --short HEAD) vite build"
+    "build": "cross-env VITE_APP_BUILD=local-build vite build",
+    "preview": "vite preview --port 5173"
   }
 }

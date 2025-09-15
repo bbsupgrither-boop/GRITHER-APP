@@ -1,6 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import { HashRouter, Routes, Route, Navigate, useNavigate, useLocation } from 'react-router-dom';
 
+// Log build version
+console.info("build", import.meta.env.VITE_APP_BUILD);
+
 // Import components
 import { HomePage } from './components/HomePage';
 import { AchievementsPageFixed } from './components/AchievementsPageFixed';
