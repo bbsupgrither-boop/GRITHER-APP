@@ -114,6 +114,7 @@ const listFromEnv = (FRONTEND_ORIGINS || '')
 
 const allowlist = [
   ...new Set([ ...(FRONTEND_ORIGIN ? [FRONTEND_ORIGIN.trim()] : []), ...listFromEnv ]),
+  'https://grither-app-frontend.onrender.com',
   'http://localhost:3000',
   'http://localhost:5173',
 ].filter(Boolean);
@@ -138,6 +139,8 @@ app.options('*', cors());
 
 // ───────────────────────────────────────────────────────────
 // Health / Ping / Diag
+app.get('/', (req, res) => res.json({ ok: true, name: "grither-backend" }));
+app.get('/healthz', (req, res) => res.json({ ok: true }));
 app.get('/api/health', (req, res) => res.json({ ok: true }));
 
 app.get('/api/twa/ping', (req, res) => {
@@ -287,6 +290,28 @@ app.get('/api/whoami', (req, res) => {
   } catch {
     return res.status(400).json({ ok: false, error: 'bad token' });
   }
+});
+
+// API endpoints for frontend
+app.get('/api/tasks', (req, res) => {
+  res.json([
+    { id: 1, title: "Задача 1", description: "Описание задачи", status: "active", reward: 100 },
+    { id: 2, title: "Задача 2", description: "Описание задачи", status: "completed", reward: 200 }
+  ]);
+});
+
+app.get('/api/achievements', (req, res) => {
+  res.json([
+    { id: 1, title: "Первое достижение", description: "Описание достижения", progress: 50, maxProgress: 100 },
+    { id: 2, title: "Второе достижение", description: "Описание достижения", progress: 100, maxProgress: 100 }
+  ]);
+});
+
+app.get('/api/shop', (req, res) => {
+  res.json([
+    { id: 1, name: "Предмет 1", price: 100, emoji: "🎁", stock: 10 },
+    { id: 2, name: "Предмет 2", price: 200, emoji: "💎", stock: 5 }
+  ]);
 });
 
 // Content endpoint

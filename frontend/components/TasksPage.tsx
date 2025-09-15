@@ -40,9 +40,27 @@ interface TasksPageProps {
 type TaskStatus = 'not_started' | 'in_progress' | 'completed' | 'overdue';
 type FilterType = 'all' | 'not_started' | 'in_progress' | 'completed' | 'overdue';
 
+// Безопасный конвертер задач
+const toTasks = (g: any): Task[] => Array.isArray(g) ? g.map((t, i) => ({
+  id: String(t?.id ?? i + 1),
+  title: t?.title ?? "Без названия",
+  description: t?.description ?? "",
+  reward: Number(t?.reward ?? 0),
+  rewardType: t?.rewardType ?? 'coins',
+  deadline: t?.deadline ?? new Date(Date.now() + 7 * 24 * 60 * 60 * 1000).toISOString(),
+  category: t?.category ?? 'individual',
+  status: t?.status ?? 'active',
+  assignedTo: t?.assignedTo,
+  teamId: t?.teamId,
+  createdBy: t?.createdBy ?? 'system',
+  createdAt: t?.createdAt ?? new Date().toISOString(),
+  completedAt: t?.completedAt,
+  isPublished: t?.isPublished ?? true
+})) : [];
+
 export const TasksPage: React.FC<TasksPageProps> = ({
   onNavigate,
-  tasks = [],
+  tasks: globalTasks = [],
   setTasks,
   theme,
   user,
@@ -53,6 +71,14 @@ export const TasksPage: React.FC<TasksPageProps> = ({
   onClearAllNotifications,
   onOpenSettings = () => {},
 }) => {
+  // Локальное состояние задач
+  const [tasks, setTasksLocal] = useState<Task[]>(toTasks(globalTasks));
+  
+  // Обновляем локальное состояние при изменении глобальных задач
+  useEffect(() => {
+    setTasksLocal(toTasks(globalTasks));
+  }, [globalTasks]);
+
   const [isCreateModalOpen, setIsCreateModalOpen] = useState(false);
   const [isDetailModalOpen, setIsDetailModalOpen] = useState(false);
   const [selectedTask, setSelectedTask] = useState<Task | null>(null);
