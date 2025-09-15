@@ -1,6 +1,6 @@
 services:
   - type: web
-    name: grither-app-backend
+    name: grither-backend
     env: node
     plan: free
     buildCommand: cd backend && npm install
@@ -17,12 +17,12 @@ services:
           name: grither-database
           property: connectionString
       - key: CORS_ORIGIN
-        value: https://grither-app-frontend.onrender.com
+        value: https://grither-frontend.onrender.com
       - key: BOT_TOKEN
         generateValue: true
 
   - type: web
-    name: grither-app-frontend
+    name: grither-frontend
     env: static
     plan: free
     buildCommand: cd frontend && npm ci && npm run build
@@ -31,7 +31,7 @@ services:
     autoDeploy: true
     envVars:
       - key: VITE_API_URL
-        value: https://grither-app-backend.onrender.com
+        value: https://grither-backend.onrender.com
 
 databases:
   - name: grither-database
