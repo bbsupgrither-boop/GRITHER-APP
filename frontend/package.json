@@ -68,13 +68,21 @@
     "terser": "^5.44.0",
     "typescript": "^5.9.2",
     "vite": "^5.0.0",
-    "gh-pages": "^6.1.1"
+    "gh-pages": "^6.1.1",
+    "vitest": "^1.0.0",
+    "@testing-library/react": "^13.4.0",
+    "@testing-library/jest-dom": "^6.0.0"
   },
   "scripts": {
     "dev": "vite",
     "build": "vite build",
     "preview": "vite preview --port 5173",
     "predeploy": "vite build",
-    "deploy": "gh-pages -d dist"
+    "deploy": "gh-pages -d dist",
+    "test": "vitest",
+    "test:encoding": "vitest run src/__tests__/encoding.test.ts",
+    "test:components": "vitest run src/__tests__/components.test.tsx",
+    "test:mobile": "vitest run src/__tests__/mobile.test.tsx",
+    "test:all": "vitest run"
   }
 }

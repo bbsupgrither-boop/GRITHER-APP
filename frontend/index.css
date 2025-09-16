@@ -5,6 +5,7 @@
 /* Import GRITHER Theme System */
 @import './styles/theme-clean.css';
 @import './src/styles/tokens.css';
+@import './src/styles/mobile.css';
 
 /* Prevent text selection on clicks */
 * {

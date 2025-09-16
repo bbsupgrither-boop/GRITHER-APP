@@ -1,0 +1,224 @@
+/* Мобильные стили для GRITHER-APP */
+
+/* Базовые мобильные стили */
+@media (max-width: 768px) {
+  /* Общие стили */
+  body {
+    font-size: 16px;
+    line-height: 1.4;
+  }
+  
+  /* Заголовки */
+  h1 {
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+  }
+  
+  h2 {
+    font-size: 1.25rem;
+    margin-bottom: 0.75rem;
+  }
+  
+  /* Кнопки */
+  .btn {
+    min-height: 44px; /* Минимальный размер для touch */
+    padding: 12px 16px;
+    font-size: 16px; /* Предотвращает zoom на iOS */
+  }
+  
+  /* Навигация */
+  .bottom-navigation {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 1000;
+    background: white;
+    border-top: 1px solid #e5e7eb;
+    padding: 8px 0;
+  }
+  
+  .nav-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 8px;
+    min-height: 44px;
+    justify-content: center;
+  }
+  
+  /* Модальные окна */
+  .modal {
+    width: 100vw;
+    height: 100vh;
+    max-width: 100vw;
+    max-height: 100vh;
+    margin: 0;
+    border-radius: 0;
+  }
+  
+  .modal-content {
+    padding: 16px;
+    max-height: 100vh;
+    overflow-y: auto;
+  }
+  
+  /* Карточки */
+  .card {
+    margin-bottom: 16px;
+    padding: 16px;
+  }
+  
+  /* Формы */
+  .form-group {
+    margin-bottom: 16px;
+  }
+  
+  .form-input {
+    width: 100%;
+    padding: 12px;
+    font-size: 16px; /* Предотвращает zoom на iOS */
+    border: 1px solid #d1d5db;
+    border-radius: 8px;
+  }
+  
+  /* Сетки */
+  .grid {
+    display: grid;
+    gap: 16px;
+  }
+  
+  .grid-2 {
+    grid-template-columns: 1fr;
+  }
+  
+  .grid-3 {
+    grid-template-columns: 1fr;
+  }
+  
+  /* Отступы */
+  .container {
+    padding: 16px;
+  }
+  
+  .section {
+    margin-bottom: 24px;
+  }
+  
+  /* Заголовок */
+  .header {
+    padding: 12px 16px;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: white;
+    border-bottom: 1px solid #e5e7eb;
+  }
+  
+  /* Контент с учетом нижней навигации */
+  .main-content {
+    padding-bottom: 80px; /* Место для bottom navigation */
+  }
+}
+
+/* Очень маленькие экраны */
+@media (max-width: 480px) {
+  .container {
+    padding: 12px;
+  }
+  
+  .card {
+    padding: 12px;
+    margin-bottom: 12px;
+  }
+  
+  .btn {
+    padding: 10px 14px;
+    font-size: 14px;
+  }
+  
+  h1 {
+    font-size: 1.25rem;
+  }
+  
+  h2 {
+    font-size: 1.125rem;
+  }
+}
+
+/* Горизонтальная ориентация на мобильных */
+@media (max-width: 768px) and (orientation: landscape) {
+  .modal {
+    width: 100vw;
+    height: 100vh;
+  }
+  
+  .bottom-navigation {
+    display: none; /* Скрываем в landscape */
+  }
+  
+  .main-content {
+    padding-bottom: 0;
+  }
+}
+
+/* Telegram WebApp специфичные стили */
+.telegram-webapp {
+  /* Убираем скролл в Telegram WebApp */
+  body {
+    overscroll-behavior: none;
+  }
+  
+  /* Адаптация под Telegram интерфейс */
+  .header {
+    padding-top: env(safe-area-inset-top, 0);
+  }
+  
+  .bottom-navigation {
+    padding-bottom: env(safe-area-inset-bottom, 0);
+  }
+}
+
+/* Темная тема для мобильных */
+@media (max-width: 768px) and (prefers-color-scheme: dark) {
+  .bottom-navigation {
+    background: #1f2937;
+    border-top-color: #374151;
+  }
+  
+  .header {
+    background: #1f2937;
+    border-bottom-color: #374151;
+  }
+  
+  .modal {
+    background: #1f2937;
+  }
+  
+  .card {
+    background: #374151;
+    color: white;
+  }
+}
+
+/* Анимации для touch */
+@media (max-width: 768px) {
+  .btn:active {
+    transform: scale(0.98);
+    transition: transform 0.1s ease;
+  }
+  
+  .card:active {
+    transform: scale(0.99);
+    transition: transform 0.1s ease;
+  }
+  
+  /* Убираем hover эффекты на touch устройствах */
+  .btn:hover {
+    transform: none;
+  }
+  
+  .card:hover {
+    transform: none;
+  }
+}

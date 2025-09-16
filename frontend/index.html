@@ -11,22 +11,17 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap&subset=cyrillic,cyrillic-ext" rel="stylesheet">
     <meta http-equiv="Content-Security-Policy" content="
       default-src 'self';
-      script-src 'self';
-      style-src 'self' 'unsafe-inline';
-      img-src 'self' data:;
+      script-src 'self' https://telegram.org;
+      style-src 'self' 'unsafe-inline' https://fonts.googleapis.com;
       font-src 'self' https://fonts.gstatic.com data:;
+      img-src 'self' data:;
       connect-src 'self' https://grither-backend.onrender.com;
     ">
     <script src="https://telegram.org/js/telegram-web-app.js"></script>
   </head>
   <body>
     <div id="root"></div>
-    <script>
-      // SPA fallback for routing
-      if (window.location.pathname !== '/' && !window.location.pathname.includes('#')) {
-        window.location.href = '/#' + window.location.pathname;
-      }
-    </script>
+    <script type="module" src="/src/bootstrap.ts"></script>
     <script type="module" src="/main.tsx"></script>
   </body>
 </html>
