@@ -4,10 +4,10 @@ import { useThemeToggle } from './useThemeToggle';
 export type Theme = 'light' | 'dark';
 
 export const useTheme = () => {
-  const [theme, setTheme] = useState<Theme>('dark'); // РџРѕ СѓРјРѕР»С‡Р°РЅРёСЋ С‚РµРјРЅР°СЏ С‚РµРјР°
+  const [theme, setTheme] = useState<Theme>('dark'); // Р В РЎСџР В РЎвЂў Р РЋРЎвЂњР В РЎВР В РЎвЂўР В Р’В»Р РЋРІР‚РЋР В Р’В°Р В Р вЂ¦Р В РЎвЂР РЋР вЂ№ Р РЋРІР‚С™Р В Р’ВµР В РЎВР В Р вЂ¦Р В Р’В°Р РЋР РЏ Р РЋРІР‚С™Р В Р’ВµР В РЎВР В Р’В°
   const { themeToggleCount, incrementThemeToggleCount, resetThemeToggleCount } = useThemeToggle();
 
-  // РџСЂРёРјРµРЅРµРЅРёРµ С‚РµРјС‹ Рє DOM
+  // Р В РЎСџР РЋР вЂљР В РЎвЂР В РЎВР В Р’ВµР В Р вЂ¦Р В Р’ВµР В Р вЂ¦Р В РЎвЂР В Р’Вµ Р РЋРІР‚С™Р В Р’ВµР В РЎВР РЋРІР‚в„– Р В РЎвЂќ DOM
   useEffect(() => {
     if (theme === 'dark') {
       document.documentElement.classList.add('dark');
@@ -16,42 +16,42 @@ export const useTheme = () => {
     }
   }, [theme]);
 
-  // РРЅРёС†РёР°Р»РёР·Р°С†РёСЏ С‚РµРјС‹ РёР· localStorage РёР»Рё СЃРёСЃС‚РµРјРЅС‹С… РЅР°СЃС‚СЂРѕРµРє
+  // Р В Р’ВР В Р вЂ¦Р В РЎвЂР РЋРІР‚В Р В РЎвЂР В Р’В°Р В Р’В»Р В РЎвЂР В Р’В·Р В Р’В°Р РЋРІР‚В Р В РЎвЂР РЋР РЏ Р РЋРІР‚С™Р В Р’ВµР В РЎВР РЋРІР‚в„– Р В РЎвЂР В Р’В· localStorage Р В РЎвЂР В Р’В»Р В РЎвЂ Р РЋР С“Р В РЎвЂР РЋР С“Р РЋРІР‚С™Р В Р’ВµР В РЎВР В Р вЂ¦Р РЋРІР‚в„–Р РЋРІР‚В¦ Р В Р вЂ¦Р В Р’В°Р РЋР С“Р РЋРІР‚С™Р РЋР вЂљР В РЎвЂўР В Р’ВµР В РЎвЂќ
   useEffect(() => {
-    // РџСЂРѕРІРµСЂСЏРµРј localStorage
+    // Р В РЎСџР РЋР вЂљР В РЎвЂўР В Р вЂ Р В Р’ВµР РЋР вЂљР РЋР РЏР В Р’ВµР В РЎВ localStorage
     const savedTheme = localStorage.getItem('grither-theme') as Theme;
     if (savedTheme && (savedTheme === 'light' || savedTheme === 'dark')) {
       setTheme(savedTheme);
       return;
     }
 
-    // РџСЂРѕРІРµСЂСЏРµРј СЃРёСЃС‚РµРјРЅСѓСЋ С‚РµРјСѓ
+    // Р В РЎСџР РЋР вЂљР В РЎвЂўР В Р вЂ Р В Р’ВµР РЋР вЂљР РЋР РЏР В Р’ВµР В РЎВ Р РЋР С“Р В РЎвЂР РЋР С“Р РЋРІР‚С™Р В Р’ВµР В РЎВР В Р вЂ¦Р РЋРЎвЂњР РЋР вЂ№ Р РЋРІР‚С™Р В Р’ВµР В РЎВР РЋРЎвЂњ
     if (window.matchMedia && window.matchMedia('(prefers-color-scheme: light)').matches) {
       setTheme('light');
     }
 
-    // РџСЂРѕРІРµСЂСЏРµРј Telegram Web App
+    // Р В РЎСџР РЋР вЂљР В РЎвЂўР В Р вЂ Р В Р’ВµР РЋР вЂљР РЋР РЏР В Р’ВµР В РЎВ Telegram Web App
     if (window.Telegram && window.Telegram.WebApp) {
       const telegramTheme = window.Telegram.WebApp.colorScheme === 'light' ? 'light' : 'dark';
       setTheme(telegramTheme);
     }
   }, []);
 
-  // Р¤СѓРЅРєС†РёСЏ РїРµСЂРµРєР»СЋС‡РµРЅРёСЏ С‚РµРјС‹
+  // Р В Р’В¤Р РЋРЎвЂњР В Р вЂ¦Р В РЎвЂќР РЋРІР‚В Р В РЎвЂР РЋР РЏ Р В РЎвЂ”Р В Р’ВµР РЋР вЂљР В Р’ВµР В РЎвЂќР В Р’В»Р РЋР вЂ№Р РЋРІР‚РЋР В Р’ВµР В Р вЂ¦Р В РЎвЂР РЋР РЏ Р РЋРІР‚С™Р В Р’ВµР В РЎВР РЋРІР‚в„–
   const toggleTheme = () => {
     const newTheme = theme === 'light' ? 'dark' : 'light';
-    console.log(`рџЊ— Theme toggle: ${theme} в†’ ${newTheme}`);
+    console.log(`РЎР‚РЎСџР Р‰РІР‚вЂќ Theme toggle: ${theme} Р Р†РІР‚В РІР‚в„ў ${newTheme}`);
     setTheme(newTheme);
     localStorage.setItem('grither-theme', newTheme);
     
-    // РЈРІРµР»РёС‡РёРІР°РµРј СЃС‡РµС‚С‡РёРє РїРµСЂРµРєР»СЋС‡РµРЅРёР№ С‚РѕР»СЊРєРѕ РїСЂРё РІРєР»СЋС‡РµРЅРёРё (light -> dark)
+    // Р В Р в‚¬Р В Р вЂ Р В Р’ВµР В Р’В»Р В РЎвЂР РЋРІР‚РЋР В РЎвЂР В Р вЂ Р В Р’В°Р В Р’ВµР В РЎВ Р РЋР С“Р РЋРІР‚РЋР В Р’ВµР РЋРІР‚С™Р РЋРІР‚РЋР В РЎвЂР В РЎвЂќ Р В РЎвЂ”Р В Р’ВµР РЋР вЂљР В Р’ВµР В РЎвЂќР В Р’В»Р РЋР вЂ№Р РЋРІР‚РЋР В Р’ВµР В Р вЂ¦Р В РЎвЂР В РІвЂћвЂ“ Р РЋРІР‚С™Р В РЎвЂўР В Р’В»Р РЋР Р‰Р В РЎвЂќР В РЎвЂў Р В РЎвЂ”Р РЋР вЂљР В РЎвЂ Р В Р вЂ Р В РЎвЂќР В Р’В»Р РЋР вЂ№Р РЋРІР‚РЋР В Р’ВµР В Р вЂ¦Р В РЎвЂР В РЎвЂ (light -> dark)
     if (newTheme === 'dark') {
-      console.log(`рџ”ў Incrementing theme toggle count: ${themeToggleCount} в†’ ${themeToggleCount + 1}`);
+      console.log(`РЎР‚РЎСџРІР‚СњРЎС› Incrementing theme toggle count: ${themeToggleCount} Р Р†РІР‚В РІР‚в„ў ${themeToggleCount + 1}`);
       incrementThemeToggleCount();
     }
   };
 
-  // Р¤СѓРЅРєС†РёСЏ СѓСЃС‚Р°РЅРѕРІРєРё РєРѕРЅРєСЂРµС‚РЅРѕР№ С‚РµРјС‹
+  // Р В Р’В¤Р РЋРЎвЂњР В Р вЂ¦Р В РЎвЂќР РЋРІР‚В Р В РЎвЂР РЋР РЏ Р РЋРЎвЂњР РЋР С“Р РЋРІР‚С™Р В Р’В°Р В Р вЂ¦Р В РЎвЂўР В Р вЂ Р В РЎвЂќР В РЎвЂ Р В РЎвЂќР В РЎвЂўР В Р вЂ¦Р В РЎвЂќР РЋР вЂљР В Р’ВµР РЋРІР‚С™Р В Р вЂ¦Р В РЎвЂўР В РІвЂћвЂ“ Р РЋРІР‚С™Р В Р’ВµР В РЎВР РЋРІР‚в„–
   const setThemeMode = (newTheme: Theme) => {
     setTheme(newTheme);
     localStorage.setItem('grither-theme', newTheme);

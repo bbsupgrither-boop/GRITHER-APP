@@ -119,7 +119,7 @@ export default function App() {
   // Mock data
   const mockCurrentUser: User = {
     id: 'current-user',
-    name: 'Иван Иванов',
+    name: 'Р ВР Р†Р В°Р Р… Р ВР Р†Р В°Р Р…Р С•Р Р†',
     avatar: undefined,
     level: 1,
     xp: 0,
@@ -130,35 +130,35 @@ export default function App() {
   const mockAchievements: Achievement[] = [
     {
       id: '1',
-      title: 'Новичок',
-      description: 'Достигните 2 уровня',
+      title: 'Р СњР С•Р Р†Р С‘РЎвЂЎР С•Р С”',
+      description: 'Р вЂќР С•РЎРѓРЎвЂљР С‘Р С–Р Р…Р С‘РЎвЂљР Вµ 2 РЎС“РЎР‚Р С•Р Р†Р Р…РЎРЏ',
       progress: 50,
       maxProgress: 100,
       reward: { xp: 100, coins: 50 },
       requirements: { type: 'level', value: 2 },
-      icon: '🌟',
+      icon: 'СЂСџРЉСџ',
       isCompleted: false
     },
     {
       id: '2',
-      title: 'Трудолюбивый',
-      description: 'Выполните 10 задач',
+      title: 'Р СћРЎР‚РЎС“Р Т‘Р С•Р В»РЎР‹Р В±Р С‘Р Р†РЎвЂ№Р в„–',
+      description: 'Р вЂ™РЎвЂ№Р С—Р С•Р В»Р Р…Р С‘РЎвЂљР Вµ 10 Р В·Р В°Р Т‘Р В°РЎвЂЎ',
       progress: 30,
       maxProgress: 100,
       reward: { xp: 200, coins: 100 },
       requirements: { type: 'tasks', value: 10 },
-      icon: '❤️',
+      icon: 'РІСњВ¤РїС‘РЏ',
       isCompleted: false
     },
     {
       id: '3',
-      title: 'Коллекционер',
-      description: 'Откройте 5 кейсов',
+      title: 'Р С™Р С•Р В»Р В»Р ВµР С”РЎвЂ Р С‘Р С•Р Р…Р ВµРЎР‚',
+      description: 'Р С›РЎвЂљР С”РЎР‚Р С•Р в„–РЎвЂљР Вµ 5 Р С”Р ВµР в„–РЎРѓР С•Р Р†',
       progress: 20,
       maxProgress: 100,
       reward: { xp: 150, coins: 75 },
       requirements: { type: 'cases', value: 5 },
-      icon: '📦',
+      icon: 'СЂСџвЂњВ¦',
       isCompleted: false
     }
   ];
@@ -166,7 +166,7 @@ export default function App() {
   const mockBattles: Battle[] = [
     {
       id: '1',
-      opponentName: 'Р•Р»РµРЅР° РњРѕСЂРѕР·РѕРІР°',
+      opponentName: 'Р В РІР‚СћР В Р’В»Р В Р’ВµР В Р вЂ¦Р В Р’В° Р В РЎС™Р В РЎвЂўР РЋР вЂљР В РЎвЂўР В Р’В·Р В РЎвЂўР В Р вЂ Р В Р’В°',
       stake: 250,
       status: 'active'
     }
@@ -175,22 +175,22 @@ export default function App() {
   const mockBattleInvitations: Battle[] = [
     {
       id: '2',
-      opponentName: 'РњР°СЂРёСЏ РЎРёРґРѕСЂРѕРІР°',
+      opponentName: 'Р В РЎС™Р В Р’В°Р РЋР вЂљР В РЎвЂР РЋР РЏ Р В Р Р‹Р В РЎвЂР В РўвЂР В РЎвЂўР РЋР вЂљР В РЎвЂўР В Р вЂ Р В Р’В°',
       stake: 200,
       status: 'pending'
     },
     {
       id: '3',
-      opponentName: 'РђРЅРЅР° РРІР°РЅРѕРІР°',
+      opponentName: 'Р В РЎвЂ™Р В Р вЂ¦Р В Р вЂ¦Р В Р’В° Р В Р’ВР В Р вЂ Р В Р’В°Р В Р вЂ¦Р В РЎвЂўР В Р вЂ Р В Р’В°',
       stake: 150,
       status: 'pending'
     }
   ];
 
   const mockUsers = [
-    { id: '1', name: 'РџРµС‚СЂ РџРµС‚СЂРѕРІ', level: 18 },
-    { id: '2', name: 'Р•Р»РµРЅР° РњРѕСЂРѕР·РѕРІР°', level: 16 },
-    { id: '3', name: 'РђРЅРЅР° РРІР°РЅРѕРІР°', level: 15 }
+    { id: '1', name: 'Р В РЎСџР В Р’ВµР РЋРІР‚С™Р РЋР вЂљ Р В РЎСџР В Р’ВµР РЋРІР‚С™Р РЋР вЂљР В РЎвЂўР В Р вЂ ', level: 18 },
+    { id: '2', name: 'Р В РІР‚СћР В Р’В»Р В Р’ВµР В Р вЂ¦Р В Р’В° Р В РЎС™Р В РЎвЂўР РЋР вЂљР В РЎвЂўР В Р’В·Р В РЎвЂўР В Р вЂ Р В Р’В°', level: 16 },
+    { id: '3', name: 'Р В РЎвЂ™Р В Р вЂ¦Р В Р вЂ¦Р В Р’В° Р В Р’ВР В Р вЂ Р В Р’В°Р В Р вЂ¦Р В РЎвЂўР В Р вЂ Р В Р’В°', level: 15 }
   ];
 
   const mockLeaderboard = mockUsers.map((user, index) => ({
@@ -203,8 +203,8 @@ export default function App() {
   const mockTasks: Task[] = [
     {
       id: '1',
-      title: 'Выполнить задачу',
-      description: 'Описание задачи',
+      title: 'Р вЂ™РЎвЂ№Р С—Р С•Р В»Р Р…Р С‘РЎвЂљРЎРЉ Р В·Р В°Р Т‘Р В°РЎвЂЎРЎС“',
+      description: 'Р С›Р С—Р С‘РЎРѓР В°Р Р…Р С‘Р Вµ Р В·Р В°Р Т‘Р В°РЎвЂЎР С‘',
       reward: { xp: 50, coins: 25 },
       isCompleted: false
     }
@@ -213,18 +213,18 @@ export default function App() {
   const mockShopItems: ShopItem[] = [
     {
       id: '1',
-      name: 'РљРµР№СЃ',
+      name: 'Р В РЎв„ўР В Р’ВµР В РІвЂћвЂ“Р РЋР С“',
       price: 100,
-      icon: '📦',
-      description: 'РЎР»СѓС‡Р°Р№РЅС‹Р№ РїСЂРµРґРјРµС‚'
+      icon: 'СЂСџвЂњВ¦',
+      description: 'Р В Р Р‹Р В Р’В»Р РЋРЎвЂњР РЋРІР‚РЋР В Р’В°Р В РІвЂћвЂ“Р В Р вЂ¦Р РЋРІР‚в„–Р В РІвЂћвЂ“ Р В РЎвЂ”Р РЋР вЂљР В Р’ВµР В РўвЂР В РЎВР В Р’ВµР РЋРІР‚С™'
     }
   ];
 
   const mockNotifications: Notification[] = [
     {
       id: '1',
-      title: 'Новое уведомление',
-      message: 'У вас новое сообщение',
+      title: 'Р СњР С•Р Р†Р С•Р Вµ РЎС“Р Р†Р ВµР Т‘Р С•Р СР В»Р ВµР Р…Р С‘Р Вµ',
+      message: 'Р Р€ Р Р†Р В°РЎРѓ Р Р…Р С•Р Р†Р С•Р Вµ РЎРѓР С•Р С•Р В±РЎвЂ°Р ВµР Р…Р С‘Р Вµ',
       type: 'info',
       timestamp: new Date().toISOString(),
       isRead: false
@@ -309,12 +309,19 @@ export default function App() {
                   hideUserIcon={false}
                 />
                 <main className="container" style={{ paddingBottom: '80px' }}>
-                  <AchievementsPage
-                    theme={theme}
-                    achievements={mockAchievements}
-                    currentPage="/achievements"
-                    onNavigate={handleNavigate}
-                  />
+                  {/* Use local state so child can update achievements */}
+                  {(() => {
+                    const [achievementsState, setAchievementsState] = useState(mockAchievements);
+                    return (
+                      <AchievementsPage
+                        theme={theme}
+                        achievements={achievementsState}
+                        setAchievements={setAchievementsState}
+                        currentPage="/achievements"
+                        onNavigate={handleNavigate}
+                      />
+                    );
+                  })()}
                 </main>
                 <BottomNavigation theme={theme} />
               </div>
@@ -394,7 +401,7 @@ export default function App() {
             isOpen={showSettings}
             onClose={() => setShowSettings(false)}
             theme={theme}
-            onToggleDarkMode={toggleTheme}
+            onToggleTheme={toggleTheme}
             onOpenProblemReport={() => {
               setShowProblemReport(true);
               setShowSettings(false);

@@ -31,7 +31,7 @@ interface UseAdminDatabaseReturn {
   isLoading: boolean;
   error: string | null;
   
-  // Методы для работы с данными
+  // Р СљР ВµРЎвЂљР С•Р Т‘РЎвЂ№ Р Т‘Р В»РЎРЏ РЎР‚Р В°Р В±Р С•РЎвЂљРЎвЂ№ РЎРѓ Р Т‘Р В°Р Р…Р Р…РЎвЂ№Р СР С‘
   addUser: (user: UserData) => boolean;
   updateUser: (userId: string, updates: Partial<UserData>) => boolean;
   deleteUser: (userId: string) => boolean;
@@ -69,13 +69,13 @@ export const useAdminDatabase = (): UseAdminDatabaseReturn => {
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
 
-  // Загрузка всех данных из localStorage
+  // Р вЂ”Р В°Р С–РЎР‚РЎС“Р В·Р С”Р В° Р Р†РЎРѓР ВµРЎвЂ¦ Р Т‘Р В°Р Р…Р Р…РЎвЂ№РЎвЂ¦ Р С‘Р В· localStorage
   const loadDatabase = useCallback(() => {
     try {
       setIsLoading(true);
       setError(null);
 
-      // Получаем все данные из localStorage
+      // Р СџР С•Р В»РЎС“РЎвЂЎР В°Р ВµР С Р Р†РЎРѓР Вµ Р Т‘Р В°Р Р…Р Р…РЎвЂ№Р Вµ Р С‘Р В· localStorage
       const users: UserData[] = [];
       const achievements: AchievementData[] = [];
       const tasks: TaskData[] = [];
@@ -83,7 +83,7 @@ export const useAdminDatabase = (): UseAdminDatabaseReturn => {
       const shopItems: ShopItemData[] = [];
       const notifications: NotificationData[] = [];
 
-      // Получаем пользователей
+      // Р СџР С•Р В»РЎС“РЎвЂЎР В°Р ВµР С Р С—Р С•Р В»РЎРЉР В·Р С•Р Р†Р В°РЎвЂљР ВµР В»Р ВµР в„–
       for (let i = 0; i < localStorage.length; i++) {
         const key = localStorage.key(i);
         if (key?.startsWith('grither_db_user_')) {
@@ -94,7 +94,7 @@ export const useAdminDatabase = (): UseAdminDatabaseReturn => {
         }
       }
 
-      // Получаем достижения
+      // Р СџР С•Р В»РЎС“РЎвЂЎР В°Р ВµР С Р Т‘Р С•РЎРѓРЎвЂљР С‘Р В¶Р ВµР Р…Р С‘РЎРЏ
       for (let i = 0; i < localStorage.length; i++) {
         const key = localStorage.key(i);
         if (key?.startsWith('grither_db_achievement_')) {
@@ -105,7 +105,7 @@ export const useAdminDatabase = (): UseAdminDatabaseReturn => {
         }
       }
 
-      // Получаем задачи
+      // Р СџР С•Р В»РЎС“РЎвЂЎР В°Р ВµР С Р В·Р В°Р Т‘Р В°РЎвЂЎР С‘
       for (let i = 0; i < localStorage.length; i++) {
         const key = localStorage.key(i);
         if (key?.startsWith('grither_db_task_')) {
@@ -116,7 +116,7 @@ export const useAdminDatabase = (): UseAdminDatabaseReturn => {
         }
       }
 
-      // Получаем баттлы
+      // Р СџР С•Р В»РЎС“РЎвЂЎР В°Р ВµР С Р В±Р В°РЎвЂљРЎвЂљР В»РЎвЂ№
       for (let i = 0; i < localStorage.length; i++) {
         const key = localStorage.key(i);
         if (key?.startsWith('grither_db_battle_')) {
@@ -127,7 +127,7 @@ export const useAdminDatabase = (): UseAdminDatabaseReturn => {
         }
       }
 
-      // Получаем товары магазина
+      // Р СџР С•Р В»РЎС“РЎвЂЎР В°Р ВµР С РЎвЂљР С•Р Р†Р В°РЎР‚РЎвЂ№ Р СР В°Р С–Р В°Р В·Р С‘Р Р…Р В°
       for (let i = 0; i < localStorage.length; i++) {
         const key = localStorage.key(i);
         if (key?.startsWith('grither_db_shop_')) {
@@ -138,7 +138,7 @@ export const useAdminDatabase = (): UseAdminDatabaseReturn => {
         }
       }
 
-      // Получаем уведомления
+      // Р СџР С•Р В»РЎС“РЎвЂЎР В°Р ВµР С РЎС“Р Р†Р ВµР Т‘Р С•Р СР В»Р ВµР Р…Р С‘РЎРЏ
       for (let i = 0; i < localStorage.length; i++) {
         const key = localStorage.key(i);
         if (key?.startsWith('grither_db_notification_')) {
@@ -159,24 +159,24 @@ export const useAdminDatabase = (): UseAdminDatabaseReturn => {
       });
 
     } catch (err) {
-      console.error('Ошибка загрузки базы данных:', err);
-      setError('Ошибка загрузки базы данных');
+      console.error('Р С›РЎв‚¬Р С‘Р В±Р С”Р В° Р В·Р В°Р С–РЎР‚РЎС“Р В·Р С”Р С‘ Р В±Р В°Р В·РЎвЂ№ Р Т‘Р В°Р Р…Р Р…РЎвЂ№РЎвЂ¦:', err);
+      setError('Р С›РЎв‚¬Р С‘Р В±Р С”Р В° Р В·Р В°Р С–РЎР‚РЎС“Р В·Р С”Р С‘ Р В±Р В°Р В·РЎвЂ№ Р Т‘Р В°Р Р…Р Р…РЎвЂ№РЎвЂ¦');
     } finally {
       setIsLoading(false);
     }
   }, []);
 
-  // Автоматическая загрузка при монтировании
+  // Р С’Р Р†РЎвЂљР С•Р СР В°РЎвЂљР С‘РЎвЂЎР ВµРЎРѓР С”Р В°РЎРЏ Р В·Р В°Р С–РЎР‚РЎС“Р В·Р С”Р В° Р С—РЎР‚Р С‘ Р СР С•Р Р…РЎвЂљР С‘РЎР‚Р С•Р Р†Р В°Р Р…Р С‘Р С‘
   useEffect(() => {
     loadDatabase();
   }, [loadDatabase]);
 
-  // Обновление базы данных
+  // Р С›Р В±Р Р…Р С•Р Р†Р В»Р ВµР Р…Р С‘Р Вµ Р В±Р В°Р В·РЎвЂ№ Р Т‘Р В°Р Р…Р Р…РЎвЂ№РЎвЂ¦
   const updateDatabase = useCallback((updates: Partial<AppDatabase>) => {
     setDatabase(prev => ({ ...prev, ...updates }));
   }, []);
 
-  // Методы для работы с пользователями
+  // Р СљР ВµРЎвЂљР С•Р Т‘РЎвЂ№ Р Т‘Р В»РЎРЏ РЎР‚Р В°Р В±Р С•РЎвЂљРЎвЂ№ РЎРѓ Р С—Р С•Р В»РЎРЉР В·Р С•Р Р†Р В°РЎвЂљР ВµР В»РЎРЏР СР С‘
   const addUser = useCallback((user: UserData): boolean => {
     try {
       const success = databaseService.saveUser(user);
@@ -185,7 +185,7 @@ export const useAdminDatabase = (): UseAdminDatabaseReturn => {
       }
       return success;
     } catch (err) {
-      console.error('Ошибка добавления пользователя:', err);
+      console.error('Р С›РЎв‚¬Р С‘Р В±Р С”Р В° Р Т‘Р С•Р В±Р В°Р Р†Р В»Р ВµР Р…Р С‘РЎРЏ Р С—Р С•Р В»РЎРЉР В·Р С•Р Р†Р В°РЎвЂљР ВµР В»РЎРЏ:', err);
       return false;
     }
   }, [loadDatabase]);
@@ -202,7 +202,7 @@ export const useAdminDatabase = (): UseAdminDatabaseReturn => {
       }
       return success;
     } catch (err) {
-      console.error('Ошибка обновления пользователя:', err);
+      console.error('Р С›РЎв‚¬Р С‘Р В±Р С”Р В° Р С•Р В±Р Р…Р С•Р Р†Р В»Р ВµР Р…Р С‘РЎРЏ Р С—Р С•Р В»РЎРЉР В·Р С•Р Р†Р В°РЎвЂљР ВµР В»РЎРЏ:', err);
       return false;
     }
   }, [database.users, loadDatabase]);
@@ -213,12 +213,12 @@ export const useAdminDatabase = (): UseAdminDatabaseReturn => {
       loadDatabase();
       return true;
     } catch (err) {
-      console.error('Ошибка удаления пользователя:', err);
+      console.error('Р С›РЎв‚¬Р С‘Р В±Р С”Р В° РЎС“Р Т‘Р В°Р В»Р ВµР Р…Р С‘РЎРЏ Р С—Р С•Р В»РЎРЉР В·Р С•Р Р†Р В°РЎвЂљР ВµР В»РЎРЏ:', err);
       return false;
     }
   }, [loadDatabase]);
 
-  // Методы для работы с достижениями
+  // Р СљР ВµРЎвЂљР С•Р Т‘РЎвЂ№ Р Т‘Р В»РЎРЏ РЎР‚Р В°Р В±Р С•РЎвЂљРЎвЂ№ РЎРѓ Р Т‘Р С•РЎРѓРЎвЂљР С‘Р В¶Р ВµР Р…Р С‘РЎРЏР СР С‘
   const addAchievement = useCallback((achievement: AchievementData): boolean => {
     try {
       const success = databaseService.saveAchievement(achievement);
@@ -227,7 +227,7 @@ export const useAdminDatabase = (): UseAdminDatabaseReturn => {
       }
       return success;
     } catch (err) {
-      console.error('Ошибка добавления достижения:', err);
+      console.error('Р С›РЎв‚¬Р С‘Р В±Р С”Р В° Р Т‘Р С•Р В±Р В°Р Р†Р В»Р ВµР Р…Р С‘РЎРЏ Р Т‘Р С•РЎРѓРЎвЂљР С‘Р В¶Р ВµР Р…Р С‘РЎРЏ:', err);
       return false;
     }
   }, [loadDatabase]);
@@ -244,7 +244,7 @@ export const useAdminDatabase = (): UseAdminDatabaseReturn => {
       }
       return success;
     } catch (err) {
-      console.error('Ошибка обновления достижения:', err);
+      console.error('Р С›РЎв‚¬Р С‘Р В±Р С”Р В° Р С•Р В±Р Р…Р С•Р Р†Р В»Р ВµР Р…Р С‘РЎРЏ Р Т‘Р С•РЎРѓРЎвЂљР С‘Р В¶Р ВµР Р…Р С‘РЎРЏ:', err);
       return false;
     }
   }, [database.achievements, loadDatabase]);
@@ -255,12 +255,12 @@ export const useAdminDatabase = (): UseAdminDatabaseReturn => {
       loadDatabase();
       return true;
     } catch (err) {
-      console.error('Ошибка удаления достижения:', err);
+      console.error('Р С›РЎв‚¬Р С‘Р В±Р С”Р В° РЎС“Р Т‘Р В°Р В»Р ВµР Р…Р С‘РЎРЏ Р Т‘Р С•РЎРѓРЎвЂљР С‘Р В¶Р ВµР Р…Р С‘РЎРЏ:', err);
       return false;
     }
   }, [loadDatabase]);
 
-  // Методы для работы с задачами
+  // Р СљР ВµРЎвЂљР С•Р Т‘РЎвЂ№ Р Т‘Р В»РЎРЏ РЎР‚Р В°Р В±Р С•РЎвЂљРЎвЂ№ РЎРѓ Р В·Р В°Р Т‘Р В°РЎвЂЎР В°Р СР С‘
   const addTask = useCallback((task: TaskData): boolean => {
     try {
       const success = databaseService.saveTask(task);
@@ -269,7 +269,7 @@ export const useAdminDatabase = (): UseAdminDatabaseReturn => {
       }
       return success;
     } catch (err) {
-      console.error('Ошибка добавления задачи:', err);
+      console.error('Р С›РЎв‚¬Р С‘Р В±Р С”Р В° Р Т‘Р С•Р В±Р В°Р Р†Р В»Р ВµР Р…Р С‘РЎРЏ Р В·Р В°Р Т‘Р В°РЎвЂЎР С‘:', err);
       return false;
     }
   }, [loadDatabase]);
@@ -286,7 +286,7 @@ export const useAdminDatabase = (): UseAdminDatabaseReturn => {
       }
       return success;
     } catch (err) {
-      console.error('Ошибка обновления задачи:', err);
+      console.error('Р С›РЎв‚¬Р С‘Р В±Р С”Р В° Р С•Р В±Р Р…Р С•Р Р†Р В»Р ВµР Р…Р С‘РЎРЏ Р В·Р В°Р Т‘Р В°РЎвЂЎР С‘:', err);
       return false;
     }
   }, [database.tasks, loadDatabase]);
@@ -297,19 +297,19 @@ export const useAdminDatabase = (): UseAdminDatabaseReturn => {
       loadDatabase();
       return true;
     } catch (err) {
-      console.error('Ошибка удаления задачи:', err);
+      console.error('Р С›РЎв‚¬Р С‘Р В±Р С”Р В° РЎС“Р Т‘Р В°Р В»Р ВµР Р…Р С‘РЎРЏ Р В·Р В°Р Т‘Р В°РЎвЂЎР С‘:', err);
       return false;
     }
   }, [loadDatabase]);
 
-  // Методы для работы с баттлами
+  // Р СљР ВµРЎвЂљР С•Р Т‘РЎвЂ№ Р Т‘Р В»РЎРЏ РЎР‚Р В°Р В±Р С•РЎвЂљРЎвЂ№ РЎРѓ Р В±Р В°РЎвЂљРЎвЂљР В»Р В°Р СР С‘
   const addBattle = useCallback((battle: BattleData): boolean => {
     try {
       localStorage.setItem(`grither_db_battle_${battle.id}`, JSON.stringify(battle));
       loadDatabase();
       return true;
     } catch (err) {
-      console.error('Ошибка добавления баттла:', err);
+      console.error('Р С›РЎв‚¬Р С‘Р В±Р С”Р В° Р Т‘Р С•Р В±Р В°Р Р†Р В»Р ВµР Р…Р С‘РЎРЏ Р В±Р В°РЎвЂљРЎвЂљР В»Р В°:', err);
       return false;
     }
   }, [loadDatabase]);
@@ -324,7 +324,7 @@ export const useAdminDatabase = (): UseAdminDatabaseReturn => {
       loadDatabase();
       return true;
     } catch (err) {
-      console.error('Ошибка обновления баттла:', err);
+      console.error('Р С›РЎв‚¬Р С‘Р В±Р С”Р В° Р С•Р В±Р Р…Р С•Р Р†Р В»Р ВµР Р…Р С‘РЎРЏ Р В±Р В°РЎвЂљРЎвЂљР В»Р В°:', err);
       return false;
     }
   }, [database.battles, loadDatabase]);
@@ -335,19 +335,19 @@ export const useAdminDatabase = (): UseAdminDatabaseReturn => {
       loadDatabase();
       return true;
     } catch (err) {
-      console.error('Ошибка удаления баттла:', err);
+      console.error('Р С›РЎв‚¬Р С‘Р В±Р С”Р В° РЎС“Р Т‘Р В°Р В»Р ВµР Р…Р С‘РЎРЏ Р В±Р В°РЎвЂљРЎвЂљР В»Р В°:', err);
       return false;
     }
   }, [loadDatabase]);
 
-  // Методы для работы с товарами магазина
+  // Р СљР ВµРЎвЂљР С•Р Т‘РЎвЂ№ Р Т‘Р В»РЎРЏ РЎР‚Р В°Р В±Р С•РЎвЂљРЎвЂ№ РЎРѓ РЎвЂљР С•Р Р†Р В°РЎР‚Р В°Р СР С‘ Р СР В°Р С–Р В°Р В·Р С‘Р Р…Р В°
   const addShopItem = useCallback((item: ShopItemData): boolean => {
     try {
       localStorage.setItem(`grither_db_shop_${item.id}`, JSON.stringify(item));
       loadDatabase();
       return true;
     } catch (err) {
-      console.error('Ошибка добавления товара:', err);
+      console.error('Р С›РЎв‚¬Р С‘Р В±Р С”Р В° Р Т‘Р С•Р В±Р В°Р Р†Р В»Р ВµР Р…Р С‘РЎРЏ РЎвЂљР С•Р Р†Р В°РЎР‚Р В°:', err);
       return false;
     }
   }, [loadDatabase]);
@@ -362,7 +362,7 @@ export const useAdminDatabase = (): UseAdminDatabaseReturn => {
       loadDatabase();
       return true;
     } catch (err) {
-      console.error('Ошибка обновления товара:', err);
+      console.error('Р С›РЎв‚¬Р С‘Р В±Р С”Р В° Р С•Р В±Р Р…Р С•Р Р†Р В»Р ВµР Р…Р С‘РЎРЏ РЎвЂљР С•Р Р†Р В°РЎР‚Р В°:', err);
       return false;
     }
   }, [database.shopItems, loadDatabase]);
@@ -373,12 +373,12 @@ export const useAdminDatabase = (): UseAdminDatabaseReturn => {
       loadDatabase();
       return true;
     } catch (err) {
-      console.error('Ошибка удаления товара:', err);
+      console.error('Р С›РЎв‚¬Р С‘Р В±Р С”Р В° РЎС“Р Т‘Р В°Р В»Р ВµР Р…Р С‘РЎРЏ РЎвЂљР С•Р Р†Р В°РЎР‚Р В°:', err);
       return false;
     }
   }, [loadDatabase]);
 
-  // Методы для работы с уведомлениями
+  // Р СљР ВµРЎвЂљР С•Р Т‘РЎвЂ№ Р Т‘Р В»РЎРЏ РЎР‚Р В°Р В±Р С•РЎвЂљРЎвЂ№ РЎРѓ РЎС“Р Р†Р ВµР Т‘Р С•Р СР В»Р ВµР Р…Р С‘РЎРЏР СР С‘
   const addNotification = useCallback((notification: NotificationData): boolean => {
     try {
       const success = databaseService.saveNotification(notification);
@@ -387,7 +387,7 @@ export const useAdminDatabase = (): UseAdminDatabaseReturn => {
       }
       return success;
     } catch (err) {
-      console.error('Ошибка добавления уведомления:', err);
+      console.error('Р С›РЎв‚¬Р С‘Р В±Р С”Р В° Р Т‘Р С•Р В±Р В°Р Р†Р В»Р ВµР Р…Р С‘РЎРЏ РЎС“Р Р†Р ВµР Т‘Р С•Р СР В»Р ВµР Р…Р С‘РЎРЏ:', err);
       return false;
     }
   }, [loadDatabase]);
@@ -404,7 +404,7 @@ export const useAdminDatabase = (): UseAdminDatabaseReturn => {
       }
       return success;
     } catch (err) {
-      console.error('Ошибка обновления уведомления:', err);
+      console.error('Р С›РЎв‚¬Р С‘Р В±Р С”Р В° Р С•Р В±Р Р…Р С•Р Р†Р В»Р ВµР Р…Р С‘РЎРЏ РЎС“Р Р†Р ВµР Т‘Р С•Р СР В»Р ВµР Р…Р С‘РЎРЏ:', err);
       return false;
     }
   }, [database.notifications, loadDatabase]);
@@ -415,7 +415,7 @@ export const useAdminDatabase = (): UseAdminDatabaseReturn => {
       loadDatabase();
       return true;
     } catch (err) {
-      console.error('Ошибка удаления уведомления:', err);
+      console.error('Р С›РЎв‚¬Р С‘Р В±Р С”Р В° РЎС“Р Т‘Р В°Р В»Р ВµР Р…Р С‘РЎРЏ РЎС“Р Р†Р ВµР Т‘Р С•Р СР В»Р ВµР Р…Р С‘РЎРЏ:', err);
       return false;
     }
   }, [loadDatabase]);

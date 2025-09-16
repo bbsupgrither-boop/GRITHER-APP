@@ -322,19 +322,19 @@ export interface ValidationRule {
 
 export function validateField(value: string, rules: ValidationRule): string | null {
   if (rules.required && (!value || value.trim().length === 0)) {
-    return 'Р­С‚Рѕ РїРѕР»Рµ РѕР±СЏР·Р°С‚РµР»СЊРЅРѕ РґР»СЏ Р·Р°РїРѕР»РЅРµРЅРёСЏ';
+    return 'Р В Р’В­Р РЋРІР‚С™Р В РЎвЂў Р В РЎвЂ”Р В РЎвЂўР В Р’В»Р В Р’Вµ Р В РЎвЂўР В Р’В±Р РЋР РЏР В Р’В·Р В Р’В°Р РЋРІР‚С™Р В Р’ВµР В Р’В»Р РЋР Р‰Р В Р вЂ¦Р В РЎвЂў Р В РўвЂР В Р’В»Р РЋР РЏ Р В Р’В·Р В Р’В°Р В РЎвЂ”Р В РЎвЂўР В Р’В»Р В Р вЂ¦Р В Р’ВµР В Р вЂ¦Р В РЎвЂР РЋР РЏ';
   }
   
   if (rules.minLength && value.length < rules.minLength) {
-    return `РњРёРЅРёРјСѓРј ${rules.minLength} СЃРёРјРІРѕР»РѕРІ`;
+    return `Р В РЎС™Р В РЎвЂР В Р вЂ¦Р В РЎвЂР В РЎВР РЋРЎвЂњР В РЎВ ${rules.minLength} Р РЋР С“Р В РЎвЂР В РЎВР В Р вЂ Р В РЎвЂўР В Р’В»Р В РЎвЂўР В Р вЂ `;
   }
   
   if (rules.maxLength && value.length > rules.maxLength) {
-    return `РњР°РєСЃРёРјСѓРј ${rules.maxLength} СЃРёРјРІРѕР»РѕРІ`;
+    return `Р В РЎС™Р В Р’В°Р В РЎвЂќР РЋР С“Р В РЎвЂР В РЎВР РЋРЎвЂњР В РЎВ ${rules.maxLength} Р РЋР С“Р В РЎвЂР В РЎВР В Р вЂ Р В РЎвЂўР В Р’В»Р В РЎвЂўР В Р вЂ `;
   }
   
   if (rules.pattern && !rules.pattern.test(value)) {
-    return 'РќРµРІРµСЂРЅС‹Р№ С„РѕСЂРјР°С‚';
+    return 'Р В РЎСљР В Р’ВµР В Р вЂ Р В Р’ВµР РЋР вЂљР В Р вЂ¦Р РЋРІР‚в„–Р В РІвЂћвЂ“ Р РЋРІР‚С›Р В РЎвЂўР РЋР вЂљР В РЎВР В Р’В°Р РЋРІР‚С™';
   }
   
   if (rules.custom) {

@@ -56,9 +56,9 @@ export default function ShopPage({
             <ShoppingBag className="w-6 h-6 text-purple-500" />
           </div>
           <div>
-            <h1 className="unified-heading">РњР°РіР°Р·РёРЅ</h1>
+            <h1 className="unified-heading">Р СљР В°Р С–Р В°Р В·Р С‘Р Р…</h1>
             <p className="unified-text text-muted-foreground">
-              рџ’° {userCoins} G-РјРѕРЅРµС‚
+              СЂСџвЂ™В° {userCoins} G-Р СР С•Р Р…Р ВµРЎвЂљ
             </p>
           </div>
         </div>
@@ -76,7 +76,7 @@ export default function ShopPage({
             }`}
           >
             <Package className="w-4 h-4 mx-auto mb-1" />
-            <span className="unified-text text-xs">РљРµР№СЃС‹</span>
+            <span className="unified-text text-xs">Р С™Р ВµР в„–РЎРѓРЎвЂ№</span>
           </button>
           
           <button
@@ -88,7 +88,7 @@ export default function ShopPage({
             }`}
           >
             <ShoppingBag className="w-4 h-4 mx-auto mb-1" />
-            <span className="unified-text text-xs">РњР°РіР°Р·РёРЅ</span>
+            <span className="unified-text text-xs">Р СљР В°Р С–Р В°Р В·Р С‘Р Р…</span>
           </button>
           
           <button
@@ -99,8 +99,8 @@ export default function ShopPage({
                 : 'text-muted-foreground hover:text-foreground'
             }`}
           >
-            <span className="text-lg mb-1">рџЋ°</span>
-            <span className="unified-text text-xs">Р СѓР»РµС‚РєР°</span>
+            <span className="text-lg mb-1">СЂСџР‹В°</span>
+            <span className="unified-text text-xs">Р В РЎС“Р В»Р ВµРЎвЂљР С”Р В°</span>
           </button>
         </div>
       </div>
@@ -120,16 +120,16 @@ export default function ShopPage({
                     {userCase.description}
                   </p>
                   <div className="flex items-center justify-between">
-                    <span className="unified-text text-sm">рџ’° {userCase.price} РјРѕРЅРµС‚</span>
-                    <span className="unified-text text-sm">рџ“¦ {userCase.quantity} С€С‚</span>
+                    <span className="unified-text text-sm">СЂСџвЂ™В° {userCase.price} Р СР С•Р Р…Р ВµРЎвЂљ</span>
+                    <span className="unified-text text-sm">СЂСџвЂњВ¦ {userCase.quantity} РЎв‚¬РЎвЂљ</span>
                   </div>
                 </div>
                 <button 
                   className="apple-button px-4 py-2"
                   disabled={userCoins < userCase.price}
-                  aria-label={`РљСѓРїРёС‚СЊ ${userCase.name}`}
+                  aria-label={`Р С™РЎС“Р С—Р С‘РЎвЂљРЎРЉ ${userCase.name}`}
                 >
-                  РљСѓРїРёС‚СЊ
+                  Р С™РЎС“Р С—Р С‘РЎвЂљРЎРЉ
                 </button>
               </div>
             </div>
@@ -138,9 +138,9 @@ export default function ShopPage({
           {userCases.length === 0 && (
             <div className="glass-card p-8 text-center">
               <Package className="w-16 h-16 text-muted-foreground mx-auto mb-4" />
-              <h3 className="unified-heading mb-2">РќРµС‚ РєРµР№СЃРѕРІ</h3>
+              <h3 className="unified-heading mb-2">Р СњР ВµРЎвЂљ Р С”Р ВµР в„–РЎРѓР С•Р Р†</h3>
               <p className="unified-text text-muted-foreground">
-                РљРµР№СЃС‹ СЃРєРѕСЂРѕ РїРѕСЏРІСЏС‚СЃСЏ РІ РјР°РіР°Р·РёРЅРµ
+                Р С™Р ВµР в„–РЎРѓРЎвЂ№ РЎРѓР С”Р С•РЎР‚Р С• Р С—Р С•РЎРЏР Р†РЎРЏРЎвЂљРЎРѓРЎРЏ Р Р† Р СР В°Р С–Р В°Р В·Р С‘Р Р…Р Вµ
               </p>
             </div>
           )}
@@ -153,21 +153,21 @@ export default function ShopPage({
             <div key={item.id} className="glass-card p-4">
               <div className="flex items-center gap-4">
                 <div className="w-16 h-16 bg-gradient-to-br from-green-500 to-blue-500 rounded-lg flex items-center justify-center">
-                  <span className="text-2xl">рџ›ЌпёЏ</span>
+                  <span className="text-2xl">СЂСџвЂєРЊРїС‘РЏ</span>
                 </div>
                 <div className="flex-1">
                   <h3 className="unified-text font-medium">{item.name}</h3>
                   <p className="unified-text text-muted-foreground text-sm mb-2">
                     {item.description}
                   </p>
-                  <span className="unified-text text-sm">рџ’° {item.price} РјРѕРЅРµС‚</span>
+                  <span className="unified-text text-sm">СЂСџвЂ™В° {item.price} Р СР С•Р Р…Р ВµРЎвЂљ</span>
                 </div>
                 <button 
                   className="apple-button px-4 py-2"
                   disabled={userCoins < item.price}
-                  aria-label={`РљСѓРїРёС‚СЊ ${item.name}`}
+                  aria-label={`Р С™РЎС“Р С—Р С‘РЎвЂљРЎРЉ ${item.name}`}
                 >
-                  РљСѓРїРёС‚СЊ
+                  Р С™РЎС“Р С—Р С‘РЎвЂљРЎРЉ
                 </button>
               </div>
             </div>
@@ -176,9 +176,9 @@ export default function ShopPage({
           {shopItems.length === 0 && (
             <div className="glass-card p-8 text-center">
               <ShoppingBag className="w-16 h-16 text-muted-foreground mx-auto mb-4" />
-              <h3 className="unified-heading mb-2">РњР°РіР°Р·РёРЅ РїСѓСЃС‚</h3>
+              <h3 className="unified-heading mb-2">Р СљР В°Р С–Р В°Р В·Р С‘Р Р… Р С—РЎС“РЎРѓРЎвЂљ</h3>
               <p className="unified-text text-muted-foreground">
-                РўРѕРІР°СЂС‹ СЃРєРѕСЂРѕ РїРѕСЏРІСЏС‚СЃСЏ
+                Р СћР С•Р Р†Р В°РЎР‚РЎвЂ№ РЎРѓР С”Р С•РЎР‚Р С• Р С—Р С•РЎРЏР Р†РЎРЏРЎвЂљРЎРѓРЎРЏ
               </p>
             </div>
           )}
@@ -187,13 +187,13 @@ export default function ShopPage({
 
       {activeTab === 'roulette' && (
         <div className="glass-card p-8 text-center">
-          <span className="text-6xl mb-4 block">рџЋ°</span>
-          <h3 className="unified-heading mb-2">Р СѓР»РµС‚РєР°</h3>
+          <span className="text-6xl mb-4 block">СЂСџР‹В°</span>
+          <h3 className="unified-heading mb-2">Р В РЎС“Р В»Р ВµРЎвЂљР С”Р В°</h3>
           <p className="unified-text text-muted-foreground mb-4">
-            РЎС‹РіСЂР°Р№С‚Рµ РІ СЂСѓР»РµС‚РєСѓ Рё РІС‹РёРіСЂР°Р№С‚Рµ РїСЂРёР·С‹!
+            Р РЋРЎвЂ№Р С–РЎР‚Р В°Р в„–РЎвЂљР Вµ Р Р† РЎР‚РЎС“Р В»Р ВµРЎвЂљР С”РЎС“ Р С‘ Р Р†РЎвЂ№Р С‘Р С–РЎР‚Р В°Р в„–РЎвЂљР Вµ Р С—РЎР‚Р С‘Р В·РЎвЂ№!
           </p>
-          <button className="apple-button px-6 py-3" aria-label="РРіСЂР°С‚СЊ РІ СЂСѓР»РµС‚РєСѓ">
-            рџЋІ РРіСЂР°С‚СЊ (100 РјРѕРЅРµС‚)
+          <button className="apple-button px-6 py-3" aria-label="Р ВР С–РЎР‚Р В°РЎвЂљРЎРЉ Р Р† РЎР‚РЎС“Р В»Р ВµРЎвЂљР С”РЎС“">
+            СЂСџР‹Р† Р ВР С–РЎР‚Р В°РЎвЂљРЎРЉ (100 Р СР С•Р Р…Р ВµРЎвЂљ)
           </button>
         </div>
       )}

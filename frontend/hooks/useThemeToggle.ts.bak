@@ -9,20 +9,20 @@ interface UseThemeToggleReturn {
 export const useThemeToggle = (): UseThemeToggleReturn => {
   const [themeToggleCount, setThemeToggleCount] = useState(0);
 
-  // Загружаем счетчик из localStorage при инициализации
+  // Р вЂ”Р В°Р С–РЎР‚РЎС“Р В¶Р В°Р ВµР С РЎРѓРЎвЂЎР ВµРЎвЂљРЎвЂЎР С‘Р С” Р С‘Р В· localStorage Р С—РЎР‚Р С‘ Р С‘Р Р…Р С‘РЎвЂ Р С‘Р В°Р В»Р С‘Р В·Р В°РЎвЂ Р С‘Р С‘
   useEffect(() => {
     const savedCount = localStorage.getItem('themeToggleCount');
     if (savedCount) {
       const count = parseInt(savedCount, 10);
-      console.log(`📊 Loaded theme toggle count from localStorage: ${count}`);
+      console.log(`СЂСџвЂњР‰ Loaded theme toggle count from localStorage: ${count}`);
       setThemeToggleCount(count);
     } else {
-      console.log('📊 No saved theme toggle count, starting from 0');
+      console.log('СЂСџвЂњР‰ No saved theme toggle count, starting from 0');
       setThemeToggleCount(0);
     }
   }, []);
 
-  // Сохраняем счетчик в localStorage при изменении
+  // Р РЋР С•РЎвЂ¦РЎР‚Р В°Р Р…РЎРЏР ВµР С РЎРѓРЎвЂЎР ВµРЎвЂљРЎвЂЎР С‘Р С” Р Р† localStorage Р С—РЎР‚Р С‘ Р С‘Р В·Р СР ВµР Р…Р ВµР Р…Р С‘Р С‘
   useEffect(() => {
     localStorage.setItem('themeToggleCount', themeToggleCount.toString());
   }, [themeToggleCount]);

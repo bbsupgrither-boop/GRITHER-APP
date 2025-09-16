@@ -1,4 +1,4 @@
-﻿export interface AdminUser {
+РїВ»С—export interface AdminUser {
   telegramId: string;
   username: string;
   role: 'admin' | 'teamlead' | 'senior_admin' | 'junior_admin';
@@ -21,7 +21,7 @@ export interface User {
   gCoins: number;
   level: number;
   experience: number;
-  achievements: string[]; // ID РґРѕСЃС‚РёР¶РµРЅРёР№
+  achievements: string[]; // ID Р В РўвЂР В РЎвЂўР РЋР С“Р РЋРІР‚С™Р В РЎвЂР В Р’В¶Р В Р’ВµР В Р вЂ¦Р В РЎвЂР В РІвЂћвЂ“
   joinedAt: Date;
   lastActive: Date;
   status: 'active' | 'inactive' | 'banned';
@@ -36,13 +36,13 @@ export interface Battle {
   status: 'upcoming' | 'active' | 'completed' | 'cancelled';
   startDate: Date;
   endDate: Date;
-  createdBy: string; // Telegram ID Р°РґРјРёРЅР°/С‚РёРјР»РёРґР°
+  createdBy: string; // Telegram ID Р В Р’В°Р В РўвЂР В РЎВР В РЎвЂР В Р вЂ¦Р В Р’В°/Р РЋРІР‚С™Р В РЎвЂР В РЎВР В Р’В»Р В РЎвЂР В РўвЂР В Р’В°
   prize: {
-    winner: number; // G-РјРѕРЅРµС‚С‹ РґР»СЏ РїРѕР±РµРґРёС‚РµР»СЏ
-    participant: number; // G-РјРѕРЅРµС‚С‹ Р·Р° СѓС‡Р°СЃС‚РёРµ
+    winner: number; // G-Р В РЎВР В РЎвЂўР В Р вЂ¦Р В Р’ВµР РЋРІР‚С™Р РЋРІР‚в„– Р В РўвЂР В Р’В»Р РЋР РЏ Р В РЎвЂ”Р В РЎвЂўР В Р’В±Р В Р’ВµР В РўвЂР В РЎвЂР РЋРІР‚С™Р В Р’ВµР В Р’В»Р РЋР РЏ
+    participant: number; // G-Р В РЎВР В РЎвЂўР В Р вЂ¦Р В Р’ВµР РЋРІР‚С™Р РЋРІР‚в„– Р В Р’В·Р В Р’В° Р РЋРЎвЂњР РЋРІР‚РЋР В Р’В°Р РЋР С“Р РЋРІР‚С™Р В РЎвЂР В Р’Вµ
   };
   results?: {
-    winner: number; // РЅРѕРјРµСЂ РєРѕРјР°РЅРґС‹-РїРѕР±РµРґРёС‚РµР»СЏ
+    winner: number; // Р В Р вЂ¦Р В РЎвЂўР В РЎВР В Р’ВµР РЋР вЂљ Р В РЎвЂќР В РЎвЂўР В РЎВР В Р’В°Р В Р вЂ¦Р В РўвЂР РЋРІР‚в„–-Р В РЎвЂ”Р В РЎвЂўР В Р’В±Р В Р’ВµР В РўвЂР В РЎвЂР РЋРІР‚С™Р В Р’ВµР В Р’В»Р РЋР РЏ
     scoreA: number;
     scoreB: number;
   };
@@ -67,7 +67,7 @@ export interface AdminAction {
   id: string;
   adminId: string;
   action: 'create_achievement' | 'create_battle' | 'ban_user' | 'give_coins' | 'modify_user';
-  target?: string; // ID С†РµР»Рё РґРµР№СЃС‚РІРёСЏ (РїРѕР»СЊР·РѕРІР°С‚РµР»СЊ, РґРѕСЃС‚РёР¶РµРЅРёРµ Рё С‚.Рґ.)
+  target?: string; // ID Р РЋРІР‚В Р В Р’ВµР В Р’В»Р В РЎвЂ Р В РўвЂР В Р’ВµР В РІвЂћвЂ“Р РЋР С“Р РЋРІР‚С™Р В Р вЂ Р В РЎвЂР РЋР РЏ (Р В РЎвЂ”Р В РЎвЂўР В Р’В»Р РЋР Р‰Р В Р’В·Р В РЎвЂўР В Р вЂ Р В Р’В°Р РЋРІР‚С™Р В Р’ВµР В Р’В»Р РЋР Р‰, Р В РўвЂР В РЎвЂўР РЋР С“Р РЋРІР‚С™Р В РЎвЂР В Р’В¶Р В Р’ВµР В Р вЂ¦Р В РЎвЂР В Р’Вµ Р В РЎвЂ Р РЋРІР‚С™.Р В РўвЂ.)
   details: Record<string, any>;
   timestamp: Date;
 }

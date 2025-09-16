@@ -39,14 +39,14 @@ export default function TasksPage({
             <CheckSquare className="w-6 h-6 text-green-500" />
           </div>
           <div>
-            <h1 className="unified-heading">Р—Р°РґР°С‡Рё</h1>
+            <h1 className="unified-heading">Р вЂ”Р В°Р Т‘Р В°РЎвЂЎР С‘</h1>
             <p className="unified-text text-muted-foreground">
-              {tasks.length} Р·Р°РґР°С‡
+              {tasks.length} Р В·Р В°Р Т‘Р В°РЎвЂЎ
             </p>
           </div>
         </div>
         
-        <button className="apple-button p-3" aria-label="Р”РѕР±Р°РІРёС‚СЊ Р·Р°РґР°С‡Сѓ">
+        <button className="apple-button p-3" aria-label="Р вЂќР С•Р В±Р В°Р Р†Р С‘РЎвЂљРЎРЉ Р В·Р В°Р Т‘Р В°РЎвЂЎРЎС“">
           <Plus className="w-5 h-5" />
         </button>
       </div>
@@ -63,8 +63,8 @@ export default function TasksPage({
                   {task.description}
                 </p>
                 <div className="flex items-center gap-4 text-sm text-muted-foreground">
-                  <span>рџ“… {task.dueDate}</span>
-                  <span>рџ’° {task.reward?.coins || 0} РјРѕРЅРµС‚</span>
+                  <span>СЂСџвЂњвЂ¦ {task.dueDate}</span>
+                  <span>СЂСџвЂ™В° {task.reward?.coins || 0} Р СР С•Р Р…Р ВµРЎвЂљ</span>
                 </div>
               </div>
             </div>
@@ -75,9 +75,9 @@ export default function TasksPage({
       {tasks.length === 0 && (
         <div className="glass-card p-8 text-center">
           <CheckSquare className="w-16 h-16 text-muted-foreground mx-auto mb-4" />
-          <h3 className="unified-heading mb-2">РќРµС‚ Р·Р°РґР°С‡</h3>
+          <h3 className="unified-heading mb-2">Р СњР ВµРЎвЂљ Р В·Р В°Р Т‘Р В°РЎвЂЎ</h3>
           <p className="unified-text text-muted-foreground">
-            РќР°Р¶РјРёС‚Рµ РєРЅРѕРїРєСѓ "+" С‡С‚РѕР±С‹ РґРѕР±Р°РІРёС‚СЊ РЅРѕРІСѓСЋ Р·Р°РґР°С‡Сѓ
+            Р СњР В°Р В¶Р СР С‘РЎвЂљР Вµ Р С”Р Р…Р С•Р С—Р С”РЎС“ "+" РЎвЂЎРЎвЂљР С•Р В±РЎвЂ№ Р Т‘Р С•Р В±Р В°Р Р†Р С‘РЎвЂљРЎРЉ Р Р…Р С•Р Р†РЎС“РЎР‹ Р В·Р В°Р Т‘Р В°РЎвЂЎРЎС“
           </p>
         </div>
       )}

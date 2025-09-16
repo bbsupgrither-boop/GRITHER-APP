@@ -27,7 +27,7 @@ class ErrorBoundary extends React.Component<any, { error?: Error }> {
   }
   render() {
     if (this.state.error) {
-      return React.createElement('div', { role: 'alert', style: { padding: 16 } }, 'Ошибка UI');
+      return React.createElement('div', { role: 'alert', style: { padding: 16 } }, 'Р С›РЎв‚¬Р С‘Р В±Р С”Р В° UI');
     }
     return this.props.children;
   }

@@ -1,4 +1,4 @@
-﻿import React from 'react'
+import React from 'react'
 import ReactDOM from 'react-dom/client'
 import App from './App.tsx'
 import './index.css'
@@ -27,7 +27,7 @@ class ErrorBoundary extends React.Component<any, { error?: Error }> {
   }
   render() {
     if (this.state.error) {
-      return React.createElement('div', { role: 'alert', style: { padding: 16 } }, 'Ошибка UI');
+      return React.createElement('div', { role: 'alert', style: { padding: 16 } }, 'РћС€РёР±РєР° UI');
     }
     return this.props.children;
   }

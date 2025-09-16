@@ -10,7 +10,7 @@ interface UseDatabaseReturn {
   isLoading: boolean;
   error: string | null;
   
-  // Методы
+  // Р СљР ВµРЎвЂљР С•Р Т‘РЎвЂ№
   createUser: (telegramId: string, name: string, role: UserData['role'], teamNumber?: number) => UserData | null;
   updateUser: (telegramId: string, updates: Partial<UserData>) => boolean;
   updateProgress: (telegramId: string, progress: Partial<Pick<UserData, 'level' | 'experience' | 'gCoins' | 'tasksCompleted'>>) => boolean;
@@ -31,7 +31,7 @@ export const useDatabase = (telegramId: string): UseDatabaseReturn => {
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
 
-  // Загрузка данных пользователя
+  // Р вЂ”Р В°Р С–РЎР‚РЎС“Р В·Р С”Р В° Р Т‘Р В°Р Р…Р Р…РЎвЂ№РЎвЂ¦ Р С—Р С•Р В»РЎРЉР В·Р С•Р Р†Р В°РЎвЂљР ВµР В»РЎРЏ
   const loadUserData = useCallback(async () => {
     if (!telegramId) {
       setIsLoading(false);
@@ -42,64 +42,64 @@ export const useDatabase = (telegramId: string): UseDatabaseReturn => {
       setIsLoading(true);
       setError(null);
 
-      // Получаем данные пользователя
+      // Р СџР С•Р В»РЎС“РЎвЂЎР В°Р ВµР С Р Т‘Р В°Р Р…Р Р…РЎвЂ№Р Вµ Р С—Р С•Р В»РЎРЉР В·Р С•Р Р†Р В°РЎвЂљР ВµР В»РЎРЏ
       const userData = databaseService.getUser(telegramId);
       setUser(userData);
 
-      // Получаем достижения
+      // Р СџР С•Р В»РЎС“РЎвЂЎР В°Р ВµР С Р Т‘Р С•РЎРѓРЎвЂљР С‘Р В¶Р ВµР Р…Р С‘РЎРЏ
       const userAchievements = databaseService.getUserAchievements(telegramId);
       setAchievements(userAchievements);
 
-      // Получаем задачи
+      // Р СџР С•Р В»РЎС“РЎвЂЎР В°Р ВµР С Р В·Р В°Р Т‘Р В°РЎвЂЎР С‘
       const userTasks = databaseService.getUserTasks(telegramId);
       setTasks(userTasks);
 
-      // Получаем уведомления
+      // Р СџР С•Р В»РЎС“РЎвЂЎР В°Р ВµР С РЎС“Р Р†Р ВµР Т‘Р С•Р СР В»Р ВµР Р…Р С‘РЎРЏ
       const userNotifications = databaseService.getUserNotifications(telegramId);
       setNotifications(userNotifications);
 
-      // Получаем статистику
+      // Р СџР С•Р В»РЎС“РЎвЂЎР В°Р ВµР С РЎРѓРЎвЂљР В°РЎвЂљР С‘РЎРѓРЎвЂљР С‘Р С”РЎС“
       const userStats = databaseService.getUserStats(telegramId);
       setStats(userStats);
 
     } catch (err) {
-      console.error('Ошибка загрузки данных:', err);
-      setError('Ошибка загрузки данных пользователя');
+      console.error('Р С›РЎв‚¬Р С‘Р В±Р С”Р В° Р В·Р В°Р С–РЎР‚РЎС“Р В·Р С”Р С‘ Р Т‘Р В°Р Р…Р Р…РЎвЂ№РЎвЂ¦:', err);
+      setError('Р С›РЎв‚¬Р С‘Р В±Р С”Р В° Р В·Р В°Р С–РЎР‚РЎС“Р В·Р С”Р С‘ Р Т‘Р В°Р Р…Р Р…РЎвЂ№РЎвЂ¦ Р С—Р С•Р В»РЎРЉР В·Р С•Р Р†Р В°РЎвЂљР ВµР В»РЎРЏ');
     } finally {
       setIsLoading(false);
     }
   }, [telegramId]);
 
-  // Автоматическая загрузка при изменении telegramId
+  // Р С’Р Р†РЎвЂљР С•Р СР В°РЎвЂљР С‘РЎвЂЎР ВµРЎРѓР С”Р В°РЎРЏ Р В·Р В°Р С–РЎР‚РЎС“Р В·Р С”Р В° Р С—РЎР‚Р С‘ Р С‘Р В·Р СР ВµР Р…Р ВµР Р…Р С‘Р С‘ telegramId
   useEffect(() => {
     loadUserData();
   }, [loadUserData]);
 
-  // Автосохранение данных пользователя
+  // Р С’Р Р†РЎвЂљР С•РЎРѓР С•РЎвЂ¦РЎР‚Р В°Р Р…Р ВµР Р…Р С‘Р Вµ Р Т‘Р В°Р Р…Р Р…РЎвЂ№РЎвЂ¦ Р С—Р С•Р В»РЎРЉР В·Р С•Р Р†Р В°РЎвЂљР ВµР В»РЎРЏ
   useEffect(() => {
     if (user) {
       const saveTimeout = setTimeout(() => {
         databaseService.saveUser(user);
-      }, 2000); // Сохраняем через 2 секунды после изменений
+      }, 2000); // Р РЋР С•РЎвЂ¦РЎР‚Р В°Р Р…РЎРЏР ВµР С РЎвЂЎР ВµРЎР‚Р ВµР В· 2 РЎРѓР ВµР С”РЎС“Р Р…Р Т‘РЎвЂ№ Р С—Р С•РЎРѓР В»Р Вµ Р С‘Р В·Р СР ВµР Р…Р ВµР Р…Р С‘Р в„–
 
       return () => clearTimeout(saveTimeout);
     }
   }, [user]);
 
-  // Создание пользователя
+  // Р РЋР С•Р В·Р Т‘Р В°Р Р…Р С‘Р Вµ Р С—Р С•Р В»РЎРЉР В·Р С•Р Р†Р В°РЎвЂљР ВµР В»РЎРЏ
   const createUser = useCallback((telegramId: string, name: string, role: UserData['role'], teamNumber?: number): UserData | null => {
     try {
       const newUser = databaseService.createUser(telegramId, name, role, teamNumber);
       setUser(newUser);
       return newUser;
     } catch (err) {
-      console.error('Ошибка создания пользователя:', err);
-      setError('Ошибка создания пользователя');
+      console.error('Р С›РЎв‚¬Р С‘Р В±Р С”Р В° РЎРѓР С•Р В·Р Т‘Р В°Р Р…Р С‘РЎРЏ Р С—Р С•Р В»РЎРЉР В·Р С•Р Р†Р В°РЎвЂљР ВµР В»РЎРЏ:', err);
+      setError('Р С›РЎв‚¬Р С‘Р В±Р С”Р В° РЎРѓР С•Р В·Р Т‘Р В°Р Р…Р С‘РЎРЏ Р С—Р С•Р В»РЎРЉР В·Р С•Р Р†Р В°РЎвЂљР ВµР В»РЎРЏ');
       return null;
     }
   }, []);
 
-  // Обновление пользователя
+  // Р С›Р В±Р Р…Р С•Р Р†Р В»Р ВµР Р…Р С‘Р Вµ Р С—Р С•Р В»РЎРЉР В·Р С•Р Р†Р В°РЎвЂљР ВµР В»РЎРЏ
   const updateUser = useCallback((telegramId: string, updates: Partial<UserData>): boolean => {
     try {
       const currentUser = databaseService.getUser(telegramId);
@@ -114,19 +114,19 @@ export const useDatabase = (telegramId: string): UseDatabaseReturn => {
       
       return success;
     } catch (err) {
-      console.error('Ошибка обновления пользователя:', err);
-      setError('Ошибка обновления пользователя');
+      console.error('Р С›РЎв‚¬Р С‘Р В±Р С”Р В° Р С•Р В±Р Р…Р С•Р Р†Р В»Р ВµР Р…Р С‘РЎРЏ Р С—Р С•Р В»РЎРЉР В·Р С•Р Р†Р В°РЎвЂљР ВµР В»РЎРЏ:', err);
+      setError('Р С›РЎв‚¬Р С‘Р В±Р С”Р В° Р С•Р В±Р Р…Р С•Р Р†Р В»Р ВµР Р…Р С‘РЎРЏ Р С—Р С•Р В»РЎРЉР В·Р С•Р Р†Р В°РЎвЂљР ВµР В»РЎРЏ');
       return false;
     }
   }, []);
 
-  // Обновление прогресса
+  // Р С›Р В±Р Р…Р С•Р Р†Р В»Р ВµР Р…Р С‘Р Вµ Р С—РЎР‚Р С•Р С–РЎР‚Р ВµРЎРѓРЎРѓР В°
   const updateProgress = useCallback((telegramId: string, progress: Partial<Pick<UserData, 'level' | 'experience' | 'gCoins' | 'tasksCompleted'>>): boolean => {
     try {
       const success = databaseService.updateUserProgress(telegramId, progress);
       
       if (success) {
-        // Обновляем локальное состояние
+        // Р С›Р В±Р Р…Р С•Р Р†Р В»РЎРЏР ВµР С Р В»Р С•Р С”Р В°Р В»РЎРЉР Р…Р С•Р Вµ РЎРѓР С•РЎРѓРЎвЂљР С•РЎРЏР Р…Р С‘Р Вµ
         const updatedUser = databaseService.getUser(telegramId);
         if (updatedUser) {
           setUser(updatedUser);
@@ -136,19 +136,19 @@ export const useDatabase = (telegramId: string): UseDatabaseReturn => {
       
       return success;
     } catch (err) {
-      console.error('Ошибка обновления прогресса:', err);
-      setError('Ошибка обновления прогресса');
+      console.error('Р С›РЎв‚¬Р С‘Р В±Р С”Р В° Р С•Р В±Р Р…Р С•Р Р†Р В»Р ВµР Р…Р С‘РЎРЏ Р С—РЎР‚Р С•Р С–РЎР‚Р ВµРЎРѓРЎРѓР В°:', err);
+      setError('Р С›РЎв‚¬Р С‘Р В±Р С”Р В° Р С•Р В±Р Р…Р С•Р Р†Р В»Р ВµР Р…Р С‘РЎРЏ Р С—РЎР‚Р С•Р С–РЎР‚Р ВµРЎРѓРЎРѓР В°');
       return false;
     }
   }, []);
 
-  // Добавление достижения
+  // Р вЂќР С•Р В±Р В°Р Р†Р В»Р ВµР Р…Р С‘Р Вµ Р Т‘Р С•РЎРѓРЎвЂљР С‘Р В¶Р ВµР Р…Р С‘РЎРЏ
   const addAchievement = useCallback((telegramId: string, achievementId: string): boolean => {
     try {
       const success = databaseService.addUserAchievement(telegramId, achievementId);
       
       if (success) {
-        // Обновляем локальное состояние
+        // Р С›Р В±Р Р…Р С•Р Р†Р В»РЎРЏР ВµР С Р В»Р С•Р С”Р В°Р В»РЎРЉР Р…Р С•Р Вµ РЎРѓР С•РЎРѓРЎвЂљР С•РЎРЏР Р…Р С‘Р Вµ
         setUser(databaseService.getUser(telegramId));
         setAchievements(databaseService.getUserAchievements(telegramId));
         setStats(databaseService.getUserStats(telegramId));
@@ -156,13 +156,13 @@ export const useDatabase = (telegramId: string): UseDatabaseReturn => {
       
       return success;
     } catch (err) {
-      console.error('Ошибка добавления достижения:', err);
-      setError('Ошибка добавления достижения');
+      console.error('Р С›РЎв‚¬Р С‘Р В±Р С”Р В° Р Т‘Р С•Р В±Р В°Р Р†Р В»Р ВµР Р…Р С‘РЎРЏ Р Т‘Р С•РЎРѓРЎвЂљР С‘Р В¶Р ВµР Р…Р С‘РЎРЏ:', err);
+      setError('Р С›РЎв‚¬Р С‘Р В±Р С”Р В° Р Т‘Р С•Р В±Р В°Р Р†Р В»Р ВµР Р…Р С‘РЎРЏ Р Т‘Р С•РЎРѓРЎвЂљР С‘Р В¶Р ВµР Р…Р С‘РЎРЏ');
       return false;
     }
   }, []);
 
-  // Сохранение задачи
+  // Р РЋР С•РЎвЂ¦РЎР‚Р В°Р Р…Р ВµР Р…Р С‘Р Вµ Р В·Р В°Р Т‘Р В°РЎвЂЎР С‘
   const saveTask = useCallback((task: TaskData): boolean => {
     try {
       const success = databaseService.saveTask(task);
@@ -174,13 +174,13 @@ export const useDatabase = (telegramId: string): UseDatabaseReturn => {
       
       return success;
     } catch (err) {
-      console.error('Ошибка сохранения задачи:', err);
-      setError('Ошибка сохранения задачи');
+      console.error('Р С›РЎв‚¬Р С‘Р В±Р С”Р В° РЎРѓР С•РЎвЂ¦РЎР‚Р В°Р Р…Р ВµР Р…Р С‘РЎРЏ Р В·Р В°Р Т‘Р В°РЎвЂЎР С‘:', err);
+      setError('Р С›РЎв‚¬Р С‘Р В±Р С”Р В° РЎРѓР С•РЎвЂ¦РЎР‚Р В°Р Р…Р ВµР Р…Р С‘РЎРЏ Р В·Р В°Р Т‘Р В°РЎвЂЎР С‘');
       return false;
     }
   }, [telegramId]);
 
-  // Обновление задачи
+  // Р С›Р В±Р Р…Р С•Р Р†Р В»Р ВµР Р…Р С‘Р Вµ Р В·Р В°Р Т‘Р В°РЎвЂЎР С‘
   const updateTask = useCallback((telegramId: string, taskId: string, updates: Partial<TaskData>): boolean => {
     try {
       const tasks = databaseService.getUserTasks(telegramId);
@@ -198,13 +198,13 @@ export const useDatabase = (telegramId: string): UseDatabaseReturn => {
       
       return success;
     } catch (err) {
-      console.error('Ошибка обновления задачи:', err);
-      setError('Ошибка обновления задачи');
+      console.error('Р С›РЎв‚¬Р С‘Р В±Р С”Р В° Р С•Р В±Р Р…Р С•Р Р†Р В»Р ВµР Р…Р С‘РЎРЏ Р В·Р В°Р Т‘Р В°РЎвЂЎР С‘:', err);
+      setError('Р С›РЎв‚¬Р С‘Р В±Р С”Р В° Р С•Р В±Р Р…Р С•Р Р†Р В»Р ВµР Р…Р С‘РЎРЏ Р В·Р В°Р Т‘Р В°РЎвЂЎР С‘');
       return false;
     }
   }, []);
 
-  // Сохранение уведомления
+  // Р РЋР С•РЎвЂ¦РЎР‚Р В°Р Р…Р ВµР Р…Р С‘Р Вµ РЎС“Р Р†Р ВµР Т‘Р С•Р СР В»Р ВµР Р…Р С‘РЎРЏ
   const saveNotification = useCallback((notification: NotificationData): boolean => {
     try {
       const success = databaseService.saveNotification(notification);
@@ -215,13 +215,13 @@ export const useDatabase = (telegramId: string): UseDatabaseReturn => {
       
       return success;
     } catch (err) {
-      console.error('Ошибка сохранения уведомления:', err);
-      setError('Ошибка сохранения уведомления');
+      console.error('Р С›РЎв‚¬Р С‘Р В±Р С”Р В° РЎРѓР С•РЎвЂ¦РЎР‚Р В°Р Р…Р ВµР Р…Р С‘РЎРЏ РЎС“Р Р†Р ВµР Т‘Р С•Р СР В»Р ВµР Р…Р С‘РЎРЏ:', err);
+      setError('Р С›РЎв‚¬Р С‘Р В±Р С”Р В° РЎРѓР С•РЎвЂ¦РЎР‚Р В°Р Р…Р ВµР Р…Р С‘РЎРЏ РЎС“Р Р†Р ВµР Т‘Р С•Р СР В»Р ВµР Р…Р С‘РЎРЏ');
       return false;
     }
   }, [telegramId]);
 
-  // Отметка уведомления как прочитанного
+  // Р С›РЎвЂљР СР ВµРЎвЂљР С”Р В° РЎС“Р Р†Р ВµР Т‘Р С•Р СР В»Р ВµР Р…Р С‘РЎРЏ Р С”Р В°Р С” Р С—РЎР‚Р С•РЎвЂЎР С‘РЎвЂљР В°Р Р…Р Р…Р С•Р С–Р С•
   const markNotificationAsRead = useCallback((telegramId: string, notificationId: string): boolean => {
     try {
       const success = databaseService.markNotificationAsRead(telegramId, notificationId);
@@ -232,13 +232,13 @@ export const useDatabase = (telegramId: string): UseDatabaseReturn => {
       
       return success;
     } catch (err) {
-      console.error('Ошибка обновления уведомления:', err);
-      setError('Ошибка обновления уведомления');
+      console.error('Р С›РЎв‚¬Р С‘Р В±Р С”Р В° Р С•Р В±Р Р…Р С•Р Р†Р В»Р ВµР Р…Р С‘РЎРЏ РЎС“Р Р†Р ВµР Т‘Р С•Р СР В»Р ВµР Р…Р С‘РЎРЏ:', err);
+      setError('Р С›РЎв‚¬Р С‘Р В±Р С”Р В° Р С•Р В±Р Р…Р С•Р Р†Р В»Р ВµР Р…Р С‘РЎРЏ РЎС“Р Р†Р ВµР Т‘Р С•Р СР В»Р ВµР Р…Р С‘РЎРЏ');
       return false;
     }
   }, []);
 
-  // Обновление данных
+  // Р С›Р В±Р Р…Р С•Р Р†Р В»Р ВµР Р…Р С‘Р Вµ Р Т‘Р В°Р Р…Р Р…РЎвЂ№РЎвЂ¦
   const refreshData = useCallback(() => {
     loadUserData();
   }, [loadUserData]);

@@ -1,7 +1,7 @@
-// Типы ролей пользователей
+// Р СћР С‘Р С—РЎвЂ№ РЎР‚Р С•Р В»Р ВµР в„– Р С—Р С•Р В»РЎРЉР В·Р С•Р Р†Р В°РЎвЂљР ВµР В»Р ВµР в„–
 export type UserRole = 'worker' | 'team_lead' | 'junior_admin' | 'senior_admin' | 'main_admin';
 
-// Интерфейс пользователя с ролью
+// Р ВР Р…РЎвЂљР ВµРЎР‚РЎвЂћР ВµР в„–РЎРѓ Р С—Р С•Р В»РЎРЉР В·Р С•Р Р†Р В°РЎвЂљР ВµР В»РЎРЏ РЎРѓ РЎР‚Р С•Р В»РЎРЉРЎР‹
 export interface UserWithRole {
   id: string;
   name: string;
@@ -10,7 +10,7 @@ export interface UserWithRole {
   permissions: string[];
 }
 
-// Интерфейс команды
+// Р ВР Р…РЎвЂљР ВµРЎР‚РЎвЂћР ВµР в„–РЎРѓ Р С”Р С•Р СР В°Р Р…Р Т‘РЎвЂ№
 export interface Team {
   teamNumber: number;
   teamName: string;
@@ -18,7 +18,7 @@ export interface Team {
   workers: UserWithRole[];
 }
 
-// Права доступа для каждой роли
+// Р СџРЎР‚Р В°Р Р†Р В° Р Т‘Р С•РЎРѓРЎвЂљРЎС“Р С—Р В° Р Т‘Р В»РЎРЏ Р С”Р В°Р В¶Р Т‘Р С•Р в„– РЎР‚Р С•Р В»Р С‘
 export const ROLE_PERMISSIONS = {
   worker: [
     'view_profile',
@@ -85,73 +85,73 @@ export const ROLE_PERMISSIONS = {
   ]
 };
 
-// База данных пользователей с ролями
+// Р вЂР В°Р В·Р В° Р Т‘Р В°Р Р…Р Р…РЎвЂ№РЎвЂ¦ Р С—Р С•Р В»РЎРЉР В·Р С•Р Р†Р В°РЎвЂљР ВµР В»Р ВµР в„– РЎРѓ РЎР‚Р С•Р В»РЎРЏР СР С‘
 export const USERS_DATABASE: UserWithRole[] = [
-  // 🏆 ГЛАВНЫЕ АДМИНЫ (высшие права)
-  { id: '123456789', name: 'Иван Петров', role: 'main_admin', permissions: ROLE_PERMISSIONS.main_admin },
-  { id: '987654321', name: 'Мария Сидорова', role: 'main_admin', permissions: ROLE_PERMISSIONS.main_admin },
+  // СЂСџРЏвЂ  Р вЂњР вЂєР С’Р вЂ™Р СњР В«Р вЂў Р С’Р вЂќР СљР ВР СњР В« (Р Р†РЎвЂ№РЎРѓРЎв‚¬Р С‘Р Вµ Р С—РЎР‚Р В°Р Р†Р В°)
+  { id: '123456789', name: 'Р ВР Р†Р В°Р Р… Р СџР ВµРЎвЂљРЎР‚Р С•Р Р†', role: 'main_admin', permissions: ROLE_PERMISSIONS.main_admin },
+  { id: '987654321', name: 'Р СљР В°РЎР‚Р С‘РЎРЏ Р РЋР С‘Р Т‘Р С•РЎР‚Р С•Р Р†Р В°', role: 'main_admin', permissions: ROLE_PERMISSIONS.main_admin },
   
-  // 🥇 СТАРШИЕ АДМИНЫ
-  { id: '111222333', name: 'Алексей Козлов', role: 'senior_admin', permissions: ROLE_PERMISSIONS.senior_admin },
-  { id: '444555666', name: 'Елена Морозова', role: 'senior_admin', permissions: ROLE_PERMISSIONS.senior_admin },
-  { id: '1609556178', name: 'Админ Старший', role: 'senior_admin', permissions: ROLE_PERMISSIONS.senior_admin },
+  // СЂСџТђвЂЎ Р РЋР СћР С’Р В Р РЃР ВР вЂў Р С’Р вЂќР СљР ВР СњР В«
+  { id: '111222333', name: 'Р С’Р В»Р ВµР С”РЎРѓР ВµР в„– Р С™Р С•Р В·Р В»Р С•Р Р†', role: 'senior_admin', permissions: ROLE_PERMISSIONS.senior_admin },
+  { id: '444555666', name: 'Р вЂўР В»Р ВµР Р…Р В° Р СљР С•РЎР‚Р С•Р В·Р С•Р Р†Р В°', role: 'senior_admin', permissions: ROLE_PERMISSIONS.senior_admin },
+  { id: '1609556178', name: 'Р С’Р Т‘Р СР С‘Р Р… Р РЋРЎвЂљР В°РЎР‚РЎв‚¬Р С‘Р в„–', role: 'senior_admin', permissions: ROLE_PERMISSIONS.senior_admin },
   
-  // 🥈 МЛАДШИЕ АДМИНЫ
-  { id: '777888999', name: 'Дмитрий Волков', role: 'junior_admin', permissions: ROLE_PERMISSIONS.junior_admin },
-  { id: '000111222', name: 'Анна Лебедева', role: 'junior_admin', permissions: ROLE_PERMISSIONS.junior_admin },
+  // СЂСџТђв‚¬ Р СљР вЂєР С’Р вЂќР РЃР ВР вЂў Р С’Р вЂќР СљР ВР СњР В«
+  { id: '777888999', name: 'Р вЂќР СР С‘РЎвЂљРЎР‚Р С‘Р в„– Р вЂ™Р С•Р В»Р С”Р С•Р Р†', role: 'junior_admin', permissions: ROLE_PERMISSIONS.junior_admin },
+  { id: '000111222', name: 'Р С’Р Р…Р Р…Р В° Р вЂєР ВµР В±Р ВµР Т‘Р ВµР Р†Р В°', role: 'junior_admin', permissions: ROLE_PERMISSIONS.junior_admin },
   
-  // 👥 ТИМЛИДЫ
-  { id: '333444555', name: 'Сергей Орлов', teamNumber: 1, role: 'team_lead', permissions: ROLE_PERMISSIONS.team_lead },
-  { id: '666777888', name: 'Ольга Соколова', teamNumber: 2, role: 'team_lead', permissions: ROLE_PERMISSIONS.team_lead },
-  { id: '999000111', name: 'Михаил Рыбаков', teamNumber: 3, role: 'team_lead', permissions: ROLE_PERMISSIONS.team_lead },
+  // СЂСџвЂТђ Р СћР ВР СљР вЂєР ВР вЂќР В«
+  { id: '333444555', name: 'Р РЋР ВµРЎР‚Р С–Р ВµР в„– Р С›РЎР‚Р В»Р С•Р Р†', teamNumber: 1, role: 'team_lead', permissions: ROLE_PERMISSIONS.team_lead },
+  { id: '666777888', name: 'Р С›Р В»РЎРЉР С–Р В° Р РЋР С•Р С”Р С•Р В»Р С•Р Р†Р В°', teamNumber: 2, role: 'team_lead', permissions: ROLE_PERMISSIONS.team_lead },
+  { id: '999000111', name: 'Р СљР С‘РЎвЂ¦Р В°Р С‘Р В» Р В РЎвЂ№Р В±Р В°Р С”Р С•Р Р†', teamNumber: 3, role: 'team_lead', permissions: ROLE_PERMISSIONS.team_lead },
   
-  // 👷 ВОРКЕРЫ
-  { id: '111222333', name: 'Александр Иванов', teamNumber: 1, role: 'worker', permissions: ROLE_PERMISSIONS.worker },
-  { id: '222333444', name: 'Екатерина Смирнова', teamNumber: 1, role: 'worker', permissions: ROLE_PERMISSIONS.worker },
-  { id: '333444555', name: 'Владимир Козлов', teamNumber: 2, role: 'worker', permissions: ROLE_PERMISSIONS.worker },
-  { id: '444555666', name: 'Наталья Петрова', teamNumber: 2, role: 'worker', permissions: ROLE_PERMISSIONS.worker },
-  { id: '555666777', name: 'Андрей Соколов', teamNumber: 3, role: 'worker', permissions: ROLE_PERMISSIONS.worker },
-  { id: '666777888', name: 'Татьяна Волкова', teamNumber: 3, role: 'worker', permissions: ROLE_PERMISSIONS.worker }
+  // СЂСџвЂВ· Р вЂ™Р С›Р В Р С™Р вЂўР В Р В«
+  { id: '111222333', name: 'Р С’Р В»Р ВµР С”РЎРѓР В°Р Р…Р Т‘РЎР‚ Р ВР Р†Р В°Р Р…Р С•Р Р†', teamNumber: 1, role: 'worker', permissions: ROLE_PERMISSIONS.worker },
+  { id: '222333444', name: 'Р вЂўР С”Р В°РЎвЂљР ВµРЎР‚Р С‘Р Р…Р В° Р РЋР СР С‘РЎР‚Р Р…Р С•Р Р†Р В°', teamNumber: 1, role: 'worker', permissions: ROLE_PERMISSIONS.worker },
+  { id: '333444555', name: 'Р вЂ™Р В»Р В°Р Т‘Р С‘Р СР С‘РЎР‚ Р С™Р С•Р В·Р В»Р С•Р Р†', teamNumber: 2, role: 'worker', permissions: ROLE_PERMISSIONS.worker },
+  { id: '444555666', name: 'Р СњР В°РЎвЂљР В°Р В»РЎРЉРЎРЏ Р СџР ВµРЎвЂљРЎР‚Р С•Р Р†Р В°', teamNumber: 2, role: 'worker', permissions: ROLE_PERMISSIONS.worker },
+  { id: '555666777', name: 'Р С’Р Р…Р Т‘РЎР‚Р ВµР в„– Р РЋР С•Р С”Р С•Р В»Р С•Р Р†', teamNumber: 3, role: 'worker', permissions: ROLE_PERMISSIONS.worker },
+  { id: '666777888', name: 'Р СћР В°РЎвЂљРЎРЉРЎРЏР Р…Р В° Р вЂ™Р С•Р В»Р С”Р С•Р Р†Р В°', teamNumber: 3, role: 'worker', permissions: ROLE_PERMISSIONS.worker }
 ];
 
-// Команды
+// Р С™Р С•Р СР В°Р Р…Р Т‘РЎвЂ№
 export const TEAMS_DATABASE: Team[] = [
   {
     teamNumber: 1,
-    teamName: 'Команда Альфа',
+    teamName: 'Р С™Р С•Р СР В°Р Р…Р Т‘Р В° Р С’Р В»РЎРЉРЎвЂћР В°',
     teamLead: USERS_DATABASE.find(u => u.id === '333444555')!,
     workers: USERS_DATABASE.filter(u => u.teamNumber === 1 && u.role === 'worker')
   },
   {
     teamNumber: 2,
-    teamName: 'Команда Бета',
+    teamName: 'Р С™Р С•Р СР В°Р Р…Р Т‘Р В° Р вЂР ВµРЎвЂљР В°',
     teamLead: USERS_DATABASE.find(u => u.id === '666777888')!,
     workers: USERS_DATABASE.filter(u => u.teamNumber === 2 && u.role === 'worker')
   },
   {
     teamNumber: 3,
-    teamName: 'Команда Гамма',
+    teamName: 'Р С™Р С•Р СР В°Р Р…Р Т‘Р В° Р вЂњР В°Р СР СР В°',
     teamLead: USERS_DATABASE.find(u => u.id === '999000111')!,
     workers: USERS_DATABASE.filter(u => u.teamNumber === 3 && u.role === 'worker')
   }
 ];
 
-// Функция для получения пользователя по ID
+// Р В¤РЎС“Р Р…Р С”РЎвЂ Р С‘РЎРЏ Р Т‘Р В»РЎРЏ Р С—Р С•Р В»РЎС“РЎвЂЎР ВµР Р…Р С‘РЎРЏ Р С—Р С•Р В»РЎРЉР В·Р С•Р Р†Р В°РЎвЂљР ВµР В»РЎРЏ Р С—Р С• ID
 export const getUserById = (id: string): UserWithRole | null => {
   return USERS_DATABASE.find(user => user.id === id) || null;
 };
 
-// Функция для получения команды по номеру
+// Р В¤РЎС“Р Р…Р С”РЎвЂ Р С‘РЎРЏ Р Т‘Р В»РЎРЏ Р С—Р С•Р В»РЎС“РЎвЂЎР ВµР Р…Р С‘РЎРЏ Р С”Р С•Р СР В°Р Р…Р Т‘РЎвЂ№ Р С—Р С• Р Р…Р С•Р СР ВµРЎР‚РЎС“
 export const getTeamByNumber = (teamNumber: number): Team | null => {
   return TEAMS_DATABASE.find(team => team.teamNumber === teamNumber) || null;
 };
 
-// Функция для получения команды тимлида
+// Р В¤РЎС“Р Р…Р С”РЎвЂ Р С‘РЎРЏ Р Т‘Р В»РЎРЏ Р С—Р С•Р В»РЎС“РЎвЂЎР ВµР Р…Р С‘РЎРЏ Р С”Р С•Р СР В°Р Р…Р Т‘РЎвЂ№ РЎвЂљР С‘Р СР В»Р С‘Р Т‘Р В°
 export const getTeamByTeamLeadId = (teamLeadId: string): Team | null => {
   return TEAMS_DATABASE.find(team => team.teamLead.id === teamLeadId) || null;
 };
 
-// Функция для проверки прав доступа
+// Р В¤РЎС“Р Р…Р С”РЎвЂ Р С‘РЎРЏ Р Т‘Р В»РЎРЏ Р С—РЎР‚Р С•Р Р†Р ВµРЎР‚Р С”Р С‘ Р С—РЎР‚Р В°Р Р† Р Т‘Р С•РЎРѓРЎвЂљРЎС“Р С—Р В°
 export const hasPermission = (userId: string, permission: string): boolean => {
   const user = getUserById(userId);
   if (!user) return false;
@@ -159,7 +159,7 @@ export const hasPermission = (userId: string, permission: string): boolean => {
   return user.permissions.includes(permission);
 };
 
-// Функция для проверки роли
+// Р В¤РЎС“Р Р…Р С”РЎвЂ Р С‘РЎРЏ Р Т‘Р В»РЎРЏ Р С—РЎР‚Р С•Р Р†Р ВµРЎР‚Р С”Р С‘ РЎР‚Р С•Р В»Р С‘
 export const hasRole = (userId: string, role: UserRole): boolean => {
   const user = getUserById(userId);
   if (!user) return false;
@@ -167,7 +167,7 @@ export const hasRole = (userId: string, role: UserRole): boolean => {
   return user.role === role;
 };
 
-// Функция для получения всех пользователей команды
+// Р В¤РЎС“Р Р…Р С”РЎвЂ Р С‘РЎРЏ Р Т‘Р В»РЎРЏ Р С—Р С•Р В»РЎС“РЎвЂЎР ВµР Р…Р С‘РЎРЏ Р Р†РЎРѓР ВµРЎвЂ¦ Р С—Р С•Р В»РЎРЉР В·Р С•Р Р†Р В°РЎвЂљР ВµР В»Р ВµР в„– Р С”Р С•Р СР В°Р Р…Р Т‘РЎвЂ№
 export const getTeamMembers = (teamLeadId: string): UserWithRole[] => {
   const team = getTeamByTeamLeadId(teamLeadId);
   if (!team) return [];
