@@ -26,6 +26,9 @@ interface CasesPageProps {
     balance: number;
     level?: number;
     experience?: number;
+    role?: string;
+    notifications?: number;
+    rewards?: number;
   };
   onUpdateUserBalance?: (userId: string, amount: number) => void;
   onUpdateUserExperience?: (userId: string, amount: number) => void;
@@ -696,9 +699,25 @@ export function CasesPage({
       }}
     >
       <Header
-        profilePhoto={profilePhoto}
-        onOpenSettings={onOpenSettings}
-        theme={theme}
+        user={{
+          id: currentUser?.id || 'default_user',
+          name: currentUser?.name || 'Гость',
+          role: currentUser?.role || 'WORKER',
+          level: currentUser?.level || 1,
+          xp: currentUser?.experience || 0,
+          coins: currentUser?.balance || 0,
+          notifications: currentUser?.notifications || 0,
+          rewards: currentUser?.rewards || 0
+        }}
+        onNotificationsClick={() => {
+          // Handle notifications click
+          console.log('Notifications clicked');
+        }}
+        onSettingsClick={onOpenSettings}
+        onProfileClick={() => {
+          // Handle profile click
+          console.log('Profile clicked');
+        }}
       />
 
       <div className="px-4 pb-24">

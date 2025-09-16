@@ -1,5 +1,9 @@
 import React, { useState } from 'react';
-import { ShoppingCart, Star, Coins, Gift, Package } from 'lucide-react';
+import ShoppingCart from 'lucide-react/dist/esm/icons/shopping-cart';
+import Star from 'lucide-react/dist/esm/icons/star';
+import Coins from 'lucide-react/dist/esm/icons/coins';
+import Gift from 'lucide-react/dist/esm/icons/gift';
+import Package from 'lucide-react/dist/esm/icons/package';
 
 interface ShopItem {
   id: string;
@@ -19,7 +23,7 @@ interface ShopPageProps {
   };
 }
 
-export const ShopPage: React.FC<ShopPageProps> = ({ user }) => {
+export const ShopPage = ({ user }: ShopPageProps): JSX.Element => {
   const [activeCategory, setActiveCategory] = useState('all');
   const [items, setItems] = useState<ShopItem[]>([
     {
@@ -120,10 +124,10 @@ export const ShopPage: React.FC<ShopPageProps> = ({ user }) => {
   };
 
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="app">
       {/* Header */}
-      <div className="bg-white shadow-sm border-b">
-        <div className="px-4 py-6">
+      <div className="header">
+        <div className="header-content">
           <div className="flex items-center justify-between">
             <div>
               <h1 className="text-2xl font-bold text-gray-900">Магазин</h1>
@@ -132,13 +136,13 @@ export const ShopPage: React.FC<ShopPageProps> = ({ user }) => {
             <div className="flex items-center space-x-2 bg-yellow-100 px-3 py-2 rounded-lg">
               <Coins className="w-5 h-5 text-yellow-600" />
               <span className="font-semibold text-yellow-800">{user.coins}</span>
-              </div>
-              </div>
             </div>
           </div>
+        </div>
+      </div>
 
       {/* Categories */}
-      <div className="px-4 py-4">
+      <div className="container">
         <div className="flex space-x-2 overflow-x-auto">
           {categories.map((category) => {
             const Icon = category.icon;
@@ -157,16 +161,16 @@ export const ShopPage: React.FC<ShopPageProps> = ({ user }) => {
             </button>
             );
           })}
-          </div>
         </div>
+      </div>
 
       {/* Items Grid */}
-      <div className="px-4 pb-20">
-        <div className="grid grid-cols-2 gap-4">
+      <div className="container pb-20 max-w-full overflow-hidden">
+        <div className="grid grid-cols-2 gap-3" style={{ maxWidth: '100%' }}>
           {filteredItems.map((item) => (
             <div 
               key={item.id}
-              className={`bg-white rounded-lg p-4 shadow-sm border-2 ${getRarityColor(item.rarity)} ${
+              className={`card ${getRarityColor(item.rarity)} ${
                 item.isPurchased ? 'opacity-60' : ''
               }`}
             >

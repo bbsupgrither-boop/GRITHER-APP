@@ -1,0 +1,485 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
+  <title>GRITHER - Компоненты</title>
+  <script src="https://telegram.org/js/telegram-web-app.js"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap&subset=cyrillic,cyrillic-ext" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #0B0B0C;
+      --surface: #111216;
+      --surface-2: #0F1012;
+      --text-1: rgba(255,255,255,.92);
+      --text-2: rgba(255,255,255,.64);
+      --border: rgba(255,255,255,.08);
+      --accent-w-1: #FF5630;
+      --accent-w-2: #FF6A3A;
+      --accent-c-1: #14D4C4;
+      --accent-c-2: #2CD3B8;
+      --success: #2BD67B;
+      --warning: #FFA726;
+      --error: #EF5350;
+      --radius: 16px;
+      --grid: 40px;
+      --safe-top: env(safe-area-inset-top);
+      --safe-bottom: env(safe-area-inset-bottom);
+    }
+
+    * { box-sizing: border-box }
+    html, body { height: 100% }
+    body {
+      margin: 0;
+      font-family: Inter, system-ui, sans-serif;
+      color: var(--text-1);
+      background: var(--bg);
+      -webkit-font-smoothing: antialiased;
+      overflow-x: hidden;
+    }
+
+    .bg {
+      position: fixed; inset: 0; pointer-events: none; z-index: -2;
+      background:
+        radial-gradient(600px 400px at -10% -10%, rgba(255,86,48,.25), transparent 60%),
+        radial-gradient(600px 400px at 110% 110%, rgba(20,212,196,.22), transparent 60%);
+    }
+    .grid {
+      position: fixed; inset: 0; pointer-events: none; z-index: -1;
+      background-image:
+        linear-gradient(rgba(255,255,255,.04) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,.04) 1px, transparent 1px);
+      background-size: var(--grid) var(--grid);
+      mask-image: radial-gradient(60% 60% at 50% 40%, rgba(255,255,255,.9), transparent 70%);
+    }
+
+    .wrap {
+      max-width: 480px; margin: 0 auto;
+      padding: calc(12px + var(--safe-top)) 16px calc(16px + var(--safe-bottom));
+    }
+
+    .header {
+      display: flex; align-items: center; gap: 12px; margin: 6px 0 20px;
+    }
+    .logo {
+      width: 28px; height: 28px; border-radius: 50%;
+      background: radial-gradient(circle at 30% 30%, var(--accent-w-2), var(--accent-w-1));
+      box-shadow: 0 0 24px rgba(255,86,48,.35);
+      display: flex; align-items: center; justify-content: center;
+      color: white; font-weight: 800; font-size: 14px;
+    }
+    h1 { font-size: 24px; margin: 0; font-weight: 700; }
+
+    .section {
+      margin: 24px 0;
+    }
+    .section-title {
+      font-size: 18px; font-weight: 600; margin: 0 0 12px; color: var(--text-1);
+    }
+
+    /* Кнопки */
+    .btn {
+      display: inline-flex; align-items: center; justify-content: center; gap: 8px;
+      height: 48px; padding: 0 20px; border-radius: 12px; border: none;
+      font-weight: 600; font-size: 16px; text-decoration: none;
+      transition: all .2s ease; cursor: pointer; margin: 4px;
+    }
+    .btn-primary {
+      background: linear-gradient(90deg, var(--accent-w-1), var(--accent-w-2));
+      color: white; box-shadow: 0 0 24px rgba(255,86,48,.28);
+    }
+    .btn-primary:hover { transform: translateY(-1px); box-shadow: 0 0 36px rgba(255,86,48,.38); }
+    .btn-secondary {
+      background: var(--surface); color: var(--text-1); border: 1px solid var(--border);
+      box-shadow: 0 0 16px rgba(0,0,0,.3);
+    }
+    .btn-secondary:hover { box-shadow: 0 0 24px rgba(0,0,0,.4); }
+    .btn-success {
+      background: var(--success); color: white;
+    }
+    .btn-warning {
+      background: var(--warning); color: white;
+    }
+    .btn-error {
+      background: var(--error); color: white;
+    }
+
+    /* Карточки */
+    .card {
+      background: linear-gradient(180deg, var(--surface-2), var(--surface));
+      border: 1px solid var(--border); border-radius: var(--radius);
+      padding: 16px; margin: 8px 0;
+      box-shadow: inset 0 1px 0 rgba(255,255,255,.04), 0 8px 24px rgba(0,0,0,.45);
+      transition: transform .22s ease;
+    }
+    .card:hover { transform: translateY(-2px); }
+    .card-header {
+      display: flex; align-items: center; gap: 12px; margin-bottom: 12px;
+    }
+    .card-icon {
+      width: 24px; height: 24px; border-radius: 6px;
+      background: var(--accent-w-1); display: flex; align-items: center; justify-content: center;
+    }
+    .card-title { font-weight: 600; margin: 0; }
+    .card-content { color: var(--text-2); font-size: 14px; line-height: 1.5; }
+
+    /* Прогресс бары */
+    .progress {
+      width: 100%; height: 8px; background: var(--surface-2); border-radius: 4px;
+      overflow: hidden; margin: 8px 0;
+    }
+    .progress-bar {
+      height: 100%; background: linear-gradient(90deg, var(--accent-w-1), var(--accent-w-2));
+      border-radius: 4px; transition: width .3s ease;
+      box-shadow: 0 0 12px rgba(255,86,48,.3);
+    }
+
+    /* Теги и чипы */
+    .chip {
+      display: inline-flex; align-items: center; gap: 6px;
+      padding: 4px 8px; border-radius: 8px; font-size: 12px; font-weight: 500;
+      margin: 2px;
+    }
+    .chip-primary { background: rgba(255,86,48,.2); color: var(--accent-w-1); border: 1px solid rgba(255,86,48,.3); }
+    .chip-success { background: rgba(43,214,123,.2); color: var(--success); border: 1px solid rgba(43,214,123,.3); }
+    .chip-warning { background: rgba(255,167,38,.2); color: var(--warning); border: 1px solid rgba(255,167,38,.3); }
+
+    /* Индикаторы состояния */
+    .status {
+      display: inline-flex; align-items: center; gap: 6px;
+      padding: 4px 8px; border-radius: 8px; font-size: 12px; font-weight: 600;
+    }
+    .status-online { background: rgba(43,214,123,.1); color: var(--success); }
+    .status-offline { background: rgba(239,83,80,.1); color: var(--error); }
+    .status-dot {
+      width: 6px; height: 6px; border-radius: 50%;
+      background: currentColor;
+    }
+
+    /* Модальные окна (демо) */
+    .modal-overlay {
+      position: fixed; inset: 0; background: rgba(0,0,0,.8);
+      display: flex; align-items: center; justify-content: center; z-index: 1000;
+      opacity: 0; visibility: hidden; transition: all .3s ease;
+    }
+    .modal-overlay.show { opacity: 1; visibility: visible; }
+    .modal {
+      background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius);
+      padding: 24px; max-width: 320px; margin: 16px;
+      box-shadow: 0 20px 60px rgba(0,0,0,.7);
+      transform: scale(.9); transition: transform .3s ease;
+    }
+    .modal-overlay.show .modal { transform: scale(1); }
+    .modal-header {
+      display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px;
+    }
+    .modal-title { font-weight: 600; margin: 0; }
+    .modal-close {
+      width: 24px; height: 24px; border: none; background: none; color: var(--text-2);
+      cursor: pointer; border-radius: 4px; display: flex; align-items: center; justify-content: center;
+    }
+    .modal-close:hover { background: var(--surface-2); }
+
+    /* Формы */
+    .form-group { margin: 16px 0; }
+    .form-label {
+      display: block; font-size: 14px; font-weight: 500; margin-bottom: 6px; color: var(--text-1);
+    }
+    .form-input {
+      width: 100%; height: 48px; padding: 0 16px;
+      background: var(--surface-2); border: 1px solid var(--border); border-radius: 12px;
+      color: var(--text-1); font-size: 16px; transition: border-color .2s ease;
+    }
+    .form-input:focus {
+      outline: none; border-color: var(--accent-w-1);
+      box-shadow: 0 0 0 3px rgba(255,86,48,.1);
+    }
+
+    /* Уведомления */
+    .notification {
+      display: flex; align-items: center; gap: 12px; padding: 12px 16px;
+      background: var(--surface); border: 1px solid var(--border); border-radius: 12px;
+      margin: 8px 0; box-shadow: 0 4px 16px rgba(0,0,0,.3);
+    }
+    .notification-icon {
+      width: 20px; height: 20px; border-radius: 50%;
+      display: flex; align-items: center; justify-content: center; flex-shrink: 0;
+    }
+    .notification-success .notification-icon { background: var(--success); }
+    .notification-warning .notification-icon { background: var(--warning); }
+    .notification-error .notification-icon { background: var(--error); }
+    .notification-content { flex: 1; }
+    .notification-title { font-weight: 600; margin: 0 0 2px; font-size: 14px; }
+    .notification-text { color: var(--text-2); font-size: 13px; margin: 0; }
+
+    /* Анимации */
+    .fade-in {
+      opacity: 0; transform: translateY(20px);
+      transition: opacity .4s ease, transform .4s ease;
+    }
+    .fade-in.show { opacity: 1; transform: none; }
+  </style>
+</head>
+<body>
+  <div class="bg"></div>
+  <div class="grid"></div>
+
+  <div class="wrap">
+    <div class="header">
+      <div class="logo">G</div>
+      <h1>Компоненты GRITHER</h1>
+    </div>
+
+    <!-- Кнопки -->
+    <div class="section">
+      <h2 class="section-title">Кнопки</h2>
+      <div>
+        <button class="btn btn-primary" onclick="showNotification('success', 'Основное действие выполнено')">
+          Основная кнопка
+        </button>
+        <button class="btn btn-secondary" onclick="showNotification('warning', 'Вторичное действие')">
+          Вторичная кнопка
+        </button>
+        <button class="btn btn-success" onclick="showNotification('success', 'Успешно!')">
+          Успех
+        </button>
+        <button class="btn btn-warning" onclick="showNotification('warning', 'Предупреждение')">
+          Предупреждение
+        </button>
+        <button class="btn btn-error" onclick="showNotification('error', 'Ошибка!')">
+          Ошибка
+        </button>
+      </div>
+    </div>
+
+    <!-- Карточки -->
+    <div class="section">
+      <h2 class="section-title">Карточки</h2>
+      
+      <div class="card">
+        <div class="card-header">
+          <div class="card-icon">📊</div>
+          <h3 class="card-title">Статистика</h3>
+          <span class="status status-online">
+            <div class="status-dot"></div>
+            Активно
+          </span>
+        </div>
+        <div class="card-content">
+          Отслеживайте свой прогресс и достижения в режиме реального времени
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-header">
+          <div class="card-icon">🎯</div>
+          <h3 class="card-title">Задачи</h3>
+          <span class="status status-offline">
+            <div class="status-dot"></div>
+            Оффлайн
+          </span>
+        </div>
+        <div class="card-content">
+          Выполняйте ежедневные задания для получения опыта и наград
+        </div>
+      </div>
+    </div>
+
+    <!-- Прогресс бары -->
+    <div class="section">
+      <h2 class="section-title">Прогресс</h2>
+      
+      <div class="card">
+        <h3 class="card-title">Уровень 12</h3>
+        <div class="progress">
+          <div class="progress-bar" style="width: 75%"></div>
+        </div>
+        <p style="color: var(--text-2); font-size: 14px; margin: 8px 0 0;">1,247 XP из 1,500 XP</p>
+      </div>
+
+      <div class="card">
+        <h3 class="card-title">Еженедельная цель</h3>
+        <div class="progress">
+          <div class="progress-bar" style="width: 60%"></div>
+        </div>
+        <p style="color: var(--text-2); font-size: 14px; margin: 8px 0 0;">6 из 10 задач выполнено</p>
+      </div>
+    </div>
+
+    <!-- Теги и чипы -->
+    <div class="section">
+      <h2 class="section-title">Теги</h2>
+      <div>
+        <span class="chip chip-primary">🔥 Популярное</span>
+        <span class="chip chip-success">✅ Завершено</span>
+        <span class="chip chip-warning">⚠️ В процессе</span>
+        <span class="chip chip-primary">🏆 Награда</span>
+        <span class="chip chip-success">📈 Прогресс</span>
+      </div>
+    </div>
+
+    <!-- Формы -->
+    <div class="section">
+      <h2 class="section-title">Формы</h2>
+      
+      <div class="card">
+        <div class="form-group">
+          <label class="form-label">Имя пользователя</label>
+          <input type="text" class="form-input" placeholder="Введите ваше имя" value="Иван Иванович">
+        </div>
+        <div class="form-group">
+          <label class="form-label">Email</label>
+          <input type="email" class="form-input" placeholder="example@email.com">
+        </div>
+        <button class="btn btn-primary" style="width: 100%; margin-top: 8px;">
+          Сохранить изменения
+        </button>
+      </div>
+    </div>
+
+    <!-- Модальные окна -->
+    <div class="section">
+      <h2 class="section-title">Модальные окна</h2>
+      <button class="btn btn-primary" onclick="showModal()">
+        Показать модальное окно
+      </button>
+    </div>
+
+    <!-- Уведомления -->
+    <div class="section">
+      <h2 class="section-title">Уведомления</h2>
+      
+      <div class="notification notification-success">
+        <div class="notification-icon">✓</div>
+        <div class="notification-content">
+          <div class="notification-title">Задача выполнена</div>
+          <div class="notification-text">Получено 50 XP за выполнение ежедневного задания</div>
+        </div>
+      </div>
+
+      <div class="notification notification-warning">
+        <div class="notification-icon">!</div>
+        <div class="notification-content">
+          <div class="notification-title">Внимание</div>
+          <div class="notification-text">Осталось 2 часа до завершения еженедельного челленджа</div>
+        </div>
+      </div>
+
+      <div class="notification notification-error">
+        <div class="notification-icon">✕</div>
+        <div class="notification-content">
+          <div class="notification-title">Ошибка подключения</div>
+          <div class="notification-text">Не удалось синхронизировать данные. Проверьте интернет</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Модальное окно -->
+  <div class="modal-overlay" id="modal">
+    <div class="modal">
+      <div class="modal-header">
+        <h3 class="modal-title">Настройки</h3>
+        <button class="modal-close" onclick="hideModal()">✕</button>
+      </div>
+      <div class="form-group">
+        <label class="form-label">Тема</label>
+        <select class="form-input">
+          <option>Темная</option>
+          <option>Светлая</option>
+          <option>Авто</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label class="form-label">Уведомления</label>
+        <select class="form-input">
+          <option>Включены</option>
+          <option>Отключены</option>
+          <option>Только важные</option>
+        </select>
+      </div>
+      <button class="btn btn-primary" style="width: 100%;" onclick="hideModal()">
+        Сохранить
+      </button>
+    </div>
+  </div>
+
+  <script>
+    const tg = window.Telegram?.WebApp;
+
+    // Инициализация
+    if (tg) {
+      tg.ready();
+      tg.expand();
+      tg.setHeaderColor('#0B0B0C');
+    }
+
+    // Функции уведомлений
+    function showNotification(type, message) {
+      tg?.HapticFeedback?.impactOccurred('light');
+      
+      if (tg) {
+        tg.showAlert(message);
+      } else {
+        alert(message);
+      }
+    }
+
+    // Функции модального окна
+    function showModal() {
+      tg?.HapticFeedback?.impactOccurred('medium');
+      document.getElementById('modal').classList.add('show');
+    }
+
+    function hideModal() {
+      tg?.HapticFeedback?.impactOccurred('light');
+      document.getElementById('modal').classList.remove('show');
+    }
+
+    // Закрытие модального окна по клику вне его
+    document.getElementById('modal').addEventListener('click', (e) => {
+      if (e.target.id === 'modal') {
+        hideModal();
+      }
+    });
+
+    // Анимация появления элементов
+    function setupAnimations() {
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('show');
+            observer.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.1 });
+      
+      document.querySelectorAll('.fade-in').forEach(el => {
+        observer.observe(el);
+      });
+    }
+
+    // Инициализация при загрузке
+    document.addEventListener('DOMContentLoaded', () => {
+      setupAnimations();
+      
+      // Добавляем класс fade-in ко всем секциям
+      document.querySelectorAll('.section').forEach(section => {
+        section.classList.add('fade-in');
+      });
+    });
+
+    // Обработка BackButton
+    if (tg && tg.BackButton) {
+      tg.BackButton.show();
+      tg.onEvent('backButtonClicked', () => {
+        tg.HapticFeedback?.impactOccurred('light');
+        // Здесь можно добавить логику возврата
+        console.log('Back button clicked');
+      });
+    }
+
+    console.log('GRITHER Components загружены');
+  </script>
+</body>
+</html>

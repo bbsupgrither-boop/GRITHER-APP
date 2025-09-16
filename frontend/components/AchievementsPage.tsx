@@ -1,5 +1,10 @@
 import React, { useState } from 'react';
-import { Trophy, Star, Target, Award, Zap, Crown } from 'lucide-react';
+import Trophy from 'lucide-react/dist/esm/icons/trophy';
+import Star from 'lucide-react/dist/esm/icons/star';
+import Target from 'lucide-react/dist/esm/icons/target';
+import Award from 'lucide-react/dist/esm/icons/award';
+import Zap from 'lucide-react/dist/esm/icons/zap';
+import Crown from 'lucide-react/dist/esm/icons/crown';
 
 interface Achievement {
   id: string;
@@ -150,10 +155,10 @@ export const AchievementsPage: React.FC<AchievementsPageProps> = ({ user }) => {
   const totalAchievements = achievements.length;
 
   return (
-    <div className="min-h-screen bg-gray-50">
-        {/* Header */}
-      <div className="bg-white shadow-sm border-b">
-        <div className="px-4 py-6">
+    <div className="app">
+      {/* Header */}
+      <div className="header">
+        <div className="header-content">
           <div className="flex items-center justify-between">
             <div>
               <h1 className="text-2xl font-bold text-gray-900">Достижения</h1>
@@ -162,14 +167,14 @@ export const AchievementsPage: React.FC<AchievementsPageProps> = ({ user }) => {
             <div className="text-right">
               <div className="text-2xl font-bold text-blue-600">{completedAchievements}/{totalAchievements}</div>
               <div className="text-sm text-gray-500">Получено</div>
-                          </div>
-                          </div>
-                          </div>
-                        </div>
+            </div>
+          </div>
+        </div>
+      </div>
                         
       {/* Progress Overview */}
-      <div className="px-4 py-4">
-        <div className="bg-white rounded-lg p-4 shadow-sm border">
+      <div className="container">
+        <div className="card">
           <div className="flex items-center justify-between mb-3">
             <h3 className="font-semibold text-gray-900">Общий прогресс</h3>
             <span className="text-sm text-gray-500">
@@ -186,7 +191,7 @@ export const AchievementsPage: React.FC<AchievementsPageProps> = ({ user }) => {
         </div>
         
       {/* Categories */}
-      <div className="px-4 py-2">
+      <div className="container">
         <div className="flex space-x-2 overflow-x-auto">
           {categories.map((category) => (
           <button
@@ -202,15 +207,15 @@ export const AchievementsPage: React.FC<AchievementsPageProps> = ({ user }) => {
           </button>
           ))}
         </div>
-        </div>
+      </div>
 
       {/* Achievements List */}
-      <div className="px-4 pb-20">
+      <div className="container pb-20">
         <div className="space-y-4">
           {filteredAchievements.map((achievement) => (
             <div 
               key={achievement.id}
-              className={`bg-white rounded-lg p-4 shadow-sm border-2 ${getRarityColor(achievement.rarity)} ${
+              className={`card ${getRarityColor(achievement.rarity)} ${
                 achievement.isCompleted ? 'ring-2 ring-green-500' : ''
               }`}
             >

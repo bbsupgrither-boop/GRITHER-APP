@@ -1,0 +1,535 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
+  <title>GRITHER - Telegram WebApp Demo</title>
+  <script src="https://telegram.org/js/telegram-web-app.js"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap&subset=cyrillic,cyrillic-ext" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #0B0B0C;
+      --surface: #111216;
+      --surface-2: #0F1012;
+      --text-1: rgba(255,255,255,.92);
+      --text-2: rgba(255,255,255,.64);
+      --border: rgba(255,255,255,.08);
+      --accent-w-1: #FF5630;
+      --accent-w-2: #FF6A3A;
+      --accent-c-1: #14D4C4;
+      --accent-c-2: #2CD3B8;
+      --success: #2BD67B;
+      --radius: 16px;
+      --grid: 40px;
+      --safe-top: env(safe-area-inset-top);
+      --safe-bottom: env(safe-area-inset-bottom);
+    }
+
+    * { box-sizing: border-box }
+    html, body { height: 100% }
+    body {
+      margin: 0;
+      font-family: Inter, system-ui, sans-serif;
+      color: var(--text-1);
+      background: var(--bg);
+      -webkit-font-smoothing: antialiased;
+    }
+
+    .bg {
+      position: fixed; inset: 0; pointer-events: none; z-index: -2;
+      background:
+        radial-gradient(600px 400px at -10% -10%, rgba(255,86,48,.25), transparent 60%),
+        radial-gradient(600px 400px at 110% 110%, rgba(20,212,196,.22), transparent 60%);
+    }
+    .grid {
+      position: fixed; inset: 0; pointer-events: none; z-index: -1;
+      background-image:
+        linear-gradient(rgba(255,255,255,.04) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,.04) 1px, transparent 1px);
+      background-size: var(--grid) var(--grid);
+      mask-image: radial-gradient(60% 60% at 50% 40%, rgba(255,255,255,.9), transparent 70%);
+    }
+
+    .wrap {
+      max-width: 480px; margin: 0 auto;
+      padding: calc(12px + var(--safe-top)) 16px calc(16px + var(--safe-bottom));
+    }
+
+    .header {
+      display: flex; align-items: center; gap: 12px; margin: 6px 0 20px;
+    }
+    .logo {
+      width: 28px; height: 28px; border-radius: 50%;
+      background: radial-gradient(circle at 30% 30%, var(--accent-w-2), var(--accent-w-1));
+      box-shadow: 0 0 24px rgba(255,86,48,.35);
+      display: flex; align-items: center; justify-content: center;
+      color: white; font-weight: 800; font-size: 14px;
+    }
+    h1 { font-size: 24px; margin: 0; font-weight: 700; }
+
+    .section {
+      margin: 24px 0;
+    }
+    .section-title {
+      font-size: 18px; font-weight: 600; margin: 0 0 12px; color: var(--text-1);
+    }
+
+    .card {
+      background: linear-gradient(180deg, var(--surface-2), var(--surface));
+      border: 1px solid var(--border); border-radius: var(--radius);
+      padding: 16px; margin: 8px 0;
+      box-shadow: inset 0 1px 0 rgba(255,255,255,.04), 0 8px 24px rgba(0,0,0,.45);
+    }
+
+    .btn {
+      display: inline-flex; align-items: center; justify-content: center; gap: 8px;
+      height: 48px; padding: 0 20px; border-radius: 12px; border: none;
+      font-weight: 600; font-size: 16px; cursor: pointer;
+      transition: all .2s ease; margin: 4px;
+    }
+    .btn-primary {
+      background: linear-gradient(90deg, var(--accent-w-1), var(--accent-w-2));
+      color: white; box-shadow: 0 0 24px rgba(255,86,48,.28);
+    }
+    .btn-primary:hover { transform: translateY(-1px); box-shadow: 0 0 36px rgba(255,86,48,.38); }
+    .btn-secondary {
+      background: var(--surface); color: var(--text-1); border: 1px solid var(--border);
+    }
+
+    .info-grid {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin: 12px 0;
+    }
+    .info-item {
+      background: var(--surface-2); border: 1px solid var(--border);
+      border-radius: 8px; padding: 8px; text-align: center;
+    }
+    .info-label { font-size: 12px; color: var(--text-2); margin-bottom: 4px; }
+    .info-value { font-weight: 600; font-size: 14px; }
+
+    .status-indicator {
+      display: inline-flex; align-items: center; gap: 6px;
+      padding: 4px 8px; border-radius: 8px; font-size: 12px; font-weight: 600;
+    }
+    .status-online { background: rgba(43,214,123,.1); color: var(--success); }
+    .status-offline { background: rgba(239,83,80,.1); color: #EF5350; }
+
+    .log {
+      background: var(--surface-2); border: 1px solid var(--border);
+      border-radius: 8px; padding: 12px; margin: 8px 0;
+      font-family: 'Courier New', monospace; font-size: 12px;
+      max-height: 200px; overflow-y: auto;
+    }
+    .log-entry {
+      margin: 2px 0; padding: 2px 0;
+    }
+    .log-time { color: var(--text-2); }
+    .log-event { color: var(--accent-w-1); font-weight: 600; }
+    .log-data { color: var(--text-1); }
+
+    .demo-controls {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin: 16px 0;
+    }
+  </style>
+</head>
+<body>
+  <div class="bg"></div>
+  <div class="grid"></div>
+
+  <div class="wrap">
+    <div class="header">
+      <div class="logo">G</div>
+      <h1>Telegram WebApp Demo</h1>
+    </div>
+
+    <!-- Статус WebApp -->
+    <div class="section">
+      <h2 class="section-title">Статус Telegram WebApp</h2>
+      <div class="card">
+        <div class="info-grid">
+          <div class="info-item">
+            <div class="info-label">Версия</div>
+            <div class="info-value" id="version">-</div>
+          </div>
+          <div class="info-item">
+            <div class="info-label">Платформа</div>
+            <div class="info-value" id="platform">-</div>
+          </div>
+          <div class="info-item">
+            <div class="info-label">Размер экрана</div>
+            <div class="info-value" id="viewport">-</div>
+          </div>
+          <div class="info-item">
+            <div class="info-label">Тема</div>
+            <div class="info-value" id="theme">-</div>
+          </div>
+        </div>
+        <div style="margin-top: 12px; text-align: center;">
+          <span class="status-indicator" id="webapp-status">
+            <div style="width: 6px; height: 6px; background: currentColor; border-radius: 50%;"></div>
+            Проверка...
+          </span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Параметры темы -->
+    <div class="section">
+      <h2 class="section-title">Параметры темы</h2>
+      <div class="card">
+        <div class="info-grid">
+          <div class="info-item">
+            <div class="info-label">Фон</div>
+            <div class="info-value" id="bg-color">-</div>
+          </div>
+          <div class="info-item">
+            <div class="info-label">Текст</div>
+            <div class="info-value" id="text-color">-</div>
+          </div>
+          <div class="info-item">
+            <div class="info-label">Кнопка</div>
+            <div class="info-value" id="button-color">-</div>
+          </div>
+          <div class="info-item">
+            <div class="info-label">Подсказка</div>
+            <div class="info-value" id="hint-color">-</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- MainButton демо -->
+    <div class="section">
+      <h2 class="section-title">MainButton</h2>
+      <div class="card">
+        <p style="margin: 0 0 12px; color: var(--text-2);">
+          Основная кнопка Telegram внизу экрана
+        </p>
+        <div class="demo-controls">
+          <button class="btn btn-secondary" onclick="showMainButton()">Показать</button>
+          <button class="btn btn-secondary" onclick="hideMainButton()">Скрыть</button>
+          <button class="btn btn-secondary" onclick="setMainButtonText('Готово!')">Изменить текст</button>
+          <button class="btn btn-secondary" onclick="setMainButtonText('Выполнить')">Сбросить</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- BackButton демо -->
+    <div class="section">
+      <h2 class="section-title">BackButton</h2>
+      <div class="card">
+        <p style="margin: 0 0 12px; color: var(--text-2);">
+          Кнопка "Назад" в верхней части экрана
+        </p>
+        <div class="demo-controls">
+          <button class="btn btn-secondary" onclick="showBackButton()">Показать</button>
+          <button class="btn btn-secondary" onclick="hideBackButton()">Скрыть</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Haptic Feedback -->
+    <div class="section">
+      <h2 class="section-title">Haptic Feedback</h2>
+      <div class="card">
+        <p style="margin: 0 0 12px; color: var(--text-2);">
+          Тактильная обратная связь при взаимодействии
+        </p>
+        <div class="demo-controls">
+          <button class="btn btn-primary" onclick="triggerHaptic('light')">Легкий</button>
+          <button class="btn btn-primary" onclick="triggerHaptic('medium')">Средний</button>
+          <button class="btn btn-primary" onclick="triggerHaptic('heavy')">Сильный</button>
+          <button class="btn btn-secondary" onclick="triggerHaptic('rigid')">Жесткий</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Popups -->
+    <div class="section">
+      <h2 class="section-title">Всплывающие окна</h2>
+      <div class="card">
+        <p style="margin: 0 0 12px; color: var(--text-2);">
+          Различные типы всплывающих уведомлений
+        </p>
+        <div class="demo-controls">
+          <button class="btn btn-primary" onclick="showAlert()">Alert</button>
+          <button class="btn btn-primary" onclick="showConfirm()">Confirm</button>
+          <button class="btn btn-primary" onclick="showPopup()">Popup</button>
+          <button class="btn btn-secondary" onclick="showScanPopup()">QR Scanner</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Cloud Storage -->
+    <div class="section">
+      <h2 class="section-title">Cloud Storage</h2>
+      <div class="card">
+        <p style="margin: 0 0 12px; color: var(--text-2);">
+          Работа с облачным хранилищем Telegram
+        </p>
+        <div class="demo-controls">
+          <button class="btn btn-secondary" onclick="saveToCloud()">Сохранить</button>
+          <button class="btn btn-secondary" onclick="loadFromCloud()">Загрузить</button>
+          <button class="btn btn-secondary" onclick="clearCloud()">Очистить</button>
+        </div>
+        <div class="info-item" style="margin-top: 12px;">
+          <div class="info-label">Ключ</div>
+          <div class="info-value">user_preferences</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Лог событий -->
+    <div class="section">
+      <h2 class="section-title">Лог событий</h2>
+      <div class="card">
+        <div class="log" id="event-log">
+          <div class="log-entry">
+            <span class="log-time">[00:00:00]</span>
+            <span class="log-event">INIT</span>
+            <span class="log-data">WebApp инициализирован</span>
+          </div>
+        </div>
+        <button class="btn btn-secondary" onclick="clearLog()" style="margin-top: 8px; width: 100%;">
+          Очистить лог
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const tg = window.Telegram?.WebApp;
+
+    // Логирование событий
+    function logEvent(event, data = '') {
+      const log = document.getElementById('event-log');
+      const time = new Date().toLocaleTimeString();
+      const entry = document.createElement('div');
+      entry.className = 'log-entry';
+      entry.innerHTML = `
+        <span class="log-time">[${time}]</span>
+        <span class="log-event">${event}</span>
+        <span class="log-data">${data}</span>
+      `;
+      log.appendChild(entry);
+      log.scrollTop = log.scrollHeight;
+    }
+
+    function clearLog() {
+      document.getElementById('event-log').innerHTML = '';
+      logEvent('CLEAR', 'Лог очищен');
+    }
+
+    // Инициализация WebApp
+    function initWebApp() {
+      if (!tg) {
+        document.getElementById('webapp-status').innerHTML = `
+          <div style="width: 6px; height: 6px; background: #EF5350; border-radius: 50%;"></div>
+          Не в Telegram
+        `;
+        document.getElementById('webapp-status').className = 'status-indicator status-offline';
+        logEvent('ERROR', 'Telegram WebApp не доступен');
+        return;
+      }
+
+      // Обновляем статус
+      document.getElementById('webapp-status').innerHTML = `
+        <div style="width: 6px; height: 6px; background: currentColor; border-radius: 50%;"></div>
+        Активен
+      `;
+      document.getElementById('webapp-status').className = 'status-indicator status-online';
+
+      // Основная инициализация
+      tg.ready();
+      tg.expand();
+      tg.setHeaderColor('#0B0B0C');
+
+      // Заполняем информацию о WebApp
+      document.getElementById('version').textContent = tg.version || 'Неизвестно';
+      document.getElementById('platform').textContent = tg.platform || 'Неизвестно';
+      document.getElementById('viewport').textContent = `${tg.viewportWidth}x${tg.viewportHeight}`;
+      document.getElementById('theme').textContent = tg.colorScheme || 'Неизвестно';
+
+      // Заполняем информацию о теме
+      const theme = tg.themeParams;
+      if (theme) {
+        document.getElementById('bg-color').textContent = theme.bg_color || '-';
+        document.getElementById('text-color').textContent = theme.text_color || '-';
+        document.getElementById('button-color').textContent = theme.button_color || '-';
+        document.getElementById('hint-color').textContent = theme.hint_color || '-';
+      }
+
+      logEvent('INIT', 'WebApp инициализирован');
+      logEvent('THEME', `Тема: ${tg.colorScheme}`);
+
+      // Обработчики событий
+      tg.onEvent('themeChanged', () => {
+        logEvent('THEME_CHANGED', 'Тема изменена');
+        // Обновляем параметры темы
+        const theme = tg.themeParams;
+        if (theme) {
+          document.getElementById('bg-color').textContent = theme.bg_color || '-';
+          document.getElementById('text-color').textContent = theme.text_color || '-';
+          document.getElementById('button-color').textContent = theme.button_color || '-';
+          document.getElementById('hint-color').textContent = theme.hint_color || '-';
+        }
+      });
+
+      tg.onEvent('viewportChanged', (isStateStable) => {
+        logEvent('VIEWPORT_CHANGED', `Стабильный: ${isStateStable}`);
+        document.getElementById('viewport').textContent = `${tg.viewportWidth}x${tg.viewportHeight}`;
+      });
+
+      tg.onEvent('mainButtonClicked', () => {
+        logEvent('MAIN_BUTTON', 'Нажата основная кнопка');
+        tg.showAlert('Основная кнопка нажата!');
+      });
+
+      tg.onEvent('backButtonClicked', () => {
+        logEvent('BACK_BUTTON', 'Нажата кнопка назад');
+        tg.showAlert('Кнопка назад нажата!');
+      });
+
+      // Настройка MainButton
+      tg.MainButton.setText('Демо действие');
+      tg.MainButton.color = '#FF5630';
+      tg.MainButton.textColor = '#ffffff';
+      tg.MainButton.show();
+    }
+
+    // Функции управления MainButton
+    function showMainButton() {
+      if (tg) {
+        tg.MainButton.show();
+        logEvent('MAIN_BUTTON', 'Показана');
+      }
+    }
+
+    function hideMainButton() {
+      if (tg) {
+        tg.MainButton.hide();
+        logEvent('MAIN_BUTTON', 'Скрыта');
+      }
+    }
+
+    function setMainButtonText(text) {
+      if (tg) {
+        tg.MainButton.setText(text);
+        logEvent('MAIN_BUTTON', `Текст изменен: "${text}"`);
+      }
+    }
+
+    // Функции управления BackButton
+    function showBackButton() {
+      if (tg) {
+        tg.BackButton.show();
+        logEvent('BACK_BUTTON', 'Показана');
+      }
+    }
+
+    function hideBackButton() {
+      if (tg) {
+        tg.BackButton.hide();
+        logEvent('BACK_BUTTON', 'Скрыта');
+      }
+    }
+
+    // Haptic Feedback
+    function triggerHaptic(type) {
+      if (tg && tg.HapticFeedback) {
+        tg.HapticFeedback.impactOccurred(type);
+        logEvent('HAPTIC', `Тип: ${type}`);
+      } else {
+        logEvent('HAPTIC', `Недоступен (тип: ${type})`);
+      }
+    }
+
+    // Popups
+    function showAlert() {
+      if (tg) {
+        tg.showAlert('Это простое уведомление');
+        logEvent('POPUP', 'Показан Alert');
+      }
+    }
+
+    function showConfirm() {
+      if (tg) {
+        tg.showConfirm('Вы уверены, что хотите продолжить?', (confirmed) => {
+          logEvent('CONFIRM', `Результат: ${confirmed ? 'Да' : 'Нет'}`);
+        });
+      }
+    }
+
+    function showPopup() {
+      if (tg) {
+        tg.showPopup({
+          title: 'Демо попап',
+          message: 'Это демонстрация всплывающего окна с кнопками',
+          buttons: [
+            { id: 'ok', type: 'ok' },
+            { id: 'cancel', type: 'cancel' }
+          ]
+        }, (buttonId) => {
+          logEvent('POPUP', `Нажата кнопка: ${buttonId}`);
+        });
+      }
+    }
+
+    function showScanPopup() {
+      if (tg) {
+        tg.showScanQrPopup({
+          text: 'Наведите камеру на QR-код'
+        }, (text) => {
+          logEvent('QR_SCAN', `Отсканировано: ${text}`);
+        });
+      } else {
+        logEvent('QR_SCAN', 'QR сканер недоступен');
+      }
+    }
+
+    // Cloud Storage
+    function saveToCloud() {
+      if (tg && tg.CloudStorage) {
+        const data = {
+          timestamp: new Date().toISOString(),
+          user: 'demo_user',
+          settings: { theme: 'dark', notifications: true }
+        };
+        tg.CloudStorage.setItem('user_preferences', JSON.stringify(data));
+        logEvent('CLOUD', 'Данные сохранены');
+      } else {
+        logEvent('CLOUD', 'Cloud Storage недоступен');
+      }
+    }
+
+    function loadFromCloud() {
+      if (tg && tg.CloudStorage) {
+        tg.CloudStorage.getItem('user_preferences', (error, value) => {
+          if (error) {
+            logEvent('CLOUD', `Ошибка загрузки: ${error}`);
+          } else {
+            logEvent('CLOUD', `Загружено: ${value || 'пусто'}`);
+          }
+        });
+      } else {
+        logEvent('CLOUD', 'Cloud Storage недоступен');
+      }
+    }
+
+    function clearCloud() {
+      if (tg && tg.CloudStorage) {
+        tg.CloudStorage.removeItem('user_preferences');
+        logEvent('CLOUD', 'Данные удалены');
+      } else {
+        logEvent('CLOUD', 'Cloud Storage недоступен');
+      }
+    }
+
+    // Инициализация при загрузке
+    document.addEventListener('DOMContentLoaded', () => {
+      initWebApp();
+    });
+
+    console.log('GRITHER Telegram Demo загружен');
+  </script>
+</body>
+</html>

@@ -1,0 +1,510 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
+  <title>GRITHER - Telegram WebApp</title>
+  <script src="https://telegram.org/js/telegram-web-app.js"></script>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap&subset=cyrillic,cyrillic-ext" rel="stylesheet">
+  <style>
+    /* Токены с фоллбэками, перезаписываются из themeParams */
+    :root {
+      --bg: #0B0B0C;
+      --surface: #111216;
+      --surface-2: #0F1012;
+      --text-1: rgba(255,255,255,.92);
+      --text-2: rgba(255,255,255,.64);
+      --border: rgba(255,255,255,.08);
+      --accent-w-1: #FF5630;
+      --accent-w-2: #FF6A3A;
+      --accent-c-1: #14D4C4;
+      --accent-c-2: #2CD3B8;
+      --success: #2BD67B;
+      --radius: 16px;
+      --grid: 40px;
+      --safe-top: env(safe-area-inset-top);
+      --safe-bottom: env(safe-area-inset-bottom);
+    }
+
+    * { box-sizing: border-box }
+    html, body { height: 100% }
+    body {
+      margin: 0;
+      font-family: Inter, system-ui, Segoe UI, Roboto, Arial, sans-serif;
+      color: var(--text-1);
+      background: var(--bg);
+      -webkit-font-smoothing: antialiased;
+      overflow-x: hidden;
+    }
+
+    /* Фоновая сетка и дуги */
+    .bg {
+      position: fixed; inset: 0; pointer-events: none; z-index: -2;
+      background:
+        radial-gradient(600px 400px at -10% -10%, rgba(255,86,48,.25), transparent 60%),
+        radial-gradient(600px 400px at 110% 110%, rgba(20,212,196,.22), transparent 60%),
+        linear-gradient(to bottom, rgba(0,0,0,.0), rgba(0,0,0,.2));
+    }
+    .grid {
+      position: fixed; inset: 0; pointer-events: none; z-index: -1;
+      background-image:
+        linear-gradient(rgba(255,255,255,.04) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,.04) 1px, transparent 1px);
+      background-size: var(--grid) var(--grid), var(--grid) var(--grid);
+      mask-image: radial-gradient(60% 60% at 50% 40%, rgba(255,255,255,.9), transparent 70%);
+    }
+
+    /* Контейнер */
+    .wrap {
+      max-width: 480px; margin: 0 auto;
+      padding: calc(12px + var(--safe-top)) 16px calc(16px + var(--safe-bottom));
+    }
+
+    /* Локальный header */
+    .local-header {
+      display: flex; align-items: center; gap: 12px; margin: 6px 0 12px;
+    }
+    .logo {
+      width: 28px; height: 28px; border-radius: 50%;
+      background: radial-gradient(circle at 30% 30%, var(--accent-w-2), var(--accent-w-1));
+      box-shadow: 0 0 24px rgba(255,86,48,.35);
+      display: flex; align-items: center; justify-content: center;
+      color: white; font-weight: 800; font-size: 14px;
+    }
+    h1 { font-size: 28px; line-height: 1.1; margin: 0; font-weight: 800; }
+    p.lead { color: var(--text-2); margin: 6px 0 0; font-size: 16px; }
+
+    /* Hero секция */
+    .hero {
+      text-align: center; margin: 20px 0 30px; padding: 24px 0;
+      background: radial-gradient(300px 200px at 50% 50%, rgba(255,86,48,.08), transparent 70%);
+      border-radius: var(--radius);
+    }
+    .hero h2 { font-size: 32px; margin: 0 0 8px; font-weight: 800; }
+    .hero .accent { color: var(--accent-w-1); }
+    .hero p { color: var(--text-2); margin: 0 0 20px; font-size: 17px; }
+
+    /* Карточки быстрых действий */
+    .cards {
+      display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; margin: 20px 0;
+    }
+    .card {
+      position: relative; padding: 16px 14px; border-radius: var(--radius);
+      background: linear-gradient(180deg, var(--surface-2), var(--surface));
+      border: 1px solid var(--border);
+      box-shadow: inset 0 1px 0 rgba(255,255,255,.04), 0 8px 24px rgba(0,0,0,.45);
+      transition: transform .22s ease, box-shadow .22s ease;
+      cursor: pointer; min-height: 90px; display: flex; flex-direction: column;
+    }
+    .card:hover {
+      transform: translateY(-2px);
+      box-shadow: inset 0 1px 0 rgba(255,255,255,.05), 0 14px 36px rgba(0,0,0,.55);
+    }
+    .card .icon {
+      width: 24px; height: 24px; margin-bottom: 10px;
+      filter: drop-shadow(0 0 10px rgba(255,255,255,.06));
+    }
+    .card h3 { margin: 0 0 6px; font-size: 16px; font-weight: 600; }
+    .card p { margin: 0; color: var(--text-2); font-size: 13px; line-height: 1.4; }
+
+    /* Большая метрика */
+    .metric {
+      margin: 20px 0; border-radius: var(--radius); padding: 20px;
+      background: linear-gradient(180deg, rgba(255,106,58,.06), rgba(20,212,196,.06)),
+                  linear-gradient(180deg, var(--surface-2), var(--surface));
+      border: 1px solid var(--border);
+      box-shadow: inset 0 1px 0 rgba(255,255,255,.05), 0 10px 28px rgba(0,0,0,.5);
+      position: relative; overflow: hidden;
+    }
+    .metric::before {
+      content: ''; position: absolute; inset: 0;
+      background: radial-gradient(200px 100px at 50% 0%, rgba(255,86,48,.1), transparent 70%);
+    }
+    .metric-content { position: relative; z-index: 1; }
+    .metric .value { 
+      font-size: 36px; font-weight: 800; letter-spacing: -0.5px; 
+      background: linear-gradient(135deg, var(--accent-w-1), var(--accent-w-2));
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    .metric .hint { color: var(--text-2); font-size: 14px; margin-top: 4px; }
+
+    /* Интеграции секция */
+    .integrations {
+      margin: 30px 0; text-align: center;
+    }
+    .integrations h3 {
+      font-size: 22px; margin: 0 0 20px; font-weight: 700;
+    }
+    .integrations .accent { color: var(--accent-w-1); }
+    .integrations p { color: var(--text-2); margin: 0 0 24px; font-size: 16px; }
+    
+    .integration-icons {
+      display: flex; align-items: center; justify-content: center; gap: 16px;
+      flex-wrap: wrap; margin: 0 auto; max-width: 300px;
+    }
+    .integration-icon {
+      width: 40px; height: 40px; border-radius: 50%;
+      background: var(--surface); border: 1px solid var(--border);
+      display: flex; align-items: center; justify-content: center;
+      transition: transform .2s ease, box-shadow .2s ease;
+      position: relative;
+    }
+    .integration-icon:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 24px rgba(255,86,48,.2);
+    }
+    .integration-icon.central {
+      width: 60px; height: 60px;
+      background: radial-gradient(circle at 30% 30%, var(--accent-w-2), var(--accent-w-1));
+      box-shadow: 0 0 32px rgba(255,86,48,.4);
+      animation: pulse 2s ease-in-out infinite;
+    }
+    @keyframes pulse {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.05); }
+    }
+
+    /* Кнопки */
+    .btn {
+      display: inline-flex; align-items: center; justify-content: center; gap: 8px;
+      height: 52px; padding: 0 20px; border-radius: 14px; border: 1px solid var(--border);
+      background: linear-gradient(90deg, var(--accent-w-1), var(--accent-w-2));
+      color: #fff; font-weight: 700; letter-spacing: .2px; text-decoration: none;
+      box-shadow: 0 0 24px rgba(255,86,48,.28);
+      transition: transform .2s, box-shadow .2s; font-size: 16px;
+    }
+    .btn:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 0 36px rgba(255,86,48,.38);
+    }
+    .btn-secondary {
+      background: var(--surface); color: var(--text-1);
+      box-shadow: 0 0 16px rgba(0,0,0,.3);
+    }
+    .btn-secondary:hover {
+      box-shadow: 0 0 24px rgba(0,0,0,.4);
+    }
+
+    /* Секционные заголовки */
+    .section-title {
+      margin: 32px 0 12px; font-size: 20px; color: var(--text-1); font-weight: 700;
+    }
+    .muted { color: var(--text-2); font-size: 14px; }
+
+    /* Анимации появления */
+    .reveal {
+      opacity: 0; transform: translateY(20px);
+      transition: opacity .4s ease, transform .4s ease;
+    }
+    .reveal.show { opacity: 1; transform: none; }
+
+    /* Статус индикаторы */
+    .status-indicator {
+      display: inline-flex; align-items: center; gap: 6px;
+      padding: 4px 8px; border-radius: 8px;
+      background: rgba(43,214,123,.1); border: 1px solid rgba(43,214,123,.2);
+      color: var(--success); font-size: 12px; font-weight: 600;
+    }
+
+    /* Адаптация для светлой темы */
+    @media (prefers-color-scheme: light) {
+      :root {
+        --bg: #F7F8FA;
+        --surface: #FFFFFF;
+        --surface-2: #F1F2F4;
+        --text-1: #0B0B0C;
+        --text-2: #6B7280;
+        --border: rgba(11,11,12,.08);
+      }
+      .bg {
+        background:
+          radial-gradient(600px 400px at -10% -10%, rgba(255,86,48,.15), transparent 60%),
+          radial-gradient(600px 400px at 110% 110%, rgba(20,212,196,.12), transparent 60%);
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="bg"></div>
+  <div class="grid"></div>
+
+  <div class="wrap">
+    <!-- Локальный header -->
+    <div class="local-header reveal">
+      <div class="logo" aria-hidden="true">G</div>
+      <div>
+        <h1>GRITHER</h1>
+        <p class="lead">Достижения и прогресс в Telegram</p>
+      </div>
+    </div>
+
+    <!-- Hero секция -->
+    <div class="hero reveal">
+      <h2>Добро пожаловать в <span class="accent">GRITHER</span></h2>
+      <p>Отслеживайте прогресс, выполняйте задачи и достигайте новых высот вместе с командой</p>
+      <div class="status-indicator">
+        <div style="width: 6px; height: 6px; background: var(--success); border-radius: 50%;"></div>
+        Система активна
+      </div>
+    </div>
+
+    <!-- Главная метрика -->
+    <div class="metric reveal" id="main-metric">
+      <div class="metric-content">
+        <div class="value">Уровень 12</div>
+        <div class="hint">1,247 XP • Следующий уровень через 253 XP</div>
+      </div>
+    </div>
+
+    <!-- Карточки быстрых действий -->
+    <div class="cards">
+      <div class="card reveal" data-action="tasks">
+        <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+          <path d="M9 12l2 2 4-4"/>
+          <circle cx="12" cy="12" r="10"/>
+        </svg>
+        <h3>Задачи</h3>
+        <p>Ежедневные задания и квесты</p>
+      </div>
+      
+      <div class="card reveal" data-action="achievements">
+        <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+          <path d="M6 9H4.5a2.5 2.5 0 0 1 0-5H6"/>
+          <path d="M18 9h1.5a2.5 2.5 0 0 0 0-5H18"/>
+          <path d="M4 22h16"/>
+          <path d="M10 14.66V17c0 .55-.47.98-.97 1.21l-1.25.5"/>
+          <path d="M14 14.66V17c0 .55.47.98.97 1.21l1.25.5"/>
+          <path d="M18 2H6v7a6 6 0 0 0 12 0V2Z"/>
+        </svg>
+        <h3>Достижения</h3>
+        <p>Награды и прогресс</p>
+      </div>
+      
+      <div class="card reveal" data-action="shop">
+        <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+          <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/>
+          <polyline points="9,22 9,12 15,12 15,22"/>
+        </svg>
+        <h3>Магазин</h3>
+        <p>Покупки и улучшения</p>
+      </div>
+      
+      <div class="card reveal" data-action="battles">
+        <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+          <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+        </svg>
+        <h3>Битвы</h3>
+        <p>Соревнования с командой</p>
+      </div>
+    </div>
+
+    <!-- Секция интеграций -->
+    <div class="integrations reveal">
+      <h3>Интеграции и <span class="accent">подключения</span></h3>
+      <p>GRITHER работает с вашими любимыми сервисами</p>
+      
+      <div class="integration-icons">
+        <div class="integration-icon">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+            <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/>
+          </svg>
+        </div>
+        <div class="integration-icon">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+            <path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"/>
+          </svg>
+        </div>
+        <div class="integration-icon central">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <circle cx="12" cy="12" r="10"/>
+            <path d="M12 6v6l4 2"/>
+          </svg>
+        </div>
+        <div class="integration-icon">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+            <rect x="3" y="3" width="18" height="18" rx="2" ry="2"/>
+            <circle cx="8.5" cy="8.5" r="1.5"/>
+            <polyline points="21,15 16,10 5,21"/>
+          </svg>
+        </div>
+        <div class="integration-icon">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+            <path d="M14.828 14.828a4 4 0 0 1-5.656 0M9 10h.01M15 10h.01M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0z"/>
+          </svg>
+        </div>
+      </div>
+    </div>
+
+    <!-- Дополнительная информация -->
+    <div class="reveal">
+      <div class="section-title">Статус системы</div>
+      <p class="muted">Все сервисы работают стабильно. Последнее обновление: 2 минуты назад</p>
+    </div>
+  </div>
+
+  <script>
+    const tg = window.Telegram?.WebApp;
+
+    // 1) Инициализация и fullscreen
+    if (tg) {
+      tg.ready();
+      tg.expand();
+      
+      // Устанавливаем заголовок
+      tg.setHeaderColor('#0B0B0C');
+    }
+
+    // 2) Применение темы из Telegram
+    function applyTheme(themeParams) {
+      if (!themeParams) return;
+      
+      const root = document.documentElement;
+      const map = {
+        '--bg': themeParams.bg_color || '#0B0B0C',
+        '--surface': themeParams.secondary_bg_color || '#111216',
+        '--surface-2': themeParams.secondary_bg_color || '#0F1012',
+        '--text-1': themeParams.text_color || 'rgba(255,255,255,.92)',
+        '--text-2': themeParams.hint_color || 'rgba(255,255,255,.64)',
+        '--border': themeParams.section_separator_color || 'rgba(255,255,255,.08)',
+        '--accent-w-1': themeParams.button_color || '#FF5630',
+        '--accent-w-2': themeParams.button_color || '#FF6A3A'
+      };
+      
+      Object.entries(map).forEach(([key, value]) => {
+        root.style.setProperty(key, value);
+      });
+      
+      // Настройка MainButton
+      if (tg && tg.MainButton) {
+        tg.MainButton.color = themeParams.button_color || '#FF5630';
+        tg.MainButton.textColor = themeParams.button_text_color || '#ffffff';
+        tg.MainButton.setText('Выполнить основное действие');
+        tg.MainButton.show();
+        
+        tg.onEvent('mainButtonClicked', () => {
+          tg.HapticFeedback?.impactOccurred('medium');
+          tg.showPopup({
+            title: 'Действие выполнено',
+            message: 'Основная задача завершена успешно',
+            buttons: [{ type: 'ok' }]
+          });
+        });
+      }
+    }
+
+    // Применяем тему при загрузке
+    applyTheme(tg?.themeParams);
+    
+    // Слушаем изменения темы
+    tg?.onEvent('themeChanged', () => applyTheme(tg.themeParams));
+
+    // 3) Обработка кликов по карточкам
+    function setupCardActions() {
+      document.querySelectorAll('.card[data-action]').forEach(card => {
+        card.addEventListener('click', (e) => {
+          e.preventDefault();
+          const action = card.dataset.action;
+          
+          // Хаптик
+          tg?.HapticFeedback?.impactOccurred('light');
+          
+          // Обработка действий
+          switch (action) {
+            case 'tasks':
+              tg?.showPopup({
+                title: 'Задачи',
+                message: 'Переход к списку заданий...',
+                buttons: [{ type: 'ok' }]
+              });
+              break;
+            case 'achievements':
+              tg?.showPopup({
+                title: 'Достижения',
+                message: 'Просмотр наград и прогресса...',
+                buttons: [{ type: 'ok' }]
+              });
+              break;
+            case 'shop':
+              tg?.showPopup({
+                title: 'Магазин',
+                message: 'Открытие магазина улучшений...',
+                buttons: [{ type: 'ok' }]
+              });
+              break;
+            case 'battles':
+              tg?.showPopup({
+                title: 'Битвы',
+                message: 'Подготовка к соревнованиям...',
+                buttons: [{ type: 'ok' }]
+              });
+              break;
+          }
+        });
+      });
+    }
+
+    // 4) Анимация появления элементов
+    function setupRevealAnimation() {
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('show');
+            observer.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.1 });
+      
+      document.querySelectorAll('.reveal').forEach(el => {
+        observer.observe(el);
+      });
+    }
+
+    // 5) Обработка клика по главной метрике
+    document.getElementById('main-metric')?.addEventListener('click', () => {
+      tg?.HapticFeedback?.impactOccurred('medium');
+      tg?.showPopup({
+        title: 'Детальная статистика',
+        message: 'Уровень: 12\nXP: 1,247 из 1,500\nПрогресс: 83%',
+        buttons: [{ type: 'ok' }]
+      });
+    });
+
+    // 6) Инициализация при загрузке
+    document.addEventListener('DOMContentLoaded', () => {
+      setupCardActions();
+      setupRevealAnimation();
+      
+      // Показываем уведомление о готовности
+      setTimeout(() => {
+        tg?.showAlert('GRITHER готов к работе!');
+      }, 1000);
+    });
+
+    // 7) Обработка закрытия приложения
+    tg?.onEvent('viewportChanged', (isStateStable) => {
+      if (isStateStable) {
+        console.log('Viewport стабилизирован');
+      }
+    });
+
+    // 8) Демонстрация BackButton (для вложенных экранов)
+    function showSubScreen(title) {
+      if (tg && tg.BackButton) {
+        tg.BackButton.show();
+        tg.onEvent('backButtonClicked', () => {
+          tg.HapticFeedback?.impactOccurred('light');
+          tg.BackButton.hide();
+          // Возврат к главному экрану
+        });
+      }
+    }
+
+    // 9) Логирование для отладки
+    console.log('GRITHER WebApp загружен');
+    console.log('Telegram WebApp:', tg);
+    console.log('Theme params:', tg?.themeParams);
+  </script>
+</body>
+</html>

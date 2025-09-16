@@ -1,0 +1,24 @@
+{
+  "name": "grither-telegram-webapp",
+  "version": "1.0.0",
+  "description": "GRITHER Telegram WebApp в стиле dark tech premium",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node server.js",
+    "serve": "node server.js"
+  },
+  "keywords": [
+    "telegram",
+    "webapp",
+    "dark-theme",
+    "premium",
+    "ui",
+    "components"
+  ],
+  "author": "GRITHER Team",
+  "license": "MIT",
+  "engines": {
+    "node": ">=14.0.0"
+  }
+}

@@ -1,5 +1,6 @@
 import React from 'react';
-import { Bell, Settings, User, Gift, Star } from 'lucide-react';
+import Bell from 'lucide-react/dist/esm/icons/bell';
+import Settings from 'lucide-react/dist/esm/icons/settings';
 
 interface User {
   id: string;
@@ -19,12 +20,12 @@ interface HeaderProps {
   onProfileClick: () => void;
 }
 
-export const Header: React.FC<HeaderProps> = ({
+export const Header = ({
   user,
   onNotificationsClick,
   onSettingsClick,
   onProfileClick
-}) => {
+}: HeaderProps): JSX.Element => {
   const getLevelColor = (level: number): string => {
     if (level >= 20) return '#fbbf24'; // Золотой уровень GRITHER
     if (level >= 15) return '#a855f7'; // Фиолетовый уровень GLEB
@@ -45,8 +46,8 @@ export const Header: React.FC<HeaderProps> = ({
   };
 
   return (
-    <header className="bg-white shadow-sm border-b sticky top-0 z-50">
-      <div className="px-4 py-3">
+    <header className="header">
+      <div className="header-content">
         <div className="flex items-center justify-between">
           {/* User Profile Section */}
           <div className="flex items-center space-x-3">
@@ -73,27 +74,13 @@ export const Header: React.FC<HeaderProps> = ({
             <div className="relative">
               <button
                 onClick={onNotificationsClick}
-                className="bg-blue-500 text-white px-3 py-2 rounded-full text-sm font-medium hover:bg-blue-600 transition-colors flex items-center space-x-1"
+                className="p-2 text-gray-600 hover:text-gray-900 hover:bg-gray-100 rounded-full transition-colors"
               >
-                <Bell className="w-4 h-4" />
-                <span>Уведомления</span>
+                <Bell className="w-5 h-5" />
               </button>
               {user.notifications > 0 && (
                 <span className="absolute -top-1 -right-1 bg-red-500 text-white text-xs rounded-full w-5 h-5 flex items-center justify-center">
                   {user.notifications}
-                </span>
-              )}
-            </div>
-
-            {/* Rewards */}
-            <div className="relative">
-              <button className="bg-blue-500 text-white px-3 py-2 rounded-full text-sm font-medium hover:bg-blue-600 transition-colors flex items-center space-x-1">
-                <Star className="w-4 h-4" />
-                <span>Награды</span>
-              </button>
-              {user.rewards > 0 && (
-                <span className="absolute -top-1 -right-1 bg-red-500 text-white text-xs rounded-full w-5 h-5 flex items-center justify-center">
-                  {user.rewards}
                 </span>
               )}
             </div>

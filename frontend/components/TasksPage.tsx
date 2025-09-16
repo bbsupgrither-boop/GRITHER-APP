@@ -1,5 +1,9 @@
 import React, { useState } from 'react';
-import { CheckCircle, Clock, Star, Target, Zap } from 'lucide-react';
+import CheckCircle from 'lucide-react/dist/esm/icons/check-circle';
+import Clock from 'lucide-react/dist/esm/icons/clock';
+import Star from 'lucide-react/dist/esm/icons/star';
+import Target from 'lucide-react/dist/esm/icons/target';
+import Zap from 'lucide-react/dist/esm/icons/zap';
 
 interface Task {
   id: string;
@@ -24,7 +28,7 @@ interface TasksPageProps {
   };
 }
 
-export const TasksPage: React.FC<TasksPageProps> = ({ user }) => {
+export const TasksPage = ({ user }: TasksPageProps): JSX.Element => {
   const [tasks, setTasks] = useState<Task[]>([
     {
       id: '1',
@@ -102,10 +106,10 @@ export const TasksPage: React.FC<TasksPageProps> = ({ user }) => {
   const totalTasks = tasks.length;
 
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="app">
       {/* Header */}
-      <div className="bg-white shadow-sm border-b">
-        <div className="px-4 py-6">
+      <div className="header">
+        <div className="header-content">
           <div className="flex items-center justify-between">
             <div>
               <h1 className="text-2xl font-bold text-gray-900">Задания</h1>
@@ -120,8 +124,8 @@ export const TasksPage: React.FC<TasksPageProps> = ({ user }) => {
       </div>
 
       {/* Progress Overview */}
-      <div className="px-4 py-4">
-        <div className="bg-white rounded-lg p-4 shadow-sm border">
+      <div className="container">
+        <div className="card">
           <div className="flex items-center justify-between mb-3">
             <h3 className="font-semibold text-gray-900">Общий прогресс</h3>
             <span className="text-sm text-gray-500">
@@ -138,14 +142,12 @@ export const TasksPage: React.FC<TasksPageProps> = ({ user }) => {
       </div>
 
       {/* Tasks List */}
-      <div className="px-4 pb-20">
+      <div className="container">
         <div className="space-y-4">
           {tasks.map((task) => (
             <div 
               key={task.id} 
-              className={`bg-white rounded-lg p-4 shadow-sm border ${
-                task.isCompleted ? 'opacity-75' : ''
-              }`}
+              className={`card ${task.isCompleted ? 'opacity-75' : ''}`}
             >
               <div className="flex items-start justify-between mb-3">
                 <div className="flex-1">

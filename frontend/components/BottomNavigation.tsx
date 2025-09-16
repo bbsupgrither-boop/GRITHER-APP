@@ -1,70 +1,84 @@
 import React from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { Home, Trophy, CheckSquare, ShoppingCart, User } from 'lucide-react';
+import HomeIcon from 'lucide-react/dist/esm/icons/home';
+import TrophyIcon from 'lucide-react/dist/esm/icons/trophy';
+import CheckSquareIcon from 'lucide-react/dist/esm/icons/check-square';
+import ShoppingCartIcon from 'lucide-react/dist/esm/icons/shopping-cart';
+import UserIcon from 'lucide-react/dist/esm/icons/user';
 
 interface BottomNavigationProps {
   className?: string;
+  theme?: 'light' | 'dark';
+  currentPage?: string;
+  onNavigate?: (page: string) => void;
 }
 
-export const BottomNavigation: React.FC<BottomNavigationProps> = ({ className = '' }) => {
+export function BottomNavigation({ className = '', theme, currentPage, onNavigate }: BottomNavigationProps): JSX.Element {
   const location = useLocation();
 
   const navItems = [
     {
       path: '/home',
-      icon: Home,
+      icon: HomeIcon,
       label: 'Главная',
-      active: location.pathname === '/home' || location.pathname === '/' || location.pathname === ''
+      active: (currentPage ? currentPage === 'home' : (location.pathname === '/home' || location.pathname === '/' || location.pathname === ''))
     },
     {
       path: '/achievements',
-      icon: Trophy,
+      icon: TrophyIcon,
       label: 'Достижения',
-      active: location.pathname === '/achievements'
+      active: currentPage ? currentPage === 'achievements' : location.pathname === '/achievements'
     },
     {
       path: '/tasks',
-      icon: CheckSquare,
+      icon: CheckSquareIcon,
       label: 'Задания',
-      active: location.pathname === '/tasks'
+      active: currentPage ? currentPage === 'tasks' : location.pathname === '/tasks'
     },
     {
       path: '/shop',
-      icon: ShoppingCart,
+      icon: ShoppingCartIcon,
       label: 'Магазин',
-      active: location.pathname === '/shop'
+      active: currentPage ? currentPage === 'shop' : location.pathname === '/shop'
     },
     {
       path: '/profile',
-      icon: User,
+      icon: UserIcon,
       label: 'Профиль',
-      active: location.pathname === '/profile'
+      active: currentPage ? currentPage === 'profile' : location.pathname === '/profile'
     }
   ];
 
   return (
-    <nav className={`bg-white border-t border-gray-200 px-4 py-2 ${className}`}>
-      <div className="flex justify-around items-center max-w-md mx-auto">
+    <nav className={`bottom-nav ${className}`}>
+      <div className="nav-items">
         {navItems.map((item) => {
           const Icon = item.icon;
+          const pageKey = item.path.replace('/', '');
+          if (onNavigate) {
+            return (
+              <button
+                key={item.path}
+                onClick={() => onNavigate(pageKey)}
+                className={`nav-item ${item.active ? 'active' : ''}`}
+                aria-label={item.label}
+              >
+                <Icon className="nav-icon" />
+              </button>
+            );
+          }
           return (
             <Link
               key={item.path}
               to={item.path}
-              className={`flex flex-col items-center py-2 px-3 rounded-lg transition-colors ${
-                item.active
-                  ? 'text-blue-600 bg-blue-50'
-                  : 'text-gray-600 hover:text-blue-600 hover:bg-gray-50'
-              }`}
+              className={`nav-item ${item.active ? 'active' : ''}`}
+              aria-label={item.label}
             >
-              <Icon className={`w-5 h-5 mb-1 ${item.active ? 'text-blue-600' : 'text-gray-600'}`} />
-              <span className={`text-xs font-medium ${item.active ? 'text-blue-600' : 'text-gray-600'}`}>
-                {item.label}
-              </span>
+              <Icon className="nav-icon" />
             </Link>
           );
         })}
       </div>
     </nav>
   );
-};
+}

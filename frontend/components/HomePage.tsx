@@ -1,16 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import { 
-  Trophy, 
-  Target, 
-  Users, 
-  Zap, 
-  Star,
-  TrendingUp,
-  Award,
-  Coins,
-  Gift
-} from 'lucide-react';
+import Trophy from 'lucide-react/dist/esm/icons/trophy';
+import Target from 'lucide-react/dist/esm/icons/target';
+import Users from 'lucide-react/dist/esm/icons/users';
+import Zap from 'lucide-react/dist/esm/icons/zap';
+import Gift from 'lucide-react/dist/esm/icons/gift';
 import { ProductionModal } from './ProductionModal';
 
 interface User {
@@ -46,10 +40,7 @@ interface HomePageProps {
   currentUser: User;
 }
 
-export const HomePage: React.FC<HomePageProps> = ({
-  onCreateBattle,
-  currentUser
-}) => {
+export const HomePage = ({ onCreateBattle, currentUser }: HomePageProps) => {
   // Mock data for battles
   const activeBattles: Battle[] = [
     { id: '1', opponent: 'Александр Петрович', status: 'active' }
@@ -105,103 +96,65 @@ export const HomePage: React.FC<HomePageProps> = ({
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-blue-50 to-white">
-      {/* Header */}
-
+    <div className="app">
       {/* Main Content */}
-      <div className="px-4 py-6 space-y-6">
+      <div className="container">
         {/* Logo Section */}
-        <div className="text-center">
-          <h1 className="text-4xl font-bold text-gray-800 mb-2">GRITHER</h1>
-          <p className="text-gray-600">Добро пожаловать в мир достижений!</p>
+        <div className="text-center fade-in">
+          <h1>GRITHER</h1>
+          <p>Добро пожаловать в мир достижений!</p>
         </div>
                   
         {/* Stats Cards */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-          <div className="bg-white rounded-lg p-4 shadow-sm border">
-            <div className="flex items-center justify-between">
-              <div>
-                <p className="text-sm text-gray-500">Уровень</p>
-                <p className="text-2xl font-bold text-blue-600">{currentUser?.level || 1}</p>
-                    </div>
-              <div className="w-12 h-12 bg-blue-100 rounded-full flex items-center justify-center">
-                <TrendingUp className="w-6 h-6 text-blue-600" />
-                    </div>
-                  </div>
-            <div className="mt-3">
-              <div className="flex justify-between text-sm text-gray-600 mb-1">
-                <span>Прогресс</span>
-                <span>{Math.round(getProgressValue('level'))}%</span>
-              </div>
-              <div className="w-full bg-gray-200 rounded-full h-2">
-                <div 
-                  className="bg-blue-600 h-2 rounded-full transition-all duration-300"
-                  style={{ width: `${getProgressValue('level')}%` }}
-                ></div>
-                </div>
+        <div className="stats-grid">
+          <div className="stat-card fade-in">
+            <div className="stat-value">{currentUser?.level || 1}</div>
+            <p className="stat-label">Уровень</p>
+            <div className="progress">
+              <div 
+                className="progress-bar"
+                style={{ width: `${getProgressValue('level')}%` }}
+              ></div>
             </div>
+            <p className="stat-label">{Math.round(getProgressValue('level'))}% прогресс</p>
           </div>
 
-          <div className="bg-white rounded-lg p-4 shadow-sm border">
-            <div className="flex items-center justify-between">
-                <div>
-                <p className="text-sm text-gray-500">Достижения</p>
-                <p className="text-2xl font-bold text-green-600">{currentUser?.achievements || 0}</p>
-              </div>
-              <div className="w-12 h-12 bg-green-100 rounded-full flex items-center justify-center">
-                <Award className="w-6 h-6 text-green-600" />
-                </div>
-                </div>
-            <div className="mt-3">
-              <div className="flex justify-between text-sm text-gray-600 mb-1">
-                <span>Прогресс</span>
-                <span>{Math.round(getProgressValue('achievements'))}%</span>
-                </div>
-              <div className="w-full bg-gray-200 rounded-full h-2">
-                <div 
-                  className="bg-green-600 h-2 rounded-full transition-all duration-300"
-                  style={{ width: `${getProgressValue('achievements')}%` }}
-                ></div>
-              </div>
+          <div className="stat-card fade-in">
+            <div className="stat-value">{currentUser?.achievements || 0}</div>
+            <p className="stat-label">Достижения</p>
+            <div className="progress">
+              <div 
+                className="progress-bar"
+                style={{ width: `${getProgressValue('achievements')}%` }}
+              ></div>
             </div>
+            <p className="stat-label">{Math.round(getProgressValue('achievements'))}% прогресс</p>
           </div>
 
-          <div className="bg-white rounded-lg p-4 shadow-sm border">
-            <div className="flex items-center justify-between">
-              <div>
-                <p className="text-sm text-gray-500">Монеты</p>
-                <p className="text-2xl font-bold text-yellow-600">{currentUser?.coins || 0}</p>
-              </div>
-              <div className="w-12 h-12 bg-yellow-100 rounded-full flex items-center justify-center">
-                <Coins className="w-6 h-6 text-yellow-600" />
-              </div>
-                  </div>
-            <div className="mt-3">
-              <div className="flex justify-between text-sm text-gray-600 mb-1">
-                <span>Прогресс</span>
-                <span>{Math.round(getProgressValue('balance'))}%</span>
-              </div>
-              <div className="w-full bg-gray-200 rounded-full h-2">
-                <div 
-                  className="bg-yellow-600 h-2 rounded-full transition-all duration-300"
-                  style={{ width: `${getProgressValue('balance')}%` }}
-                ></div>
-              </div>
+          <div className="stat-card fade-in">
+            <div className="stat-value">{currentUser?.coins || 0}</div>
+            <p className="stat-label">Монеты</p>
+            <div className="progress">
+              <div 
+                className="progress-bar"
+                style={{ width: `${getProgressValue('balance')}%` }}
+              ></div>
             </div>
-              </div>
-            </div>
+            <p className="stat-label">{Math.round(getProgressValue('balance'))}% прогресс</p>
+          </div>
+        </div>
 
         {/* Battle Section */}
-        <div className="bg-white rounded-lg p-6 shadow-sm border">
-          <div className="flex items-center justify-between mb-4">
-            <h3 className="text-lg font-semibold text-gray-900">Битвы</h3>
+        <div className="card fade-in">
+          <div className="card-content">
+            <h3>Битвы</h3>
             <button 
               onClick={handleCreateBattle}
-              className="bg-blue-500 text-white px-4 py-2 rounded-lg text-sm font-medium hover:bg-blue-600 transition-colors"
+              className="btn btn-primary"
             >
               Создать битву
-                </button>
-              </div>
+            </button>
+          </div>
 
           {activeBattles.length > 0 ? (
             <div className="space-y-3">
@@ -238,35 +191,40 @@ export const HomePage: React.FC<HomePageProps> = ({
         <div className="grid grid-cols-2 gap-4">
           <Link 
             to="/achievements" 
-            className="bg-gradient-to-r from-purple-500 to-pink-500 text-white p-4 rounded-lg shadow-sm hover:shadow-md transition-shadow"
+            className="card fade-in"
           >
-            <div className="flex items-center space-x-3">
-              <Trophy className="w-6 h-6" />
-              <div>
-                <p className="font-medium">Достижения</p>
-                <p className="text-sm opacity-90">Просмотреть награды</p>
+            <div className="card-content">
+              <div className="flex items-center space-x-3">
+                <Trophy className="w-6 h-6 text-accent-w-1" />
+                <div>
+                  <p className="font-medium">Достижения</p>
+                  <p className="text-sm opacity-90">Просмотреть награды</p>
+                </div>
               </div>
             </div>
           </Link>
 
           <Link 
             to="/shop" 
-            className="bg-gradient-to-r from-green-500 to-teal-500 text-white p-4 rounded-lg shadow-sm hover:shadow-md transition-shadow"
+            className="card fade-in"
           >
-            <div className="flex items-center space-x-3">
-              <Gift className="w-6 h-6" />
-              <div>
-                <p className="font-medium">Магазин</p>
-                <p className="text-sm opacity-90">Купить предметы</p>
+            <div className="card-content">
+              <div className="flex items-center space-x-3">
+                <Gift className="w-6 h-6 text-accent-c-1" />
+                <div>
+                  <p className="font-medium">Магазин</p>
+                  <p className="text-sm opacity-90">Купить предметы</p>
+                </div>
               </div>
             </div>
           </Link>
         </div>
 
         {/* Leaderboard */}
-        <div className="bg-white rounded-lg p-6 shadow-sm border">
-          <h3 className="text-lg font-semibold text-gray-900 mb-4">Лидерборд</h3>
-          <div className="space-y-3">
+        <div className="card fade-in">
+          <div className="card-content">
+            <h3>Лидерборд</h3>
+            <div className="space-y-3">
             {mockLeaderboard.map((entry, index) => (
               <div key={entry.id} className="flex items-center justify-between p-3 bg-gray-50 rounded-lg">
                 <div className="flex items-center space-x-3">
@@ -283,6 +241,7 @@ export const HomePage: React.FC<HomePageProps> = ({
                 <Zap className="w-5 h-5 text-yellow-500" />
                 </div>
               ))}
+            </div>
           </div>
         </div>
       </div>

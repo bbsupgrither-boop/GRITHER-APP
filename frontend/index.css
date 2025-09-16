@@ -3,7 +3,7 @@
 /* Removed Tailwind directives as the compiled CSS is already in this file */
 
 /* Import GRITHER Theme System */
-@import './styles/theme-clean.css';
+@import './styles/theme-dark-premium.css';
 @import './src/styles/tokens.css';
 @import './src/styles/mobile.css';
 
