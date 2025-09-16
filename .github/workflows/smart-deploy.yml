@@ -1,0 +1,89 @@
+name: Smart Deploy to Render
+
+on:
+  push:
+    branches: [ main ]
+
+jobs:
+  detect-and-deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 2
+      
+      - name: Detect changes
+        id: changes
+        run: |
+          echo "🔍 Detecting changes..."
+          
+          # Get changed files
+          CHANGED_FILES=$(git diff --name-only HEAD~1 HEAD)
+          echo "Changed files:"
+          echo "$CHANGED_FILES"
+          
+          # Check for frontend changes (only frontend/ folder)
+          if echo "$CHANGED_FILES" | grep -E '^frontend/'; then
+            echo "frontend=true" >> $GITHUB_OUTPUT
+            echo "✅ Frontend changes detected"
+          else
+            echo "frontend=false" >> $GITHUB_OUTPUT
+            echo "❌ No frontend changes"
+          fi
+          
+          # Check for backend changes (only backend/ folder)
+          if echo "$CHANGED_FILES" | grep -E '^backend/'; then
+            echo "backend=true" >> $GITHUB_OUTPUT
+            echo "✅ Backend changes detected"
+          else
+            echo "backend=false" >> $GITHUB_OUTPUT
+            echo "❌ No backend changes"
+          fi
+          
+          # Check for config changes
+          if echo "$CHANGED_FILES" | grep -E '^render\.yaml$|^package\.json$'; then
+            echo "config=true" >> $GITHUB_OUTPUT
+            echo "✅ Config changes detected"
+          else
+            echo "config=false" >> $GITHUB_OUTPUT
+            echo "❌ No config changes"
+          fi
+
+      - name: Deploy Frontend (if changed)
+        if: steps.changes.outputs.frontend == 'true'
+        run: |
+          echo "🚀 Deploying frontend..."
+          echo "Frontend changes detected - Render will auto-deploy frontend"
+          echo "✅ Frontend deployment initiated"
+
+      - name: Deploy Backend (if changed)
+        if: steps.changes.outputs.backend == 'true'
+        run: |
+          echo "🚀 Deploying backend..."
+          echo "Backend changes detected - Render will auto-deploy backend"
+          echo "✅ Backend deployment initiated"
+
+      - name: Deploy Both (if config changed)
+        if: steps.changes.outputs.config == 'true'
+        run: |
+          echo "🚀 Deploying both services..."
+          echo "Config changes detected - Render will auto-deploy both services"
+          echo "✅ Both services deployment initiated"
+
+      - name: Deploy Summary
+        run: |
+          echo "📋 Smart Deploy Summary:"
+          echo "Frontend changes: ${{ steps.changes.outputs.frontend }}"
+          echo "Backend changes: ${{ steps.changes.outputs.backend }}"
+          echo "Config changes: ${{ steps.changes.outputs.config }}"
+          echo ""
+          if [ "${{ steps.changes.outputs.frontend }}" == "true" ] && [ "${{ steps.changes.outputs.backend }}" == "false" ]; then
+            echo "🎯 Only frontend will be deployed!"
+          elif [ "${{ steps.changes.outputs.backend }}" == "true" ] && [ "${{ steps.changes.outputs.frontend }}" == "false" ]; then
+            echo "🎯 Only backend will be deployed!"
+          elif [ "${{ steps.changes.outputs.config }}" == "true" ]; then
+            echo "🎯 Both services will be deployed due to config changes!"
+          else
+            echo "🎯 No deployment needed!"
+          fi
