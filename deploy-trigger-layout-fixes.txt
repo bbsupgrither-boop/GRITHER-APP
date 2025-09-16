@@ -1,0 +1,21 @@
+Deploy trigger for layout fixes - 2025-01-27
+
+Changes included:
+- ✅ Fixed Header component props in CasesPage.tsx
+- ✅ Reduced spacing issues in CasesPage layout
+- ✅ Made free case card more compact
+- ✅ Improved overall UI spacing and positioning
+- ✅ Added proper user object structure for Header component
+- ✅ Updated CasesPageProps interface with additional properties
+
+Technical details:
+- Changed space-y-6 to space-y-3 in main container
+- Reduced space-y-6 to space-y-4 in all render functions
+- Made free case card more compact (p-6 to p-4)
+- Reduced icon container size from w-32 h-32 to w-24 h-24
+- Reduced gift icon size from w-16 h-16 to w-12 h-12
+- Added pt-2 to main container for better top spacing
+
+Commit: Layout fixes for better spacing and positioning
+Timestamp: 2025-01-27
+Status: Ready for deployment
