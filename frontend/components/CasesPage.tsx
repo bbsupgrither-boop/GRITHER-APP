@@ -272,7 +272,7 @@ export function CasesPage({
   };
 
   const renderFreeCase = () => (
-    <div className="space-y-6">
+    <div className="space-y-4">
       {/* Р В Р’В Р Р†Р вЂљРІР‚СњР В Р’В Р вЂ™Р’В°Р В Р’В Р РЋРІР‚вЂњР В Р’В Р РЋРІР‚СћР В Р’В Р вЂ™Р’В»Р В Р’В Р РЋРІР‚СћР В Р’В Р В РІР‚В Р В Р’В Р РЋРІР‚СћР В Р’В Р РЋРІР‚Сњ Р В Р’В Р СћРІР‚ВР В Р’В Р вЂ™Р’В»Р В Р Р‹Р В Р РЏ Р В Р’В Р вЂ™Р’В±Р В Р’В Р вЂ™Р’ВµР В Р Р‹Р В РЎвЂњР В Р’В Р РЋРІР‚вЂќР В Р’В Р вЂ™Р’В»Р В Р’В Р вЂ™Р’В°Р В Р Р‹Р Р†Р вЂљРЎв„ўР В Р’В Р В РІР‚В¦Р В Р’В Р РЋРІР‚СћР В Р’В Р РЋРІР‚вЂњР В Р’В Р РЋРІР‚Сћ Р В Р’В Р РЋРІР‚СњР В Р’В Р вЂ™Р’ВµР В Р’В Р Р†РІР‚С›РІР‚вЂњР В Р Р‹Р В РЎвЂњР В Р’В Р вЂ™Р’В° */}
       <div className="text-center">
         <h3 
@@ -287,7 +287,7 @@ export function CasesPage({
       </div>
 
       <div 
-        className="rounded-2xl p-6 border"
+        className="rounded-2xl p-4 border"
         style={{
           background: theme === 'dark' 
             ? `linear-gradient(145deg, rgba(16, 20, 28, 0.95) 0%, rgba(22, 26, 34, 0.95) 100%)`
@@ -300,15 +300,15 @@ export function CasesPage({
             : `0 8px 32px rgba(0, 0, 0, 0.1), inset 0 1px 0 rgba(255, 255, 255, 0.8)`
         }}
       >
-        <div className="text-center space-y-6">
+        <div className="text-center space-y-4">
           <div 
-            className="w-32 h-32 mx-auto rounded-2xl flex items-center justify-center"
+            className="w-24 h-24 mx-auto rounded-2xl flex items-center justify-center"
             style={{ 
               background: `linear-gradient(145deg, rgba(34, 197, 94, 0.15), rgba(34, 197, 94, 0.05))`,
               boxShadow: `0 0 30px rgba(34, 197, 94, 0.4), inset 0 0 20px rgba(34, 197, 94, 0.2)`
             }}
           >
-            <Gift className="w-16 h-16 text-green-400" style={{ filter: 'drop-shadow(0 0 10px rgba(34, 197, 94, 0.8))' }} />
+            <Gift className="w-12 h-12 text-green-400" style={{ filter: 'drop-shadow(0 0 10px rgba(34, 197, 94, 0.8))' }} />
           </div>
           
           <div>
@@ -373,7 +373,7 @@ export function CasesPage({
   );
 
   const renderShop = () => (
-    <div className="space-y-6">
+    <div className="space-y-4">
       {/* Р В Р’В Р Р†Р вЂљРІР‚СњР В Р’В Р вЂ™Р’В°Р В Р’В Р РЋРІР‚вЂњР В Р’В Р РЋРІР‚СћР В Р’В Р вЂ™Р’В»Р В Р’В Р РЋРІР‚СћР В Р’В Р В РІР‚В Р В Р’В Р РЋРІР‚СћР В Р’В Р РЋРІР‚Сњ GRITHER */}
       <div className="text-center">
         <h3 
@@ -539,7 +539,7 @@ export function CasesPage({
   );
 
   const renderInventory = () => (
-    <div className="space-y-6">
+    <div className="space-y-4">
       {/* Р В Р’В Р Р†Р вЂљРІР‚СњР В Р’В Р вЂ™Р’В°Р В Р’В Р РЋРІР‚вЂњР В Р’В Р РЋРІР‚СћР В Р’В Р вЂ™Р’В»Р В Р’В Р РЋРІР‚СћР В Р’В Р В РІР‚В Р В Р’В Р РЋРІР‚СћР В Р’В Р РЋРІР‚Сњ Р В Р’В Р СћРІР‚ВР В Р’В Р вЂ™Р’В»Р В Р Р‹Р В Р РЏ Р В Р’В Р РЋРІР‚ВР В Р’В Р В РІР‚В¦Р В Р’В Р В РІР‚В Р В Р’В Р вЂ™Р’ВµР В Р’В Р В РІР‚В¦Р В Р Р‹Р Р†Р вЂљРЎв„ўР В Р’В Р вЂ™Р’В°Р В Р Р‹Р В РІР‚С™Р В Р Р‹Р В Р РЏ */}
       <div className="text-center">
         <h3 
@@ -720,8 +720,8 @@ export function CasesPage({
         }}
       />
 
-      <div className="px-4 pb-24">
-        <div className="space-y-6">
+      <div className="px-4 pb-24 pt-2">
+        <div className="space-y-3">
           {/* Tab Navigation */}
           <div
             className="flex rounded-xl p-1 border"
