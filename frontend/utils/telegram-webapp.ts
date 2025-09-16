@@ -300,13 +300,15 @@ export function initTelegramWebApp(): void {
   document.documentElement.style.setProperty('--tg-viewport-height', `${initialHeight}px`);
   
   // Handle back button
-  webApp.BackButton.onClick(() => {
-    if (modalManager.isModalOpen()) {
-      modalManager.closeAllModals();
-    } else {
-      webApp.close();
-    }
-  });
+  if (webApp.BackButton && webApp.BackButton.onClick) {
+    webApp.BackButton.onClick(() => {
+      if (modalManager.isModalOpen()) {
+        modalManager.closeAllModals();
+      } else {
+        webApp.close();
+      }
+    });
+  }
   
   console.log('Telegram WebApp initialized successfully');
 }

@@ -37,11 +37,13 @@ app.get('/api/cases', (req, res) => {
   res.json([]);
 });
 
+// Root endpoint
+app.get('/', (req, res) => res.send('API OK'));
+
 // Health check
 app.get('/api/health', (req, res) => {
   res.json({ status: 'OK', timestamp: new Date().toISOString() });
 });
 
-app.listen(PORT, () => {
-  console.log(`Backend server running on port ${PORT}`);
-});
+const PORT = process.env.PORT || 3001;
+app.listen(PORT, () => console.log(`Backend on ${PORT}`));

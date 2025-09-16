@@ -2,7 +2,6 @@ import React from 'react'
 import ReactDOM from 'react-dom/client'
 import App from './App.tsx'
 import './index.css'
-import './styles/production.css'
 
 // Function to hide preloader
 const hideLoader = () => {
@@ -27,7 +26,7 @@ class ErrorBoundary extends React.Component<any, { error?: Error }> {
   }
   render() {
     if (this.state.error) {
-      return React.createElement('div', { role: 'alert', style: { padding: 16 } }, 'РЎР±РѕР№ UI');
+      return React.createElement('div', { role: 'alert', style: { padding: 16 } }, 'Ошибка UI');
     }
     return this.props.children;
   }

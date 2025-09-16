@@ -16,10 +16,13 @@
     "build:backend": "cd backend && npm run build",
     "install:all": "npm install && cd frontend && npm install && cd ../backend && npm install",
     "start": "cd backend && npm start",
-    "start:frontend": "cd frontend && npm run preview"
+    "start:frontend": "cd frontend && npm run preview",
+    "fix:ru": "node scripts/fix-ru-encoding.mjs"
   },
   "devDependencies": {
-    "concurrently": "^8.2.2"
+    "concurrently": "^8.2.2",
+    "glob": "^11.0.0",
+    "iconv-lite": "^0.6.3"
   },
   "engines": {
     "node": ">=18.0.0",
