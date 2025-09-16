@@ -71,7 +71,7 @@
   },
   "scripts": {
     "dev": "vite",
-    "build": "cross-env VITE_APP_BUILD=$(git rev-parse --short HEAD) vite build",
+    "build": "vite build",
     "preview": "vite preview --port 5173"
   }
 }

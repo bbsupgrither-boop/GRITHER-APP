@@ -1,4 +1,4 @@
-РїВ»С—import React from 'react';
+Р С—Р’В»РЎвЂ”import React from 'react';
 
 interface ProgressBarProps {
   level: number;
@@ -15,7 +15,7 @@ export const ProgressBar: React.FC<ProgressBarProps> = ({
   theme,
   onExperienceClick 
 }) => {
-  // Р Р€РЎРѓРЎвЂљР В°Р Р…Р В°Р Р†Р В»Р С‘Р Р†Р В°Р ВµР С Р С—РЎР‚Р С•Р С–РЎР‚Р ВµРЎРѓРЎРѓ Р Р…Р В° 60% Р ВµРЎРѓР В»Р С‘ РЎРЊРЎвЂљР С• Р С—Р В»Р ВµР в„–РЎРѓРЎвЂ¦Р С•Р В»Р Т‘Р ВµРЎР‚
+  // Р В Р в‚¬Р РЋР С“Р РЋРІР‚С™Р В Р’В°Р В Р вЂ¦Р В Р’В°Р В Р вЂ Р В Р’В»Р В РЎвЂР В Р вЂ Р В Р’В°Р В Р’ВµР В РЎВ Р В РЎвЂ”Р РЋР вЂљР В РЎвЂўР В РЎвЂ“Р РЋР вЂљР В Р’ВµР РЋР С“Р РЋР С“ Р В Р вЂ¦Р В Р’В° 60% Р В Р’ВµР РЋР С“Р В Р’В»Р В РЎвЂ Р РЋР РЉР РЋРІР‚С™Р В РЎвЂў Р В РЎвЂ”Р В Р’В»Р В Р’ВµР В РІвЂћвЂ“Р РЋР С“Р РЋРІР‚В¦Р В РЎвЂўР В Р’В»Р В РўвЂР В Р’ВµР РЋР вЂљ
   const isPlaceholder = level === 0 && experience === 0 && maxExperience === 100;
   const actualProgress = isPlaceholder ? 60 : (maxExperience > 0 ? (experience / maxExperience) * 100 : 0);
   const displayExperience = isPlaceholder ? 60 : experience;
@@ -47,11 +47,11 @@ export const ProgressBar: React.FC<ProgressBarProps> = ({
               color: theme === 'dark' ? '#A7B0BD' : '#6B7280'
             }}
           >
-            Р С›Р С—РЎвЂ№РЎвЂљ
+            Р В РЎвЂєР В РЎвЂ”Р РЋРІР‚в„–Р РЋРІР‚С™
           </span>
         </div>
         
-        {/* XP Р С—Р С• РЎвЂ Р ВµР Р…РЎвЂљРЎР‚РЎС“ Р В±Р В»Р С•Р С”Р В° */}
+        {/* XP Р В РЎвЂ”Р В РЎвЂў Р РЋРІР‚В Р В Р’ВµР В Р вЂ¦Р РЋРІР‚С™Р РЋР вЂљР РЋРЎвЂњ Р В Р’В±Р В Р’В»Р В РЎвЂўР В РЎвЂќР В Р’В° */}
         <div className="flex-1 text-center">
           <span
             style={{
@@ -64,7 +64,7 @@ export const ProgressBar: React.FC<ProgressBarProps> = ({
           </span>
         </div>
         
-        {/* Р СџРЎС“РЎРѓРЎвЂљР С•Р в„– div Р Т‘Р В»РЎРЏ Р В±Р В°Р В»Р В°Р Р…РЎРѓР С‘РЎР‚Р С•Р Р†Р С”Р С‘ */}
+        {/* Р В РЎСџР РЋРЎвЂњР РЋР С“Р РЋРІР‚С™Р В РЎвЂўР В РІвЂћвЂ“ div Р В РўвЂР В Р’В»Р РЋР РЏ Р В Р’В±Р В Р’В°Р В Р’В»Р В Р’В°Р В Р вЂ¦Р РЋР С“Р В РЎвЂР РЋР вЂљР В РЎвЂўР В Р вЂ Р В РЎвЂќР В РЎвЂ */}
         <div style={{ width: '80px' }}></div>
       </div>
 

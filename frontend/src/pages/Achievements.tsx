@@ -80,9 +80,9 @@ export default function AchievementsPage({
             <Trophy className="w-6 h-6 text-blue-500" />
           </div>
           <div>
-            <h1 className="unified-heading">Р вЂќР С•РЎРѓРЎвЂљР С‘Р В¶Р ВµР Р…Р С‘РЎРЏ</h1>
+            <h1 className="unified-heading">Р В РІР‚СњР В РЎвЂўР РЋР С“Р РЋРІР‚С™Р В РЎвЂР В Р’В¶Р В Р’ВµР В Р вЂ¦Р В РЎвЂР РЋР РЏ</h1>
             <p className="unified-text text-muted-foreground">
-              {achievements.length} Р Т‘Р С•РЎРѓРЎвЂљР С‘Р В¶Р ВµР Р…Р С‘Р в„–
+              {achievements.length} Р В РўвЂР В РЎвЂўР РЋР С“Р РЋРІР‚С™Р В РЎвЂР В Р’В¶Р В Р’ВµР В Р вЂ¦Р В РЎвЂР В РІвЂћвЂ“
             </p>
           </div>
         </div>
@@ -90,7 +90,7 @@ export default function AchievementsPage({
         <button
           onClick={() => setSortMenuOpen(!sortMenuOpen)}
           className="apple-button p-3"
-          aria-label="Р РЋР С•РЎР‚РЎвЂљР С‘РЎР‚Р С•Р Р†Р С”Р В° Р Т‘Р С•РЎРѓРЎвЂљР С‘Р В¶Р ВµР Р…Р С‘Р в„–"
+          aria-label="Р В Р Р‹Р В РЎвЂўР РЋР вЂљР РЋРІР‚С™Р В РЎвЂР РЋР вЂљР В РЎвЂўР В Р вЂ Р В РЎвЂќР В Р’В° Р В РўвЂР В РЎвЂўР РЋР С“Р РЋРІР‚С™Р В РЎвЂР В Р’В¶Р В Р’ВµР В Р вЂ¦Р В РЎвЂР В РІвЂћвЂ“"
         >
           <Menu className="w-5 h-5" />
         </button>
@@ -110,7 +110,7 @@ export default function AchievementsPage({
                   : 'bg-gray-100 hover:bg-gray-200'
               }`}
             >
-              Р СџР С• Р В°Р В»РЎвЂћР В°Р Р†Р С‘РЎвЂљРЎС“
+              Р В РЎСџР В РЎвЂў Р В Р’В°Р В Р’В»Р РЋРІР‚С›Р В Р’В°Р В Р вЂ Р В РЎвЂР РЋРІР‚С™Р РЋРЎвЂњ
             </button>
             
             <button
@@ -123,7 +123,7 @@ export default function AchievementsPage({
                   : 'bg-gray-100 hover:bg-gray-200'
               }`}
             >
-              Р СџР С• Р С—РЎР‚Р С•РЎвЂ Р ВµР Р…РЎвЂљРЎС“ (Р С•РЎвЂљ Р Р…Р В°Р С‘Р СР ВµР Р…РЎРЉРЎв‚¬Р ВµР С–Р С•)
+              Р В РЎСџР В РЎвЂў Р В РЎвЂ”Р РЋР вЂљР В РЎвЂўР РЋРІР‚В Р В Р’ВµР В Р вЂ¦Р РЋРІР‚С™Р РЋРЎвЂњ (Р В РЎвЂўР РЋРІР‚С™ Р В Р вЂ¦Р В Р’В°Р В РЎвЂР В РЎВР В Р’ВµР В Р вЂ¦Р РЋР Р‰Р РЋРІвЂљВ¬Р В Р’ВµР В РЎвЂ“Р В РЎвЂў)
             </button>
             
             <button
@@ -136,7 +136,7 @@ export default function AchievementsPage({
                   : 'bg-gray-100 hover:bg-gray-200'
               }`}
             >
-              Р СџР С• Р С—РЎР‚Р С•РЎвЂ Р ВµР Р…РЎвЂљРЎС“ (Р С•РЎвЂљ Р Р…Р В°Р С‘Р В±Р С•Р В»РЎРЉРЎв‚¬Р ВµР С–Р С•)
+              Р В РЎСџР В РЎвЂў Р В РЎвЂ”Р РЋР вЂљР В РЎвЂўР РЋРІР‚В Р В Р’ВµР В Р вЂ¦Р РЋРІР‚С™Р РЋРЎвЂњ (Р В РЎвЂўР РЋРІР‚С™ Р В Р вЂ¦Р В Р’В°Р В РЎвЂР В Р’В±Р В РЎвЂўР В Р’В»Р РЋР Р‰Р РЋРІвЂљВ¬Р В Р’ВµР В РЎвЂ“Р В РЎвЂў)
             </button>
           </div>
         </div>
@@ -164,7 +164,7 @@ export default function AchievementsPage({
                   <div className="flex items-center gap-2 mb-2">
                     <h3 className="unified-text font-medium">{achievement.title}</h3>
                     {isCompleted && (
-                      <span className="text-green-500 text-sm">РІСљвЂњ</span>
+                      <span className="text-green-500 text-sm">Р Р†РЎС™РІР‚Сљ</span>
                     )}
                   </div>
                   
@@ -189,7 +189,7 @@ export default function AchievementsPage({
                     
                     {achievement.reward && (
                       <span className="unified-text text-sm text-yellow-500">
-                        СЂСџвЂ™В° {achievement.reward.amount} Р СР С•Р Р…Р ВµРЎвЂљ
+                        РЎР‚РЎСџРІР‚в„ўР’В° {achievement.reward.amount} Р В РЎВР В РЎвЂўР В Р вЂ¦Р В Р’ВµР РЋРІР‚С™
                       </span>
                     )}
                   </div>
@@ -203,9 +203,9 @@ export default function AchievementsPage({
       {achievements.length === 0 && (
         <div className="glass-card p-8 text-center">
           <Trophy className="w-16 h-16 text-muted-foreground mx-auto mb-4" />
-          <h3 className="unified-heading mb-2">Р СњР ВµРЎвЂљ Р Т‘Р С•РЎРѓРЎвЂљР С‘Р В¶Р ВµР Р…Р С‘Р в„–</h3>
+          <h3 className="unified-heading mb-2">Р В РЎСљР В Р’ВµР РЋРІР‚С™ Р В РўвЂР В РЎвЂўР РЋР С“Р РЋРІР‚С™Р В РЎвЂР В Р’В¶Р В Р’ВµР В Р вЂ¦Р В РЎвЂР В РІвЂћвЂ“</h3>
           <p className="unified-text text-muted-foreground">
-            Р вЂ™РЎвЂ№Р С—Р С•Р В»Р Р…РЎРЏР в„–РЎвЂљР Вµ Р В·Р В°Р Т‘Р В°РЎвЂЎР С‘ Р С‘ РЎС“РЎвЂЎР В°РЎРѓРЎвЂљР Р†РЎС“Р в„–РЎвЂљР Вµ Р Р† Р В±Р В°РЎвЂљРЎвЂљР В»Р В°РЎвЂ¦, РЎвЂЎРЎвЂљР С•Р В±РЎвЂ№ Р С—Р С•Р В»РЎС“РЎвЂЎР С‘РЎвЂљРЎРЉ Р Т‘Р С•РЎРѓРЎвЂљР С‘Р В¶Р ВµР Р…Р С‘РЎРЏ
+            Р В РІР‚в„ўР РЋРІР‚в„–Р В РЎвЂ”Р В РЎвЂўР В Р’В»Р В Р вЂ¦Р РЋР РЏР В РІвЂћвЂ“Р РЋРІР‚С™Р В Р’Вµ Р В Р’В·Р В Р’В°Р В РўвЂР В Р’В°Р РЋРІР‚РЋР В РЎвЂ Р В РЎвЂ Р РЋРЎвЂњР РЋРІР‚РЋР В Р’В°Р РЋР С“Р РЋРІР‚С™Р В Р вЂ Р РЋРЎвЂњР В РІвЂћвЂ“Р РЋРІР‚С™Р В Р’Вµ Р В Р вЂ  Р В Р’В±Р В Р’В°Р РЋРІР‚С™Р РЋРІР‚С™Р В Р’В»Р В Р’В°Р РЋРІР‚В¦, Р РЋРІР‚РЋР РЋРІР‚С™Р В РЎвЂўР В Р’В±Р РЋРІР‚в„– Р В РЎвЂ”Р В РЎвЂўР В Р’В»Р РЋРЎвЂњР РЋРІР‚РЋР В РЎвЂР РЋРІР‚С™Р РЋР Р‰ Р В РўвЂР В РЎвЂўР РЋР С“Р РЋРІР‚С™Р В РЎвЂР В Р’В¶Р В Р’ВµР В Р вЂ¦Р В РЎвЂР РЋР РЏ
           </p>
         </div>
       )}

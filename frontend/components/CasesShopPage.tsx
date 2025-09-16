@@ -79,14 +79,14 @@ export const CasesShopPage: React.FC<CasesShopPageProps> = ({
 
   // Mock roulette prizes
   const roulettePrizes: Prize[] = [
-    { id: 'r1', name: '100 Р СР С•Р Р…Р ВµРЎвЂљ', type: 'coins', amount: 100, rarity: 'common' },
-    { id: 'r2', name: '500 Р СР С•Р Р…Р ВµРЎвЂљ', type: 'coins', amount: 500, rarity: 'rare' },
-    { id: 'r3', name: '1000 Р СР С•Р Р…Р ВµРЎвЂљ', type: 'coins', amount: 1000, rarity: 'epic' },
-    { id: 'r4', name: 'Р В Р ВµР Т‘Р С”Р С‘Р в„– Р С”Р ВµР в„–РЎРѓ', type: 'case', caseId: 'case2', rarity: 'rare' },
-    { id: 'r5', name: 'Р В­Р С—Р С‘РЎвЂЎР ВµРЎРѓР С”Р С‘Р в„– Р С”Р ВµР в„–РЎРѓ', type: 'case', caseId: 'case3', rarity: 'epic' },
-    { id: 'r6', name: 'Р вЂєР ВµР С–Р ВµР Р…Р Т‘Р В°РЎР‚Р Р…РЎвЂ№Р в„– Р С”Р ВµР в„–РЎРѓ', type: 'case', caseId: 'case4', rarity: 'legendary' },
-    { id: 'r7', name: '50 Р СР С•Р Р…Р ВµРЎвЂљ', type: 'coins', amount: 50, rarity: 'common' },
-    { id: 'r8', name: '200 Р СР С•Р Р…Р ВµРЎвЂљ', type: 'coins', amount: 200, rarity: 'common' },
+    { id: 'r1', name: '100 Р В РЎВР В РЎвЂўР В Р вЂ¦Р В Р’ВµР РЋРІР‚С™', type: 'coins', amount: 100, rarity: 'common' },
+    { id: 'r2', name: '500 Р В РЎВР В РЎвЂўР В Р вЂ¦Р В Р’ВµР РЋРІР‚С™', type: 'coins', amount: 500, rarity: 'rare' },
+    { id: 'r3', name: '1000 Р В РЎВР В РЎвЂўР В Р вЂ¦Р В Р’ВµР РЋРІР‚С™', type: 'coins', amount: 1000, rarity: 'epic' },
+    { id: 'r4', name: 'Р В Р’В Р В Р’ВµР В РўвЂР В РЎвЂќР В РЎвЂР В РІвЂћвЂ“ Р В РЎвЂќР В Р’ВµР В РІвЂћвЂ“Р РЋР С“', type: 'case', caseId: 'case2', rarity: 'rare' },
+    { id: 'r5', name: 'Р В Р’В­Р В РЎвЂ”Р В РЎвЂР РЋРІР‚РЋР В Р’ВµР РЋР С“Р В РЎвЂќР В РЎвЂР В РІвЂћвЂ“ Р В РЎвЂќР В Р’ВµР В РІвЂћвЂ“Р РЋР С“', type: 'case', caseId: 'case3', rarity: 'epic' },
+    { id: 'r6', name: 'Р В РІР‚С”Р В Р’ВµР В РЎвЂ“Р В Р’ВµР В Р вЂ¦Р В РўвЂР В Р’В°Р РЋР вЂљР В Р вЂ¦Р РЋРІР‚в„–Р В РІвЂћвЂ“ Р В РЎвЂќР В Р’ВµР В РІвЂћвЂ“Р РЋР С“', type: 'case', caseId: 'case4', rarity: 'legendary' },
+    { id: 'r7', name: '50 Р В РЎВР В РЎвЂўР В Р вЂ¦Р В Р’ВµР РЋРІР‚С™', type: 'coins', amount: 50, rarity: 'common' },
+    { id: 'r8', name: '200 Р В РЎВР В РЎвЂўР В Р вЂ¦Р В Р’ВµР РЋРІР‚С™', type: 'coins', amount: 200, rarity: 'common' },
   ];
 
   const getRarityColor = (rarity: string) => {
@@ -215,7 +215,7 @@ export const CasesShopPage: React.FC<CasesShopPageProps> = ({
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-2">
               <Coins className="w-6 h-6 text-yellow-500" />
-              <span className="text-lg font-semibold">Р вЂ™Р В°РЎв‚¬Р С‘ Р СР С•Р Р…Р ВµРЎвЂљРЎвЂ№</span>
+              <span className="text-lg font-semibold">Р В РІР‚в„ўР В Р’В°Р РЋРІвЂљВ¬Р В РЎвЂ Р В РЎВР В РЎвЂўР В Р вЂ¦Р В Р’ВµР РЋРІР‚С™Р РЋРІР‚в„–</span>
             </div>
             <span className="text-2xl font-bold text-yellow-500">{userCoins}</span>
           </div>
@@ -229,9 +229,9 @@ export const CasesShopPage: React.FC<CasesShopPageProps> = ({
         }`}>
           <div className="flex">
             {[
-              { key: 'cases', label: 'Р С™Р ВµР в„–РЎРѓРЎвЂ№', icon: Package },
-              { key: 'shop', label: 'Р СљР В°Р С–Р В°Р В·Р С‘Р Р…', icon: ShoppingBag },
-              { key: 'roulette', label: 'Р В РЎС“Р В»Р ВµРЎвЂљР С”Р В°', icon: RotateCcw }
+              { key: 'cases', label: 'Р В РЎв„ўР В Р’ВµР В РІвЂћвЂ“Р РЋР С“Р РЋРІР‚в„–', icon: Package },
+              { key: 'shop', label: 'Р В РЎС™Р В Р’В°Р В РЎвЂ“Р В Р’В°Р В Р’В·Р В РЎвЂР В Р вЂ¦', icon: ShoppingBag },
+              { key: 'roulette', label: 'Р В Р’В Р РЋРЎвЂњР В Р’В»Р В Р’ВµР РЋРІР‚С™Р В РЎвЂќР В Р’В°', icon: RotateCcw }
             ].map(({ key, label, icon: Icon }) => (
               <button
                 key={key}
@@ -256,7 +256,7 @@ export const CasesShopPage: React.FC<CasesShopPageProps> = ({
           <div className="space-y-4">
             {cases.length === 0 ? (
               <div className="text-center py-8">
-                <div className="text-gray-400 mb-2">Р СњР ВµРЎвЂљ Р Т‘Р С•РЎРѓРЎвЂљРЎС“Р С—Р Р…РЎвЂ№РЎвЂ¦ Р С”Р ВµР в„–РЎРѓР С•Р Р†</div>
+                <div className="text-gray-400 mb-2">Р В РЎСљР В Р’ВµР РЋРІР‚С™ Р В РўвЂР В РЎвЂўР РЋР С“Р РЋРІР‚С™Р РЋРЎвЂњР В РЎвЂ”Р В Р вЂ¦Р РЋРІР‚в„–Р РЋРІР‚В¦ Р В РЎвЂќР В Р’ВµР В РІвЂћвЂ“Р РЋР С“Р В РЎвЂўР В Р вЂ </div>
               </div>
             ) : (
               cases.map((caseItem) => (
@@ -287,9 +287,9 @@ export const CasesShopPage: React.FC<CasesShopPageProps> = ({
                           caseItem.rarity === 'rare' ? 'bg-blue-500/20 text-blue-400' :
                           'bg-gray-500/20 text-gray-400'
                         }`}>
-                          {caseItem.rarity === 'legendary' ? 'Р вЂєР ВµР С–Р ВµР Р…Р Т‘Р В°РЎР‚Р Р…РЎвЂ№Р в„–' :
-                           caseItem.rarity === 'epic' ? 'Р В­Р С—Р С‘РЎвЂЎР ВµРЎРѓР С”Р С‘Р в„–' :
-                           caseItem.rarity === 'rare' ? 'Р В Р ВµР Т‘Р С”Р С‘Р в„–' : 'Р С›Р В±РЎвЂ№РЎвЂЎР Р…РЎвЂ№Р в„–'}
+                          {caseItem.rarity === 'legendary' ? 'Р В РІР‚С”Р В Р’ВµР В РЎвЂ“Р В Р’ВµР В Р вЂ¦Р В РўвЂР В Р’В°Р РЋР вЂљР В Р вЂ¦Р РЋРІР‚в„–Р В РІвЂћвЂ“' :
+                           caseItem.rarity === 'epic' ? 'Р В Р’В­Р В РЎвЂ”Р В РЎвЂР РЋРІР‚РЋР В Р’ВµР РЋР С“Р В РЎвЂќР В РЎвЂР В РІвЂћвЂ“' :
+                           caseItem.rarity === 'rare' ? 'Р В Р’В Р В Р’ВµР В РўвЂР В РЎвЂќР В РЎвЂР В РІвЂћвЂ“' : 'Р В РЎвЂєР В Р’В±Р РЋРІР‚в„–Р РЋРІР‚РЋР В Р вЂ¦Р РЋРІР‚в„–Р В РІвЂћвЂ“'}
                         </div>
                       </div>
                     </div>
@@ -305,7 +305,7 @@ export const CasesShopPage: React.FC<CasesShopPageProps> = ({
           <div className="space-y-4">
             {shopItems.length === 0 ? (
               <div className="text-center py-8">
-                <div className="text-gray-400 mb-2">Р СњР ВµРЎвЂљ Р Т‘Р С•РЎРѓРЎвЂљРЎС“Р С—Р Р…РЎвЂ№РЎвЂ¦ РЎвЂљР С•Р Р†Р В°РЎР‚Р С•Р Р†</div>
+                <div className="text-gray-400 mb-2">Р В РЎСљР В Р’ВµР РЋРІР‚С™ Р В РўвЂР В РЎвЂўР РЋР С“Р РЋРІР‚С™Р РЋРЎвЂњР В РЎвЂ”Р В Р вЂ¦Р РЋРІР‚в„–Р РЋРІР‚В¦ Р РЋРІР‚С™Р В РЎвЂўР В Р вЂ Р В Р’В°Р РЋР вЂљР В РЎвЂўР В Р вЂ </div>
               </div>
             ) : (
               shopItems.map((item) => (
@@ -345,9 +345,9 @@ export const CasesShopPage: React.FC<CasesShopPageProps> = ({
               : 'bg-white/80 border-gray-200'
           }`}>
             <div className="text-center mb-6">
-              <h3 className="text-xl font-semibold mb-2">Р С™Р С•Р В»Р ВµРЎРѓР С• РЎС“Р Т‘Р В°РЎвЂЎР С‘</h3>
+              <h3 className="text-xl font-semibold mb-2">Р В РЎв„ўР В РЎвЂўР В Р’В»Р В Р’ВµР РЋР С“Р В РЎвЂў Р РЋРЎвЂњР В РўвЂР В Р’В°Р РЋРІР‚РЋР В РЎвЂ</h3>
               <p className="text-sm text-gray-400 mb-4">
-                Р СџР С•РЎвЂљРЎР‚Р В°РЎвЂљРЎРЉРЎвЂљР Вµ 100 Р СР С•Р Р…Р ВµРЎвЂљ Р Т‘Р В»РЎРЏ Р Р†РЎР‚Р В°РЎвЂ°Р ВµР Р…Р С‘РЎРЏ РЎР‚РЎС“Р В»Р ВµРЎвЂљР С”Р С‘
+                Р В РЎСџР В РЎвЂўР РЋРІР‚С™Р РЋР вЂљР В Р’В°Р РЋРІР‚С™Р РЋР Р‰Р РЋРІР‚С™Р В Р’Вµ 100 Р В РЎВР В РЎвЂўР В Р вЂ¦Р В Р’ВµР РЋРІР‚С™ Р В РўвЂР В Р’В»Р РЋР РЏ Р В Р вЂ Р РЋР вЂљР В Р’В°Р РЋРІР‚В°Р В Р’ВµР В Р вЂ¦Р В РЎвЂР РЋР РЏ Р РЋР вЂљР РЋРЎвЂњР В Р’В»Р В Р’ВµР РЋРІР‚С™Р В РЎвЂќР В РЎвЂ
               </p>
             </div>
 
@@ -406,19 +406,19 @@ export const CasesShopPage: React.FC<CasesShopPageProps> = ({
               {isRouletteSpinning ? (
                 <div className="flex items-center justify-center gap-2">
                   <div className="w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin" />
-                  Р вЂ™РЎР‚Р В°РЎвЂ°Р ВµР Р…Р С‘Р Вµ...
+                  Р В РІР‚в„ўР РЋР вЂљР В Р’В°Р РЋРІР‚В°Р В Р’ВµР В Р вЂ¦Р В РЎвЂР В Р’Вµ...
                 </div>
               ) : (
                 <div className="flex items-center justify-center gap-2">
                   <Play className="w-4 h-4" />
-                  Р вЂ™РЎР‚Р В°РЎвЂ°Р В°РЎвЂљРЎРЉ Р В·Р В° 100 Р СР С•Р Р…Р ВµРЎвЂљ
+                  Р В РІР‚в„ўР РЋР вЂљР В Р’В°Р РЋРІР‚В°Р В Р’В°Р РЋРІР‚С™Р РЋР Р‰ Р В Р’В·Р В Р’В° 100 Р В РЎВР В РЎвЂўР В Р вЂ¦Р В Р’ВµР РЋРІР‚С™
                 </div>
               )}
             </button>
 
             {/* Available Prizes */}
             <div className="mt-6">
-              <h4 className="font-medium mb-3">Р вЂ™Р С•Р В·Р СР С•Р В¶Р Р…РЎвЂ№Р Вµ Р С—РЎР‚Р С‘Р В·РЎвЂ№:</h4>
+              <h4 className="font-medium mb-3">Р В РІР‚в„ўР В РЎвЂўР В Р’В·Р В РЎВР В РЎвЂўР В Р’В¶Р В Р вЂ¦Р РЋРІР‚в„–Р В Р’Вµ Р В РЎвЂ”Р РЋР вЂљР В РЎвЂР В Р’В·Р РЋРІР‚в„–:</h4>
               <div className="grid grid-cols-2 gap-2">
                 {roulettePrizes.slice(0, 6).map((prize) => (
                   <div key={prize.id} className={`p-2 rounded-lg text-xs ${
@@ -431,9 +431,9 @@ export const CasesShopPage: React.FC<CasesShopPageProps> = ({
                       prize.rarity === 'rare' ? 'text-blue-400' :
                       'text-gray-400'
                     }`}>
-                      {prize.rarity === 'legendary' ? 'Р вЂєР ВµР С–Р ВµР Р…Р Т‘Р В°РЎР‚Р Р…РЎвЂ№Р в„–' :
-                       prize.rarity === 'epic' ? 'Р В­Р С—Р С‘РЎвЂЎР ВµРЎРѓР С”Р С‘Р в„–' :
-                       prize.rarity === 'rare' ? 'Р В Р ВµР Т‘Р С”Р С‘Р в„–' : 'Р С›Р В±РЎвЂ№РЎвЂЎР Р…РЎвЂ№Р в„–'}
+                      {prize.rarity === 'legendary' ? 'Р В РІР‚С”Р В Р’ВµР В РЎвЂ“Р В Р’ВµР В Р вЂ¦Р В РўвЂР В Р’В°Р РЋР вЂљР В Р вЂ¦Р РЋРІР‚в„–Р В РІвЂћвЂ“' :
+                       prize.rarity === 'epic' ? 'Р В Р’В­Р В РЎвЂ”Р В РЎвЂР РЋРІР‚РЋР В Р’ВµР РЋР С“Р В РЎвЂќР В РЎвЂР В РІвЂћвЂ“' :
+                       prize.rarity === 'rare' ? 'Р В Р’В Р В Р’ВµР В РўвЂР В РЎвЂќР В РЎвЂР В РІвЂћвЂ“' : 'Р В РЎвЂєР В Р’В±Р РЋРІР‚в„–Р РЋРІР‚РЋР В Р вЂ¦Р РЋРІР‚в„–Р В РІвЂћвЂ“'}
                     </div>
                   </div>
                 ))}
@@ -456,7 +456,7 @@ export const CasesShopPage: React.FC<CasesShopPageProps> = ({
             theme === 'dark' ? 'bg-gray-800' : 'bg-white'
           }`}>
             <div className="flex items-center justify-between mb-6">
-              <h2 className="text-xl font-semibold">Р СџР С•Р С”РЎС“Р С—Р С”Р В° Р С”Р ВµР в„–РЎРѓР В°</h2>
+              <h2 className="text-xl font-semibold">Р В РЎСџР В РЎвЂўР В РЎвЂќР РЋРЎвЂњР В РЎвЂ”Р В РЎвЂќР В Р’В° Р В РЎвЂќР В Р’ВµР В РІвЂћвЂ“Р РЋР С“Р В Р’В°</h2>
               <button
                 onClick={() => setIsCaseModalOpen(false)}
                 className="p-2 rounded-full hover:bg-gray-100 dark:hover:bg-gray-700"
@@ -480,14 +480,14 @@ export const CasesShopPage: React.FC<CasesShopPageProps> = ({
                 theme === 'dark' ? 'bg-gray-700/50 border-gray-600' : 'bg-gray-50 border-gray-200'
               }`}>
                 <div className="flex items-center justify-between">
-                  <span className="text-sm">Р В¦Р ВµР Р…Р В°:</span>
+                  <span className="text-sm">Р В Р’В¦Р В Р’ВµР В Р вЂ¦Р В Р’В°:</span>
                   <div className="flex items-center gap-1">
                     <Coins className="w-4 h-4 text-yellow-500" />
                     <span className="font-medium">{selectedCase.price}</span>
                   </div>
                 </div>
                 <div className="flex items-center justify-between mt-2">
-                  <span className="text-sm">Р вЂ™Р В°РЎв‚¬Р С‘ Р СР С•Р Р…Р ВµРЎвЂљРЎвЂ№:</span>
+                  <span className="text-sm">Р В РІР‚в„ўР В Р’В°Р РЋРІвЂљВ¬Р В РЎвЂ Р В РЎВР В РЎвЂўР В Р вЂ¦Р В Р’ВµР РЋРІР‚С™Р РЋРІР‚в„–:</span>
                   <div className="flex items-center gap-1">
                     <Coins className="w-4 h-4 text-yellow-500" />
                     <span className="font-medium">{userCoins}</span>
@@ -500,7 +500,7 @@ export const CasesShopPage: React.FC<CasesShopPageProps> = ({
                   onClick={() => setIsCaseModalOpen(false)}
                   className="flex-1 py-2 px-4 rounded-xl bg-gray-200 dark:bg-gray-700 text-gray-700 dark:text-gray-300"
                 >
-                  Р С›РЎвЂљР СР ВµР Р…Р С‘РЎвЂљРЎРЉ
+                  Р В РЎвЂєР РЋРІР‚С™Р В РЎВР В Р’ВµР В Р вЂ¦Р В РЎвЂР РЋРІР‚С™Р РЋР Р‰
                 </button>
                 <button
                   onClick={handleCasePurchase}
@@ -511,7 +511,7 @@ export const CasesShopPage: React.FC<CasesShopPageProps> = ({
                       : 'bg-blue-500 text-white'
                   }`}
                 >
-                  Р С™РЎС“Р С—Р С‘РЎвЂљРЎРЉ
+                  Р В РЎв„ўР РЋРЎвЂњР В РЎвЂ”Р В РЎвЂР РЋРІР‚С™Р РЋР Р‰
                 </button>
               </div>
             </div>
@@ -526,7 +526,7 @@ export const CasesShopPage: React.FC<CasesShopPageProps> = ({
             theme === 'dark' ? 'bg-gray-800' : 'bg-white'
           }`}>
             <div className="flex items-center justify-between mb-6">
-              <h2 className="text-xl font-semibold">Р СџР С•Р С”РЎС“Р С—Р С”Р В° РЎвЂљР С•Р Р†Р В°РЎР‚Р В°</h2>
+              <h2 className="text-xl font-semibold">Р В РЎСџР В РЎвЂўР В РЎвЂќР РЋРЎвЂњР В РЎвЂ”Р В РЎвЂќР В Р’В° Р РЋРІР‚С™Р В РЎвЂўР В Р вЂ Р В Р’В°Р РЋР вЂљР В Р’В°</h2>
               <button
                 onClick={() => setIsShopModalOpen(false)}
                 className="p-2 rounded-full hover:bg-gray-100 dark:hover:bg-gray-700"
@@ -550,14 +550,14 @@ export const CasesShopPage: React.FC<CasesShopPageProps> = ({
                 theme === 'dark' ? 'bg-gray-700/50 border-gray-600' : 'bg-gray-50 border-gray-200'
               }`}>
                 <div className="flex items-center justify-between">
-                  <span className="text-sm">Р В¦Р ВµР Р…Р В°:</span>
+                  <span className="text-sm">Р В Р’В¦Р В Р’ВµР В Р вЂ¦Р В Р’В°:</span>
                   <div className="flex items-center gap-1">
                     <Coins className="w-4 h-4 text-yellow-500" />
                     <span className="font-medium">{selectedShopItem.price}</span>
                   </div>
                 </div>
                 <div className="flex items-center justify-between mt-2">
-                  <span className="text-sm">Р вЂ™Р В°РЎв‚¬Р С‘ Р СР С•Р Р…Р ВµРЎвЂљРЎвЂ№:</span>
+                  <span className="text-sm">Р В РІР‚в„ўР В Р’В°Р РЋРІвЂљВ¬Р В РЎвЂ Р В РЎВР В РЎвЂўР В Р вЂ¦Р В Р’ВµР РЋРІР‚С™Р РЋРІР‚в„–:</span>
                   <div className="flex items-center gap-1">
                     <Coins className="w-4 h-4 text-yellow-500" />
                     <span className="font-medium">{userCoins}</span>
@@ -570,7 +570,7 @@ export const CasesShopPage: React.FC<CasesShopPageProps> = ({
                   onClick={() => setIsShopModalOpen(false)}
                   className="flex-1 py-2 px-4 rounded-xl bg-gray-200 dark:bg-gray-700 text-gray-700 dark:text-gray-300"
                 >
-                  Р С›РЎвЂљР СР ВµР Р…Р С‘РЎвЂљРЎРЉ
+                  Р В РЎвЂєР РЋРІР‚С™Р В РЎВР В Р’ВµР В Р вЂ¦Р В РЎвЂР РЋРІР‚С™Р РЋР Р‰
                 </button>
                 <button
                   onClick={handleShopPurchase}
@@ -581,7 +581,7 @@ export const CasesShopPage: React.FC<CasesShopPageProps> = ({
                       : 'bg-blue-500 text-white'
                   }`}
                 >
-                  Р С™РЎС“Р С—Р С‘РЎвЂљРЎРЉ
+                  Р В РЎв„ўР РЋРЎвЂњР В РЎвЂ”Р В РЎвЂР РЋРІР‚С™Р РЋР Р‰
                 </button>
               </div>
             </div>
@@ -600,8 +600,8 @@ export const CasesShopPage: React.FC<CasesShopPageProps> = ({
                 <CheckCircle className="w-10 h-10 text-white" />
               </div>
               
-              <h2 className="text-2xl font-bold mb-2">Р СџР С•Р В·Р Т‘РЎР‚Р В°Р Р†Р В»РЎРЏР ВµР С!</h2>
-              <p className="text-lg mb-4">Р вЂ™РЎвЂ№ Р Р†РЎвЂ№Р С‘Р С–РЎР‚Р В°Р В»Р С‘:</p>
+              <h2 className="text-2xl font-bold mb-2">Р В РЎСџР В РЎвЂўР В Р’В·Р В РўвЂР РЋР вЂљР В Р’В°Р В Р вЂ Р В Р’В»Р РЋР РЏР В Р’ВµР В РЎВ!</h2>
+              <p className="text-lg mb-4">Р В РІР‚в„ўР РЋРІР‚в„– Р В Р вЂ Р РЋРІР‚в„–Р В РЎвЂР В РЎвЂ“Р РЋР вЂљР В Р’В°Р В Р’В»Р В РЎвЂ:</p>
               
               <div className={`p-4 rounded-xl border mb-6 ${
                 theme === 'dark' ? 'bg-gray-700/50 border-gray-600' : 'bg-gray-50 border-gray-200'
@@ -613,9 +613,9 @@ export const CasesShopPage: React.FC<CasesShopPageProps> = ({
                   rouletteResult.rarity === 'rare' ? 'text-blue-400' :
                   'text-gray-400'
                 }`}>
-                  {rouletteResult.rarity === 'legendary' ? 'Р вЂєР ВµР С–Р ВµР Р…Р Т‘Р В°РЎР‚Р Р…РЎвЂ№Р в„– Р С—РЎР‚Р С‘Р В·!' :
-                   rouletteResult.rarity === 'epic' ? 'Р В­Р С—Р С‘РЎвЂЎР ВµРЎРѓР С”Р С‘Р в„– Р С—РЎР‚Р С‘Р В·!' :
-                   rouletteResult.rarity === 'rare' ? 'Р В Р ВµР Т‘Р С”Р С‘Р в„– Р С—РЎР‚Р С‘Р В·!' : 'Р С›Р В±РЎвЂ№РЎвЂЎР Р…РЎвЂ№Р в„– Р С—РЎР‚Р С‘Р В·'}
+                  {rouletteResult.rarity === 'legendary' ? 'Р В РІР‚С”Р В Р’ВµР В РЎвЂ“Р В Р’ВµР В Р вЂ¦Р В РўвЂР В Р’В°Р РЋР вЂљР В Р вЂ¦Р РЋРІР‚в„–Р В РІвЂћвЂ“ Р В РЎвЂ”Р РЋР вЂљР В РЎвЂР В Р’В·!' :
+                   rouletteResult.rarity === 'epic' ? 'Р В Р’В­Р В РЎвЂ”Р В РЎвЂР РЋРІР‚РЋР В Р’ВµР РЋР С“Р В РЎвЂќР В РЎвЂР В РІвЂћвЂ“ Р В РЎвЂ”Р РЋР вЂљР В РЎвЂР В Р’В·!' :
+                   rouletteResult.rarity === 'rare' ? 'Р В Р’В Р В Р’ВµР В РўвЂР В РЎвЂќР В РЎвЂР В РІвЂћвЂ“ Р В РЎвЂ”Р РЋР вЂљР В РЎвЂР В Р’В·!' : 'Р В РЎвЂєР В Р’В±Р РЋРІР‚в„–Р РЋРІР‚РЋР В Р вЂ¦Р РЋРІР‚в„–Р В РІвЂћвЂ“ Р В РЎвЂ”Р РЋР вЂљР В РЎвЂР В Р’В·'}
                 </div>
               </div>
 
@@ -623,7 +623,7 @@ export const CasesShopPage: React.FC<CasesShopPageProps> = ({
                 onClick={() => setIsRouletteModalOpen(false)}
                 className="w-full py-3 px-6 rounded-xl bg-blue-500 text-white font-semibold"
               >
-                Р С›РЎвЂљР В»Р С‘РЎвЂЎР Р…Р С•!
+                Р В РЎвЂєР РЋРІР‚С™Р В Р’В»Р В РЎвЂР РЋРІР‚РЋР В Р вЂ¦Р В РЎвЂў!
               </button>
             </div>
           </div>

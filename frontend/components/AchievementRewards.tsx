@@ -1,4 +1,4 @@
-РїВ»С—import React from 'react';
+Р С—Р’В»РЎвЂ”import React from 'react';
 import { Eye, Trophy } from 'lucide-react';
 import { Achievement } from '../types/achievements';
 
@@ -13,12 +13,12 @@ export const AchievementRewards: React.FC<AchievementRewardsProps> = ({
   theme, 
   onViewAll 
 }) => {
-  // Р СџР С•Р В»РЎС“РЎвЂЎР В°Р ВµР С Р С—Р С•РЎРѓР В»Р ВµР Т‘Р Р…Р С‘Р Вµ 5 РЎР‚Р В°Р В·Р В±Р В»Р С•Р С”Р С‘РЎР‚Р С•Р Р†Р В°Р Р…Р Р…РЎвЂ№РЎвЂ¦ Р Т‘Р С•РЎРѓРЎвЂљР С‘Р В¶Р ВµР Р…Р С‘Р в„–
+  // Р В РЎСџР В РЎвЂўР В Р’В»Р РЋРЎвЂњР РЋРІР‚РЋР В Р’В°Р В Р’ВµР В РЎВ Р В РЎвЂ”Р В РЎвЂўР РЋР С“Р В Р’В»Р В Р’ВµР В РўвЂР В Р вЂ¦Р В РЎвЂР В Р’Вµ 5 Р РЋР вЂљР В Р’В°Р В Р’В·Р В Р’В±Р В Р’В»Р В РЎвЂўР В РЎвЂќР В РЎвЂР РЋР вЂљР В РЎвЂўР В Р вЂ Р В Р’В°Р В Р вЂ¦Р В Р вЂ¦Р РЋРІР‚в„–Р РЋРІР‚В¦ Р В РўвЂР В РЎвЂўР РЋР С“Р РЋРІР‚С™Р В РЎвЂР В Р’В¶Р В Р’ВµР В Р вЂ¦Р В РЎвЂР В РІвЂћвЂ“
   const unlockedAchievements = achievements
     .filter(achievement => achievement.unlocked)
     .slice(-5);
 
-  // Р вЂ”Р В°Р С—Р С•Р В»Р Р…РЎРЏР ВµР С Р Т‘Р С• 5 РЎРѓР В»Р С•РЎвЂљР С•Р Р† (Р С—РЎС“РЎРѓРЎвЂљРЎвЂ№Р Вµ РЎРѓР В»Р С•РЎвЂљРЎвЂ№ Р Р† Р С”Р С•Р Р…РЎвЂ Р Вµ)
+  // Р В РІР‚вЂќР В Р’В°Р В РЎвЂ”Р В РЎвЂўР В Р’В»Р В Р вЂ¦Р РЋР РЏР В Р’ВµР В РЎВ Р В РўвЂР В РЎвЂў 5 Р РЋР С“Р В Р’В»Р В РЎвЂўР РЋРІР‚С™Р В РЎвЂўР В Р вЂ  (Р В РЎвЂ”Р РЋРЎвЂњР РЋР С“Р РЋРІР‚С™Р РЋРІР‚в„–Р В Р’Вµ Р РЋР С“Р В Р’В»Р В РЎвЂўР РЋРІР‚С™Р РЋРІР‚в„– Р В Р вЂ  Р В РЎвЂќР В РЎвЂўР В Р вЂ¦Р РЋРІР‚В Р В Р’Вµ)
   const slots = [...unlockedAchievements];
   while (slots.length < 5) {
     slots.push(null);
@@ -40,11 +40,11 @@ export const AchievementRewards: React.FC<AchievementRewardsProps> = ({
 
   const getRarityIcon = (rarity?: string) => {
     switch (rarity) {
-      case 'legendary': return 'СЂСџвЂвЂ';
-      case 'epic': return 'СЂСџвЂ™Сљ';
-      case 'rare': return 'СЂСџвЂќВµ';
+      case 'legendary': return 'РЎР‚РЎСџРІР‚ВРІР‚В';
+      case 'epic': return 'РЎР‚РЎСџРІР‚в„ўРЎС™';
+      case 'rare': return 'РЎР‚РЎСџРІР‚СњР’Вµ';
       case 'common':
-      default: return 'РІВ­С’';
+      default: return 'Р Р†Р’В­РЎвЂ™';
     }
   };
 
@@ -64,7 +64,7 @@ export const AchievementRewards: React.FC<AchievementRewardsProps> = ({
             color: theme === 'dark' ? '#E8ECF2' : '#0F172A'
           }}
         >
-          Р С’РЎвЂЎР С‘Р Р†Р С”Р С‘
+          Р В РЎвЂ™Р РЋРІР‚РЋР В РЎвЂР В Р вЂ Р В РЎвЂќР В РЎвЂ
         </h3>
         
         <button
@@ -92,7 +92,7 @@ export const AchievementRewards: React.FC<AchievementRewardsProps> = ({
           >
             {achievement ? (
               <>
-                {/* Р вЂњРЎР‚Р В°Р Т‘Р С‘Р ВµР Р…РЎвЂљР Р…РЎвЂ№Р в„– РЎвЂћР С•Р Р… */}
+                {/* Р В РІР‚СљР РЋР вЂљР В Р’В°Р В РўвЂР В РЎвЂР В Р’ВµР В Р вЂ¦Р РЋРІР‚С™Р В Р вЂ¦Р РЋРІР‚в„–Р В РІвЂћвЂ“ Р РЋРІР‚С›Р В РЎвЂўР В Р вЂ¦ */}
                 <div 
                   style={{
                     position: 'absolute',
@@ -103,7 +103,7 @@ export const AchievementRewards: React.FC<AchievementRewardsProps> = ({
                   }}
                 />
                 
-                {/* Р ВР С”Р С•Р Р…Р С”Р В° */}
+                {/* Р В Р’ВР В РЎвЂќР В РЎвЂўР В Р вЂ¦Р В РЎвЂќР В Р’В° */}
                 <div 
                   style={{
                     position: 'relative',
@@ -117,7 +117,7 @@ export const AchievementRewards: React.FC<AchievementRewardsProps> = ({
               </>
             ) : (
               <>
-                {/* Р СџРЎС“РЎРѓРЎвЂљР С•Р в„– РЎРѓР В»Р С•РЎвЂљ */}
+                {/* Р В РЎСџР РЋРЎвЂњР РЋР С“Р РЋРІР‚С™Р В РЎвЂўР В РІвЂћвЂ“ Р РЋР С“Р В Р’В»Р В РЎвЂўР РЋРІР‚С™ */}
                 <div 
                   style={{
                     width: '100%',
@@ -150,7 +150,7 @@ export const AchievementRewards: React.FC<AchievementRewardsProps> = ({
             color: theme === 'dark' ? '#A7B0BD' : '#6B7280'
           }}
         >
-          Р СњР ВµРЎвЂљ РЎР‚Р В°Р В·Р В±Р В»Р С•Р С”Р С‘РЎР‚Р С•Р Р†Р В°Р Р…Р Р…РЎвЂ№РЎвЂ¦ Р Т‘Р С•РЎРѓРЎвЂљР С‘Р В¶Р ВµР Р…Р С‘Р в„–
+          Р В РЎСљР В Р’ВµР РЋРІР‚С™ Р РЋР вЂљР В Р’В°Р В Р’В·Р В Р’В±Р В Р’В»Р В РЎвЂўР В РЎвЂќР В РЎвЂР РЋР вЂљР В РЎвЂўР В Р вЂ Р В Р’В°Р В Р вЂ¦Р В Р вЂ¦Р РЋРІР‚в„–Р РЋРІР‚В¦ Р В РўвЂР В РЎвЂўР РЋР С“Р РЋРІР‚С™Р В РЎвЂР В Р’В¶Р В Р’ВµР В Р вЂ¦Р В РЎвЂР В РІвЂћвЂ“
         </div>
       )}
     </div>

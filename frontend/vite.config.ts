@@ -58,6 +58,11 @@ export default defineConfig({
       '@radix-ui/react-alert-dialog': '@radix-ui/react-alert-dialog',
       '@radix-ui/react-accordion': '@radix-ui/react-accordion',
       '@': path.resolve(__dirname, './src'),
+      '@/components': path.resolve(__dirname, './components'),
+      '@/types': path.resolve(__dirname, './types'),
+      '@/hooks': path.resolve(__dirname, './hooks'),
+      '@/utils': path.resolve(__dirname, './utils'),
+      '@/styles': path.resolve(__dirname, './styles'),
     },
   },
   build: {

@@ -57,7 +57,7 @@ export const ShopPage: React.FC<ShopPageProps> = ({ theme, currentPage, onNaviga
   // Mock data
   const mockUser = {
     id: 'current-user',
-    name: 'Р ВР Р†Р В°Р Р… Р ВР Р†Р В°Р Р…Р С•Р Р†',
+    name: 'Р В Р’ВР В Р вЂ Р В Р’В°Р В Р вЂ¦ Р В Р’ВР В Р вЂ Р В Р’В°Р В Р вЂ¦Р В РЎвЂўР В Р вЂ ',
     balance: 2500,
     avatar: undefined
   };
@@ -65,50 +65,50 @@ export const ShopPage: React.FC<ShopPageProps> = ({ theme, currentPage, onNaviga
   const mockCaseShopItems = [
     {
       id: 'case1',
-      name: 'Р вЂРЎР‚Р С•Р Р…Р В·Р С•Р Р†РЎвЂ№Р в„– Р С”Р ВµР в„–РЎРѓ',
+      name: 'Р В РІР‚ВР РЋР вЂљР В РЎвЂўР В Р вЂ¦Р В Р’В·Р В РЎвЂўР В Р вЂ Р РЋРІР‚в„–Р В РІвЂћвЂ“ Р В РЎвЂќР В Р’ВµР В РІвЂћвЂ“Р РЋР С“',
       price: 500,
       color: '#CD7F32',
-      description: 'Р вЂР В°Р В·Р С•Р Р†РЎвЂ№Р Вµ Р С—РЎР‚Р ВµР Т‘Р СР ВµРЎвЂљРЎвЂ№'
+      description: 'Р В РІР‚ВР В Р’В°Р В Р’В·Р В РЎвЂўР В Р вЂ Р РЋРІР‚в„–Р В Р’Вµ Р В РЎвЂ”Р РЋР вЂљР В Р’ВµР В РўвЂР В РЎВР В Р’ВµР РЋРІР‚С™Р РЋРІР‚в„–'
     },
     {
       id: 'case2', 
-      name: 'Р РЋР ВµРЎР‚Р ВµР В±РЎР‚РЎРЏР Р…РЎвЂ№Р в„– Р С”Р ВµР в„–РЎРѓ',
+      name: 'Р В Р Р‹Р В Р’ВµР РЋР вЂљР В Р’ВµР В Р’В±Р РЋР вЂљР РЋР РЏР В Р вЂ¦Р РЋРІР‚в„–Р В РІвЂћвЂ“ Р В РЎвЂќР В Р’ВµР В РІвЂћвЂ“Р РЋР С“',
       price: 1000,
       color: '#C0C0C0',
-      description: 'Р ТђР С•РЎР‚Р С•РЎв‚¬Р С‘Р Вµ Р С—РЎР‚Р ВµР Т‘Р СР ВµРЎвЂљРЎвЂ№'
+      description: 'Р В РўС’Р В РЎвЂўР РЋР вЂљР В РЎвЂўР РЋРІвЂљВ¬Р В РЎвЂР В Р’Вµ Р В РЎвЂ”Р РЋР вЂљР В Р’ВµР В РўвЂР В РЎВР В Р’ВµР РЋРІР‚С™Р РЋРІР‚в„–'
     },
     {
       id: 'case3',
-      name: 'Р вЂ”Р С•Р В»Р С•РЎвЂљР С•Р в„– Р С”Р ВµР в„–РЎРѓ', 
+      name: 'Р В РІР‚вЂќР В РЎвЂўР В Р’В»Р В РЎвЂўР РЋРІР‚С™Р В РЎвЂўР В РІвЂћвЂ“ Р В РЎвЂќР В Р’ВµР В РІвЂћвЂ“Р РЋР С“', 
       price: 2500,
       color: '#FFD700',
-      description: 'Р В Р ВµР Т‘Р С”Р С‘Р Вµ Р С—РЎР‚Р ВµР Т‘Р СР ВµРЎвЂљРЎвЂ№'
+      description: 'Р В Р’В Р В Р’ВµР В РўвЂР В РЎвЂќР В РЎвЂР В Р’Вµ Р В РЎвЂ”Р РЋР вЂљР В Р’ВµР В РўвЂР В РЎВР В Р’ВµР РЋРІР‚С™Р РЋРІР‚в„–'
     }
   ];
 
   const localShopItems = [
     {
       id: 'shop1',
-      name: 'Р вЂР С•Р Р…РЎС“РЎРѓ Р С•Р С—РЎвЂ№РЎвЂљР В° 2x',
+      name: 'Р В РІР‚ВР В РЎвЂўР В Р вЂ¦Р РЋРЎвЂњР РЋР С“ Р В РЎвЂўР В РЎвЂ”Р РЋРІР‚в„–Р РЋРІР‚С™Р В Р’В° 2x',
       price: 500,
-      description: 'Р Р€Р Т‘Р Р†Р В°Р С‘Р Р†Р В°Р ВµРЎвЂљ Р С—Р С•Р В»РЎС“РЎвЂЎР В°Р ВµР СРЎвЂ№Р в„– Р С•Р С—РЎвЂ№РЎвЂљ Р Р…Р В° 24 РЎвЂЎР В°РЎРѓР В°',
-      emoji: 'РІС™РЋ',
+      description: 'Р В Р в‚¬Р В РўвЂР В Р вЂ Р В Р’В°Р В РЎвЂР В Р вЂ Р В Р’В°Р В Р’ВµР РЋРІР‚С™ Р В РЎвЂ”Р В РЎвЂўР В Р’В»Р РЋРЎвЂњР РЋРІР‚РЋР В Р’В°Р В Р’ВµР В РЎВР РЋРІР‚в„–Р В РІвЂћвЂ“ Р В РЎвЂўР В РЎвЂ”Р РЋРІР‚в„–Р РЋРІР‚С™ Р В Р вЂ¦Р В Р’В° 24 Р РЋРІР‚РЋР В Р’В°Р РЋР С“Р В Р’В°',
+      emoji: 'Р Р†РЎв„ўР Р‹',
       isActive: true
     },
     {
       id: 'shop2',
-      name: 'VIP РЎРѓРЎвЂљР В°РЎвЂљРЎС“РЎРѓ',
+      name: 'VIP Р РЋР С“Р РЋРІР‚С™Р В Р’В°Р РЋРІР‚С™Р РЋРЎвЂњР РЋР С“',
       price: 2000,
-      description: 'Р С›РЎРѓР С•Р В±РЎвЂ№Р Вµ Р С—РЎР‚Р С‘Р Р†Р С‘Р В»Р ВµР С–Р С‘Р С‘ Р Р…Р В° 7 Р Т‘Р Р…Р ВµР в„–',
-      emoji: 'СЂСџвЂвЂ',
+      description: 'Р В РЎвЂєР РЋР С“Р В РЎвЂўР В Р’В±Р РЋРІР‚в„–Р В Р’Вµ Р В РЎвЂ”Р РЋР вЂљР В РЎвЂР В Р вЂ Р В РЎвЂР В Р’В»Р В Р’ВµР В РЎвЂ“Р В РЎвЂР В РЎвЂ Р В Р вЂ¦Р В Р’В° 7 Р В РўвЂР В Р вЂ¦Р В Р’ВµР В РІвЂћвЂ“',
+      emoji: 'РЎР‚РЎСџРІР‚ВРІР‚В',
       isActive: true
     },
     {
       id: 'shop3',
-      name: 'Р вЂР С•Р Р…РЎС“РЎРѓ Р С”Р С•Р С‘Р Р…Р С•Р Р†',
+      name: 'Р В РІР‚ВР В РЎвЂўР В Р вЂ¦Р РЋРЎвЂњР РЋР С“ Р В РЎвЂќР В РЎвЂўР В РЎвЂР В Р вЂ¦Р В РЎвЂўР В Р вЂ ',
       price: 1000,
-      description: '+50% Р С”Р С•Р С‘Р Р…Р С•Р Р† Р В·Р В° Р Р†РЎвЂ№Р С—Р С•Р В»Р Р…Р ВµР Р…Р С‘Р Вµ Р В·Р В°Р Т‘Р В°РЎвЂЎ',
-      emoji: 'СЂСџвЂ™В°',
+      description: '+50% Р В РЎвЂќР В РЎвЂўР В РЎвЂР В Р вЂ¦Р В РЎвЂўР В Р вЂ  Р В Р’В·Р В Р’В° Р В Р вЂ Р РЋРІР‚в„–Р В РЎвЂ”Р В РЎвЂўР В Р’В»Р В Р вЂ¦Р В Р’ВµР В Р вЂ¦Р В РЎвЂР В Р’Вµ Р В Р’В·Р В Р’В°Р В РўвЂР В Р’В°Р РЋРІР‚РЋ',
+      emoji: 'РЎР‚РЎСџРІР‚в„ўР’В°',
       isActive: true
     }
   ];
@@ -150,7 +150,7 @@ export const ShopPage: React.FC<ShopPageProps> = ({ theme, currentPage, onNaviga
 
   const handleCheckout = () => {
     if (cartTotal > mockUser.balance) {
-      alert('Р СњР ВµР Т‘Р С•РЎРѓРЎвЂљР В°РЎвЂљР С•РЎвЂЎР Р…Р С• РЎРѓРЎР‚Р ВµР Т‘РЎРѓРЎвЂљР Р†!');
+      alert('Р В РЎСљР В Р’ВµР В РўвЂР В РЎвЂўР РЋР С“Р РЋРІР‚С™Р В Р’В°Р РЋРІР‚С™Р В РЎвЂўР РЋРІР‚РЋР В Р вЂ¦Р В РЎвЂў Р РЋР С“Р РЋР вЂљР В Р’ВµР В РўвЂР РЋР С“Р РЋРІР‚С™Р В Р вЂ !');
       return;
     }
 
@@ -165,7 +165,7 @@ export const ShopPage: React.FC<ShopPageProps> = ({ theme, currentPage, onNaviga
     setOrders(prev => [...prev, newOrder]);
     setCart([]);
     setCartModalOpen(false);
-    alert('Р вЂ”Р В°Р С”Р В°Р В· Р С•РЎвЂћР С•РЎР‚Р СР В»Р ВµР Р…!');
+    alert('Р В РІР‚вЂќР В Р’В°Р В РЎвЂќР В Р’В°Р В Р’В· Р В РЎвЂўР РЋРІР‚С›Р В РЎвЂўР РЋР вЂљР В РЎВР В Р’В»Р В Р’ВµР В Р вЂ¦!');
   };
 
   const getStatusColor = (status: string) => {
@@ -180,11 +180,11 @@ export const ShopPage: React.FC<ShopPageProps> = ({ theme, currentPage, onNaviga
 
   const getStatusText = (status: string) => {
     switch (status) {
-      case 'pending': return 'Р С›Р В¶Р С‘Р Т‘Р В°Р ВµРЎвЂљ';
-      case 'completed': return 'Р вЂ™РЎвЂ№Р С—Р С•Р В»Р Р…Р ВµР Р…';
-      case 'cancelled': return 'Р С›РЎвЂљР СР ВµР Р…Р ВµР Р…';
-      case 'rejected': return 'Р С›РЎвЂљР С”Р В»Р С•Р Р…Р ВµР Р…';
-      default: return 'Р СњР ВµР С‘Р В·Р Р†Р ВµРЎРѓРЎвЂљР Р…Р С•';
+      case 'pending': return 'Р В РЎвЂєР В Р’В¶Р В РЎвЂР В РўвЂР В Р’В°Р В Р’ВµР РЋРІР‚С™';
+      case 'completed': return 'Р В РІР‚в„ўР РЋРІР‚в„–Р В РЎвЂ”Р В РЎвЂўР В Р’В»Р В Р вЂ¦Р В Р’ВµР В Р вЂ¦';
+      case 'cancelled': return 'Р В РЎвЂєР РЋРІР‚С™Р В РЎВР В Р’ВµР В Р вЂ¦Р В Р’ВµР В Р вЂ¦';
+      case 'rejected': return 'Р В РЎвЂєР РЋРІР‚С™Р В РЎвЂќР В Р’В»Р В РЎвЂўР В Р вЂ¦Р В Р’ВµР В Р вЂ¦';
+      default: return 'Р В РЎСљР В Р’ВµР В РЎвЂР В Р’В·Р В Р вЂ Р В Р’ВµР РЋР С“Р РЋРІР‚С™Р В Р вЂ¦Р В РЎвЂў';
     }
   };
 
@@ -278,7 +278,7 @@ export const ShopPage: React.FC<ShopPageProps> = ({ theme, currentPage, onNaviga
             {/* Cart Button */}
             <button
               onClick={() => setCartModalOpen(true)}
-              aria-label="Р С›РЎвЂљР С”РЎР‚РЎвЂ№РЎвЂљРЎРЉ Р С”Р С•РЎР‚Р В·Р С‘Р Р…РЎС“"
+              aria-label="Р В РЎвЂєР РЋРІР‚С™Р В РЎвЂќР РЋР вЂљР РЋРІР‚в„–Р РЋРІР‚С™Р РЋР Р‰ Р В РЎвЂќР В РЎвЂўР РЋР вЂљР В Р’В·Р В РЎвЂР В Р вЂ¦Р РЋРЎвЂњ"
               style={{
                 position: 'relative',
                 width: '44px',
@@ -349,14 +349,14 @@ export const ShopPage: React.FC<ShopPageProps> = ({ theme, currentPage, onNaviga
           boxShadow: '0 8px 32px rgba(0,0,0,0.1)'
         }}>
           {[
-            { id: 'free', label: 'Р вЂР вЂўР РЋР СџР вЂєР С’Р СћР СњР В«Р в„ў' },
-            { id: 'shop', label: 'Р СљР С’Р вЂњР С’Р вЂ”Р ВР Сњ' },
-            { id: 'my', label: 'Р СљР С›Р В Р С™Р вЂўР в„ўР РЋР В«' }
+            { id: 'free', label: 'Р В РІР‚ВР В РІР‚СћР В Р Р‹Р В РЎСџР В РІР‚С”Р В РЎвЂ™Р В РЎС›Р В РЎСљР В Р’В«Р В РІвЂћСћ' },
+            { id: 'shop', label: 'Р В РЎС™Р В РЎвЂ™Р В РІР‚СљР В РЎвЂ™Р В РІР‚вЂќР В Р’ВР В РЎСљ' },
+            { id: 'my', label: 'Р В РЎС™Р В РЎвЂєР В Р’В Р В РЎв„ўР В РІР‚СћР В РІвЂћСћР В Р Р‹Р В Р’В«' }
           ].map((tab) => (
             <button
               key={tab.id}
               onClick={() => setActiveTab(tab.id as any)}
-              aria-label={`Р СџР ВµРЎР‚Р ВµР С”Р В»РЎР‹РЎвЂЎР С‘РЎвЂљРЎРЉ Р Р…Р В° Р Р†Р С”Р В»Р В°Р Т‘Р С”РЎС“ ${tab.label}`}
+              aria-label={`Р В РЎСџР В Р’ВµР РЋР вЂљР В Р’ВµР В РЎвЂќР В Р’В»Р РЋР вЂ№Р РЋРІР‚РЋР В РЎвЂР РЋРІР‚С™Р РЋР Р‰ Р В Р вЂ¦Р В Р’В° Р В Р вЂ Р В РЎвЂќР В Р’В»Р В Р’В°Р В РўвЂР В РЎвЂќР РЋРЎвЂњ ${tab.label}`}
               style={{
                 flex: 1,
                 padding: '12px 16px',
@@ -409,7 +409,7 @@ export const ShopPage: React.FC<ShopPageProps> = ({ theme, currentPage, onNaviga
                 fontSize: '18px',
                 fontWeight: '500'
               }}>
-                Р вЂР вЂўР РЋР СџР вЂєР С’Р СћР СњР В«Р в„ў Р С™Р вЂўР в„ўР РЋ
+                Р В РІР‚ВР В РІР‚СћР В Р Р‹Р В РЎСџР В РІР‚С”Р В РЎвЂ™Р В РЎС›Р В РЎСљР В Р’В«Р В РІвЂћСћ Р В РЎв„ўР В РІР‚СћР В РІвЂћСћР В Р Р‹
               </h2>
               <div style={{
                 width: '100px',
@@ -448,7 +448,7 @@ export const ShopPage: React.FC<ShopPageProps> = ({ theme, currentPage, onNaviga
                 fontWeight: '500',
                 textShadow: '0 0 10px rgba(34, 197, 94, 0.5)'
               }}>
-                Р вЂР вЂўР РЋР СџР вЂєР С’Р СћР СњР В«Р в„ў Р С™Р вЂўР в„ўР РЋ GRITHER
+                Р В РІР‚ВР В РІР‚СћР В Р Р‹Р В РЎСџР В РІР‚С”Р В РЎвЂ™Р В РЎС›Р В РЎСљР В Р’В«Р В РІвЂћСћ Р В РЎв„ўР В РІР‚СћР В РІвЂћСћР В Р Р‹ GRITHER
               </h3>
               <p style={{ 
                 color: theme === 'dark' ? '#A7B0BD' : '#6B7280',
@@ -456,12 +456,12 @@ export const ShopPage: React.FC<ShopPageProps> = ({ theme, currentPage, onNaviga
                 fontSize: '12px',
                 lineHeight: '1.4'
               }}>
-                Р СџР С•Р В»РЎС“РЎвЂЎР С‘РЎвЂљР Вµ РЎРѓР В»РЎС“РЎвЂЎР В°Р в„–Р Р…РЎвЂ№Р в„– Р С”Р ВµР в„–РЎРѓ РЎРѓР С•Р Р†Р ВµРЎР‚РЎв‚¬Р ВµР Р…Р Р…Р С• Р В±Р ВµРЎРѓР С—Р В»Р В°РЎвЂљР Р…Р С• Р С”Р В°Р В¶Р Т‘РЎвЂ№Р Вµ 24 РЎвЂЎР В°РЎРѓР В°!
+                Р В РЎСџР В РЎвЂўР В Р’В»Р РЋРЎвЂњР РЋРІР‚РЋР В РЎвЂР РЋРІР‚С™Р В Р’Вµ Р РЋР С“Р В Р’В»Р РЋРЎвЂњР РЋРІР‚РЋР В Р’В°Р В РІвЂћвЂ“Р В Р вЂ¦Р РЋРІР‚в„–Р В РІвЂћвЂ“ Р В РЎвЂќР В Р’ВµР В РІвЂћвЂ“Р РЋР С“ Р РЋР С“Р В РЎвЂўР В Р вЂ Р В Р’ВµР РЋР вЂљР РЋРІвЂљВ¬Р В Р’ВµР В Р вЂ¦Р В Р вЂ¦Р В РЎвЂў Р В Р’В±Р В Р’ВµР РЋР С“Р В РЎвЂ”Р В Р’В»Р В Р’В°Р РЋРІР‚С™Р В Р вЂ¦Р В РЎвЂў Р В РЎвЂќР В Р’В°Р В Р’В¶Р В РўвЂР РЋРІР‚в„–Р В Р’Вµ 24 Р РЋРІР‚РЋР В Р’В°Р РЋР С“Р В Р’В°!
               </p>
 
               {isFreeAvailable ? (
                 <button
-                  aria-label="Р С›РЎвЂљР С”РЎР‚РЎвЂ№РЎвЂљРЎРЉ Р В±Р ВµРЎРѓР С—Р В»Р В°РЎвЂљР Р…РЎвЂ№Р в„– Р С”Р ВµР в„–РЎРѓ"
+                  aria-label="Р В РЎвЂєР РЋРІР‚С™Р В РЎвЂќР РЋР вЂљР РЋРІР‚в„–Р РЋРІР‚С™Р РЋР Р‰ Р В Р’В±Р В Р’ВµР РЋР С“Р В РЎвЂ”Р В Р’В»Р В Р’В°Р РЋРІР‚С™Р В Р вЂ¦Р РЋРІР‚в„–Р В РІвЂћвЂ“ Р В РЎвЂќР В Р’ВµР В РІвЂћвЂ“Р РЋР С“"
                   style={{
                     background: 'linear-gradient(145deg, #22C55E, #16A34A)',
                     color: 'white',
@@ -489,7 +489,7 @@ export const ShopPage: React.FC<ShopPageProps> = ({ theme, currentPage, onNaviga
                     e.currentTarget.style.transform = 'scale(1.05)';
                   }}
                 >
-                  Р С›Р СћР С™Р В Р В«Р СћР В¬ Р вЂР вЂўР РЋР СџР вЂєР С’Р СћР СњР В«Р в„ў Р С™Р вЂўР в„ўР РЋ
+                  Р В РЎвЂєР В РЎС›Р В РЎв„ўР В Р’В Р В Р’В«Р В РЎС›Р В Р’В¬ Р В РІР‚ВР В РІР‚СћР В Р Р‹Р В РЎСџР В РІР‚С”Р В РЎвЂ™Р В РЎС›Р В РЎСљР В Р’В«Р В РІвЂћСћ Р В РЎв„ўР В РІР‚СћР В РІвЂћСћР В Р Р‹
                 </button>
               ) : (
                 <div>
@@ -503,11 +503,11 @@ export const ShopPage: React.FC<ShopPageProps> = ({ theme, currentPage, onNaviga
                     fontSize: '12px'
                   }}>
                     <Clock size={16} />
-                    <span>Р РЋР В»Р ВµР Т‘РЎС“РЎР‹РЎвЂ°Р С‘Р в„– Р С”Р ВµР в„–РЎРѓ РЎвЂЎР ВµРЎР‚Р ВµР В·: {timeLeft}</span>
+                    <span>Р В Р Р‹Р В Р’В»Р В Р’ВµР В РўвЂР РЋРЎвЂњР РЋР вЂ№Р РЋРІР‚В°Р В РЎвЂР В РІвЂћвЂ“ Р В РЎвЂќР В Р’ВµР В РІвЂћвЂ“Р РЋР С“ Р РЋРІР‚РЋР В Р’ВµР РЋР вЂљР В Р’ВµР В Р’В·: {timeLeft}</span>
                   </div>
                   <button
                     disabled
-                    aria-label="Р С›Р В¶Р С‘Р Т‘Р В°Р Р…Р С‘Р Вµ РЎРѓР В»Р ВµР Т‘РЎС“РЎР‹РЎвЂ°Р ВµР С–Р С• Р В±Р ВµРЎРѓР С—Р В»Р В°РЎвЂљР Р…Р С•Р С–Р С• Р С”Р ВµР в„–РЎРѓР В°"
+                    aria-label="Р В РЎвЂєР В Р’В¶Р В РЎвЂР В РўвЂР В Р’В°Р В Р вЂ¦Р В РЎвЂР В Р’Вµ Р РЋР С“Р В Р’В»Р В Р’ВµР В РўвЂР РЋРЎвЂњР РЋР вЂ№Р РЋРІР‚В°Р В Р’ВµР В РЎвЂ“Р В РЎвЂў Р В Р’В±Р В Р’ВµР РЋР С“Р В РЎвЂ”Р В Р’В»Р В Р’В°Р РЋРІР‚С™Р В Р вЂ¦Р В РЎвЂўР В РЎвЂ“Р В РЎвЂў Р В РЎвЂќР В Р’ВµР В РІвЂћвЂ“Р РЋР С“Р В Р’В°"
                     style={{
                       background: 'linear-gradient(145deg, #6B7280, #4B5563)',
                       color: '#9CA3AF',
@@ -520,7 +520,7 @@ export const ShopPage: React.FC<ShopPageProps> = ({ theme, currentPage, onNaviga
                       opacity: 0.5
                     }}
                   >
-                    Р С›Р вЂ“Р ВР вЂќР С’Р СњР ВР вЂў...
+                    Р В РЎвЂєР В РІР‚вЂњР В Р’ВР В РІР‚СњР В РЎвЂ™Р В РЎСљР В Р’ВР В РІР‚Сћ...
                   </button>
                 </div>
               )}
@@ -536,7 +536,7 @@ export const ShopPage: React.FC<ShopPageProps> = ({ theme, currentPage, onNaviga
                 color: theme === 'dark' ? '#E8ECF2' : '#0F172A',
                 marginBottom: '16px'
               }}>
-                Р СџР В Р вЂўР СљР ВР Р€Р Сљ Р С™Р вЂўР в„ўР РЋР В«
+                Р В РЎСџР В Р’В Р В РІР‚СћР В РЎС™Р В Р’ВР В Р в‚¬Р В РЎС™ Р В РЎв„ўР В РІР‚СћР В РІвЂћСћР В Р Р‹Р В Р’В«
               </h3>
               <div style={{
                 display: 'grid',
@@ -619,7 +619,7 @@ export const ShopPage: React.FC<ShopPageProps> = ({ theme, currentPage, onNaviga
                           cursor: 'pointer'
                         }}
                       >
-                        Р С™Р Р€Р СџР ВР СћР В¬
+                        Р В РЎв„ўР В Р в‚¬Р В РЎСџР В Р’ВР В РЎС›Р В Р’В¬
                       </button>
                     </div>
                   </div>
@@ -633,7 +633,7 @@ export const ShopPage: React.FC<ShopPageProps> = ({ theme, currentPage, onNaviga
                 color: theme === 'dark' ? '#E8ECF2' : '#0F172A',
                 marginBottom: '16px'
               }}>
-                Р СћР С›Р вЂ™Р С’Р В Р В« Р СљР С’Р вЂњР С’Р вЂ”Р ВР СњР С’
+                Р В РЎС›Р В РЎвЂєР В РІР‚в„ўР В РЎвЂ™Р В Р’В Р В Р’В« Р В РЎС™Р В РЎвЂ™Р В РІР‚СљР В РЎвЂ™Р В РІР‚вЂќР В Р’ВР В РЎСљР В РЎвЂ™
               </h3>
               <div style={{
                 display: 'grid',
@@ -701,7 +701,7 @@ export const ShopPage: React.FC<ShopPageProps> = ({ theme, currentPage, onNaviga
                         cursor: 'pointer'
                       }}
                     >
-                      Р вЂ™ Р С™Р С›Р В Р вЂ”Р ВР СњР Р€
+                      Р В РІР‚в„ў Р В РЎв„ўР В РЎвЂєР В Р’В Р В РІР‚вЂќР В Р’ВР В РЎСљР В Р в‚¬
                     </button>
                   </div>
                 ))}
@@ -716,7 +716,7 @@ export const ShopPage: React.FC<ShopPageProps> = ({ theme, currentPage, onNaviga
             color: theme === 'dark' ? '#E8ECF2' : '#0F172A',
             marginBottom: '16px'
           }}>
-            Р СљР С›Р В Р С™Р вЂўР в„ўР РЋР В«
+            Р В РЎС™Р В РЎвЂєР В Р’В Р В РЎв„ўР В РІР‚СћР В РІвЂћСћР В Р Р‹Р В Р’В«
           </h3>
           
           {userCases.length === 0 ? (
@@ -742,10 +742,10 @@ export const ShopPage: React.FC<ShopPageProps> = ({ theme, currentPage, onNaviga
                 color: theme === 'dark' ? '#E8ECF2' : '#0F172A',
                 marginBottom: '8px'
               }}>
-                Р СџРЎС“РЎРѓРЎвЂљР С•
+                Р В РЎСџР РЋРЎвЂњР РЋР С“Р РЋРІР‚С™Р В РЎвЂў
               </h4>
               <p style={{ color: theme === 'dark' ? '#A7B0BD' : '#6B7280' }}>
-                Р вЂ”Р Т‘Р ВµРЎРѓРЎРЉ Р С—Р С•РЎРЏР Р†РЎРЏРЎвЂљРЎРѓРЎРЏ Р С—Р С•Р В»РЎС“РЎвЂЎР ВµР Р…Р Р…РЎвЂ№Р Вµ Р С”Р ВµР в„–РЎРѓРЎвЂ№
+                Р В РІР‚вЂќР В РўвЂР В Р’ВµР РЋР С“Р РЋР Р‰ Р В РЎвЂ”Р В РЎвЂўР РЋР РЏР В Р вЂ Р РЋР РЏР РЋРІР‚С™Р РЋР С“Р РЋР РЏ Р В РЎвЂ”Р В РЎвЂўР В Р’В»Р РЋРЎвЂњР РЋРІР‚РЋР В Р’ВµР В Р вЂ¦Р В Р вЂ¦Р РЋРІР‚в„–Р В Р’Вµ Р В РЎвЂќР В Р’ВµР В РІвЂћвЂ“Р РЋР С“Р РЋРІР‚в„–
               </p>
             </div>
           ) : (
@@ -786,7 +786,7 @@ export const ShopPage: React.FC<ShopPageProps> = ({ theme, currentPage, onNaviga
                       fontSize: '12px',
                       marginBottom: '12px'
                     }}>
-                      Р СџР С•Р В»РЎС“РЎвЂЎР ВµР Р…: {new Date(userCase.obtainedAt).toLocaleDateString()}
+                      Р В РЎСџР В РЎвЂўР В Р’В»Р РЋРЎвЂњР РЋРІР‚РЋР В Р’ВµР В Р вЂ¦: {new Date(userCase.obtainedAt).toLocaleDateString()}
                     </p>
                     <button
                       style={{
@@ -803,7 +803,7 @@ export const ShopPage: React.FC<ShopPageProps> = ({ theme, currentPage, onNaviga
                         cursor: 'pointer'
                       }}
                     >
-                      Р С›Р СћР С™Р В Р В«Р СћР В¬ Р С™Р вЂўР в„ўР РЋ
+                      Р В РЎвЂєР В РЎС›Р В РЎв„ўР В Р’В Р В Р’В«Р В РЎС›Р В Р’В¬ Р В РЎв„ўР В РІР‚СћР В РІвЂћСћР В Р Р‹
                     </button>
                   </div>
                 </div>
@@ -850,7 +850,7 @@ export const ShopPage: React.FC<ShopPageProps> = ({ theme, currentPage, onNaviga
                 marginBottom: '24px'
               }}>
                 <h2 style={{ color: theme === 'dark' ? '#E8ECF2' : '#0F172A' }}>
-                  Р С™Р С•РЎР‚Р В·Р С‘Р Р…Р В° Р С‘ Р В·Р В°Р С”Р В°Р В·РЎвЂ№
+                  Р В РЎв„ўР В РЎвЂўР РЋР вЂљР В Р’В·Р В РЎвЂР В Р вЂ¦Р В Р’В° Р В РЎвЂ Р В Р’В·Р В Р’В°Р В РЎвЂќР В Р’В°Р В Р’В·Р РЋРІР‚в„–
                 </h2>
                 <button
                   onClick={() => setCartModalOpen(false)}
@@ -875,9 +875,9 @@ export const ShopPage: React.FC<ShopPageProps> = ({ theme, currentPage, onNaviga
                 padding: '4px'
               }}>
                 {[
-                  { id: 'cart', label: 'Р С™Р С•РЎР‚Р В·Р С‘Р Р…Р В°', icon: ShoppingCart },
-                  { id: 'active', label: 'Р С’Р С”РЎвЂљР С‘Р Р†Р Р…РЎвЂ№Р Вµ', icon: Clock },
-                  { id: 'completed', label: 'Р вЂ”Р В°Р Р†Р ВµРЎР‚РЎв‚¬Р ВµР Р…Р Р…РЎвЂ№Р Вµ', icon: CheckCircle }
+                  { id: 'cart', label: 'Р В РЎв„ўР В РЎвЂўР РЋР вЂљР В Р’В·Р В РЎвЂР В Р вЂ¦Р В Р’В°', icon: ShoppingCart },
+                  { id: 'active', label: 'Р В РЎвЂ™Р В РЎвЂќР РЋРІР‚С™Р В РЎвЂР В Р вЂ Р В Р вЂ¦Р РЋРІР‚в„–Р В Р’Вµ', icon: Clock },
+                  { id: 'completed', label: 'Р В РІР‚вЂќР В Р’В°Р В Р вЂ Р В Р’ВµР РЋР вЂљР РЋРІвЂљВ¬Р В Р’ВµР В Р вЂ¦Р В Р вЂ¦Р РЋРІР‚в„–Р В Р’Вµ', icon: CheckCircle }
                 ].map((tab) => (
                   <button
                     key={tab.id}
@@ -921,7 +921,7 @@ export const ShopPage: React.FC<ShopPageProps> = ({ theme, currentPage, onNaviga
                         <ShoppingCart size={32} color="#FFFFFF" />
                       </div>
                       <h4 style={{ color: theme === 'dark' ? '#E8ECF2' : '#0F172A' }}>
-                        Р С™Р С•РЎР‚Р В·Р С‘Р Р…Р В° Р С—РЎС“РЎРѓРЎвЂљР В°
+                        Р В РЎв„ўР В РЎвЂўР РЋР вЂљР В Р’В·Р В РЎвЂР В Р вЂ¦Р В Р’В° Р В РЎвЂ”Р РЋРЎвЂњР РЋР С“Р РЋРІР‚С™Р В Р’В°
                       </h4>
                     </div>
                   ) : (
@@ -952,7 +952,7 @@ export const ShopPage: React.FC<ShopPageProps> = ({ theme, currentPage, onNaviga
                                 fontSize: '12px',
                                 color: theme === 'dark' ? '#A7B0BD' : '#6B7280'
                               }}>
-                                {item.price.toLocaleString()} Р С”Р С•Р С‘Р Р…Р С•Р Р†
+                                {item.price.toLocaleString()} Р В РЎвЂќР В РЎвЂўР В РЎвЂР В Р вЂ¦Р В РЎвЂўР В Р вЂ 
                               </div>
                             </div>
                           </div>
@@ -1018,14 +1018,14 @@ export const ShopPage: React.FC<ShopPageProps> = ({ theme, currentPage, onNaviga
                             fontWeight: 'bold',
                             color: theme === 'dark' ? '#E8ECF2' : '#0F172A'
                           }}>
-                            Р ВРЎвЂљР С•Р С–Р С•:
+                            Р В Р’ВР РЋРІР‚С™Р В РЎвЂўР В РЎвЂ“Р В РЎвЂў:
                           </span>
                           <span style={{ 
                             fontWeight: 'bold',
                             color: '#3B82F6',
                             fontSize: '18px'
                           }}>
-                            {cartTotal.toLocaleString()} Р С”Р С•Р С‘Р Р…Р С•Р Р†
+                            {cartTotal.toLocaleString()} Р В РЎвЂќР В РЎвЂўР В РЎвЂР В Р вЂ¦Р В РЎвЂўР В Р вЂ 
                           </span>
                         </div>
                         <button
@@ -1043,7 +1043,7 @@ export const ShopPage: React.FC<ShopPageProps> = ({ theme, currentPage, onNaviga
                             opacity: cartTotal <= mockUser.balance ? 1 : 0.5
                           }}
                         >
-                          {cartTotal <= mockUser.balance ? 'Р С›Р В¤Р С›Р В Р СљР ВР СћР В¬ Р вЂ”Р С’Р С™Р С’Р вЂ”' : 'Р СњР вЂўР вЂќР С›Р РЋР СћР С’Р СћР С›Р В§Р СњР С› Р РЋР В Р вЂўР вЂќР РЋР СћР вЂ™'}
+                          {cartTotal <= mockUser.balance ? 'Р В РЎвЂєР В Р’В¤Р В РЎвЂєР В Р’В Р В РЎС™Р В Р’ВР В РЎС›Р В Р’В¬ Р В РІР‚вЂќР В РЎвЂ™Р В РЎв„ўР В РЎвЂ™Р В РІР‚вЂќ' : 'Р В РЎСљР В РІР‚СћР В РІР‚СњР В РЎвЂєР В Р Р‹Р В РЎС›Р В РЎвЂ™Р В РЎС›Р В РЎвЂєР В Р’В§Р В РЎСљР В РЎвЂє Р В Р Р‹Р В Р’В Р В РІР‚СћР В РІР‚СњР В Р Р‹Р В РЎС›Р В РІР‚в„ў'}
                         </button>
                       </div>
                     </>
@@ -1068,7 +1068,7 @@ export const ShopPage: React.FC<ShopPageProps> = ({ theme, currentPage, onNaviga
                         <Clock size={32} color="#FFFFFF" />
                       </div>
                       <h4 style={{ color: theme === 'dark' ? '#E8ECF2' : '#0F172A' }}>
-                        Р СњР ВµРЎвЂљ Р В°Р С”РЎвЂљР С‘Р Р†Р Р…РЎвЂ№РЎвЂ¦ Р В·Р В°Р С”Р В°Р В·Р С•Р Р†
+                        Р В РЎСљР В Р’ВµР РЋРІР‚С™ Р В Р’В°Р В РЎвЂќР РЋРІР‚С™Р В РЎвЂР В Р вЂ Р В Р вЂ¦Р РЋРІР‚в„–Р РЋРІР‚В¦ Р В Р’В·Р В Р’В°Р В РЎвЂќР В Р’В°Р В Р’В·Р В РЎвЂўР В Р вЂ 
                       </h4>
                     </div>
                   ) : (
@@ -1094,7 +1094,7 @@ export const ShopPage: React.FC<ShopPageProps> = ({ theme, currentPage, onNaviga
                               fontWeight: 'bold',
                               color: theme === 'dark' ? '#E8ECF2' : '#0F172A'
                             }}>
-                              Р вЂ”Р В°Р С”Р В°Р В· #{order.id.slice(-6)}
+                              Р В РІР‚вЂќР В Р’В°Р В РЎвЂќР В Р’В°Р В Р’В· #{order.id.slice(-6)}
                             </span>
                             <span style={{
                               padding: '4px 8px',
@@ -1129,7 +1129,7 @@ export const ShopPage: React.FC<ShopPageProps> = ({ theme, currentPage, onNaviga
                               fontWeight: 'bold',
                               color: '#3B82F6'
                             }}>
-                              {order.total.toLocaleString()} Р С”Р С•Р С‘Р Р…Р С•Р Р†
+                              {order.total.toLocaleString()} Р В РЎвЂќР В РЎвЂўР В РЎвЂР В Р вЂ¦Р В РЎвЂўР В Р вЂ 
                             </span>
                           </div>
                         </div>
@@ -1156,7 +1156,7 @@ export const ShopPage: React.FC<ShopPageProps> = ({ theme, currentPage, onNaviga
                         <CheckCircle size={32} color="#FFFFFF" />
                       </div>
                       <h4 style={{ color: theme === 'dark' ? '#E8ECF2' : '#0F172A' }}>
-                        Р СњР ВµРЎвЂљ Р В·Р В°Р Р†Р ВµРЎР‚РЎв‚¬Р ВµР Р…Р Р…РЎвЂ№РЎвЂ¦ Р В·Р В°Р С”Р В°Р В·Р С•Р Р†
+                        Р В РЎСљР В Р’ВµР РЋРІР‚С™ Р В Р’В·Р В Р’В°Р В Р вЂ Р В Р’ВµР РЋР вЂљР РЋРІвЂљВ¬Р В Р’ВµР В Р вЂ¦Р В Р вЂ¦Р РЋРІР‚в„–Р РЋРІР‚В¦ Р В Р’В·Р В Р’В°Р В РЎвЂќР В Р’В°Р В Р’В·Р В РЎвЂўР В Р вЂ 
                       </h4>
                     </div>
                   ) : (
@@ -1186,7 +1186,7 @@ export const ShopPage: React.FC<ShopPageProps> = ({ theme, currentPage, onNaviga
                               fontWeight: 'bold',
                               color: theme === 'dark' ? '#E8ECF2' : '#0F172A'
                             }}>
-                              Р вЂ”Р В°Р С”Р В°Р В· #{order.id.slice(-6)}
+                              Р В РІР‚вЂќР В Р’В°Р В РЎвЂќР В Р’В°Р В Р’В· #{order.id.slice(-6)}
                             </span>
                             <span style={{
                               padding: '4px 8px',
@@ -1221,7 +1221,7 @@ export const ShopPage: React.FC<ShopPageProps> = ({ theme, currentPage, onNaviga
                               fontWeight: 'bold',
                               color: '#3B82F6'
                             }}>
-                              {order.total.toLocaleString()} Р С”Р С•Р С‘Р Р…Р С•Р Р†
+                              {order.total.toLocaleString()} Р В РЎвЂќР В РЎвЂўР В РЎвЂР В Р вЂ¦Р В РЎвЂўР В Р вЂ 
                             </span>
                           </div>
                         </div>

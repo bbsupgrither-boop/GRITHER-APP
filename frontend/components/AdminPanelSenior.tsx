@@ -16,7 +16,7 @@ export const AdminPanelSenior: React.FC<AdminPanelSeniorProps> = ({
     <AdminPanelMain 
       theme={theme}
       onClose={onClose}
-      adminName={`${adminName} (Р РЋРЎвЂљР В°РЎР‚РЎв‚¬Р С‘Р в„– Р С’Р Т‘Р СР С‘Р Р…)`}
+      adminName={`${adminName} (Р В Р Р‹Р РЋРІР‚С™Р В Р’В°Р РЋР вЂљР РЋРІвЂљВ¬Р В РЎвЂР В РІвЂћвЂ“ Р В РЎвЂ™Р В РўвЂР В РЎВР В РЎвЂР В Р вЂ¦)`}
     />
   );
 };

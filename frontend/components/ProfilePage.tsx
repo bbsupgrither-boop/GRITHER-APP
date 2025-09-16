@@ -38,7 +38,7 @@ export const ProfilePage: React.FC<ProfilePageProps> = ({
         theme={theme}
       />
       
-      {/* Р С›РЎРѓР Р…Р С•Р Р†Р Р…Р С•Р в„– Р С”Р С•Р Р…РЎвЂљР ВµР Р…РЎвЂљ */}
+      {/* Р В РЎвЂєР РЋР С“Р В Р вЂ¦Р В РЎвЂўР В Р вЂ Р В Р вЂ¦Р В РЎвЂўР В РІвЂћвЂ“ Р В РЎвЂќР В РЎвЂўР В Р вЂ¦Р РЋРІР‚С™Р В Р’ВµР В Р вЂ¦Р РЋРІР‚С™ */}
       <div style={{
         maxWidth: '448px',
         margin: '20px auto',
@@ -73,7 +73,7 @@ export const ProfilePage: React.FC<ProfilePageProps> = ({
               color: theme === 'dark' ? '#E8ECF2' : '#0F172A',
               margin: 0
             }}>
-              Р СџРЎР‚Р С•РЎвЂћР С‘Р В»РЎРЉ
+              Р В РЎСџР РЋР вЂљР В РЎвЂўР РЋРІР‚С›Р В РЎвЂР В Р’В»Р РЋР Р‰
             </h1>
             <button
               style={{
@@ -86,7 +86,7 @@ export const ProfilePage: React.FC<ProfilePageProps> = ({
               }}
               onMouseEnter={(e) => e.target.style.backgroundColor = theme === 'dark' ? 'rgba(255, 255, 255, 0.1)' : 'rgba(0, 0, 0, 0.05)'}
               onMouseLeave={(e) => e.target.style.backgroundColor = 'transparent'}
-              aria-label="Р СњР В°РЎРѓРЎвЂљРЎР‚Р С•Р в„–Р С”Р С‘ Р С—РЎР‚Р С•РЎвЂћР С‘Р В»РЎРЏ"
+              aria-label="Р В РЎСљР В Р’В°Р РЋР С“Р РЋРІР‚С™Р РЋР вЂљР В РЎвЂўР В РІвЂћвЂ“Р В РЎвЂќР В РЎвЂ Р В РЎвЂ”Р РЋР вЂљР В РЎвЂўР РЋРІР‚С›Р В РЎвЂР В Р’В»Р РЋР РЏ"
             >
               <Edit3 size={20} color={theme === 'dark' ? '#E8ECF2' : '#0F172A'} />
             </button>
@@ -138,21 +138,21 @@ export const ProfilePage: React.FC<ProfilePageProps> = ({
                   color: theme === 'dark' ? '#E8ECF2' : '#0F172A',
                   margin: '0 0 4px 0'
                 }}>
-                  {user?.name || 'Р СџР С•Р В»РЎРЉР В·Р С•Р Р†Р В°РЎвЂљР ВµР В»РЎРЉ'}
+                  {user?.name || 'Р В РЎСџР В РЎвЂўР В Р’В»Р РЋР Р‰Р В Р’В·Р В РЎвЂўР В Р вЂ Р В Р’В°Р РЋРІР‚С™Р В Р’ВµР В Р’В»Р РЋР Р‰'}
                 </h2>
                 <p style={{
                   fontSize: '14px',
                   color: theme === 'dark' ? '#A7B0BD' : '#6B7280',
                   margin: '0 0 4px 0'
                 }}>
-                  Р Р€РЎР‚Р С•Р Р†Р ВµР Р…РЎРЉ {user?.level || 1}
+                  Р В Р в‚¬Р РЋР вЂљР В РЎвЂўР В Р вЂ Р В Р’ВµР В Р вЂ¦Р РЋР Р‰ {user?.level || 1}
                 </p>
                 <p style={{
                   fontSize: '14px',
                   color: theme === 'dark' ? '#A7B0BD' : '#6B7280',
                   margin: 0
                 }}>
-                  {user?.team || 'Р С™Р С•Р СР В°Р Р…Р Т‘Р В° Р Р…Р Вµ РЎС“Р С”Р В°Р В·Р В°Р Р…Р В°'}
+                  {user?.team || 'Р В РЎв„ўР В РЎвЂўР В РЎВР В Р’В°Р В Р вЂ¦Р В РўвЂР В Р’В° Р В Р вЂ¦Р В Р’Вµ Р РЋРЎвЂњР В РЎвЂќР В Р’В°Р В Р’В·Р В Р’В°Р В Р вЂ¦Р В Р’В°'}
                 </p>
               </div>
             </div>
@@ -165,7 +165,7 @@ export const ProfilePage: React.FC<ProfilePageProps> = ({
                   fontWeight: '500',
                   color: theme === 'dark' ? '#E8ECF2' : '#0F172A'
                 }}>
-                  Р СџРЎР‚Р С•Р С–РЎР‚Р ВµРЎРѓРЎРѓ РЎС“РЎР‚Р С•Р Р†Р Р…РЎРЏ
+                  Р В РЎСџР РЋР вЂљР В РЎвЂўР В РЎвЂ“Р РЋР вЂљР В Р’ВµР РЋР С“Р РЋР С“ Р РЋРЎвЂњР РЋР вЂљР В РЎвЂўР В Р вЂ Р В Р вЂ¦Р РЋР РЏ
                 </span>
                 <span style={{
                   fontSize: '14px',
@@ -205,7 +205,7 @@ export const ProfilePage: React.FC<ProfilePageProps> = ({
                   fontSize: '12px',
                   color: theme === 'dark' ? '#A7B0BD' : '#6B7280'
                 }}>
-                  Р СџР С•Р В±Р ВµР Т‘
+                  Р В РЎСџР В РЎвЂўР В Р’В±Р В Р’ВµР В РўвЂ
                 </div>
               </div>
               <div style={{ textAlign: 'center' }}>
@@ -226,7 +226,7 @@ export const ProfilePage: React.FC<ProfilePageProps> = ({
                   fontSize: '12px',
                   color: theme === 'dark' ? '#A7B0BD' : '#6B7280'
                 }}>
-                  Р вЂР В°Р В»Р В°Р Р…РЎРѓ
+                  Р В РІР‚ВР В Р’В°Р В Р’В»Р В Р’В°Р В Р вЂ¦Р РЋР С“
                 </div>
               </div>
               <div style={{ textAlign: 'center' }}>
@@ -242,7 +242,7 @@ export const ProfilePage: React.FC<ProfilePageProps> = ({
                   fontSize: '12px',
                   color: theme === 'dark' ? '#A7B0BD' : '#6B7280'
                 }}>
-                  Р С’РЎвЂЎР С‘Р Р†Р С”Р С‘
+                  Р В РЎвЂ™Р РЋРІР‚РЋР В РЎвЂР В Р вЂ Р В РЎвЂќР В РЎвЂ
                 </div>
               </div>
             </div>
@@ -266,7 +266,7 @@ export const ProfilePage: React.FC<ProfilePageProps> = ({
               gap: '8px'
             }}>
               <Trophy size={20} color="#2B82FF" />
-              Р СљР С•Р С‘ Р В±Р В°РЎвЂљРЎвЂљР В»РЎвЂ№
+              Р В РЎС™Р В РЎвЂўР В РЎвЂ Р В Р’В±Р В Р’В°Р РЋРІР‚С™Р РЋРІР‚С™Р В Р’В»Р РЋРІР‚в„–
             </h3>
             {battles?.length > 0 ? (
               <div style={{ display: 'flex', flexDirection: 'column', gap: '12px' }}>
@@ -286,13 +286,13 @@ export const ProfilePage: React.FC<ProfilePageProps> = ({
                         color: theme === 'dark' ? '#E8ECF2' : '#0F172A',
                         marginBottom: '4px'
                       }}>
-                        {battle.title || `Р вЂР В°РЎвЂљРЎвЂљР В» #${index + 1}`}
+                        {battle.title || `Р В РІР‚ВР В Р’В°Р РЋРІР‚С™Р РЋРІР‚С™Р В Р’В» #${index + 1}`}
                       </div>
                       <div style={{
                         fontSize: '12px',
                         color: theme === 'dark' ? '#A7B0BD' : '#6B7280'
                       }}>
-                        {battle.status || 'Р вЂ”Р В°Р Р†Р ВµРЎР‚РЎв‚¬Р ВµР Р…'}
+                        {battle.status || 'Р В РІР‚вЂќР В Р’В°Р В Р вЂ Р В Р’ВµР РЋР вЂљР РЋРІвЂљВ¬Р В Р’ВµР В Р вЂ¦'}
                       </div>
                     </div>
                     <div style={{
@@ -320,7 +320,7 @@ export const ProfilePage: React.FC<ProfilePageProps> = ({
                     onMouseEnter={(e) => e.target.style.backgroundColor = theme === 'dark' ? 'rgba(43, 130, 255, 0.1)' : 'rgba(43, 130, 255, 0.05)'}
                     onMouseLeave={(e) => e.target.style.backgroundColor = 'transparent'}
                   >
-                    Р СџР С•Р С”Р В°Р В·Р В°РЎвЂљРЎРЉ Р Р†РЎРѓР Вµ ({battles.length})
+                    Р В РЎСџР В РЎвЂўР В РЎвЂќР В Р’В°Р В Р’В·Р В Р’В°Р РЋРІР‚С™Р РЋР Р‰ Р В Р вЂ Р РЋР С“Р В Р’Вµ ({battles.length})
                   </button>
                 )}
               </div>
@@ -331,7 +331,7 @@ export const ProfilePage: React.FC<ProfilePageProps> = ({
                 color: theme === 'dark' ? '#A7B0BD' : '#6B7280'
               }}>
                 <Trophy size={32} color={theme === 'dark' ? '#A7B0BD' : '#6B7280'} style={{ marginBottom: '8px' }} />
-                <p style={{ margin: 0, fontSize: '14px' }}>Р СџР С•Р С”Р В° Р Р…Р ВµРЎвЂљ Р В±Р В°РЎвЂљРЎвЂљР В»Р С•Р Р†</p>
+                <p style={{ margin: 0, fontSize: '14px' }}>Р В РЎСџР В РЎвЂўР В РЎвЂќР В Р’В° Р В Р вЂ¦Р В Р’ВµР РЋРІР‚С™ Р В Р’В±Р В Р’В°Р РЋРІР‚С™Р РЋРІР‚С™Р В Р’В»Р В РЎвЂўР В Р вЂ </p>
               </div>
             )}
           </div>

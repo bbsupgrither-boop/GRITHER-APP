@@ -24,7 +24,7 @@ interface AdminBattleManagementProps {
   theme: 'light' | 'dark';
 }
 
-// Р ВРЎРѓР С—Р С•Р В»РЎРЉР В·РЎС“Р ВµР С BattleData Р С‘Р В· Р В±Р В°Р В·РЎвЂ№ Р Т‘Р В°Р Р…Р Р…РЎвЂ№РЎвЂ¦
+// Р В Р’ВР РЋР С“Р В РЎвЂ”Р В РЎвЂўР В Р’В»Р РЋР Р‰Р В Р’В·Р РЋРЎвЂњР В Р’ВµР В РЎВ BattleData Р В РЎвЂР В Р’В· Р В Р’В±Р В Р’В°Р В Р’В·Р РЋРІР‚в„– Р В РўвЂР В Р’В°Р В Р вЂ¦Р В Р вЂ¦Р РЋРІР‚в„–Р РЋРІР‚В¦
 
 interface BattleStats {
   totalBattles: number;
@@ -41,10 +41,10 @@ interface BattleStats {
 }
 
 const BATTLE_STATUS = {
-  active: { label: 'Р С’Р С”РЎвЂљР С‘Р Р†Р Р…РЎвЂ№Р в„–', color: 'bg-yellow-500' },
-  completed: { label: 'Р вЂ”Р В°Р Р†Р ВµРЎР‚РЎв‚¬Р ВµР Р…', color: 'bg-green-500' },
-  cancelled: { label: 'Р С›РЎвЂљР СР ВµР Р…Р ВµР Р…', color: 'bg-red-500' },
-  disputed: { label: 'Р РЋР С—Р С•РЎР‚Р Р…РЎвЂ№Р в„–', color: 'bg-orange-500' }
+  active: { label: 'Р В РЎвЂ™Р В РЎвЂќР РЋРІР‚С™Р В РЎвЂР В Р вЂ Р В Р вЂ¦Р РЋРІР‚в„–Р В РІвЂћвЂ“', color: 'bg-yellow-500' },
+  completed: { label: 'Р В РІР‚вЂќР В Р’В°Р В Р вЂ Р В Р’ВµР РЋР вЂљР РЋРІвЂљВ¬Р В Р’ВµР В Р вЂ¦', color: 'bg-green-500' },
+  cancelled: { label: 'Р В РЎвЂєР РЋРІР‚С™Р В РЎВР В Р’ВµР В Р вЂ¦Р В Р’ВµР В Р вЂ¦', color: 'bg-red-500' },
+  disputed: { label: 'Р В Р Р‹Р В РЎвЂ”Р В РЎвЂўР РЋР вЂљР В Р вЂ¦Р РЋРІР‚в„–Р В РІвЂћвЂ“', color: 'bg-orange-500' }
 };
 
 export const AdminBattleManagement: React.FC<AdminBattleManagementProps> = ({ theme }) => {
@@ -64,31 +64,31 @@ export const AdminBattleManagement: React.FC<AdminBattleManagementProps> = ({ th
   const [activeTab, setActiveTab] = useState<'active' | 'history' | 'disputes'>('active');
   const [selectedBattle, setSelectedBattle] = useState<Battle | null>(null);
 
-  // Р вЂ”Р В°Р С–РЎР‚РЎС“Р В·Р С”Р В° Р Т‘Р В°Р Р…Р Р…РЎвЂ№РЎвЂ¦
+  // Р В РІР‚вЂќР В Р’В°Р В РЎвЂ“Р РЋР вЂљР РЋРЎвЂњР В Р’В·Р В РЎвЂќР В Р’В° Р В РўвЂР В Р’В°Р В Р вЂ¦Р В Р вЂ¦Р РЋРІР‚в„–Р РЋРІР‚В¦
   useEffect(() => {
     loadBattles();
   }, []);
 
-  // Р В¤Р С‘Р В»РЎРЉРЎвЂљРЎР‚Р В°РЎвЂ Р С‘РЎРЏ
+  // Р В Р’В¤Р В РЎвЂР В Р’В»Р РЋР Р‰Р РЋРІР‚С™Р РЋР вЂљР В Р’В°Р РЋРІР‚В Р В РЎвЂР РЋР РЏ
   useEffect(() => {
     filterBattles();
   }, [battles, searchQuery, filterStatus, activeTab]);
 
   const loadBattles = async () => {
-    // Mock Р Т‘Р В°Р Р…Р Р…РЎвЂ№Р Вµ
+    // Mock Р В РўвЂР В Р’В°Р В Р вЂ¦Р В Р вЂ¦Р РЋРІР‚в„–Р В Р’Вµ
     const mockBattles: Battle[] = [
       {
         id: '1',
         player1: {
           id: 'user1',
-          name: 'Р С’Р В»Р ВµР С”РЎРѓР ВµР в„– Р ВР Р†Р В°Р Р…Р С•Р Р†',
-          team: 'Р С™Р С•Р СР В°Р Р…Р Т‘Р В° Р С’',
+          name: 'Р В РЎвЂ™Р В Р’В»Р В Р’ВµР В РЎвЂќР РЋР С“Р В Р’ВµР В РІвЂћвЂ“ Р В Р’ВР В Р вЂ Р В Р’В°Р В Р вЂ¦Р В РЎвЂўР В Р вЂ ',
+          team: 'Р В РЎв„ўР В РЎвЂўР В РЎВР В Р’В°Р В Р вЂ¦Р В РўвЂР В Р’В° Р В РЎвЂ™',
           balance: 1000
         },
         player2: {
           id: 'user2',
-          name: 'Р СљР В°РЎР‚Р С‘РЎРЏ Р СџР ВµРЎвЂљРЎР‚Р С•Р Р†Р В°',
-          team: 'Р С™Р С•Р СР В°Р Р…Р Т‘Р В° Р вЂ',
+          name: 'Р В РЎС™Р В Р’В°Р РЋР вЂљР В РЎвЂР РЋР РЏ Р В РЎСџР В Р’ВµР РЋРІР‚С™Р РЋР вЂљР В РЎвЂўР В Р вЂ Р В Р’В°',
+          team: 'Р В РЎв„ўР В РЎвЂўР В РЎВР В Р’В°Р В Р вЂ¦Р В РўвЂР В Р’В° Р В РІР‚В',
           balance: 750
         },
         stake: 250,
@@ -99,14 +99,14 @@ export const AdminBattleManagement: React.FC<AdminBattleManagementProps> = ({ th
         id: '2',
         player1: {
           id: 'user3',
-          name: 'Р вЂќР СР С‘РЎвЂљРЎР‚Р С‘Р в„– Р РЋР С‘Р Т‘Р С•РЎР‚Р С•Р Р†',
-          team: 'Р С™Р С•Р СР В°Р Р…Р Т‘Р В° Р вЂ™',
+          name: 'Р В РІР‚СњР В РЎВР В РЎвЂР РЋРІР‚С™Р РЋР вЂљР В РЎвЂР В РІвЂћвЂ“ Р В Р Р‹Р В РЎвЂР В РўвЂР В РЎвЂўР РЋР вЂљР В РЎвЂўР В Р вЂ ',
+          team: 'Р В РЎв„ўР В РЎвЂўР В РЎВР В Р’В°Р В Р вЂ¦Р В РўвЂР В Р’В° Р В РІР‚в„ў',
           balance: 500
         },
         player2: {
           id: 'user4',
-          name: 'Р С’Р Р…Р Р…Р В° Р С™Р С•Р В·Р В»Р С•Р Р†Р В°',
-          team: 'Р С™Р С•Р СР В°Р Р…Р Т‘Р В° Р вЂњ',
+          name: 'Р В РЎвЂ™Р В Р вЂ¦Р В Р вЂ¦Р В Р’В° Р В РЎв„ўР В РЎвЂўР В Р’В·Р В Р’В»Р В РЎвЂўР В Р вЂ Р В Р’В°',
+          team: 'Р В РЎв„ўР В РЎвЂўР В РЎВР В Р’В°Р В Р вЂ¦Р В РўвЂР В Р’В° Р В РІР‚Сљ',
           balance: 1200
         },
         stake: 300,
@@ -119,19 +119,19 @@ export const AdminBattleManagement: React.FC<AdminBattleManagementProps> = ({ th
         id: '3',
         player1: {
           id: 'user5',
-          name: 'Р СџР ВµРЎвЂљРЎР‚ Р СџР ВµРЎвЂљРЎР‚Р С•Р Р†',
-          team: 'Р С™Р С•Р СР В°Р Р…Р Т‘Р В° Р вЂќ',
+          name: 'Р В РЎСџР В Р’ВµР РЋРІР‚С™Р РЋР вЂљ Р В РЎСџР В Р’ВµР РЋРІР‚С™Р РЋР вЂљР В РЎвЂўР В Р вЂ ',
+          team: 'Р В РЎв„ўР В РЎвЂўР В РЎВР В Р’В°Р В Р вЂ¦Р В РўвЂР В Р’В° Р В РІР‚Сњ',
           balance: 800
         },
         player2: {
           id: 'user6',
-          name: 'Р вЂўР В»Р ВµР Р…Р В° Р СљР С•РЎР‚Р С•Р В·Р С•Р Р†Р В°',
-          team: 'Р С™Р С•Р СР В°Р Р…Р Т‘Р В° Р вЂў',
+          name: 'Р В РІР‚СћР В Р’В»Р В Р’ВµР В Р вЂ¦Р В Р’В° Р В РЎС™Р В РЎвЂўР РЋР вЂљР В РЎвЂўР В Р’В·Р В РЎвЂўР В Р вЂ Р В Р’В°',
+          team: 'Р В РЎв„ўР В РЎвЂўР В РЎВР В Р’В°Р В Р вЂ¦Р В РўвЂР В Р’В° Р В РІР‚Сћ',
           balance: 600
         },
         stake: 200,
         status: 'disputed',
-        disputeReason: 'Р СџР С•Р Т‘Р С•Р В·РЎР‚Р ВµР Р…Р С‘Р Вµ Р Р…Р В° РЎвЂЎР С‘РЎвЂљРЎвЂ№',
+        disputeReason: 'Р В РЎСџР В РЎвЂўР В РўвЂР В РЎвЂўР В Р’В·Р РЋР вЂљР В Р’ВµР В Р вЂ¦Р В РЎвЂР В Р’Вµ Р В Р вЂ¦Р В Р’В° Р РЋРІР‚РЋР В РЎвЂР РЋРІР‚С™Р РЋРІР‚в„–',
         proof: ['proof1.jpg', 'proof2.jpg'],
         createdAt: '2024-01-19T10:20:00Z'
       }
@@ -139,7 +139,7 @@ export const AdminBattleManagement: React.FC<AdminBattleManagementProps> = ({ th
 
     setBattles(mockBattles);
 
-    // Р В Р В°РЎРѓРЎвЂЎР ВµРЎвЂљ РЎРѓРЎвЂљР В°РЎвЂљР С‘РЎРѓРЎвЂљР С‘Р С”Р С‘
+    // Р В Р’В Р В Р’В°Р РЋР С“Р РЋРІР‚РЋР В Р’ВµР РЋРІР‚С™ Р РЋР С“Р РЋРІР‚С™Р В Р’В°Р РЋРІР‚С™Р В РЎвЂР РЋР С“Р РЋРІР‚С™Р В РЎвЂР В РЎвЂќР В РЎвЂ
     const totalBattles = mockBattles.length;
     const activeBattles = mockBattles.filter(b => b.status === 'active').length;
     const completedBattles = mockBattles.filter(b => b.status === 'completed').length;
@@ -155,9 +155,9 @@ export const AdminBattleManagement: React.FC<AdminBattleManagementProps> = ({ th
       totalVolume,
       averageStake,
       topPlayers: [
-        { name: 'Р С’Р Р…Р Р…Р В° Р С™Р С•Р В·Р В»Р С•Р Р†Р В°', wins: 5, totalWinnings: 1500 },
-        { name: 'Р С’Р В»Р ВµР С”РЎРѓР ВµР в„– Р ВР Р†Р В°Р Р…Р С•Р Р†', wins: 4, totalWinnings: 1200 },
-        { name: 'Р вЂќР СР С‘РЎвЂљРЎР‚Р С‘Р в„– Р РЋР С‘Р Т‘Р С•РЎР‚Р С•Р Р†', wins: 3, totalWinnings: 900 }
+        { name: 'Р В РЎвЂ™Р В Р вЂ¦Р В Р вЂ¦Р В Р’В° Р В РЎв„ўР В РЎвЂўР В Р’В·Р В Р’В»Р В РЎвЂўР В Р вЂ Р В Р’В°', wins: 5, totalWinnings: 1500 },
+        { name: 'Р В РЎвЂ™Р В Р’В»Р В Р’ВµР В РЎвЂќР РЋР С“Р В Р’ВµР В РІвЂћвЂ“ Р В Р’ВР В Р вЂ Р В Р’В°Р В Р вЂ¦Р В РЎвЂўР В Р вЂ ', wins: 4, totalWinnings: 1200 },
+        { name: 'Р В РІР‚СњР В РЎВР В РЎвЂР РЋРІР‚С™Р РЋР вЂљР В РЎвЂР В РІвЂћвЂ“ Р В Р Р‹Р В РЎвЂР В РўвЂР В РЎвЂўР РЋР вЂљР В РЎвЂўР В Р вЂ ', wins: 3, totalWinnings: 900 }
       ]
     });
   };
@@ -165,7 +165,7 @@ export const AdminBattleManagement: React.FC<AdminBattleManagementProps> = ({ th
   const filterBattles = () => {
     let filtered = battles;
 
-    // Р В¤Р С‘Р В»РЎРЉРЎвЂљРЎР‚ Р С—Р С• РЎвЂљР В°Р В±РЎС“
+    // Р В Р’В¤Р В РЎвЂР В Р’В»Р РЋР Р‰Р РЋРІР‚С™Р РЋР вЂљ Р В РЎвЂ”Р В РЎвЂў Р РЋРІР‚С™Р В Р’В°Р В Р’В±Р РЋРЎвЂњ
     if (activeTab === 'active') {
       filtered = filtered.filter(b => b.status === 'active');
     } else if (activeTab === 'history') {
@@ -174,7 +174,7 @@ export const AdminBattleManagement: React.FC<AdminBattleManagementProps> = ({ th
       filtered = filtered.filter(b => b.status === 'disputed');
     }
 
-    // Р СџР С•Р С‘РЎРѓР С”
+    // Р В РЎСџР В РЎвЂўР В РЎвЂР РЋР С“Р В РЎвЂќ
     if (searchQuery) {
       filtered = filtered.filter(battle =>
         battle.player1.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
@@ -183,7 +183,7 @@ export const AdminBattleManagement: React.FC<AdminBattleManagementProps> = ({ th
       );
     }
 
-    // Р В¤Р С‘Р В»РЎРЉРЎвЂљРЎР‚ Р С—Р С• РЎРѓРЎвЂљР В°РЎвЂљРЎС“РЎРѓРЎС“
+    // Р В Р’В¤Р В РЎвЂР В Р’В»Р РЋР Р‰Р РЋРІР‚С™Р РЋР вЂљ Р В РЎвЂ”Р В РЎвЂў Р РЋР С“Р РЋРІР‚С™Р В Р’В°Р РЋРІР‚С™Р РЋРЎвЂњР РЋР С“Р РЋРЎвЂњ
     if (filterStatus !== 'all') {
       filtered = filtered.filter(battle => battle.status === filterStatus);
     }
@@ -262,7 +262,7 @@ export const AdminBattleManagement: React.FC<AdminBattleManagementProps> = ({ th
                   {battle.player1.team}
                 </div>
                 <div className="text-xs opacity-60">
-                  СЂСџвЂ™В° {battle.player1.balance}
+                  РЎР‚РЎСџРІР‚в„ўР’В° {battle.player1.balance}
                 </div>
               </div>
 
@@ -271,10 +271,10 @@ export const AdminBattleManagement: React.FC<AdminBattleManagementProps> = ({ th
                   VS
                 </div>
                 <div className="text-sm opacity-70" style={{ color: theme === 'dark' ? '#A7B0BD' : '#6B7280' }}>
-                  Р РЋРЎвЂљР В°Р Р†Р С”Р В°: {battle.stake} Р СР С•Р Р…Р ВµРЎвЂљ
+                  Р В Р Р‹Р РЋРІР‚С™Р В Р’В°Р В Р вЂ Р В РЎвЂќР В Р’В°: {battle.stake} Р В РЎВР В РЎвЂўР В Р вЂ¦Р В Р’ВµР РЋРІР‚С™
                 </div>
                 <div className="text-xs opacity-60">
-                  СЂСџвЂњвЂ¦ {new Date(battle.createdAt).toLocaleString()}
+                  РЎР‚РЎСџРІР‚СљРІР‚В¦ {new Date(battle.createdAt).toLocaleString()}
                 </div>
               </div>
 
@@ -289,7 +289,7 @@ export const AdminBattleManagement: React.FC<AdminBattleManagementProps> = ({ th
                   {battle.player2.team}
                 </div>
                 <div className="text-xs opacity-60">
-                  СЂСџвЂ™В° {battle.player2.balance}
+                  РЎР‚РЎСџРІР‚в„ўР’В° {battle.player2.balance}
                 </div>
               </div>
             </div>
@@ -314,7 +314,7 @@ export const AdminBattleManagement: React.FC<AdminBattleManagementProps> = ({ th
                 className="flex items-center space-x-1 px-3 py-1 rounded-lg bg-red-500 bg-opacity-20 text-red-500 hover:bg-opacity-30 text-sm"
               >
                 <X className="w-4 h-4" />
-                <span>Р С›РЎвЂљР СР ВµР Р…Р С‘РЎвЂљРЎРЉ</span>
+                <span>Р В РЎвЂєР РЋРІР‚С™Р В РЎВР В Р’ВµР В Р вЂ¦Р В РЎвЂР РЋРІР‚С™Р РЋР Р‰</span>
               </button>
             </div>
           </div>
@@ -357,10 +357,10 @@ export const AdminBattleManagement: React.FC<AdminBattleManagementProps> = ({ th
                   VS
                 </div>
                 <div className="text-sm opacity-70" style={{ color: theme === 'dark' ? '#A7B0BD' : '#6B7280' }}>
-                  Р РЋРЎвЂљР В°Р Р†Р С”Р В°: {battle.stake} Р СР С•Р Р…Р ВµРЎвЂљ
+                  Р В Р Р‹Р РЋРІР‚С™Р В Р’В°Р В Р вЂ Р В РЎвЂќР В Р’В°: {battle.stake} Р В РЎВР В РЎвЂўР В Р вЂ¦Р В Р’ВµР РЋРІР‚С™
                 </div>
                 <div className="text-xs opacity-60">
-                  СЂСџвЂњвЂ¦ {new Date(battle.createdAt).toLocaleString()}
+                  РЎР‚РЎСџРІР‚СљРІР‚В¦ {new Date(battle.createdAt).toLocaleString()}
                 </div>
               </div>
 
@@ -419,19 +419,19 @@ export const AdminBattleManagement: React.FC<AdminBattleManagementProps> = ({ th
               
               <div>
                 <h3 className="font-semibold" style={{ color: theme === 'dark' ? '#E8ECF2' : '#0F172A' }}>
-                  Р вЂР В°РЎвЂљРЎвЂљР В» #{battle.id}
+                  Р В РІР‚ВР В Р’В°Р РЋРІР‚С™Р РЋРІР‚С™Р В Р’В» #{battle.id}
                 </h3>
                 <p className="text-sm opacity-70" style={{ color: theme === 'dark' ? '#A7B0BD' : '#6B7280' }}>
                   {battle.player1.name} vs {battle.player2.name}
                 </p>
                 <p className="text-sm opacity-70" style={{ color: theme === 'dark' ? '#A7B0BD' : '#6B7280' }}>
-                  Р СџРЎР‚Р С‘РЎвЂЎР С‘Р Р…Р В°: {battle.disputeReason}
+                  Р В РЎСџР РЋР вЂљР В РЎвЂР РЋРІР‚РЋР В РЎвЂР В Р вЂ¦Р В Р’В°: {battle.disputeReason}
                 </p>
                 <div className="flex items-center space-x-4 mt-2 text-xs opacity-60">
-                  <span>СЂСџвЂ™В° Р РЋРЎвЂљР В°Р Р†Р С”Р В°: {battle.stake} Р СР С•Р Р…Р ВµРЎвЂљ</span>
-                  <span>СЂСџвЂњвЂ¦ {new Date(battle.createdAt).toLocaleString()}</span>
+                  <span>РЎР‚РЎСџРІР‚в„ўР’В° Р В Р Р‹Р РЋРІР‚С™Р В Р’В°Р В Р вЂ Р В РЎвЂќР В Р’В°: {battle.stake} Р В РЎВР В РЎвЂўР В Р вЂ¦Р В Р’ВµР РЋРІР‚С™</span>
+                  <span>РЎР‚РЎСџРІР‚СљРІР‚В¦ {new Date(battle.createdAt).toLocaleString()}</span>
                   {battle.proof && (
-                    <span>СЂСџвЂњР‹ Р вЂќР С•Р С”Р В°Р В·Р В°РЎвЂљР ВµР В»РЎРЉРЎРѓРЎвЂљР Р†Р В°: {battle.proof.length}</span>
+                    <span>РЎР‚РЎСџРІР‚СљР вЂ№ Р В РІР‚СњР В РЎвЂўР В РЎвЂќР В Р’В°Р В Р’В·Р В Р’В°Р РЋРІР‚С™Р В Р’ВµР В Р’В»Р РЋР Р‰Р РЋР С“Р РЋРІР‚С™Р В Р вЂ Р В Р’В°: {battle.proof.length}</span>
                   )}
                 </div>
               </div>
@@ -457,7 +457,7 @@ export const AdminBattleManagement: React.FC<AdminBattleManagementProps> = ({ th
                 className="flex items-center space-x-1 px-3 py-1 rounded-lg bg-blue-500 bg-opacity-20 text-blue-500 hover:bg-opacity-30 text-sm"
               >
                 <Eye className="w-4 h-4" />
-                <span>Р СџР С•Р Т‘РЎР‚Р С•Р В±Р Р…Р ВµР Вµ</span>
+                <span>Р В РЎСџР В РЎвЂўР В РўвЂР РЋР вЂљР В РЎвЂўР В Р’В±Р В Р вЂ¦Р В Р’ВµР В Р’Вµ</span>
               </button>
             </div>
           </div>
@@ -468,19 +468,19 @@ export const AdminBattleManagement: React.FC<AdminBattleManagementProps> = ({ th
 
   return (
     <div className="p-6 space-y-6">
-      {/* Р вЂ”Р В°Р С–Р С•Р В»Р С•Р Р†Р С•Р С” */}
+      {/* Р В РІР‚вЂќР В Р’В°Р В РЎвЂ“Р В РЎвЂўР В Р’В»Р В РЎвЂўР В Р вЂ Р В РЎвЂўР В РЎвЂќ */}
       <div className="flex items-center justify-between">
         <div>
           <h1 className="text-2xl font-bold" style={{ color: theme === 'dark' ? '#E8ECF2' : '#0F172A' }}>
-            Р Р€Р С—РЎР‚Р В°Р Р†Р В»Р ВµР Р…Р С‘Р Вµ Р В±Р В°РЎвЂљРЎвЂљР В»Р В°Р СР С‘
+            Р В Р в‚¬Р В РЎвЂ”Р РЋР вЂљР В Р’В°Р В Р вЂ Р В Р’В»Р В Р’ВµР В Р вЂ¦Р В РЎвЂР В Р’Вµ Р В Р’В±Р В Р’В°Р РЋРІР‚С™Р РЋРІР‚С™Р В Р’В»Р В Р’В°Р В РЎВР В РЎвЂ
           </h1>
           <p className="text-sm opacity-70" style={{ color: theme === 'dark' ? '#A7B0BD' : '#6B7280' }}>
-            Р СљР С•Р Т‘Р ВµРЎР‚Р В°РЎвЂ Р С‘РЎРЏ Р С—Р С•Р ВµР Т‘Р С‘Р Р…Р С”Р С•Р Р† Р С‘ РЎР‚Р ВµРЎв‚¬Р ВµР Р…Р С‘Р Вµ РЎРѓР С—Р С•РЎР‚Р С•Р Р†
+            Р В РЎС™Р В РЎвЂўР В РўвЂР В Р’ВµР РЋР вЂљР В Р’В°Р РЋРІР‚В Р В РЎвЂР РЋР РЏ Р В РЎвЂ”Р В РЎвЂўР В Р’ВµР В РўвЂР В РЎвЂР В Р вЂ¦Р В РЎвЂќР В РЎвЂўР В Р вЂ  Р В РЎвЂ Р РЋР вЂљР В Р’ВµР РЋРІвЂљВ¬Р В Р’ВµР В Р вЂ¦Р В РЎвЂР В Р’Вµ Р РЋР С“Р В РЎвЂ”Р В РЎвЂўР РЋР вЂљР В РЎвЂўР В Р вЂ 
           </p>
         </div>
       </div>
 
-      {/* Р РЋРЎвЂљР В°РЎвЂљР С‘РЎРѓРЎвЂљР С‘Р С”Р В° */}
+      {/* Р В Р Р‹Р РЋРІР‚С™Р В Р’В°Р РЋРІР‚С™Р В РЎвЂР РЋР С“Р РЋРІР‚С™Р В РЎвЂР В РЎвЂќР В Р’В° */}
       <div className="grid grid-cols-2 md:grid-cols-6 gap-4">
         <div 
           className="p-4 rounded-xl text-center"
@@ -490,7 +490,7 @@ export const AdminBattleManagement: React.FC<AdminBattleManagementProps> = ({ th
           }}
         >
           <div className="text-2xl font-bold text-blue-500">{stats.totalBattles}</div>
-          <div className="text-sm opacity-70">Р вЂ™РЎРѓР ВµР С–Р С•</div>
+          <div className="text-sm opacity-70">Р В РІР‚в„ўР РЋР С“Р В Р’ВµР В РЎвЂ“Р В РЎвЂў</div>
         </div>
         <div 
           className="p-4 rounded-xl text-center"
@@ -500,7 +500,7 @@ export const AdminBattleManagement: React.FC<AdminBattleManagementProps> = ({ th
           }}
         >
           <div className="text-2xl font-bold text-yellow-500">{stats.activeBattles}</div>
-          <div className="text-sm opacity-70">Р С’Р С”РЎвЂљР С‘Р Р†Р Р…РЎвЂ№РЎвЂ¦</div>
+          <div className="text-sm opacity-70">Р В РЎвЂ™Р В РЎвЂќР РЋРІР‚С™Р В РЎвЂР В Р вЂ Р В Р вЂ¦Р РЋРІР‚в„–Р РЋРІР‚В¦</div>
         </div>
         <div 
           className="p-4 rounded-xl text-center"
@@ -510,7 +510,7 @@ export const AdminBattleManagement: React.FC<AdminBattleManagementProps> = ({ th
           }}
         >
           <div className="text-2xl font-bold text-green-500">{stats.completedBattles}</div>
-          <div className="text-sm opacity-70">Р вЂ”Р В°Р Р†Р ВµРЎР‚РЎв‚¬Р ВµР Р…Р С•</div>
+          <div className="text-sm opacity-70">Р В РІР‚вЂќР В Р’В°Р В Р вЂ Р В Р’ВµР РЋР вЂљР РЋРІвЂљВ¬Р В Р’ВµР В Р вЂ¦Р В РЎвЂў</div>
         </div>
         <div 
           className="p-4 rounded-xl text-center"
@@ -520,7 +520,7 @@ export const AdminBattleManagement: React.FC<AdminBattleManagementProps> = ({ th
           }}
         >
           <div className="text-2xl font-bold text-orange-500">{stats.disputedBattles}</div>
-          <div className="text-sm opacity-70">Р РЋР С—Р С•РЎР‚Р Р…РЎвЂ№РЎвЂ¦</div>
+          <div className="text-sm opacity-70">Р В Р Р‹Р В РЎвЂ”Р В РЎвЂўР РЋР вЂљР В Р вЂ¦Р РЋРІР‚в„–Р РЋРІР‚В¦</div>
         </div>
         <div 
           className="p-4 rounded-xl text-center"
@@ -530,7 +530,7 @@ export const AdminBattleManagement: React.FC<AdminBattleManagementProps> = ({ th
           }}
         >
           <div className="text-2xl font-bold text-purple-500">{stats.totalVolume}</div>
-          <div className="text-sm opacity-70">Р С›Р В±РЎР‰Р ВµР С</div>
+          <div className="text-sm opacity-70">Р В РЎвЂєР В Р’В±Р РЋР вЂ°Р В Р’ВµР В РЎВ</div>
         </div>
         <div 
           className="p-4 rounded-xl text-center"
@@ -540,16 +540,16 @@ export const AdminBattleManagement: React.FC<AdminBattleManagementProps> = ({ th
           }}
         >
           <div className="text-2xl font-bold text-indigo-500">{Math.round(stats.averageStake)}</div>
-          <div className="text-sm opacity-70">Р РЋРЎР‚Р ВµР Т‘Р Р…РЎРЏРЎРЏ РЎРѓРЎвЂљР В°Р Р†Р С”Р В°</div>
+          <div className="text-sm opacity-70">Р В Р Р‹Р РЋР вЂљР В Р’ВµР В РўвЂР В Р вЂ¦Р РЋР РЏР РЋР РЏ Р РЋР С“Р РЋРІР‚С™Р В Р’В°Р В Р вЂ Р В РЎвЂќР В Р’В°</div>
         </div>
       </div>
 
-      {/* Р СћР В°Р В±РЎвЂ№ */}
+      {/* Р В РЎС›Р В Р’В°Р В Р’В±Р РЋРІР‚в„– */}
       <div className="flex space-x-2 border-b" style={{ borderColor: theme === 'dark' ? 'rgba(255,255,255,0.1)' : '#E6E9EF' }}>
         {[
-          { id: 'active', label: 'Р С’Р С”РЎвЂљР С‘Р Р†Р Р…РЎвЂ№Р Вµ', icon: Activity, count: stats.activeBattles },
-          { id: 'history', label: 'Р ВРЎРѓРЎвЂљР С•РЎР‚Р С‘РЎРЏ', icon: Clock, count: stats.completedBattles },
-          { id: 'disputes', label: 'Р РЋР С—Р С•РЎР‚РЎвЂ№', icon: AlertTriangle, count: stats.disputedBattles }
+          { id: 'active', label: 'Р В РЎвЂ™Р В РЎвЂќР РЋРІР‚С™Р В РЎвЂР В Р вЂ Р В Р вЂ¦Р РЋРІР‚в„–Р В Р’Вµ', icon: Activity, count: stats.activeBattles },
+          { id: 'history', label: 'Р В Р’ВР РЋР С“Р РЋРІР‚С™Р В РЎвЂўР РЋР вЂљР В РЎвЂР РЋР РЏ', icon: Clock, count: stats.completedBattles },
+          { id: 'disputes', label: 'Р В Р Р‹Р В РЎвЂ”Р В РЎвЂўР РЋР вЂљР РЋРІР‚в„–', icon: AlertTriangle, count: stats.disputedBattles }
         ].map((tab) => (
           <button
             key={tab.id}
@@ -574,13 +574,13 @@ export const AdminBattleManagement: React.FC<AdminBattleManagementProps> = ({ th
         ))}
       </div>
 
-      {/* Р В¤Р С‘Р В»РЎРЉРЎвЂљРЎР‚РЎвЂ№ */}
+      {/* Р В Р’В¤Р В РЎвЂР В Р’В»Р РЋР Р‰Р РЋРІР‚С™Р РЋР вЂљР РЋРІР‚в„– */}
       <div className="flex space-x-4">
         <div className="relative flex-1">
           <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 w-4 h-4 opacity-50" />
           <input
             type="text"
-            placeholder="Р СџР С•Р С‘РЎРѓР С” Р В±Р В°РЎвЂљРЎвЂљР В»Р С•Р Р†..."
+            placeholder="Р В РЎСџР В РЎвЂўР В РЎвЂР РЋР С“Р В РЎвЂќ Р В Р’В±Р В Р’В°Р РЋРІР‚С™Р РЋРІР‚С™Р В Р’В»Р В РЎвЂўР В Р вЂ ..."
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
             className="w-full pl-10 pr-4 py-2 rounded-lg border"
@@ -602,14 +602,14 @@ export const AdminBattleManagement: React.FC<AdminBattleManagementProps> = ({ th
             color: theme === 'dark' ? '#E8ECF2' : '#0F172A'
           }}
         >
-          <option value="all">Р вЂ™РЎРѓР Вµ РЎРѓРЎвЂљР В°РЎвЂљРЎС“РЎРѓРЎвЂ№</option>
+          <option value="all">Р В РІР‚в„ўР РЋР С“Р В Р’Вµ Р РЋР С“Р РЋРІР‚С™Р В Р’В°Р РЋРІР‚С™Р РЋРЎвЂњР РЋР С“Р РЋРІР‚в„–</option>
           {Object.entries(BATTLE_STATUS).map(([value, status]) => (
             <option key={value} value={value}>{status.label}</option>
           ))}
         </select>
       </div>
 
-      {/* Р С™Р С•Р Р…РЎвЂљР ВµР Р…РЎвЂљ */}
+      {/* Р В РЎв„ўР В РЎвЂўР В Р вЂ¦Р РЋРІР‚С™Р В Р’ВµР В Р вЂ¦Р РЋРІР‚С™ */}
       {activeTab === 'active' && renderActiveBattles()}
       {activeTab === 'history' && renderBattleHistory()}
       {activeTab === 'disputes' && renderDisputes()}

@@ -42,7 +42,7 @@ export function AchievementsPage({ onNavigate, currentPage, onOpenSettings, achi
       case 'progress_desc':
         const percentDescA = (a.requirements.current / a.requirements.target) * 100;
         const percentDescB = (b.requirements.current / b.requirements.target) * 100;
-        // Р РЋР Р…Р В°РЎвЂЎР В°Р В»Р В° Р Т‘Р С•РЎРѓРЎвЂљР С‘Р В¶Р ВµР Р…Р С‘РЎРЏ РЎРѓ Р С—РЎР‚Р С•Р С–РЎР‚Р ВµРЎРѓРЎРѓР С•Р С, Р С—Р С•РЎвЂљР С•Р С Р В±Р ВµР В· Р С—РЎР‚Р С•Р С–РЎР‚Р ВµРЎРѓРЎРѓР В°
+        // Р В Р Р‹Р В Р вЂ¦Р В Р’В°Р РЋРІР‚РЋР В Р’В°Р В Р’В»Р В Р’В° Р В РўвЂР В РЎвЂўР РЋР С“Р РЋРІР‚С™Р В РЎвЂР В Р’В¶Р В Р’ВµР В Р вЂ¦Р В РЎвЂР РЋР РЏ Р РЋР С“ Р В РЎвЂ”Р РЋР вЂљР В РЎвЂўР В РЎвЂ“Р РЋР вЂљР В Р’ВµР РЋР С“Р РЋР С“Р В РЎвЂўР В РЎВ, Р В РЎвЂ”Р В РЎвЂўР РЋРІР‚С™Р В РЎвЂўР В РЎВ Р В Р’В±Р В Р’ВµР В Р’В· Р В РЎвЂ”Р РЋР вЂљР В РЎвЂўР В РЎвЂ“Р РЋР вЂљР В Р’ВµР РЋР С“Р РЋР С“Р В Р’В°
         if (percentDescA > 0 && percentDescB === 0) return -1;
         if (percentDescA === 0 && percentDescB > 0) return 1;
         return percentDescB - percentDescA;
@@ -120,12 +120,12 @@ export function AchievementsPage({ onNavigate, currentPage, onOpenSettings, achi
                   margin: 0
                 }}
               >
-                Р вЂќР С•РЎРѓРЎвЂљР С‘Р В¶Р ВµР Р…Р С‘РЎРЏ
+                Р В РІР‚СњР В РЎвЂўР РЋР С“Р РЋРІР‚С™Р В РЎвЂР В Р’В¶Р В Р’ВµР В Р вЂ¦Р В РЎвЂР РЋР РЏ
               </h1>
               
               <button
                 onClick={() => setSortMenuOpen(true)}
-                aria-label="Р С›РЎвЂљР С”РЎР‚РЎвЂ№РЎвЂљРЎРЉ Р СР ВµР Р…РЎР‹ РЎРѓР С•РЎР‚РЎвЂљР С‘РЎР‚Р С•Р Р†Р С”Р С‘"
+                aria-label="Р В РЎвЂєР РЋРІР‚С™Р В РЎвЂќР РЋР вЂљР РЋРІР‚в„–Р РЋРІР‚С™Р РЋР Р‰ Р В РЎВР В Р’ВµР В Р вЂ¦Р РЋР вЂ№ Р РЋР С“Р В РЎвЂўР РЋР вЂљР РЋРІР‚С™Р В РЎвЂР РЋР вЂљР В РЎвЂўР В Р вЂ Р В РЎвЂќР В РЎвЂ"
                 style={{
                   width: '40px',
                   height: '40px',
@@ -347,7 +347,7 @@ export function AchievementsPage({ onNavigate, currentPage, onOpenSettings, achi
                                 fontSize: '12px'
                               }}
                             >
-                              РІСљвЂњ
+                              Р Р†РЎС™РІР‚Сљ
                             </div>
                           ) : (
                             <div
@@ -418,7 +418,7 @@ export function AchievementsPage({ onNavigate, currentPage, onOpenSettings, achi
                     marginBottom: '8px'
                   }}
                 >
-                  Р СњР ВµРЎвЂљ Р Т‘Р С•РЎРѓРЎвЂљР С‘Р В¶Р ВµР Р…Р С‘Р в„–
+                  Р В РЎСљР В Р’ВµР РЋРІР‚С™ Р В РўвЂР В РЎвЂўР РЋР С“Р РЋРІР‚С™Р В РЎвЂР В Р’В¶Р В Р’ВµР В Р вЂ¦Р В РЎвЂР В РІвЂћвЂ“
                 </h3>
                 <p 
                   style={{
@@ -427,7 +427,7 @@ export function AchievementsPage({ onNavigate, currentPage, onOpenSettings, achi
                     lineHeight: '1.4'
                   }}
                 >
-                  Р вЂ™РЎвЂ№Р С—Р С•Р В»Р Р…РЎРЏР в„–РЎвЂљР Вµ Р В·Р В°Р Т‘Р В°РЎвЂЎР С‘ Р С‘ РЎС“РЎвЂЎР В°РЎРѓРЎвЂљР Р†РЎС“Р в„–РЎвЂљР Вµ Р Р† Р В±Р В°РЎвЂљРЎвЂљР В»Р В°РЎвЂ¦, РЎвЂЎРЎвЂљР С•Р В±РЎвЂ№ Р С—Р С•Р В»РЎС“РЎвЂЎР С‘РЎвЂљРЎРЉ Р Т‘Р С•РЎРѓРЎвЂљР С‘Р В¶Р ВµР Р…Р С‘РЎРЏ
+                  Р В РІР‚в„ўР РЋРІР‚в„–Р В РЎвЂ”Р В РЎвЂўР В Р’В»Р В Р вЂ¦Р РЋР РЏР В РІвЂћвЂ“Р РЋРІР‚С™Р В Р’Вµ Р В Р’В·Р В Р’В°Р В РўвЂР В Р’В°Р РЋРІР‚РЋР В РЎвЂ Р В РЎвЂ Р РЋРЎвЂњР РЋРІР‚РЋР В Р’В°Р РЋР С“Р РЋРІР‚С™Р В Р вЂ Р РЋРЎвЂњР В РІвЂћвЂ“Р РЋРІР‚С™Р В Р’Вµ Р В Р вЂ  Р В Р’В±Р В Р’В°Р РЋРІР‚С™Р РЋРІР‚С™Р В Р’В»Р В Р’В°Р РЋРІР‚В¦, Р РЋРІР‚РЋР РЋРІР‚С™Р В РЎвЂўР В Р’В±Р РЋРІР‚в„– Р В РЎвЂ”Р В РЎвЂўР В Р’В»Р РЋРЎвЂњР РЋРІР‚РЋР В РЎвЂР РЋРІР‚С™Р РЋР Р‰ Р В РўвЂР В РЎвЂўР РЋР С“Р РЋРІР‚С™Р В РЎвЂР В Р’В¶Р В Р’ВµР В Р вЂ¦Р В РЎвЂР РЋР РЏ
                 </p>
               </div>
             )}
@@ -443,13 +443,13 @@ export function AchievementsPage({ onNavigate, currentPage, onOpenSettings, achi
       <Modal
         isOpen={sortMenuOpen}
         onClose={() => setSortMenuOpen(false)}
-        title="Р РЋР С•РЎР‚РЎвЂљР С‘РЎР‚Р С•Р Р†Р С”Р В° Р Т‘Р С•РЎРѓРЎвЂљР С‘Р В¶Р ВµР Р…Р С‘Р в„–"
+        title="Р В Р Р‹Р В РЎвЂўР РЋР вЂљР РЋРІР‚С™Р В РЎвЂР РЋР вЂљР В РЎвЂўР В Р вЂ Р В РЎвЂќР В Р’В° Р В РўвЂР В РЎвЂўР РЋР С“Р РЋРІР‚С™Р В РЎвЂР В Р’В¶Р В Р’ВµР В Р вЂ¦Р В РЎвЂР В РІвЂћвЂ“"
         theme={theme}
       >
         <div style={{ display: 'flex', flexDirection: 'column', gap: '12px' }}>
           <button
             onClick={() => handleSort('alphabet')}
-            aria-label="Р РЋР С•РЎР‚РЎвЂљР С‘РЎР‚Р С•Р Р†Р В°РЎвЂљРЎРЉ Р С—Р С• Р В°Р В»РЎвЂћР В°Р Р†Р С‘РЎвЂљРЎС“"
+            aria-label="Р В Р Р‹Р В РЎвЂўР РЋР вЂљР РЋРІР‚С™Р В РЎвЂР РЋР вЂљР В РЎвЂўР В Р вЂ Р В Р’В°Р РЋРІР‚С™Р РЋР Р‰ Р В РЎвЂ”Р В РЎвЂў Р В Р’В°Р В Р’В»Р РЋРІР‚С›Р В Р’В°Р В Р вЂ Р В РЎвЂР РЋРІР‚С™Р РЋРЎвЂњ"
             style={{
               width: '100%',
               padding: '12px 16px',
@@ -488,11 +488,11 @@ export function AchievementsPage({ onNavigate, currentPage, onOpenSettings, achi
               e.currentTarget.style.transform = 'scale(0.98)';
             }}
           >
-            Р СџР С• Р В°Р В»РЎвЂћР В°Р Р†Р С‘РЎвЂљРЎС“
+            Р В РЎСџР В РЎвЂў Р В Р’В°Р В Р’В»Р РЋРІР‚С›Р В Р’В°Р В Р вЂ Р В РЎвЂР РЋРІР‚С™Р РЋРЎвЂњ
           </button>
           <button
             onClick={() => handleSort('progress_asc')}
-            aria-label="Р РЋР С•РЎР‚РЎвЂљР С‘РЎР‚Р С•Р Р†Р В°РЎвЂљРЎРЉ Р С—Р С• Р С—РЎР‚Р С•РЎвЂ Р ВµР Р…РЎвЂљРЎС“ Р Р†РЎвЂ№Р С—Р С•Р В»Р Р…Р ВµР Р…Р С‘РЎРЏ (Р С•РЎвЂљ Р СР ВµР Р…РЎРЉРЎв‚¬Р ВµР С–Р С•)"
+            aria-label="Р В Р Р‹Р В РЎвЂўР РЋР вЂљР РЋРІР‚С™Р В РЎвЂР РЋР вЂљР В РЎвЂўР В Р вЂ Р В Р’В°Р РЋРІР‚С™Р РЋР Р‰ Р В РЎвЂ”Р В РЎвЂў Р В РЎвЂ”Р РЋР вЂљР В РЎвЂўР РЋРІР‚В Р В Р’ВµР В Р вЂ¦Р РЋРІР‚С™Р РЋРЎвЂњ Р В Р вЂ Р РЋРІР‚в„–Р В РЎвЂ”Р В РЎвЂўР В Р’В»Р В Р вЂ¦Р В Р’ВµР В Р вЂ¦Р В РЎвЂР РЋР РЏ (Р В РЎвЂўР РЋРІР‚С™ Р В РЎВР В Р’ВµР В Р вЂ¦Р РЋР Р‰Р РЋРІвЂљВ¬Р В Р’ВµР В РЎвЂ“Р В РЎвЂў)"
             style={{
               width: '100%',
               padding: '12px 16px',
@@ -531,11 +531,11 @@ export function AchievementsPage({ onNavigate, currentPage, onOpenSettings, achi
               e.currentTarget.style.transform = 'scale(0.98)';
             }}
           >
-            Р СџР С• Р С—РЎР‚Р С•РЎвЂ Р ВµР Р…РЎвЂљРЎС“ (Р С•РЎвЂљ Р СР ВµР Р…РЎРЉРЎв‚¬Р ВµР С–Р С•)
+            Р В РЎСџР В РЎвЂў Р В РЎвЂ”Р РЋР вЂљР В РЎвЂўР РЋРІР‚В Р В Р’ВµР В Р вЂ¦Р РЋРІР‚С™Р РЋРЎвЂњ (Р В РЎвЂўР РЋРІР‚С™ Р В РЎВР В Р’ВµР В Р вЂ¦Р РЋР Р‰Р РЋРІвЂљВ¬Р В Р’ВµР В РЎвЂ“Р В РЎвЂў)
           </button>
           <button
             onClick={() => handleSort('progress_desc')}
-            aria-label="Р РЋР С•РЎР‚РЎвЂљР С‘РЎР‚Р С•Р Р†Р В°РЎвЂљРЎРЉ Р С—Р С• Р С—РЎР‚Р С•РЎвЂ Р ВµР Р…РЎвЂљРЎС“ Р Р†РЎвЂ№Р С—Р С•Р В»Р Р…Р ВµР Р…Р С‘РЎРЏ (Р С•РЎвЂљ Р В±Р С•Р В»РЎРЉРЎв‚¬Р ВµР С–Р С•)"
+            aria-label="Р В Р Р‹Р В РЎвЂўР РЋР вЂљР РЋРІР‚С™Р В РЎвЂР РЋР вЂљР В РЎвЂўР В Р вЂ Р В Р’В°Р РЋРІР‚С™Р РЋР Р‰ Р В РЎвЂ”Р В РЎвЂў Р В РЎвЂ”Р РЋР вЂљР В РЎвЂўР РЋРІР‚В Р В Р’ВµР В Р вЂ¦Р РЋРІР‚С™Р РЋРЎвЂњ Р В Р вЂ Р РЋРІР‚в„–Р В РЎвЂ”Р В РЎвЂўР В Р’В»Р В Р вЂ¦Р В Р’ВµР В Р вЂ¦Р В РЎвЂР РЋР РЏ (Р В РЎвЂўР РЋРІР‚С™ Р В Р’В±Р В РЎвЂўР В Р’В»Р РЋР Р‰Р РЋРІвЂљВ¬Р В Р’ВµР В РЎвЂ“Р В РЎвЂў)"
             style={{
               width: '100%',
               padding: '12px 16px',
@@ -574,7 +574,7 @@ export function AchievementsPage({ onNavigate, currentPage, onOpenSettings, achi
               e.currentTarget.style.transform = 'scale(0.98)';
             }}
           >
-            Р СџР С• Р С—РЎР‚Р С•РЎвЂ Р ВµР Р…РЎвЂљРЎС“ (Р С•РЎвЂљ Р В±Р С•Р В»РЎРЉРЎв‚¬Р ВµР С–Р С•)
+            Р В РЎСџР В РЎвЂў Р В РЎвЂ”Р РЋР вЂљР В РЎвЂўР РЋРІР‚В Р В Р’ВµР В Р вЂ¦Р РЋРІР‚С™Р РЋРЎвЂњ (Р В РЎвЂўР РЋРІР‚С™ Р В Р’В±Р В РЎвЂўР В Р’В»Р РЋР Р‰Р РЋРІвЂљВ¬Р В Р’ВµР В РЎвЂ“Р В РЎвЂў)
           </button>
         </div>
       </Modal>
@@ -615,7 +615,7 @@ export function AchievementsPage({ onNavigate, currentPage, onOpenSettings, achi
               marginBottom: '24px'
             }}>
               <h2 style={{ color: theme === 'dark' ? '#E8ECF2' : '#0F172A' }}>
-                Р вЂќР ВµРЎвЂљР В°Р В»Р С‘ Р Т‘Р С•РЎРѓРЎвЂљР С‘Р В¶Р ВµР Р…Р С‘РЎРЏ
+                Р В РІР‚СњР В Р’ВµР РЋРІР‚С™Р В Р’В°Р В Р’В»Р В РЎвЂ Р В РўвЂР В РЎвЂўР РЋР С“Р РЋРІР‚С™Р В РЎвЂР В Р’В¶Р В Р’ВµР В Р вЂ¦Р В РЎвЂР РЋР РЏ
               </h2>
               <button
                 onClick={() => setIsDetailOpen(false)}
@@ -656,7 +656,7 @@ export function AchievementsPage({ onNavigate, currentPage, onOpenSettings, achi
                 borderRadius: '8px'
               }}>
                 <span style={{ fontSize: '14px', color: theme === 'dark' ? '#A7B0BD' : '#6B7280' }}>
-                  Р СџРЎР‚Р С•Р С–РЎР‚Р ВµРЎРѓРЎРѓ: {selectedAchievement.requirements.current}/{selectedAchievement.requirements.target}
+                  Р В РЎСџР РЋР вЂљР В РЎвЂўР В РЎвЂ“Р РЋР вЂљР В Р’ВµР РЋР С“Р РЋР С“: {selectedAchievement.requirements.current}/{selectedAchievement.requirements.target}
                 </span>
                 <span style={{ 
                   fontSize: '14px',
@@ -683,7 +683,7 @@ export function AchievementsPage({ onNavigate, currentPage, onOpenSettings, achi
                   cursor: 'pointer'
                 }}
               >
-                Р вЂ”Р В°Р С”РЎР‚РЎвЂ№РЎвЂљРЎРЉ
+                Р В РІР‚вЂќР В Р’В°Р В РЎвЂќР РЋР вЂљР РЋРІР‚в„–Р РЋРІР‚С™Р РЋР Р‰
               </button>
               <button
                 onClick={() => setFileUploadOpen(true)}
@@ -699,7 +699,7 @@ export function AchievementsPage({ onNavigate, currentPage, onOpenSettings, achi
                   cursor: 'pointer'
                 }}
               >
-                Р СџРЎР‚Р С‘Р С”РЎР‚Р ВµР С—Р С‘РЎвЂљРЎРЉ РЎвЂћР В°Р в„–Р В»
+                Р В РЎСџР РЋР вЂљР В РЎвЂР В РЎвЂќР РЋР вЂљР В Р’ВµР В РЎвЂ”Р В РЎвЂР РЋРІР‚С™Р РЋР Р‰ Р РЋРІР‚С›Р В Р’В°Р В РІвЂћвЂ“Р В Р’В»
               </button>
             </div>
           </div>
@@ -740,7 +740,7 @@ export function AchievementsPage({ onNavigate, currentPage, onOpenSettings, achi
               marginBottom: '24px'
             }}>
               <h2 style={{ color: theme === 'dark' ? '#E8ECF2' : '#0F172A' }}>
-                Р СџРЎР‚Р С‘Р С”РЎР‚Р ВµР С—Р С‘РЎвЂљРЎРЉ РЎвЂћР В°Р в„–Р В»
+                Р В РЎСџР РЋР вЂљР В РЎвЂР В РЎвЂќР РЋР вЂљР В Р’ВµР В РЎвЂ”Р В РЎвЂР РЋРІР‚С™Р РЋР Р‰ Р РЋРІР‚С›Р В Р’В°Р В РІвЂћвЂ“Р В Р’В»
               </h2>
               <button
                 onClick={() => setFileUploadOpen(false)}
@@ -770,7 +770,7 @@ export function AchievementsPage({ onNavigate, currentPage, onOpenSettings, achi
                 <Paperclip size={32} color={theme === 'dark' ? '#A7B0BD' : '#6B7280'} />
               </div>
               <p style={{ color: theme === 'dark' ? '#A7B0BD' : '#6B7280', marginBottom: '16px' }}>
-                Р вЂ™РЎвЂ№Р В±Р ВµРЎР‚Р С‘РЎвЂљР Вµ РЎвЂћР В°Р в„–Р В» Р Т‘Р В»РЎРЏ Р В·Р В°Р С–РЎР‚РЎС“Р В·Р С”Р С‘
+                Р В РІР‚в„ўР РЋРІР‚в„–Р В Р’В±Р В Р’ВµР РЋР вЂљР В РЎвЂР РЋРІР‚С™Р В Р’Вµ Р РЋРІР‚С›Р В Р’В°Р В РІвЂћвЂ“Р В Р’В» Р В РўвЂР В Р’В»Р РЋР РЏ Р В Р’В·Р В Р’В°Р В РЎвЂ“Р РЋР вЂљР РЋРЎвЂњР В Р’В·Р В РЎвЂќР В РЎвЂ
               </p>
               <input
                 type="file"
@@ -792,7 +792,7 @@ export function AchievementsPage({ onNavigate, currentPage, onOpenSettings, achi
                   cursor: 'pointer'
                 }}
               >
-                Р вЂ™РЎвЂ№Р В±РЎР‚Р В°РЎвЂљРЎРЉ РЎвЂћР В°Р в„–Р В»
+                Р В РІР‚в„ўР РЋРІР‚в„–Р В Р’В±Р РЋР вЂљР В Р’В°Р РЋРІР‚С™Р РЋР Р‰ Р РЋРІР‚С›Р В Р’В°Р В РІвЂћвЂ“Р В Р’В»
               </label>
             </div>
           </div>

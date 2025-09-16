@@ -1,5 +1,5 @@
-const BASE = (import.meta.env.VITE_API_URL || "").replace(/\/$/, "");
-if (!BASE) console.error("VITE_API_URL Р Р…Р Вµ Р В·Р В°Р Т‘Р В°Р Р…");
+const BASE = (import.meta.env.VITE_API_URL || "http://localhost:3001").replace(/\/$/, "");
+if (!import.meta.env.VITE_API_URL) console.warn("VITE_API_URL РЅРµ Р·Р°РґР°РЅ; РёСЃРїРѕР»СЊР·СѓРµС‚СЃСЏ http://localhost:3001");
 
 export async function apiFetch(path: string, init?: RequestInit) {
   const res = await fetch(`${BASE}${path.startsWith("/") ? path : `/${path}`}`, {
@@ -15,5 +15,5 @@ export const api = {
   tasks: () => apiFetch("/api/tasks"),
   achievements: () => apiFetch("/api/achievements"),
   shop: () => apiFetch("/api/shop"),
-  health: () => apiFetch("/healthz"),
+  health: () => apiFetch("/api/health"),
 };

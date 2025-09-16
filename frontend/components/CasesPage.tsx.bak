@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import { motion } from 'framer-motion';
 import { Header } from './Header';
 import { BottomNavigation } from './BottomNavigation';
 import { CaseRoulette } from './CaseRoulette';
@@ -810,16 +809,13 @@ export function CasesPage({
           </div>
 
           {/* Tab Content */}
-          <motion.div
+          <div
             key={activeTab}
-            initial={{ opacity: 0, y: 10 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.2 }}
           >
             {activeTab === "free" && renderFreeCase()}
             {activeTab === "shop" && renderShop()}
             {activeTab === "inventory" && renderInventory()}
-          </motion.div>
+          </div>
         </div>
       </div>
 
@@ -1116,6 +1112,7 @@ export function CasesPage({
           </div>
         )}
       </Modal>
+
     </div>
   );
 }

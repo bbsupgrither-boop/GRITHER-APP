@@ -119,7 +119,7 @@ export default function App() {
   // Mock data
   const mockCurrentUser: User = {
     id: 'current-user',
-    name: 'РРІР°РЅ РРІР°РЅРѕРІ',
+    name: 'Р ВР Р†Р В°Р Р… Р ВР Р†Р В°Р Р…Р С•Р Р†',
     avatar: undefined,
     level: 1,
     xp: 0,
@@ -130,35 +130,35 @@ export default function App() {
   const mockAchievements: Achievement[] = [
     {
       id: '1',
-      title: 'РќРѕРІРёС‡РѕРє',
-      description: 'Р”РѕСЃС‚РёРіРЅРёС‚Рµ 2 СѓСЂРѕРІРЅСЏ',
+      title: 'Р СњР С•Р Р†Р С‘РЎвЂЎР С•Р С”',
+      description: 'Р вЂќР С•РЎРѓРЎвЂљР С‘Р С–Р Р…Р С‘РЎвЂљР Вµ 2 РЎС“РЎР‚Р С•Р Р†Р Р…РЎРЏ',
       progress: 50,
       maxProgress: 100,
       reward: { xp: 100, coins: 50 },
       requirements: { type: 'level', value: 2 },
-      icon: 'рџЊџ',
+      icon: 'СЂСџРЉСџ',
       isCompleted: false
     },
     {
       id: '2',
-      title: 'РўСЂСѓРґРѕР»СЋР±РёРІС‹Р№',
-      description: 'Р’С‹РїРѕР»РЅРёС‚Рµ 10 Р·Р°РґР°С‡',
+      title: 'Р СћРЎР‚РЎС“Р Т‘Р С•Р В»РЎР‹Р В±Р С‘Р Р†РЎвЂ№Р в„–',
+      description: 'Р вЂ™РЎвЂ№Р С—Р С•Р В»Р Р…Р С‘РЎвЂљР Вµ 10 Р В·Р В°Р Т‘Р В°РЎвЂЎ',
       progress: 30,
       maxProgress: 100,
       reward: { xp: 200, coins: 100 },
       requirements: { type: 'tasks', value: 10 },
-      icon: 'вќ¤пёЏ',
+      icon: 'РІСњВ¤РїС‘РЏ',
       isCompleted: false
     },
     {
       id: '3',
-      title: 'РљРѕР»Р»РµРєС†РёРѕРЅРµСЂ',
-      description: 'РћС‚РєСЂРѕР№С‚Рµ 5 РєРµР№СЃРѕРІ',
+      title: 'Р С™Р С•Р В»Р В»Р ВµР С”РЎвЂ Р С‘Р С•Р Р…Р ВµРЎР‚',
+      description: 'Р С›РЎвЂљР С”РЎР‚Р С•Р в„–РЎвЂљР Вµ 5 Р С”Р ВµР в„–РЎРѓР С•Р Р†',
       progress: 20,
       maxProgress: 100,
       reward: { xp: 150, coins: 75 },
       requirements: { type: 'cases', value: 5 },
-      icon: 'рџ“¦',
+      icon: 'СЂСџвЂњВ¦',
       isCompleted: false
     }
   ];
@@ -166,7 +166,7 @@ export default function App() {
   const mockBattles: Battle[] = [
     {
       id: '1',
-      opponentName: 'Р вЂўР В»Р ВµР Р…Р В° Р СљР С•РЎР‚Р С•Р В·Р С•Р Р†Р В°',
+      opponentName: 'Р В РІР‚СћР В Р’В»Р В Р’ВµР В Р вЂ¦Р В Р’В° Р В РЎС™Р В РЎвЂўР РЋР вЂљР В РЎвЂўР В Р’В·Р В РЎвЂўР В Р вЂ Р В Р’В°',
       stake: 250,
       status: 'active'
     }
@@ -175,22 +175,22 @@ export default function App() {
   const mockBattleInvitations: Battle[] = [
     {
       id: '2',
-      opponentName: 'Р СљР В°РЎР‚Р С‘РЎРЏ Р РЋР С‘Р Т‘Р С•РЎР‚Р С•Р Р†Р В°',
+      opponentName: 'Р В РЎС™Р В Р’В°Р РЋР вЂљР В РЎвЂР РЋР РЏ Р В Р Р‹Р В РЎвЂР В РўвЂР В РЎвЂўР РЋР вЂљР В РЎвЂўР В Р вЂ Р В Р’В°',
       stake: 200,
       status: 'pending'
     },
     {
       id: '3',
-      opponentName: 'Р С’Р Р…Р Р…Р В° Р ВР Р†Р В°Р Р…Р С•Р Р†Р В°',
+      opponentName: 'Р В РЎвЂ™Р В Р вЂ¦Р В Р вЂ¦Р В Р’В° Р В Р’ВР В Р вЂ Р В Р’В°Р В Р вЂ¦Р В РЎвЂўР В Р вЂ Р В Р’В°',
       stake: 150,
       status: 'pending'
     }
   ];
 
   const mockUsers = [
-    { id: '1', name: 'Р СџР ВµРЎвЂљРЎР‚ Р СџР ВµРЎвЂљРЎР‚Р С•Р Р†', level: 18 },
-    { id: '2', name: 'Р вЂўР В»Р ВµР Р…Р В° Р СљР С•РЎР‚Р С•Р В·Р С•Р Р†Р В°', level: 16 },
-    { id: '3', name: 'Р С’Р Р…Р Р…Р В° Р ВР Р†Р В°Р Р…Р С•Р Р†Р В°', level: 15 }
+    { id: '1', name: 'Р В РЎСџР В Р’ВµР РЋРІР‚С™Р РЋР вЂљ Р В РЎСџР В Р’ВµР РЋРІР‚С™Р РЋР вЂљР В РЎвЂўР В Р вЂ ', level: 18 },
+    { id: '2', name: 'Р В РІР‚СћР В Р’В»Р В Р’ВµР В Р вЂ¦Р В Р’В° Р В РЎС™Р В РЎвЂўР РЋР вЂљР В РЎвЂўР В Р’В·Р В РЎвЂўР В Р вЂ Р В Р’В°', level: 16 },
+    { id: '3', name: 'Р В РЎвЂ™Р В Р вЂ¦Р В Р вЂ¦Р В Р’В° Р В Р’ВР В Р вЂ Р В Р’В°Р В Р вЂ¦Р В РЎвЂўР В Р вЂ Р В Р’В°', level: 15 }
   ];
 
   const mockLeaderboard = mockUsers.map((user, index) => ({
@@ -203,8 +203,8 @@ export default function App() {
   const mockTasks: Task[] = [
     {
       id: '1',
-      title: 'Р’С‹РїРѕР»РЅРёС‚СЊ Р·Р°РґР°С‡Сѓ',
-      description: 'РћРїРёСЃР°РЅРёРµ Р·Р°РґР°С‡Рё',
+      title: 'Р вЂ™РЎвЂ№Р С—Р С•Р В»Р Р…Р С‘РЎвЂљРЎРЉ Р В·Р В°Р Т‘Р В°РЎвЂЎРЎС“',
+      description: 'Р С›Р С—Р С‘РЎРѓР В°Р Р…Р С‘Р Вµ Р В·Р В°Р Т‘Р В°РЎвЂЎР С‘',
       reward: { xp: 50, coins: 25 },
       isCompleted: false
     }
@@ -213,18 +213,18 @@ export default function App() {
   const mockShopItems: ShopItem[] = [
     {
       id: '1',
-      name: 'Р С™Р ВµР в„–РЎРѓ',
+      name: 'Р В РЎв„ўР В Р’ВµР В РІвЂћвЂ“Р РЋР С“',
       price: 100,
-      icon: 'рџ“¦',
-      description: 'Р РЋР В»РЎС“РЎвЂЎР В°Р в„–Р Р…РЎвЂ№Р в„– Р С—РЎР‚Р ВµР Т‘Р СР ВµРЎвЂљ'
+      icon: 'СЂСџвЂњВ¦',
+      description: 'Р В Р Р‹Р В Р’В»Р РЋРЎвЂњР РЋРІР‚РЋР В Р’В°Р В РІвЂћвЂ“Р В Р вЂ¦Р РЋРІР‚в„–Р В РІвЂћвЂ“ Р В РЎвЂ”Р РЋР вЂљР В Р’ВµР В РўвЂР В РЎВР В Р’ВµР РЋРІР‚С™'
     }
   ];
 
   const mockNotifications: Notification[] = [
     {
       id: '1',
-      title: 'РќРѕРІРѕРµ СѓРІРµРґРѕРјР»РµРЅРёРµ',
-      message: 'РЈ РІР°СЃ РЅРѕРІРѕРµ СЃРѕРѕР±С‰РµРЅРёРµ',
+      title: 'Р СњР С•Р Р†Р С•Р Вµ РЎС“Р Р†Р ВµР Т‘Р С•Р СР В»Р ВµР Р…Р С‘Р Вµ',
+      message: 'Р Р€ Р Р†Р В°РЎРѓ Р Р…Р С•Р Р†Р С•Р Вµ РЎРѓР С•Р С•Р В±РЎвЂ°Р ВµР Р…Р С‘Р Вµ',
       type: 'info',
       timestamp: new Date().toISOString(),
       isRead: false

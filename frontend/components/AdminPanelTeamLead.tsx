@@ -18,7 +18,7 @@ export const AdminPanelTeamLead: React.FC<AdminPanelTeamLeadProps> = ({
     <AdminPanelMain 
       theme={theme}
       onClose={onClose}
-      adminName={`${teamLead.name} (Р СћР С‘Р СР В»Р С‘Р Т‘)`}
+      adminName={`${teamLead.name} (Р В РЎС›Р В РЎвЂР В РЎВР В Р’В»Р В РЎвЂР В РўвЂ)`}
     />
   );
 };

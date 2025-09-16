@@ -29,14 +29,14 @@ export function HomePageSimple() {
             fontSize: '18px',
             boxShadow: '0 4px 12px rgba(43, 130, 255, 0.3)'
           }}>
-            Р’
+            Р вЂ™
           </div>
           <div>
             <div style={{ fontWeight: '500', fontSize: '16px', color: '#0F172A' }}>
-              Р’С‹ GRITHER
+              Р вЂ™РЎвЂ№ GRITHER
             </div>
             <div style={{ fontSize: '12px', color: '#6B7280' }}>
-              РЈСЂРѕРІРµРЅСЊ 1
+              Р Р€РЎР‚Р С•Р Р†Р ВµР Р…РЎРЉ 1
             </div>
           </div>
         </div>
@@ -50,7 +50,7 @@ export function HomePageSimple() {
           justifyContent: 'center',
           cursor: 'pointer'
         }}>
-          вљ™пёЏ
+          РІС™в„ўРїС‘РЏ
         </div>
       </div>
 
@@ -81,9 +81,9 @@ export function HomePageSimple() {
             color: '#0F172A',
             margin: 0
           }}>
-            Р’Р°С€Рё РґРѕСЃС‚РёР¶РµРЅРёСЏ
+            Р вЂ™Р В°РЎв‚¬Р С‘ Р Т‘Р С•РЎРѓРЎвЂљР С‘Р В¶Р ВµР Р…Р С‘РЎРЏ
           </h2>
-          <div style={{ cursor: 'pointer' }}>рџ‘ЃпёЏ</div>
+          <div style={{ cursor: 'pointer' }}>СЂСџвЂРѓРїС‘РЏ</div>
         </div>
         
         <div style={{ display: 'flex', flexDirection: 'column', gap: '12px' }}>
@@ -106,14 +106,14 @@ export function HomePageSimple() {
                 justifyContent: 'center',
                 fontSize: '20px'
               }}>
-                рџЏ†
+                СЂСџРЏвЂ 
               </div>
               <div style={{ flex: 1 }}>
                 <div style={{ fontWeight: '500', fontSize: '14px', color: '#0F172A', marginBottom: '4px' }}>
-                  РќРѕРІРёС‡РѕРє
+                  Р СњР С•Р Р†Р С‘РЎвЂЎР С•Р С”
                 </div>
                 <div style={{ fontSize: '12px', color: '#6B7280', marginBottom: '8px' }}>
-                  Р”РѕСЃС‚РёРіРЅРёС‚Рµ 2 СѓСЂРѕРІРЅСЏ
+                  Р вЂќР С•РЎРѓРЎвЂљР С‘Р С–Р Р…Р С‘РЎвЂљР Вµ 2 РЎС“РЎР‚Р С•Р Р†Р Р…РЎРЏ
                 </div>
                 <div style={{
                   width: '100%',
@@ -152,14 +152,14 @@ export function HomePageSimple() {
                 justifyContent: 'center',
                 fontSize: '20px'
               }}>
-                рџЏ†
+                СЂСџРЏвЂ 
               </div>
               <div style={{ flex: 1 }}>
                 <div style={{ fontWeight: '500', fontSize: '14px', color: '#0F172A', marginBottom: '4px' }}>
-                  РўСЂСѓРґРѕР»СЋР±РёРІС‹Р№
+                  Р СћРЎР‚РЎС“Р Т‘Р С•Р В»РЎР‹Р В±Р С‘Р Р†РЎвЂ№Р в„–
                 </div>
                 <div style={{ fontSize: '12px', color: '#6B7280', marginBottom: '8px' }}>
-                  Р’С‹РїРѕР»РЅРёС‚Рµ 10 Р·Р°РґР°С‡
+                  Р вЂ™РЎвЂ№Р С—Р С•Р В»Р Р…Р С‘РЎвЂљР Вµ 10 Р В·Р В°Р Т‘Р В°РЎвЂЎ
                 </div>
                 <div style={{
                   width: '100%',
@@ -198,14 +198,14 @@ export function HomePageSimple() {
                 justifyContent: 'center',
                 fontSize: '20px'
               }}>
-                рџЏ†
+                СЂСџРЏвЂ 
               </div>
               <div style={{ flex: 1 }}>
                 <div style={{ fontWeight: '500', fontSize: '14px', color: '#0F172A', marginBottom: '4px' }}>
-                  РљРѕР»Р»РµРєС†РёРѕРЅРµСЂ
+                  Р С™Р С•Р В»Р В»Р ВµР С”РЎвЂ Р С‘Р С•Р Р…Р ВµРЎР‚
                 </div>
                 <div style={{ fontSize: '12px', color: '#6B7280', marginBottom: '8px' }}>
-                  РћС‚РєСЂРѕР№С‚Рµ 5 РєРµР№СЃРѕРІ
+                  Р С›РЎвЂљР С”РЎР‚Р С•Р в„–РЎвЂљР Вµ 5 Р С”Р ВµР в„–РЎРѓР С•Р Р†
                 </div>
                 <div style={{
                   width: '100%',
@@ -237,7 +237,7 @@ export function HomePageSimple() {
         marginBottom: '24px'
       }}>
         <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-          <div style={{ fontSize: '14px', color: '#6B7280' }}>РЎС‚Р°С‚СѓСЃ: РќРѕРІРёС‡РѕРє</div>
+          <div style={{ fontSize: '14px', color: '#6B7280' }}>Р РЋРЎвЂљР В°РЎвЂљРЎС“РЎРѓ: Р СњР С•Р Р†Р С‘РЎвЂЎР С•Р С”</div>
           <div style={{ fontSize: '14px', color: '#6B7280' }}>XP: 0</div>
           <div style={{ fontSize: '14px', color: '#6B7280' }}>lvl 1</div>
         </div>
@@ -270,11 +270,11 @@ export function HomePageSimple() {
           boxShadow: '0 8px 24px rgba(0, 0, 0, 0.10)'
         }}>
           <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '8px' }}>
-            <h3 style={{ fontSize: '14px', fontWeight: '500', color: '#0F172A', margin: 0 }}>Р‘Р°С‚С‚Р»С‹</h3>
+            <h3 style={{ fontSize: '14px', fontWeight: '500', color: '#0F172A', margin: 0 }}>Р вЂР В°РЎвЂљРЎвЂљР В»РЎвЂ№</h3>
             <div style={{ cursor: 'pointer' }}>+</div>
           </div>
-          <div style={{ fontSize: '12px', color: '#6B7280', marginBottom: '4px' }}>РђРєС‚РёРІРЅС‹Рµ Р±Р°С‚С‚Р»С‹</div>
-          <div style={{ fontSize: '12px', color: '#6B7280' }}>РџСЂРёРіР»Р°С€РµРЅРёСЏ</div>
+          <div style={{ fontSize: '12px', color: '#6B7280', marginBottom: '4px' }}>Р С’Р С”РЎвЂљР С‘Р Р†Р Р…РЎвЂ№Р Вµ Р В±Р В°РЎвЂљРЎвЂљР В»РЎвЂ№</div>
+          <div style={{ fontSize: '12px', color: '#6B7280' }}>Р СџРЎР‚Р С‘Р С–Р В»Р В°РЎв‚¬Р ВµР Р…Р С‘РЎРЏ</div>
         </div>
 
         {/* Ranking Card */}
@@ -287,12 +287,12 @@ export function HomePageSimple() {
           boxShadow: '0 8px 24px rgba(0, 0, 0, 0.10)'
         }}>
           <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '8px' }}>
-            <h3 style={{ fontSize: '14px', fontWeight: '500', color: '#0F172A', margin: 0 }}>Р РµР№С‚РёРЅРі</h3>
-            <div style={{ cursor: 'pointer' }}>в‹®</div>
+            <h3 style={{ fontSize: '14px', fontWeight: '500', color: '#0F172A', margin: 0 }}>Р В Р ВµР в„–РЎвЂљР С‘Р Р…Р С–</h3>
+            <div style={{ cursor: 'pointer' }}>РІвЂ№В®</div>
           </div>
-          <div style={{ fontSize: '12px', color: '#6B7280', marginBottom: '4px' }}>РџРѕ СѓСЂРѕРІРЅСЋ</div>
-          <div style={{ fontSize: '12px', color: '#0F172A' }}>РЎРµСЂРіРµР№ Р’РѕР»РєРѕРІ РЈСЂ.22</div>
-          <div style={{ fontSize: '12px', color: '#0F172A' }}>Р”РјРёС‚СЂРёР№ Рљ Vn.19</div>
+          <div style={{ fontSize: '12px', color: '#6B7280', marginBottom: '4px' }}>Р СџР С• РЎС“РЎР‚Р С•Р Р†Р Р…РЎР‹</div>
+          <div style={{ fontSize: '12px', color: '#0F172A' }}>Р РЋР ВµРЎР‚Р С–Р ВµР в„– Р вЂ™Р С•Р В»Р С”Р С•Р Р† Р Р€РЎР‚.22</div>
+          <div style={{ fontSize: '12px', color: '#0F172A' }}>Р вЂќР СР С‘РЎвЂљРЎР‚Р С‘Р в„– Р С™ Vn.19</div>
         </div>
       </div>
 
@@ -319,16 +319,16 @@ export function HomePageSimple() {
           justifyContent: 'center',
           color: 'white'
         }}>
-          рџЏ 
+          СЂСџРЏВ 
         </div>
         <div style={{ width: '40px', height: '40px', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-          рџЏ†
+          СЂСџРЏвЂ 
         </div>
         <div style={{ width: '40px', height: '40px', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-          вњ…
+          РІСљвЂ¦
         </div>
         <div style={{ width: '40px', height: '40px', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-          рџ›’
+          СЂСџвЂєвЂ™
         </div>
       </div>
     </div>

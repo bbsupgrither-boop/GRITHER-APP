@@ -24,7 +24,7 @@ export const NotificationsButton: React.FC<NotificationsButtonProps> = ({
   const [isOpen, setIsOpen] = useState(false);
   const panelRef = useRef<HTMLDivElement>(null);
 
-  // Р вЂ”Р В°Р С”РЎР‚РЎвЂ№РЎвЂљР С‘Р Вµ Р С—Р С• Р С”Р В»Р С‘Р С”РЎС“ Р Р†Р Р…Р Вµ Р С—Р В°Р Р…Р ВµР В»Р С‘
+  // Р В РІР‚вЂќР В Р’В°Р В РЎвЂќР РЋР вЂљР РЋРІР‚в„–Р РЋРІР‚С™Р В РЎвЂР В Р’Вµ Р В РЎвЂ”Р В РЎвЂў Р В РЎвЂќР В Р’В»Р В РЎвЂР В РЎвЂќР РЋРЎвЂњ Р В Р вЂ Р В Р вЂ¦Р В Р’Вµ Р В РЎвЂ”Р В Р’В°Р В Р вЂ¦Р В Р’ВµР В Р’В»Р В РЎвЂ
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
       if (panelRef.current && !panelRef.current.contains(event.target as Node)) {
@@ -35,7 +35,7 @@ export const NotificationsButton: React.FC<NotificationsButtonProps> = ({
     return () => document.removeEventListener('mousedown', handleClickOutside);
   }, []);
 
-  // Р СџР С•Р В»РЎС“РЎвЂЎР ВµР Р…Р С‘Р Вµ Р С‘Р С”Р С•Р Р…Р С”Р С‘ Р С—Р С• РЎвЂљР С‘Р С—РЎС“ РЎС“Р Р†Р ВµР Т‘Р С•Р СР В»Р ВµР Р…Р С‘РЎРЏ
+  // Р В РЎСџР В РЎвЂўР В Р’В»Р РЋРЎвЂњР РЋРІР‚РЋР В Р’ВµР В Р вЂ¦Р В РЎвЂР В Р’Вµ Р В РЎвЂР В РЎвЂќР В РЎвЂўР В Р вЂ¦Р В РЎвЂќР В РЎвЂ Р В РЎвЂ”Р В РЎвЂў Р РЋРІР‚С™Р В РЎвЂР В РЎвЂ”Р РЋРЎвЂњ Р РЋРЎвЂњР В Р вЂ Р В Р’ВµР В РўвЂР В РЎвЂўР В РЎВР В Р’В»Р В Р’ВµР В Р вЂ¦Р В РЎвЂР РЋР РЏ
   const getNotificationIcon = (type: Notification['type']) => {
     const iconProps = {
       width: '16px',
@@ -59,7 +59,7 @@ export const NotificationsButton: React.FC<NotificationsButtonProps> = ({
     }
   };
 
-  // Р В¤Р С•РЎР‚Р СР В°РЎвЂљР С‘РЎР‚Р С•Р Р†Р В°Р Р…Р С‘Р Вµ Р Р†РЎР‚Р ВµР СР ВµР Р…Р С‘
+  // Р В Р’В¤Р В РЎвЂўР РЋР вЂљР В РЎВР В Р’В°Р РЋРІР‚С™Р В РЎвЂР РЋР вЂљР В РЎвЂўР В Р вЂ Р В Р’В°Р В Р вЂ¦Р В РЎвЂР В Р’Вµ Р В Р вЂ Р РЋР вЂљР В Р’ВµР В РЎВР В Р’ВµР В Р вЂ¦Р В РЎвЂ
   const formatTimestamp = (timestamp: Date) => {
     const now = new Date();
     const diff = now.getTime() - timestamp.getTime();
@@ -67,14 +67,14 @@ export const NotificationsButton: React.FC<NotificationsButtonProps> = ({
     const hours = Math.floor(diff / 3600000);
     const days = Math.floor(diff / 86400000);
 
-    if (minutes < 1) return 'РЎвЂљР С•Р В»РЎРЉР С”Р С• РЎвЂЎРЎвЂљР С•';
-    if (minutes < 60) return `${minutes} Р СР С‘Р Р… Р Р…Р В°Р В·Р В°Р Т‘`;
-    if (hours < 24) return `${hours} РЎвЂЎ Р Р…Р В°Р В·Р В°Р Т‘`;
-    if (days < 7) return `${days} Р Т‘ Р Р…Р В°Р В·Р В°Р Т‘`;
+    if (minutes < 1) return 'Р РЋРІР‚С™Р В РЎвЂўР В Р’В»Р РЋР Р‰Р В РЎвЂќР В РЎвЂў Р РЋРІР‚РЋР РЋРІР‚С™Р В РЎвЂў';
+    if (minutes < 60) return `${minutes} Р В РЎВР В РЎвЂР В Р вЂ¦ Р В Р вЂ¦Р В Р’В°Р В Р’В·Р В Р’В°Р В РўвЂ`;
+    if (hours < 24) return `${hours} Р РЋРІР‚РЋ Р В Р вЂ¦Р В Р’В°Р В Р’В·Р В Р’В°Р В РўвЂ`;
+    if (days < 7) return `${days} Р В РўвЂ Р В Р вЂ¦Р В Р’В°Р В Р’В·Р В Р’В°Р В РўвЂ`;
     return timestamp.toLocaleDateString('ru-RU');
   };
 
-  // Р РЋР С•РЎР‚РЎвЂљР С‘РЎР‚Р С•Р Р†Р С”Р В° РЎС“Р Р†Р ВµР Т‘Р С•Р СР В»Р ВµР Р…Р С‘Р в„– (РЎРѓР Р…Р В°РЎвЂЎР В°Р В»Р В° Р Р…Р ВµР С—РЎР‚Р С•РЎвЂЎР С‘РЎвЂљР В°Р Р…Р Р…РЎвЂ№Р Вµ)
+  // Р В Р Р‹Р В РЎвЂўР РЋР вЂљР РЋРІР‚С™Р В РЎвЂР РЋР вЂљР В РЎвЂўР В Р вЂ Р В РЎвЂќР В Р’В° Р РЋРЎвЂњР В Р вЂ Р В Р’ВµР В РўвЂР В РЎвЂўР В РЎВР В Р’В»Р В Р’ВµР В Р вЂ¦Р В РЎвЂР В РІвЂћвЂ“ (Р РЋР С“Р В Р вЂ¦Р В Р’В°Р РЋРІР‚РЋР В Р’В°Р В Р’В»Р В Р’В° Р В Р вЂ¦Р В Р’ВµР В РЎвЂ”Р РЋР вЂљР В РЎвЂўР РЋРІР‚РЋР В РЎвЂР РЋРІР‚С™Р В Р’В°Р В Р вЂ¦Р В Р вЂ¦Р РЋРІР‚в„–Р В Р’Вµ)
   const sortedNotifications = [...notifications].sort((a, b) => {
     if (a.read !== b.read) return a.read ? 1 : -1;
     return new Date(b.timestamp).getTime() - new Date(a.timestamp).getTime();
@@ -82,7 +82,7 @@ export const NotificationsButton: React.FC<NotificationsButtonProps> = ({
 
   return (
     <div className="relative" ref={panelRef}>
-      {/* Р С™Р Р…Р С•Р С—Р С”Р В° РЎС“Р Р†Р ВµР Т‘Р С•Р СР В»Р ВµР Р…Р С‘Р в„– */}
+      {/* Р В РЎв„ўР В Р вЂ¦Р В РЎвЂўР В РЎвЂ”Р В РЎвЂќР В Р’В° Р РЋРЎвЂњР В Р вЂ Р В Р’ВµР В РўвЂР В РЎвЂўР В РЎВР В Р’В»Р В Р’ВµР В Р вЂ¦Р В РЎвЂР В РІвЂћвЂ“ */}
       <button
         onClick={() => setIsOpen(!isOpen)}
         className={`apple-button w-7 h-7 flex items-center justify-center relative transition-all hover:scale-105 ${theme === 'dark' ? 'white-button' : ''}`}
@@ -93,7 +93,7 @@ export const NotificationsButton: React.FC<NotificationsButtonProps> = ({
           WebkitTouchCallout: 'none'
         }}
       >
-        {/* Р ВР С”Р С•Р Р…Р С”Р В° Р С”Р С•Р В»Р С•Р С”Р С•Р В»РЎРЉРЎвЂЎР С‘Р С”Р В° */}
+        {/* Р В Р’ВР В РЎвЂќР В РЎвЂўР В Р вЂ¦Р В РЎвЂќР В Р’В° Р В РЎвЂќР В РЎвЂўР В Р’В»Р В РЎвЂўР В РЎвЂќР В РЎвЂўР В Р’В»Р РЋР Р‰Р РЋРІР‚РЋР В РЎвЂР В РЎвЂќР В Р’В° */}
         {unreadCount > 0 ? (
           <BellRing 
             style={{
@@ -112,7 +112,7 @@ export const NotificationsButton: React.FC<NotificationsButtonProps> = ({
           />
         )}
         
-        {/* Р РЋРЎвЂЎР ВµРЎвЂљРЎвЂЎР С‘Р С” Р Р…Р ВµР С—РЎР‚Р С•РЎвЂЎР С‘РЎвЂљР В°Р Р…Р Р…РЎвЂ№РЎвЂ¦ */}
+        {/* Р В Р Р‹Р РЋРІР‚РЋР В Р’ВµР РЋРІР‚С™Р РЋРІР‚РЋР В РЎвЂР В РЎвЂќ Р В Р вЂ¦Р В Р’ВµР В РЎвЂ”Р РЋР вЂљР В РЎвЂўР РЋРІР‚РЋР В РЎвЂР РЋРІР‚С™Р В Р’В°Р В Р вЂ¦Р В Р вЂ¦Р РЋРІР‚в„–Р РЋРІР‚В¦ */}
         {unreadCount > 0 && (
           <div 
             style={{
@@ -137,7 +137,7 @@ export const NotificationsButton: React.FC<NotificationsButtonProps> = ({
         )}
       </button>
 
-      {/* Р СџР В°Р Р…Р ВµР В»РЎРЉ РЎС“Р Р†Р ВµР Т‘Р С•Р СР В»Р ВµР Р…Р С‘Р в„– */}
+      {/* Р В РЎСџР В Р’В°Р В Р вЂ¦Р В Р’ВµР В Р’В»Р РЋР Р‰ Р РЋРЎвЂњР В Р вЂ Р В Р’ВµР В РўвЂР В РЎвЂўР В РЎВР В Р’В»Р В Р’ВµР В Р вЂ¦Р В РЎвЂР В РІвЂћвЂ“ */}
       {isOpen && (
         <div
           className="absolute top-10 right-0 w-80 max-h-96 z-50 rounded-lg overflow-hidden"
@@ -155,7 +155,7 @@ export const NotificationsButton: React.FC<NotificationsButtonProps> = ({
             WebkitBackdropFilter: 'blur(20px)'
           }}
         >
-          {/* Р вЂ”Р В°Р С–Р С•Р В»Р С•Р Р†Р С•Р С” Р С—Р В°Р Р…Р ВµР В»Р С‘ */}
+          {/* Р В РІР‚вЂќР В Р’В°Р В РЎвЂ“Р В РЎвЂўР В Р’В»Р В РЎвЂўР В Р вЂ Р В РЎвЂўР В РЎвЂќ Р В РЎвЂ”Р В Р’В°Р В Р вЂ¦Р В Р’ВµР В Р’В»Р В РЎвЂ */}
           <div 
             className="flex items-center justify-between p-4 border-b"
             style={{
@@ -170,7 +170,7 @@ export const NotificationsButton: React.FC<NotificationsButtonProps> = ({
                   color: theme === 'dark' ? '#E8ECF2' : '#0F172A'
                 }}
               >
-                Р Р€Р Р†Р ВµР Т‘Р С•Р СР В»Р ВµР Р…Р С‘РЎРЏ
+                Р В Р в‚¬Р В Р вЂ Р В Р’ВµР В РўвЂР В РЎвЂўР В РЎВР В Р’В»Р В Р’ВµР В Р вЂ¦Р В РЎвЂР РЋР РЏ
               </h3>
               {unreadCount > 0 && (
                 <span 
@@ -180,7 +180,7 @@ export const NotificationsButton: React.FC<NotificationsButtonProps> = ({
                     fontWeight: '500'
                   }}
                 >
-                  {unreadCount} Р Р…Р С•Р Р†РЎвЂ№РЎвЂ¦
+                  {unreadCount} Р В Р вЂ¦Р В РЎвЂўР В Р вЂ Р РЋРІР‚в„–Р РЋРІР‚В¦
                 </span>
               )}
             </div>
@@ -193,7 +193,7 @@ export const NotificationsButton: React.FC<NotificationsButtonProps> = ({
                   style={{
                     fontSize: '10px'
                   }}
-                  title="Р С›РЎвЂљР СР ВµРЎвЂљР С‘РЎвЂљРЎРЉ Р Р†РЎРѓР Вµ Р С”Р В°Р С” Р С—РЎР‚Р С•РЎвЂЎР С‘РЎвЂљР В°Р Р…Р Р…РЎвЂ№Р Вµ"
+                  title="Р В РЎвЂєР РЋРІР‚С™Р В РЎВР В Р’ВµР РЋРІР‚С™Р В РЎвЂР РЋРІР‚С™Р РЋР Р‰ Р В Р вЂ Р РЋР С“Р В Р’Вµ Р В РЎвЂќР В Р’В°Р В РЎвЂќ Р В РЎвЂ”Р РЋР вЂљР В РЎвЂўР РЋРІР‚РЋР В РЎвЂР РЋРІР‚С™Р В Р’В°Р В Р вЂ¦Р В Р вЂ¦Р РЋРІР‚в„–Р В Р’Вµ"
                 >
                   <CheckCheck style={{ width: '12px', height: '12px' }} />
                 </button>
@@ -211,7 +211,7 @@ export const NotificationsButton: React.FC<NotificationsButtonProps> = ({
             </div>
           </div>
 
-          {/* Р РЋР С—Р С‘РЎРѓР С•Р С” РЎС“Р Р†Р ВµР Т‘Р С•Р СР В»Р ВµР Р…Р С‘Р в„– */}
+          {/* Р В Р Р‹Р В РЎвЂ”Р В РЎвЂР РЋР С“Р В РЎвЂўР В РЎвЂќ Р РЋРЎвЂњР В Р вЂ Р В Р’ВµР В РўвЂР В РЎвЂўР В РЎВР В Р’В»Р В Р’ВµР В Р вЂ¦Р В РЎвЂР В РІвЂћвЂ“ */}
           <div 
             className="max-h-80 overflow-y-auto"
             style={{
@@ -246,7 +246,7 @@ export const NotificationsButton: React.FC<NotificationsButtonProps> = ({
                     }}
                   >
                     <div className="flex items-start gap-3">
-                      {/* Р ВР С”Р С•Р Р…Р С”Р В° РЎвЂљР С‘Р С—Р В° РЎС“Р Р†Р ВµР Т‘Р С•Р СР В»Р ВµР Р…Р С‘РЎРЏ */}
+                      {/* Р В Р’ВР В РЎвЂќР В РЎвЂўР В Р вЂ¦Р В РЎвЂќР В Р’В° Р РЋРІР‚С™Р В РЎвЂР В РЎвЂ”Р В Р’В° Р РЋРЎвЂњР В Р вЂ Р В Р’ВµР В РўвЂР В РЎвЂўР В РЎВР В Р’В»Р В Р’ВµР В Р вЂ¦Р В РЎвЂР РЋР РЏ */}
                       <div 
                         className="w-8 h-8 rounded-full flex items-center justify-center"
                         style={{
@@ -256,7 +256,7 @@ export const NotificationsButton: React.FC<NotificationsButtonProps> = ({
                         {getNotificationIcon(notification.type)}
                       </div>
                       
-                      {/* Р С™Р С•Р Р…РЎвЂљР ВµР Р…РЎвЂљ РЎС“Р Р†Р ВµР Т‘Р С•Р СР В»Р ВµР Р…Р С‘РЎРЏ */}
+                      {/* Р В РЎв„ўР В РЎвЂўР В Р вЂ¦Р РЋРІР‚С™Р В Р’ВµР В Р вЂ¦Р РЋРІР‚С™ Р РЋРЎвЂњР В Р вЂ Р В Р’ВµР В РўвЂР В РЎвЂўР В РЎВР В Р’В»Р В Р’ВµР В Р вЂ¦Р В РЎвЂР РЋР РЏ */}
                       <div className="flex-1 min-w-0">
                         <div 
                           style={{
@@ -288,7 +288,7 @@ export const NotificationsButton: React.FC<NotificationsButtonProps> = ({
                         </div>
                       </div>
                       
-                      {/* Р ВР Р…Р Т‘Р С‘Р С”Р В°РЎвЂљР С•РЎР‚ Р Р…Р ВµР С—РЎР‚Р С•РЎвЂЎР С‘РЎвЂљР В°Р Р…Р Р…Р С•Р С–Р С• */}
+                      {/* Р В Р’ВР В Р вЂ¦Р В РўвЂР В РЎвЂР В РЎвЂќР В Р’В°Р РЋРІР‚С™Р В РЎвЂўР РЋР вЂљ Р В Р вЂ¦Р В Р’ВµР В РЎвЂ”Р РЋР вЂљР В РЎвЂўР РЋРІР‚РЋР В РЎвЂР РЋРІР‚С™Р В Р’В°Р В Р вЂ¦Р В Р вЂ¦Р В РЎвЂўР В РЎвЂ“Р В РЎвЂў */}
                       {!notification.read && (
                         <div 
                           style={{
@@ -301,7 +301,7 @@ export const NotificationsButton: React.FC<NotificationsButtonProps> = ({
                         />
                       )}
                       
-                      {/* Р С™Р Р…Р С•Р С—Р С”Р В° РЎС“Р Т‘Р В°Р В»Р ВµР Р…Р С‘РЎРЏ (Р С—Р С•Р С”Р В°Р В·РЎвЂ№Р Р†Р В°Р ВµРЎвЂљРЎРѓРЎРЏ Р С—РЎР‚Р С‘ hover) */}
+                      {/* Р В РЎв„ўР В Р вЂ¦Р В РЎвЂўР В РЎвЂ”Р В РЎвЂќР В Р’В° Р РЋРЎвЂњР В РўвЂР В Р’В°Р В Р’В»Р В Р’ВµР В Р вЂ¦Р В РЎвЂР РЋР РЏ (Р В РЎвЂ”Р В РЎвЂўР В РЎвЂќР В Р’В°Р В Р’В·Р РЋРІР‚в„–Р В Р вЂ Р В Р’В°Р В Р’ВµР РЋРІР‚С™Р РЋР С“Р РЋР РЏ Р В РЎвЂ”Р РЋР вЂљР В РЎвЂ hover) */}
                       <button
                         onClick={(e) => {
                           e.stopPropagation();
@@ -319,7 +319,7 @@ export const NotificationsButton: React.FC<NotificationsButtonProps> = ({
                 ))}
               </div>
             ) : (
-              /* Р СџРЎС“РЎРѓРЎвЂљР С•Р Вµ РЎРѓР С•РЎРѓРЎвЂљР С•РЎРЏР Р…Р С‘Р Вµ */
+              /* Р В РЎСџР РЋРЎвЂњР РЋР С“Р РЋРІР‚С™Р В РЎвЂўР В Р’Вµ Р РЋР С“Р В РЎвЂўР РЋР С“Р РЋРІР‚С™Р В РЎвЂўР РЋР РЏР В Р вЂ¦Р В РЎвЂР В Р’Вµ */
               <div 
                 className="flex flex-col items-center justify-center py-8 px-4"
                 style={{
@@ -327,12 +327,12 @@ export const NotificationsButton: React.FC<NotificationsButtonProps> = ({
                 }}
               >
                 <Bell style={{ width: '32px', height: '32px', marginBottom: '8px' }} />
-                <p style={{ fontSize: '12px', textAlign: 'center' }}>Р Р€Р Р†Р ВµР Т‘Р С•Р СР В»Р ВµР Р…Р С‘Р в„– Р Р…Р ВµРЎвЂљ</p>
+                <p style={{ fontSize: '12px', textAlign: 'center' }}>Р В Р в‚¬Р В Р вЂ Р В Р’ВµР В РўвЂР В РЎвЂўР В РЎВР В Р’В»Р В Р’ВµР В Р вЂ¦Р В РЎвЂР В РІвЂћвЂ“ Р В Р вЂ¦Р В Р’ВµР РЋРІР‚С™</p>
               </div>
             )}
           </div>
 
-          {/* Р В¤РЎС“РЎвЂљР ВµРЎР‚ РЎРѓ Р С”Р Р…Р С•Р С—Р С”Р С•Р в„– Р С•РЎвЂЎР С‘РЎРѓРЎвЂљР С”Р С‘ */}
+          {/* Р В Р’В¤Р РЋРЎвЂњР РЋРІР‚С™Р В Р’ВµР РЋР вЂљ Р РЋР С“ Р В РЎвЂќР В Р вЂ¦Р В РЎвЂўР В РЎвЂ”Р В РЎвЂќР В РЎвЂўР В РІвЂћвЂ“ Р В РЎвЂўР РЋРІР‚РЋР В РЎвЂР РЋР С“Р РЋРІР‚С™Р В РЎвЂќР В РЎвЂ */}
           {notifications.length > 0 && (
             <div 
               className="p-4 border-t"
@@ -350,7 +350,7 @@ export const NotificationsButton: React.FC<NotificationsButtonProps> = ({
                   fontWeight: '500'
                 }}
               >
-                Р С›РЎвЂЎР С‘РЎРѓРЎвЂљР С‘РЎвЂљРЎРЉ Р Р†РЎРѓР Вµ
+                Р В РЎвЂєР РЋРІР‚РЋР В РЎвЂР РЋР С“Р РЋРІР‚С™Р В РЎвЂР РЋРІР‚С™Р РЋР Р‰ Р В Р вЂ Р РЋР С“Р В Р’Вµ
               </button>
             </div>
           )}

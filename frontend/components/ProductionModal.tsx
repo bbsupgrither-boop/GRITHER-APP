@@ -108,10 +108,10 @@ export const ProductionModal: React.FC<ProductionModalProps> = ({
             <button
               onClick={handleCloseClick}
               className="modal-close-btn"
-              aria-label="Р вЂ”Р В°Р С”РЎР‚РЎвЂ№РЎвЂљРЎРЉ"
+              aria-label="Р В РІР‚вЂќР В Р’В°Р В РЎвЂќР РЋР вЂљР РЋРІР‚в„–Р РЋРІР‚С™Р РЋР Р‰"
               type="button"
             >
-              РІСљвЂў
+              Р Р†РЎС™РІР‚Сћ
             </button>
           </div>
         )}

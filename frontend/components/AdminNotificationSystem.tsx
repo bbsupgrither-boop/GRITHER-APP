@@ -33,7 +33,7 @@ interface AdminNotificationSystemProps {
   theme: 'light' | 'dark';
 }
 
-// Р ВРЎРѓР С—Р С•Р В»РЎРЉР В·РЎС“Р ВµР С Notification Р С‘Р В· РЎвЂљР С‘Р С—Р С•Р Р†
+// Р В Р’ВР РЋР С“Р В РЎвЂ”Р В РЎвЂўР В Р’В»Р РЋР Р‰Р В Р’В·Р РЋРЎвЂњР В Р’ВµР В РЎВ Notification Р В РЎвЂР В Р’В· Р РЋРІР‚С™Р В РЎвЂР В РЎвЂ”Р В РЎвЂўР В Р вЂ 
 
 interface NotificationTemplate {
   id: string;
@@ -45,33 +45,33 @@ interface NotificationTemplate {
 }
 
 const NOTIFICATION_TYPES = [
-  { value: 'achievement', label: 'Р вЂќР С•РЎРѓРЎвЂљР С‘Р В¶Р ВµР Р…Р С‘РЎРЏ', icon: 'СЂСџРЏвЂ ', color: 'bg-yellow-500' },
-  { value: 'battle', label: 'Р вЂР В°РЎвЂљРЎвЂљР В»РЎвЂ№', icon: 'РІС™вЂќРїС‘РЏ', color: 'bg-red-500' },
-  { value: 'task', label: 'Р вЂ”Р В°Р Т‘Р В°РЎвЂЎР С‘', icon: 'СЂСџвЂњСњ', color: 'bg-green-500' },
-  { value: 'shop', label: 'Р СљР В°Р С–Р В°Р В·Р С‘Р Р…', icon: 'СЂСџвЂєвЂ™', color: 'bg-purple-500' },
-  { value: 'system', label: 'Р РЋР С‘РЎРѓРЎвЂљР ВµР СР В°', icon: 'РІС™в„ўРїС‘РЏ', color: 'bg-blue-500' },
-  { value: 'personal', label: 'Р СџР ВµРЎР‚РЎРѓР С•Р Р…Р В°Р В»РЎРЉР Р…РЎвЂ№Р Вµ', icon: 'СЂСџвЂВ¤', color: 'bg-indigo-500' }
+  { value: 'achievement', label: 'Р В РІР‚СњР В РЎвЂўР РЋР С“Р РЋРІР‚С™Р В РЎвЂР В Р’В¶Р В Р’ВµР В Р вЂ¦Р В РЎвЂР РЋР РЏ', icon: 'РЎР‚РЎСџР РЏРІР‚В ', color: 'bg-yellow-500' },
+  { value: 'battle', label: 'Р В РІР‚ВР В Р’В°Р РЋРІР‚С™Р РЋРІР‚С™Р В Р’В»Р РЋРІР‚в„–', icon: 'Р Р†РЎв„ўРІР‚СњР С—РЎвЂР РЏ', color: 'bg-red-500' },
+  { value: 'task', label: 'Р В РІР‚вЂќР В Р’В°Р В РўвЂР В Р’В°Р РЋРІР‚РЋР В РЎвЂ', icon: 'РЎР‚РЎСџРІР‚СљРЎСљ', color: 'bg-green-500' },
+  { value: 'shop', label: 'Р В РЎС™Р В Р’В°Р В РЎвЂ“Р В Р’В°Р В Р’В·Р В РЎвЂР В Р вЂ¦', icon: 'РЎР‚РЎСџРІР‚С”РІР‚в„ў', color: 'bg-purple-500' },
+  { value: 'system', label: 'Р В Р Р‹Р В РЎвЂР РЋР С“Р РЋРІР‚С™Р В Р’ВµР В РЎВР В Р’В°', icon: 'Р Р†РЎв„ўРІвЂћСћР С—РЎвЂР РЏ', color: 'bg-blue-500' },
+  { value: 'personal', label: 'Р В РЎСџР В Р’ВµР РЋР вЂљР РЋР С“Р В РЎвЂўР В Р вЂ¦Р В Р’В°Р В Р’В»Р РЋР Р‰Р В Р вЂ¦Р РЋРІР‚в„–Р В Р’Вµ', icon: 'РЎР‚РЎСџРІР‚ВР’В¤', color: 'bg-indigo-500' }
 ];
 
 const PRIORITY_LEVELS = [
-  { value: 'low', label: 'Р СњР С‘Р В·Р С”Р С‘Р в„–', color: 'bg-gray-500' },
-  { value: 'medium', label: 'Р РЋРЎР‚Р ВµР Т‘Р Р…Р С‘Р в„–', color: 'bg-blue-500' },
-  { value: 'high', label: 'Р вЂ™РЎвЂ№РЎРѓР С•Р С”Р С‘Р в„–', color: 'bg-orange-500' },
-  { value: 'urgent', label: 'Р РЋРЎР‚Р С•РЎвЂЎР Р…РЎвЂ№Р в„–', color: 'bg-red-500' }
+  { value: 'low', label: 'Р В РЎСљР В РЎвЂР В Р’В·Р В РЎвЂќР В РЎвЂР В РІвЂћвЂ“', color: 'bg-gray-500' },
+  { value: 'medium', label: 'Р В Р Р‹Р РЋР вЂљР В Р’ВµР В РўвЂР В Р вЂ¦Р В РЎвЂР В РІвЂћвЂ“', color: 'bg-blue-500' },
+  { value: 'high', label: 'Р В РІР‚в„ўР РЋРІР‚в„–Р РЋР С“Р В РЎвЂўР В РЎвЂќР В РЎвЂР В РІвЂћвЂ“', color: 'bg-orange-500' },
+  { value: 'urgent', label: 'Р В Р Р‹Р РЋР вЂљР В РЎвЂўР РЋРІР‚РЋР В Р вЂ¦Р РЋРІР‚в„–Р В РІвЂћвЂ“', color: 'bg-red-500' }
 ];
 
 const TARGET_AUDIENCES = [
-  { value: 'all', label: 'Р вЂ™РЎРѓР Вµ Р С—Р С•Р В»РЎРЉР В·Р С•Р Р†Р В°РЎвЂљР ВµР В»Р С‘', icon: 'СЂСџвЂТђ' },
-  { value: 'team', label: 'Р С™Р С•Р СР В°Р Р…Р Т‘Р В°', icon: 'СЂСџРЏСћ' },
-  { value: 'role', label: 'Р СџР С• РЎР‚Р С•Р В»РЎРЏР С', icon: 'СЂСџвЂвЂ' },
-  { value: 'specific', label: 'Р С™Р С•Р Р…Р С”РЎР‚Р ВµРЎвЂљР Р…РЎвЂ№Р Вµ Р С—Р С•Р В»РЎРЉР В·Р С•Р Р†Р В°РЎвЂљР ВµР В»Р С‘', icon: 'СЂСџвЂВ¤' }
+  { value: 'all', label: 'Р В РІР‚в„ўР РЋР С“Р В Р’Вµ Р В РЎвЂ”Р В РЎвЂўР В Р’В»Р РЋР Р‰Р В Р’В·Р В РЎвЂўР В Р вЂ Р В Р’В°Р РЋРІР‚С™Р В Р’ВµР В Р’В»Р В РЎвЂ', icon: 'РЎР‚РЎСџРІР‚ВРўС’' },
+  { value: 'team', label: 'Р В РЎв„ўР В РЎвЂўР В РЎВР В Р’В°Р В Р вЂ¦Р В РўвЂР В Р’В°', icon: 'РЎР‚РЎСџР РЏРЎС›' },
+  { value: 'role', label: 'Р В РЎСџР В РЎвЂў Р РЋР вЂљР В РЎвЂўР В Р’В»Р РЋР РЏР В РЎВ', icon: 'РЎР‚РЎСџРІР‚ВРІР‚В' },
+  { value: 'specific', label: 'Р В РЎв„ўР В РЎвЂўР В Р вЂ¦Р В РЎвЂќР РЋР вЂљР В Р’ВµР РЋРІР‚С™Р В Р вЂ¦Р РЋРІР‚в„–Р В Р’Вµ Р В РЎвЂ”Р В РЎвЂўР В Р’В»Р РЋР Р‰Р В Р’В·Р В РЎвЂўР В Р вЂ Р В Р’В°Р РЋРІР‚С™Р В Р’ВµР В Р’В»Р В РЎвЂ', icon: 'РЎР‚РЎСџРІР‚ВР’В¤' }
 ];
 
 const STATUS_LABELS = {
-  draft: 'Р В§Р ВµРЎР‚Р Р…Р С•Р Р†Р С‘Р С”',
-  scheduled: 'Р вЂ”Р В°Р С—Р В»Р В°Р Р…Р С‘РЎР‚Р С•Р Р†Р В°Р Р…Р С•',
-  sent: 'Р С›РЎвЂљР С—РЎР‚Р В°Р Р†Р В»Р ВµР Р…Р С•',
-  failed: 'Р С›РЎв‚¬Р С‘Р В±Р С”Р В°'
+  draft: 'Р В Р’В§Р В Р’ВµР РЋР вЂљР В Р вЂ¦Р В РЎвЂўР В Р вЂ Р В РЎвЂР В РЎвЂќ',
+  scheduled: 'Р В РІР‚вЂќР В Р’В°Р В РЎвЂ”Р В Р’В»Р В Р’В°Р В Р вЂ¦Р В РЎвЂР РЋР вЂљР В РЎвЂўР В Р вЂ Р В Р’В°Р В Р вЂ¦Р В РЎвЂў',
+  sent: 'Р В РЎвЂєР РЋРІР‚С™Р В РЎвЂ”Р РЋР вЂљР В Р’В°Р В Р вЂ Р В Р’В»Р В Р’ВµР В Р вЂ¦Р В РЎвЂў',
+  failed: 'Р В РЎвЂєР РЋРІвЂљВ¬Р В РЎвЂР В Р’В±Р В РЎвЂќР В Р’В°'
 };
 
 const STATUS_COLORS = {
@@ -95,23 +95,23 @@ export const AdminNotificationSystem: React.FC<AdminNotificationSystemProps> = (
   const [formData, setFormData] = useState<any>({});
   const [activeTab, setActiveTab] = useState<'notifications' | 'templates' | 'analytics'>('notifications');
 
-  // Р вЂ”Р В°Р С–РЎР‚РЎС“Р В·Р С”Р В° Р Т‘Р В°Р Р…Р Р…РЎвЂ№РЎвЂ¦
+  // Р В РІР‚вЂќР В Р’В°Р В РЎвЂ“Р РЋР вЂљР РЋРЎвЂњР В Р’В·Р В РЎвЂќР В Р’В° Р В РўвЂР В Р’В°Р В Р вЂ¦Р В Р вЂ¦Р РЋРІР‚в„–Р РЋРІР‚В¦
   useEffect(() => {
     loadData();
   }, []);
 
-  // Р В¤Р С‘Р В»РЎРЉРЎвЂљРЎР‚Р В°РЎвЂ Р С‘РЎРЏ
+  // Р В Р’В¤Р В РЎвЂР В Р’В»Р РЋР Р‰Р РЋРІР‚С™Р РЋР вЂљР В Р’В°Р РЋРІР‚В Р В РЎвЂР РЋР РЏ
   useEffect(() => {
     filterNotifications();
   }, [notifications, searchQuery, filterType, filterStatus, filterPriority]);
 
   const loadData = async () => {
-    // Mock Р Т‘Р В°Р Р…Р Р…РЎвЂ№Р Вµ
+    // Mock Р В РўвЂР В Р’В°Р В Р вЂ¦Р В Р вЂ¦Р РЋРІР‚в„–Р В Р’Вµ
     const mockNotifications: Notification[] = [
       {
         id: '1',
-        title: 'Р СњР С•Р Р†Р С•Р Вµ Р Т‘Р С•РЎРѓРЎвЂљР С‘Р В¶Р ВµР Р…Р С‘Р Вµ Р Т‘Р С•РЎРѓРЎвЂљРЎС“Р С—Р Р…Р С•!',
-        message: 'Р СџРЎР‚Р С•Р Р†Р ВµРЎР‚РЎРЉРЎвЂљР Вµ РЎРѓР С—Р С‘РЎРѓР С•Р С” Р Т‘Р С•РЎРѓРЎвЂљР С‘Р В¶Р ВµР Р…Р С‘Р в„– - Р Т‘Р С•Р В±Р В°Р Р†Р В»Р ВµР Р…Р С• Р Р…Р С•Р Р†Р С•Р Вµ Р В·Р В°Р Т‘Р В°Р Р…Р С‘Р Вµ "Р СљР В°РЎРѓРЎвЂљР ВµРЎР‚ Р В±Р В°РЎвЂљРЎвЂљР В»Р С•Р Р†"',
+        title: 'Р В РЎСљР В РЎвЂўР В Р вЂ Р В РЎвЂўР В Р’Вµ Р В РўвЂР В РЎвЂўР РЋР С“Р РЋРІР‚С™Р В РЎвЂР В Р’В¶Р В Р’ВµР В Р вЂ¦Р В РЎвЂР В Р’Вµ Р В РўвЂР В РЎвЂўР РЋР С“Р РЋРІР‚С™Р РЋРЎвЂњР В РЎвЂ”Р В Р вЂ¦Р В РЎвЂў!',
+        message: 'Р В РЎСџР РЋР вЂљР В РЎвЂўР В Р вЂ Р В Р’ВµР РЋР вЂљР РЋР Р‰Р РЋРІР‚С™Р В Р’Вµ Р РЋР С“Р В РЎвЂ”Р В РЎвЂР РЋР С“Р В РЎвЂўР В РЎвЂќ Р В РўвЂР В РЎвЂўР РЋР С“Р РЋРІР‚С™Р В РЎвЂР В Р’В¶Р В Р’ВµР В Р вЂ¦Р В РЎвЂР В РІвЂћвЂ“ - Р В РўвЂР В РЎвЂўР В Р’В±Р В Р’В°Р В Р вЂ Р В Р’В»Р В Р’ВµР В Р вЂ¦Р В РЎвЂў Р В Р вЂ¦Р В РЎвЂўР В Р вЂ Р В РЎвЂўР В Р’Вµ Р В Р’В·Р В Р’В°Р В РўвЂР В Р’В°Р В Р вЂ¦Р В РЎвЂР В Р’Вµ "Р В РЎС™Р В Р’В°Р РЋР С“Р РЋРІР‚С™Р В Р’ВµР РЋР вЂљ Р В Р’В±Р В Р’В°Р РЋРІР‚С™Р РЋРІР‚С™Р В Р’В»Р В РЎвЂўР В Р вЂ "',
         type: 'achievement',
         priority: 'medium',
         targetAudience: 'all',
@@ -128,8 +128,8 @@ export const AdminNotificationSystem: React.FC<AdminNotificationSystemProps> = (
       },
       {
         id: '2',
-        title: 'Р СћР ВµРЎвЂ¦Р Р…Р С‘РЎвЂЎР ВµРЎРѓР С”Р С•Р Вµ Р С•Р В±РЎРѓР В»РЎС“Р В¶Р С‘Р Р†Р В°Р Р…Р С‘Р Вµ',
-        message: 'Р РЋР С‘РЎРѓРЎвЂљР ВµР СР В° Р В±РЎС“Р Т‘Р ВµРЎвЂљ Р Р…Р ВµР Т‘Р С•РЎРѓРЎвЂљРЎС“Р С—Р Р…Р В° РЎРѓ 02:00 Р Т‘Р С• 04:00 Р С—Р С• Р СљР РЋР С™ Р Т‘Р В»РЎРЏ Р С—РЎР‚Р С•Р Р†Р ВµР Т‘Р ВµР Р…Р С‘РЎРЏ РЎвЂљР ВµРЎвЂ¦Р Р…Р С‘РЎвЂЎР ВµРЎРѓР С”Р С‘РЎвЂ¦ РЎР‚Р В°Р В±Р С•РЎвЂљ',
+        title: 'Р В РЎС›Р В Р’ВµР РЋРІР‚В¦Р В Р вЂ¦Р В РЎвЂР РЋРІР‚РЋР В Р’ВµР РЋР С“Р В РЎвЂќР В РЎвЂўР В Р’Вµ Р В РЎвЂўР В Р’В±Р РЋР С“Р В Р’В»Р РЋРЎвЂњР В Р’В¶Р В РЎвЂР В Р вЂ Р В Р’В°Р В Р вЂ¦Р В РЎвЂР В Р’Вµ',
+        message: 'Р В Р Р‹Р В РЎвЂР РЋР С“Р РЋРІР‚С™Р В Р’ВµР В РЎВР В Р’В° Р В Р’В±Р РЋРЎвЂњР В РўвЂР В Р’ВµР РЋРІР‚С™ Р В Р вЂ¦Р В Р’ВµР В РўвЂР В РЎвЂўР РЋР С“Р РЋРІР‚С™Р РЋРЎвЂњР В РЎвЂ”Р В Р вЂ¦Р В Р’В° Р РЋР С“ 02:00 Р В РўвЂР В РЎвЂў 04:00 Р В РЎвЂ”Р В РЎвЂў Р В РЎС™Р В Р Р‹Р В РЎв„ў Р В РўвЂР В Р’В»Р РЋР РЏ Р В РЎвЂ”Р РЋР вЂљР В РЎвЂўР В Р вЂ Р В Р’ВµР В РўвЂР В Р’ВµР В Р вЂ¦Р В РЎвЂР РЋР РЏ Р РЋРІР‚С™Р В Р’ВµР РЋРІР‚В¦Р В Р вЂ¦Р В РЎвЂР РЋРІР‚РЋР В Р’ВµР РЋР С“Р В РЎвЂќР В РЎвЂР РЋРІР‚В¦ Р РЋР вЂљР В Р’В°Р В Р’В±Р В РЎвЂўР РЋРІР‚С™',
         type: 'system',
         priority: 'high',
         targetAudience: 'all',
@@ -146,8 +146,8 @@ export const AdminNotificationSystem: React.FC<AdminNotificationSystemProps> = (
       },
       {
         id: '3',
-        title: 'Р СџР С•Р В·Р Т‘РЎР‚Р В°Р Р†Р В»РЎРЏР ВµР С РЎРѓ Р С—Р С•Р Р†РЎвЂ№РЎв‚¬Р ВµР Р…Р С‘Р ВµР С!',
-        message: 'Р вЂ™РЎвЂ№ Р Т‘Р С•РЎРѓРЎвЂљР С‘Р С–Р В»Р С‘ Р Р…Р С•Р Р†Р С•Р С–Р С• РЎС“РЎР‚Р С•Р Р†Р Р…РЎРЏ! Р СџР С•Р В»РЎС“РЎвЂЎР С‘РЎвЂљР Вµ Р Р…Р В°Р С–РЎР‚Р В°Р Т‘РЎС“ Р Р† Р С—РЎР‚Р С•РЎвЂћР С‘Р В»Р Вµ.',
+        title: 'Р В РЎСџР В РЎвЂўР В Р’В·Р В РўвЂР РЋР вЂљР В Р’В°Р В Р вЂ Р В Р’В»Р РЋР РЏР В Р’ВµР В РЎВ Р РЋР С“ Р В РЎвЂ”Р В РЎвЂўР В Р вЂ Р РЋРІР‚в„–Р РЋРІвЂљВ¬Р В Р’ВµР В Р вЂ¦Р В РЎвЂР В Р’ВµР В РЎВ!',
+        message: 'Р В РІР‚в„ўР РЋРІР‚в„– Р В РўвЂР В РЎвЂўР РЋР С“Р РЋРІР‚С™Р В РЎвЂР В РЎвЂ“Р В Р’В»Р В РЎвЂ Р В Р вЂ¦Р В РЎвЂўР В Р вЂ Р В РЎвЂўР В РЎвЂ“Р В РЎвЂў Р РЋРЎвЂњР РЋР вЂљР В РЎвЂўР В Р вЂ Р В Р вЂ¦Р РЋР РЏ! Р В РЎСџР В РЎвЂўР В Р’В»Р РЋРЎвЂњР РЋРІР‚РЋР В РЎвЂР РЋРІР‚С™Р В Р’Вµ Р В Р вЂ¦Р В Р’В°Р В РЎвЂ“Р РЋР вЂљР В Р’В°Р В РўвЂР РЋРЎвЂњ Р В Р вЂ  Р В РЎвЂ”Р РЋР вЂљР В РЎвЂўР РЋРІР‚С›Р В РЎвЂР В Р’В»Р В Р’Вµ.',
         type: 'personal',
         priority: 'low',
         targetAudience: 'specific',
@@ -168,25 +168,25 @@ export const AdminNotificationSystem: React.FC<AdminNotificationSystemProps> = (
     const mockTemplates: NotificationTemplate[] = [
       {
         id: '1',
-        name: 'Р вЂќР С•РЎРѓРЎвЂљР С‘Р В¶Р ВµР Р…Р С‘Р Вµ Р С—Р С•Р В»РЎС“РЎвЂЎР ВµР Р…Р С•',
-        title: 'Р СџР С•Р В·Р Т‘РЎР‚Р В°Р Р†Р В»РЎРЏР ВµР С РЎРѓ Р С—Р С•Р В»РЎС“РЎвЂЎР ВµР Р…Р С‘Р ВµР С Р Т‘Р С•РЎРѓРЎвЂљР С‘Р В¶Р ВµР Р…Р С‘РЎРЏ!',
-        message: 'Р вЂ™РЎвЂ№ РЎС“РЎРѓР С—Р ВµРЎв‚¬Р Р…Р С• Р С—Р С•Р В»РЎС“РЎвЂЎР С‘Р В»Р С‘ Р Т‘Р С•РЎРѓРЎвЂљР С‘Р В¶Р ВµР Р…Р С‘Р Вµ "{achievement_name}". Р СџРЎР‚Р С•Р Т‘Р С•Р В»Р В¶Р В°Р в„–РЎвЂљР Вµ Р Р† РЎвЂљР С•Р С Р В¶Р Вµ Р Т‘РЎС“РЎвЂ¦Р Вµ!',
+        name: 'Р В РІР‚СњР В РЎвЂўР РЋР С“Р РЋРІР‚С™Р В РЎвЂР В Р’В¶Р В Р’ВµР В Р вЂ¦Р В РЎвЂР В Р’Вµ Р В РЎвЂ”Р В РЎвЂўР В Р’В»Р РЋРЎвЂњР РЋРІР‚РЋР В Р’ВµР В Р вЂ¦Р В РЎвЂў',
+        title: 'Р В РЎСџР В РЎвЂўР В Р’В·Р В РўвЂР РЋР вЂљР В Р’В°Р В Р вЂ Р В Р’В»Р РЋР РЏР В Р’ВµР В РЎВ Р РЋР С“ Р В РЎвЂ”Р В РЎвЂўР В Р’В»Р РЋРЎвЂњР РЋРІР‚РЋР В Р’ВµР В Р вЂ¦Р В РЎвЂР В Р’ВµР В РЎВ Р В РўвЂР В РЎвЂўР РЋР С“Р РЋРІР‚С™Р В РЎвЂР В Р’В¶Р В Р’ВµР В Р вЂ¦Р В РЎвЂР РЋР РЏ!',
+        message: 'Р В РІР‚в„ўР РЋРІР‚в„– Р РЋРЎвЂњР РЋР С“Р В РЎвЂ”Р В Р’ВµР РЋРІвЂљВ¬Р В Р вЂ¦Р В РЎвЂў Р В РЎвЂ”Р В РЎвЂўР В Р’В»Р РЋРЎвЂњР РЋРІР‚РЋР В РЎвЂР В Р’В»Р В РЎвЂ Р В РўвЂР В РЎвЂўР РЋР С“Р РЋРІР‚С™Р В РЎвЂР В Р’В¶Р В Р’ВµР В Р вЂ¦Р В РЎвЂР В Р’Вµ "{achievement_name}". Р В РЎСџР РЋР вЂљР В РЎвЂўР В РўвЂР В РЎвЂўР В Р’В»Р В Р’В¶Р В Р’В°Р В РІвЂћвЂ“Р РЋРІР‚С™Р В Р’Вµ Р В Р вЂ  Р РЋРІР‚С™Р В РЎвЂўР В РЎВ Р В Р’В¶Р В Р’Вµ Р В РўвЂР РЋРЎвЂњР РЋРІР‚В¦Р В Р’Вµ!',
         type: 'achievement',
         isDefault: true
       },
       {
         id: '2',
-        name: 'Р СњР С•Р Р†Р В°РЎРЏ Р В·Р В°Р Т‘Р В°РЎвЂЎР В°',
-        title: 'Р вЂ™Р В°Р С Р Р…Р В°Р В·Р Р…Р В°РЎвЂЎР ВµР Р…Р В° Р Р…Р С•Р Р†Р В°РЎРЏ Р В·Р В°Р Т‘Р В°РЎвЂЎР В°',
-        message: 'Р СћР С‘Р СР В»Р С‘Р Т‘ Р Р…Р В°Р В·Р Р…Р В°РЎвЂЎР С‘Р В» Р Р†Р В°Р С Р В·Р В°Р Т‘Р В°РЎвЂЎРЎС“ "{task_title}". Р вЂќР ВµР Т‘Р В»Р В°Р в„–Р Р…: {deadline}',
+        name: 'Р В РЎСљР В РЎвЂўР В Р вЂ Р В Р’В°Р РЋР РЏ Р В Р’В·Р В Р’В°Р В РўвЂР В Р’В°Р РЋРІР‚РЋР В Р’В°',
+        title: 'Р В РІР‚в„ўР В Р’В°Р В РЎВ Р В Р вЂ¦Р В Р’В°Р В Р’В·Р В Р вЂ¦Р В Р’В°Р РЋРІР‚РЋР В Р’ВµР В Р вЂ¦Р В Р’В° Р В Р вЂ¦Р В РЎвЂўР В Р вЂ Р В Р’В°Р РЋР РЏ Р В Р’В·Р В Р’В°Р В РўвЂР В Р’В°Р РЋРІР‚РЋР В Р’В°',
+        message: 'Р В РЎС›Р В РЎвЂР В РЎВР В Р’В»Р В РЎвЂР В РўвЂ Р В Р вЂ¦Р В Р’В°Р В Р’В·Р В Р вЂ¦Р В Р’В°Р РЋРІР‚РЋР В РЎвЂР В Р’В» Р В Р вЂ Р В Р’В°Р В РЎВ Р В Р’В·Р В Р’В°Р В РўвЂР В Р’В°Р РЋРІР‚РЋР РЋРЎвЂњ "{task_title}". Р В РІР‚СњР В Р’ВµР В РўвЂР В Р’В»Р В Р’В°Р В РІвЂћвЂ“Р В Р вЂ¦: {deadline}',
         type: 'task',
         isDefault: true
       },
       {
         id: '3',
-        name: 'Р вЂР В°РЎвЂљРЎвЂљР В» Р В·Р В°Р Р†Р ВµРЎР‚РЎв‚¬Р ВµР Р…',
-        title: 'Р В Р ВµР В·РЎС“Р В»РЎРЉРЎвЂљР В°РЎвЂљ Р В±Р В°РЎвЂљРЎвЂљР В»Р В°',
-        message: 'Р вЂ™Р В°РЎв‚¬ Р В±Р В°РЎвЂљРЎвЂљР В» РЎРѓ {opponent_name} Р В·Р В°Р Р†Р ВµРЎР‚РЎв‚¬Р ВµР Р…. Р В Р ВµР В·РЎС“Р В»РЎРЉРЎвЂљР В°РЎвЂљ: {result}',
+        name: 'Р В РІР‚ВР В Р’В°Р РЋРІР‚С™Р РЋРІР‚С™Р В Р’В» Р В Р’В·Р В Р’В°Р В Р вЂ Р В Р’ВµР РЋР вЂљР РЋРІвЂљВ¬Р В Р’ВµР В Р вЂ¦',
+        title: 'Р В Р’В Р В Р’ВµР В Р’В·Р РЋРЎвЂњР В Р’В»Р РЋР Р‰Р РЋРІР‚С™Р В Р’В°Р РЋРІР‚С™ Р В Р’В±Р В Р’В°Р РЋРІР‚С™Р РЋРІР‚С™Р В Р’В»Р В Р’В°',
+        message: 'Р В РІР‚в„ўР В Р’В°Р РЋРІвЂљВ¬ Р В Р’В±Р В Р’В°Р РЋРІР‚С™Р РЋРІР‚С™Р В Р’В» Р РЋР С“ {opponent_name} Р В Р’В·Р В Р’В°Р В Р вЂ Р В Р’ВµР РЋР вЂљР РЋРІвЂљВ¬Р В Р’ВµР В Р вЂ¦. Р В Р’В Р В Р’ВµР В Р’В·Р РЋРЎвЂњР В Р’В»Р РЋР Р‰Р РЋРІР‚С™Р В Р’В°Р РЋРІР‚С™: {result}',
         type: 'battle',
         isDefault: false
       }
@@ -303,7 +303,7 @@ export const AdminNotificationSystem: React.FC<AdminNotificationSystemProps> = (
   };
 
   const handleDeleteNotification = async (id: string) => {
-    if (window.confirm('Р вЂ™РЎвЂ№ РЎС“Р Р†Р ВµРЎР‚Р ВµР Р…РЎвЂ№, РЎвЂЎРЎвЂљР С• РЎвЂ¦Р С•РЎвЂљР С‘РЎвЂљР Вµ РЎС“Р Т‘Р В°Р В»Р С‘РЎвЂљРЎРЉ РЎРЊРЎвЂљР С• РЎС“Р Р†Р ВµР Т‘Р С•Р СР В»Р ВµР Р…Р С‘Р Вµ?')) {
+    if (window.confirm('Р В РІР‚в„ўР РЋРІР‚в„– Р РЋРЎвЂњР В Р вЂ Р В Р’ВµР РЋР вЂљР В Р’ВµР В Р вЂ¦Р РЋРІР‚в„–, Р РЋРІР‚РЋР РЋРІР‚С™Р В РЎвЂў Р РЋРІР‚В¦Р В РЎвЂўР РЋРІР‚С™Р В РЎвЂР РЋРІР‚С™Р В Р’Вµ Р РЋРЎвЂњР В РўвЂР В Р’В°Р В Р’В»Р В РЎвЂР РЋРІР‚С™Р РЋР Р‰ Р РЋР РЉР РЋРІР‚С™Р В РЎвЂў Р РЋРЎвЂњР В Р вЂ Р В Р’ВµР В РўвЂР В РЎвЂўР В РЎВР В Р’В»Р В Р’ВµР В Р вЂ¦Р В РЎвЂР В Р’Вµ?')) {
       setNotifications(prev => prev.filter(n => n.id !== id));
     }
   };
@@ -339,13 +339,13 @@ export const AdminNotificationSystem: React.FC<AdminNotificationSystemProps> = (
 
   const renderNotificationsTab = () => (
     <div className="space-y-6">
-      {/* Р В¤Р С‘Р В»РЎРЉРЎвЂљРЎР‚РЎвЂ№ */}
+      {/* Р В Р’В¤Р В РЎвЂР В Р’В»Р РЋР Р‰Р РЋРІР‚С™Р РЋР вЂљР РЋРІР‚в„– */}
       <div className="grid grid-cols-1 md:grid-cols-5 gap-4">
         <div className="relative">
           <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 w-4 h-4 opacity-50" />
           <input
             type="text"
-            placeholder="Р СџР С•Р С‘РЎРѓР С” РЎС“Р Р†Р ВµР Т‘Р С•Р СР В»Р ВµР Р…Р С‘Р в„–..."
+            placeholder="Р В РЎСџР В РЎвЂўР В РЎвЂР РЋР С“Р В РЎвЂќ Р РЋРЎвЂњР В Р вЂ Р В Р’ВµР В РўвЂР В РЎвЂўР В РЎВР В Р’В»Р В Р’ВµР В Р вЂ¦Р В РЎвЂР В РІвЂћвЂ“..."
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
             className="w-full pl-10 pr-4 py-2 rounded-lg border"
@@ -367,7 +367,7 @@ export const AdminNotificationSystem: React.FC<AdminNotificationSystemProps> = (
             color: theme === 'dark' ? '#E8ECF2' : '#0F172A'
           }}
         >
-          <option value="all">Р вЂ™РЎРѓР Вµ РЎвЂљР С‘Р С—РЎвЂ№</option>
+          <option value="all">Р В РІР‚в„ўР РЋР С“Р В Р’Вµ Р РЋРІР‚С™Р В РЎвЂР В РЎвЂ”Р РЋРІР‚в„–</option>
           {NOTIFICATION_TYPES.map(type => (
             <option key={type.value} value={type.value}>
               {type.icon} {type.label}
@@ -385,7 +385,7 @@ export const AdminNotificationSystem: React.FC<AdminNotificationSystemProps> = (
             color: theme === 'dark' ? '#E8ECF2' : '#0F172A'
           }}
         >
-          <option value="all">Р вЂ™РЎРѓР Вµ РЎРѓРЎвЂљР В°РЎвЂљРЎС“РЎРѓРЎвЂ№</option>
+          <option value="all">Р В РІР‚в„ўР РЋР С“Р В Р’Вµ Р РЋР С“Р РЋРІР‚С™Р В Р’В°Р РЋРІР‚С™Р РЋРЎвЂњР РЋР С“Р РЋРІР‚в„–</option>
           {Object.entries(STATUS_LABELS).map(([value, label]) => (
             <option key={value} value={value}>{label}</option>
           ))}
@@ -401,7 +401,7 @@ export const AdminNotificationSystem: React.FC<AdminNotificationSystemProps> = (
             color: theme === 'dark' ? '#E8ECF2' : '#0F172A'
           }}
         >
-          <option value="all">Р вЂ™РЎРѓР Вµ Р С—РЎР‚Р С‘Р С•РЎР‚Р С‘РЎвЂљР ВµРЎвЂљРЎвЂ№</option>
+          <option value="all">Р В РІР‚в„ўР РЋР С“Р В Р’Вµ Р В РЎвЂ”Р РЋР вЂљР В РЎвЂР В РЎвЂўР РЋР вЂљР В РЎвЂР РЋРІР‚С™Р В Р’ВµР РЋРІР‚С™Р РЋРІР‚в„–</option>
           {PRIORITY_LEVELS.map(priority => (
             <option key={priority.value} value={priority.value}>
               {priority.label}
@@ -414,11 +414,11 @@ export const AdminNotificationSystem: React.FC<AdminNotificationSystemProps> = (
           className="flex items-center justify-center px-4 py-2 rounded-lg bg-blue-500 text-white hover:bg-blue-600 transition-colors"
         >
           <Plus className="w-4 h-4 mr-2" />
-          Р РЋР С•Р В·Р Т‘Р В°РЎвЂљРЎРЉ
+          Р В Р Р‹Р В РЎвЂўР В Р’В·Р В РўвЂР В Р’В°Р РЋРІР‚С™Р РЋР Р‰
         </button>
       </div>
 
-      {/* Р РЋР С—Р С‘РЎРѓР С•Р С” РЎС“Р Р†Р ВµР Т‘Р С•Р СР В»Р ВµР Р…Р С‘Р в„– */}
+      {/* Р В Р Р‹Р В РЎвЂ”Р В РЎвЂР РЋР С“Р В РЎвЂўР В РЎвЂќ Р РЋРЎвЂњР В Р вЂ Р В Р’ВµР В РўвЂР В РЎвЂўР В РЎВР В Р’В»Р В Р’ВµР В Р вЂ¦Р В РЎвЂР В РІвЂћвЂ“ */}
       <div className="space-y-4">
         {filteredNotifications.map((notification) => (
           <div
@@ -463,13 +463,13 @@ export const AdminNotificationSystem: React.FC<AdminNotificationSystemProps> = (
                     {notification.sentAt && (
                       <span className="flex items-center">
                         <Send className="w-3 h-3 mr-1" />
-                        Р С›РЎвЂљР С—РЎР‚Р В°Р Р†Р В»Р ВµР Р…Р С•: {new Date(notification.sentAt).toLocaleString()}
+                        Р В РЎвЂєР РЋРІР‚С™Р В РЎвЂ”Р РЋР вЂљР В Р’В°Р В Р вЂ Р В Р’В»Р В Р’ВµР В Р вЂ¦Р В РЎвЂў: {new Date(notification.sentAt).toLocaleString()}
                       </span>
                     )}
                     {notification.deliveryStats.totalSent > 0 && (
                       <span className="flex items-center">
                         <TrendingUp className="w-3 h-3 mr-1" />
-                        {notification.deliveryStats.read}/{notification.deliveryStats.totalSent} Р С—РЎР‚Р С•РЎвЂЎР С‘РЎвЂљР В°Р Р…Р С•
+                        {notification.deliveryStats.read}/{notification.deliveryStats.totalSent} Р В РЎвЂ”Р РЋР вЂљР В РЎвЂўР РЋРІР‚РЋР В РЎвЂР РЋРІР‚С™Р В Р’В°Р В Р вЂ¦Р В РЎвЂў
                       </span>
                     )}
                   </div>
@@ -483,7 +483,7 @@ export const AdminNotificationSystem: React.FC<AdminNotificationSystemProps> = (
                     className="flex items-center space-x-1 px-3 py-1 rounded-lg bg-green-500 bg-opacity-20 text-green-500 hover:bg-opacity-30 text-sm"
                   >
                     <Send className="w-4 h-4" />
-                    <span>Р С›РЎвЂљР С—РЎР‚Р В°Р Р†Р С‘РЎвЂљРЎРЉ</span>
+                    <span>Р В РЎвЂєР РЋРІР‚С™Р В РЎвЂ”Р РЋР вЂљР В Р’В°Р В Р вЂ Р В РЎвЂР РЋРІР‚С™Р РЋР Р‰</span>
                   </button>
                 )}
                 
@@ -514,14 +514,14 @@ export const AdminNotificationSystem: React.FC<AdminNotificationSystemProps> = (
     <div className="space-y-6">
       <div className="flex items-center justify-between">
         <h2 className="text-xl font-semibold" style={{ color: theme === 'dark' ? '#E8ECF2' : '#0F172A' }}>
-          Р РЃР В°Р В±Р В»Р С•Р Р…РЎвЂ№ РЎС“Р Р†Р ВµР Т‘Р С•Р СР В»Р ВµР Р…Р С‘Р в„–
+          Р В Р РѓР В Р’В°Р В Р’В±Р В Р’В»Р В РЎвЂўР В Р вЂ¦Р РЋРІР‚в„– Р РЋРЎвЂњР В Р вЂ Р В Р’ВµР В РўвЂР В РЎвЂўР В РЎВР В Р’В»Р В Р’ВµР В Р вЂ¦Р В РЎвЂР В РІвЂћвЂ“
         </h2>
         <button
           onClick={() => setShowCreateForm(true)}
           className="flex items-center px-4 py-2 rounded-lg bg-blue-500 text-white hover:bg-blue-600 transition-colors"
         >
           <Plus className="w-4 h-4 mr-2" />
-          Р РЋР С•Р В·Р Т‘Р В°РЎвЂљРЎРЉ РЎв‚¬Р В°Р В±Р В»Р С•Р Р…
+          Р В Р Р‹Р В РЎвЂўР В Р’В·Р В РўвЂР В Р’В°Р РЋРІР‚С™Р РЋР Р‰ Р РЋРІвЂљВ¬Р В Р’В°Р В Р’В±Р В Р’В»Р В РЎвЂўР В Р вЂ¦
         </button>
       </div>
 
@@ -541,7 +541,7 @@ export const AdminNotificationSystem: React.FC<AdminNotificationSystemProps> = (
               </h3>
               {template.isDefault && (
                 <span className="px-2 py-1 rounded-full text-xs bg-blue-500 bg-opacity-20 text-blue-500">
-                  Р СџР С• РЎС“Р СР С•Р В»РЎвЂЎР В°Р Р…Р С‘РЎР‹
+                  Р В РЎСџР В РЎвЂў Р РЋРЎвЂњР В РЎВР В РЎвЂўР В Р’В»Р РЋРІР‚РЋР В Р’В°Р В Р вЂ¦Р В РЎвЂР РЋР вЂ№
                 </span>
               )}
             </div>
@@ -562,7 +562,7 @@ export const AdminNotificationSystem: React.FC<AdminNotificationSystemProps> = (
   const renderAnalyticsTab = () => (
     <div className="space-y-6">
       <h2 className="text-xl font-semibold" style={{ color: theme === 'dark' ? '#E8ECF2' : '#0F172A' }}>
-        Р С’Р Р…Р В°Р В»Р С‘РЎвЂљР С‘Р С”Р В° РЎС“Р Р†Р ВµР Т‘Р С•Р СР В»Р ВµР Р…Р С‘Р в„–
+        Р В РЎвЂ™Р В Р вЂ¦Р В Р’В°Р В Р’В»Р В РЎвЂР РЋРІР‚С™Р В РЎвЂР В РЎвЂќР В Р’В° Р РЋРЎвЂњР В Р вЂ Р В Р’ВµР В РўвЂР В РЎвЂўР В РЎВР В Р’В»Р В Р’ВµР В Р вЂ¦Р В РЎвЂР В РІвЂћвЂ“
       </h2>
       
       <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
@@ -576,7 +576,7 @@ export const AdminNotificationSystem: React.FC<AdminNotificationSystemProps> = (
           <div className="text-2xl font-bold text-blue-500">
             {notifications.reduce((sum, n) => sum + n.deliveryStats.totalSent, 0)}
           </div>
-          <div className="text-sm opacity-70">Р вЂ™РЎРѓР ВµР С–Р С• Р С•РЎвЂљР С—РЎР‚Р В°Р Р†Р В»Р ВµР Р…Р С•</div>
+          <div className="text-sm opacity-70">Р В РІР‚в„ўР РЋР С“Р В Р’ВµР В РЎвЂ“Р В РЎвЂў Р В РЎвЂўР РЋРІР‚С™Р В РЎвЂ”Р РЋР вЂљР В Р’В°Р В Р вЂ Р В Р’В»Р В Р’ВµР В Р вЂ¦Р В РЎвЂў</div>
         </div>
         <div 
           className="p-4 rounded-xl text-center"
@@ -589,7 +589,7 @@ export const AdminNotificationSystem: React.FC<AdminNotificationSystemProps> = (
             {Math.round(notifications.reduce((sum, n) => sum + n.deliveryStats.delivered, 0) / 
               Math.max(notifications.reduce((sum, n) => sum + n.deliveryStats.totalSent, 0), 1) * 100)}%
           </div>
-          <div className="text-sm opacity-70">Р вЂќР С•РЎРѓРЎвЂљР В°Р Р†Р В»Р ВµР Р…Р С•</div>
+          <div className="text-sm opacity-70">Р В РІР‚СњР В РЎвЂўР РЋР С“Р РЋРІР‚С™Р В Р’В°Р В Р вЂ Р В Р’В»Р В Р’ВµР В Р вЂ¦Р В РЎвЂў</div>
         </div>
         <div 
           className="p-4 rounded-xl text-center"
@@ -602,7 +602,7 @@ export const AdminNotificationSystem: React.FC<AdminNotificationSystemProps> = (
             {Math.round(notifications.reduce((sum, n) => sum + n.deliveryStats.read, 0) / 
               Math.max(notifications.reduce((sum, n) => sum + n.deliveryStats.totalSent, 0), 1) * 100)}%
           </div>
-          <div className="text-sm opacity-70">Р СџРЎР‚Р С•РЎвЂЎР С‘РЎвЂљР В°Р Р…Р С•</div>
+          <div className="text-sm opacity-70">Р В РЎСџР РЋР вЂљР В РЎвЂўР РЋРІР‚РЋР В РЎвЂР РЋРІР‚С™Р В Р’В°Р В Р вЂ¦Р В РЎвЂў</div>
         </div>
         <div 
           className="p-4 rounded-xl text-center"
@@ -615,7 +615,7 @@ export const AdminNotificationSystem: React.FC<AdminNotificationSystemProps> = (
             {Math.round(notifications.reduce((sum, n) => sum + n.deliveryStats.clicked, 0) / 
               Math.max(notifications.reduce((sum, n) => sum + n.deliveryStats.totalSent, 0), 1) * 100)}%
           </div>
-          <div className="text-sm opacity-70">Р С™Р В»Р С‘Р С”Р С•Р Р†</div>
+          <div className="text-sm opacity-70">Р В РЎв„ўР В Р’В»Р В РЎвЂР В РЎвЂќР В РЎвЂўР В Р вЂ </div>
         </div>
       </div>
     </div>
@@ -623,24 +623,24 @@ export const AdminNotificationSystem: React.FC<AdminNotificationSystemProps> = (
 
   return (
     <div className="p-6 space-y-6">
-      {/* Р вЂ”Р В°Р С–Р С•Р В»Р С•Р Р†Р С•Р С” */}
+      {/* Р В РІР‚вЂќР В Р’В°Р В РЎвЂ“Р В РЎвЂўР В Р’В»Р В РЎвЂўР В Р вЂ Р В РЎвЂўР В РЎвЂќ */}
       <div className="flex items-center justify-between">
         <div>
           <h1 className="text-2xl font-bold" style={{ color: theme === 'dark' ? '#E8ECF2' : '#0F172A' }}>
-            Р РЋР С‘РЎРѓРЎвЂљР ВµР СР В° РЎС“Р Р†Р ВµР Т‘Р С•Р СР В»Р ВµР Р…Р С‘Р в„–
+            Р В Р Р‹Р В РЎвЂР РЋР С“Р РЋРІР‚С™Р В Р’ВµР В РЎВР В Р’В° Р РЋРЎвЂњР В Р вЂ Р В Р’ВµР В РўвЂР В РЎвЂўР В РЎВР В Р’В»Р В Р’ВµР В Р вЂ¦Р В РЎвЂР В РІвЂћвЂ“
           </h1>
           <p className="text-sm opacity-70" style={{ color: theme === 'dark' ? '#A7B0BD' : '#6B7280' }}>
-            Р Р€Р С—РЎР‚Р В°Р Р†Р В»Р ВµР Р…Р С‘Р Вµ РЎС“Р Р†Р ВµР Т‘Р С•Р СР В»Р ВµР Р…Р С‘РЎРЏР СР С‘ Р С‘ Р В°Р Р…Р В°Р В»Р С‘РЎвЂљР С‘Р С”Р В°
+            Р В Р в‚¬Р В РЎвЂ”Р РЋР вЂљР В Р’В°Р В Р вЂ Р В Р’В»Р В Р’ВµР В Р вЂ¦Р В РЎвЂР В Р’Вµ Р РЋРЎвЂњР В Р вЂ Р В Р’ВµР В РўвЂР В РЎвЂўР В РЎВР В Р’В»Р В Р’ВµР В Р вЂ¦Р В РЎвЂР РЋР РЏР В РЎВР В РЎвЂ Р В РЎвЂ Р В Р’В°Р В Р вЂ¦Р В Р’В°Р В Р’В»Р В РЎвЂР РЋРІР‚С™Р В РЎвЂР В РЎвЂќР В Р’В°
           </p>
         </div>
       </div>
 
-      {/* Р СћР В°Р В±РЎвЂ№ */}
+      {/* Р В РЎС›Р В Р’В°Р В Р’В±Р РЋРІР‚в„– */}
       <div className="flex space-x-2 border-b" style={{ borderColor: theme === 'dark' ? 'rgba(255,255,255,0.1)' : '#E6E9EF' }}>
         {[
-          { id: 'notifications', label: 'Р Р€Р Р†Р ВµР Т‘Р С•Р СР В»Р ВµР Р…Р С‘РЎРЏ', icon: Bell },
-          { id: 'templates', label: 'Р РЃР В°Р В±Р В»Р С•Р Р…РЎвЂ№', icon: MessageSquare },
-          { id: 'analytics', label: 'Р С’Р Р…Р В°Р В»Р С‘РЎвЂљР С‘Р С”Р В°', icon: TrendingUp }
+          { id: 'notifications', label: 'Р В Р в‚¬Р В Р вЂ Р В Р’ВµР В РўвЂР В РЎвЂўР В РЎВР В Р’В»Р В Р’ВµР В Р вЂ¦Р В РЎвЂР РЋР РЏ', icon: Bell },
+          { id: 'templates', label: 'Р В Р РѓР В Р’В°Р В Р’В±Р В Р’В»Р В РЎвЂўР В Р вЂ¦Р РЋРІР‚в„–', icon: MessageSquare },
+          { id: 'analytics', label: 'Р В РЎвЂ™Р В Р вЂ¦Р В Р’В°Р В Р’В»Р В РЎвЂР РЋРІР‚С™Р В РЎвЂР В РЎвЂќР В Р’В°', icon: TrendingUp }
         ].map((tab) => (
           <button
             key={tab.id}
@@ -660,12 +660,12 @@ export const AdminNotificationSystem: React.FC<AdminNotificationSystemProps> = (
         ))}
       </div>
 
-      {/* Р С™Р С•Р Р…РЎвЂљР ВµР Р…РЎвЂљ */}
+      {/* Р В РЎв„ўР В РЎвЂўР В Р вЂ¦Р РЋРІР‚С™Р В Р’ВµР В Р вЂ¦Р РЋРІР‚С™ */}
       {activeTab === 'notifications' && renderNotificationsTab()}
       {activeTab === 'templates' && renderTemplatesTab()}
       {activeTab === 'analytics' && renderAnalyticsTab()}
 
-      {/* Р СљР С•Р Т‘Р В°Р В» РЎРѓР С•Р В·Р Т‘Р В°Р Р…Р С‘РЎРЏ/РЎР‚Р ВµР Т‘Р В°Р С”РЎвЂљР С‘РЎР‚Р С•Р Р†Р В°Р Р…Р С‘РЎРЏ */}
+      {/* Р В РЎС™Р В РЎвЂўР В РўвЂР В Р’В°Р В Р’В» Р РЋР С“Р В РЎвЂўР В Р’В·Р В РўвЂР В Р’В°Р В Р вЂ¦Р В РЎвЂР РЋР РЏ/Р РЋР вЂљР В Р’ВµР В РўвЂР В Р’В°Р В РЎвЂќР РЋРІР‚С™Р В РЎвЂР РЋР вЂљР В РЎвЂўР В Р вЂ Р В Р’В°Р В Р вЂ¦Р В РЎвЂР РЋР РЏ */}
       {showCreateForm && (
         <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center p-4 z-50">
           <div 
@@ -677,7 +677,7 @@ export const AdminNotificationSystem: React.FC<AdminNotificationSystemProps> = (
           >
             <div className="flex items-center justify-between mb-6">
               <h2 className="text-xl font-bold" style={{ color: theme === 'dark' ? '#E8ECF2' : '#0F172A' }}>
-                {editingNotification ? 'Р В Р ВµР Т‘Р В°Р С”РЎвЂљР С‘РЎР‚Р С•Р Р†Р В°РЎвЂљРЎРЉ РЎС“Р Р†Р ВµР Т‘Р С•Р СР В»Р ВµР Р…Р С‘Р Вµ' : 'Р РЋР С•Р В·Р Т‘Р В°РЎвЂљРЎРЉ РЎС“Р Р†Р ВµР Т‘Р С•Р СР В»Р ВµР Р…Р С‘Р Вµ'}
+                {editingNotification ? 'Р В Р’В Р В Р’ВµР В РўвЂР В Р’В°Р В РЎвЂќР РЋРІР‚С™Р В РЎвЂР РЋР вЂљР В РЎвЂўР В Р вЂ Р В Р’В°Р РЋРІР‚С™Р РЋР Р‰ Р РЋРЎвЂњР В Р вЂ Р В Р’ВµР В РўвЂР В РЎвЂўР В РЎВР В Р’В»Р В Р’ВµР В Р вЂ¦Р В РЎвЂР В Р’Вµ' : 'Р В Р Р‹Р В РЎвЂўР В Р’В·Р В РўвЂР В Р’В°Р РЋРІР‚С™Р РЋР Р‰ Р РЋРЎвЂњР В Р вЂ Р В Р’ВµР В РўвЂР В РЎвЂўР В РЎВР В Р’В»Р В Р’ВµР В Р вЂ¦Р В РЎвЂР В Р’Вµ'}
               </h2>
               <button
                 onClick={() => {
@@ -695,7 +695,7 @@ export const AdminNotificationSystem: React.FC<AdminNotificationSystemProps> = (
             <div className="space-y-4">
               <div>
                 <label className="block text-sm font-medium mb-2" style={{ color: theme === 'dark' ? '#E8ECF2' : '#0F172A' }}>
-                  Р вЂ”Р В°Р С–Р С•Р В»Р С•Р Р†Р С•Р С” *
+                  Р В РІР‚вЂќР В Р’В°Р В РЎвЂ“Р В РЎвЂўР В Р’В»Р В РЎвЂўР В Р вЂ Р В РЎвЂўР В РЎвЂќ *
                 </label>
                 <input
                   type="text"
@@ -707,13 +707,13 @@ export const AdminNotificationSystem: React.FC<AdminNotificationSystemProps> = (
                     borderColor: theme === 'dark' ? 'rgba(255,255,255,0.2)' : '#E6E9EF',
                     color: theme === 'dark' ? '#E8ECF2' : '#0F172A'
                   }}
-                  placeholder="Р вЂ™Р Р†Р ВµР Т‘Р С‘РЎвЂљР Вµ Р В·Р В°Р С–Р С•Р В»Р С•Р Р†Р С•Р С” РЎС“Р Р†Р ВµР Т‘Р С•Р СР В»Р ВµР Р…Р С‘РЎРЏ"
+                  placeholder="Р В РІР‚в„ўР В Р вЂ Р В Р’ВµР В РўвЂР В РЎвЂР РЋРІР‚С™Р В Р’Вµ Р В Р’В·Р В Р’В°Р В РЎвЂ“Р В РЎвЂўР В Р’В»Р В РЎвЂўР В Р вЂ Р В РЎвЂўР В РЎвЂќ Р РЋРЎвЂњР В Р вЂ Р В Р’ВµР В РўвЂР В РЎвЂўР В РЎВР В Р’В»Р В Р’ВµР В Р вЂ¦Р В РЎвЂР РЋР РЏ"
                 />
               </div>
 
               <div>
                 <label className="block text-sm font-medium mb-2" style={{ color: theme === 'dark' ? '#E8ECF2' : '#0F172A' }}>
-                  Р РЋР С•Р С•Р В±РЎвЂ°Р ВµР Р…Р С‘Р Вµ *
+                  Р В Р Р‹Р В РЎвЂўР В РЎвЂўР В Р’В±Р РЋРІР‚В°Р В Р’ВµР В Р вЂ¦Р В РЎвЂР В Р’Вµ *
                 </label>
                 <textarea
                   value={formData.message}
@@ -725,14 +725,14 @@ export const AdminNotificationSystem: React.FC<AdminNotificationSystemProps> = (
                     borderColor: theme === 'dark' ? 'rgba(255,255,255,0.2)' : '#E6E9EF',
                     color: theme === 'dark' ? '#E8ECF2' : '#0F172A'
                   }}
-                  placeholder="Р вЂ™Р Р†Р ВµР Т‘Р С‘РЎвЂљР Вµ РЎвЂљР ВµР С”РЎРѓРЎвЂљ РЎС“Р Р†Р ВµР Т‘Р С•Р СР В»Р ВµР Р…Р С‘РЎРЏ"
+                  placeholder="Р В РІР‚в„ўР В Р вЂ Р В Р’ВµР В РўвЂР В РЎвЂР РЋРІР‚С™Р В Р’Вµ Р РЋРІР‚С™Р В Р’ВµР В РЎвЂќР РЋР С“Р РЋРІР‚С™ Р РЋРЎвЂњР В Р вЂ Р В Р’ВµР В РўвЂР В РЎвЂўР В РЎВР В Р’В»Р В Р’ВµР В Р вЂ¦Р В РЎвЂР РЋР РЏ"
                 />
               </div>
 
               <div className="grid grid-cols-2 gap-4">
                 <div>
                   <label className="block text-sm font-medium mb-2" style={{ color: theme === 'dark' ? '#E8ECF2' : '#0F172A' }}>
-                    Р СћР С‘Р С—
+                    Р В РЎС›Р В РЎвЂР В РЎвЂ”
                   </label>
                   <select
                     value={formData.type}
@@ -754,7 +754,7 @@ export const AdminNotificationSystem: React.FC<AdminNotificationSystemProps> = (
 
                 <div>
                   <label className="block text-sm font-medium mb-2" style={{ color: theme === 'dark' ? '#E8ECF2' : '#0F172A' }}>
-                    Р СџРЎР‚Р С‘Р С•РЎР‚Р С‘РЎвЂљР ВµРЎвЂљ
+                    Р В РЎСџР РЋР вЂљР В РЎвЂР В РЎвЂўР РЋР вЂљР В РЎвЂР РЋРІР‚С™Р В Р’ВµР РЋРІР‚С™
                   </label>
                   <select
                     value={formData.priority}
@@ -777,7 +777,7 @@ export const AdminNotificationSystem: React.FC<AdminNotificationSystemProps> = (
 
               <div>
                 <label className="block text-sm font-medium mb-2" style={{ color: theme === 'dark' ? '#E8ECF2' : '#0F172A' }}>
-                  Р В¦Р ВµР В»Р ВµР Р†Р В°РЎРЏ Р В°РЎС“Р Т‘Р С‘РЎвЂљР С•РЎР‚Р С‘РЎРЏ
+                  Р В Р’В¦Р В Р’ВµР В Р’В»Р В Р’ВµР В Р вЂ Р В Р’В°Р РЋР РЏ Р В Р’В°Р РЋРЎвЂњР В РўвЂР В РЎвЂР РЋРІР‚С™Р В РЎвЂўР РЋР вЂљР В РЎвЂР РЋР РЏ
                 </label>
                 <select
                   value={formData.targetAudience}
@@ -806,14 +806,14 @@ export const AdminNotificationSystem: React.FC<AdminNotificationSystemProps> = (
                   className="w-4 h-4"
                 />
                 <label htmlFor="isScheduled" className="text-sm" style={{ color: theme === 'dark' ? '#E8ECF2' : '#0F172A' }}>
-                  Р вЂ”Р В°Р С—Р В»Р В°Р Р…Р С‘РЎР‚Р С•Р Р†Р В°РЎвЂљРЎРЉ Р С•РЎвЂљР С—РЎР‚Р В°Р Р†Р С”РЎС“
+                  Р В РІР‚вЂќР В Р’В°Р В РЎвЂ”Р В Р’В»Р В Р’В°Р В Р вЂ¦Р В РЎвЂР РЋР вЂљР В РЎвЂўР В Р вЂ Р В Р’В°Р РЋРІР‚С™Р РЋР Р‰ Р В РЎвЂўР РЋРІР‚С™Р В РЎвЂ”Р РЋР вЂљР В Р’В°Р В Р вЂ Р В РЎвЂќР РЋРЎвЂњ
                 </label>
               </div>
 
               {formData.isScheduled && (
                 <div>
                   <label className="block text-sm font-medium mb-2" style={{ color: theme === 'dark' ? '#E8ECF2' : '#0F172A' }}>
-                    Р вЂ™РЎР‚Р ВµР СРЎРЏ Р С•РЎвЂљР С—РЎР‚Р В°Р Р†Р С”Р С‘
+                    Р В РІР‚в„ўР РЋР вЂљР В Р’ВµР В РЎВР РЋР РЏ Р В РЎвЂўР РЋРІР‚С™Р В РЎвЂ”Р РЋР вЂљР В Р’В°Р В Р вЂ Р В РЎвЂќР В РЎвЂ
                   </label>
                   <input
                     type="datetime-local"
@@ -844,13 +844,13 @@ export const AdminNotificationSystem: React.FC<AdminNotificationSystemProps> = (
                   color: theme === 'dark' ? '#E8ECF2' : '#0F172A'
                 }}
               >
-                Р С›РЎвЂљР СР ВµР Р…Р В°
+                Р В РЎвЂєР РЋРІР‚С™Р В РЎВР В Р’ВµР В Р вЂ¦Р В Р’В°
               </button>
               <button
                 onClick={editingNotification ? handleUpdateNotification : handleCreateNotification}
                 className="px-4 py-2 rounded-lg bg-blue-500 text-white hover:bg-blue-600 transition-colors"
               >
-                {editingNotification ? 'Р РЋР С•РЎвЂ¦РЎР‚Р В°Р Р…Р С‘РЎвЂљРЎРЉ' : 'Р РЋР С•Р В·Р Т‘Р В°РЎвЂљРЎРЉ'}
+                {editingNotification ? 'Р В Р Р‹Р В РЎвЂўР РЋРІР‚В¦Р РЋР вЂљР В Р’В°Р В Р вЂ¦Р В РЎвЂР РЋРІР‚С™Р РЋР Р‰' : 'Р В Р Р‹Р В РЎвЂўР В Р’В·Р В РўвЂР В Р’В°Р РЋРІР‚С™Р РЋР Р‰'}
               </button>
             </div>
           </div>

@@ -31,7 +31,7 @@ interface AdminUserManagementProps {
   theme: 'light' | 'dark';
 }
 
-// Р ВРЎРѓР С—Р С•Р В»РЎРЉР В·РЎС“Р ВµР С UserData Р С‘Р В· Р В±Р В°Р В·РЎвЂ№ Р Т‘Р В°Р Р…Р Р…РЎвЂ№РЎвЂ¦
+// Р В Р’ВР РЋР С“Р В РЎвЂ”Р В РЎвЂўР В Р’В»Р РЋР Р‰Р В Р’В·Р РЋРЎвЂњР В Р’ВµР В РЎВ UserData Р В РЎвЂР В Р’В· Р В Р’В±Р В Р’В°Р В Р’В·Р РЋРІР‚в„– Р В РўвЂР В Р’В°Р В Р вЂ¦Р В Р вЂ¦Р РЋРІР‚в„–Р РЋРІР‚В¦
 
 interface Team {
   id: number;
@@ -42,19 +42,19 @@ interface Team {
 }
 
 const USER_ROLES = [
-  { value: 'worker', label: 'Р РЋР С•РЎвЂљРЎР‚РЎС“Р Т‘Р Р…Р С‘Р С”', icon: 'СЂСџвЂВ¤', color: 'bg-gray-500' },
-  { value: 'team_lead', label: 'Р СћР С‘Р СР В»Р С‘Р Т‘', icon: 'СЂСџвЂвЂ', color: 'bg-blue-500' },
-  { value: 'junior_admin', label: 'Р СљР В»Р В°Р Т‘РЎв‚¬Р С‘Р в„– Р С’Р Т‘Р СР С‘Р Р…', icon: 'СЂСџвЂєРЋРїС‘РЏ', color: 'bg-green-500' },
-  { value: 'senior_admin', label: 'Р РЋРЎвЂљР В°РЎР‚РЎв‚¬Р С‘Р в„– Р С’Р Т‘Р СР С‘Р Р…', icon: 'РІВ­С’', color: 'bg-purple-500' },
-  { value: 'main_admin', label: 'Р вЂњР В»Р В°Р Р†Р Р…РЎвЂ№Р в„– Р С’Р Т‘Р СР С‘Р Р…', icon: 'СЂСџвЂвЂ', color: 'bg-orange-500' }
+  { value: 'worker', label: 'Р В Р Р‹Р В РЎвЂўР РЋРІР‚С™Р РЋР вЂљР РЋРЎвЂњР В РўвЂР В Р вЂ¦Р В РЎвЂР В РЎвЂќ', icon: 'РЎР‚РЎСџРІР‚ВР’В¤', color: 'bg-gray-500' },
+  { value: 'team_lead', label: 'Р В РЎС›Р В РЎвЂР В РЎВР В Р’В»Р В РЎвЂР В РўвЂ', icon: 'РЎР‚РЎСџРІР‚ВРІР‚В', color: 'bg-blue-500' },
+  { value: 'junior_admin', label: 'Р В РЎС™Р В Р’В»Р В Р’В°Р В РўвЂР РЋРІвЂљВ¬Р В РЎвЂР В РІвЂћвЂ“ Р В РЎвЂ™Р В РўвЂР В РЎВР В РЎвЂР В Р вЂ¦', icon: 'РЎР‚РЎСџРІР‚С”Р Р‹Р С—РЎвЂР РЏ', color: 'bg-green-500' },
+  { value: 'senior_admin', label: 'Р В Р Р‹Р РЋРІР‚С™Р В Р’В°Р РЋР вЂљР РЋРІвЂљВ¬Р В РЎвЂР В РІвЂћвЂ“ Р В РЎвЂ™Р В РўвЂР В РЎВР В РЎвЂР В Р вЂ¦', icon: 'Р Р†Р’В­РЎвЂ™', color: 'bg-purple-500' },
+  { value: 'main_admin', label: 'Р В РІР‚СљР В Р’В»Р В Р’В°Р В Р вЂ Р В Р вЂ¦Р РЋРІР‚в„–Р В РІвЂћвЂ“ Р В РЎвЂ™Р В РўвЂР В РЎВР В РЎвЂР В Р вЂ¦', icon: 'РЎР‚РЎСџРІР‚ВРІР‚В', color: 'bg-orange-500' }
 ];
 
 const TEAMS = [
-  { id: 1, name: 'Р С™Р С•Р СР В°Р Р…Р Т‘Р В° Р С’', teamLeadId: '1192050960', teamLeadName: 'Р СљР В°Р С”РЎРѓ' },
-  { id: 2, name: 'Р С™Р С•Р СР В°Р Р…Р Т‘Р В° Р вЂ', teamLeadId: '639897713', teamLeadName: 'Р вЂ™Р С‘Р С”Р В°' },
-  { id: 3, name: 'Р С™Р С•Р СР В°Р Р…Р Т‘Р В° Р вЂ™', teamLeadId: '1265713870', teamLeadName: 'Р СњР С‘Р С”Р С‘РЎвЂљР В°' },
-  { id: 4, name: 'Р С™Р С•Р СР В°Р Р…Р Т‘Р В° Р вЂњ', teamLeadId: '484779656', teamLeadName: 'Р РЋР ВµРЎР‚Р С–Р ВµР в„–' },
-  { id: 5, name: 'Р С™Р С•Р СР В°Р Р…Р Т‘Р В° Р вЂќ', teamLeadId: '285529209', teamLeadName: 'Р В¤Р ВµР Т‘РЎРЏ' }
+  { id: 1, name: 'Р В РЎв„ўР В РЎвЂўР В РЎВР В Р’В°Р В Р вЂ¦Р В РўвЂР В Р’В° Р В РЎвЂ™', teamLeadId: '1192050960', teamLeadName: 'Р В РЎС™Р В Р’В°Р В РЎвЂќР РЋР С“' },
+  { id: 2, name: 'Р В РЎв„ўР В РЎвЂўР В РЎВР В Р’В°Р В Р вЂ¦Р В РўвЂР В Р’В° Р В РІР‚В', teamLeadId: '639897713', teamLeadName: 'Р В РІР‚в„ўР В РЎвЂР В РЎвЂќР В Р’В°' },
+  { id: 3, name: 'Р В РЎв„ўР В РЎвЂўР В РЎВР В Р’В°Р В Р вЂ¦Р В РўвЂР В Р’В° Р В РІР‚в„ў', teamLeadId: '1265713870', teamLeadName: 'Р В РЎСљР В РЎвЂР В РЎвЂќР В РЎвЂР РЋРІР‚С™Р В Р’В°' },
+  { id: 4, name: 'Р В РЎв„ўР В РЎвЂўР В РЎВР В Р’В°Р В Р вЂ¦Р В РўвЂР В Р’В° Р В РІР‚Сљ', teamLeadId: '484779656', teamLeadName: 'Р В Р Р‹Р В Р’ВµР РЋР вЂљР В РЎвЂ“Р В Р’ВµР В РІвЂћвЂ“' },
+  { id: 5, name: 'Р В РЎв„ўР В РЎвЂўР В РЎВР В Р’В°Р В Р вЂ¦Р В РўвЂР В Р’В° Р В РІР‚Сњ', teamLeadId: '285529209', teamLeadName: 'Р В Р’В¤Р В Р’ВµР В РўвЂР РЋР РЏ' }
 ];
 
 export const AdminUserManagement: React.FC<AdminUserManagementProps> = ({ theme }) => {
@@ -69,26 +69,26 @@ export const AdminUserManagement: React.FC<AdminUserManagementProps> = ({ theme 
   const [formData, setFormData] = useState<any>({});
   const [activeTab, setActiveTab] = useState<'active' | 'dismissed'>('active');
 
-  // Р вЂ”Р В°Р С–РЎР‚РЎС“Р В·Р С”Р В° Р Т‘Р В°Р Р…Р Р…РЎвЂ№РЎвЂ¦
+  // Р В РІР‚вЂќР В Р’В°Р В РЎвЂ“Р РЋР вЂљР РЋРЎвЂњР В Р’В·Р В РЎвЂќР В Р’В° Р В РўвЂР В Р’В°Р В Р вЂ¦Р В Р вЂ¦Р РЋРІР‚в„–Р РЋРІР‚В¦
   useEffect(() => {
     loadUsers();
   }, []);
 
-  // Р В¤Р С‘Р В»РЎРЉРЎвЂљРЎР‚Р В°РЎвЂ Р С‘РЎРЏ
+  // Р В Р’В¤Р В РЎвЂР В Р’В»Р РЋР Р‰Р РЋРІР‚С™Р РЋР вЂљР В Р’В°Р РЋРІР‚В Р В РЎвЂР РЋР РЏ
   useEffect(() => {
     filterUsers();
   }, [users, searchQuery, filterRole, filterTeam, filterStatus, activeTab]);
 
   const loadUsers = async () => {
-    // Mock Р Т‘Р В°Р Р…Р Р…РЎвЂ№Р Вµ Р Р…Р В° Р С•РЎРѓР Р…Р С•Р Р†Р Вµ Р В±Р В°Р В·РЎвЂ№ Р Т‘Р В°Р Р…Р Р…РЎвЂ№РЎвЂ¦ Р С‘Р В· userRoles.ts
+    // Mock Р В РўвЂР В Р’В°Р В Р вЂ¦Р В Р вЂ¦Р РЋРІР‚в„–Р В Р’Вµ Р В Р вЂ¦Р В Р’В° Р В РЎвЂўР РЋР С“Р В Р вЂ¦Р В РЎвЂўР В Р вЂ Р В Р’Вµ Р В Р’В±Р В Р’В°Р В Р’В·Р РЋРІР‚в„– Р В РўвЂР В Р’В°Р В Р вЂ¦Р В Р вЂ¦Р РЋРІР‚в„–Р РЋРІР‚В¦ Р В РЎвЂР В Р’В· userRoles.ts
     const mockUsers: User[] = [
       {
         id: '1',
         telegramId: '918064599',
-        name: 'Р СљР С‘РЎР‚Р С•РЎРѓР В»Р В°Р Р†',
+        name: 'Р В РЎС™Р В РЎвЂР РЋР вЂљР В РЎвЂўР РЋР С“Р В Р’В»Р В Р’В°Р В Р вЂ ',
         role: 'worker',
         teamNumber: 1,
-        teamName: 'Р С™Р С•Р СР В°Р Р…Р Т‘Р В° Р С’',
+        teamName: 'Р В РЎв„ўР В РЎвЂўР В РЎВР В Р’В°Р В Р вЂ¦Р В РўвЂР В Р’В° Р В РЎвЂ™',
         level: 5,
         experience: 1250,
         gCoins: 500,
@@ -102,10 +102,10 @@ export const AdminUserManagement: React.FC<AdminUserManagementProps> = ({ theme 
       {
         id: '2',
         telegramId: '1192050960',
-        name: 'Р СљР В°Р С”РЎРѓ',
+        name: 'Р В РЎС™Р В Р’В°Р В РЎвЂќР РЋР С“',
         role: 'team_lead',
         teamNumber: 1,
-        teamName: 'Р С™Р С•Р СР В°Р Р…Р Т‘Р В° Р С’',
+        teamName: 'Р В РЎв„ўР В РЎвЂўР В РЎВР В Р’В°Р В Р вЂ¦Р В РўвЂР В Р’В° Р В РЎвЂ™',
         level: 12,
         experience: 3200,
         gCoins: 1200,
@@ -119,7 +119,7 @@ export const AdminUserManagement: React.FC<AdminUserManagementProps> = ({ theme 
       {
         id: '3',
         telegramId: '1900528628',
-        name: 'Р СљР В°Р С”РЎРѓ',
+        name: 'Р В РЎС™Р В Р’В°Р В РЎвЂќР РЋР С“',
         role: 'main_admin',
         level: 20,
         experience: 5000,
@@ -134,10 +134,10 @@ export const AdminUserManagement: React.FC<AdminUserManagementProps> = ({ theme 
       {
         id: '4',
         telegramId: '1765172620',
-        name: 'Р вЂњР С•РЎв‚¬Р В°',
+        name: 'Р В РІР‚СљР В РЎвЂўР РЋРІвЂљВ¬Р В Р’В°',
         role: 'worker',
         teamNumber: 2,
-        teamName: 'Р С™Р С•Р СР В°Р Р…Р Т‘Р В° Р вЂ',
+        teamName: 'Р В РЎв„ўР В РЎвЂўР В РЎВР В Р’В°Р В Р вЂ¦Р В РўвЂР В Р’В° Р В РІР‚В',
         level: 3,
         experience: 800,
         gCoins: 300,
@@ -156,14 +156,14 @@ export const AdminUserManagement: React.FC<AdminUserManagementProps> = ({ theme 
   const filterUsers = () => {
     let filtered = users;
 
-    // Р В¤Р С‘Р В»РЎРЉРЎвЂљРЎР‚ Р С—Р С• РЎвЂљР В°Р В±РЎС“
+    // Р В Р’В¤Р В РЎвЂР В Р’В»Р РЋР Р‰Р РЋРІР‚С™Р РЋР вЂљ Р В РЎвЂ”Р В РЎвЂў Р РЋРІР‚С™Р В Р’В°Р В Р’В±Р РЋРЎвЂњ
     if (activeTab === 'active') {
       filtered = filtered.filter(user => user.isActive);
     } else if (activeTab === 'dismissed') {
       filtered = filtered.filter(user => !user.isActive);
     }
 
-    // Р СџР С•Р С‘РЎРѓР С”
+    // Р В РЎСџР В РЎвЂўР В РЎвЂР РЋР С“Р В РЎвЂќ
     if (searchQuery) {
       filtered = filtered.filter(user =>
         user.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
@@ -172,12 +172,12 @@ export const AdminUserManagement: React.FC<AdminUserManagementProps> = ({ theme 
       );
     }
 
-    // Р В¤Р С‘Р В»РЎРЉРЎвЂљРЎР‚ Р С—Р С• РЎР‚Р С•Р В»Р С‘
+    // Р В Р’В¤Р В РЎвЂР В Р’В»Р РЋР Р‰Р РЋРІР‚С™Р РЋР вЂљ Р В РЎвЂ”Р В РЎвЂў Р РЋР вЂљР В РЎвЂўР В Р’В»Р В РЎвЂ
     if (filterRole !== 'all') {
       filtered = filtered.filter(user => user.role === filterRole);
     }
 
-    // Р В¤Р С‘Р В»РЎРЉРЎвЂљРЎР‚ Р С—Р С• Р С”Р С•Р СР В°Р Р…Р Т‘Р Вµ
+    // Р В Р’В¤Р В РЎвЂР В Р’В»Р РЋР Р‰Р РЋРІР‚С™Р РЋР вЂљ Р В РЎвЂ”Р В РЎвЂў Р В РЎвЂќР В РЎвЂўР В РЎВР В Р’В°Р В Р вЂ¦Р В РўвЂР В Р’Вµ
     if (filterTeam !== 'all') {
       filtered = filtered.filter(user => user.teamNumber?.toString() === filterTeam);
     }
@@ -251,7 +251,7 @@ export const AdminUserManagement: React.FC<AdminUserManagementProps> = ({ theme 
   };
 
   const handleDeleteUser = async (userId: string) => {
-    if (window.confirm('Р вЂ™РЎвЂ№ РЎС“Р Р†Р ВµРЎР‚Р ВµР Р…РЎвЂ№, РЎвЂЎРЎвЂљР С• РЎвЂ¦Р С•РЎвЂљР С‘РЎвЂљР Вµ РЎС“Р Т‘Р В°Р В»Р С‘РЎвЂљРЎРЉ РЎРЊРЎвЂљР С•Р С–Р С• Р С—Р С•Р В»РЎРЉР В·Р С•Р Р†Р В°РЎвЂљР ВµР В»РЎРЏ?')) {
+    if (window.confirm('Р В РІР‚в„ўР РЋРІР‚в„– Р РЋРЎвЂњР В Р вЂ Р В Р’ВµР РЋР вЂљР В Р’ВµР В Р вЂ¦Р РЋРІР‚в„–, Р РЋРІР‚РЋР РЋРІР‚С™Р В РЎвЂў Р РЋРІР‚В¦Р В РЎвЂўР РЋРІР‚С™Р В РЎвЂР РЋРІР‚С™Р В Р’Вµ Р РЋРЎвЂњР В РўвЂР В Р’В°Р В Р’В»Р В РЎвЂР РЋРІР‚С™Р РЋР Р‰ Р РЋР РЉР РЋРІР‚С™Р В РЎвЂўР В РЎвЂ“Р В РЎвЂў Р В РЎвЂ”Р В РЎвЂўР В Р’В»Р РЋР Р‰Р В Р’В·Р В РЎвЂўР В Р вЂ Р В Р’В°Р РЋРІР‚С™Р В Р’ВµР В Р’В»Р РЋР РЏ?')) {
       setUsers(prev => prev.filter(u => u.id !== userId));
     }
   };
@@ -312,15 +312,15 @@ export const AdminUserManagement: React.FC<AdminUserManagementProps> = ({ theme 
             <div className="flex items-center space-x-4 mt-2 text-xs opacity-60">
               <span className="flex items-center">
                 <Star className="w-3 h-3 mr-1" />
-                Р Р€РЎР‚Р С•Р Р†Р ВµР Р…РЎРЉ {user.level}
+                Р В Р в‚¬Р РЋР вЂљР В РЎвЂўР В Р вЂ Р В Р’ВµР В Р вЂ¦Р РЋР Р‰ {user.level}
               </span>
               <span className="flex items-center">
                 <DollarSign className="w-3 h-3 mr-1" />
-                {user.gCoins} Р СР С•Р Р…Р ВµРЎвЂљ
+                {user.gCoins} Р В РЎВР В РЎвЂўР В Р вЂ¦Р В Р’ВµР РЋРІР‚С™
               </span>
               <span className="flex items-center">
                 <Activity className="w-3 h-3 mr-1" />
-                {user.tasksCompleted} Р В·Р В°Р Т‘Р В°РЎвЂЎ
+                {user.tasksCompleted} Р В Р’В·Р В Р’В°Р В РўвЂР В Р’В°Р РЋРІР‚РЋ
               </span>
               <span className="flex items-center">
                 <Calendar className="w-3 h-3 mr-1" />
@@ -339,7 +339,7 @@ export const AdminUserManagement: React.FC<AdminUserManagementProps> = ({ theme 
                 : 'bg-red-500 bg-opacity-20 text-red-500'
             }`}
           >
-            {user.isActive ? 'Р С’Р С”РЎвЂљР С‘Р Р†Р ВµР Р…' : 'Р Р€Р Р†Р С•Р В»Р ВµР Р…'}
+            {user.isActive ? 'Р В РЎвЂ™Р В РЎвЂќР РЋРІР‚С™Р В РЎвЂР В Р вЂ Р В Р’ВµР В Р вЂ¦' : 'Р В Р в‚¬Р В Р вЂ Р В РЎвЂўР В Р’В»Р В Р’ВµР В Р вЂ¦'}
           </button>
           
           <button
@@ -364,14 +364,14 @@ export const AdminUserManagement: React.FC<AdminUserManagementProps> = ({ theme 
 
   return (
     <div className="p-6 space-y-6">
-      {/* Р вЂ”Р В°Р С–Р С•Р В»Р С•Р Р†Р С•Р С” Р С‘ Р Т‘Р ВµР в„–РЎРѓРЎвЂљР Р†Р С‘РЎРЏ */}
+      {/* Р В РІР‚вЂќР В Р’В°Р В РЎвЂ“Р В РЎвЂўР В Р’В»Р В РЎвЂўР В Р вЂ Р В РЎвЂўР В РЎвЂќ Р В РЎвЂ Р В РўвЂР В Р’ВµР В РІвЂћвЂ“Р РЋР С“Р РЋРІР‚С™Р В Р вЂ Р В РЎвЂР РЋР РЏ */}
       <div className="flex items-center justify-between">
         <div>
           <h1 className="text-2xl font-bold" style={{ color: theme === 'dark' ? '#E8ECF2' : '#0F172A' }}>
-            Р Р€Р С—РЎР‚Р В°Р Р†Р В»Р ВµР Р…Р С‘Р Вµ Р С—Р С•Р В»РЎРЉР В·Р С•Р Р†Р В°РЎвЂљР ВµР В»РЎРЏР СР С‘
+            Р В Р в‚¬Р В РЎвЂ”Р РЋР вЂљР В Р’В°Р В Р вЂ Р В Р’В»Р В Р’ВµР В Р вЂ¦Р В РЎвЂР В Р’Вµ Р В РЎвЂ”Р В РЎвЂўР В Р’В»Р РЋР Р‰Р В Р’В·Р В РЎвЂўР В Р вЂ Р В Р’В°Р РЋРІР‚С™Р В Р’ВµР В Р’В»Р РЋР РЏР В РЎВР В РЎвЂ
           </h1>
           <p className="text-sm opacity-70" style={{ color: theme === 'dark' ? '#A7B0BD' : '#6B7280' }}>
-            Р Р€Р С—РЎР‚Р В°Р Р†Р В»Р ВµР Р…Р С‘Р Вµ РЎРѓР С•РЎвЂљРЎР‚РЎС“Р Т‘Р Р…Р С‘Р С”Р В°Р СР С‘ Р С‘ РЎР‚Р С•Р В»РЎРЏР СР С‘
+            Р В Р в‚¬Р В РЎвЂ”Р РЋР вЂљР В Р’В°Р В Р вЂ Р В Р’В»Р В Р’ВµР В Р вЂ¦Р В РЎвЂР В Р’Вµ Р РЋР С“Р В РЎвЂўР РЋРІР‚С™Р РЋР вЂљР РЋРЎвЂњР В РўвЂР В Р вЂ¦Р В РЎвЂР В РЎвЂќР В Р’В°Р В РЎВР В РЎвЂ Р В РЎвЂ Р РЋР вЂљР В РЎвЂўР В Р’В»Р РЋР РЏР В РЎВР В РЎвЂ
           </p>
         </div>
         <button
@@ -379,15 +379,15 @@ export const AdminUserManagement: React.FC<AdminUserManagementProps> = ({ theme 
           className="flex items-center px-4 py-2 rounded-lg bg-blue-500 text-white hover:bg-blue-600 transition-colors"
         >
           <UserPlus className="w-4 h-4 mr-2" />
-          Р вЂќР С•Р В±Р В°Р Р†Р С‘РЎвЂљРЎРЉ РЎРѓР С•РЎвЂљРЎР‚РЎС“Р Т‘Р Р…Р С‘Р С”Р В°
+          Р В РІР‚СњР В РЎвЂўР В Р’В±Р В Р’В°Р В Р вЂ Р В РЎвЂР РЋРІР‚С™Р РЋР Р‰ Р РЋР С“Р В РЎвЂўР РЋРІР‚С™Р РЋР вЂљР РЋРЎвЂњР В РўвЂР В Р вЂ¦Р В РЎвЂР В РЎвЂќР В Р’В°
         </button>
       </div>
 
-      {/* Р СћР В°Р В±РЎвЂ№ */}
+      {/* Р В РЎС›Р В Р’В°Р В Р’В±Р РЋРІР‚в„– */}
       <div className="flex space-x-2 border-b" style={{ borderColor: theme === 'dark' ? 'rgba(255,255,255,0.1)' : '#E6E9EF' }}>
         {[
-          { id: 'active', label: 'Р С’Р С”РЎвЂљР С‘Р Р†Р Р…РЎвЂ№Р Вµ', icon: Users, count: users.filter(u => u.isActive).length },
-          { id: 'dismissed', label: 'Р Р€Р Р†Р С•Р В»Р ВµР Р…Р Р…РЎвЂ№Р Вµ', icon: UserMinus, count: users.filter(u => !u.isActive).length }
+          { id: 'active', label: 'Р В РЎвЂ™Р В РЎвЂќР РЋРІР‚С™Р В РЎвЂР В Р вЂ Р В Р вЂ¦Р РЋРІР‚в„–Р В Р’Вµ', icon: Users, count: users.filter(u => u.isActive).length },
+          { id: 'dismissed', label: 'Р В Р в‚¬Р В Р вЂ Р В РЎвЂўР В Р’В»Р В Р’ВµР В Р вЂ¦Р В Р вЂ¦Р РЋРІР‚в„–Р В Р’Вµ', icon: UserMinus, count: users.filter(u => !u.isActive).length }
         ].map((tab) => (
           <button
             key={tab.id}
@@ -412,13 +412,13 @@ export const AdminUserManagement: React.FC<AdminUserManagementProps> = ({ theme 
         ))}
       </div>
 
-      {/* Р В¤Р С‘Р В»РЎРЉРЎвЂљРЎР‚РЎвЂ№ */}
+      {/* Р В Р’В¤Р В РЎвЂР В Р’В»Р РЋР Р‰Р РЋРІР‚С™Р РЋР вЂљР РЋРІР‚в„– */}
       <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
         <div className="relative">
           <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 w-4 h-4 opacity-50" />
           <input
             type="text"
-            placeholder="Р СџР С•Р С‘РЎРѓР С” Р С—Р С•Р В»РЎРЉР В·Р С•Р Р†Р В°РЎвЂљР ВµР В»Р ВµР в„–..."
+            placeholder="Р В РЎСџР В РЎвЂўР В РЎвЂР РЋР С“Р В РЎвЂќ Р В РЎвЂ”Р В РЎвЂўР В Р’В»Р РЋР Р‰Р В Р’В·Р В РЎвЂўР В Р вЂ Р В Р’В°Р РЋРІР‚С™Р В Р’ВµР В Р’В»Р В Р’ВµР В РІвЂћвЂ“..."
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
             className="w-full pl-10 pr-4 py-2 rounded-lg border"
@@ -440,7 +440,7 @@ export const AdminUserManagement: React.FC<AdminUserManagementProps> = ({ theme 
             color: theme === 'dark' ? '#E8ECF2' : '#0F172A'
           }}
         >
-          <option value="all">Р вЂ™РЎРѓР Вµ РЎР‚Р С•Р В»Р С‘</option>
+          <option value="all">Р В РІР‚в„ўР РЋР С“Р В Р’Вµ Р РЋР вЂљР В РЎвЂўР В Р’В»Р В РЎвЂ</option>
           {USER_ROLES.map(role => (
             <option key={role.value} value={role.value}>
               {role.icon} {role.label}
@@ -458,7 +458,7 @@ export const AdminUserManagement: React.FC<AdminUserManagementProps> = ({ theme 
             color: theme === 'dark' ? '#E8ECF2' : '#0F172A'
           }}
         >
-          <option value="all">Р вЂ™РЎРѓР Вµ Р С”Р С•Р СР В°Р Р…Р Т‘РЎвЂ№</option>
+          <option value="all">Р В РІР‚в„ўР РЋР С“Р В Р’Вµ Р В РЎвЂќР В РЎвЂўР В РЎВР В Р’В°Р В Р вЂ¦Р В РўвЂР РЋРІР‚в„–</option>
           {TEAMS.map(team => (
             <option key={team.id} value={team.id.toString()}>
               {team.name}
@@ -467,7 +467,7 @@ export const AdminUserManagement: React.FC<AdminUserManagementProps> = ({ theme 
         </select>
       </div>
 
-      {/* Р РЋР С—Р С‘РЎРѓР С•Р С” Р С—Р С•Р В»РЎРЉР В·Р С•Р Р†Р В°РЎвЂљР ВµР В»Р ВµР в„– */}
+      {/* Р В Р Р‹Р В РЎвЂ”Р В РЎвЂР РЋР С“Р В РЎвЂўР В РЎвЂќ Р В РЎвЂ”Р В РЎвЂўР В Р’В»Р РЋР Р‰Р В Р’В·Р В РЎвЂўР В Р вЂ Р В Р’В°Р РЋРІР‚С™Р В Р’ВµР В Р’В»Р В Р’ВµР В РІвЂћвЂ“ */}
       <div className="space-y-4">
         {filteredUsers.length > 0 ? (
           filteredUsers.map(renderUserCard)
@@ -481,19 +481,19 @@ export const AdminUserManagement: React.FC<AdminUserManagementProps> = ({ theme 
           >
             <Users className="w-12 h-12 mx-auto mb-4 opacity-50" style={{ color: theme === 'dark' ? '#A7B0BD' : '#6B7280' }} />
             <h3 className="text-lg font-semibold mb-2" style={{ color: theme === 'dark' ? '#E8ECF2' : '#0F172A' }}>
-              {activeTab === 'active' ? 'Р С’Р С”РЎвЂљР С‘Р Р†Р Р…РЎвЂ№РЎвЂ¦ Р С—Р С•Р В»РЎРЉР В·Р С•Р Р†Р В°РЎвЂљР ВµР В»Р ВµР в„– Р Р…Р ВµРЎвЂљ' : 'Р Р€Р Р†Р С•Р В»Р ВµР Р…Р Р…РЎвЂ№РЎвЂ¦ Р С—Р С•Р В»РЎРЉР В·Р С•Р Р†Р В°РЎвЂљР ВµР В»Р ВµР в„– Р Р…Р ВµРЎвЂљ'}
+              {activeTab === 'active' ? 'Р В РЎвЂ™Р В РЎвЂќР РЋРІР‚С™Р В РЎвЂР В Р вЂ Р В Р вЂ¦Р РЋРІР‚в„–Р РЋРІР‚В¦ Р В РЎвЂ”Р В РЎвЂўР В Р’В»Р РЋР Р‰Р В Р’В·Р В РЎвЂўР В Р вЂ Р В Р’В°Р РЋРІР‚С™Р В Р’ВµР В Р’В»Р В Р’ВµР В РІвЂћвЂ“ Р В Р вЂ¦Р В Р’ВµР РЋРІР‚С™' : 'Р В Р в‚¬Р В Р вЂ Р В РЎвЂўР В Р’В»Р В Р’ВµР В Р вЂ¦Р В Р вЂ¦Р РЋРІР‚в„–Р РЋРІР‚В¦ Р В РЎвЂ”Р В РЎвЂўР В Р’В»Р РЋР Р‰Р В Р’В·Р В РЎвЂўР В Р вЂ Р В Р’В°Р РЋРІР‚С™Р В Р’ВµР В Р’В»Р В Р’ВµР В РІвЂћвЂ“ Р В Р вЂ¦Р В Р’ВµР РЋРІР‚С™'}
             </h3>
             <p className="text-sm opacity-70" style={{ color: theme === 'dark' ? '#A7B0BD' : '#6B7280' }}>
               {activeTab === 'active' 
-                ? 'Р вЂ™РЎРѓР Вµ Р С—Р С•Р В»РЎРЉР В·Р С•Р Р†Р В°РЎвЂљР ВµР В»Р С‘ Р В±РЎвЂ№Р В»Р С‘ РЎС“Р Р†Р С•Р В»Р ВµР Р…РЎвЂ№ Р С‘Р В»Р С‘ Р Р…Р Вµ Р Р…Р В°Р в„–Р Т‘Р ВµР Р…РЎвЂ№ Р С—Р С• Р В·Р В°Р Т‘Р В°Р Р…Р Р…РЎвЂ№Р С РЎвЂћР С‘Р В»РЎРЉРЎвЂљРЎР‚Р В°Р С'
-                : 'Р вЂ™РЎРѓР Вµ Р С—Р С•Р В»РЎРЉР В·Р С•Р Р†Р В°РЎвЂљР ВµР В»Р С‘ Р В°Р С”РЎвЂљР С‘Р Р†Р Р…РЎвЂ№'
+                ? 'Р В РІР‚в„ўР РЋР С“Р В Р’Вµ Р В РЎвЂ”Р В РЎвЂўР В Р’В»Р РЋР Р‰Р В Р’В·Р В РЎвЂўР В Р вЂ Р В Р’В°Р РЋРІР‚С™Р В Р’ВµР В Р’В»Р В РЎвЂ Р В Р’В±Р РЋРІР‚в„–Р В Р’В»Р В РЎвЂ Р РЋРЎвЂњР В Р вЂ Р В РЎвЂўР В Р’В»Р В Р’ВµР В Р вЂ¦Р РЋРІР‚в„– Р В РЎвЂР В Р’В»Р В РЎвЂ Р В Р вЂ¦Р В Р’Вµ Р В Р вЂ¦Р В Р’В°Р В РІвЂћвЂ“Р В РўвЂР В Р’ВµР В Р вЂ¦Р РЋРІР‚в„– Р В РЎвЂ”Р В РЎвЂў Р В Р’В·Р В Р’В°Р В РўвЂР В Р’В°Р В Р вЂ¦Р В Р вЂ¦Р РЋРІР‚в„–Р В РЎВ Р РЋРІР‚С›Р В РЎвЂР В Р’В»Р РЋР Р‰Р РЋРІР‚С™Р РЋР вЂљР В Р’В°Р В РЎВ'
+                : 'Р В РІР‚в„ўР РЋР С“Р В Р’Вµ Р В РЎвЂ”Р В РЎвЂўР В Р’В»Р РЋР Р‰Р В Р’В·Р В РЎвЂўР В Р вЂ Р В Р’В°Р РЋРІР‚С™Р В Р’ВµР В Р’В»Р В РЎвЂ Р В Р’В°Р В РЎвЂќР РЋРІР‚С™Р В РЎвЂР В Р вЂ Р В Р вЂ¦Р РЋРІР‚в„–'
               }
             </p>
           </div>
         )}
       </div>
 
-      {/* Р СљР С•Р Т‘Р В°Р В» РЎРѓР С•Р В·Р Т‘Р В°Р Р…Р С‘РЎРЏ/РЎР‚Р ВµР Т‘Р В°Р С”РЎвЂљР С‘РЎР‚Р С•Р Р†Р В°Р Р…Р С‘РЎРЏ */}
+      {/* Р В РЎС™Р В РЎвЂўР В РўвЂР В Р’В°Р В Р’В» Р РЋР С“Р В РЎвЂўР В Р’В·Р В РўвЂР В Р’В°Р В Р вЂ¦Р В РЎвЂР РЋР РЏ/Р РЋР вЂљР В Р’ВµР В РўвЂР В Р’В°Р В РЎвЂќР РЋРІР‚С™Р В РЎвЂР РЋР вЂљР В РЎвЂўР В Р вЂ Р В Р’В°Р В Р вЂ¦Р В РЎвЂР РЋР РЏ */}
       {showCreateForm && (
         <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center p-4 z-50">
           <div 
@@ -505,7 +505,7 @@ export const AdminUserManagement: React.FC<AdminUserManagementProps> = ({ theme 
           >
             <div className="flex items-center justify-between mb-6">
               <h2 className="text-xl font-bold" style={{ color: theme === 'dark' ? '#E8ECF2' : '#0F172A' }}>
-                {editingUser ? 'Р В Р ВµР Т‘Р В°Р С”РЎвЂљР С‘РЎР‚Р С•Р Р†Р В°РЎвЂљРЎРЉ Р С—Р С•Р В»РЎРЉР В·Р С•Р Р†Р В°РЎвЂљР ВµР В»РЎРЏ' : 'Р вЂќР С•Р В±Р В°Р Р†Р С‘РЎвЂљРЎРЉ РЎРѓР С•РЎвЂљРЎР‚РЎС“Р Т‘Р Р…Р С‘Р С”Р В°'}
+                {editingUser ? 'Р В Р’В Р В Р’ВµР В РўвЂР В Р’В°Р В РЎвЂќР РЋРІР‚С™Р В РЎвЂР РЋР вЂљР В РЎвЂўР В Р вЂ Р В Р’В°Р РЋРІР‚С™Р РЋР Р‰ Р В РЎвЂ”Р В РЎвЂўР В Р’В»Р РЋР Р‰Р В Р’В·Р В РЎвЂўР В Р вЂ Р В Р’В°Р РЋРІР‚С™Р В Р’ВµР В Р’В»Р РЋР РЏ' : 'Р В РІР‚СњР В РЎвЂўР В Р’В±Р В Р’В°Р В Р вЂ Р В РЎвЂР РЋРІР‚С™Р РЋР Р‰ Р РЋР С“Р В РЎвЂўР РЋРІР‚С™Р РЋР вЂљР РЋРЎвЂњР В РўвЂР В Р вЂ¦Р В РЎвЂР В РЎвЂќР В Р’В°'}
               </h2>
               <button
                 onClick={() => {
@@ -535,13 +535,13 @@ export const AdminUserManagement: React.FC<AdminUserManagementProps> = ({ theme 
                     borderColor: theme === 'dark' ? 'rgba(255,255,255,0.2)' : '#E6E9EF',
                     color: theme === 'dark' ? '#E8ECF2' : '#0F172A'
                   }}
-                  placeholder="Р вЂ™Р Р†Р ВµР Т‘Р С‘РЎвЂљР Вµ Telegram ID"
+                  placeholder="Р В РІР‚в„ўР В Р вЂ Р В Р’ВµР В РўвЂР В РЎвЂР РЋРІР‚С™Р В Р’Вµ Telegram ID"
                 />
               </div>
 
               <div>
                 <label className="block text-sm font-medium mb-2" style={{ color: theme === 'dark' ? '#E8ECF2' : '#0F172A' }}>
-                  Р ВР СРЎРЏ *
+                  Р В Р’ВР В РЎВР РЋР РЏ *
                 </label>
                 <input
                   type="text"
@@ -553,14 +553,14 @@ export const AdminUserManagement: React.FC<AdminUserManagementProps> = ({ theme 
                     borderColor: theme === 'dark' ? 'rgba(255,255,255,0.2)' : '#E6E9EF',
                     color: theme === 'dark' ? '#E8ECF2' : '#0F172A'
                   }}
-                  placeholder="Р вЂ™Р Р†Р ВµР Т‘Р С‘РЎвЂљР Вµ Р С‘Р СРЎРЏ Р С—Р С•Р В»РЎРЉР В·Р С•Р Р†Р В°РЎвЂљР ВµР В»РЎРЏ"
+                  placeholder="Р В РІР‚в„ўР В Р вЂ Р В Р’ВµР В РўвЂР В РЎвЂР РЋРІР‚С™Р В Р’Вµ Р В РЎвЂР В РЎВР РЋР РЏ Р В РЎвЂ”Р В РЎвЂўР В Р’В»Р РЋР Р‰Р В Р’В·Р В РЎвЂўР В Р вЂ Р В Р’В°Р РЋРІР‚С™Р В Р’ВµР В Р’В»Р РЋР РЏ"
                 />
               </div>
 
               <div className="grid grid-cols-2 gap-4">
                 <div>
                   <label className="block text-sm font-medium mb-2" style={{ color: theme === 'dark' ? '#E8ECF2' : '#0F172A' }}>
-                    Р В Р С•Р В»РЎРЉ *
+                    Р В Р’В Р В РЎвЂўР В Р’В»Р РЋР Р‰ *
                   </label>
                   <select
                     value={formData.role}
@@ -582,7 +582,7 @@ export const AdminUserManagement: React.FC<AdminUserManagementProps> = ({ theme 
 
                 <div>
                   <label className="block text-sm font-medium mb-2" style={{ color: theme === 'dark' ? '#E8ECF2' : '#0F172A' }}>
-                    Р С™Р С•Р СР В°Р Р…Р Т‘Р В°
+                    Р В РЎв„ўР В РЎвЂўР В РЎВР В Р’В°Р В Р вЂ¦Р В РўвЂР В Р’В°
                   </label>
                   <select
                     value={formData.teamNumber}
@@ -594,7 +594,7 @@ export const AdminUserManagement: React.FC<AdminUserManagementProps> = ({ theme 
                       color: theme === 'dark' ? '#E8ECF2' : '#0F172A'
                     }}
                   >
-                    <option value="">Р вЂР ВµР В· Р С”Р С•Р СР В°Р Р…Р Т‘РЎвЂ№</option>
+                    <option value="">Р В РІР‚ВР В Р’ВµР В Р’В· Р В РЎвЂќР В РЎвЂўР В РЎВР В Р’В°Р В Р вЂ¦Р В РўвЂР РЋРІР‚в„–</option>
                     {TEAMS.map(team => (
                       <option key={team.id} value={team.id.toString()}>
                         {team.name}
@@ -608,7 +608,7 @@ export const AdminUserManagement: React.FC<AdminUserManagementProps> = ({ theme 
                 <div className="grid grid-cols-3 gap-4">
                   <div>
                     <label className="block text-sm font-medium mb-2" style={{ color: theme === 'dark' ? '#E8ECF2' : '#0F172A' }}>
-                      Р Р€РЎР‚Р С•Р Р†Р ВµР Р…РЎРЉ
+                      Р В Р в‚¬Р РЋР вЂљР В РЎвЂўР В Р вЂ Р В Р’ВµР В Р вЂ¦Р РЋР Р‰
                     </label>
                     <input
                       type="number"
@@ -625,7 +625,7 @@ export const AdminUserManagement: React.FC<AdminUserManagementProps> = ({ theme 
                   </div>
                   <div>
                     <label className="block text-sm font-medium mb-2" style={{ color: theme === 'dark' ? '#E8ECF2' : '#0F172A' }}>
-                      Р С›Р С—РЎвЂ№РЎвЂљ
+                      Р В РЎвЂєР В РЎвЂ”Р РЋРІР‚в„–Р РЋРІР‚С™
                     </label>
                     <input
                       type="number"
@@ -642,7 +642,7 @@ export const AdminUserManagement: React.FC<AdminUserManagementProps> = ({ theme 
                   </div>
                   <div>
                     <label className="block text-sm font-medium mb-2" style={{ color: theme === 'dark' ? '#E8ECF2' : '#0F172A' }}>
-                      Р СљР С•Р Р…Р ВµРЎвЂљРЎвЂ№
+                      Р В РЎС™Р В РЎвЂўР В Р вЂ¦Р В Р’ВµР РЋРІР‚С™Р РЋРІР‚в„–
                     </label>
                     <input
                       type="number"
@@ -675,13 +675,13 @@ export const AdminUserManagement: React.FC<AdminUserManagementProps> = ({ theme 
                   color: theme === 'dark' ? '#E8ECF2' : '#0F172A'
                 }}
               >
-                Р С›РЎвЂљР СР ВµР Р…Р В°
+                Р В РЎвЂєР РЋРІР‚С™Р В РЎВР В Р’ВµР В Р вЂ¦Р В Р’В°
               </button>
               <button
                 onClick={editingUser ? handleUpdateUser : handleCreateUser}
                 className="px-4 py-2 rounded-lg bg-blue-500 text-white hover:bg-blue-600 transition-colors"
               >
-                {editingUser ? 'Р РЋР С•РЎвЂ¦РЎР‚Р В°Р Р…Р С‘РЎвЂљРЎРЉ' : 'Р вЂќР С•Р В±Р В°Р Р†Р С‘РЎвЂљРЎРЉ'}
+                {editingUser ? 'Р В Р Р‹Р В РЎвЂўР РЋРІР‚В¦Р РЋР вЂљР В Р’В°Р В Р вЂ¦Р В РЎвЂР РЋРІР‚С™Р РЋР Р‰' : 'Р В РІР‚СњР В РЎвЂўР В Р’В±Р В Р’В°Р В Р вЂ Р В РЎвЂР РЋРІР‚С™Р РЋР Р‰'}
               </button>
             </div>
           </div>

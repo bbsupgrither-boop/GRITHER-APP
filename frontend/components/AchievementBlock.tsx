@@ -1,4 +1,4 @@
-РїВ»С—import React from 'react';
+Р С—Р’В»РЎвЂ”import React from 'react';
 import { Eye } from 'lucide-react';
 import { Achievement } from '../types/achievements';
 
@@ -13,7 +13,7 @@ export const AchievementBlock: React.FC<AchievementBlockProps> = ({
   theme, 
   onViewAll 
 }) => {
-  // Р СџР С•Р В»РЎС“РЎвЂЎР В°Р ВµР С Р СћР С›Р Сџ-3 Р Т‘Р С•РЎРѓРЎвЂљР С‘Р В¶Р ВµР Р…Р С‘РЎРЏ Р Р† Р С—РЎР‚Р С•РЎвЂ Р ВµРЎРѓРЎРѓР Вµ Р Р†РЎвЂ№Р С—Р С•Р В»Р Р…Р ВµР Р…Р С‘РЎРЏ
+  // Р В РЎСџР В РЎвЂўР В Р’В»Р РЋРЎвЂњР РЋРІР‚РЋР В Р’В°Р В Р’ВµР В РЎВ Р В РЎС›Р В РЎвЂєР В РЎСџ-3 Р В РўвЂР В РЎвЂўР РЋР С“Р РЋРІР‚С™Р В РЎвЂР В Р’В¶Р В Р’ВµР В Р вЂ¦Р В РЎвЂР РЋР РЏ Р В Р вЂ  Р В РЎвЂ”Р РЋР вЂљР В РЎвЂўР РЋРІР‚В Р В Р’ВµР РЋР С“Р РЋР С“Р В Р’Вµ Р В Р вЂ Р РЋРІР‚в„–Р В РЎвЂ”Р В РЎвЂўР В Р’В»Р В Р вЂ¦Р В Р’ВµР В Р вЂ¦Р В РЎвЂР РЋР РЏ
   const inProgressAchievements = achievements
     .filter(achievement => !achievement.unlocked && achievement.requirements.current > 0)
     .slice(0, 3);
@@ -30,11 +30,11 @@ export const AchievementBlock: React.FC<AchievementBlockProps> = ({
 
   const getRarityIcon = (rarity?: string) => {
     switch (rarity) {
-      case 'legendary': return 'СЂСџвЂвЂ';
-      case 'epic': return 'СЂСџвЂ™Сљ';
-      case 'rare': return 'СЂСџвЂќВµ';
+      case 'legendary': return 'РЎР‚РЎСџРІР‚ВРІР‚В';
+      case 'epic': return 'РЎР‚РЎСџРІР‚в„ўРЎС™';
+      case 'rare': return 'РЎР‚РЎСџРІР‚СњР’Вµ';
       case 'common':
-      default: return 'РІВ­С’';
+      default: return 'Р Р†Р’В­РЎвЂ™';
     }
   };
 
@@ -54,7 +54,7 @@ export const AchievementBlock: React.FC<AchievementBlockProps> = ({
             color: theme === 'dark' ? '#E8ECF2' : '#0F172A'
           }}
         >
-          Р вЂ™Р В°РЎв‚¬Р С‘ Р Т‘Р С•РЎРѓРЎвЂљР С‘Р В¶Р ВµР Р…Р С‘РЎРЏ
+          Р В РІР‚в„ўР В Р’В°Р РЋРІвЂљВ¬Р В РЎвЂ Р В РўвЂР В РЎвЂўР РЋР С“Р РЋРІР‚С™Р В РЎвЂР В Р’В¶Р В Р’ВµР В Р вЂ¦Р В РЎвЂР РЋР РЏ
         </h3>
         
         <button
@@ -83,7 +83,7 @@ export const AchievementBlock: React.FC<AchievementBlockProps> = ({
                   border: `1px solid ${theme === 'dark' ? 'rgba(255, 255, 255, 0.05)' : 'rgba(0, 0, 0, 0.05)'}`
                 }}
               >
-                {/* Р ВР С”Р С•Р Р…Р С”Р В° Р Р† РЎвЂ Р Р†Р ВµРЎвЂљР Р…Р С•Р С Р С”РЎР‚РЎС“Р В¶Р С”Р Вµ */}
+                {/* Р В Р’ВР В РЎвЂќР В РЎвЂўР В Р вЂ¦Р В РЎвЂќР В Р’В° Р В Р вЂ  Р РЋРІР‚В Р В Р вЂ Р В Р’ВµР РЋРІР‚С™Р В Р вЂ¦Р В РЎвЂўР В РЎВ Р В РЎвЂќР РЋР вЂљР РЋРЎвЂњР В Р’В¶Р В РЎвЂќР В Р’Вµ */}
                 <div 
                   style={{
                     width: '40px',
@@ -100,7 +100,7 @@ export const AchievementBlock: React.FC<AchievementBlockProps> = ({
                   {getRarityIcon(achievement.rarity)}
                 </div>
 
-                {/* Р ВР Р…РЎвЂћР С•РЎР‚Р СР В°РЎвЂ Р С‘РЎРЏ Р С• Р Т‘Р С•РЎРѓРЎвЂљР С‘Р В¶Р ВµР Р…Р С‘Р С‘ */}
+                {/* Р В Р’ВР В Р вЂ¦Р РЋРІР‚С›Р В РЎвЂўР РЋР вЂљР В РЎВР В Р’В°Р РЋРІР‚В Р В РЎвЂР РЋР РЏ Р В РЎвЂў Р В РўвЂР В РЎвЂўР РЋР С“Р РЋРІР‚С™Р В РЎвЂР В Р’В¶Р В Р’ВµР В Р вЂ¦Р В РЎвЂР В РЎвЂ */}
                 <div style={{ flex: 1, minWidth: 0 }}>
                   <h4 
                     style={{ 
@@ -116,7 +116,7 @@ export const AchievementBlock: React.FC<AchievementBlockProps> = ({
                     {achievement.title}
                   </h4>
                   
-                  {/* Р СџРЎР‚Р С•Р С–РЎР‚Р ВµРЎРѓРЎРѓ-Р В±Р В°РЎР‚ */}
+                  {/* Р В РЎСџР РЋР вЂљР В РЎвЂўР В РЎвЂ“Р РЋР вЂљР В Р’ВµР РЋР С“Р РЋР С“-Р В Р’В±Р В Р’В°Р РЋР вЂљ */}
                   <div 
                     style={{
                       width: '100%',
@@ -138,7 +138,7 @@ export const AchievementBlock: React.FC<AchievementBlockProps> = ({
                   </div>
                 </div>
 
-                {/* Р СџРЎР‚Р С•РЎвЂ Р ВµР Р…РЎвЂљ Р Р†РЎвЂ№Р С—Р С•Р В»Р Р…Р ВµР Р…Р С‘РЎРЏ */}
+                {/* Р В РЎСџР РЋР вЂљР В РЎвЂўР РЋРІР‚В Р В Р’ВµР В Р вЂ¦Р РЋРІР‚С™ Р В Р вЂ Р РЋРІР‚в„–Р В РЎвЂ”Р В РЎвЂўР В Р’В»Р В Р вЂ¦Р В Р’ВµР В Р вЂ¦Р В РЎвЂР РЋР РЏ */}
                 <div 
                   style={{
                     fontSize: '12px',
@@ -163,7 +163,7 @@ export const AchievementBlock: React.FC<AchievementBlockProps> = ({
             fontSize: '14px'
           }}
         >
-          Р СњР ВµРЎвЂљ Р Т‘Р С•РЎРѓРЎвЂљР С‘Р В¶Р ВµР Р…Р С‘Р в„– Р Р† Р С—РЎР‚Р С•РЎвЂ Р ВµРЎРѓРЎРѓР Вµ
+          Р В РЎСљР В Р’ВµР РЋРІР‚С™ Р В РўвЂР В РЎвЂўР РЋР С“Р РЋРІР‚С™Р В РЎвЂР В Р’В¶Р В Р’ВµР В Р вЂ¦Р В РЎвЂР В РІвЂћвЂ“ Р В Р вЂ  Р В РЎвЂ”Р РЋР вЂљР В РЎвЂўР РЋРІР‚В Р В Р’ВµР РЋР С“Р РЋР С“Р В Р’Вµ
         </div>
       )}
     </div>

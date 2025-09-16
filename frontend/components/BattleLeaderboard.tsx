@@ -1,4 +1,4 @@
-РїВ»С—import React, { useState } from 'react';
+Р С—Р’В»РЎвЂ”import React, { useState } from 'react';
 import { Menu } from 'lucide-react';
 import { LeaderboardEntry } from '../types/global';
 
@@ -17,8 +17,8 @@ export const BattleLeaderboard: React.FC<BattleLeaderboardProps> = ({
 
   const getSortTypeLabel = (type: SortType) => {
     switch (type) {
-      case 'level': return 'Р Р€РЎР‚.';
-      case 'achievements': return 'РІВвЂ¦';
+      case 'level': return 'Р В Р в‚¬Р РЋР вЂљ.';
+      case 'achievements': return 'Р Р†Р’ВРІР‚В¦';
       case 'balance': return 'g';
     }
   };
@@ -38,17 +38,17 @@ export const BattleLeaderboard: React.FC<BattleLeaderboardProps> = ({
     setSortType(types[nextIndex]);
   };
 
-  // Р РЋР С•РЎР‚РЎвЂљР С‘РЎР‚РЎС“Р ВµР С Р С‘ Р В±Р ВµРЎР‚Р ВµР С Р СћР С›Р Сџ-3
+  // Р В Р Р‹Р В РЎвЂўР РЋР вЂљР РЋРІР‚С™Р В РЎвЂР РЋР вЂљР РЋРЎвЂњР В Р’ВµР В РЎВ Р В РЎвЂ Р В Р’В±Р В Р’ВµР РЋР вЂљР В Р’ВµР В РЎВ Р В РЎС›Р В РЎвЂєР В РЎСџ-3
   const topPlayers = [...leaderboard]
     .sort((a, b) => getSortValue(b, sortType) - getSortValue(a, sortType))
     .slice(0, 3);
 
   const getRankEmoji = (rank: number) => {
     switch (rank) {
-      case 1: return 'СЂСџТђвЂЎ';
-      case 2: return 'СЂСџТђв‚¬';
-      case 3: return 'СЂСџТђвЂ°';
-      default: return 'СЂСџРЏвЂ¦';
+      case 1: return 'РЎР‚РЎСџРўС’РІР‚РЋ';
+      case 2: return 'РЎР‚РЎСџРўС’РІвЂљВ¬';
+      case 3: return 'РЎР‚РЎСџРўС’РІР‚В°';
+      default: return 'РЎР‚РЎСџР РЏРІР‚В¦';
     }
   };
 
@@ -69,7 +69,7 @@ export const BattleLeaderboard: React.FC<BattleLeaderboardProps> = ({
               color: theme === 'dark' ? '#E8ECF2' : '#0F172A'
             }}
           >
-            Р В Р ВµР в„–РЎвЂљР С‘Р Р…Р С–
+            Р В Р’В Р В Р’ВµР В РІвЂћвЂ“Р РЋРІР‚С™Р В РЎвЂР В Р вЂ¦Р В РЎвЂ“
           </h3>
           <div 
             style={{ 
@@ -77,7 +77,7 @@ export const BattleLeaderboard: React.FC<BattleLeaderboardProps> = ({
               color: theme === 'dark' ? '#A7B0BD' : '#6B7280'
             }}
           >
-            Р СџР С• {sortType === 'level' ? 'РЎС“РЎР‚Р С•Р Р†Р Р…РЎР‹' : sortType === 'achievements' ? 'Р В°РЎвЂЎР С‘Р Р†Р С”Р В°Р С' : 'Р В±Р В°Р В»Р В°Р Р…РЎРѓРЎС“'}
+            Р В РЎСџР В РЎвЂў {sortType === 'level' ? 'Р РЋРЎвЂњР РЋР вЂљР В РЎвЂўР В Р вЂ Р В Р вЂ¦Р РЋР вЂ№' : sortType === 'achievements' ? 'Р В Р’В°Р РЋРІР‚РЋР В РЎвЂР В Р вЂ Р В РЎвЂќР В Р’В°Р В РЎВ' : 'Р В Р’В±Р В Р’В°Р В Р’В»Р В Р’В°Р В Р вЂ¦Р РЋР С“Р РЋРЎвЂњ'}
           </div>
         </div>
         
@@ -103,12 +103,12 @@ export const BattleLeaderboard: React.FC<BattleLeaderboardProps> = ({
                 borderRadius: '8px'
               }}
             >
-              {/* Р В Р В°Р Р…Р С– */}
+              {/* Р В Р’В Р В Р’В°Р В Р вЂ¦Р В РЎвЂ“ */}
               <div style={{ fontSize: '16px' }}>
                 {getRankEmoji(index + 1)}
               </div>
 
-              {/* Р С’Р Р†Р В°РЎвЂљР В°РЎР‚ */}
+              {/* Р В РЎвЂ™Р В Р вЂ Р В Р’В°Р РЋРІР‚С™Р В Р’В°Р РЋР вЂљ */}
               <div 
                 style={{
                   width: '24px',
@@ -127,7 +127,7 @@ export const BattleLeaderboard: React.FC<BattleLeaderboardProps> = ({
                 {player.name.charAt(0).toUpperCase()}
               </div>
 
-              {/* Р ВР СРЎРЏ */}
+              {/* Р В Р’ВР В РЎВР РЋР РЏ */}
               <div 
                 style={{
                   flex: 1,
@@ -142,7 +142,7 @@ export const BattleLeaderboard: React.FC<BattleLeaderboardProps> = ({
                 {player.name}
               </div>
 
-              {/* Р вЂ”Р Р…Р В°РЎвЂЎР ВµР Р…Р С‘Р Вµ РЎРѓР С•РЎР‚РЎвЂљР С‘РЎР‚Р С•Р Р†Р С”Р С‘ */}
+              {/* Р В РІР‚вЂќР В Р вЂ¦Р В Р’В°Р РЋРІР‚РЋР В Р’ВµР В Р вЂ¦Р В РЎвЂР В Р’Вµ Р РЋР С“Р В РЎвЂўР РЋР вЂљР РЋРІР‚С™Р В РЎвЂР РЋР вЂљР В РЎвЂўР В Р вЂ Р В РЎвЂќР В РЎвЂ */}
               <div 
                 style={{
                   fontSize: '12px',
@@ -166,7 +166,7 @@ export const BattleLeaderboard: React.FC<BattleLeaderboardProps> = ({
             fontSize: '14px'
           }}
         >
-          Р СњР ВµРЎвЂљ Р Т‘Р В°Р Р…Р Р…РЎвЂ№РЎвЂ¦ РЎР‚Р ВµР в„–РЎвЂљР С‘Р Р…Р С–Р В°
+          Р В РЎСљР В Р’ВµР РЋРІР‚С™ Р В РўвЂР В Р’В°Р В Р вЂ¦Р В Р вЂ¦Р РЋРІР‚в„–Р РЋРІР‚В¦ Р РЋР вЂљР В Р’ВµР В РІвЂћвЂ“Р РЋРІР‚С™Р В РЎвЂР В Р вЂ¦Р В РЎвЂ“Р В Р’В°
         </div>
       )}
     </div>

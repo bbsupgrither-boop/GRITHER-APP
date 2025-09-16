@@ -199,7 +199,7 @@ export default function App() {
           }>
             <Route index element={<Navigate to="/home" replace />} />
             <Route path="home" element={
-              <React.Suspense fallback={<div style={{padding: 16}}>Р вЂ”Р В°Р С–РЎР‚РЎС“Р В·Р С”Р В°РІР‚В¦</div>}>
+              <React.Suspense fallback={<div style={{padding: 16}}>Загрузка…</div>}>
                 <ErrorBoundary>
                   <HomePage
                     theme={theme}
@@ -212,7 +212,7 @@ export default function App() {
               </React.Suspense>
             } />
             <Route path="achievements" element={
-              <React.Suspense fallback={<div style={{padding: 16}}>Р вЂ”Р В°Р С–РЎР‚РЎС“Р В·Р С”Р В°РІР‚В¦</div>}>
+              <React.Suspense fallback={<div style={{padding: 16}}>Загрузка…</div>}>
                 <ErrorBoundary>
                   <AchievementsPage
                     achievements={achievements}
@@ -230,7 +230,7 @@ export default function App() {
               </React.Suspense>
             } />
             <Route path="tasks" element={
-              <React.Suspense fallback={<div style={{padding: 16}}>Р вЂ”Р В°Р С–РЎР‚РЎС“Р В·Р С”Р В°РІР‚В¦</div>}>
+              <React.Suspense fallback={<div style={{padding: 16}}>Загрузка…</div>}>
                 <ErrorBoundary>
                   <TasksPage
                     tasks={tasks}
@@ -248,7 +248,7 @@ export default function App() {
               </React.Suspense>
             } />
             <Route path="shop" element={
-              <React.Suspense fallback={<div style={{padding: 16}}>Р вЂ”Р В°Р С–РЎР‚РЎС“Р В·Р С”Р В°РІР‚В¦</div>}>
+              <React.Suspense fallback={<div style={{padding: 16}}>Загрузка…</div>}>
                 <ErrorBoundary>
                   <ShopPage
                     cases={userCases}
@@ -274,7 +274,7 @@ export default function App() {
               </React.Suspense>
             } />
             <Route path="profile" element={
-              <React.Suspense fallback={<div style={{padding: 16}}>Р вЂ”Р В°Р С–РЎР‚РЎС“Р В·Р С”Р В°РІР‚В¦</div>}>
+              <React.Suspense fallback={<div style={{padding: 16}}>Загрузка…</div>}>
                 <ErrorBoundary>
                   <ProfilePage
                     theme={theme}
@@ -287,7 +287,7 @@ export default function App() {
               </React.Suspense>
             } />
             <Route path="battles" element={
-              <React.Suspense fallback={<div style={{padding: 16}}>Р вЂ”Р В°Р С–РЎР‚РЎС“Р В·Р С”Р В°РІР‚В¦</div>}>
+              <React.Suspense fallback={<div style={{padding: 16}}>Загрузка…</div>}>
                 <ErrorBoundary>
                   <BattlesPage
                     theme={theme}
@@ -334,7 +334,7 @@ export default function App() {
           <AdminPanel
             onClose={handleCloseAdminPanel}
             theme={theme}
-            adminName={userWithRole?.name || 'Р РЋР ВµР С”РЎР‚Р ВµРЎвЂљР Р…РЎвЂ№Р в„– Р С’Р Т‘Р СР С‘Р Р…'}
+            adminName={userWithRole?.name || 'Секретный администратор'}
           />
         )}
       </div>

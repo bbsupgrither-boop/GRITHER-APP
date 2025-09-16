@@ -72,18 +72,18 @@ export const HomePage: React.FC<HomePageProps> = ({
 }) => {
   // Mock data for battles
   const activeBattles = [
-    { id: '1', opponent: 'Р вЂўР В»Р ВµР Р…Р В° Р СљР С•РЎР‚Р С•Р В·Р С•Р Р†Р В°', status: 'active' }
+    { id: '1', opponent: 'Р В РІР‚СћР В Р’В»Р В Р’ВµР В Р вЂ¦Р В Р’В° Р В РЎС™Р В РЎвЂўР РЋР вЂљР В РЎвЂўР В Р’В·Р В РЎвЂўР В Р вЂ Р В Р’В°', status: 'active' }
   ];
 
   const mockBattleInvitations = [
-    { id: '1', challenger: 'Р СљР В°РЎР‚Р С‘РЎРЏ Р РЋР С‘Р Т‘Р С•РЎР‚Р С•Р Р†Р В°', status: 'pending' },
-    { id: '2', challenger: 'Р С’Р Р…Р Р…Р В° Р ВР Р†Р В°Р Р…Р С•Р Р†Р В°', status: 'pending' }
+    { id: '1', challenger: 'Р В РЎС™Р В Р’В°Р РЋР вЂљР В РЎвЂР РЋР РЏ Р В Р Р‹Р В РЎвЂР В РўвЂР В РЎвЂўР РЋР вЂљР В РЎвЂўР В Р вЂ Р В Р’В°', status: 'pending' },
+    { id: '2', challenger: 'Р В РЎвЂ™Р В Р вЂ¦Р В Р вЂ¦Р В Р’В° Р В Р’ВР В Р вЂ Р В Р’В°Р В Р вЂ¦Р В РЎвЂўР В Р вЂ Р В Р’В°', status: 'pending' }
   ];
 
   const mockLeaderboard = [
-    { id: '1', name: 'Р СџР ВµРЎвЂљРЎР‚ Р СџР ВµРЎвЂљРЎР‚Р С•Р Р†', level: 18 },
-    { id: '2', name: 'Р вЂўР В»Р ВµР Р…Р В° Р СљР С•РЎР‚Р С•Р В·Р С•Р Р†Р В°', level: 16 },
-    { id: '3', name: 'Р С’Р Р…Р Р…Р В° Р ВР Р†Р В°Р Р…Р С•Р Р†Р В°', level: 15 }
+    { id: '1', name: 'Р В РЎСџР В Р’ВµР РЋРІР‚С™Р РЋР вЂљ Р В РЎСџР В Р’ВµР РЋРІР‚С™Р РЋР вЂљР В РЎвЂўР В Р вЂ ', level: 18 },
+    { id: '2', name: 'Р В РІР‚СћР В Р’В»Р В Р’ВµР В Р вЂ¦Р В Р’В° Р В РЎС™Р В РЎвЂўР РЋР вЂљР В РЎвЂўР В Р’В·Р В РЎвЂўР В Р вЂ Р В Р’В°', level: 16 },
+    { id: '3', name: 'Р В РЎвЂ™Р В Р вЂ¦Р В Р вЂ¦Р В Р’В° Р В Р’ВР В Р вЂ Р В Р’В°Р В Р вЂ¦Р В РЎвЂўР В Р вЂ Р В Р’В°', level: 15 }
   ];
 
   // Get current level data for display
@@ -98,10 +98,10 @@ export const HomePage: React.FC<HomePageProps> = ({
   
   const getSortLabel = (sort: string) => {
     switch (sort) {
-      case 'level': return 'Р СџР С• РЎС“РЎР‚Р С•Р Р†Р Р…РЎР‹';
-      case 'achievements': return 'Р СџР С• Р Т‘Р С•РЎРѓРЎвЂљР С‘Р В¶Р ВµР Р…Р С‘РЎРЏР С';
-      case 'balance': return 'Р СџР С• Р В±Р В°Р В»Р В°Р Р…РЎРѓРЎС“';
-      default: return 'Р СџР С• РЎС“РЎР‚Р С•Р Р†Р Р…РЎР‹';
+      case 'level': return 'Р В РЎСџР В РЎвЂў Р РЋРЎвЂњР РЋР вЂљР В РЎвЂўР В Р вЂ Р В Р вЂ¦Р РЋР вЂ№';
+      case 'achievements': return 'Р В РЎСџР В РЎвЂў Р В РўвЂР В РЎвЂўР РЋР С“Р РЋРІР‚С™Р В РЎвЂР В Р’В¶Р В Р’ВµР В Р вЂ¦Р В РЎвЂР РЋР РЏР В РЎВ';
+      case 'balance': return 'Р В РЎСџР В РЎвЂў Р В Р’В±Р В Р’В°Р В Р’В»Р В Р’В°Р В Р вЂ¦Р РЋР С“Р РЋРЎвЂњ';
+      default: return 'Р В РЎСџР В РЎвЂў Р РЋРЎвЂњР РЋР вЂљР В РЎвЂўР В Р вЂ Р В Р вЂ¦Р РЋР вЂ№';
     }
   };
 
@@ -169,7 +169,7 @@ export const HomePage: React.FC<HomePageProps> = ({
           }}
         >
           
-          {/* Р вЂ™Р В°РЎв‚¬Р С‘ Р Т‘Р С•РЎРѓРЎвЂљР С‘Р В¶Р ВµР Р…Р С‘РЎРЏ - Р С•Р Т‘Р Р…Р В° Р С—Р В°Р Р…Р ВµР В»РЎРЉР С”Р В° РЎРѓ Р Т‘Р С•РЎРѓРЎвЂљР С‘Р В¶Р ВµР Р…Р С‘РЎРЏР СР С‘ Р Р†Р Р…РЎС“РЎвЂљРЎР‚Р С‘ */}
+          {/* Р В РІР‚в„ўР В Р’В°Р РЋРІвЂљВ¬Р В РЎвЂ Р В РўвЂР В РЎвЂўР РЋР С“Р РЋРІР‚С™Р В РЎвЂР В Р’В¶Р В Р’ВµР В Р вЂ¦Р В РЎвЂР РЋР РЏ - Р В РЎвЂўР В РўвЂР В Р вЂ¦Р В Р’В° Р В РЎвЂ”Р В Р’В°Р В Р вЂ¦Р В Р’ВµР В Р’В»Р РЋР Р‰Р В РЎвЂќР В Р’В° Р РЋР С“ Р В РўвЂР В РЎвЂўР РЋР С“Р РЋРІР‚С™Р В РЎвЂР В Р’В¶Р В Р’ВµР В Р вЂ¦Р В РЎвЂР РЋР РЏР В РЎВР В РЎвЂ Р В Р вЂ Р В Р вЂ¦Р РЋРЎвЂњР РЋРІР‚С™Р РЋР вЂљР В РЎвЂ */}
           <div 
             className="glass-card p-4"
             style={{
@@ -185,24 +185,24 @@ export const HomePage: React.FC<HomePageProps> = ({
                   color: theme === 'dark' ? '#E8ECF2' : '#0F172A'
                 }}
               >
-                Р вЂ™Р В°РЎв‚¬Р С‘ Р Т‘Р С•РЎРѓРЎвЂљР С‘Р В¶Р ВµР Р…Р С‘РЎРЏ
+                Р В РІР‚в„ўР В Р’В°Р РЋРІвЂљВ¬Р В РЎвЂ Р В РўвЂР В РЎвЂўР РЋР С“Р РЋРІР‚С™Р В РЎвЂР В Р’В¶Р В Р’ВµР В Р вЂ¦Р В РЎвЂР РЋР РЏ
               </h3>
               
               <button
                 onClick={() => setIsAchievementsModalOpen(true)}
-                aria-label="Р С›РЎвЂљР С”РЎР‚РЎвЂ№РЎвЂљРЎРЉ Р В±Р В»Р С‘Р В¶Р В°Р в„–РЎв‚¬Р С‘Р Вµ Р Т‘Р С•РЎРѓРЎвЂљР С‘Р В¶Р ВµР Р…Р С‘РЎРЏ"
+                aria-label="Р В РЎвЂєР РЋРІР‚С™Р В РЎвЂќР РЋР вЂљР РЋРІР‚в„–Р РЋРІР‚С™Р РЋР Р‰ Р В Р’В±Р В Р’В»Р В РЎвЂР В Р’В¶Р В Р’В°Р В РІвЂћвЂ“Р РЋРІвЂљВ¬Р В РЎвЂР В Р’Вµ Р В РўвЂР В РЎвЂўР РЋР С“Р РЋРІР‚С™Р В РЎвЂР В Р’В¶Р В Р’ВµР В Р вЂ¦Р В РЎвЂР РЋР РЏ"
                 className={`apple-button w-7 h-7 flex items-center justify-center focus:outline-none focus:ring-2 focus:ring-blue-400 transition-[transform,opacity] duration-200 active:scale-95 ${theme === 'dark' ? 'white-button' : ''}`}
               >
                 <Eye className="w-4 h-4" />
               </button>
             </div>
 
-            {/* Р вЂќР С•РЎРѓРЎвЂљР С‘Р В¶Р ВµР Р…Р С‘РЎРЏ Р Р†Р Р…РЎС“РЎвЂљРЎР‚Р С‘ Р С—Р В°Р Р…Р ВµР В»РЎРЉР С”Р С‘ */}
+            {/* Р В РІР‚СњР В РЎвЂўР РЋР С“Р РЋРІР‚С™Р В РЎвЂР В Р’В¶Р В Р’ВµР В Р вЂ¦Р В РЎвЂР РЋР РЏ Р В Р вЂ Р В Р вЂ¦Р РЋРЎвЂњР РЋРІР‚С™Р РЋР вЂљР В РЎвЂ Р В РЎвЂ”Р В Р’В°Р В Р вЂ¦Р В Р’ВµР В Р’В»Р РЋР Р‰Р В РЎвЂќР В РЎвЂ */}
             <div className="space-y-3">
               {[
-                { name: 'Р СњР С•Р Р†Р С‘РЎвЂЎР С•Р С”', progress: 50, description: 'Р вЂќР С•РЎРѓРЎвЂљР С‘Р С–Р Р…Р С‘РЎвЂљР Вµ 2 РЎС“РЎР‚Р С•Р Р†Р Р…РЎРЏ', rarity: 'common' },
-                { name: 'Р СћРЎР‚РЎС“Р Т‘Р С•Р В»РЎР‹Р В±Р С‘Р Р†РЎвЂ№Р в„–', progress: 30, description: 'Р вЂ™РЎвЂ№Р С—Р С•Р В»Р Р…Р С‘РЎвЂљР Вµ 10 Р В·Р В°Р Т‘Р В°РЎвЂЎ', rarity: 'rare' },
-                { name: 'Р С™Р С•Р В»Р В»Р ВµР С”РЎвЂ Р С‘Р С•Р Р…Р ВµРЎР‚', progress: 20, description: 'Р С›РЎвЂљР С”РЎР‚Р С•Р в„–РЎвЂљР Вµ 5 Р С”Р ВµР в„–РЎРѓР С•Р Р†', rarity: 'epic' }
+                { name: 'Р В РЎСљР В РЎвЂўР В Р вЂ Р В РЎвЂР РЋРІР‚РЋР В РЎвЂўР В РЎвЂќ', progress: 50, description: 'Р В РІР‚СњР В РЎвЂўР РЋР С“Р РЋРІР‚С™Р В РЎвЂР В РЎвЂ“Р В Р вЂ¦Р В РЎвЂР РЋРІР‚С™Р В Р’Вµ 2 Р РЋРЎвЂњР РЋР вЂљР В РЎвЂўР В Р вЂ Р В Р вЂ¦Р РЋР РЏ', rarity: 'common' },
+                { name: 'Р В РЎС›Р РЋР вЂљР РЋРЎвЂњР В РўвЂР В РЎвЂўР В Р’В»Р РЋР вЂ№Р В Р’В±Р В РЎвЂР В Р вЂ Р РЋРІР‚в„–Р В РІвЂћвЂ“', progress: 30, description: 'Р В РІР‚в„ўР РЋРІР‚в„–Р В РЎвЂ”Р В РЎвЂўР В Р’В»Р В Р вЂ¦Р В РЎвЂР РЋРІР‚С™Р В Р’Вµ 10 Р В Р’В·Р В Р’В°Р В РўвЂР В Р’В°Р РЋРІР‚РЋ', rarity: 'rare' },
+                { name: 'Р В РЎв„ўР В РЎвЂўР В Р’В»Р В Р’В»Р В Р’ВµР В РЎвЂќР РЋРІР‚В Р В РЎвЂР В РЎвЂўР В Р вЂ¦Р В Р’ВµР РЋР вЂљ', progress: 20, description: 'Р В РЎвЂєР РЋРІР‚С™Р В РЎвЂќР РЋР вЂљР В РЎвЂўР В РІвЂћвЂ“Р РЋРІР‚С™Р В Р’Вµ 5 Р В РЎвЂќР В Р’ВµР В РІвЂћвЂ“Р РЋР С“Р В РЎвЂўР В Р вЂ ', rarity: 'epic' }
               ].map((achievement, index) => (
                 <div key={index} className="flex items-center gap-3">
                   {/* Achievement icon */}
@@ -212,7 +212,7 @@ export const HomePage: React.FC<HomePageProps> = ({
                       backgroundColor: '#3B82F6'
                     }}
                   >
-                    СЂСџвЂєРЋРїС‘РЏ
+                    РЎР‚РЎСџРІР‚С”Р Р‹Р С—РЎвЂР РЏ
                   </div>
                   
                   {/* Achievement info */}
@@ -253,7 +253,7 @@ export const HomePage: React.FC<HomePageProps> = ({
             </div>
           </div>
 
-          {/* Р РЋРЎвЂљР В°РЎвЂљРЎС“РЎРѓ/XP/Р Р€РЎР‚Р С•Р Р†Р ВµР Р…РЎРЉ */}
+          {/* Р В Р Р‹Р РЋРІР‚С™Р В Р’В°Р РЋРІР‚С™Р РЋРЎвЂњР РЋР С“/XP/Р В Р в‚¬Р РЋР вЂљР В РЎвЂўР В Р вЂ Р В Р’ВµР В Р вЂ¦Р РЋР Р‰ */}
           <div 
             className="glass-card p-4"
             style={{
@@ -270,7 +270,7 @@ export const HomePage: React.FC<HomePageProps> = ({
                       color: theme === 'dark' ? '#A7B0BD' : '#6B7280'
                     }}
                   >
-                    Р РЋРЎвЂљР В°РЎвЂљРЎС“РЎРѓ: {currentLevelData.status}
+                    Р В Р Р‹Р РЋРІР‚С™Р В Р’В°Р РЋРІР‚С™Р РЋРЎвЂњР РЋР С“: {currentLevelData.status}
                   </span>
                 </div>
                 <div>
@@ -288,7 +288,7 @@ export const HomePage: React.FC<HomePageProps> = ({
                       fontWeight: '600',
                       textDecoration: 'underline'
                     }}
-                    aria-label={`Р С›РЎвЂљР С”РЎР‚РЎвЂ№РЎвЂљРЎРЉ Р Т‘Р ВµРЎвЂљР В°Р В»Р С‘ Р С•Р С—РЎвЂ№РЎвЂљР В°: ${userExperience} XP`}
+                    aria-label={`Р В РЎвЂєР РЋРІР‚С™Р В РЎвЂќР РЋР вЂљР РЋРІР‚в„–Р РЋРІР‚С™Р РЋР Р‰ Р В РўвЂР В Р’ВµР РЋРІР‚С™Р В Р’В°Р В Р’В»Р В РЎвЂ Р В РЎвЂўР В РЎвЂ”Р РЋРІР‚в„–Р РЋРІР‚С™Р В Р’В°: ${userExperience} XP`}
                   >
                     XP: {userExperience}
                   </button>
@@ -316,10 +316,10 @@ export const HomePage: React.FC<HomePageProps> = ({
             />
           </div>
 
-          {/* Р вЂР В°РЎвЂљРЎвЂљР В»РЎвЂ№ Р С‘ Р В Р ВµР в„–РЎвЂљР С‘Р Р…Р С– */}
+          {/* Р В РІР‚ВР В Р’В°Р РЋРІР‚С™Р РЋРІР‚С™Р В Р’В»Р РЋРІР‚в„– Р В РЎвЂ Р В Р’В Р В Р’ВµР В РІвЂћвЂ“Р РЋРІР‚С™Р В РЎвЂР В Р вЂ¦Р В РЎвЂ“ */}
           <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '12px' }}>
             
-            {/* Р вЂР В°РЎвЂљРЎвЂљР В»РЎвЂ№ */}
+            {/* Р В РІР‚ВР В Р’В°Р РЋРІР‚С™Р РЋРІР‚С™Р В Р’В»Р РЋРІР‚в„– */}
             <div 
               className="glass-card p-4"
               style={{
@@ -335,18 +335,18 @@ export const HomePage: React.FC<HomePageProps> = ({
                     color: theme === 'dark' ? '#E8ECF2' : '#0F172A'
                   }}
                 >
-                  Р вЂР В°РЎвЂљРЎвЂљР В»РЎвЂ№
+                  Р В РІР‚ВР В Р’В°Р РЋРІР‚С™Р РЋРІР‚С™Р В Р’В»Р РЋРІР‚в„–
                 </h3>
                 
                 <button
-                  aria-label="Р РЋР С•Р В·Р Т‘Р В°РЎвЂљРЎРЉ Р В±Р В°РЎвЂљРЎвЂљР В»"
+                  aria-label="Р В Р Р‹Р В РЎвЂўР В Р’В·Р В РўвЂР В Р’В°Р РЋРІР‚С™Р РЋР Р‰ Р В Р’В±Р В Р’В°Р РЋРІР‚С™Р РЋРІР‚С™Р В Р’В»"
                   className={`apple-button w-7 h-7 flex items-center justify-center focus:outline-none focus:ring-2 focus:ring-blue-400 transition-[transform,opacity] duration-200 active:scale-95 ${theme === 'dark' ? 'white-button' : ''}`}
                 >
                   <Plus className="w-4 h-4" />
                 </button>
               </div>
 
-              {/* Р С’Р С”РЎвЂљР С‘Р Р†Р Р…РЎвЂ№Р Вµ Р В±Р В°РЎвЂљРЎвЂљР В»РЎвЂ№ */}
+              {/* Р В РЎвЂ™Р В РЎвЂќР РЋРІР‚С™Р В РЎвЂР В Р вЂ Р В Р вЂ¦Р РЋРІР‚в„–Р В Р’Вµ Р В Р’В±Р В Р’В°Р РЋРІР‚С™Р РЋРІР‚С™Р В Р’В»Р РЋРІР‚в„– */}
               <div className="mb-4">
                 <h4 
                   style={{ 
@@ -356,7 +356,7 @@ export const HomePage: React.FC<HomePageProps> = ({
                     marginBottom: '8px'
                   }}
                 >
-                  Р С’Р С”РЎвЂљР С‘Р Р†Р Р…РЎвЂ№Р Вµ Р В±Р В°РЎвЂљРЎвЂљР В»РЎвЂ№
+                  Р В РЎвЂ™Р В РЎвЂќР РЋРІР‚С™Р В РЎвЂР В Р вЂ Р В Р вЂ¦Р РЋРІР‚в„–Р В Р’Вµ Р В Р’В±Р В Р’В°Р РЋРІР‚С™Р РЋРІР‚С™Р В Р’В»Р РЋРІР‚в„–
                 </h4>
                 
                 {activeBattles.map((battle) => (
@@ -371,12 +371,12 @@ export const HomePage: React.FC<HomePageProps> = ({
                       marginBottom: '4px'
                     }}
                   >
-                    {battle.opponent} vs Р вЂ™РЎвЂ№
+                    {battle.opponent} vs Р В РІР‚в„ўР РЋРІР‚в„–
                   </div>
                 ))}
               </div>
 
-              {/* Р СџРЎР‚Р С‘Р С–Р В»Р В°РЎв‚¬Р ВµР Р…Р С‘РЎРЏ */}
+              {/* Р В РЎСџР РЋР вЂљР В РЎвЂР В РЎвЂ“Р В Р’В»Р В Р’В°Р РЋРІвЂљВ¬Р В Р’ВµР В Р вЂ¦Р В РЎвЂР РЋР РЏ */}
               <div className="mb-4">
                 <h4 
                   style={{ 
@@ -386,7 +386,7 @@ export const HomePage: React.FC<HomePageProps> = ({
                     marginBottom: '8px'
                   }}
                 >
-                  Р СџРЎР‚Р С‘Р С–Р В»Р В°РЎв‚¬Р ВµР Р…Р С‘РЎРЏ
+                  Р В РЎСџР РЋР вЂљР В РЎвЂР В РЎвЂ“Р В Р’В»Р В Р’В°Р РЋРІвЂљВ¬Р В Р’ВµР В Р вЂ¦Р В РЎвЂР РЋР РЏ
                 </h4>
                 
                 {mockBattleInvitations.map((invitation) => (
@@ -421,7 +421,7 @@ export const HomePage: React.FC<HomePageProps> = ({
                         fontWeight: '500'
                       }}
                     >
-                      Р Р†РЎвЂ№Р В·РЎвЂ№Р Р†Р В°Р ВµРЎвЂљ
+                      Р В Р вЂ Р РЋРІР‚в„–Р В Р’В·Р РЋРІР‚в„–Р В Р вЂ Р В Р’В°Р В Р’ВµР РЋРІР‚С™
                     </button>
                   </div>
                 ))}
@@ -434,11 +434,11 @@ export const HomePage: React.FC<HomePageProps> = ({
                   textAlign: 'center'
                 }}
               >
-                Р вЂ™РЎРѓР ВµР С–Р С•: 3 Р В±Р В°РЎвЂљРЎвЂљР В»Р С•Р Р†
+                Р В РІР‚в„ўР РЋР С“Р В Р’ВµР В РЎвЂ“Р В РЎвЂў: 3 Р В Р’В±Р В Р’В°Р РЋРІР‚С™Р РЋРІР‚С™Р В Р’В»Р В РЎвЂўР В Р вЂ 
               </div>
             </div>
 
-            {/* Р В Р ВµР в„–РЎвЂљР С‘Р Р…Р С– */}
+            {/* Р В Р’В Р В Р’ВµР В РІвЂћвЂ“Р РЋРІР‚С™Р В РЎвЂР В Р вЂ¦Р В РЎвЂ“ */}
             <div 
               className="glass-card p-4"
               style={{
@@ -454,12 +454,12 @@ export const HomePage: React.FC<HomePageProps> = ({
                     color: theme === 'dark' ? '#E8ECF2' : '#0F172A'
                   }}
                 >
-                  Р В Р ВµР в„–РЎвЂљР С‘Р Р…Р С–
+                  Р В Р’В Р В Р’ВµР В РІвЂћвЂ“Р РЋРІР‚С™Р В РЎвЂР В Р вЂ¦Р В РЎвЂ“
                 </h3>
                 
                 <button 
                   onClick={cycleSort}
-                  aria-label={`Р РЋР СР ВµР Р…Р С‘РЎвЂљРЎРЉ РЎРѓР С•РЎР‚РЎвЂљР С‘РЎР‚Р С•Р Р†Р С”РЎС“: ${getSortLabel(leaderboardSort)}`}
+                  aria-label={`Р В Р Р‹Р В РЎВР В Р’ВµР В Р вЂ¦Р В РЎвЂР РЋРІР‚С™Р РЋР Р‰ Р РЋР С“Р В РЎвЂўР РЋР вЂљР РЋРІР‚С™Р В РЎвЂР РЋР вЂљР В РЎвЂўР В Р вЂ Р В РЎвЂќР РЋРЎвЂњ: ${getSortLabel(leaderboardSort)}`}
                   className={`apple-button w-7 h-7 flex items-center justify-center focus:outline-none focus:ring-2 focus:ring-blue-400 transition-[transform,opacity] duration-200 active:scale-95 ${theme === 'dark' ? 'white-button' : ''}`}
                 >
                   <Menu className="w-4 h-4" />
@@ -516,7 +516,7 @@ export const HomePage: React.FC<HomePageProps> = ({
                         color: theme === 'dark' ? '#A7B0BD' : '#6B7280'
                       }}
                     >
-                      Р Р€РЎР‚.{player.level}
+                      Р В Р в‚¬Р РЋР вЂљ.{player.level}
                     </div>
                   </div>
                 ))}
@@ -524,7 +524,7 @@ export const HomePage: React.FC<HomePageProps> = ({
             </div>
           </div>
 
-          {/* Р С’РЎвЂЎР С‘Р Р†Р С”Р С‘ */}
+          {/* Р В РЎвЂ™Р РЋРІР‚РЋР В РЎвЂР В Р вЂ Р В РЎвЂќР В РЎвЂ */}
           <div 
             className="glass-card p-4"
             style={{
@@ -540,12 +540,12 @@ export const HomePage: React.FC<HomePageProps> = ({
                   color: theme === 'dark' ? '#E8ECF2' : '#0F172A'
                 }}
               >
-                Р С’РЎвЂЎР С‘Р Р†Р С”Р С‘
+                Р В РЎвЂ™Р РЋРІР‚РЋР В РЎвЂР В Р вЂ Р В РЎвЂќР В РЎвЂ
               </h3>
               
               <button
                 onClick={() => onNavigate('achievements')}
-                aria-label="Р СџР ВµРЎР‚Р ВµР в„–РЎвЂљР С‘ Р С” РЎРѓРЎвЂљРЎР‚Р В°Р Р…Р С‘РЎвЂ Р Вµ Р В°РЎвЂЎР С‘Р Р†Р С•Р С”"
+                aria-label="Р В РЎСџР В Р’ВµР РЋР вЂљР В Р’ВµР В РІвЂћвЂ“Р РЋРІР‚С™Р В РЎвЂ Р В РЎвЂќ Р РЋР С“Р РЋРІР‚С™Р РЋР вЂљР В Р’В°Р В Р вЂ¦Р В РЎвЂР РЋРІР‚В Р В Р’Вµ Р В Р’В°Р РЋРІР‚РЋР В РЎвЂР В Р вЂ Р В РЎвЂўР В РЎвЂќ"
                 className={`apple-button w-7 h-7 flex items-center justify-center focus:outline-none focus:ring-2 focus:ring-blue-400 transition-[transform,opacity] duration-200 active:scale-95 ${theme === 'dark' ? 'white-button' : ''}`}
               >
                 <Eye className="w-4 h-4" />
@@ -554,11 +554,11 @@ export const HomePage: React.FC<HomePageProps> = ({
 
             <div className="flex justify-center gap-2">
               {[
-                { icon: 'СЂСџРЏвЂ ', rarity: 'legendary', completed: true },
-                { icon: 'СЂСџТђвЂЎ', rarity: 'epic', completed: true },
-                { icon: 'СЂСџТђв‚¬', rarity: 'rare', completed: true },
-                { icon: 'СЂСџТђвЂ°', rarity: 'common', completed: false },
-                { icon: 'СЂСџР‹Р‡', rarity: 'common', completed: false }
+                { icon: 'РЎР‚РЎСџР РЏРІР‚В ', rarity: 'legendary', completed: true },
+                { icon: 'РЎР‚РЎСџРўС’РІР‚РЋ', rarity: 'epic', completed: true },
+                { icon: 'РЎР‚РЎСџРўС’РІвЂљВ¬', rarity: 'rare', completed: true },
+                { icon: 'РЎР‚РЎСџРўС’РІР‚В°', rarity: 'common', completed: false },
+                { icon: 'РЎР‚РЎСџР вЂ№Р вЂЎ', rarity: 'common', completed: false }
               ].map((achievement, index) => (
                 <div
                   key={index}
@@ -614,18 +614,18 @@ export const HomePage: React.FC<HomePageProps> = ({
       <ProductionModal
         isOpen={isAchievementsModalOpen}
         onClose={() => setIsAchievementsModalOpen(false)}
-        title="Р вЂР В»Р С‘Р В¶Р В°Р в„–РЎв‚¬Р С‘Р Вµ Р Т‘Р С•РЎРѓРЎвЂљР С‘Р В¶Р ВµР Р…Р С‘РЎРЏ"
+        title="Р В РІР‚ВР В Р’В»Р В РЎвЂР В Р’В¶Р В Р’В°Р В РІвЂћвЂ“Р РЋРІвЂљВ¬Р В РЎвЂР В Р’Вµ Р В РўвЂР В РЎвЂўР РЋР С“Р РЋРІР‚С™Р В РЎвЂР В Р’В¶Р В Р’ВµР В Р вЂ¦Р В РЎвЂР РЋР РЏ"
         modalId="achievements-modal"
       >
         <div className="space-y-4">
           {/* Top 6 closest achievements or all available if less than 6 */}
           {[
-            { name: 'Р СџР ВµРЎР‚Р Р†РЎвЂ№Р в„– РЎв‚¬Р В°Р С–', progress: 75, rarity: 'common', description: 'Р вЂ™РЎвЂ№Р С—Р С•Р В»Р Р…Р С‘РЎвЂљР Вµ Р С—Р ВµРЎР‚Р Р†РЎС“РЎР‹ Р В·Р В°Р Т‘Р В°РЎвЂЎРЎС“' },
-            { name: 'Р С’Р С”РЎвЂљР С‘Р Р†Р Р…РЎвЂ№Р в„– РЎС“РЎвЂЎР В°РЎРѓРЎвЂљР Р…Р С‘Р С”', progress: 45, rarity: 'rare', description: 'Р вЂ™РЎвЂ№Р С—Р С•Р В»Р Р…Р С‘РЎвЂљР Вµ 5 Р В·Р В°Р Т‘Р В°РЎвЂЎ' },
-            { name: 'Р СљР В°РЎРѓРЎвЂљР ВµРЎР‚ Р В±Р В°РЎвЂљРЎвЂљР В»Р С•Р Р†', progress: 90, rarity: 'epic', description: 'Р вЂ™РЎвЂ№Р С‘Р С–РЎР‚Р В°Р в„–РЎвЂљР Вµ 3 Р В±Р В°РЎвЂљРЎвЂљР В»Р В°' },
-            { name: 'Р СџР С•Р С”РЎС“Р С—Р В°РЎвЂљР ВµР В»РЎРЉ', progress: 30, rarity: 'common', description: 'Р РЋР С•Р Р†Р ВµРЎР‚РЎв‚¬Р С‘РЎвЂљР Вµ 3 Р С—Р С•Р С”РЎС“Р С—Р С”Р С‘' },
-            { name: 'Р вЂ™Р С•Р С‘Р Р…', progress: 60, rarity: 'rare', description: 'Р вЂ™РЎвЂ№Р С‘Р С–РЎР‚Р В°Р в„–РЎвЂљР Вµ 2 Р В±Р В°РЎвЂљРЎвЂљР В»Р В°' },
-            { name: 'Р СћРЎР‚РЎС“Р Т‘Р С•Р В»РЎР‹Р В±Р С‘Р Р†РЎвЂ№Р в„–', progress: 20, rarity: 'epic', description: 'Р вЂ™РЎвЂ№Р С—Р С•Р В»Р Р…Р С‘РЎвЂљР Вµ 15 Р В·Р В°Р Т‘Р В°РЎвЂЎ' }
+            { name: 'Р В РЎСџР В Р’ВµР РЋР вЂљР В Р вЂ Р РЋРІР‚в„–Р В РІвЂћвЂ“ Р РЋРІвЂљВ¬Р В Р’В°Р В РЎвЂ“', progress: 75, rarity: 'common', description: 'Р В РІР‚в„ўР РЋРІР‚в„–Р В РЎвЂ”Р В РЎвЂўР В Р’В»Р В Р вЂ¦Р В РЎвЂР РЋРІР‚С™Р В Р’Вµ Р В РЎвЂ”Р В Р’ВµР РЋР вЂљР В Р вЂ Р РЋРЎвЂњР РЋР вЂ№ Р В Р’В·Р В Р’В°Р В РўвЂР В Р’В°Р РЋРІР‚РЋР РЋРЎвЂњ' },
+            { name: 'Р В РЎвЂ™Р В РЎвЂќР РЋРІР‚С™Р В РЎвЂР В Р вЂ Р В Р вЂ¦Р РЋРІР‚в„–Р В РІвЂћвЂ“ Р РЋРЎвЂњР РЋРІР‚РЋР В Р’В°Р РЋР С“Р РЋРІР‚С™Р В Р вЂ¦Р В РЎвЂР В РЎвЂќ', progress: 45, rarity: 'rare', description: 'Р В РІР‚в„ўР РЋРІР‚в„–Р В РЎвЂ”Р В РЎвЂўР В Р’В»Р В Р вЂ¦Р В РЎвЂР РЋРІР‚С™Р В Р’Вµ 5 Р В Р’В·Р В Р’В°Р В РўвЂР В Р’В°Р РЋРІР‚РЋ' },
+            { name: 'Р В РЎС™Р В Р’В°Р РЋР С“Р РЋРІР‚С™Р В Р’ВµР РЋР вЂљ Р В Р’В±Р В Р’В°Р РЋРІР‚С™Р РЋРІР‚С™Р В Р’В»Р В РЎвЂўР В Р вЂ ', progress: 90, rarity: 'epic', description: 'Р В РІР‚в„ўР РЋРІР‚в„–Р В РЎвЂР В РЎвЂ“Р РЋР вЂљР В Р’В°Р В РІвЂћвЂ“Р РЋРІР‚С™Р В Р’Вµ 3 Р В Р’В±Р В Р’В°Р РЋРІР‚С™Р РЋРІР‚С™Р В Р’В»Р В Р’В°' },
+            { name: 'Р В РЎСџР В РЎвЂўР В РЎвЂќР РЋРЎвЂњР В РЎвЂ”Р В Р’В°Р РЋРІР‚С™Р В Р’ВµР В Р’В»Р РЋР Р‰', progress: 30, rarity: 'common', description: 'Р В Р Р‹Р В РЎвЂўР В Р вЂ Р В Р’ВµР РЋР вЂљР РЋРІвЂљВ¬Р В РЎвЂР РЋРІР‚С™Р В Р’Вµ 3 Р В РЎвЂ”Р В РЎвЂўР В РЎвЂќР РЋРЎвЂњР В РЎвЂ”Р В РЎвЂќР В РЎвЂ' },
+            { name: 'Р В РІР‚в„ўР В РЎвЂўР В РЎвЂР В Р вЂ¦', progress: 60, rarity: 'rare', description: 'Р В РІР‚в„ўР РЋРІР‚в„–Р В РЎвЂР В РЎвЂ“Р РЋР вЂљР В Р’В°Р В РІвЂћвЂ“Р РЋРІР‚С™Р В Р’Вµ 2 Р В Р’В±Р В Р’В°Р РЋРІР‚С™Р РЋРІР‚С™Р В Р’В»Р В Р’В°' },
+            { name: 'Р В РЎС›Р РЋР вЂљР РЋРЎвЂњР В РўвЂР В РЎвЂўР В Р’В»Р РЋР вЂ№Р В Р’В±Р В РЎвЂР В Р вЂ Р РЋРІР‚в„–Р В РІвЂћвЂ“', progress: 20, rarity: 'epic', description: 'Р В РІР‚в„ўР РЋРІР‚в„–Р В РЎвЂ”Р В РЎвЂўР В Р’В»Р В Р вЂ¦Р В РЎвЂР РЋРІР‚С™Р В Р’Вµ 15 Р В Р’В·Р В Р’В°Р В РўвЂР В Р’В°Р РЋРІР‚РЋ' }
           ].slice(0, 6).map((achievement, index) => (
             <div key={index} className="flex items-center gap-4 p-3 rounded-lg" style={{
               backgroundColor: theme === 'dark' ? 'rgba(255, 255, 255, 0.05)' : 'rgba(0, 0, 0, 0.02)'
@@ -639,7 +639,7 @@ export const HomePage: React.FC<HomePageProps> = ({
                                  achievement.rarity === 'epic' ? '#a855f7' : '#fbbf24'
                 }}
               >
-                СЂСџРЏвЂ 
+                РЎР‚РЎСџР РЏРІР‚В 
               </div>
               
               {/* Achievement info */}

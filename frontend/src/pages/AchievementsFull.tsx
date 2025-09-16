@@ -31,10 +31,10 @@ export const AchievementsFull: React.FC<AchievementsFullProps> = ({ theme }) => 
             color: 'white',
             fontWeight: 'bold'
           }}>
-            Р В
+            Р В Р’В
           </div>
           <div>
-            <div style={{ fontWeight: 'bold', color: theme === 'dark' ? '#fff' : '#000' }}>Р ВР Р†Р В°Р Р… Р ВР Р†Р В°Р Р…Р С•Р Р†</div>
+            <div style={{ fontWeight: 'bold', color: theme === 'dark' ? '#fff' : '#000' }}>Р В Р’ВР В Р вЂ Р В Р’В°Р В Р вЂ¦ Р В Р’ВР В Р вЂ Р В Р’В°Р В Р вЂ¦Р В РЎвЂўР В Р вЂ </div>
             <div style={{ fontSize: '12px', color: '#666' }}>WORKER</div>
           </div>
         </div>
@@ -50,7 +50,7 @@ export const AchievementsFull: React.FC<AchievementsFullProps> = ({ theme }) => 
             justifyContent: 'center',
             cursor: 'pointer'
           }}>
-            СЂСџвЂќвЂќ
+            РЎР‚РЎСџРІР‚СњРІР‚Сњ
           </button>
           <button style={{
             width: '40px',
@@ -63,7 +63,7 @@ export const AchievementsFull: React.FC<AchievementsFullProps> = ({ theme }) => 
             justifyContent: 'center',
             cursor: 'pointer'
           }}>
-            РІС™в„ўРїС‘РЏ
+            Р Р†РЎв„ўРІвЂћСћР С—РЎвЂР РЏ
           </button>
         </div>
       </div>
@@ -76,7 +76,7 @@ export const AchievementsFull: React.FC<AchievementsFullProps> = ({ theme }) => 
         marginTop: '20px',
         marginBottom: '20px'
       }}>
-        <h1 style={{ color: theme === 'dark' ? '#fff' : '#000', fontSize: '1.5rem' }}>Р вЂќР С•РЎРѓРЎвЂљРЎС“Р С—Р Р…РЎвЂ№Р Вµ Р Т‘Р С•РЎРѓРЎвЂљР С‘Р В¶Р ВµР Р…Р С‘РЎРЏ</h1>
+        <h1 style={{ color: theme === 'dark' ? '#fff' : '#000', fontSize: '1.5rem' }}>Р В РІР‚СњР В РЎвЂўР РЋР С“Р РЋРІР‚С™Р РЋРЎвЂњР В РЎвЂ”Р В Р вЂ¦Р РЋРІР‚в„–Р В Р’Вµ Р В РўвЂР В РЎвЂўР РЋР С“Р РЋРІР‚С™Р В РЎвЂР В Р’В¶Р В Р’ВµР В Р вЂ¦Р В РЎвЂР РЋР РЏ</h1>
         <button style={{
           width: '32px',
           height: '32px',
@@ -88,13 +88,13 @@ export const AchievementsFull: React.FC<AchievementsFullProps> = ({ theme }) => 
           justifyContent: 'center',
           cursor: 'pointer'
         }}>
-          РІВВ°
+          Р Р†Р’ВР’В°
         </button>
       </div>
 
       {/* Achievements List */}
       <div style={{ display: 'flex', flexDirection: 'column', gap: '12px' }}>
-        {/* Р СџР С•Р С”РЎС“Р С—Р В°РЎвЂљР ВµР В»РЎРЉ */}
+        {/* Р В РЎСџР В РЎвЂўР В РЎвЂќР РЋРЎвЂњР В РЎвЂ”Р В Р’В°Р РЋРІР‚С™Р В Р’ВµР В Р’В»Р РЋР Р‰ */}
         <div style={{
           background: theme === 'dark' ? '#161A22' : '#fff',
           borderRadius: '16px',
@@ -115,19 +115,19 @@ export const AchievementsFull: React.FC<AchievementsFullProps> = ({ theme }) => 
             color: 'white',
             fontSize: '20px'
           }}>
-            СЂСџРЏвЂ 
+            РЎР‚РЎСџР РЏРІР‚В 
           </div>
           <div style={{ flex: 1 }}>
-            <div style={{ fontWeight: 'bold', color: theme === 'dark' ? '#fff' : '#000', marginBottom: '4px' }}>Р СџР С•Р С”РЎС“Р С—Р В°РЎвЂљР ВµР В»РЎРЉ</div>
-            <div style={{ fontSize: '12px', color: '#666', marginBottom: '4px' }}>Р РЋР С•Р Р†Р ВµРЎР‚РЎв‚¬Р С‘РЎвЂљР Вµ 10 Р С—Р С•Р С”РЎС“Р С—Р С•Р С” Р Р† Р СР В°Р С–Р В°Р В·Р С‘Р Р…Р Вµ</div>
+            <div style={{ fontWeight: 'bold', color: theme === 'dark' ? '#fff' : '#000', marginBottom: '4px' }}>Р В РЎСџР В РЎвЂўР В РЎвЂќР РЋРЎвЂњР В РЎвЂ”Р В Р’В°Р РЋРІР‚С™Р В Р’ВµР В Р’В»Р РЋР Р‰</div>
+            <div style={{ fontSize: '12px', color: '#666', marginBottom: '4px' }}>Р В Р Р‹Р В РЎвЂўР В Р вЂ Р В Р’ВµР РЋР вЂљР РЋРІвЂљВ¬Р В РЎвЂР РЋРІР‚С™Р В Р’Вµ 10 Р В РЎвЂ”Р В РЎвЂўР В РЎвЂќР РЋРЎвЂњР В РЎвЂ”Р В РЎвЂўР В РЎвЂќ Р В Р вЂ  Р В РЎВР В Р’В°Р В РЎвЂ“Р В Р’В°Р В Р’В·Р В РЎвЂР В Р вЂ¦Р В Р’Вµ</div>
             <div style={{ fontSize: '10px', color: '#10B981', display: 'flex', alignItems: 'center', gap: '4px' }}>
-              СЂСџвЂњР‹ Р В¤Р В°Р в„–Р В» Р С—РЎР‚Р С‘Р С”РЎР‚Р ВµР С—Р В»Р ВµР Р…
+              РЎР‚РЎСџРІР‚СљР вЂ№ Р В Р’В¤Р В Р’В°Р В РІвЂћвЂ“Р В Р’В» Р В РЎвЂ”Р РЋР вЂљР В РЎвЂР В РЎвЂќР РЋР вЂљР В Р’ВµР В РЎвЂ”Р В Р’В»Р В Р’ВµР В Р вЂ¦
             </div>
           </div>
           <div style={{ color: '#10B981', fontSize: '14px', fontWeight: 'bold' }}>70%</div>
         </div>
 
-        {/* Р вЂ™Р С•Р С‘Р Р… */}
+        {/* Р В РІР‚в„ўР В РЎвЂўР В РЎвЂР В Р вЂ¦ */}
         <div style={{
           background: theme === 'dark' ? '#161A22' : '#fff',
           borderRadius: '16px',
@@ -148,16 +148,16 @@ export const AchievementsFull: React.FC<AchievementsFullProps> = ({ theme }) => 
             color: 'white',
             fontSize: '20px'
           }}>
-            СЂСџРЏвЂ 
+            РЎР‚РЎСџР РЏРІР‚В 
           </div>
           <div style={{ flex: 1 }}>
-            <div style={{ fontWeight: 'bold', color: theme === 'dark' ? '#fff' : '#000', marginBottom: '4px' }}>Р вЂ™Р С•Р С‘Р Р…</div>
-            <div style={{ fontSize: '12px', color: '#666' }}>Р вЂ™РЎвЂ№Р С‘Р С–РЎР‚Р В°Р в„–РЎвЂљР Вµ 5 Р В±Р В°РЎвЂљРЎвЂљР В»Р С•Р Р†</div>
+            <div style={{ fontWeight: 'bold', color: theme === 'dark' ? '#fff' : '#000', marginBottom: '4px' }}>Р В РІР‚в„ўР В РЎвЂўР В РЎвЂР В Р вЂ¦</div>
+            <div style={{ fontSize: '12px', color: '#666' }}>Р В РІР‚в„ўР РЋРІР‚в„–Р В РЎвЂР В РЎвЂ“Р РЋР вЂљР В Р’В°Р В РІвЂћвЂ“Р РЋРІР‚С™Р В Р’Вµ 5 Р В Р’В±Р В Р’В°Р РЋРІР‚С™Р РЋРІР‚С™Р В Р’В»Р В РЎвЂўР В Р вЂ </div>
           </div>
           <div style={{ color: '#8B5CF6', fontSize: '14px', fontWeight: 'bold' }}>40%</div>
         </div>
 
-        {/* Р СћРЎР‚РЎС“Р Т‘Р С•Р В»РЎР‹Р В±Р С‘Р Р†РЎвЂ№Р в„– */}
+        {/* Р В РЎС›Р РЋР вЂљР РЋРЎвЂњР В РўвЂР В РЎвЂўР В Р’В»Р РЋР вЂ№Р В Р’В±Р В РЎвЂР В Р вЂ Р РЋРІР‚в„–Р В РІвЂћвЂ“ */}
         <div style={{
           background: theme === 'dark' ? '#161A22' : '#fff',
           borderRadius: '16px',
@@ -178,16 +178,16 @@ export const AchievementsFull: React.FC<AchievementsFullProps> = ({ theme }) => 
             color: 'white',
             fontSize: '20px'
           }}>
-            СЂСџРЏвЂ 
+            РЎР‚РЎСџР РЏРІР‚В 
           </div>
           <div style={{ flex: 1 }}>
-            <div style={{ fontWeight: 'bold', color: theme === 'dark' ? '#fff' : '#000', marginBottom: '4px' }}>Р СћРЎР‚РЎС“Р Т‘Р С•Р В»РЎР‹Р В±Р С‘Р Р†РЎвЂ№Р в„–</div>
-            <div style={{ fontSize: '12px', color: '#666' }}>Р вЂ™РЎвЂ№Р С—Р С•Р В»Р Р…Р С‘РЎвЂљР Вµ 10 Р В·Р В°Р Т‘Р В°РЎвЂЎ</div>
+            <div style={{ fontWeight: 'bold', color: theme === 'dark' ? '#fff' : '#000', marginBottom: '4px' }}>Р В РЎС›Р РЋР вЂљР РЋРЎвЂњР В РўвЂР В РЎвЂўР В Р’В»Р РЋР вЂ№Р В Р’В±Р В РЎвЂР В Р вЂ Р РЋРІР‚в„–Р В РІвЂћвЂ“</div>
+            <div style={{ fontSize: '12px', color: '#666' }}>Р В РІР‚в„ўР РЋРІР‚в„–Р В РЎвЂ”Р В РЎвЂўР В Р’В»Р В Р вЂ¦Р В РЎвЂР РЋРІР‚С™Р В Р’Вµ 10 Р В Р’В·Р В Р’В°Р В РўвЂР В Р’В°Р РЋРІР‚РЋ</div>
           </div>
           <div style={{ color: '#3B82F6', fontSize: '14px', fontWeight: 'bold' }}>30%</div>
         </div>
 
-        {/* Р вЂєР ВµР С–Р ВµР Р…Р Т‘Р В° */}
+        {/* Р В РІР‚С”Р В Р’ВµР В РЎвЂ“Р В Р’ВµР В Р вЂ¦Р В РўвЂР В Р’В° */}
         <div style={{
           background: theme === 'dark' ? '#161A22' : '#fff',
           borderRadius: '16px',
@@ -208,16 +208,16 @@ export const AchievementsFull: React.FC<AchievementsFullProps> = ({ theme }) => 
             color: 'white',
             fontSize: '20px'
           }}>
-            СЂСџРЏвЂ 
+            РЎР‚РЎСџР РЏРІР‚В 
           </div>
           <div style={{ flex: 1 }}>
-            <div style={{ fontWeight: 'bold', color: theme === 'dark' ? '#fff' : '#000', marginBottom: '4px' }}>Р вЂєР ВµР С–Р ВµР Р…Р Т‘Р В°</div>
-            <div style={{ fontSize: '12px', color: '#666' }}>Р вЂќР С•РЎРѓРЎвЂљР С‘Р С–Р Р…Р С‘РЎвЂљР Вµ 20 РЎС“РЎР‚Р С•Р Р†Р Р…РЎРЏ</div>
+            <div style={{ fontWeight: 'bold', color: theme === 'dark' ? '#fff' : '#000', marginBottom: '4px' }}>Р В РІР‚С”Р В Р’ВµР В РЎвЂ“Р В Р’ВµР В Р вЂ¦Р В РўвЂР В Р’В°</div>
+            <div style={{ fontSize: '12px', color: '#666' }}>Р В РІР‚СњР В РЎвЂўР РЋР С“Р РЋРІР‚С™Р В РЎвЂР В РЎвЂ“Р В Р вЂ¦Р В РЎвЂР РЋРІР‚С™Р В Р’Вµ 20 Р РЋРЎвЂњР РЋР вЂљР В РЎвЂўР В Р вЂ Р В Р вЂ¦Р РЋР РЏ</div>
           </div>
           <div style={{ color: '#F59E0B', fontSize: '14px', fontWeight: 'bold' }}>5%</div>
         </div>
 
-        {/* Р СџР ВµРЎР‚Р Р†РЎвЂ№Р Вµ РЎв‚¬Р В°Р С–Р С‘ */}
+        {/* Р В РЎСџР В Р’ВµР РЋР вЂљР В Р вЂ Р РЋРІР‚в„–Р В Р’Вµ Р РЋРІвЂљВ¬Р В Р’В°Р В РЎвЂ“Р В РЎвЂ */}
         <div style={{
           background: theme === 'dark' ? '#161A22' : '#fff',
           borderRadius: '16px',
@@ -238,11 +238,11 @@ export const AchievementsFull: React.FC<AchievementsFullProps> = ({ theme }) => 
             color: '#666',
             fontSize: '20px'
           }}>
-            СЂСџРЏвЂ 
+            РЎР‚РЎСџР РЏРІР‚В 
           </div>
           <div style={{ flex: 1 }}>
-            <div style={{ fontWeight: 'bold', color: theme === 'dark' ? '#fff' : '#000', marginBottom: '4px' }}>Р СџР ВµРЎР‚Р Р†РЎвЂ№Р Вµ РЎв‚¬Р В°Р С–Р С‘</div>
-            <div style={{ fontSize: '12px', color: '#666' }}>Р вЂ™РЎвЂ№Р С—Р С•Р В»Р Р…Р С‘РЎвЂљР Вµ Р С—Р ВµРЎР‚Р Р†РЎС“РЎР‹ Р В·Р В°Р Т‘Р В°РЎвЂЎРЎС“</div>
+            <div style={{ fontWeight: 'bold', color: theme === 'dark' ? '#fff' : '#000', marginBottom: '4px' }}>Р В РЎСџР В Р’ВµР РЋР вЂљР В Р вЂ Р РЋРІР‚в„–Р В Р’Вµ Р РЋРІвЂљВ¬Р В Р’В°Р В РЎвЂ“Р В РЎвЂ</div>
+            <div style={{ fontSize: '12px', color: '#666' }}>Р В РІР‚в„ўР РЋРІР‚в„–Р В РЎвЂ”Р В РЎвЂўР В Р’В»Р В Р вЂ¦Р В РЎвЂР РЋРІР‚С™Р В Р’Вµ Р В РЎвЂ”Р В Р’ВµР РЋР вЂљР В Р вЂ Р РЋРЎвЂњР РЋР вЂ№ Р В Р’В·Р В Р’В°Р В РўвЂР В Р’В°Р РЋРІР‚РЋР РЋРЎвЂњ</div>
           </div>
           <div style={{ color: '#666', fontSize: '14px', fontWeight: 'bold' }}>0%</div>
         </div>
@@ -271,8 +271,8 @@ export const AchievementsFull: React.FC<AchievementsFullProps> = ({ theme }) => 
           cursor: 'pointer',
           color: theme === 'dark' ? '#666' : '#999'
         }}>
-          <div style={{ fontSize: '20px' }}>СЂСџРЏВ </div>
-          <div style={{ fontSize: '10px' }}>Р вЂњР В»Р В°Р Р†Р Р…Р В°РЎРЏ</div>
+          <div style={{ fontSize: '20px' }}>РЎР‚РЎСџР РЏР’В </div>
+          <div style={{ fontSize: '10px' }}>Р В РІР‚СљР В Р’В»Р В Р’В°Р В Р вЂ Р В Р вЂ¦Р В Р’В°Р РЋР РЏ</div>
         </button>
         <button style={{
           display: 'flex',
@@ -284,8 +284,8 @@ export const AchievementsFull: React.FC<AchievementsFullProps> = ({ theme }) => 
           cursor: 'pointer',
           color: '#5AA7FF'
         }}>
-          <div style={{ fontSize: '20px' }}>СЂСџРЏвЂ </div>
-          <div style={{ fontSize: '10px' }}>Р вЂќР С•РЎРѓРЎвЂљР С‘Р В¶Р ВµР Р…Р С‘РЎРЏ</div>
+          <div style={{ fontSize: '20px' }}>РЎР‚РЎСџР РЏРІР‚В </div>
+          <div style={{ fontSize: '10px' }}>Р В РІР‚СњР В РЎвЂўР РЋР С“Р РЋРІР‚С™Р В РЎвЂР В Р’В¶Р В Р’ВµР В Р вЂ¦Р В РЎвЂР РЋР РЏ</div>
         </button>
         <button style={{
           display: 'flex',
@@ -297,8 +297,8 @@ export const AchievementsFull: React.FC<AchievementsFullProps> = ({ theme }) => 
           cursor: 'pointer',
           color: theme === 'dark' ? '#666' : '#999'
         }}>
-          <div style={{ fontSize: '20px' }}>РІСљвЂ¦</div>
-          <div style={{ fontSize: '10px' }}>Р вЂ”Р В°Р Т‘Р В°РЎвЂЎР С‘</div>
+          <div style={{ fontSize: '20px' }}>Р Р†РЎС™РІР‚В¦</div>
+          <div style={{ fontSize: '10px' }}>Р В РІР‚вЂќР В Р’В°Р В РўвЂР В Р’В°Р РЋРІР‚РЋР В РЎвЂ</div>
         </button>
         <button style={{
           display: 'flex',
@@ -310,8 +310,8 @@ export const AchievementsFull: React.FC<AchievementsFullProps> = ({ theme }) => 
           cursor: 'pointer',
           color: theme === 'dark' ? '#666' : '#999'
         }}>
-          <div style={{ fontSize: '20px' }}>СЂСџвЂєвЂ™</div>
-          <div style={{ fontSize: '10px' }}>Р СљР В°Р С–Р В°Р В·Р С‘Р Р…</div>
+          <div style={{ fontSize: '20px' }}>РЎР‚РЎСџРІР‚С”РІР‚в„ў</div>
+          <div style={{ fontSize: '10px' }}>Р В РЎС™Р В Р’В°Р В РЎвЂ“Р В Р’В°Р В Р’В·Р В РЎвЂР В Р вЂ¦</div>
         </button>
       </div>
     </div>
