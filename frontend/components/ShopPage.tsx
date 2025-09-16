@@ -1,1240 +1,234 @@
-import React, { useState, useEffect, useMemo } from 'react';
-import { 
-  ShoppingBag, 
-  Gift, 
-  Coins, 
-  Clock,
-  CheckCircle,
-  ShoppingCart,
-  Plus,
-  Minus,
-  X,
-  Package,
-  Trophy,
-  Star
-} from 'lucide-react';
+import React, { useState } from 'react';
+import { ShoppingCart, Star, Coins, Gift, Package } from 'lucide-react';
 
 interface ShopItem {
   id: string;
   name: string;
-  price: number;
-  icon: string;
   description: string;
-}
-
-interface LocalCartItem {
-  id: string;
-  name: string;
   price: number;
-  quantity: number;
-  emoji: string;
-}
-
-interface Order {
-  id: string;
-  items: LocalCartItem[];
-  total: number;
-  status: 'pending' | 'completed' | 'cancelled' | 'rejected';
-  createdAt: string;
+  category: string;
+  image?: string;
+  isPurchased: boolean;
+  rarity: 'common' | 'rare' | 'epic' | 'legendary';
 }
 
 interface ShopPageProps {
-  theme: 'light' | 'dark';
-  currentPage: string;
-  onNavigate: (page: string) => void;
+  user: {
+    coins: number;
+    level: number;
+  };
 }
 
-export const ShopPage: React.FC<ShopPageProps> = ({ theme, currentPage, onNavigate }) => {
-  const [activeTab, setActiveTab] = useState<'free' | 'shop' | 'my'>('free');
-  const [cartModalOpen, setCartModalOpen] = useState(false);
-  const [cartTab, setCartTab] = useState<'cart' | 'active' | 'completed'>('cart');
-  const [cart, setCart] = useState<LocalCartItem[]>([]);
-  const [orders, setOrders] = useState<Order[]>([]);
-  const [userCases, setUserCases] = useState<any[]>([]);
-  const [isFreeAvailable, setIsFreeAvailable] = useState(true);
-  const [timeLeft, setTimeLeft] = useState('23:59:59');
-
-  // Mock data
-  const mockUser = {
-    id: 'current-user',
-    name: 'Р В Р’ВР В Р вЂ Р В Р’В°Р В Р вЂ¦ Р В Р’ВР В Р вЂ Р В Р’В°Р В Р вЂ¦Р В РЎвЂўР В Р вЂ ',
-    balance: 2500,
-    avatar: undefined
-  };
-
-  const mockCaseShopItems = [
+export const ShopPage: React.FC<ShopPageProps> = ({ user }) => {
+  const [activeCategory, setActiveCategory] = useState('all');
+  const [items, setItems] = useState<ShopItem[]>([
     {
-      id: 'case1',
-      name: 'Р В РІР‚ВР РЋР вЂљР В РЎвЂўР В Р вЂ¦Р В Р’В·Р В РЎвЂўР В Р вЂ Р РЋРІР‚в„–Р В РІвЂћвЂ“ Р В РЎвЂќР В Р’ВµР В РІвЂћвЂ“Р РЋР С“',
-      price: 500,
-      color: '#CD7F32',
-      description: 'Р В РІР‚ВР В Р’В°Р В Р’В·Р В РЎвЂўР В Р вЂ Р РЋРІР‚в„–Р В Р’Вµ Р В РЎвЂ”Р РЋР вЂљР В Р’ВµР В РўвЂР В РЎВР В Р’ВµР РЋРІР‚С™Р РЋРІР‚в„–'
+      id: '1',
+      name: 'Базовый аватар',
+      description: 'Простой аватар для начала',
+      price: 100,
+      category: 'avatars',
+      rarity: 'common',
+      isPurchased: false
     },
     {
-      id: 'case2', 
-      name: 'Р В Р Р‹Р В Р’ВµР РЋР вЂљР В Р’ВµР В Р’В±Р РЋР вЂљР РЋР РЏР В Р вЂ¦Р РЋРІР‚в„–Р В РІвЂћвЂ“ Р В РЎвЂќР В Р’ВµР В РІвЂћвЂ“Р РЋР С“',
+      id: '2',
+      name: 'Золотой аватар',
+      description: 'Эксклюзивный золотой аватар',
+      price: 500,
+      category: 'avatars',
+      rarity: 'rare',
+      isPurchased: false
+    },
+    {
+      id: '3',
+      name: 'Кейс с наградами',
+      description: 'Случайные награды и предметы',
+      price: 200,
+      category: 'cases',
+      rarity: 'common',
+      isPurchased: false
+    },
+    {
+      id: '4',
+      name: 'Премиум кейс',
+      description: 'Редкие награды и предметы',
       price: 1000,
-      color: '#C0C0C0',
-      description: 'Р В РўС’Р В РЎвЂўР РЋР вЂљР В РЎвЂўР РЋРІвЂљВ¬Р В РЎвЂР В Р’Вµ Р В РЎвЂ”Р РЋР вЂљР В Р’ВµР В РўвЂР В РЎВР В Р’ВµР РЋРІР‚С™Р РЋРІР‚в„–'
+      category: 'cases',
+      rarity: 'epic',
+      isPurchased: false
     },
     {
-      id: 'case3',
-      name: 'Р В РІР‚вЂќР В РЎвЂўР В Р’В»Р В РЎвЂўР РЋРІР‚С™Р В РЎвЂўР В РІвЂћвЂ“ Р В РЎвЂќР В Р’ВµР В РІвЂћвЂ“Р РЋР С“', 
-      price: 2500,
-      color: '#FFD700',
-      description: 'Р В Р’В Р В Р’ВµР В РўвЂР В РЎвЂќР В РЎвЂР В Р’Вµ Р В РЎвЂ”Р РЋР вЂљР В Р’ВµР В РўвЂР В РЎВР В Р’ВµР РЋРІР‚С™Р РЋРІР‚в„–'
-    }
-  ];
-
-  const localShopItems = [
-    {
-      id: 'shop1',
-      name: 'Р В РІР‚ВР В РЎвЂўР В Р вЂ¦Р РЋРЎвЂњР РЋР С“ Р В РЎвЂўР В РЎвЂ”Р РЋРІР‚в„–Р РЋРІР‚С™Р В Р’В° 2x',
-      price: 500,
-      description: 'Р В Р в‚¬Р В РўвЂР В Р вЂ Р В Р’В°Р В РЎвЂР В Р вЂ Р В Р’В°Р В Р’ВµР РЋРІР‚С™ Р В РЎвЂ”Р В РЎвЂўР В Р’В»Р РЋРЎвЂњР РЋРІР‚РЋР В Р’В°Р В Р’ВµР В РЎВР РЋРІР‚в„–Р В РІвЂћвЂ“ Р В РЎвЂўР В РЎвЂ”Р РЋРІР‚в„–Р РЋРІР‚С™ Р В Р вЂ¦Р В Р’В° 24 Р РЋРІР‚РЋР В Р’В°Р РЋР С“Р В Р’В°',
-      emoji: 'Р Р†РЎв„ўР Р‹',
-      isActive: true
+      id: '5',
+      name: 'Бустер опыта',
+      description: '+50% опыта на 24 часа',
+      price: 300,
+      category: 'boosters',
+      rarity: 'rare',
+      isPurchased: false
     },
     {
-      id: 'shop2',
-      name: 'VIP Р РЋР С“Р РЋРІР‚С™Р В Р’В°Р РЋРІР‚С™Р РЋРЎвЂњР РЋР С“',
+      id: '6',
+      name: 'Легендарный аватар',
+      description: 'Самая редкая и красивая аватарка',
       price: 2000,
-      description: 'Р В РЎвЂєР РЋР С“Р В РЎвЂўР В Р’В±Р РЋРІР‚в„–Р В Р’Вµ Р В РЎвЂ”Р РЋР вЂљР В РЎвЂР В Р вЂ Р В РЎвЂР В Р’В»Р В Р’ВµР В РЎвЂ“Р В РЎвЂР В РЎвЂ Р В Р вЂ¦Р В Р’В° 7 Р В РўвЂР В Р вЂ¦Р В Р’ВµР В РІвЂћвЂ“',
-      emoji: 'РЎР‚РЎСџРІР‚ВРІР‚В',
-      isActive: true
-    },
-    {
-      id: 'shop3',
-      name: 'Р В РІР‚ВР В РЎвЂўР В Р вЂ¦Р РЋРЎвЂњР РЋР С“ Р В РЎвЂќР В РЎвЂўР В РЎвЂР В Р вЂ¦Р В РЎвЂўР В Р вЂ ',
-      price: 1000,
-      description: '+50% Р В РЎвЂќР В РЎвЂўР В РЎвЂР В Р вЂ¦Р В РЎвЂўР В Р вЂ  Р В Р’В·Р В Р’В° Р В Р вЂ Р РЋРІР‚в„–Р В РЎвЂ”Р В РЎвЂўР В Р’В»Р В Р вЂ¦Р В Р’ВµР В Р вЂ¦Р В РЎвЂР В Р’Вµ Р В Р’В·Р В Р’В°Р В РўвЂР В Р’В°Р РЋРІР‚РЋ',
-      emoji: 'РЎР‚РЎСџРІР‚в„ўР’В°',
-      isActive: true
+      category: 'avatars',
+      rarity: 'legendary',
+      isPurchased: false
     }
+  ]);
+
+  const categories = [
+    { id: 'all', name: 'Все товары', icon: Package },
+    { id: 'avatars', name: 'Аватары', icon: Star },
+    { id: 'cases', name: 'Кейсы', icon: Gift },
+    { id: 'boosters', name: 'Бустеры', icon: Coins }
   ];
 
-  // Cart functions
-  const addToCart = (item: any) => {
-    setCart(prev => {
-      const existing = prev.find(cartItem => cartItem.id === item.id);
-      if (existing) {
-        return prev.map(cartItem =>
-          cartItem.id === item.id
-            ? { ...cartItem, quantity: cartItem.quantity + 1 }
-            : cartItem
-        );
-      }
-      return [...prev, { ...item, quantity: 1 }];
-    });
-  };
-
-  const updateCartQuantity = (id: string, quantity: number) => {
-    if (quantity <= 0) {
-      removeFromCart(id);
-      return;
-    }
-    setCart(prev =>
-      prev.map(item =>
-        item.id === id ? { ...item, quantity } : item
-      )
-    );
-  };
-
-  const removeFromCart = (id: string) => {
-    setCart(prev => prev.filter(item => item.id !== id));
-  };
-
-  const cartTotal = useMemo(() => {
-    return cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
-  }, [cart]);
-
-  const handleCheckout = () => {
-    if (cartTotal > mockUser.balance) {
-      alert('Р В РЎСљР В Р’ВµР В РўвЂР В РЎвЂўР РЋР С“Р РЋРІР‚С™Р В Р’В°Р РЋРІР‚С™Р В РЎвЂўР РЋРІР‚РЋР В Р вЂ¦Р В РЎвЂў Р РЋР С“Р РЋР вЂљР В Р’ВµР В РўвЂР РЋР С“Р РЋРІР‚С™Р В Р вЂ !');
-      return;
-    }
-
-    const newOrder: Order = {
-      id: `order_${Date.now()}`,
-      items: [...cart],
-      total: cartTotal,
-      status: 'pending',
-      createdAt: new Date().toISOString(),
-    };
-
-    setOrders(prev => [...prev, newOrder]);
-    setCart([]);
-    setCartModalOpen(false);
-    alert('Р В РІР‚вЂќР В Р’В°Р В РЎвЂќР В Р’В°Р В Р’В· Р В РЎвЂўР РЋРІР‚С›Р В РЎвЂўР РЋР вЂљР В РЎВР В Р’В»Р В Р’ВµР В Р вЂ¦!');
-  };
-
-  const getStatusColor = (status: string) => {
-    switch (status) {
-      case 'pending': return '#FF9F0A';
-      case 'completed': return '#22C55E';
-      case 'cancelled':
-      case 'rejected': return '#EF4444';
-      default: return '#6B7280';
+  const getRarityColor = (rarity: string) => {
+    switch (rarity) {
+      case 'common': return 'border-gray-300 bg-gray-50';
+      case 'rare': return 'border-blue-300 bg-blue-50';
+      case 'epic': return 'border-purple-300 bg-purple-50';
+      case 'legendary': return 'border-yellow-300 bg-yellow-50';
+      default: return 'border-gray-300 bg-gray-50';
     }
   };
 
-  const getStatusText = (status: string) => {
-    switch (status) {
-      case 'pending': return 'Р В РЎвЂєР В Р’В¶Р В РЎвЂР В РўвЂР В Р’В°Р В Р’ВµР РЋРІР‚С™';
-      case 'completed': return 'Р В РІР‚в„ўР РЋРІР‚в„–Р В РЎвЂ”Р В РЎвЂўР В Р’В»Р В Р вЂ¦Р В Р’ВµР В Р вЂ¦';
-      case 'cancelled': return 'Р В РЎвЂєР РЋРІР‚С™Р В РЎВР В Р’ВµР В Р вЂ¦Р В Р’ВµР В Р вЂ¦';
-      case 'rejected': return 'Р В РЎвЂєР РЋРІР‚С™Р В РЎвЂќР В Р’В»Р В РЎвЂўР В Р вЂ¦Р В Р’ВµР В Р вЂ¦';
-      default: return 'Р В РЎСљР В Р’ВµР В РЎвЂР В Р’В·Р В Р вЂ Р В Р’ВµР РЋР С“Р РЋРІР‚С™Р В Р вЂ¦Р В РЎвЂў';
+  const getRarityLabel = (rarity: string) => {
+    switch (rarity) {
+      case 'common': return 'Обычный';
+      case 'rare': return 'Редкий';
+      case 'epic': return 'Эпический';
+      case 'legendary': return 'Легендарный';
+      default: return 'Неизвестно';
+    }
+  };
+
+  const filteredItems = activeCategory === 'all' 
+    ? items 
+    : items.filter(item => item.category === activeCategory);
+
+  const purchaseItem = (itemId: string) => {
+    const item = items.find(i => i.id === itemId);
+    if (item && !item.isPurchased && user.coins >= item.price) {
+      setItems(items.map(i => 
+        i.id === itemId ? { ...i, isPurchased: true } : i
+      ));
+      // Здесь можно добавить логику обновления баланса пользователя
     }
   };
 
   return (
-    <div style={{ 
-      minHeight: '100vh',
-      background: theme === 'dark' 
-        ? 'radial-gradient(circle at center, #12151B 0%, #0B0D10 100%)'
-        : 'linear-gradient(135deg, #F5F7FA 0%, #FFFFFF 100%)',
-      padding: '20px',
-      paddingBottom: '100px'
-    }}>
-      {/* AUTOGEN START shop-content */}
-      <div
-        style={{
-          maxWidth: '448px',
-          margin: '0 auto',
-          paddingLeft: '16px',
-          paddingRight: '16px',
-          paddingBottom: 'calc(96px + env(safe-area-inset-bottom))'
-        }}
-      >
-        {/* Header with user info and cart */}
-        <div 
-          style={{
-            display: 'flex',
-            justifyContent: 'space-between',
-            alignItems: 'center',
-            marginBottom: '24px',
-            paddingTop: '20px'
-          }}
-        >
-          <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
-            <div style={{
-              width: '48px',
-              height: '48px',
-              borderRadius: '50%',
-              background: 'linear-gradient(135deg, #2B82FF, #5AA7FF)',
-              display: 'flex',
-              alignItems: 'center',
-              justifyContent: 'center',
-              color: 'white',
-              fontWeight: 'bold',
-              fontSize: '18px',
-              boxShadow: '0 4px 12px rgba(43, 130, 255, 0.3)'
-            }}>
-              {mockUser.name.charAt(0)}
-            </div>
+    <div className="min-h-screen bg-gray-50">
+      {/* Header */}
+      <div className="bg-white shadow-sm border-b">
+        <div className="px-4 py-6">
+          <div className="flex items-center justify-between">
             <div>
-              <div 
-                style={{ 
-                  fontWeight: '500', 
-                  fontSize: '16px',
-                  color: theme === 'dark' ? '#E8ECF2' : '#0F172A' 
-                }}
-              >
-                {mockUser.name}
+              <h1 className="text-2xl font-bold text-gray-900">Магазин</h1>
+              <p className="text-gray-600 mt-1">Покупайте предметы за монеты</p>
+            </div>
+            <div className="flex items-center space-x-2 bg-yellow-100 px-3 py-2 rounded-lg">
+              <Coins className="w-5 h-5 text-yellow-600" />
+              <span className="font-semibold text-yellow-800">{user.coins}</span>
               </div>
-              <div 
-                style={{ 
-                  fontSize: '12px', 
-                  color: theme === 'dark' ? '#A7B0BD' : '#6B7280' 
-                }}
-              >
-                WORKER
               </div>
             </div>
           </div>
 
-          <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
-            {/* Balance */}
-            <div style={{
-              display: 'flex',
-              alignItems: 'center',
-              gap: '6px',
-              padding: '8px 12px',
-              borderRadius: '20px',
-              background: theme === 'dark' ? 'rgba(255,255,255,0.1)' : 'rgba(0,0,0,0.05)',
-              border: theme === 'dark' ? '1px solid rgba(255, 255, 255, 0.1)' : '1px solid rgba(0, 0, 0, 0.1)'
-            }}>
-              <Coins size={16} color="#FFD700" />
-              <span style={{ 
-                fontWeight: '500', 
-                fontSize: '14px',
-                color: theme === 'dark' ? '#E8ECF2' : '#0F172A' 
-              }}>
-                {mockUser.balance.toLocaleString()}
-              </span>
-            </div>
-
-            {/* Cart Button */}
+      {/* Categories */}
+      <div className="px-4 py-4">
+        <div className="flex space-x-2 overflow-x-auto">
+          {categories.map((category) => {
+            const Icon = category.icon;
+            return (
             <button
-              onClick={() => setCartModalOpen(true)}
-              aria-label="Р В РЎвЂєР РЋРІР‚С™Р В РЎвЂќР РЋР вЂљР РЋРІР‚в„–Р РЋРІР‚С™Р РЋР Р‰ Р В РЎвЂќР В РЎвЂўР РЋР вЂљР В Р’В·Р В РЎвЂР В Р вЂ¦Р РЋРЎвЂњ"
-              style={{
-                position: 'relative',
-                width: '44px',
-                height: '44px',
-                borderRadius: '50%',
-                border: 'none',
-                background: '#2B82FF',
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'center',
-                cursor: 'pointer',
-                transition: 'all 200ms ease',
-                boxShadow: '0 4px 12px rgba(43, 130, 255, 0.3)'
-              }}
-              onMouseEnter={(e) => {
-                e.currentTarget.style.transform = 'scale(1.05)';
-                e.currentTarget.style.background = '#2066C8';
-                e.currentTarget.style.boxShadow = '0 6px 16px rgba(43, 130, 255, 0.4)';
-              }}
-              onMouseLeave={(e) => {
-                e.currentTarget.style.transform = 'scale(1)';
-                e.currentTarget.style.background = '#2B82FF';
-                e.currentTarget.style.boxShadow = '0 4px 12px rgba(43, 130, 255, 0.3)';
-              }}
-              onMouseDown={(e) => {
-                e.currentTarget.style.transform = 'scale(0.95)';
-              }}
-            >
-              <ShoppingCart 
-                size={18} 
-                color="#FFFFFF" 
-              />
-              {cart.length > 0 && (
-                <div style={{
-                  position: 'absolute',
-                  top: '-6px',
-                  right: '-6px',
-                  width: '20px',
-                  height: '20px',
-                  borderRadius: '50%',
-                  background: '#EF4444',
-                  color: 'white',
-                  fontSize: '10px',
-                  display: 'flex',
-                  alignItems: 'center',
-                  justifyContent: 'center',
-                  fontWeight: 'bold',
-                  border: '2px solid white',
-                  boxShadow: '0 2px 8px rgba(239, 68, 68, 0.3)'
-                }}>
-                  {cart.reduce((sum, item) => sum + item.quantity, 0)}
-                </div>
-              )}
+                key={category.id}
+                onClick={() => setActiveCategory(category.id)}
+                className={`flex items-center space-x-2 px-4 py-2 rounded-lg whitespace-nowrap transition-colors ${
+                  activeCategory === category.id
+                    ? 'bg-blue-500 text-white'
+                    : 'bg-white text-gray-700 hover:bg-gray-100'
+                }`}
+              >
+                <Icon className="w-4 h-4" />
+                <span className="font-medium">{category.name}</span>
             </button>
+            );
+          })}
           </div>
         </div>
 
-        {/* Tabs */}
-        <div style={{
-          display: 'flex',
-          background: theme === 'dark' 
-            ? 'rgba(255,255,255,0.1)' 
-            : 'rgba(255,255,255,0.8)',
-          borderRadius: '16px',
-          padding: '4px',
-          marginBottom: '24px',
-          backdropFilter: 'blur(10px)',
-          boxShadow: '0 8px 32px rgba(0,0,0,0.1)'
-        }}>
-          {[
-            { id: 'free', label: 'Р В РІР‚ВР В РІР‚СћР В Р Р‹Р В РЎСџР В РІР‚С”Р В РЎвЂ™Р В РЎС›Р В РЎСљР В Р’В«Р В РІвЂћСћ' },
-            { id: 'shop', label: 'Р В РЎС™Р В РЎвЂ™Р В РІР‚СљР В РЎвЂ™Р В РІР‚вЂќР В Р’ВР В РЎСљ' },
-            { id: 'my', label: 'Р В РЎС™Р В РЎвЂєР В Р’В Р В РЎв„ўР В РІР‚СћР В РІвЂћСћР В Р Р‹Р В Р’В«' }
-          ].map((tab) => (
-            <button
-              key={tab.id}
-              onClick={() => setActiveTab(tab.id as any)}
-              aria-label={`Р В РЎСџР В Р’ВµР РЋР вЂљР В Р’ВµР В РЎвЂќР В Р’В»Р РЋР вЂ№Р РЋРІР‚РЋР В РЎвЂР РЋРІР‚С™Р РЋР Р‰ Р В Р вЂ¦Р В Р’В° Р В Р вЂ Р В РЎвЂќР В Р’В»Р В Р’В°Р В РўвЂР В РЎвЂќР РЋРЎвЂњ ${tab.label}`}
-              style={{
-                flex: 1,
-                padding: '12px 16px',
-                borderRadius: '12px',
-                border: 'none',
-                background: activeTab === tab.id 
-                  ? (theme === 'dark' 
-                      ? 'linear-gradient(135deg, #ffffff, #f0f0f0)'
-                      : 'linear-gradient(135deg, #2B82FF, #5AA7FF)')
-                  : 'transparent',
-                color: activeTab === tab.id 
-                  ? (theme === 'dark' ? '#0F172A' : '#FFFFFF')
-                  : (theme === 'dark' ? '#A7B0BD' : '#6B7280'),
-                fontWeight: 'bold',
-                fontSize: '14px',
-                cursor: 'pointer',
-                transition: 'all 0.3s ease'
-              }}
-              onMouseEnter={(e) => {
-                if (activeTab !== tab.id) {
-                  e.currentTarget.style.background = theme === 'dark' 
-                    ? 'rgba(255,255,255,0.15)' 
-                    : 'rgba(43, 130, 255, 0.1)';
-                }
-              }}
-              onMouseLeave={(e) => {
-                if (activeTab !== tab.id) {
-                  e.currentTarget.style.background = 'transparent';
-                }
-              }}
-              onMouseDown={(e) => {
-                e.currentTarget.style.transform = 'scale(0.95)';
-              }}
-              onMouseUp={(e) => {
-                e.currentTarget.style.transform = 'scale(1)';
-              }}
+      {/* Items Grid */}
+      <div className="px-4 pb-20">
+        <div className="grid grid-cols-2 gap-4">
+          {filteredItems.map((item) => (
+            <div 
+              key={item.id}
+              className={`bg-white rounded-lg p-4 shadow-sm border-2 ${getRarityColor(item.rarity)} ${
+                item.isPurchased ? 'opacity-60' : ''
+              }`}
             >
-              {tab.label}
-            </button>
-          ))}
-        </div>
-
-        {/* Tab Content */}
-        {activeTab === 'free' && (
-          <div>
-            <div style={{ textAlign: 'center', marginBottom: '24px' }}>
-              <h2 style={{ 
-                color: theme === 'dark' ? '#E8ECF2' : '#0F172A',
-                marginBottom: '8px',
-                fontSize: '18px',
-                fontWeight: '500'
-              }}>
-                Р В РІР‚ВР В РІР‚СћР В Р Р‹Р В РЎСџР В РІР‚С”Р В РЎвЂ™Р В РЎС›Р В РЎСљР В Р’В«Р В РІвЂћСћ Р В РЎв„ўР В РІР‚СћР В РІвЂћСћР В Р Р‹
-              </h2>
-              <div style={{
-                width: '100px',
-                height: '2px',
-                background: 'linear-gradient(90deg, transparent, #22C55E, transparent)',
-                margin: '0 auto'
-              }}></div>
+              {/* Item Image Placeholder */}
+              <div className="w-full h-24 bg-gray-200 rounded-lg mb-3 flex items-center justify-center">
+                <Package className="w-8 h-8 text-gray-400" />
             </div>
 
-            <div style={{
-              background: theme === 'dark' ? '#161A22' : '#FFFFFF',
-              borderRadius: '24px',
-              padding: '32px',
-              textAlign: 'center',
-              border: '2px solid rgba(34, 197, 94, 0.4)',
-              boxShadow: '0 8px 32px rgba(0,0,0,0.1), inset 0 1px 0 rgba(255,255,255,0.1)'
-            }}>
-              <div style={{
-                width: '128px',
-                height: '128px',
-                borderRadius: '50%',
-                background: 'linear-gradient(135deg, #22C55E, #16A34A)',
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'center',
-                margin: '0 auto 24px',
-                boxShadow: '0 0 30px rgba(34, 197, 94, 0.5)'
-              }}>
-                <Gift size={64} color="#FFFFFF" />
-              </div>
-
-              <h3 style={{ 
-                color: theme === 'dark' ? '#E8ECF2' : '#0F172A',
-                marginBottom: '8px',
-                fontSize: '16px',
-                fontWeight: '500',
-                textShadow: '0 0 10px rgba(34, 197, 94, 0.5)'
-              }}>
-                Р В РІР‚ВР В РІР‚СћР В Р Р‹Р В РЎСџР В РІР‚С”Р В РЎвЂ™Р В РЎС›Р В РЎСљР В Р’В«Р В РІвЂћСћ Р В РЎв„ўР В РІР‚СћР В РІвЂћСћР В Р Р‹ GRITHER
-              </h3>
-              <p style={{ 
-                color: theme === 'dark' ? '#A7B0BD' : '#6B7280',
-                marginBottom: '24px',
-                fontSize: '12px',
-                lineHeight: '1.4'
-              }}>
-                Р В РЎСџР В РЎвЂўР В Р’В»Р РЋРЎвЂњР РЋРІР‚РЋР В РЎвЂР РЋРІР‚С™Р В Р’Вµ Р РЋР С“Р В Р’В»Р РЋРЎвЂњР РЋРІР‚РЋР В Р’В°Р В РІвЂћвЂ“Р В Р вЂ¦Р РЋРІР‚в„–Р В РІвЂћвЂ“ Р В РЎвЂќР В Р’ВµР В РІвЂћвЂ“Р РЋР С“ Р РЋР С“Р В РЎвЂўР В Р вЂ Р В Р’ВµР РЋР вЂљР РЋРІвЂљВ¬Р В Р’ВµР В Р вЂ¦Р В Р вЂ¦Р В РЎвЂў Р В Р’В±Р В Р’ВµР РЋР С“Р В РЎвЂ”Р В Р’В»Р В Р’В°Р РЋРІР‚С™Р В Р вЂ¦Р В РЎвЂў Р В РЎвЂќР В Р’В°Р В Р’В¶Р В РўвЂР РЋРІР‚в„–Р В Р’Вµ 24 Р РЋРІР‚РЋР В Р’В°Р РЋР С“Р В Р’В°!
-              </p>
-
-              {isFreeAvailable ? (
-                <button
-                  aria-label="Р В РЎвЂєР РЋРІР‚С™Р В РЎвЂќР РЋР вЂљР РЋРІР‚в„–Р РЋРІР‚С™Р РЋР Р‰ Р В Р’В±Р В Р’ВµР РЋР С“Р В РЎвЂ”Р В Р’В»Р В Р’В°Р РЋРІР‚С™Р В Р вЂ¦Р РЋРІР‚в„–Р В РІвЂћвЂ“ Р В РЎвЂќР В Р’ВµР В РІвЂћвЂ“Р РЋР С“"
-                  style={{
-                    background: 'linear-gradient(145deg, #22C55E, #16A34A)',
-                    color: 'white',
-                    border: 'none',
-                    borderRadius: '16px',
-                    padding: '16px 32px',
-                    fontSize: '14px',
-                    fontWeight: 'bold',
-                    cursor: 'pointer',
-                    boxShadow: '0 8px 24px rgba(34, 197, 94, 0.4)',
-                    transition: 'all 0.3s ease'
-                  }}
-                  onMouseEnter={(e) => {
-                    e.currentTarget.style.transform = 'scale(1.05)';
-                    e.currentTarget.style.boxShadow = '0 12px 32px rgba(34, 197, 94, 0.6)';
-                  }}
-                  onMouseLeave={(e) => {
-                    e.currentTarget.style.transform = 'scale(1)';
-                    e.currentTarget.style.boxShadow = '0 8px 24px rgba(34, 197, 94, 0.4)';
-                  }}
-                  onMouseDown={(e) => {
-                    e.currentTarget.style.transform = 'scale(0.95)';
-                  }}
-                  onMouseUp={(e) => {
-                    e.currentTarget.style.transform = 'scale(1.05)';
-                  }}
-                >
-                  Р В РЎвЂєР В РЎС›Р В РЎв„ўР В Р’В Р В Р’В«Р В РЎС›Р В Р’В¬ Р В РІР‚ВР В РІР‚СћР В Р Р‹Р В РЎСџР В РІР‚С”Р В РЎвЂ™Р В РЎС›Р В РЎСљР В Р’В«Р В РІвЂћСћ Р В РЎв„ўР В РІР‚СћР В РІвЂћСћР В Р Р‹
-                </button>
-              ) : (
-                <div>
-                  <div style={{
-                    display: 'flex',
-                    alignItems: 'center',
-                    justifyContent: 'center',
-                    gap: '8px',
-                    marginBottom: '16px',
-                    color: theme === 'dark' ? '#A7B0BD' : '#6B7280',
-                    fontSize: '12px'
-                  }}>
-                    <Clock size={16} />
-                    <span>Р В Р Р‹Р В Р’В»Р В Р’ВµР В РўвЂР РЋРЎвЂњР РЋР вЂ№Р РЋРІР‚В°Р В РЎвЂР В РІвЂћвЂ“ Р В РЎвЂќР В Р’ВµР В РІвЂћвЂ“Р РЋР С“ Р РЋРІР‚РЋР В Р’ВµР РЋР вЂљР В Р’ВµР В Р’В·: {timeLeft}</span>
-                  </div>
-                  <button
-                    disabled
-                    aria-label="Р В РЎвЂєР В Р’В¶Р В РЎвЂР В РўвЂР В Р’В°Р В Р вЂ¦Р В РЎвЂР В Р’Вµ Р РЋР С“Р В Р’В»Р В Р’ВµР В РўвЂР РЋРЎвЂњР РЋР вЂ№Р РЋРІР‚В°Р В Р’ВµР В РЎвЂ“Р В РЎвЂў Р В Р’В±Р В Р’ВµР РЋР С“Р В РЎвЂ”Р В Р’В»Р В Р’В°Р РЋРІР‚С™Р В Р вЂ¦Р В РЎвЂўР В РЎвЂ“Р В РЎвЂў Р В РЎвЂќР В Р’ВµР В РІвЂћвЂ“Р РЋР С“Р В Р’В°"
-                    style={{
-                      background: 'linear-gradient(145deg, #6B7280, #4B5563)',
-                      color: '#9CA3AF',
-                      border: 'none',
-                      borderRadius: '16px',
-                      padding: '16px 32px',
-                      fontSize: '14px',
-                      fontWeight: 'bold',
-                      cursor: 'not-allowed',
-                      opacity: 0.5
-                    }}
-                  >
-                    Р В РЎвЂєР В РІР‚вЂњР В Р’ВР В РІР‚СњР В РЎвЂ™Р В РЎСљР В Р’ВР В РІР‚Сћ...
-                  </button>
-                </div>
-              )}
-            </div>
-          </div>
-        )}
-
-        {activeTab === 'shop' && (
-          <div>
-            {/* Premium Cases */}
-            <div style={{ marginBottom: '32px' }}>
-              <h3 style={{ 
-                color: theme === 'dark' ? '#E8ECF2' : '#0F172A',
-                marginBottom: '16px'
-              }}>
-                Р В РЎСџР В Р’В Р В РІР‚СћР В РЎС™Р В Р’ВР В Р в‚¬Р В РЎС™ Р В РЎв„ўР В РІР‚СћР В РІвЂћСћР В Р Р‹Р В Р’В«
-              </h3>
-              <div style={{
-                display: 'grid',
-                gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))',
-                gap: '16px'
-              }}>
-                {mockCaseShopItems.map((caseItem) => (
-                  <div
-                    key={caseItem.id}
-                    style={{
-                      background: theme === 'dark' ? '#161A22' : '#FFFFFF',
-                      borderRadius: '16px',
-                      overflow: 'hidden',
-                      border: `2px solid ${caseItem.color}`,
-                      boxShadow: `0 0 20px ${caseItem.color}40`,
-                      transition: 'transform 0.2s ease',
-                      cursor: 'pointer'
-                    }}
-                    onMouseEnter={(e) => e.currentTarget.style.transform = 'scale(1.02)'}
-                    onMouseLeave={(e) => e.currentTarget.style.transform = 'scale(1)'}
-                  >
-                    <div style={{
-                      height: '112px',
-                      background: `${caseItem.color}15`,
-                      display: 'flex',
-                      alignItems: 'center',
-                      justifyContent: 'center',
-                      position: 'relative'
-                    }}>
-                      <Package size={48} color={caseItem.color} />
-                      <div style={{
-                        position: 'absolute',
-                        bottom: '8px',
-                        left: '8px',
-                        background: 'rgba(0,0,0,0.7)',
-                        color: 'white',
-                        padding: '2px 8px',
-                        borderRadius: '4px',
-                        fontSize: '10px',
-                        fontWeight: 'bold'
-                      }}>
-                        GRITHER
-                      </div>
-                    </div>
-                    <div style={{ padding: '16px' }}>
-                      <h4 style={{
-                        color: theme === 'dark' ? '#E8ECF2' : '#0F172A',
-                        marginBottom: '8px',
-                        textShadow: `0 0 10px ${caseItem.color}80`
-                      }}>
-                        {caseItem.name}
-                      </h4>
-                      <div style={{
-                        display: 'flex',
-                        alignItems: 'center',
-                        gap: '8px',
-                        marginBottom: '12px'
-                      }}>
-                        <Coins size={16} color="#FFD700" />
-                        <span style={{ 
-                          fontWeight: 'bold',
-                          color: theme === 'dark' ? '#E8ECF2' : '#0F172A'
-                        }}>
-                          {caseItem.price.toLocaleString()}
-                        </span>
-                      </div>
-                      <button
-                        onClick={() => addToCart(caseItem)}
-                        style={{
-                          width: '100%',
-                          background: theme === 'dark' 
-                            ? 'linear-gradient(135deg, #ffffff, #f0f0f0)'
-                            : 'linear-gradient(135deg, #5AA7FF, #A7D0FF)',
-                          color: theme === 'dark' ? '#0F172A' : '#FFFFFF',
-                          border: 'none',
-                          borderRadius: '8px',
-                          padding: '12px',
-                          fontSize: '14px',
-                          fontWeight: 'bold',
-                          cursor: 'pointer'
-                        }}
-                      >
-                        Р В РЎв„ўР В Р в‚¬Р В РЎСџР В Р’ВР В РЎС›Р В Р’В¬
-                      </button>
-                    </div>
-                  </div>
-                ))}
-              </div>
-            </div>
-
-            {/* Shop Items */}
-            <div>
-              <h3 style={{ 
-                color: theme === 'dark' ? '#E8ECF2' : '#0F172A',
-                marginBottom: '16px'
-              }}>
-                Р В РЎС›Р В РЎвЂєР В РІР‚в„ўР В РЎвЂ™Р В Р’В Р В Р’В« Р В РЎС™Р В РЎвЂ™Р В РІР‚СљР В РЎвЂ™Р В РІР‚вЂќР В Р’ВР В РЎСљР В РЎвЂ™
-              </h3>
-              <div style={{
-                display: 'grid',
-                gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))',
-                gap: '16px'
-              }}>
-                {localShopItems.map((item) => (
-                  <div
-                    key={item.id}
-                    style={{
-                      background: theme === 'dark' ? '#161A22' : '#FFFFFF',
-                      borderRadius: '16px',
-                      padding: '24px',
-                      textAlign: 'center',
-                      border: '2px solid #3B82F6',
-                      boxShadow: '0 0 20px #3B82F640',
-                      transition: 'transform 0.2s ease',
-                      cursor: 'pointer'
-                    }}
-                    onMouseEnter={(e) => e.currentTarget.style.transform = 'scale(1.02)'}
-                    onMouseLeave={(e) => e.currentTarget.style.transform = 'scale(1)'}
-                  >
-                    <div style={{ fontSize: '48px', marginBottom: '16px' }}>
-                      {item.emoji}
-                    </div>
-                    <h4 style={{
-                      color: theme === 'dark' ? '#E8ECF2' : '#0F172A',
-                      marginBottom: '8px'
-                    }}>
-                      {item.name}
-                    </h4>
-                    <p style={{
-                      color: theme === 'dark' ? '#A7B0BD' : '#6B7280',
-                      fontSize: '12px',
-                      marginBottom: '16px'
-                    }}>
-                      {item.description}
-                    </p>
-                    <div style={{
-                      display: 'flex',
-                      alignItems: 'center',
-                      justifyContent: 'center',
-                      gap: '8px',
-                      marginBottom: '16px'
-                    }}>
-                      <Coins size={16} color="#FFD700" />
-                      <span style={{ 
-                        fontWeight: 'bold',
-                        color: theme === 'dark' ? '#E8ECF2' : '#0F172A'
-                      }}>
-                        {item.price.toLocaleString()}
+              {/* Item Info */}
+              <div className="mb-3">
+                <div className="flex items-center justify-between mb-1">
+                  <h3 className="font-semibold text-gray-900 text-sm">{item.name}</h3>
+                  <span className={`text-xs px-2 py-1 rounded-full ${
+                    item.rarity === 'common' ? 'bg-gray-100 text-gray-800' :
+                    item.rarity === 'rare' ? 'bg-blue-100 text-blue-800' :
+                    item.rarity === 'epic' ? 'bg-purple-100 text-purple-800' :
+                    'bg-yellow-100 text-yellow-800'
+                  }`}>
+                    {getRarityLabel(item.rarity)}
                       </span>
                     </div>
-                    <button
-                      onClick={() => addToCart(item)}
-                      style={{
-                        width: '100%',
-                        background: '#3B82F6',
-                        color: 'white',
-                        border: 'none',
-                        borderRadius: '8px',
-                        padding: '12px',
-                        fontSize: '14px',
-                        fontWeight: 'bold',
-                        cursor: 'pointer'
-                      }}
-                    >
-                      Р В РІР‚в„ў Р В РЎв„ўР В РЎвЂєР В Р’В Р В РІР‚вЂќР В Р’ВР В РЎСљР В Р в‚¬
-                    </button>
-                  </div>
-                ))}
+                <p className="text-xs text-gray-600 mb-2">{item.description}</p>
+                <div className="flex items-center justify-between">
+                  <div className="flex items-center space-x-1">
+                    <Coins className="w-4 h-4 text-yellow-600" />
+                    <span className="font-semibold text-gray-900">{item.price}</span>
               </div>
             </div>
           </div>
-        )}
 
-      {activeTab === 'my' && (
-        <div>
-          <h3 style={{ 
-            color: theme === 'dark' ? '#E8ECF2' : '#0F172A',
-            marginBottom: '16px'
-          }}>
-            Р В РЎС™Р В РЎвЂєР В Р’В Р В РЎв„ўР В РІР‚СћР В РІвЂћСћР В Р Р‹Р В Р’В«
-          </h3>
-          
-          {userCases.length === 0 ? (
-            <div style={{
-              background: theme === 'dark' ? '#161A22' : '#FFFFFF',
-              borderRadius: '16px',
-              padding: '48px',
-              textAlign: 'center'
-            }}>
-              <div style={{
-                width: '64px',
-                height: '64px',
-                borderRadius: '50%',
-                background: '#6B7280',
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'center',
-                margin: '0 auto 16px'
-              }}>
-                <ShoppingBag size={32} color="#FFFFFF" />
-              </div>
-              <h4 style={{ 
-                color: theme === 'dark' ? '#E8ECF2' : '#0F172A',
-                marginBottom: '8px'
-              }}>
-                Р В РЎСџР РЋРЎвЂњР РЋР С“Р РЋРІР‚С™Р В РЎвЂў
-              </h4>
-              <p style={{ color: theme === 'dark' ? '#A7B0BD' : '#6B7280' }}>
-                Р В РІР‚вЂќР В РўвЂР В Р’ВµР РЋР С“Р РЋР Р‰ Р В РЎвЂ”Р В РЎвЂўР РЋР РЏР В Р вЂ Р РЋР РЏР РЋРІР‚С™Р РЋР С“Р РЋР РЏ Р В РЎвЂ”Р В РЎвЂўР В Р’В»Р РЋРЎвЂњР РЋРІР‚РЋР В Р’ВµР В Р вЂ¦Р В Р вЂ¦Р РЋРІР‚в„–Р В Р’Вµ Р В РЎвЂќР В Р’ВµР В РІвЂћвЂ“Р РЋР С“Р РЋРІР‚в„–
-              </p>
-            </div>
-          ) : (
-            <div style={{
-              display: 'grid',
-              gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))',
-              gap: '16px'
-            }}>
-              {userCases.map((userCase) => (
-                <div
-                  key={userCase.id}
-                  style={{
-                    background: theme === 'dark' ? '#161A22' : '#FFFFFF',
-                    borderRadius: '16px',
-                    overflow: 'hidden',
-                    border: '2px solid #3B82F6',
-                    boxShadow: '0 0 20px #3B82F640'
-                  }}
-                >
-                  <div style={{
-                    height: '96px',
-                    background: '#3B82F615',
-                    display: 'flex',
-                    alignItems: 'center',
-                    justifyContent: 'center'
-                  }}>
-                    <Package size={32} color="#3B82F6" />
-                  </div>
-                  <div style={{ padding: '16px' }}>
-                    <h4 style={{
-                      color: theme === 'dark' ? '#E8ECF2' : '#0F172A',
-                      marginBottom: '8px'
-                    }}>
-                      {userCase.name}
-                    </h4>
-                    <p style={{
-                      color: theme === 'dark' ? '#A7B0BD' : '#6B7280',
-                      fontSize: '12px',
-                      marginBottom: '12px'
-                    }}>
-                      Р В РЎСџР В РЎвЂўР В Р’В»Р РЋРЎвЂњР РЋРІР‚РЋР В Р’ВµР В Р вЂ¦: {new Date(userCase.obtainedAt).toLocaleDateString()}
-                    </p>
+              {/* Purchase Button */}
+              {item.isPurchased ? (
                     <button
-                      style={{
-                        width: '100%',
-                        background: theme === 'dark' 
-                          ? 'linear-gradient(135deg, #ffffff, #f0f0f0)'
-                          : 'linear-gradient(135deg, #5AA7FF, #A7D0FF)',
-                        color: theme === 'dark' ? '#0F172A' : '#FFFFFF',
-                        border: 'none',
-                        borderRadius: '8px',
-                        padding: '12px',
-                        fontSize: '14px',
-                        fontWeight: 'bold',
-                        cursor: 'pointer'
-                      }}
-                    >
-                      Р В РЎвЂєР В РЎС›Р В РЎв„ўР В Р’В Р В Р’В«Р В РЎС›Р В Р’В¬ Р В РЎв„ўР В РІР‚СћР В РІвЂћСћР В Р Р‹
-                    </button>
-                  </div>
-                </div>
-              ))}
-            </div>
-          )}
-        </div>
-      )}
-
-      {/* Cart Modal */}
-      {cartModalOpen && (
-        <>
-          <div
-            style={{
-              position: 'fixed',
-              top: 0,
-              left: 0,
-              right: 0,
-              bottom: 0,
-              background: 'rgba(0,0,0,0.5)',
-              display: 'flex',
-              alignItems: 'center',
-              justifyContent: 'center',
-              zIndex: 1000
-            }}
-            onClick={() => setCartModalOpen(false)}
-          >
-            <div
-              style={{
-                background: theme === 'dark' ? '#161A22' : '#FFFFFF',
-                borderRadius: '16px',
-                padding: '24px',
-                width: '90vw',
-                maxWidth: '600px',
-                maxHeight: '80vh',
-                overflow: 'auto'
-              }}
-              onClick={(e) => e.stopPropagation()}
-            >
-              <div style={{
-                display: 'flex',
-                justifyContent: 'space-between',
-                alignItems: 'center',
-                marginBottom: '24px'
-              }}>
-                <h2 style={{ color: theme === 'dark' ? '#E8ECF2' : '#0F172A' }}>
-                  Р В РЎв„ўР В РЎвЂўР РЋР вЂљР В Р’В·Р В РЎвЂР В Р вЂ¦Р В Р’В° Р В РЎвЂ Р В Р’В·Р В Р’В°Р В РЎвЂќР В Р’В°Р В Р’В·Р РЋРІР‚в„–
-                </h2>
-                <button
-                  onClick={() => setCartModalOpen(false)}
-                  style={{
-                    background: 'none',
-                    border: 'none',
-                    fontSize: '24px',
-                    cursor: 'pointer',
-                    color: theme === 'dark' ? '#A7B0BD' : '#6B7280'
-                  }}
+                  disabled
+                  className="w-full bg-green-500 text-white py-2 px-3 rounded-lg text-sm font-medium cursor-not-allowed"
                 >
-                  <X size={24} />
-                </button>
-              </div>
-
-              {/* Cart Tabs */}
-              <div style={{
-                display: 'flex',
-                marginBottom: '24px',
-                background: theme === 'dark' ? 'rgba(255,255,255,0.1)' : 'rgba(0,0,0,0.05)',
-                borderRadius: '8px',
-                padding: '4px'
-              }}>
-                {[
-                  { id: 'cart', label: 'Р В РЎв„ўР В РЎвЂўР РЋР вЂљР В Р’В·Р В РЎвЂР В Р вЂ¦Р В Р’В°', icon: ShoppingCart },
-                  { id: 'active', label: 'Р В РЎвЂ™Р В РЎвЂќР РЋРІР‚С™Р В РЎвЂР В Р вЂ Р В Р вЂ¦Р РЋРІР‚в„–Р В Р’Вµ', icon: Clock },
-                  { id: 'completed', label: 'Р В РІР‚вЂќР В Р’В°Р В Р вЂ Р В Р’ВµР РЋР вЂљР РЋРІвЂљВ¬Р В Р’ВµР В Р вЂ¦Р В Р вЂ¦Р РЋРІР‚в„–Р В Р’Вµ', icon: CheckCircle }
-                ].map((tab) => (
-                  <button
-                    key={tab.id}
-                    onClick={() => setCartTab(tab.id as any)}
-                    style={{
-                      flex: 1,
-                      padding: '8px 16px',
-                      borderRadius: '6px',
-                      border: 'none',
-                      background: cartTab === tab.id ? '#3B82F6' : 'transparent',
-                      color: cartTab === tab.id ? 'white' : (theme === 'dark' ? '#A7B0BD' : '#6B7280'),
-                      fontSize: '12px',
-                      cursor: 'pointer',
-                      display: 'flex',
-                      alignItems: 'center',
-                      justifyContent: 'center',
-                      gap: '4px'
-                    }}
-                  >
-                    <tab.icon size={16} />
-                    {tab.label}
+                  Куплено
                   </button>
-                ))}
-              </div>
-
-              {/* Cart Content */}
-              {cartTab === 'cart' && (
-                <div>
-                  {cart.length === 0 ? (
-                    <div style={{ textAlign: 'center', padding: '48px' }}>
-                      <div style={{
-                        width: '64px',
-                        height: '64px',
-                        borderRadius: '50%',
-                        background: '#6B7280',
-                        display: 'flex',
-                        alignItems: 'center',
-                        justifyContent: 'center',
-                        margin: '0 auto 16px'
-                      }}>
-                        <ShoppingCart size={32} color="#FFFFFF" />
-                      </div>
-                      <h4 style={{ color: theme === 'dark' ? '#E8ECF2' : '#0F172A' }}>
-                        Р В РЎв„ўР В РЎвЂўР РЋР вЂљР В Р’В·Р В РЎвЂР В Р вЂ¦Р В Р’В° Р В РЎвЂ”Р РЋРЎвЂњР РЋР С“Р РЋРІР‚С™Р В Р’В°
-                      </h4>
-                    </div>
-                  ) : (
-                    <>
-                      {cart.map((item) => (
-                        <div
-                          key={item.id}
-                          style={{
-                            display: 'flex',
-                            alignItems: 'center',
-                            justifyContent: 'space-between',
-                            padding: '16px',
-                            border: `1px solid ${theme === 'dark' ? '#333' : '#e0e0e0'}`,
-                            borderRadius: '8px',
-                            marginBottom: '8px'
-                          }}
-                        >
-                          <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
-                            <div style={{ fontSize: '24px' }}>{item.emoji}</div>
-                            <div>
-                              <div style={{ 
-                                fontWeight: 'bold',
-                                color: theme === 'dark' ? '#E8ECF2' : '#0F172A'
-                              }}>
-                                {item.name}
-                              </div>
-                              <div style={{ 
-                                fontSize: '12px',
-                                color: theme === 'dark' ? '#A7B0BD' : '#6B7280'
-                              }}>
-                                {item.price.toLocaleString()} Р В РЎвЂќР В РЎвЂўР В РЎвЂР В Р вЂ¦Р В РЎвЂўР В Р вЂ 
-                              </div>
-                            </div>
-                          </div>
-                          <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+              ) : (
                             <button
-                              onClick={() => updateCartQuantity(item.id, item.quantity - 1)}
-                              style={{
-                                width: '32px',
-                                height: '32px',
-                                borderRadius: '50%',
-                                border: 'none',
-                                background: '#EF4444',
-                                color: 'white',
-                                display: 'flex',
-                                alignItems: 'center',
-                                justifyContent: 'center',
-                                cursor: 'pointer'
-                              }}
-                            >
-                              <Minus size={16} />
-                            </button>
-                            <span style={{ 
-                              fontWeight: 'bold',
-                              color: theme === 'dark' ? '#E8ECF2' : '#0F172A',
-                              minWidth: '20px',
-                              textAlign: 'center'
-                            }}>
-                              {item.quantity}
-                            </span>
-                            <button
-                              onClick={() => updateCartQuantity(item.id, item.quantity + 1)}
-                              style={{
-                                width: '32px',
-                                height: '32px',
-                                borderRadius: '50%',
-                                border: 'none',
-                                background: '#22C55E',
-                                color: 'white',
-                                display: 'flex',
-                                alignItems: 'center',
-                                justifyContent: 'center',
-                                cursor: 'pointer'
-                              }}
-                            >
-                              <Plus size={16} />
-                            </button>
-                          </div>
-                        </div>
-                      ))}
-                      
-                      <div style={{
-                        borderTop: `1px solid ${theme === 'dark' ? '#333' : '#e0e0e0'}`,
-                        paddingTop: '16px',
-                        marginTop: '16px'
-                      }}>
-                        <div style={{
-                          display: 'flex',
-                          justifyContent: 'space-between',
-                          alignItems: 'center',
-                          marginBottom: '16px'
-                        }}>
-                          <span style={{ 
-                            fontWeight: 'bold',
-                            color: theme === 'dark' ? '#E8ECF2' : '#0F172A'
-                          }}>
-                            Р В Р’ВР РЋРІР‚С™Р В РЎвЂўР В РЎвЂ“Р В РЎвЂў:
-                          </span>
-                          <span style={{ 
-                            fontWeight: 'bold',
-                            color: '#3B82F6',
-                            fontSize: '18px'
-                          }}>
-                            {cartTotal.toLocaleString()} Р В РЎвЂќР В РЎвЂўР В РЎвЂР В Р вЂ¦Р В РЎвЂўР В Р вЂ 
-                          </span>
-                        </div>
-                        <button
-                          onClick={handleCheckout}
-                          style={{
-                            width: '100%',
-                            background: cartTotal <= mockUser.balance ? '#22C55E' : '#EF4444',
-                            color: 'white',
-                            border: 'none',
-                            borderRadius: '12px',
-                            padding: '16px',
-                            fontSize: '16px',
-                            fontWeight: 'bold',
-                            cursor: cartTotal <= mockUser.balance ? 'pointer' : 'not-allowed',
-                            opacity: cartTotal <= mockUser.balance ? 1 : 0.5
-                          }}
-                        >
-                          {cartTotal <= mockUser.balance ? 'Р В РЎвЂєР В Р’В¤Р В РЎвЂєР В Р’В Р В РЎС™Р В Р’ВР В РЎС›Р В Р’В¬ Р В РІР‚вЂќР В РЎвЂ™Р В РЎв„ўР В РЎвЂ™Р В РІР‚вЂќ' : 'Р В РЎСљР В РІР‚СћР В РІР‚СњР В РЎвЂєР В Р Р‹Р В РЎС›Р В РЎвЂ™Р В РЎС›Р В РЎвЂєР В Р’В§Р В РЎСљР В РЎвЂє Р В Р Р‹Р В Р’В Р В РІР‚СћР В РІР‚СњР В Р Р‹Р В РЎС›Р В РІР‚в„ў'}
+                  onClick={() => purchaseItem(item.id)}
+                  disabled={user.coins < item.price}
+                  className={`w-full py-2 px-3 rounded-lg text-sm font-medium transition-colors ${
+                    user.coins >= item.price
+                      ? 'bg-blue-500 text-white hover:bg-blue-600'
+                      : 'bg-gray-300 text-gray-500 cursor-not-allowed'
+                  }`}
+                >
+                  {user.coins >= item.price ? 'Купить' : 'Недостаточно монет'}
                         </button>
-                      </div>
-                    </>
-                  )}
-                </div>
               )}
-
-              {cartTab === 'active' && (
-                <div>
-                  {orders.filter(order => order.status === 'pending').length === 0 ? (
-                    <div style={{ textAlign: 'center', padding: '48px' }}>
-                      <div style={{
-                        width: '64px',
-                        height: '64px',
-                        borderRadius: '50%',
-                        background: '#6B7280',
-                        display: 'flex',
-                        alignItems: 'center',
-                        justifyContent: 'center',
-                        margin: '0 auto 16px'
-                      }}>
-                        <Clock size={32} color="#FFFFFF" />
-                      </div>
-                      <h4 style={{ color: theme === 'dark' ? '#E8ECF2' : '#0F172A' }}>
-                        Р В РЎСљР В Р’ВµР РЋРІР‚С™ Р В Р’В°Р В РЎвЂќР РЋРІР‚С™Р В РЎвЂР В Р вЂ Р В Р вЂ¦Р РЋРІР‚в„–Р РЋРІР‚В¦ Р В Р’В·Р В Р’В°Р В РЎвЂќР В Р’В°Р В Р’В·Р В РЎвЂўР В Р вЂ 
-                      </h4>
-                    </div>
-                  ) : (
-                    <div>
-                      {orders.filter(order => order.status === 'pending').map((order) => (
-                        <div
-                          key={order.id}
-                          style={{
-                            padding: '16px',
-                            borderRadius: '8px',
-                            background: 'rgba(255, 159, 10, 0.1)',
-                            border: '1px solid rgba(255, 159, 10, 0.3)',
-                            marginBottom: '12px'
-                          }}
-                        >
-                          <div style={{
-                            display: 'flex',
-                            justifyContent: 'space-between',
-                            alignItems: 'center',
-                            marginBottom: '8px'
-                          }}>
-                            <span style={{ 
-                              fontWeight: 'bold',
-                              color: theme === 'dark' ? '#E8ECF2' : '#0F172A'
-                            }}>
-                              Р В РІР‚вЂќР В Р’В°Р В РЎвЂќР В Р’В°Р В Р’В· #{order.id.slice(-6)}
-                            </span>
-                            <span style={{
-                              padding: '4px 8px',
-                              borderRadius: '4px',
-                              background: getStatusColor(order.status),
-                              color: 'white',
-                              fontSize: '12px',
-                              fontWeight: 'bold'
-                            }}>
-                              {getStatusText(order.status)}
-                            </span>
-                          </div>
-                          <div style={{ 
-                            fontSize: '12px',
-                            color: theme === 'dark' ? '#A7B0BD' : '#6B7280',
-                            marginBottom: '8px'
-                          }}>
-                            {order.items.map(item => `${item.name} x${item.quantity}`).join(', ')}
-                          </div>
-                          <div style={{
-                            display: 'flex',
-                            justifyContent: 'space-between',
-                            alignItems: 'center'
-                          }}>
-                            <span style={{ 
-                              fontSize: '12px',
-                              color: theme === 'dark' ? '#A7B0BD' : '#6B7280'
-                            }}>
-                              {new Date(order.createdAt).toLocaleDateString()}
-                            </span>
-                            <span style={{ 
-                              fontWeight: 'bold',
-                              color: '#3B82F6'
-                            }}>
-                              {order.total.toLocaleString()} Р В РЎвЂќР В РЎвЂўР В РЎвЂР В Р вЂ¦Р В РЎвЂўР В Р вЂ 
-                            </span>
-                          </div>
                         </div>
                       ))}
                     </div>
-                  )}
-                </div>
-              )}
 
-              {cartTab === 'completed' && (
-                <div>
-                  {orders.filter(order => order.status !== 'pending').length === 0 ? (
-                    <div style={{ textAlign: 'center', padding: '48px' }}>
-                      <div style={{
-                        width: '64px',
-                        height: '64px',
-                        borderRadius: '50%',
-                        background: '#6B7280',
-                        display: 'flex',
-                        alignItems: 'center',
-                        justifyContent: 'center',
-                        margin: '0 auto 16px'
-                      }}>
-                        <CheckCircle size={32} color="#FFFFFF" />
-                      </div>
-                      <h4 style={{ color: theme === 'dark' ? '#E8ECF2' : '#0F172A' }}>
-                        Р В РЎСљР В Р’ВµР РЋРІР‚С™ Р В Р’В·Р В Р’В°Р В Р вЂ Р В Р’ВµР РЋР вЂљР РЋРІвЂљВ¬Р В Р’ВµР В Р вЂ¦Р В Р вЂ¦Р РЋРІР‚в„–Р РЋРІР‚В¦ Р В Р’В·Р В Р’В°Р В РЎвЂќР В Р’В°Р В Р’В·Р В РЎвЂўР В Р вЂ 
-                      </h4>
-                    </div>
-                  ) : (
-                    <div>
-                      {orders.filter(order => order.status !== 'pending').map((order) => (
-                        <div
-                          key={order.id}
-                          style={{
-                            padding: '16px',
-                            borderRadius: '8px',
-                            background: order.status === 'completed' 
-                              ? 'rgba(34, 197, 94, 0.1)' 
-                              : 'rgba(239, 68, 68, 0.1)',
-                            border: `1px solid ${order.status === 'completed' 
-                              ? 'rgba(34, 197, 94, 0.3)' 
-                              : 'rgba(239, 68, 68, 0.3)'}`,
-                            marginBottom: '12px'
-                          }}
-                        >
-                          <div style={{
-                            display: 'flex',
-                            justifyContent: 'space-between',
-                            alignItems: 'center',
-                            marginBottom: '8px'
-                          }}>
-                            <span style={{ 
-                              fontWeight: 'bold',
-                              color: theme === 'dark' ? '#E8ECF2' : '#0F172A'
-                            }}>
-                              Р В РІР‚вЂќР В Р’В°Р В РЎвЂќР В Р’В°Р В Р’В· #{order.id.slice(-6)}
-                            </span>
-                            <span style={{
-                              padding: '4px 8px',
-                              borderRadius: '4px',
-                              background: getStatusColor(order.status),
-                              color: 'white',
-                              fontSize: '12px',
-                              fontWeight: 'bold'
-                            }}>
-                              {getStatusText(order.status)}
-                            </span>
-                          </div>
-                          <div style={{ 
-                            fontSize: '12px',
-                            color: theme === 'dark' ? '#A7B0BD' : '#6B7280',
-                            marginBottom: '8px'
-                          }}>
-                            {order.items.map(item => `${item.name} x${item.quantity}`).join(', ')}
-                          </div>
-                          <div style={{
-                            display: 'flex',
-                            justifyContent: 'space-between',
-                            alignItems: 'center'
-                          }}>
-                            <span style={{ 
-                              fontSize: '12px',
-                              color: theme === 'dark' ? '#A7B0BD' : '#6B7280'
-                            }}>
-                              {new Date(order.createdAt).toLocaleDateString()}
-                            </span>
-                            <span style={{ 
-                              fontWeight: 'bold',
-                              color: '#3B82F6'
-                            }}>
-                              {order.total.toLocaleString()} Р В РЎвЂќР В РЎвЂўР В РЎвЂР В Р вЂ¦Р В РЎвЂўР В Р вЂ 
-                            </span>
-                          </div>
-                        </div>
-                      ))}
-                    </div>
-                  )}
+        {filteredItems.length === 0 && (
+          <div className="text-center py-12">
+            <ShoppingCart className="w-16 h-16 text-gray-400 mx-auto mb-4" />
+            <h3 className="text-lg font-semibold text-gray-900 mb-2">Товары не найдены</h3>
+            <p className="text-gray-600">Попробуйте выбрать другую категорию</p>
                 </div>
               )}
-            </div>
-          </div>
-        </>
-      )}
-      {/* AUTOGEN END shop-content */}
       </div>
     </div>
   );

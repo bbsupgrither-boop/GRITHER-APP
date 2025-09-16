@@ -1,771 +1,215 @@
-import React, { useState, useEffect, useRef } from 'react';
-import { Header } from './Header';
-import { BottomNavigation } from './BottomNavigation';
-import { BackgroundFX } from './BackgroundFX';
-import { 
-  Plus, 
-  Clock, 
-  Play, 
-  Pause, 
-  FileText, 
-  X,
-  Calendar
-} from 'lucide-react';
-import { Task } from '../types/tasks';
-import { User } from '../types/global';
-import { Notification } from '../types/notifications';
+import React, { useState } from 'react';
+import { CheckCircle, Clock, Star, Target, Zap } from 'lucide-react';
 
-interface TasksPageProps {
-  onNavigate: (page: string) => void;
-  tasks: Task[];
-  setTasks: (tasks: Task[]) => void;
-  theme: 'light' | 'dark';
-  user?: User;
-  notifications?: Notification[];
-  onMarkNotificationAsRead?: (id: string) => void;
-  onMarkAllNotificationsAsRead?: () => void;
-  onRemoveNotification?: (id: string) => void;
-  onClearAllNotifications?: () => void;
-  onOpenSettings?: () => void;
+interface Task {
+  id: string;
+  title: string;
+  description: string;
+  reward: {
+    xp: number;
+    coins: number;
+  };
+  progress: number;
+  maxProgress: number;
+  isCompleted: boolean;
+  category: string;
+  difficulty: 'easy' | 'medium' | 'hard';
 }
 
-type TaskStatus = 'not_started' | 'in_progress' | 'completed' | 'overdue';
-type FilterType = 'all' | 'not_started' | 'in_progress' | 'completed' | 'overdue';
+interface TasksPageProps {
+  user: {
+    level: number;
+    xp: number;
+    coins: number;
+  };
+}
 
-// Р В РІР‚ВР В Р’ВµР В Р’В·Р В РЎвЂўР В РЎвЂ”Р В Р’В°Р РЋР С“Р В Р вЂ¦Р РЋРІР‚в„–Р В РІвЂћвЂ“ Р В РЎвЂќР В РЎвЂўР В Р вЂ¦Р В Р вЂ Р В Р’ВµР РЋР вЂљР РЋРІР‚С™Р В Р’ВµР РЋР вЂљ Р В Р’В·Р В Р’В°Р В РўвЂР В Р’В°Р РЋРІР‚РЋ
-const toTasks = (g: unknown): Task[] => Array.isArray(g) ? g.map((t: any, i: number) => ({
-  id: String(t?.id ?? i + 1),
-  title: t?.title ?? "Р В РІР‚ВР В Р’ВµР В Р’В· Р В Р вЂ¦Р В Р’В°Р В Р’В·Р В Р вЂ Р В Р’В°Р В Р вЂ¦Р В РЎвЂР РЋР РЏ",
-  description: t?.description ?? "",
-  reward: Number(t?.reward ?? 0),
-  rewardType: t?.rewardType ?? 'coins',
-  deadline: t?.deadline ?? new Date(Date.now() + 7 * 24 * 60 * 60 * 1000).toISOString(),
-  category: t?.category ?? 'individual',
-  status: t?.status ?? 'active',
-  assignedTo: t?.assignedTo,
-  teamId: t?.teamId,
-  createdBy: t?.createdBy ?? 'system',
-  createdAt: t?.createdAt ?? new Date().toISOString(),
-  completedAt: t?.completedAt,
-  isPublished: t?.isPublished ?? true
-})) : [];
-
-export const TasksPage: React.FC<TasksPageProps> = ({
-  onNavigate,
-  tasks: globalTasks = [],
-  setTasks,
-  theme,
-  user,
-  notifications = [],
-  onMarkNotificationAsRead,
-  onMarkAllNotificationsAsRead,
-  onRemoveNotification,
-  onClearAllNotifications,
-  onOpenSettings = () => {},
-}) => {
-  // Р В РІР‚С”Р В РЎвЂўР В РЎвЂќР В Р’В°Р В Р’В»Р РЋР Р‰Р В Р вЂ¦Р В РЎвЂўР В Р’Вµ Р РЋР С“Р В РЎвЂўР РЋР С“Р РЋРІР‚С™Р В РЎвЂўР РЋР РЏР В Р вЂ¦Р В РЎвЂР В Р’Вµ Р В Р’В·Р В Р’В°Р В РўвЂР В Р’В°Р РЋРІР‚РЋ Р РЋР С“ Р В Р’В·Р В Р’В°Р РЋРІР‚В°Р В РЎвЂР РЋРІР‚С™Р В РЎвЂўР В РІвЂћвЂ“ Р В РЎвЂўР РЋРІР‚С™ Р В РЎвЂўР РЋРІвЂљВ¬Р В РЎвЂР В Р’В±Р В РЎвЂўР В РЎвЂќ
-  const [tasks, setTasksLocal] = useState<Task[]>(toTasks(globalTasks ?? []));
-  
-  // Р В РЎвЂєР В Р’В±Р В Р вЂ¦Р В РЎвЂўР В Р вЂ Р В Р’В»Р РЋР РЏР В Р’ВµР В РЎВ Р В Р’В»Р В РЎвЂўР В РЎвЂќР В Р’В°Р В Р’В»Р РЋР Р‰Р В Р вЂ¦Р В РЎвЂўР В Р’Вµ Р РЋР С“Р В РЎвЂўР РЋР С“Р РЋРІР‚С™Р В РЎвЂўР РЋР РЏР В Р вЂ¦Р В РЎвЂР В Р’Вµ Р В РЎвЂ”Р РЋР вЂљР В РЎвЂ Р В РЎвЂР В Р’В·Р В РЎВР В Р’ВµР В Р вЂ¦Р В Р’ВµР В Р вЂ¦Р В РЎвЂР В РЎвЂ Р В РЎвЂ“Р В Р’В»Р В РЎвЂўР В Р’В±Р В Р’В°Р В Р’В»Р РЋР Р‰Р В Р вЂ¦Р РЋРІР‚в„–Р РЋРІР‚В¦ Р В Р’В·Р В Р’В°Р В РўвЂР В Р’В°Р РЋРІР‚РЋ
-  useEffect(() => {
-    setTasksLocal(toTasks(globalTasks ?? []));
-  }, [globalTasks]);
-
-  const [isCreateModalOpen, setIsCreateModalOpen] = useState(false);
-  const [isDetailModalOpen, setIsDetailModalOpen] = useState(false);
-  const [selectedTask, setSelectedTask] = useState<Task | null>(null);
-  const [filter, setFilter] = useState<FilterType>('all');
-  const [activeTimer, setActiveTimer] = useState<string | null>(null);
-  const [timerSeconds, setTimerSeconds] = useState<{ [key: string]: number }>({});
-  
-  const intervalRef = useRef<NodeJS.Timeout | null>(null);
-
-  // Timer logic
-  useEffect(() => {
-    if (activeTimer && intervalRef.current === null) {
-      intervalRef.current = setInterval(() => {
-        setTimerSeconds(prev => ({
-          ...prev,
-          [activeTimer]: (prev[activeTimer] || 0) + 1
-        }));
-      }, 1000);
-    } else if (!activeTimer && intervalRef.current) {
-      clearInterval(intervalRef.current);
-      intervalRef.current = null;
+export const TasksPage: React.FC<TasksPageProps> = ({ user }) => {
+  const [tasks, setTasks] = useState<Task[]>([
+    {
+      id: '1',
+      title: 'Первые шаги',
+      description: 'Выполните 3 задания',
+      reward: { xp: 50, coins: 100 },
+      progress: 2,
+      maxProgress: 3,
+      isCompleted: false,
+      category: 'Обучение',
+      difficulty: 'easy'
+    },
+    {
+      id: '2',
+      title: 'Активный участник',
+      description: 'Создайте 5 битв',
+      reward: { xp: 100, coins: 200 },
+      progress: 1,
+      maxProgress: 5,
+      isCompleted: false,
+      category: 'Битвы',
+      difficulty: 'medium'
+    },
+    {
+      id: '3',
+      title: 'Победитель',
+      description: 'Выиграйте 10 битв',
+      reward: { xp: 200, coins: 500 },
+      progress: 0,
+      maxProgress: 10,
+      isCompleted: false,
+      category: 'Битвы',
+      difficulty: 'hard'
+    },
+    {
+      id: '4',
+      title: 'Мастер достижений',
+      description: 'Получите 5 достижений',
+      reward: { xp: 150, coins: 300 },
+      progress: 3,
+      maxProgress: 5,
+      isCompleted: false,
+      category: 'Достижения',
+      difficulty: 'medium'
     }
+  ]);
 
-    return () => {
-      if (intervalRef.current) {
-        clearInterval(intervalRef.current);
-        intervalRef.current = null;
-      }
-    };
-  }, [activeTimer]);
-
-  const formatTime = (seconds: number) => {
-    const hours = Math.floor(seconds / 3600);
-    const minutes = Math.floor((seconds % 3600) / 60);
-    const secs = seconds % 60;
-    return `${hours.toString().padStart(2, '0')}:${minutes.toString().padStart(2, '0')}:${secs.toString().padStart(2, '0')}`;
-  };
-
-  const getTaskStatus = (task: Task): TaskStatus => {
-    const now = new Date();
-    const deadline = new Date(task.deadline);
-    
-    if (task.completedAt) return 'completed';
-    if (now > deadline) return 'overdue';
-    if (task.status === 'active') return 'in_progress';
-    return 'not_started';
-  };
-
-
-  const filteredTasks = tasks.filter(task => {
-    if (filter === 'all') return true;
-    return getTaskStatus(task) === filter;
-  });
-
-  const handleTimerToggle = (taskId: string) => {
-    if (activeTimer === taskId) {
-      setActiveTimer(null);
-    } else {
-      setActiveTimer(taskId);
+  const getDifficultyColor = (difficulty: string) => {
+    switch (difficulty) {
+      case 'easy': return 'bg-green-100 text-green-800';
+      case 'medium': return 'bg-yellow-100 text-yellow-800';
+      case 'hard': return 'bg-red-100 text-red-800';
+      default: return 'bg-gray-100 text-gray-800';
     }
   };
 
-  const handleTaskClick = (task: Task) => {
-    setSelectedTask(task);
-    setIsDetailModalOpen(true);
-    
-    // Safe Telegram WebApp access
-    const tg = typeof window !== "undefined" ? (window as any).Telegram?.WebApp : undefined;
-    tg?.expand?.();
+  const getDifficultyLabel = (difficulty: string) => {
+    switch (difficulty) {
+      case 'easy': return 'Легко';
+      case 'medium': return 'Средне';
+      case 'hard': return 'Сложно';
+      default: return 'Неизвестно';
+    }
   };
 
-  const handleCompleteTask = (taskId: string) => {
+  const completeTask = (taskId: string) => {
     setTasks(tasks.map(task => 
-        task.id === taskId
-        ? { ...task, completedAt: new Date().toISOString(), status: 'completed' }
-          : task
+      task.id === taskId 
+        ? { ...task, isCompleted: true, progress: task.maxProgress }
+        : task
     ));
   };
 
+  const completedTasks = tasks.filter(task => task.isCompleted).length;
+  const totalTasks = tasks.length;
+
   return (
-    <div className="min-h-screen">
-      <BackgroundFX theme={theme} />
-      <Header 
-        onNavigate={onNavigate}
-        onOpenSettings={onOpenSettings}
-        theme={theme}
-        user={user}
-        notifications={notifications}
-        onMarkNotificationAsRead={onMarkNotificationAsRead}
-        onMarkAllNotificationsAsRead={onMarkAllNotificationsAsRead}
-        onRemoveNotification={onRemoveNotification}
-        onClearAllNotifications={onClearAllNotifications}
-      />
-      
-      <div className="min-h-screen px-4 py-8 pb-32">
-        {/* AUTOGEN START tasks-content */}
-        <div
-          style={{
-            maxWidth: '448px',
-            margin: '0 auto',
-            paddingLeft: '16px',
-            paddingRight: '16px',
-            paddingBottom: 'calc(96px + env(safe-area-inset-bottom))'
-          }}
-        >
-          {/* Header with title and add button */}
-          <div 
-            style={{
-              display: 'flex',
-              alignItems: 'center',
-              justifyContent: 'space-between',
-              marginBottom: '20px',
-              paddingTop: '20px'
-            }}
-          >
-            <h1 
-              style={{
-                fontSize: '18px',
-                fontWeight: '500',
-                color: theme === 'dark' ? '#E8ECF2' : '#0F172A',
-                margin: 0
-              }}
-            >
-              Р В РІР‚вЂќР В Р’В°Р В РўвЂР В Р’В°Р РЋРІР‚РЋР В РЎвЂ
-            </h1>
-            
-            <button
-              onClick={() => setIsCreateModalOpen(true)}
-              aria-label="Р В Р Р‹Р В РЎвЂўР В Р’В·Р В РўвЂР В Р’В°Р РЋРІР‚С™Р РЋР Р‰ Р В Р вЂ¦Р В РЎвЂўР В Р вЂ Р РЋРЎвЂњР РЋР вЂ№ Р В Р’В·Р В Р’В°Р В РўвЂР В Р’В°Р РЋРІР‚РЋР РЋРЎвЂњ"
-              style={{
-                width: '40px',
-                height: '40px',
-                borderRadius: '50%',
-                border: 'none',
-                background: '#2B82FF',
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'center',
-                cursor: 'pointer',
-                transition: 'all 200ms ease',
-                boxShadow: '0 4px 12px rgba(43, 130, 255, 0.3)'
-              }}
-              onMouseEnter={(e) => {
-                e.currentTarget.style.transform = 'scale(1.05)';
-                e.currentTarget.style.background = '#2066C8';
-                e.currentTarget.style.boxShadow = '0 6px 16px rgba(43, 130, 255, 0.4)';
-              }}
-              onMouseLeave={(e) => {
-                e.currentTarget.style.transform = 'scale(1)';
-                e.currentTarget.style.background = '#2B82FF';
-                e.currentTarget.style.boxShadow = '0 4px 12px rgba(43, 130, 255, 0.3)';
-              }}
-              onMouseDown={(e) => {
-                e.currentTarget.style.transform = 'scale(0.95)';
-              }}
-            >
-              <Plus style={{ width: '20px', height: '20px', color: 'white' }} />
-            </button>
-          </div>
-
-          {/* Filter tabs */}
-          <div 
-            style={{
-              display: 'flex',
-              gap: '8px',
-              marginBottom: '16px',
-              overflowX: 'auto',
-              paddingBottom: '4px'
-            }}
-          >
-            {(['all', 'not_started', 'in_progress', 'completed', 'overdue'] as FilterType[]).map((filterType) => {
-              const isActive = filter === filterType;
-              const getStatusColor = (status: FilterType) => {
-                switch (status) {
-                  case 'completed': return '#22C55E';
-                  case 'in_progress': return '#2B82FF';
-                  case 'overdue': return '#EF4444';
-                  case 'not_started': return '#6B7280';
-                  default: return '#2B82FF';
-                }
-              };
-              
-              return (
-                <button
-                  key={filterType}
-                  onClick={() => setFilter(filterType)}
-                  aria-label={`Р В Р’В¤Р В РЎвЂР В Р’В»Р РЋР Р‰Р РЋРІР‚С™Р РЋР вЂљ: ${filterType === 'all' ? 'Р В РІР‚в„ўР РЋР С“Р В Р’Вµ Р В Р’В·Р В Р’В°Р В РўвЂР В Р’В°Р РЋРІР‚РЋР В РЎвЂ' :
-                    filterType === 'not_started' ? 'Р В РЎСљР В Р’Вµ Р В Р вЂ¦Р В Р’В°Р РЋРІР‚РЋР В Р’В°Р РЋРІР‚С™Р РЋРІР‚в„–Р В Р’Вµ' :
-                    filterType === 'in_progress' ? 'Р В РІР‚в„ў Р В РЎвЂ”Р РЋР вЂљР В РЎвЂўР РЋРІР‚В Р В Р’ВµР РЋР С“Р РЋР С“Р В Р’Вµ' :
-                    filterType === 'completed' ? 'Р В РІР‚вЂќР В Р’В°Р В Р вЂ Р В Р’ВµР РЋР вЂљР РЋРІвЂљВ¬Р В Р’ВµР В Р вЂ¦Р В Р вЂ¦Р РЋРІР‚в„–Р В Р’Вµ' : 'Р В РЎСџР РЋР вЂљР В РЎвЂўР РЋР С“Р РЋР вЂљР В РЎвЂўР РЋРІР‚РЋР В Р’ВµР В Р вЂ¦Р В Р вЂ¦Р РЋРІР‚в„–Р В Р’Вµ'}`}
-                  style={{
-                    padding: '8px 16px',
-                    borderRadius: '20px',
-                    background: isActive 
-                      ? `${getStatusColor(filterType)}20`
-                      : theme === 'dark' ? 'rgba(255, 255, 255, 0.1)' : 'rgba(0, 0, 0, 0.05)',
-                    color: isActive 
-                      ? getStatusColor(filterType)
-                      : theme === 'dark' ? '#A7B0BD' : '#6B7280',
-                    fontSize: '12px',
-                    fontWeight: '500',
-                    cursor: 'pointer',
-                    transition: 'all 200ms ease',
-                    whiteSpace: 'nowrap',
-                    border: isActive 
-                      ? `1px solid ${getStatusColor(filterType)}40`
-                      : theme === 'dark' ? '1px solid rgba(255, 255, 255, 0.1)' : '1px solid rgba(0, 0, 0, 0.1)'
-                  }}
-                  onMouseEnter={(e) => {
-                    if (!isActive) {
-                      e.currentTarget.style.background = theme === 'dark' ? 'rgba(255, 255, 255, 0.15)' : 'rgba(0, 0, 0, 0.08)';
-                    }
-                  }}
-                  onMouseLeave={(e) => {
-                    if (!isActive) {
-                      e.currentTarget.style.background = theme === 'dark' ? 'rgba(255, 255, 255, 0.1)' : 'rgba(0, 0, 0, 0.05)';
-                    }
-                  }}
-                  onMouseDown={(e) => {
-                    e.currentTarget.style.transform = 'scale(0.95)';
-                  }}
-                  onMouseUp={(e) => {
-                    e.currentTarget.style.transform = 'scale(1)';
-                  }}
-                >
-                  {filterType === 'all' ? 'Р В РІР‚в„ўР РЋР С“Р В Р’Вµ' :
-                   filterType === 'not_started' ? 'Р В РЎСљР В Р’Вµ Р В Р вЂ¦Р В Р’В°Р РЋРІР‚РЋР В Р’В°Р РЋРІР‚С™Р РЋРІР‚в„–' :
-                   filterType === 'in_progress' ? 'Р В РІР‚в„ў Р В РЎвЂ”Р РЋР вЂљР В РЎвЂўР РЋРІР‚В Р В Р’ВµР РЋР С“Р РЋР С“Р В Р’Вµ' :
-                   filterType === 'completed' ? 'Р В РІР‚вЂќР В Р’В°Р В Р вЂ Р В Р’ВµР РЋР вЂљР РЋРІвЂљВ¬Р В Р’ВµР В Р вЂ¦Р РЋРІР‚в„–' : 'Р В РЎСџР РЋР вЂљР В РЎвЂўР РЋР С“Р РЋР вЂљР В РЎвЂўР РЋРІР‚РЋР В Р’ВµР В Р вЂ¦Р РЋРІР‚в„–'}
-                </button>
-              );
-            })}
-          </div>
-
-          {/* Tasks list */}
-          <div style={{ display: 'flex', flexDirection: 'column', gap: '12px' }}>
-            {filteredTasks.length > 0 ? (
-              filteredTasks.map((task) => {
-                const taskStatus = getTaskStatus(task);
-                const statusColor = taskStatus === 'completed' ? '#22C55E' :
-                                  taskStatus === 'in_progress' ? '#2B82FF' :
-                                  taskStatus === 'overdue' ? '#EF4444' : '#6B7280';
-                
-                return (
-                  <div
-                    key={task.id}
-                    onClick={() => handleTaskClick(task)}
-                    style={{
-                      backgroundColor: theme === 'dark' ? '#161A22' : '#FFFFFF',
-                      borderRadius: '16px',
-                      padding: '16px',
-                      border: theme === 'dark' ? '1px solid rgba(255, 255, 255, 0.06)' : '1px solid #E6E9EF',
-                      boxShadow: theme === 'dark' ? '0 8px 24px rgba(0, 0, 0, 0.6)' : '0 8px 24px rgba(0, 0, 0, 0.10)',
-                      cursor: 'pointer',
-                      transition: 'all 200ms ease',
-                      position: 'relative',
-                      overflow: 'hidden'
-                    }}
-                    onMouseEnter={(e) => {
-                      e.currentTarget.style.transform = 'scale(0.98)';
-                      e.currentTarget.style.boxShadow = theme === 'dark' 
-                        ? '0 12px 32px rgba(0, 0, 0, 0.8)' 
-                        : '0 12px 32px rgba(0, 0, 0, 0.15)';
-                    }}
-                    onMouseLeave={(e) => {
-                      e.currentTarget.style.transform = 'scale(1)';
-                      e.currentTarget.style.boxShadow = theme === 'dark' 
-                        ? '0 8px 24px rgba(0, 0, 0, 0.6)' 
-                        : '0 8px 24px rgba(0, 0, 0, 0.10)';
-                    }}
-                    onMouseDown={(e) => {
-                      e.currentTarget.style.transform = 'scale(0.96)';
-                    }}
-                    onMouseUp={(e) => {
-                      e.currentTarget.style.transform = 'scale(0.98)';
-                    }}
-                  >
-                    {/* Status indicator */}
-                    <div
-                      style={{
-                        position: 'absolute',
-                        top: 0,
-                        left: 0,
-                        right: 0,
-                        height: '3px',
-                        background: `linear-gradient(90deg, ${statusColor}40, ${statusColor}80, ${statusColor}40)`,
-                        borderRadius: '16px 16px 0 0'
-                      }}
-                    />
-                    
-                    <div style={{ display: 'flex', alignItems: 'flex-start', justifyContent: 'space-between', marginTop: '8px' }}>
-                      {/* Task info */}
-                      <div style={{ flex: 1, minWidth: 0 }}>
-                        <div 
-                          style={{
-                            fontSize: '14px',
-                            fontWeight: '500',
-                            color: theme === 'dark' ? '#E8ECF2' : '#0F172A',
-                            marginBottom: '4px',
-                            lineHeight: '1.4'
-                          }}
-                        >
-                          {task.title}
-                        </div>
-                        <div 
-                          style={{
-                            fontSize: '12px',
-                            color: theme === 'dark' ? '#A7B0BD' : '#6B7280',
-                            marginBottom: '8px',
-                            lineHeight: '1.4',
-                            display: '-webkit-box',
-                            WebkitLineClamp: 2,
-                            WebkitBoxOrient: 'vertical',
-                            overflow: 'hidden'
-                          }}
-                        >
-                          {task.description}
-                        </div>
-                        
-                        {/* Task metadata */}
-                        <div style={{ display: 'flex', alignItems: 'center', gap: '12px', marginBottom: '8px' }}>
-                          <div style={{ display: 'flex', alignItems: 'center', gap: '4px' }}>
-                            <Calendar style={{ width: '12px', height: '12px', color: theme === 'dark' ? '#A7B0BD' : '#6B7280' }} />
-                            <span 
-                              style={{
-                                fontSize: '10px',
-                                color: theme === 'dark' ? '#A7B0BD' : '#6B7280'
-                              }}
-                            >
-                              {new Date(task.deadline).toLocaleDateString('ru-RU')}
-                            </span>
-                          </div>
-                          <div style={{ display: 'flex', alignItems: 'center', gap: '4px' }}>
-                            <Clock style={{ width: '12px', height: '12px', color: theme === 'dark' ? '#A7B0BD' : '#6B7280' }} />
-                            <span 
-                              style={{
-                                fontSize: '10px',
-                                color: theme === 'dark' ? '#A7B0BD' : '#6B7280'
-                              }}
-                            >
-                              {task.reward} {task.rewardType === 'coins' ? 'Р В РЎВР В РЎвЂўР В Р вЂ¦Р В Р’ВµР РЋРІР‚С™' : 'Р В РЎвЂўР В РЎвЂ”Р РЋРІР‚в„–Р РЋРІР‚С™Р В Р’В°'}
-                            </span>
-                          </div>
-                        </div>
-                        
-                        {/* Category indicator */}
-                        <div 
-                          style={{
-                            display: 'inline-block',
-                            padding: '2px 8px',
-                            borderRadius: '12px',
-                            fontSize: '8px',
-                            fontWeight: 'bold',
-                            textTransform: 'uppercase',
-                            letterSpacing: '0.5px',
-                            background: task.category === 'team' ? '#EF444420' :
-                                       task.category === 'individual' ? '#FF9F0A20' : '#22C55E20',
-                            color: task.category === 'team' ? '#EF4444' :
-                                   task.category === 'individual' ? '#FF9F0A' : '#22C55E'
-                          }}
-                        >
-                          {task.category === 'team' ? 'Р В РЎв„ўР В РЎвЂўР В РЎВР В Р’В°Р В Р вЂ¦Р В РўвЂР В Р’В°' :
-                           task.category === 'individual' ? 'Р В Р’ВР В Р вЂ¦Р В РўвЂР В РЎвЂР В Р вЂ Р В РЎвЂР В РўвЂР РЋРЎвЂњР В Р’В°Р В Р’В»Р РЋР Р‰Р В Р вЂ¦Р В Р’В°Р РЋР РЏ' : 'Р В РЎвЂєР В Р’В±Р РЋРІР‚В°Р В Р’В°Р РЋР РЏ'}
-                        </div>
-                      </div>
-                      
-                      {/* Status and timer */}
-                      <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-end', gap: '8px' }}>
-                        {/* Status badge */}
-                        <div
-                          style={{
-                            padding: '4px 8px',
-                            borderRadius: '12px',
-                            fontSize: '10px',
-                            fontWeight: 'bold',
-                            textTransform: 'uppercase',
-                            letterSpacing: '0.5px',
-                            background: `${statusColor}20`,
-                            color: statusColor,
-                            border: `1px solid ${statusColor}40`
-                          }}
-                        >
-                          {taskStatus === 'completed' ? 'Р В РІР‚вЂќР В Р’В°Р В Р вЂ Р В Р’ВµР РЋР вЂљР РЋРІвЂљВ¬Р В Р’ВµР В Р вЂ¦Р В Р’В°' :
-                           taskStatus === 'in_progress' ? 'Р В РІР‚в„ў Р В РЎвЂ”Р РЋР вЂљР В РЎвЂўР РЋРІР‚В Р В Р’ВµР РЋР С“Р РЋР С“Р В Р’Вµ' :
-                           taskStatus === 'overdue' ? 'Р В РЎСџР РЋР вЂљР В РЎвЂўР РЋР С“Р РЋР вЂљР В РЎвЂўР РЋРІР‚РЋР В Р’ВµР В Р вЂ¦Р В Р’В°' : 'Р В РЎСљР В Р’Вµ Р В Р вЂ¦Р В Р’В°Р РЋРІР‚РЋР В Р’В°Р РЋРІР‚С™Р В Р’В°'}
-                        </div>
-                        
-                        {/* Timer controls */}
-                        {taskStatus === 'in_progress' && (
-                          <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-                            <button
-                              onClick={(e) => {
-                                e.stopPropagation();
-                                handleTimerToggle(task.id);
-                              }}
-                              aria-label={activeTimer === task.id ? 'Р В РЎвЂєР РЋР С“Р РЋРІР‚С™Р В Р’В°Р В Р вЂ¦Р В РЎвЂўР В Р вЂ Р В РЎвЂР РЋРІР‚С™Р РЋР Р‰ Р РЋРІР‚С™Р В Р’В°Р В РІвЂћвЂ“Р В РЎВР В Р’ВµР РЋР вЂљ' : 'Р В РІР‚вЂќР В Р’В°Р В РЎвЂ”Р РЋРЎвЂњР РЋР С“Р РЋРІР‚С™Р В РЎвЂР РЋРІР‚С™Р РЋР Р‰ Р РЋРІР‚С™Р В Р’В°Р В РІвЂћвЂ“Р В РЎВР В Р’ВµР РЋР вЂљ'}
-                              style={{
-                                width: '32px',
-                                height: '32px',
-                                borderRadius: '50%',
-                                border: 'none',
-                                background: activeTimer === task.id ? '#EF4444' : '#22C55E',
-                                display: 'flex',
-                                alignItems: 'center',
-                                justifyContent: 'center',
-                                cursor: 'pointer',
-                                transition: 'all 200ms ease',
-                                boxShadow: activeTimer === task.id 
-                                  ? '0 4px 12px rgba(239, 68, 68, 0.3)' 
-                                  : '0 4px 12px rgba(34, 197, 94, 0.3)'
-                              }}
-                              onMouseEnter={(e) => {
-                                e.currentTarget.style.transform = 'scale(1.1)';
-                              }}
-                              onMouseLeave={(e) => {
-                                e.currentTarget.style.transform = 'scale(1)';
-                              }}
-                              onMouseDown={(e) => {
-                                e.currentTarget.style.transform = 'scale(0.95)';
-                              }}
-                              onMouseUp={(e) => {
-                                e.currentTarget.style.transform = 'scale(1.1)';
-                              }}
-                            >
-                              {activeTimer === task.id ? (
-                                <Pause style={{ width: '14px', height: '14px', color: 'white' }} />
-                              ) : (
-                                <Play style={{ width: '14px', height: '14px', color: 'white' }} />
-                              )}
-                            </button>
-                            <span 
-                              style={{
-                                fontSize: '12px',
-                                fontFamily: 'monospace',
-                                color: theme === 'dark' ? '#A7B0BD' : '#6B7280',
-                                minWidth: '60px',
-                                textAlign: 'right'
-                              }}
-                            >
-                              {formatTime(timerSeconds[task.id] || 0)}
-                            </span>
-                          </div>
-                        )}
-                      </div>
-                    </div>
-                  </div>
-                );
-              })
-            ) : (
-              <div
-                style={{
-                  backgroundColor: theme === 'dark' ? '#161A22' : '#FFFFFF',
-                  borderRadius: '16px',
-                  padding: '48px 16px',
-                  textAlign: 'center',
-                  border: theme === 'dark' ? '1px solid rgba(255, 255, 255, 0.06)' : '1px solid #E6E9EF',
-                  boxShadow: theme === 'dark' ? '0 8px 24px rgba(0, 0, 0, 0.6)' : '0 8px 24px rgba(0, 0, 0, 0.10)'
-                }}
-              >
-                <div
-                  style={{
-                    width: '64px',
-                    height: '64px',
-                    borderRadius: '50%',
-                    background: theme === 'dark' ? 'rgba(255, 255, 255, 0.1)' : 'rgba(0, 0, 0, 0.05)',
-                    display: 'flex',
-                    alignItems: 'center',
-                    justifyContent: 'center',
-                    margin: '0 auto 16px'
-                  }}
-                >
-                  <FileText style={{ width: '32px', height: '32px', color: theme === 'dark' ? '#A7B0BD' : '#6B7280' }} />
-                </div>
-                <h3 
-                  style={{
-                    fontSize: '16px',
-                    fontWeight: '500',
-                    color: theme === 'dark' ? '#E8ECF2' : '#0F172A',
-                    marginBottom: '8px'
-                  }}
-                >
-                  Р В РЎСљР В Р’ВµР РЋРІР‚С™ Р В Р’В·Р В Р’В°Р В РўвЂР В Р’В°Р РЋРІР‚РЋ
-                </h3>
-                <p 
-                  style={{
-                    fontSize: '12px',
-                    color: theme === 'dark' ? '#A7B0BD' : '#6B7280',
-                    lineHeight: '1.4'
-                  }}
-                >
-                  {filter === 'all' ? 'Р В Р Р‹Р В РЎвЂўР В Р’В·Р В РўвЂР В Р’В°Р В РІвЂћвЂ“Р РЋРІР‚С™Р В Р’Вµ Р В РЎвЂ”Р В Р’ВµР РЋР вЂљР В Р вЂ Р РЋРЎвЂњР РЋР вЂ№ Р В Р’В·Р В Р’В°Р В РўвЂР В Р’В°Р РЋРІР‚РЋР РЋРЎвЂњ' :
-                   filter === 'not_started' ? 'Р В РЎСљР В Р’ВµР РЋРІР‚С™ Р В Р вЂ¦Р В Р’Вµ Р В Р вЂ¦Р В Р’В°Р РЋРІР‚РЋР В Р’В°Р РЋРІР‚С™Р РЋРІР‚в„–Р РЋРІР‚В¦ Р В Р’В·Р В Р’В°Р В РўвЂР В Р’В°Р РЋРІР‚РЋ' :
-                   filter === 'in_progress' ? 'Р В РЎСљР В Р’ВµР РЋРІР‚С™ Р В Р’В·Р В Р’В°Р В РўвЂР В Р’В°Р РЋРІР‚РЋ Р В Р вЂ  Р В РЎвЂ”Р РЋР вЂљР В РЎвЂўР РЋРІР‚В Р В Р’ВµР РЋР С“Р РЋР С“Р В Р’Вµ' :
-                   filter === 'completed' ? 'Р В РЎСљР В Р’ВµР РЋРІР‚С™ Р В Р’В·Р В Р’В°Р В Р вЂ Р В Р’ВµР РЋР вЂљР РЋРІвЂљВ¬Р В Р’ВµР В Р вЂ¦Р В Р вЂ¦Р РЋРІР‚в„–Р РЋРІР‚В¦ Р В Р’В·Р В Р’В°Р В РўвЂР В Р’В°Р РЋРІР‚РЋ' : 'Р В РЎСљР В Р’ВµР РЋРІР‚С™ Р В РЎвЂ”Р РЋР вЂљР В РЎвЂўР РЋР С“Р РЋР вЂљР В РЎвЂўР РЋРІР‚РЋР В Р’ВµР В Р вЂ¦Р В Р вЂ¦Р РЋРІР‚в„–Р РЋРІР‚В¦ Р В Р’В·Р В Р’В°Р В РўвЂР В Р’В°Р РЋРІР‚РЋ'}
-                </p>
-              </div>
-            )}
+    <div className="min-h-screen bg-gray-50">
+      {/* Header */}
+      <div className="bg-white shadow-sm border-b">
+        <div className="px-4 py-6">
+          <div className="flex items-center justify-between">
+            <div>
+              <h1 className="text-2xl font-bold text-gray-900">Задания</h1>
+              <p className="text-gray-600 mt-1">Выполняйте задания для получения наград</p>
+            </div>
+            <div className="text-right">
+              <div className="text-2xl font-bold text-blue-600">{completedTasks}/{totalTasks}</div>
+              <div className="text-sm text-gray-500">Выполнено</div>
+            </div>
           </div>
         </div>
-        {/* AUTOGEN END tasks-content */}
       </div>
 
-      <BottomNavigation 
-        theme={theme}
-      />
-
-      {/* Create Task Modal */}
-      {isCreateModalOpen && (
-        <div
-          style={{
-            position: 'fixed',
-            top: 0,
-            left: 0,
-            right: 0,
-            bottom: 0,
-            background: 'rgba(0, 0, 0, 0.5)',
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'center',
-            zIndex: 1000
-          }}
-          onClick={() => setIsCreateModalOpen(false)}
-        >
-          <div
-            style={{
-              background: theme === 'dark' ? '#161A22' : '#FFFFFF',
-              borderRadius: '16px',
-              padding: '24px',
-              width: '90vw',
-              maxWidth: '400px',
-              maxHeight: '80vh',
-              overflow: 'auto'
-            }}
-            onClick={(e) => e.stopPropagation()}
-          >
-            <div style={{
-              display: 'flex',
-              justifyContent: 'space-between',
-              alignItems: 'center',
-              marginBottom: '24px'
-            }}>
-              <h2 style={{ color: theme === 'dark' ? '#E8ECF2' : '#0F172A' }}>
-                Р В РЎСљР В РЎвЂўР В Р вЂ Р В Р’В°Р РЋР РЏ Р В Р’В·Р В Р’В°Р В РўвЂР В Р’В°Р РЋРІР‚РЋР В Р’В°
-              </h2>
-              <button
-                onClick={() => setIsCreateModalOpen(false)}
-                style={{
-                  background: 'none',
-                  border: 'none',
-                  fontSize: '24px',
-                  cursor: 'pointer',
-                  color: theme === 'dark' ? '#A7B0BD' : '#6B7280'
-                }}
-              >
-                <X size={24} />
-              </button>
-            </div>
-            <div style={{ textAlign: 'center', padding: '20px' }}>
-              <p style={{ color: theme === 'dark' ? '#A7B0BD' : '#6B7280' }}>
-                Р В Р’В¤Р РЋРЎвЂњР В Р вЂ¦Р В РЎвЂќР РЋРІР‚В Р В РЎвЂР РЋР РЏ Р РЋР С“Р В РЎвЂўР В Р’В·Р В РўвЂР В Р’В°Р В Р вЂ¦Р В РЎвЂР РЋР РЏ Р В Р’В·Р В Р’В°Р В РўвЂР В Р’В°Р РЋРІР‚РЋ Р В Р вЂ  Р РЋР вЂљР В Р’В°Р В Р’В·Р РЋР вЂљР В Р’В°Р В Р’В±Р В РЎвЂўР РЋРІР‚С™Р В РЎвЂќР В Р’Вµ
-              </p>
-            </div>
+      {/* Progress Overview */}
+      <div className="px-4 py-4">
+        <div className="bg-white rounded-lg p-4 shadow-sm border">
+          <div className="flex items-center justify-between mb-3">
+            <h3 className="font-semibold text-gray-900">Общий прогресс</h3>
+            <span className="text-sm text-gray-500">
+              {Math.round((completedTasks / totalTasks) * 100)}%
+            </span>
+          </div>
+          <div className="w-full bg-gray-200 rounded-full h-3">
+            <div 
+              className="bg-gradient-to-r from-blue-500 to-purple-600 h-3 rounded-full transition-all duration-500"
+              style={{ width: `${(completedTasks / totalTasks) * 100}%` }}
+            ></div>
           </div>
         </div>
-      )}
+      </div>
 
-      {/* Task Detail Modal */}
-      {isDetailModalOpen && selectedTask && (
-        <div
-          style={{
-            position: 'fixed',
-            top: 0,
-            left: 0,
-            right: 0,
-            bottom: 0,
-            background: 'rgba(0, 0, 0, 0.5)',
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'center',
-            zIndex: 1000
-          }}
-          onClick={() => setIsDetailModalOpen(false)}
-        >
-          <div
-            style={{
-              background: theme === 'dark' ? '#161A22' : '#FFFFFF',
-              borderRadius: '16px',
-              padding: '24px',
-              width: '90vw',
-              maxWidth: '400px',
-              maxHeight: '80vh',
-              overflow: 'auto'
-            }}
-            onClick={(e) => e.stopPropagation()}
-          >
-            <div style={{
-              display: 'flex',
-              justifyContent: 'space-between',
-              alignItems: 'center',
-              marginBottom: '24px'
-            }}>
-              <h2 style={{ color: theme === 'dark' ? '#E8ECF2' : '#0F172A' }}>
-                Р В РІР‚СњР В Р’ВµР РЋРІР‚С™Р В Р’В°Р В Р’В»Р В РЎвЂ Р В Р’В·Р В Р’В°Р В РўвЂР В Р’В°Р РЋРІР‚РЋР В РЎвЂ
-              </h2>
-              <button
-                onClick={() => setIsDetailModalOpen(false)}
-                style={{
-                  background: 'none',
-                  border: 'none',
-                  fontSize: '24px',
-                  cursor: 'pointer',
-                  color: theme === 'dark' ? '#A7B0BD' : '#6B7280'
-                }}
-              >
-                <X size={24} />
-              </button>
-            </div>
-            <div style={{ marginBottom: '16px' }}>
-              <h3 style={{ 
-                fontSize: '18px',
-                fontWeight: '600',
-                color: theme === 'dark' ? '#E8ECF2' : '#0F172A',
-                marginBottom: '8px'
-              }}>
-                {selectedTask.title}
-              </h3>
-              <p style={{ 
-                fontSize: '14px',
-                color: theme === 'dark' ? '#A7B0BD' : '#6B7280',
-                marginBottom: '12px'
-              }}>
-                {selectedTask.description}
-              </p>
-              <div style={{
-                display: 'flex',
-                justifyContent: 'space-between',
-                alignItems: 'center',
-                padding: '12px',
-                background: theme === 'dark' ? 'rgba(255, 255, 255, 0.05)' : 'rgba(0, 0, 0, 0.05)',
-                borderRadius: '8px'
-              }}>
-                <span style={{ fontSize: '14px', color: theme === 'dark' ? '#A7B0BD' : '#6B7280' }}>
-                  Р В РІР‚СњР В Р’ВµР В РўвЂР В Р’В»Р В Р’В°Р В РІвЂћвЂ“Р В Р вЂ¦: {new Date(selectedTask.deadline).toLocaleDateString('ru-RU')}
-                </span>
-                <span style={{ 
-                  fontSize: '14px',
-                  fontWeight: '600',
-                  color: theme === 'dark' ? '#E8ECF2' : '#0F172A'
-                }}>
-                  {selectedTask.reward} {selectedTask.rewardType === 'coins' ? 'Р В РЎВР В РЎвЂўР В Р вЂ¦Р В Р’ВµР РЋРІР‚С™' : 'Р В РЎвЂўР В РЎвЂ”Р РЋРІР‚в„–Р РЋРІР‚С™Р В Р’В°'}
-                </span>
+      {/* Tasks List */}
+      <div className="px-4 pb-20">
+        <div className="space-y-4">
+          {tasks.map((task) => (
+            <div 
+              key={task.id} 
+              className={`bg-white rounded-lg p-4 shadow-sm border ${
+                task.isCompleted ? 'opacity-75' : ''
+              }`}
+            >
+              <div className="flex items-start justify-between mb-3">
+                <div className="flex-1">
+                  <div className="flex items-center space-x-2 mb-1">
+                    <h4 className="font-semibold text-gray-900">{task.title}</h4>
+                    <span className={`px-2 py-1 text-xs font-medium rounded-full ${getDifficultyColor(task.difficulty)}`}>
+                      {getDifficultyLabel(task.difficulty)}
+                    </span>
+                  </div>
+                  <p className="text-gray-600 text-sm mb-2">{task.description}</p>
+                  <div className="flex items-center space-x-4 text-sm text-gray-500">
+                    <div className="flex items-center space-x-1">
+                      <Star className="w-4 h-4" />
+                      <span>{task.reward.xp} XP</span>
+                    </div>
+                    <div className="flex items-center space-x-1">
+                      <Target className="w-4 h-4" />
+                      <span>{task.reward.coins} монет</span>
+                    </div>
+                  </div>
+                </div>
+                {task.isCompleted && (
+                  <CheckCircle className="w-6 h-6 text-green-500 flex-shrink-0" />
+                )}
               </div>
-            </div>
-            <div style={{ display: 'flex', gap: '12px' }}>
-              <button
-                onClick={() => setIsDetailModalOpen(false)}
-                style={{
-                  flex: 1,
-                  padding: '12px',
-                  background: 'transparent',
-                  color: theme === 'dark' ? '#E8ECF2' : '#0F172A',
-                  border: `1px solid ${theme === 'dark' ? '#A7B0BD' : '#6B7280'}`,
-                  borderRadius: '8px',
-                  fontSize: '14px',
-                  fontWeight: '500',
-                  cursor: 'pointer'
-                }}
-              >
-                Р В РІР‚вЂќР В Р’В°Р В РЎвЂќР РЋР вЂљР РЋРІР‚в„–Р РЋРІР‚С™Р РЋР Р‰
-              </button>
-              {!selectedTask.completedAt && (
+
+              {/* Progress Bar */}
+              <div className="mb-3">
+                <div className="flex justify-between text-sm text-gray-600 mb-1">
+                  <span>Прогресс</span>
+                  <span>{task.progress}/{task.maxProgress}</span>
+                </div>
+                <div className="w-full bg-gray-200 rounded-full h-2">
+                  <div 
+                    className={`h-2 rounded-full transition-all duration-300 ${
+                      task.isCompleted ? 'bg-green-500' : 'bg-blue-500'
+                    }`}
+                    style={{ width: `${(task.progress / task.maxProgress) * 100}%` }}
+                  ></div>
+                </div>
+              </div>
+
+              {/* Action Button */}
+              {!task.isCompleted && task.progress >= task.maxProgress ? (
                 <button
-                  onClick={() => {
-                    handleCompleteTask(selectedTask.id);
-                    setIsDetailModalOpen(false);
-                  }}
-                  style={{
-                    flex: 1,
-                    padding: '12px',
-                    background: '#22C55E',
-                    color: 'white',
-                    border: 'none',
-                    borderRadius: '8px',
-                    fontSize: '14px',
-                    fontWeight: '500',
-                    cursor: 'pointer'
-                  }}
+                  onClick={() => completeTask(task.id)}
+                  className="w-full bg-green-500 text-white py-2 px-4 rounded-lg font-medium hover:bg-green-600 transition-colors flex items-center justify-center space-x-2"
                 >
-                  Р В РІР‚в„ўР РЋРІР‚в„–Р В РЎвЂ”Р В РЎвЂўР В Р’В»Р В Р вЂ¦Р В РЎвЂР РЋРІР‚С™Р РЋР Р‰
+                  <CheckCircle className="w-5 h-5" />
+                  <span>Получить награду</span>
+                </button>
+              ) : (
+                <button
+                  disabled
+                  className="w-full bg-gray-300 text-gray-500 py-2 px-4 rounded-lg font-medium cursor-not-allowed flex items-center justify-center space-x-2"
+                >
+                  <Clock className="w-5 h-5" />
+                  <span>В процессе</span>
                 </button>
               )}
             </div>
-          </div>
+          ))}
         </div>
-      )}
+      </div>
     </div>
   );
 };

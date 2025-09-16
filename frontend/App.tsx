@@ -259,7 +259,7 @@ export default function App() {
   };
 
   return (
-    <HashRouter>
+    <HashRouter future={{ v7_startTransition: true, v7_relativeSplatPath: true }}>
       <div className={`app ${theme === 'dark' ? 'dark' : ''}`} style={{ minHeight: '100vh' }}>
           <NavigationWrapper>
           <Routes>
@@ -281,6 +281,7 @@ export default function App() {
                   <HomePage
                     theme={theme}
                     currentPage="/home"
+                    currentUser={mockCurrentUser}
                     battles={mockBattles}
                     battleInvitations={mockBattleInvitations}
                     users={mockUsers}
@@ -342,6 +343,7 @@ export default function App() {
                 <main className="container" style={{ paddingBottom: '80px' }}>
                   <TasksPage
                     theme={theme}
+                    user={mockCurrentUser}
                     tasks={mockTasks}
                     currentPage="/tasks"
                     onNavigate={handleNavigate}
@@ -366,6 +368,7 @@ export default function App() {
                 <main className="container" style={{ paddingBottom: '80px' }}>
                   <ShopPage
                     theme={theme}
+                    user={mockCurrentUser}
                     currentPage="/shop"
                     onNavigate={handleNavigate}
                   />
@@ -387,7 +390,7 @@ export default function App() {
                   hideUserIcon={false}
                 />
                 <main className="container" style={{ paddingBottom: '80px' }}>
-                  <ProfilePage />
+                  <ProfilePage user={mockCurrentUser} />
                 </main>
                 <BottomNavigation theme={theme} />
               </div>

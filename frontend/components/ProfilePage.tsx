@@ -1,350 +1,257 @@
-import React from 'react';
-import { Header } from './Header';
-import { BottomNavigation } from './BottomNavigation';
-import { BackgroundFX } from './BackgroundFX';
-import { User as UserIcon, Edit3, Trophy, Calendar, Zap, Coins } from 'lucide-react';
+import React, { useState } from 'react';
+import { User, Settings, Trophy, Coins, Star, Edit, Save, X } from 'lucide-react';
 
-interface ProfilePageProps {
-  onNavigate: (page: string) => void;
-  user: any;
-  setUser: (user: any) => void;
-  battles: any[];
-  leaderboard: any[];
-  theme: 'light' | 'dark';
+interface User {
+  id: string;
+  name: string;
+  role: string;
+  level: number;
+  xp: number;
+  coins: number;
+  achievements: number;
+  battlesWon: number;
+  battlesLost: number;
 }
 
-export const ProfilePage: React.FC<ProfilePageProps> = ({
-  onNavigate,
-  user,
-  setUser,
-  battles,
-  leaderboard,
-  theme,
-}) => {
+interface ProfilePageProps {
+  user?: User;
+}
+
+export const ProfilePage: React.FC<ProfilePageProps> = ({ user }) => {
+  const [isEditing, setIsEditing] = useState(false);
+  const [editedName, setEditedName] = useState(user?.name || 'Пользователь');
+
+  const mockUser: User = user || {
+    id: '1',
+    name: 'Иван Иванович',
+    role: 'WORKER',
+    level: 8,
+    xp: 750,
+    coins: 1250,
+    achievements: 12,
+    battlesWon: 5,
+    battlesLost: 2
+  };
+
+  const getLevelColor = (level: number): string => {
+    if (level >= 20) return '#fbbf24';
+    if (level >= 15) return '#a855f7';
+    if (level >= 10) return '#3b82f6';
+    if (level >= 5) return '#10b981';
+    return '#6b7280';
+  };
+
+  const getRoleDisplayName = (role: string): string => {
+    const roleMap: { [key: string]: string } = {
+      'GRITHER': 'GRITHER',
+      'GLEB': 'GLEB',
+      'SUPPORT': 'SUPPORT',
+      'TEAMLEAD': 'TEAMLEAD',
+      'WORKER': 'WORKER'
+    };
+    return roleMap[role] || role;
+  };
+
+  const handleSaveName = () => {
+    // Здесь можно добавить логику сохранения имени
+    setIsEditing(false);
+  };
+
+  const handleCancelEdit = () => {
+    setEditedName(mockUser.name);
+    setIsEditing(false);
+  };
+
   return (
-    <div style={{ 
-      minHeight: '100vh', 
-      backgroundColor: theme === 'dark' ? '#12151B' : '#F5F7FA',
-      position: 'relative',
-      zIndex: 1000
-    }}>
-      <BackgroundFX theme={theme} />
-      
-      {/* Header */}
-      <Header 
-        onNavigate={onNavigate} 
-        hideUserIcon={true}
-        onOpenSettings={() => onNavigate('settings')}
-        theme={theme}
-      />
-      
-      {/* Р В РЎвЂєР РЋР С“Р В Р вЂ¦Р В РЎвЂўР В Р вЂ Р В Р вЂ¦Р В РЎвЂўР В РІвЂћвЂ“ Р В РЎвЂќР В РЎвЂўР В Р вЂ¦Р РЋРІР‚С™Р В Р’ВµР В Р вЂ¦Р РЋРІР‚С™ */}
-      <div style={{
-        maxWidth: '448px',
-        margin: '20px auto',
-        padding: '16px',
-        backgroundColor: theme === 'dark' ? '#161A22' : '#FFFFFF',
-        borderRadius: '16px',
-        border: theme === 'dark' ? '1px solid rgba(255, 255, 255, 0.06)' : '1px solid #E6E9EF',
-        boxShadow: '0 4px 12px rgba(0,0,0,0.1)',
-        color: theme === 'dark' ? '#E8ECF2' : '#0F172A',
-        zIndex: 10,
-        position: 'relative'
-      }}>
-        {/* AUTOGEN START profile-content */}
-        <div style={{
-          maxWidth: '448px',
-          margin: '0 auto',
-          paddingLeft: '16px',
-          paddingRight: '16px',
-          paddingBottom: 'calc(96px + env(safe-area-inset-bottom))'
-        }}>
-          {/* Header */}
-          <div style={{
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'space-between',
-            marginBottom: '24px',
-            paddingTop: '20px'
-          }}>
-            <h1 style={{
-              fontSize: '18px',
-              fontWeight: '500',
-              color: theme === 'dark' ? '#E8ECF2' : '#0F172A',
-              margin: 0
-            }}>
-              Р В РЎСџР РЋР вЂљР В РЎвЂўР РЋРІР‚С›Р В РЎвЂР В Р’В»Р РЋР Р‰
-            </h1>
-            <button
-              style={{
-                background: 'none',
-                border: 'none',
-                cursor: 'pointer',
-                padding: '8px',
-                borderRadius: '8px',
-                transition: 'background-color 0.2s ease'
-              }}
-              onMouseEnter={(e) => e.target.style.backgroundColor = theme === 'dark' ? 'rgba(255, 255, 255, 0.1)' : 'rgba(0, 0, 0, 0.05)'}
-              onMouseLeave={(e) => e.target.style.backgroundColor = 'transparent'}
-              aria-label="Р В РЎСљР В Р’В°Р РЋР С“Р РЋРІР‚С™Р РЋР вЂљР В РЎвЂўР В РІвЂћвЂ“Р В РЎвЂќР В РЎвЂ Р В РЎвЂ”Р РЋР вЂљР В РЎвЂўР РЋРІР‚С›Р В РЎвЂР В Р’В»Р РЋР РЏ"
+    <div className="min-h-screen bg-gray-50">
+      {/* Profile Header */}
+      <div className="bg-white shadow-sm border-b">
+        <div className="px-4 py-6">
+          <div className="flex items-center space-x-4">
+            <div 
+              className="w-20 h-20 rounded-full flex items-center justify-center text-white font-bold text-2xl"
+              style={{ backgroundColor: getLevelColor(mockUser.level) }}
             >
-              <Edit3 size={20} color={theme === 'dark' ? '#E8ECF2' : '#0F172A'} />
-            </button>
-          </div>
-
-          {/* Profile Card */}
-          <div style={{
-            backgroundColor: theme === 'dark' ? '#161A22' : '#FFFFFF',
-            borderRadius: '16px',
-            padding: '20px',
-            marginBottom: '20px',
-            boxShadow: theme === 'dark' ? '0 4px 15px rgba(0, 0, 0, 0.4)' : '0 2px 8px rgba(0, 0, 0, 0.08)'
-          }}>
-            <div style={{ display: 'flex', alignItems: 'center', gap: '16px', marginBottom: '16px' }}>
-              <div
-                style={{
-                  width: '80px',
-                  height: '80px',
-                  borderRadius: '50%',
-                  backgroundColor: '#2B82FF',
-                  display: 'flex',
-                  alignItems: 'center',
-                  justifyContent: 'center',
-                  cursor: 'pointer',
-                  transition: 'transform 0.2s ease'
-                }}
-                onMouseEnter={(e) => e.target.style.transform = 'scale(1.05)'}
-                onMouseLeave={(e) => e.target.style.transform = 'scale(1)'}
-                onClick={() => {
-                  const input = document.createElement('input');
-                  input.type = 'file';
-                  input.accept = 'image/*';
-                  input.onchange = (e) => {
-                    const file = e.target.files[0];
-                    if (file) {
-                      // Handle file upload logic here
-                      console.log('Avatar file selected:', file);
-                    }
-                  };
-                  input.click();
-                }}
-              >
-                <UserIcon size={40} color="white" />
-              </div>
-              <div style={{ flex: 1 }}>
-                <h2 style={{
-                  fontSize: '20px',
-                  fontWeight: '700',
-                  color: theme === 'dark' ? '#E8ECF2' : '#0F172A',
-                  margin: '0 0 4px 0'
-                }}>
-                  {user?.name || 'Р В РЎСџР В РЎвЂўР В Р’В»Р РЋР Р‰Р В Р’В·Р В РЎвЂўР В Р вЂ Р В Р’В°Р РЋРІР‚С™Р В Р’ВµР В Р’В»Р РЋР Р‰'}
-                </h2>
-                <p style={{
-                  fontSize: '14px',
-                  color: theme === 'dark' ? '#A7B0BD' : '#6B7280',
-                  margin: '0 0 4px 0'
-                }}>
-                  Р В Р в‚¬Р РЋР вЂљР В РЎвЂўР В Р вЂ Р В Р’ВµР В Р вЂ¦Р РЋР Р‰ {user?.level || 1}
-                </p>
-                <p style={{
-                  fontSize: '14px',
-                  color: theme === 'dark' ? '#A7B0BD' : '#6B7280',
-                  margin: 0
-                }}>
-                  {user?.team || 'Р В РЎв„ўР В РЎвЂўР В РЎВР В Р’В°Р В Р вЂ¦Р В РўвЂР В Р’В° Р В Р вЂ¦Р В Р’Вµ Р РЋРЎвЂњР В РЎвЂќР В Р’В°Р В Р’В·Р В Р’В°Р В Р вЂ¦Р В Р’В°'}
-                </p>
-              </div>
+              {mockUser.name.charAt(0).toUpperCase()}
             </div>
-
-            {/* Level Progress */}
-            <div style={{ marginBottom: '16px' }}>
-              <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '8px' }}>
-                <span style={{
-                  fontSize: '14px',
-                  fontWeight: '500',
-                  color: theme === 'dark' ? '#E8ECF2' : '#0F172A'
-                }}>
-                  Р В РЎСџР РЋР вЂљР В РЎвЂўР В РЎвЂ“Р РЋР вЂљР В Р’ВµР РЋР С“Р РЋР С“ Р РЋРЎвЂњР РЋР вЂљР В РЎвЂўР В Р вЂ Р В Р вЂ¦Р РЋР РЏ
-                </span>
-                <span style={{
-                  fontSize: '14px',
-                  color: theme === 'dark' ? '#A7B0BD' : '#6B7280'
-                }}>
-                  {user?.experience || 0} / {user?.maxExperience || 100} XP
-                </span>
-              </div>
-              <div style={{
-                width: '100%',
-                height: '8px',
-                backgroundColor: theme === 'dark' ? 'rgba(255, 255, 255, 0.1)' : 'rgba(0, 0, 0, 0.1)',
-                borderRadius: '4px',
-                overflow: 'hidden'
-              }}>
-                <div style={{
-                  width: `${Math.min(((user?.experience || 0) / (user?.maxExperience || 100)) * 100, 100)}%`,
-                  height: '100%',
-                  backgroundColor: '#2B82FF',
-                  transition: 'width 0.3s ease'
-                }} />
-              </div>
-            </div>
-
-            {/* Stats */}
-            <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr 1fr', gap: '16px' }}>
-              <div style={{ textAlign: 'center' }}>
-                <div style={{
-                  fontSize: '20px',
-                  fontWeight: '700',
-                  color: '#2B82FF',
-                  marginBottom: '4px'
-                }}>
-                  {battles?.filter(b => b.winnerId === user?.id).length || 0}
-                </div>
-                <div style={{
-                  fontSize: '12px',
-                  color: theme === 'dark' ? '#A7B0BD' : '#6B7280'
-                }}>
-                  Р В РЎСџР В РЎвЂўР В Р’В±Р В Р’ВµР В РўвЂ
-                </div>
-              </div>
-              <div style={{ textAlign: 'center' }}>
-                <div style={{
-                  fontSize: '20px',
-                  fontWeight: '700',
-                  color: '#2B82FF',
-                  marginBottom: '4px',
-                  display: 'flex',
-                  alignItems: 'center',
-                  justifyContent: 'center',
-                  gap: '4px'
-                }}>
-                  {user?.balance || 0}
-                  <Coins size={16} color="#FFD700" />
-                </div>
-                <div style={{
-                  fontSize: '12px',
-                  color: theme === 'dark' ? '#A7B0BD' : '#6B7280'
-                }}>
-                  Р В РІР‚ВР В Р’В°Р В Р’В»Р В Р’В°Р В Р вЂ¦Р РЋР С“
-                </div>
-              </div>
-              <div style={{ textAlign: 'center' }}>
-                <div style={{
-                  fontSize: '20px',
-                  fontWeight: '700',
-                  color: '#2B82FF',
-                  marginBottom: '4px'
-                }}>
-                  0
-                </div>
-                <div style={{
-                  fontSize: '12px',
-                  color: theme === 'dark' ? '#A7B0BD' : '#6B7280'
-                }}>
-                  Р В РЎвЂ™Р РЋРІР‚РЋР В РЎвЂР В Р вЂ Р В РЎвЂќР В РЎвЂ
-                </div>
-              </div>
-            </div>
-          </div>
-
-          {/* My Battles */}
-          <div style={{
-            backgroundColor: theme === 'dark' ? '#161A22' : '#FFFFFF',
-            borderRadius: '16px',
-            padding: '20px',
-            marginBottom: '20px',
-            boxShadow: theme === 'dark' ? '0 4px 15px rgba(0, 0, 0, 0.4)' : '0 2px 8px rgba(0, 0, 0, 0.08)'
-          }}>
-            <h3 style={{
-              fontSize: '18px',
-              fontWeight: '700',
-              color: theme === 'dark' ? '#E8ECF2' : '#0F172A',
-              margin: '0 0 16px 0',
-              display: 'flex',
-              alignItems: 'center',
-              gap: '8px'
-            }}>
-              <Trophy size={20} color="#2B82FF" />
-              Р В РЎС™Р В РЎвЂўР В РЎвЂ Р В Р’В±Р В Р’В°Р РЋРІР‚С™Р РЋРІР‚С™Р В Р’В»Р РЋРІР‚в„–
-            </h3>
-            {battles?.length > 0 ? (
-              <div style={{ display: 'flex', flexDirection: 'column', gap: '12px' }}>
-                {battles.slice(0, 3).map((battle, index) => (
-                  <div key={index} style={{
-                    padding: '12px',
-                    backgroundColor: theme === 'dark' ? 'rgba(255, 255, 255, 0.05)' : 'rgba(0, 0, 0, 0.05)',
-                    borderRadius: '8px',
-                    display: 'flex',
-                    alignItems: 'center',
-                    justifyContent: 'space-between'
-                  }}>
-                    <div>
-                      <div style={{
-                        fontSize: '14px',
-                        fontWeight: '500',
-                        color: theme === 'dark' ? '#E8ECF2' : '#0F172A',
-                        marginBottom: '4px'
-                      }}>
-                        {battle.title || `Р В РІР‚ВР В Р’В°Р РЋРІР‚С™Р РЋРІР‚С™Р В Р’В» #${index + 1}`}
-                      </div>
-                      <div style={{
-                        fontSize: '12px',
-                        color: theme === 'dark' ? '#A7B0BD' : '#6B7280'
-                      }}>
-                        {battle.status || 'Р В РІР‚вЂќР В Р’В°Р В Р вЂ Р В Р’ВµР РЋР вЂљР РЋРІвЂљВ¬Р В Р’ВµР В Р вЂ¦'}
-                      </div>
-                    </div>
-                    <div style={{
-                      fontSize: '16px',
-                      fontWeight: '700',
-                      color: '#2B82FF'
-                    }}>
-                      {battle.score || 0}
-                    </div>
-                  </div>
-                ))}
-                {battles.length > 3 && (
+            <div className="flex-1">
+              {isEditing ? (
+                <div className="flex items-center space-x-2">
+                  <input
+                    type="text"
+                    value={editedName}
+                    onChange={(e) => setEditedName(e.target.value)}
+                    className="text-xl font-bold bg-transparent border-b-2 border-blue-500 focus:outline-none"
+                    autoFocus
+                  />
                   <button
-                    style={{
-                      background: 'none',
-                      border: 'none',
-                      color: '#2B82FF',
-                      fontSize: '14px',
-                      fontWeight: '500',
-                      cursor: 'pointer',
-                      padding: '8px',
-                      borderRadius: '8px',
-                      transition: 'background-color 0.2s ease'
-                    }}
-                    onMouseEnter={(e) => e.target.style.backgroundColor = theme === 'dark' ? 'rgba(43, 130, 255, 0.1)' : 'rgba(43, 130, 255, 0.05)'}
-                    onMouseLeave={(e) => e.target.style.backgroundColor = 'transparent'}
+                    onClick={handleSaveName}
+                    className="p-1 text-green-600 hover:bg-green-100 rounded"
                   >
-                    Р В РЎСџР В РЎвЂўР В РЎвЂќР В Р’В°Р В Р’В·Р В Р’В°Р РЋРІР‚С™Р РЋР Р‰ Р В Р вЂ Р РЋР С“Р В Р’Вµ ({battles.length})
+                    <Save className="w-4 h-4" />
                   </button>
-                )}
-              </div>
-            ) : (
-              <div style={{
-                textAlign: 'center',
-                padding: '20px',
-                color: theme === 'dark' ? '#A7B0BD' : '#6B7280'
-              }}>
-                <Trophy size={32} color={theme === 'dark' ? '#A7B0BD' : '#6B7280'} style={{ marginBottom: '8px' }} />
-                <p style={{ margin: 0, fontSize: '14px' }}>Р В РЎСџР В РЎвЂўР В РЎвЂќР В Р’В° Р В Р вЂ¦Р В Р’ВµР РЋРІР‚С™ Р В Р’В±Р В Р’В°Р РЋРІР‚С™Р РЋРІР‚С™Р В Р’В»Р В РЎвЂўР В Р вЂ </p>
-              </div>
-            )}
+                  <button
+                    onClick={handleCancelEdit}
+                    className="p-1 text-red-600 hover:bg-red-100 rounded"
+                  >
+                    <X className="w-4 h-4" />
+                  </button>
+                </div>
+              ) : (
+                <div className="flex items-center space-x-2">
+                  <h1 className="text-xl font-bold text-gray-900">{mockUser.name}</h1>
+                  <button
+                    onClick={() => setIsEditing(true)}
+                    className="p-1 text-gray-600 hover:bg-gray-100 rounded"
+                  >
+                    <Edit className="w-4 h-4" />
+                  </button>
+                </div>
+              )}
+              <p className="text-gray-600">{getRoleDisplayName(mockUser.role)}</p>
+              <p className="text-sm text-gray-500">Уровень {mockUser.level}</p>
+            </div>
           </div>
         </div>
-        {/* AUTOGEN END profile-content */}
       </div>
 
-      {/* Bottom Navigation */}
-      <BottomNavigation 
-        currentPage="profile"
-        onNavigate={onNavigate}
-        theme={theme}
-      />
+      {/* Level Progress */}
+      <div className="px-4 py-4">
+        <div className="bg-white rounded-lg p-4 shadow-sm border">
+          <div className="flex justify-between items-center mb-2">
+            <h3 className="font-semibold text-gray-900">Прогресс уровня</h3>
+            <span className="text-sm text-gray-500">
+              {mockUser.xp || 0} / {((mockUser.level || 1) + 1) * 100} XP
+            </span>
+          </div>
+          <div className="w-full bg-gray-200 rounded-full h-3">
+            <div
+              className="h-3 rounded-full transition-all duration-500"
+              style={{
+                width: `${(mockUser.xp % 100) / 100 * 100}%`,
+                backgroundColor: getLevelColor(mockUser.level)
+              }}
+            ></div>
+          </div>
+          <p className="text-sm text-gray-600 mt-2">
+            До следующего уровня: {((mockUser.level + 1) * 100) - mockUser.xp} XP
+          </p>
+        </div>
+      </div>
+
+      {/* Stats Grid */}
+      <div className="px-4 py-2">
+        <div className="grid grid-cols-2 gap-4">
+          <div className="bg-white rounded-lg p-4 shadow-sm border">
+            <div className="flex items-center space-x-3">
+              <div className="w-10 h-10 bg-blue-100 rounded-full flex items-center justify-center">
+                <Trophy className="w-5 h-5 text-blue-600" />
+              </div>
+              <div>
+                <p className="text-2xl font-bold text-blue-600">{mockUser.achievements}</p>
+                <p className="text-sm text-gray-600">Достижений</p>
+              </div>
+            </div>
+          </div>
+
+          <div className="bg-white rounded-lg p-4 shadow-sm border">
+            <div className="flex items-center space-x-3">
+              <div className="w-10 h-10 bg-yellow-100 rounded-full flex items-center justify-center">
+                <Coins className="w-5 h-5 text-yellow-600" />
+              </div>
+              <div>
+                <p className="text-2xl font-bold text-yellow-600">{mockUser.coins}</p>
+                <p className="text-sm text-gray-600">Монет</p>
+              </div>
+            </div>
+          </div>
+
+          <div className="bg-white rounded-lg p-4 shadow-sm border">
+            <div className="flex items-center space-x-3">
+              <div className="w-10 h-10 bg-green-100 rounded-full flex items-center justify-center">
+                <Star className="w-5 h-5 text-green-600" />
+              </div>
+              <div>
+                <p className="text-2xl font-bold text-green-600">{mockUser.battlesWon}</p>
+                <p className="text-sm text-gray-600">Побед</p>
+              </div>
+            </div>
+          </div>
+
+          <div className="bg-white rounded-lg p-4 shadow-sm border">
+            <div className="flex items-center space-x-3">
+              <div className="w-10 h-10 bg-red-100 rounded-full flex items-center justify-center">
+                <User className="w-5 h-5 text-red-600" />
+              </div>
+              <div>
+                <p className="text-2xl font-bold text-red-600">{mockUser.battlesLost}</p>
+                <p className="text-sm text-gray-600">Поражений</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {/* Battle Statistics */}
+      <div className="px-4 py-4">
+        <div className="bg-white rounded-lg p-4 shadow-sm border">
+          <h3 className="font-semibold text-gray-900 mb-4">Статистика битв</h3>
+          <div className="space-y-3">
+            <div className="flex justify-between items-center">
+              <span className="text-gray-600">Всего битв</span>
+              <span className="font-semibold">{(mockUser.battlesWon || 0) + (mockUser.battlesLost || 0)}</span>
+            </div>
+            <div className="flex justify-between items-center">
+              <span className="text-gray-600">Процент побед</span>
+              <span className="font-semibold">
+                {Math.round(((mockUser.battlesWon || 0) / ((mockUser.battlesWon || 0) + (mockUser.battlesLost || 0))) * 100)}%
+              </span>
+            </div>
+            <div className="flex justify-between items-center">
+              <span className="text-gray-600">Рейтинг</span>
+              <span className="font-semibold text-blue-600">
+                {(mockUser.battlesWon || 0) * 10 + (mockUser.level || 1) * 5}
+              </span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {/* Recent Activity */}
+      <div className="px-4 py-2 pb-20">
+        <div className="bg-white rounded-lg p-4 shadow-sm border">
+          <h3 className="font-semibold text-gray-900 mb-4">Последняя активность</h3>
+          <div className="space-y-3">
+            <div className="flex items-center space-x-3 p-3 bg-gray-50 rounded-lg">
+              <div className="w-8 h-8 bg-green-100 rounded-full flex items-center justify-center">
+                <Trophy className="w-4 h-4 text-green-600" />
+              </div>
+              <div className="flex-1">
+                <p className="text-sm font-medium text-gray-900">Получено достижение "Новичок"</p>
+                <p className="text-xs text-gray-500">2 часа назад</p>
+              </div>
+            </div>
+            <div className="flex items-center space-x-3 p-3 bg-gray-50 rounded-lg">
+              <div className="w-8 h-8 bg-blue-100 rounded-full flex items-center justify-center">
+                <Star className="w-4 h-4 text-blue-600" />
+              </div>
+              <div className="flex-1">
+                <p className="text-sm font-medium text-gray-900">Выиграна битва с Александром</p>
+                <p className="text-xs text-gray-500">1 день назад</p>
+              </div>
+            </div>
+            <div className="flex items-center space-x-3 p-3 bg-gray-50 rounded-lg">
+              <div className="w-8 h-8 bg-yellow-100 rounded-full flex items-center justify-center">
+                <Coins className="w-4 h-4 text-yellow-600" />
+              </div>
+              <div className="flex-1">
+                <p className="text-sm font-medium text-gray-900">Куплен кейс с наградами</p>
+                <p className="text-xs text-gray-500">2 дня назад</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
   );
 };
